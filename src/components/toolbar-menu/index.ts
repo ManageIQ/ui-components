@@ -15,12 +15,14 @@
 /// limitations under the License.
 ///
 
-///<reference path="tsd.d.ts"/>
-import services from './services';
-import components from './components';
-module miqStaticAssets {
-  export const app = angular.module('miqStaticAssets', ['ui.bootstrap', 'ui.bootstrap.tabs', 'rx', 'ngSanitize']);
-  services(app);
-  components(app);
+import Toolbar from './toolbarComponent';
+import ToolbarButton from './toolbarButtonDirective';
+import ToolbarList from './toolbarListComponent';
+import ToolbarView from './toolbarViewComponent';
 
-}
+export default (module: ng.IModule) => {
+  module.component('miqToolbarMenu', new Toolbar);
+  module.component('miqToolbarList', new ToolbarList);
+  module.component('miqToolbarView', new ToolbarView);
+  module.directive('miqToolbarButton', ToolbarButton.Factory());
+};

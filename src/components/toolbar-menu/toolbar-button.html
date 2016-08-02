@@ -1,0 +1,11 @@
+<button title="{{toolbarButton.title}}"
+        id="{{toolbarButton.id}}"
+        name="{{toolbarButton.name}}"
+        type="button"
+        class="btn btn-default"
+        data-click="{{toolbarButton.id}}"
+        data-url="{{toolbarButton.url}}"
+        data-url_parms="{{toolbarButton.url_parms}}"
+        ng-click="onItemClick({item: toolbarButton, $event: $event})">
+  <i class="{{toolbarButton.icon}}" style=""></i>&nbsp;
+</button>

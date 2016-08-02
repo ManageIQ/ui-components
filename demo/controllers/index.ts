@@ -15,12 +15,11 @@
 /// limitations under the License.
 ///
 
-///<reference path="tsd.d.ts"/>
-import services from './services';
-import components from './components';
-module miqStaticAssets {
-  export const app = angular.module('miqStaticAssets', ['ui.bootstrap', 'ui.bootstrap.tabs', 'rx', 'ngSanitize']);
-  services(app);
-  components(app);
+///<reference path="../tsd.d.ts"/>
+import AvailableComponentsController from './availableComponentsController';
+import ToolbarMenuController from './toolbarMenuController';
 
-}
+export default (module: ng.IModule) => {
+  module.controller('demoAvailableComponents', AvailableComponentsController);
+  module.controller('demoToolbarMenu', ToolbarMenuController);
+};

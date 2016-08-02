@@ -15,12 +15,14 @@
 /// limitations under the License.
 ///
 
-///<reference path="tsd.d.ts"/>
-import services from './services';
-import components from './components';
-module miqStaticAssets {
-  export const app = angular.module('miqStaticAssets', ['ui.bootstrap', 'ui.bootstrap.tabs', 'rx', 'ngSanitize']);
-  services(app);
-  components(app);
+///<reference path="../tsd.d.ts"/>
+import AvailableComponentsService from './../services/availableComponentsService';
+import {IAvailableGroup} from '../services/availableComponentsService';
 
+export default class AvailableComponentsController {
+  public availableComponents: IAvailableGroup[];
+  /* @ngInject */
+  public constructor() {
+    this.availableComponents = (new AvailableComponentsService()).availableComponents;
+  }
 }

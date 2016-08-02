@@ -15,12 +15,10 @@
 /// limitations under the License.
 ///
 
-///<reference path="tsd.d.ts"/>
-import services from './services';
-import components from './components';
-module miqStaticAssets {
-  export const app = angular.module('miqStaticAssets', ['ui.bootstrap', 'ui.bootstrap.tabs', 'rx', 'ngSanitize']);
-  services(app);
-  components(app);
+import EndpointsService from './endpointsService';
+import ToolbarSettingsService from './toolbarSettingsService';
 
-}
+export default (module: ng.IModule) => {
+  module.service('MiQEndpointsService', EndpointsService);
+  module.service('MiQToolbarSettingsService', ToolbarSettingsService);
+};

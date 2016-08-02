@@ -17,5 +17,5 @@
 
 ///<reference path="tsd.d.ts"/>
 (() => {
-  const app = angular.module('miqStaticAssets', ['ui.bootstrap', 'ui.bootstrap.tabs', 'rx', 'ngSanitize']);
+  const app = angular.module('miqStaticAssets', ['rx', 'ngSanitize']);
 })();

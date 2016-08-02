@@ -1,4 +1,4 @@
-= Middleware Components for ManageIQ
+= Angular Components for ManageIQ
 
 image::https://www.bithound.io/github/hawkular/hawkular-ui-components/badges/score.svg[link="https://www.bithound.io/github/hawkular/hawkular-ui-components"]
 image::https://www.bithound.io/github/hawkular/hawkular-ui-components/badges/dependencies.svg[link="https://www.bithound.io/github/hawkular/hawkular-ui-components/master/dependencies/npm"]

@@ -81,7 +81,6 @@ module.exports = {
         'css-loader!sass-loader')},
       {test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader')},
       {test: /\.(png|jpg|gif|svg|woff|ttf|eot)/, loader:  'url-loader?limit=20480'}
-      // inline images/fonts less than  20Kb otherwise file-loader is used
     ]
   },
   plugins: plugins,

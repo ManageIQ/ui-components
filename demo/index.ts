@@ -16,6 +16,7 @@
 ///
 
 ///<reference path="tsd.d.ts"/>
-
-const app = angular.module('demoApp', ['miqStaticAssets', 'ui.bootstrap', 'ui.router',
-  'patternfly.select', 'ui.bootstrap.tabs', 'patternfly.views', 'ngAnimate']);
+(() => {
+  const app = angular.module('demoApp', ['miqStaticAssets', 'ui.bootstrap', 'ui.router',
+    'patternfly.select', 'ui.bootstrap.tabs', 'patternfly.views', 'ngAnimate']);
+})();

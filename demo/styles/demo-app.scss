@@ -1,0 +1,38 @@
+ul.nav.nav-list.well {
+  padding: 0;
+
+  li.nav-header {
+    background: #d3d3d3;
+
+    a {
+      color: black;
+      font-size: larger;
+      margin: 0;
+    }
+  }
+}
+
+table.table tbody td img {
+  height: 20px;
+  width: 20px;
+}
+
+table .narrow {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.clear-navbar {
+  margin-top: 60px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  .demo-checkbox {
+    position: absolute;margin-left: 10px;margin-top: 1px;
+  }
+}
+
+.form-horizontal .form-group:after {
+  clear: both;
+}

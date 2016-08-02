@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "UI components for ManageIQ project",
   "main": [
-    "dist/css/hawkular-ui-components.css",
-    "dist/js/hawkular-ui-components.js"
+    "dist/css/ui-components.css",
+    "dist/js/ui-components.js"
   ],
   "authors": [
     ""

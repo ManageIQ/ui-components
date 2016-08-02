@@ -1,4 +1,4 @@
-= Hawkular Middleware Components for ManageIQ
+= Middleware Components for ManageIQ
 
 image:https://badges.gitter.im/hawkular/hawkular-ui-components.svg[link="https://gitter.im/hawkular/hawkular-ui-components?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]
 
@@ -10,10 +10,6 @@ ifdef::env-github[]
 image:https://travis-ci.org/hawkular/hawkular-ui-components.svg["Build Status",
 link="https://travis-ci.org/hawkular/hawkular-ui-components"]
 endif::[]
-
-== Proposed Angular 1.5.x Components for ManageIQ
-
-Please refer to http://www.hawkular.org/docs/dev/ui-dev.html[Hawkular UI Development Docs] for further UI development details.
 
 
 == Architectural Goals

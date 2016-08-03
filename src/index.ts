@@ -22,5 +22,4 @@ module miqStaticAssets {
   export const app = angular.module('miqStaticAssets', ['ui.bootstrap', 'ui.bootstrap.tabs', 'rx', 'ngSanitize']);
   services(app);
   components(app);
-
 }

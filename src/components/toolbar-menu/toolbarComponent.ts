@@ -85,7 +85,7 @@ export class ToolbarController {
    * {@link https://docs.angularjs.org/api/ng/directive/ngBindHtml}
    */
   public trustAsHtml(escapedString: string): any {
-    escapedString = ToolbarController.htmlDecode(escapedString).replace(/&quot;/g, '"');
+    escapedString = ToolbarController.htmlDecode(escapedString);
     return this.$sce.trustAsHtml(escapedString);
   }
 

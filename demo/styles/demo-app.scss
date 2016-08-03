@@ -36,3 +36,23 @@ table .narrow {
 .form-horizontal .form-group:after {
   clear: both;
 }
+
+.miq-custom-html {
+  .checkbox-inline {
+    position: relative;
+    display: inline-block;
+    padding-left: 20px;
+    margin-bottom: 0;
+    vertical-align: middle;
+    font-weight: normal;
+    cursor: pointer;
+  }
+
+  .form-group {
+    display: table-cell;
+    float: left;
+    &:not(.has-clear) {
+      margin-right: 20px;
+    }
+  }
+}

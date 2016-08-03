@@ -65,7 +65,7 @@ export default class ToolbarSettingsService {
    * @returns {ng.IPromise<IToolbarSettings>}
    * @param getData
    */
-  public getSettings(getData: IRequestData): ng.IPromise<IToolbarSettings> {
+  public getSettings(getData?: IRequestData): ng.IPromise<IToolbarSettings> {
     return this.httpGet(
       this.MiQEndpointsService.rootPoint + this.MiQEndpointsService.endpoints.toolbarSettings,
       getData

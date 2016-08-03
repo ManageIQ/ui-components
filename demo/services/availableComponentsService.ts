@@ -60,6 +60,11 @@ export default class AvailableComponentsService {
           'Basic Toolbar Menu',
           '/basic',
           require<string>('./../views/toolbar-menu/basic.html'),
+          'demoToolbarMenu as vm'),
+        new AvailableComponent('custom_html', '' +
+          'Custom Html Toolbar Menu',
+          '/custom',
+          require<string>('./../views/toolbar-menu/custom-html.html'),
           'demoToolbarMenu as vm')
       ])
     ];

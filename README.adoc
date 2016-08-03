@@ -1,12 +1,14 @@
 = Angular Components for ManageIQ
 
-image::https://www.bithound.io/github/hawkular/hawkular-ui-components/badges/score.svg[link="https://www.bithound.io/github/hawkular/hawkular-ui-components"]
-image::https://www.bithound.io/github/hawkular/hawkular-ui-components/badges/dependencies.svg[link="https://www.bithound.io/github/hawkular/hawkular-ui-components/master/dependencies/npm"]
+image::https://www.bithound.io/github/ManageIQ/-ui-components/badges/score.svg[link="https://www.bithound
+.io/github/ManageIQ/hawkular-ui-components"]
+image::https://www.bithound.io/github/ManageIQ/ui-components/badges/dependencies.svg[link="https://www.bithound
+.io/github/ManageIQ/ui-components/master/dependencies/npm"]
 
 ifdef::env-github[]
-[link=https://travis-ci.org/hawkular/hawkular-ui-components]
-image:https://travis-ci.org/hawkular/hawkular-ui-components.svg["Build Status",
-link="https://travis-ci.org/hawkular/hawkular-ui-components"]
+[link=https://travis-ci.org/ManageIQ/ui-components
+image:https://travis-ci.org/ManageIQ/ui-components.svg["Build Status",
+link="https://travis-ci.org/ManageIQ/ui-components"]
 endif::[]
 
 

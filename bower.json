@@ -1,0 +1,28 @@
+{
+  "name": "ui-components",
+  "version": "0.0.1",
+  "description": "UI components for ManageIQ project",
+  "main": [
+    "dist/css/ui-components.css",
+    "dist/js/ui-components.js"
+  ],
+  "authors": [
+    ""
+  ],
+  "license": "Apache-2.0",
+  "homepage": "",
+  "moduleType": [],
+  "ignore": [
+    "*",
+    "!dist/",
+    "!dist/*",
+    "!LICENSE",
+    "!README.adoc"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "angular-patternfly": "^3.5.1",
+    "ui-select": "angular-ui-select#^0.16.1",
+    "bootstrap-combobox": "^1.1.6"
+  }
+}

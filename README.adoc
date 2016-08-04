@@ -1,12 +1,14 @@
-= Angular Components for ManageIQ
+= Angular UI Components for ManageIQ
 
-image::https://www.bithound.io/github/hawkular/hawkular-ui-components/badges/score.svg[link="https://www.bithound.io/github/hawkular/hawkular-ui-components"]
-image::https://www.bithound.io/github/hawkular/hawkular-ui-components/badges/dependencies.svg[link="https://www.bithound.io/github/hawkular/hawkular-ui-components/master/dependencies/npm"]
+image::https://www.bithound.io/github/ManageIQ/ui-components/badges/score.svg[link="https://www.bithound
+.io/github/ManageIQ/ui-components"]
+image::https://www.bithound.io/github/ManageIQ/ui-components/badges/dependencies.svg[link="https://www.bithound
+.io/github/ManageIQ/ui-components/master/dependencies/npm"]
 
 ifdef::env-github[]
-[link=https://travis-ci.org/hawkular/hawkular-ui-components]
-image:https://travis-ci.org/hawkular/hawkular-ui-components.svg["Build Status",
-link="https://travis-ci.org/hawkular/hawkular-ui-components"]
+[link=https://travis-ci.org/ManageIQ/ui-components
+image:https://travis-ci.org/ManageIQ/ui-components.svg["Build Status",
+link="https://travis-ci.org/ManageIQ/ui-components"]
 endif::[]
 
 
@@ -17,27 +19,19 @@ endif::[]
 * Maintain routing inside ManageIQ(routes.rb)
 
 
-== Architecture Proposal
+== Architecture
 
-image::MiQ-UI-Architecture.jpg[ManageIQ UI Components Architecture Proposal]
+image::MiQ-UI-Architecture.jpg[ManageIQ UI Components Architecture]
 
 == Angular 1.5 Components
 
 We are recommending https://docs.angularjs.org/guide/component[Angular 1.5 Components] instead of Angular Directives
-for better compatibility with Angular 2.0.
-
-The https://docs.angularjs.org/guide/component-router[Angular 2 Component Router] has been backported to Angular 1.5.x
- so even component routing can be done now with Angular 1.x. [TODO: Angular 1.x Component Router should be considered
- instead of UI Router (since it will not be needed with Angular 2.x) ]
+for better compatibility and easier upgrade to Angular 2.0.
 
 For a great overview of using Angular 1.5.x Components please see:
-https://www.youtube.com/watch?list=PLOETEcp3DkCq788xapkP_OU-78jhTf68j&v=AMwjDibFxno&ab_channel=ng-conf[NG-Conf 2016:Components, Components, Components!...and Angular 1.5 - Pete Bacon Darwin]
+https://www.youtube.com/watch?list=PLOETEcp3DkCq788xapkP_OU-78jhTf68j&v=AMwjDibFxno&ab_channel=ng-conf[NG-Conf 2016:
+Components, Components, Components!...and Angular 1.5 - Pete Bacon Darwin]
 
-== TODO
-
-* i18n (should this be done in Angular or Rails?)
-* Angular Events (currently angular events can only notify via the section of the DOM that the app is occupying.
- Right now a functional tab (i.e., Middleware is ~= app; _this could change_]
 
 == Development Environment
 
@@ -56,16 +50,9 @@ To run:
 [source]
 npm start
 
-Before sumbitting code:
+Before submitting code, run the following command to format the code according to the tslint rules:
+[source]
 tsmft -r
-This formats the code according to the tslint rules.
 
-__Next up Angular 2.x components running alongside Angular 1.x via ngUpgrade. Ideally, a switch directly to Angular 2
-would be most desirable. However, since there are some Angular 1 dependencies (such as
-https://github.com/patternfly/angular-patternfly[Angular Patternfly]) that make it difficult to migrate directly to
-Angular 2, at first. So a good intermediate compromise is to use http://blog.rangle
-.io/upgrade-your-application-to-angular-2-with-ng-upgrade[Angular ngUpgrade] which allows Angular2 to run
-alongside Angular 1. Angular 2 components can use Angular 1 stuff and vice versa. This makes it easy to create real
-Angular 2 Components that can be downgraded to Angular 1 directives (and used in Angular 1). So the team gets
-experience writing Angular 2 working in the Angular 1 runtime. __
+This formats the code according to the tslint rules.
 

@@ -1,9 +1,7 @@
 = Angular UI Components for ManageIQ
 
-image::https://www.bithound.io/github/ManageIQ/ui-components/badges/score.svg[link="https://www.bithound
-.io/github/ManageIQ/ui-components"]
-image::https://www.bithound.io/github/ManageIQ/ui-components/badges/dependencies.svg[link="https://www.bithound
-.io/github/ManageIQ/ui-components/master/dependencies/npm"]
+image::https://www.bithound.io/github/ManageIQ/ui-components/badges/score.svg[link="https://www.bithound.io/github/ManageIQ/ui-components"]
+image::https://www.bithound.io/github/ManageIQ/ui-components/badges/dependencies.svg[link="https://www.bithound.io/github/ManageIQ/ui-components/master/dependencies/npm"]
 
 ifdef::env-github[]
 [link=https://travis-ci.org/ManageIQ/ui-components

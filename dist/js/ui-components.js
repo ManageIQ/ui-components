@@ -98,8 +98,8 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(13);
-	module.exports = __webpack_require__(15);
+	__webpack_require__(14);
+	module.exports = __webpack_require__(16);
 
 
 /***/ },
@@ -114,37 +114,77 @@
 /* 9 */,
 /* 10 */,
 /* 11 */,
-/* 12 */,
-/* 13 */
+/* 12 */
+/***/ function(module, exports) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	// css base code, injected by the css-loader
+	module.exports = function() {
+		var list = [];
+
+		// return the list of modules as css string
+		list.toString = function toString() {
+			var result = [];
+			for(var i = 0; i < this.length; i++) {
+				var item = this[i];
+				if(item[2]) {
+					result.push("@media " + item[2] + "{" + item[1] + "}");
+				} else {
+					result.push(item[1]);
+				}
+			}
+			return result.join("");
+		};
+
+		// import a list of modules into the list
+		list.i = function(modules, mediaQuery) {
+			if(typeof modules === "string")
+				modules = [[null, modules, ""]];
+			var alreadyImportedModules = {};
+			for(var i = 0; i < this.length; i++) {
+				var id = this[i][0];
+				if(typeof id === "number")
+					alreadyImportedModules[id] = true;
+			}
+			for(i = 0; i < modules.length; i++) {
+				var item = modules[i];
+				// skip already imported module
+				// this implementation is not 100% perfect for weird media query combinations
+				//  when a module is imported multiple times with different media queries.
+				//  I hope this will never occur (Hey this way we have smaller bundles)
+				if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+					if(mediaQuery && !item[2]) {
+						item[2] = mediaQuery;
+					} else if(mediaQuery) {
+						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+					}
+					list.push(item);
+				}
+			}
+		};
+		return list;
+	};
+
+
+/***/ },
+/* 13 */,
+/* 14 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 14 */,
-/* 15 */
+/* 15 */,
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
-	///
-	/// Copyright 2015-2016 Red Hat, Inc. and/or its affiliates
-	/// and other contributors as indicated by the @author tags.
-	///
-	/// Licensed under the Apache License, Version 2.0 (the "License");
-	/// you may not use this file except in compliance with the License.
-	/// You may obtain a copy of the License at
-	///
-	///    http://www.apache.org/licenses/LICENSE-2.0
-	///
-	/// Unless required by applicable law or agreed to in writing, software
-	/// distributed under the License is distributed on an "AS IS" BASIS,
-	/// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	/// See the License for the specific language governing permissions and
-	/// limitations under the License.
-	///
 	"use strict";
 	///<reference path="tsd.d.ts"/>
-	var services_1 = __webpack_require__(16);
-	var components_1 = __webpack_require__(19);
+	var services_1 = __webpack_require__(17);
+	var components_1 = __webpack_require__(20);
 	var miqStaticAssets;
 	(function (miqStaticAssets) {
 	    miqStaticAssets.app = angular.module('miqStaticAssets', ['ui.bootstrap', 'ui.bootstrap.tabs', 'rx', 'ngSanitize']);
@@ -154,28 +194,12 @@
 
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
-	///
-	/// Copyright 2015-2016 Red Hat, Inc. and/or its affiliates
-	/// and other contributors as indicated by the @author tags.
-	///
-	/// Licensed under the Apache License, Version 2.0 (the "License");
-	/// you may not use this file except in compliance with the License.
-	/// You may obtain a copy of the License at
-	///
-	///    http://www.apache.org/licenses/LICENSE-2.0
-	///
-	/// Unless required by applicable law or agreed to in writing, software
-	/// distributed under the License is distributed on an "AS IS" BASIS,
-	/// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	/// See the License for the specific language governing permissions and
-	/// limitations under the License.
-	///
 	"use strict";
-	var endpointsService_1 = __webpack_require__(17);
-	var toolbarSettingsService_1 = __webpack_require__(18);
+	var endpointsService_1 = __webpack_require__(18);
+	var toolbarSettingsService_1 = __webpack_require__(19);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.service('MiQEndpointsService', endpointsService_1.default);
@@ -184,25 +208,9 @@
 
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports) {
 
-	///
-	/// Copyright 2015-2016 Red Hat, Inc. and/or its affiliates
-	/// and other contributors as indicated by the @author tags.
-	///
-	/// Licensed under the Apache License, Version 2.0 (the "License");
-	/// you may not use this file except in compliance with the License.
-	/// You may obtain a copy of the License at
-	///
-	///    http://www.apache.org/licenses/LICENSE-2.0
-	///
-	/// Unless required by applicable law or agreed to in writing, software
-	/// distributed under the License is distributed on an "AS IS" BASIS,
-	/// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	/// See the License for the specific language governing permissions and
-	/// limitations under the License.
-	///
 	"use strict";
 	var DefaultEndpoints = (function () {
 	    function DefaultEndpoints() {
@@ -228,25 +236,9 @@
 
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports) {
 
-	///
-	/// Copyright 2015-2016 Red Hat, Inc. and/or its affiliates
-	/// and other contributors as indicated by the @author tags.
-	///
-	/// Licensed under the Apache License, Version 2.0 (the "License");
-	/// you may not use this file except in compliance with the License.
-	/// You may obtain a copy of the License at
-	///
-	///    http://www.apache.org/licenses/LICENSE-2.0
-	///
-	/// Unless required by applicable law or agreed to in writing, software
-	/// distributed under the License is distributed on an "AS IS" BASIS,
-	/// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	/// See the License for the specific language governing permissions and
-	/// limitations under the License.
-	///
 	"use strict";
 	var ToolbarSettingsService = (function () {
 	    /*@ngInject*/
@@ -353,27 +345,11 @@
 
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
-	///
-	/// Copyright 2015-2016 Red Hat, Inc. and/or its affiliates
-	/// and other contributors as indicated by the @author tags.
-	///
-	/// Licensed under the Apache License, Version 2.0 (the "License");
-	/// you may not use this file except in compliance with the License.
-	/// You may obtain a copy of the License at
-	///
-	///    http://www.apache.org/licenses/LICENSE-2.0
-	///
-	/// Unless required by applicable law or agreed to in writing, software
-	/// distributed under the License is distributed on an "AS IS" BASIS,
-	/// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	/// See the License for the specific language governing permissions and
-	/// limitations under the License.
-	///
 	"use strict";
-	var toolbar_menu_1 = __webpack_require__(20);
+	var toolbar_menu_1 = __webpack_require__(21);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    toolbar_menu_1.default(module);
@@ -381,30 +357,14 @@
 
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
-	///
-	/// Copyright 2015-2016 Red Hat, Inc. and/or its affiliates
-	/// and other contributors as indicated by the @author tags.
-	///
-	/// Licensed under the Apache License, Version 2.0 (the "License");
-	/// you may not use this file except in compliance with the License.
-	/// You may obtain a copy of the License at
-	///
-	///    http://www.apache.org/licenses/LICENSE-2.0
-	///
-	/// Unless required by applicable law or agreed to in writing, software
-	/// distributed under the License is distributed on an "AS IS" BASIS,
-	/// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	/// See the License for the specific language governing permissions and
-	/// limitations under the License.
-	///
 	"use strict";
-	var toolbarComponent_1 = __webpack_require__(21);
-	var toolbarButtonDirective_1 = __webpack_require__(23);
-	var toolbarListComponent_1 = __webpack_require__(25);
-	var toolbarViewComponent_1 = __webpack_require__(27);
+	var toolbarComponent_1 = __webpack_require__(22);
+	var toolbarButtonDirective_1 = __webpack_require__(24);
+	var toolbarListComponent_1 = __webpack_require__(26);
+	var toolbarViewComponent_1 = __webpack_require__(28);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.component('miqToolbarMenu', new toolbarComponent_1.default);
@@ -415,25 +375,9 @@
 
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
-	///
-	/// Copyright 2015-2016 Red Hat, Inc. and/or its affiliates
-	/// and other contributors as indicated by the @author tags.
-	///
-	/// Licensed under the Apache License, Version 2.0 (the "License");
-	/// you may not use this file except in compliance with the License.
-	/// You may obtain a copy of the License at
-	///
-	///    http://www.apache.org/licenses/LICENSE-2.0
-	///
-	/// Unless required by applicable law or agreed to in writing, software
-	/// distributed under the License is distributed on an "AS IS" BASIS,
-	/// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	/// See the License for the specific language governing permissions and
-	/// limitations under the License.
-	///
 	"use strict";
 	/**
 	 * @memberof miqStaticAssets
@@ -605,7 +549,7 @@
 	var Toolbar = (function () {
 	    function Toolbar() {
 	        this.replace = true;
-	        this.template = __webpack_require__(22);
+	        this.template = __webpack_require__(23);
 	        this.controller = ToolbarController;
 	        this.controllerAs = 'vm';
 	        this.bindings = {
@@ -621,31 +565,15 @@
 
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"toolbar-pf-actions miq-toolbar-actions\">\n    <div class=\"form-group miq-toolbar-group\"\n         ng-repeat=\"toolbarItem in vm.toolbarItems\"\n         ng-if=\"vm.hasContent(toolbarItem)\">\n      <miq-toolbar-button ng-repeat=\"item in toolbarItem | filter: {type: 'button'}:true\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-list ng-repeat=\"item in toolbarItem | filter: {type: 'buttonSelect'}\"\n                        toolbar-list=\"item\"\n                        on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-list>\n      <div ng-repeat=\"item in toolbarItem | filter: {name: 'custom'}\"\n           ng-bind-html=\"vm.trustAsHtml(item.args.html)\"\n           class=\"miq-custom-html\"></div>\n    </div>\n    <miq-toolbar-view toolbar-views=\"vm.toolbarViews\"\n                      on-item-click=\"vm.onViewClick({item: item})\"\n                      class=\"miq-view-list\">\n    </miq-toolbar-view>\n</div>\n"
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
-	///
-	/// Copyright 2015-2016 Red Hat, Inc. and/or its affiliates
-	/// and other contributors as indicated by the @author tags.
-	///
-	/// Licensed under the Apache License, Version 2.0 (the "License");
-	/// you may not use this file except in compliance with the License.
-	/// You may obtain a copy of the License at
-	///
-	///    http://www.apache.org/licenses/LICENSE-2.0
-	///
-	/// Unless required by applicable law or agreed to in writing, software
-	/// distributed under the License is distributed on an "AS IS" BASIS,
-	/// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	/// See the License for the specific language governing permissions and
-	/// limitations under the License.
-	///
 	"use strict";
 	/**
 	 * @memberof miqStaticAssets
@@ -666,7 +594,7 @@
 	var ToolbarButton = (function () {
 	    function ToolbarButton() {
 	        this.replace = true;
-	        this.template = __webpack_require__(24);
+	        this.template = __webpack_require__(25);
 	        this.scope = {
 	            toolbarButton: '<',
 	            onItemClick: '&'
@@ -684,31 +612,15 @@
 
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports) {
 
 	module.exports = "<button title=\"{{toolbarButton.title}}\"\n        id=\"{{toolbarButton.id}}\"\n        name=\"{{toolbarButton.name}}\"\n        type=\"button\"\n        class=\"btn btn-default\"\n        data-click=\"{{toolbarButton.id}}\"\n        data-url=\"{{toolbarButton.url}}\"\n        data-url_parms=\"{{toolbarButton.url_parms}}\"\n        ng-click=\"onItemClick({item: toolbarButton, $event: $event})\">\n  <i class=\"{{toolbarButton.icon}}\" style=\"\"></i>&nbsp;\n</button>\n"
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
-	///
-	/// Copyright 2015-2016 Red Hat, Inc. and/or its affiliates
-	/// and other contributors as indicated by the @author tags.
-	///
-	/// Licensed under the Apache License, Version 2.0 (the "License");
-	/// you may not use this file except in compliance with the License.
-	/// You may obtain a copy of the License at
-	///
-	///    http://www.apache.org/licenses/LICENSE-2.0
-	///
-	/// Unless required by applicable law or agreed to in writing, software
-	/// distributed under the License is distributed on an "AS IS" BASIS,
-	/// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	/// See the License for the specific language governing permissions and
-	/// limitations under the License.
-	///
 	"use strict";
 	/**
 	 * @memberof miqStaticAssets
@@ -744,7 +656,7 @@
 	var ToolbarList = (function () {
 	    function ToolbarList() {
 	        this.replace = true;
-	        this.template = __webpack_require__(26);
+	        this.template = __webpack_require__(27);
 	        this.controller = ToolbarListController;
 	        this.controllerAs = 'vm';
 	        this.bindings = {
@@ -759,31 +671,15 @@
 
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"btn-group\" dropdown>\n  <button type=\"button\" dropdown-toggle class=\"btn dropdown-toggle btn-default\"\n          ng-class=\"{disabled: !vm.toolbarList.enabled}\" title=\"{{vm.toolbarList.title}}\">\n    <i class=\"{{vm.toolbarList.icon}}\" style=\"margin-right: 5px;\" ng-if=\"vm.toolbarList.icon\"></i>\n    {{vm.toolbarList.text}}\n    <span class=\"caret\"></span>\n  </button>\n  <ul class=\"dropdown-menu\" role=\"menu\">\n    <li ng-repeat=\"item in vm.toolbarList.items track by $index\" ng-class=\"{disabled: !item.enabled}\">\n      <a href=\"\"\n         ng-click=\"vm.onItemClick({item: item, $event: $event})\"\n         data-function=\"{{item.data.function}}\"\n         data-function-data=\"{{item.data['function-data']}}\"\n         data-target=\"{{item.data.target}}\"\n         data-toggle=\"{{item.data.toggle}}\"\n         data-click=\"{{item.id}}\"\n         name=\"{{item.id}}\"\n         id=\"{{item.id}}\"\n         data-url_parms=\"{{item.url_parms}}\"\n         data-url=\"{{item.url}}\">\n        <i ng-if=\"item.icon\" class=\"{{item.icon}}\"></i>\n        {{item.text}}\n      </a>\n    </li>\n  </ul>\n</div>\n"
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
-	///
-	/// Copyright 2015-2016 Red Hat, Inc. and/or its affiliates
-	/// and other contributors as indicated by the @author tags.
-	///
-	/// Licensed under the Apache License, Version 2.0 (the "License");
-	/// you may not use this file except in compliance with the License.
-	/// You may obtain a copy of the License at
-	///
-	///    http://www.apache.org/licenses/LICENSE-2.0
-	///
-	/// Unless required by applicable law or agreed to in writing, software
-	/// distributed under the License is distributed on an "AS IS" BASIS,
-	/// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	/// See the License for the specific language governing permissions and
-	/// limitations under the License.
-	///
 	"use strict";
 	/**
 	 * @memberof miqStaticAssets
@@ -816,7 +712,7 @@
 	var ToolbarView = (function () {
 	    function ToolbarView() {
 	        this.replace = false;
-	        this.template = __webpack_require__(28);
+	        this.template = __webpack_require__(29);
 	        this.controller = ToolbarViewController;
 	        this.controllerAs = 'vm';
 	        this.bindings = {
@@ -831,7 +727,7 @@
 
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"toolbar-pf-view-selector form-group\">\n  <ul class=\"list-inline\">\n    <li ng-repeat=\"item in vm.toolbarViews\" ng-class=\"{active: item.selected}\">\n      <a href=\"javascript:void(0)\"\n         title=\"{{item.title}}\"\n         id=\"{{item.id}}\"\n         data-url=\"{{item.url}}\"\n         data-url_parms=\"{{item.url_parms}}\"\n         ng-click=\"vm.onItemClick({item: item})\"\n         name=\"{{item.name}}\">\n        <i class=\"{{item.icon}}\" style=\"\"></i>\n      </a>\n    </li>\n  </ul>\n</div>\n"

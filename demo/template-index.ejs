@@ -19,46 +19,61 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body>
-    <header class="header">
-        <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
+<header class="header">
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
             <div class="navbar-inner">
                 <div class="container-fluid navbar-inverse">
                     <a class="navbar-brand">ManageIQ Common Components</a>
                 </div>
             </div>
         </div>
-    </header>
-    <div class="container-fluid" ng-app="demoApp" ng-strict-di="true" ng-cloak>
-        <div class="row clear-navbar"></div>
+</header>
+<div class="container-fluid" ng-app="demoApp" ng-strict-di="true" ng-cloak>
+    <div class="row clear-navbar"></div>
+    <div class="row" ng-controller="demoAvailableComponents as vm">
+        <div class="col-md-3">
+            <ul class="nav nav-list well" ng-repeat="group in vm.availableComponents">
+                <li class="nav-header module">
+                    <a class="code ng-binding" href="#{{group.location}}" title="{{group.title}}">{{group.title}}</a>
+                </li>
+                <li ng-repeat="page in group.components track by page.name" class="api-list-item expand">
+                    <a href="#{{group.location + page.location}}" tabindex="2">{{page.title}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <div ui-view></div>
+        </div>
     </div>
-    <!-- bower javascripts -->
-    <script src="js/libs/jquery/dist/jquery.js"></script>
-    <script src="js/vendor.js"></script>
-    <script src="js/libs/angular-animate/angular-animate.js"></script>
-    <script src="js/libs/angular-sanitize/angular-sanitize.js"></script>
-    <script src="js/libs/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="js/libs/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="js/libs/bootstrap-combobox/js/bootstrap-combobox.js"></script>
-    <script src="js/libs/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-    <script src="js/libs/bootstrap-select/dist/js/bootstrap-select.js"></script>
-    <script src="js/libs/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
-    <script src="js/libs/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
-    <script src="js/libs/d3/d3.js"></script>
-    <script src="js/libs/c3/c3.js"></script>
-    <script src="js/libs/datatables/media/js/jquery.dataTables.js"></script>
-    <script src="js/libs/datatables-colreorder/js/dataTables.colReorder.js"></script>
-    <script src="js/libs/datatables-colvis/js/dataTables.colVis.js"></script>
-    <script src="js/libs/google-code-prettify/bin/prettify.min.js"></script>
-    <script src="js/libs/matchHeight/jquery.matchHeight-min.js"></script>
-    <script src="js/libs/moment/moment.js"></script>
-    <script src="js/libs/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
-    <script src="js/libs/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="js/libs/patternfly/dist/js/patternfly.js"></script>
-    <script src="js/libs/angular-patternfly/dist/angular-patternfly.js"></script>
-    <!-- bower javascripts -->
-    <!-- vendor javascripts -->
+</div>
+<!-- bower javascripts -->
+<script src="js/libs/jquery/dist/jquery.js"></script>
+<script src="js/vendor.js"></script>
+<script src="js/libs/angular-animate/angular-animate.js"></script>
+<script src="js/libs/angular-sanitize/angular-sanitize.js"></script>
+<script src="js/libs/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="js/libs/bootstrap/dist/js/bootstrap.js"></script>
+<script src="js/libs/bootstrap-combobox/js/bootstrap-combobox.js"></script>
+<script src="js/libs/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script src="js/libs/bootstrap-select/dist/js/bootstrap-select.js"></script>
+<script src="js/libs/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
+<script src="js/libs/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
+<script src="js/libs/d3/d3.js"></script>
+<script src="js/libs/c3/c3.js"></script>
+<script src="js/libs/datatables/media/js/jquery.dataTables.js"></script>
+<script src="js/libs/datatables-colreorder/js/dataTables.colReorder.js"></script>
+<script src="js/libs/datatables-colvis/js/dataTables.colVis.js"></script>
+<script src="js/libs/google-code-prettify/bin/prettify.min.js"></script>
+<script src="js/libs/matchHeight/jquery.matchHeight-min.js"></script>
+<script src="js/libs/moment/moment.js"></script>
+<script src="js/libs/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
+<script src="js/libs/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/libs/patternfly/dist/js/patternfly.js"></script>
+<script src="js/libs/angular-patternfly/dist/angular-patternfly.js"></script>
+<!-- bower javascripts -->
+<!-- vendor javascripts -->
 
-    <!-- vendor javascripts -->
+<!-- vendor javascripts -->
 </body>
 </html>

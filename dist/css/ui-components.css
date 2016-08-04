@@ -1,2 +1,93 @@
+.miqGreeter {
+  background-color: red;
+  color: white; }
+
+td.miqTextLeft {
+  text-align: left; }
+
+td.miqTextRight {
+  text-align: right; }
+
+table.mig-table-with-footer {
+  margin-bottom: 0px; }
+
+.dataTables_footer span {
+  margin-left: 10px; }
+
+.form-actions button.btn {
+  margin-right: 5px; }
+
+.mig-table thead th {
+  color: #0099d3;
+  cursor: pointer; }
+
+.miq-alert-section {
+  margin-top: 10px; }
+  .miq-alert-section .miq-info-alert {
+    text-align: center; }
+
+.toolbar-pf-actions .toolbar-pf-actions.miq-toolbar-actions {
+  display: inline; }
+
+img.miq-gradient-background {
+  border-radius: 15px;
+  background: #adadad;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #adadad 5%, #adadad 5%, #000000 98%, #000000 98%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #adadad 5%, #adadad 5%, #000000 98%, #000000 98%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #adadad 5%, #adadad 5%, #000000 98%, #000000 98%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#adadad', endColorstr='#000000',GradientType=0 );
+  /* IE6-9 */ }
+
+.miq-row-margin-only-top {
+  margin-top: 15px;
+  margin-left: 0;
+  margin-right: 0; }
+
+.miq-tile-section div.miq-load-more {
+  text-align: center; }
+
+.miq-tile-with-body .card-view-pf .card {
+  width: 350px;
+  height: 170px;
+  animation: fade-in 2s; }
+  .miq-tile-with-body .card-view-pf .card .card-content {
+    overflow: hidden; }
+  .miq-tile-with-body .card-view-pf .card .miq-icon-section {
+    padding-right: 0; }
+  .miq-tile-with-body .card-view-pf .card .miq-info-section {
+    padding-left: 0; }
+    .miq-tile-with-body .card-view-pf .card .miq-info-section dd {
+      text-align: left; }
+
+.miq-small-tile .card-view-pf .card {
+  width: 170px;
+  height: 140px;
+  animation: fade-in 2s; }
+  .miq-small-tile .card-view-pf .card .card-content a {
+    word-wrap: break-word; }
+
+@keyframes fade-in {
+  0% {
+    opacity: 0; }
+  60% {
+    opacity: 1; }
+  100% {
+    opacity: 1; } }
+
+.miq-data-tables-header {
+  text-align: left; }
+
+.form-group.miq-toolbar-group {
+  margin-right: 20px;
+  display: inline-block; }
+  .form-group.miq-toolbar-group .miq-custom-html form {
+    display: inline-block; }
+  .form-group.miq-toolbar-group .miq-custom-html .form-group {
+    margin-bottom: 0 !important;
+    border-right: 0; }
 
 /*# sourceMappingURL=ui-components.css.map*/

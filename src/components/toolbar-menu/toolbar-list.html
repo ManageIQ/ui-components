@@ -1,0 +1,26 @@
+<div class="btn-group" dropdown>
+  <button type="button" dropdown-toggle class="btn dropdown-toggle btn-default"
+          ng-class="{disabled: !vm.toolbarList.enabled}" title="{{vm.toolbarList.title}}">
+    <i class="{{vm.toolbarList.icon}}" style="margin-right: 5px;" ng-if="vm.toolbarList.icon"></i>
+    {{vm.toolbarList.text}}
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li ng-repeat="item in vm.toolbarList.items track by $index" ng-class="{disabled: !item.enabled}">
+      <a href=""
+         ng-click="vm.onItemClick({item: item, $event: $event})"
+         data-function="{{item.data.function}}"
+         data-function-data="{{item.data['function-data']}}"
+         data-target="{{item.data.target}}"
+         data-toggle="{{item.data.toggle}}"
+         data-click="{{item.id}}"
+         name="{{item.id}}"
+         id="{{item.id}}"
+         data-url_parms="{{item.url_parms}}"
+         data-url="{{item.url}}">
+        <i ng-if="item.icon" class="{{item.icon}}"></i>
+        {{item.text}}
+      </a>
+    </li>
+  </ul>
+</div>

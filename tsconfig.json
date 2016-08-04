@@ -5,6 +5,10 @@
     "removeComments": false,
     "sourceMap": true
   },
+  "files": [
+    "typings/index.d.ts",
+    "src/index.ts"
+  ],
   "exclude": [
     "node_modules",
     "dist",

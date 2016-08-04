@@ -41,7 +41,7 @@ https://www.youtube.com/watch?list=PLOETEcp3DkCq788xapkP_OU-78jhTf68j&v=AMwjDibF
 
 == Development Environment
 
-You need to have installed https://docs.npmjs.com/getting-started/installing-node[Node.js >= 5 and npm >= 3] on
+You need to have installed https://docs.npmjs.com/getting-started/installing-node[Node.js >= 6  and npm >= 3] on
 your system.
 
 Install these node packages globally in the system

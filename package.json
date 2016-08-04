@@ -1,6 +1,6 @@
 {
   "name": "ui-components",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "UI components for ManageIQ project",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
   "authors": [],
   "license": "Apache-2.0",
   "engines": {
-    "node": ">= 5.1.0",
+    "node": ">= 6.0.0",
     "npm": ">= 3.8.1"
   },
   "devDependencies": {

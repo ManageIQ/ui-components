@@ -6,6 +6,10 @@
                           toolbar-button="item"
                           on-item-click="vm.onItemClick(item, $event)">
       </miq-toolbar-button>
+      <miq-toolbar-button ng-repeat="item in toolbarItem | filter: {type: 'buttonTwoState'}:true | filter: {id: '!view'}"
+                          toolbar-button="item"
+                          on-item-click="vm.onItemClick(item, $event)">
+      </miq-toolbar-button>
       <miq-toolbar-list ng-repeat="item in toolbarItem | filter: {type: 'buttonSelect'}"
                         toolbar-list="item"
                         on-item-click="vm.onItemClick(item, $event)">
@@ -19,3 +23,6 @@
                       class="miq-view-list">
     </miq-toolbar-view>
 </div>
+
+
+<!--<button data-url_parms="?compare_task=same&amp;id=" data-url="compare_miq_same" title="Attributes with same values" id="compare_same" data-click="compare_same" name="compare_same" type="button" class="btn btn-default"><i class="product product-compare_same fa-lg" style=""></i>&nbsp;</button>-->

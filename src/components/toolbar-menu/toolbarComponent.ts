@@ -106,7 +106,12 @@ export class ToolbarController {
    * @returns {boolean} true|false if it's item with button or button select type.
    */
   private static isButtonOrSelect(item: IToolbarItem): boolean {
-    return item.type && ToolbarController.isButtonSelect(item) || ToolbarController.isButton(item);
+    return item.type && (ToolbarController.isButtonSelect(item) || ToolbarController.isButton(item) ||
+      ToolbarController.isButtonTwoState(item));
+  }
+
+  private static isButtonTwoState(item: IToolbarItem): boolean {
+    return item.type === 'buttonTwoState';
   }
 
   /**

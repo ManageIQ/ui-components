@@ -23,7 +23,6 @@ export default class ToolbarMenuController {
         'function-call': target.getAttribute('data-function'),
         'function-data': JSON.parse(target.getAttribute('data-function-data'))
       };
-      console.log(elementData);
     };
 
   }

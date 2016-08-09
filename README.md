@@ -43,6 +43,11 @@ To run:
 npm start
 ```
 
+To run tests:
+```
+npm t
+```
+
 Before submitting code, run the following command to format the code according to the tslint rules:
 ```
 tsmft -r

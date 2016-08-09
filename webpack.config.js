@@ -1,5 +1,5 @@
 const settings = require('./application-settings.js');
-var webpack = require('webpack'),
+const webpack = require('webpack'),
   path = require('path'),
   production = process.argv.indexOf('--production') !== -1,
   NgAnnotatePlugin = require('ng-annotate-webpack-plugin'),
@@ -8,7 +8,6 @@ var webpack = require('webpack'),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   spa = require('browser-sync-spa'),
-  appEntry = {},
   plugins = [
     new CopyWebpackPlugin([
       {from: __dirname + '/demo/data', to: 'data'},
@@ -19,7 +18,7 @@ var webpack = require('webpack'),
       template: 'demo/template-index.ejs', // Load a custom template
       inject: 'body'
     }),
-    new webpack.optimize.CommonsChunkPlugin(
+    !production ? undefined : new webpack.optimize.CommonsChunkPlugin(
       settings.appName,
       settings.javascriptFolder + '/' + settings.appName + settings.isMinified(production)
     ),
@@ -37,7 +36,7 @@ var webpack = require('webpack'),
     }),
     new ExtractTextPlugin(settings.stylesheetPath),
     new NgAnnotatePlugin({add: true})
-  ];
+  ].filter(p => !!p);
 
 if(production){
   plugins.push(new webpack.optimize.DedupePlugin());
@@ -45,6 +44,7 @@ if(production){
   plugins.push(new webpack.optimize.UglifyJsPlugin({warnings: false, minimize: true, drop_console: true}));
 }
 
+let appEntry = {};
 appEntry[settings.appName] = [
   settings.sassEntryPoint,
   settings.tsEntryPoint
@@ -53,6 +53,7 @@ appEntry['demo-app'] = [
   './demo/index.ts',
   './demo/styles/demo-app.scss'
 ];
+
 module.exports = {
   context: __dirname,
   entry: appEntry,

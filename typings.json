@@ -3,9 +3,11 @@
   "globalDependencies": {
     "angular": "github:DefinitelyTyped/DefinitelyTyped/angularjs/angular.d.ts#4bd9b47f0ea79ba83c2e831c56bcaf8ba3a2c8ad",
     "angular-ui-router": "github:DefinitelyTyped/DefinitelyTyped/angular-ui-router/angular-ui-router.d.ts#4bd9b47f0ea79ba83c2e831c56bcaf8ba3a2c8ad",
+    "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
     "lodash": "github:DefinitelyTyped/DefinitelyTyped/lodash/lodash.d.ts#9f0f926a12026287b5a4a229e5672c01e7549313",
     "rx": "github:DefinitelyTyped/DefinitelyTyped/rx/rx.d.ts#247e8d48404d11f3aff85dea5029413229e0fc36",
     "rx-lite": "github:DefinitelyTyped/DefinitelyTyped/rx/rx-lite.d.ts#247e8d48404d11f3aff85dea5029413229e0fc36",
+    "angular-mocks": "github:DefinitelyTyped/DefinitelyTyped/angularjs/angular-mocks.d.ts#4de74cb527395c13ba20b438c3a7a419ad931f1c",
     "webpack-env": "github:DefinitelyTyped/DefinitelyTyped/webpack/webpack-env.d.ts#c0d876601e0f8236fd6b57626eb62c4e485f1563"
   },
   "dependencies": {}

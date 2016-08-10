@@ -1,7 +1,9 @@
 
 const webpackConfig = require('./webpack.config');
 const fileGlob = 'src/**/*.spec.ts';
-
+const vendor = 'dist/js/vendor.js';
+const applicationFile = 'dist/js/ui-components.js';
+const jsonGlob = {pattern: 'src/**/*.json', watched: true, served: true, included: false};
 module.exports = function(config) {
   config.set({
 
@@ -13,11 +15,14 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
 
     // list of files / patterns to load in the browser
-    files: [fileGlob],
+    files: [vendor, 'node_modules/angular-mocks/angular-mocks.js', applicationFile, fileGlob, jsonGlob],
 
     // list of files to exclude
     exclude: [
     ],
+    client: {
+      captureConsole: true
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -29,6 +34,7 @@ module.exports = function(config) {
 
     preprocessors: {
       [fileGlob]: ['webpack'],
+      [jsonGlob]: ['webpack']
     },
     webpack: webpackConfig,
     webpackMiddleware: {noInfo: true},
@@ -55,4 +61,4 @@ module.exports = function(config) {
     // how many browser should be started simultaneous
     concurrency: Infinity
   })
-}
+};

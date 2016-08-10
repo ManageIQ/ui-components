@@ -44,13 +44,18 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(14);
-	module.exports = __webpack_require__(16);
+	__webpack_require__(15);
+	module.exports = __webpack_require__(17);
 
 
 /***/ },
 /* 1 */,
-/* 2 */,
+/* 2 */
+/***/ function(module, exports) {
+
+	module.exports = angular;
+
+/***/ },
 /* 3 */,
 /* 4 */,
 /* 5 */,
@@ -62,35 +67,41 @@
 /* 11 */,
 /* 12 */,
 /* 13 */,
-/* 14 */
+/* 14 */,
+/* 15 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 15 */,
-/* 16 */
+/* 16 */,
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	/* WEBPACK VAR INJECTION */(function(angular) {"use strict";
 	///<reference path="tsd.d.ts"/>
+<<<<<<< 8d0c9ddda10501d9141bbbc96f4ebcd801690c11
 	var services_1 = __webpack_require__(17);
+=======
+	var services_1 = __webpack_require__(18);
+>>>>>>> Toolbar button test for directive
 	var components_1 = __webpack_require__(21);
 	var miqStaticAssets;
 	(function (miqStaticAssets) {
-	    miqStaticAssets.app = angular.module('miqStaticAssets', ['ui.bootstrap', 'ui.bootstrap.tabs', 'rx', 'ngSanitize']);
+	    miqStaticAssets.app = angular.module('miqStaticAssets', ['rx', 'ngSanitize']);
 	    services_1.default(miqStaticAssets.app);
 	    components_1.default(miqStaticAssets.app);
 	})(miqStaticAssets || (miqStaticAssets = {}));
 
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var endpointsService_1 = __webpack_require__(18);
-	var toolbarSettingsService_1 = __webpack_require__(19);
+	var endpointsService_1 = __webpack_require__(19);
+	var toolbarSettingsService_1 = __webpack_require__(20);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.service('MiQEndpointsService', endpointsService_1.default);
@@ -99,7 +110,7 @@
 
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -127,8 +138,13 @@
 
 
 /***/ },
+<<<<<<< 8d0c9ddda10501d9141bbbc96f4ebcd801690c11
 /* 19 */
 /***/ function(module, exports, __webpack_require__) {
+=======
+/* 20 */
+/***/ function(module, exports) {
+>>>>>>> Toolbar button test for directive
 
 	"use strict";
 	var toolbarType_1 = __webpack_require__(20);
@@ -251,6 +267,7 @@
 
 
 /***/ },
+<<<<<<< 8d0c9ddda10501d9141bbbc96f4ebcd801690c11
 /* 20 */
 /***/ function(module, exports) {
 
@@ -291,6 +308,8 @@
 
 
 /***/ },
+=======
+>>>>>>> Toolbar button test for directive
 /* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -549,7 +568,11 @@
 /* 24 */
 /***/ function(module, exports) {
 
+<<<<<<< 8d0c9ddda10501d9141bbbc96f4ebcd801690c11
 	module.exports = "<div class=\"toolbar-pf-actions miq-toolbar-actions\">\n  <div class=\"form-group miq-toolbar-group\"\n       ng-repeat=\"toolbarItem in vm.toolbarItems\"\n       ng-if=\"vm.hasContent(toolbarItem)\">\n    <ng-repeat ng-repeat=\"item in toolbarItem \">\n      <miq-toolbar-button ng-if=\"item.type === vm.getButtonType()\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-button ng-if=\"item.type === vm.getButtonTwoState() && item.id.indexOf('view_') === -1\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-list ng-if=\"item.type === vm.getToolbarListType() && item.items.length > 0\"\n                        toolbar-list=\"item\"\n                        on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-list>\n      <div ng-if=\"item.name == 'custom' && item.args && item.args.html\"\n           ng-bind-html=\"vm.trustAsHtml(item.args.html)\"\n           class=\"miq-custom-html\"></div>\n    </ng-repeat>\n  </div>\n  <miq-toolbar-view toolbar-views=\"vm.toolbarViews\"\n                    on-item-click=\"vm.onViewClick({item: item, $event: $event})\"\n                    class=\"miq-view-list\">\n  </miq-toolbar-view>\n</div>\n"
+=======
+	module.exports = "<div class=\"toolbar-pf-actions miq-toolbar-actions\">\n    <div class=\"form-group miq-toolbar-group\"\n         ng-repeat=\"toolbarItem in vm.toolbarItems\"\n         ng-if=\"vm.hasContent(toolbarItem)\">\n      <miq-toolbar-button ng-repeat=\"item in toolbarItem | filter: {type: 'button'}:true\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-button ng-repeat=\"item in toolbarItem | filter: {type: 'buttonTwoState'}:true | filter: {id: '!view'}\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-list ng-repeat=\"item in toolbarItem | filter: {type: 'buttonSelect'}\"\n                        toolbar-list=\"item\"\n                        on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-list>\n      <div ng-repeat=\"item in toolbarItem | filter: {name: 'custom'}\"\n           ng-bind-html=\"vm.trustAsHtml(item.args.html)\"\n           class=\"miq-custom-html\"></div>\n    </div>\n    <miq-toolbar-view toolbar-views=\"vm.toolbarViews\"\n                      on-item-click=\"vm.onViewClick({item: item})\"\n                      class=\"miq-view-list\">\n    </miq-toolbar-view>\n</div>\n"
+>>>>>>> Toolbar button test for directive
 
 /***/ },
 /* 25 */

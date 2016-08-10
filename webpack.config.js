@@ -82,7 +82,8 @@ module.exports = {
       {test: /\.scss/, exclude: /(node_modules|lib)/, loader: ExtractTextPlugin.extract('style-loader',
         'css-loader!sass-loader')},
       {test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader')},
-      {test: /\.(png|jpg|gif|svg|woff|ttf|eot)/, loader:  'url-loader?limit=20480'}
+      {test: /\.(png|jpg|gif|svg|woff|ttf|eot)/, loader:  'url-loader?limit=20480'},
+      {test: /\.json$/,  loader: 'json'}
     ]
   },
   plugins: plugins,

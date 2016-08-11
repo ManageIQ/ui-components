@@ -9,14 +9,13 @@ describe('ToolbarButton test', () =>  {
 
   describe('directive', () => {
     let scope,
-      compile,
-      directiveElem;
+      compile;
 
     const toolbarButtonData = require<string>('./toolbarButton.json');
 
-    beforeEach(()=>{
+    beforeEach(() => {
       angular.mock.module('miqStaticAssets');
-      inject(($rootScope, $compile: ng.ICompileService) => {
+      angular.mock.inject(($rootScope, $compile: ng.ICompileService) => {
         scope = $rootScope.$new();
         compile = $compile;
       });
@@ -24,10 +23,15 @@ describe('ToolbarButton test', () =>  {
 
     it('creates button', () => {
       scope.toolbarButtonData = toolbarButtonData;
-      let element = angular.element(`<miq-toolbar-button toolbar-button="toolbarButtonData" on-item-click="onItemClick(item, $event)"></miq-toolbar-button>`);
-      var compiledElement = compile(element)(scope);
+      let compiledElement = compile(
+          angular.element(
+            `<miq-toolbar-button toolbar-button="toolbarButtonData"
+                                 on-item-click="onItemClick(item, $event)"></miq-toolbar-button>`
+          ))(scope);
       scope.$digest();
-      console.log(compiledElement);
+      expect(compiledElement.attr('name')).toBe(scope.toolbarButtonData.name);
+      expect(compiledElement.attr('data-click')).toBe(scope.toolbarButtonData.name);
+      expect(compiledElement.attr('data-url_parms')).toBe(scope.toolbarButtonData.url_parms);
     });
   });
 });

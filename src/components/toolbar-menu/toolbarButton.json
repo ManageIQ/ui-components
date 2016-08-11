@@ -11,5 +11,6 @@
   "data": null,
   "enabled": true,
   "title": "Reload current display",
-  "url": "reload"
+  "url": "reload",
+  "url_parms": "url_parms"
 }

@@ -1,5 +1,5 @@
 import {IToolbarItem} from '../../interfaces/toolbar';
-import ToolbarType from '../../interfaces/toolbarType';
+import {ToolbarType} from '../../interfaces/toolbarType';
 
 /**
  * @memberof miqStaticAssets
@@ -81,7 +81,7 @@ export class ToolbarController {
    * @returns {string}
    */
   public getToolbarListType(): string {
-    return ToolbarType.BUTTON_SELECT.toString();
+    return ToolbarType.BUTTON_SELECT;
   }
 
   /**
@@ -91,7 +91,7 @@ export class ToolbarController {
    * @returns {string}
    */
   public getButtonType(): string {
-    return ToolbarType.BUTTON.toString();
+    return ToolbarType.BUTTON;
   }
 
   /**
@@ -101,7 +101,7 @@ export class ToolbarController {
    * @returns {string}
    */
   public getCustomType(): string {
-    return ToolbarType.CUSTOM.toString();
+    return ToolbarType.CUSTOM;
   }
 
   /**
@@ -125,7 +125,7 @@ export class ToolbarController {
    * @returns {boolean} true|false if it's item with custom html.
    */
   private static isCustom(item: IToolbarItem): boolean {
-    return item.name && item.name === ToolbarType.CUSTOM.toString();
+    return item.name && item.name === ToolbarType.CUSTOM;
   }
 
   /**
@@ -143,7 +143,7 @@ export class ToolbarController {
   }
 
   private static isButtonTwoState(item: IToolbarItem): boolean {
-    return item.type === ToolbarType.BUTTON_TWO_STATE.toString();
+    return item.type === ToolbarType.BUTTON_TWO_STATE;
   }
 
   /**
@@ -154,7 +154,7 @@ export class ToolbarController {
    * @returns {boolean} true|false if it's item with type equals to `"buttonSelect"`.
    */
   private static isButtonSelect(item: IToolbarItem): boolean {
-    return item.type === ToolbarType.BUTTON_SELECT.toString();
+    return item.type === ToolbarType.BUTTON_SELECT;
   }
 
   /**
@@ -165,7 +165,7 @@ export class ToolbarController {
    * @returns {boolean} true|false if it's item with type equals to `"button"`.
    */
   private static isButton(item): boolean {
-    return item.type === ToolbarType.BUTTON.toString();
+    return item.type === ToolbarType.BUTTON;
   }
 }
 

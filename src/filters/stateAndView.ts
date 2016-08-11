@@ -1,5 +1,5 @@
 import {IToolbarItem} from '../interfaces/toolbar';
-import ToolbarType from '../interfaces/toolbarType';
+import {ToolbarType} from '../interfaces/toolbarType';
 
 /**
  * @memberof miqStaticAssets
@@ -8,8 +8,8 @@ import ToolbarType from '../interfaces/toolbarType';
  */
 export default class StateAndViewFilter {
   /**
-   * Filter items based on type and id. Type has to be {@link miqStaticAssets.ToolbarType.BUTTON_TWO_STATE} and id can't start with
-   * `view_`.
+   * Filter items based on type and id. Type has to be {@link miqStaticAssets.ToolbarType.BUTTON_TWO_STATE} and id
+   * can't start with `view_`.
    * @memberof StateAndView
    * @function filter
    * @returns {function(any): any}
@@ -17,7 +17,7 @@ export default class StateAndViewFilter {
   public static filter() {
     return (toolbarItems: Array<IToolbarItem>): any => {
       return toolbarItems.filter((toolbarItem: IToolbarItem) => {
-        return toolbarItem.type === ToolbarType.BUTTON_TWO_STATE.toString() && toolbarItem.id.indexOf('view_') === -1;
+        return toolbarItem.type === ToolbarType.BUTTON_TWO_STATE && toolbarItem.id.indexOf('view_') === -1;
       });
     };
   }

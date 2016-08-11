@@ -1,56 +1,29 @@
 /**
- * Enum for toolbar types. It holds string value of item's type, so accessing these values can be called as:
- * ```Javascript
- * ToolbarType.BUTTON.toString();
- * ```
- * To string method will return string representation of enum type.
+ * Enum for toolbar types. It holds string value of item's type.
  * @memberof miqStaticAssets
  * @ngdoc enum
  * @name ToolbarType
  */
-export default class ToolbarType {
-
+export const ToolbarType  = {
   /**
-   * Toolbar type BUTTON, string: `button`.
-   * @memberof ToolbarType
-   * @function BUTTON
-   * @type {ToolbarType}
+   * Button type: `button`
+   * @type {string}
    */
-  public static BUTTON = new ToolbarType('button');
-
+  BUTTON: 'button',
   /**
-   * Toolbar type BUTTON_TWO_STATE, string: `buttonTwoState`.
-   * @memberof ToolbarType
-   * @function BUTTON_TWO_STATE
-   * @type {ToolbarType}
+   * Button two state type: `buttonTwoState`
+   * @type {string}
    */
-  public static BUTTON_TWO_STATE = new ToolbarType('buttonTwoState');
-
+  BUTTON_TWO_STATE: 'buttonTwoState',
   /**
-   * Toolbar type BUTTON_SELECT, string: `buttonSelect`.
-   * @memberof ToolbarType
-   * @function BUTTON_SELECT
-   * @type {ToolbarType}
+   * Button select type: `buttonSelect`
+   * @type {string}
    */
-  public static BUTTON_SELECT = new ToolbarType('buttonSelect');
-
+  BUTTON_SELECT: 'buttonSelect',
   /**
-   * Toolbar type CUSTOM, string: `custom`.
-   * @memberof ToolbarType
-   * @function CUSTOM
-   * @type {ToolbarType}
+   * Custom type: `custom`
+   * @type {string}
    */
-  public static CUSTOM = new ToolbarType('custom');
+  CUSTOM: 'custom',
+};
 
-  constructor(public value: string) {}
-
-  /**
-   * It will return string value of selected toolbar type.
-   * @memberof ToolbarType
-   * @function toString
-   * @returns {string} value of toolbar type.
-   */
-  public toString(): string {
-    return this.value;
-  }
-}

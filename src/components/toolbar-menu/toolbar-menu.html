@@ -1,25 +1,27 @@
 <div class="toolbar-pf-actions miq-toolbar-actions">
-    <div class="form-group miq-toolbar-group"
-         ng-repeat="toolbarItem in vm.toolbarItems"
-         ng-if="vm.hasContent(toolbarItem)">
-      <miq-toolbar-button ng-repeat="item in toolbarItem | filter: {type: vm.getButtonType()}:true"
+  <div class="form-group miq-toolbar-group"
+       ng-repeat="toolbarItem in vm.toolbarItems"
+       ng-if="vm.hasContent(toolbarItem)">
+    <ng-repeat ng-repeat="item in toolbarItem ">
+      <miq-toolbar-button ng-if="item.type === vm.getButtonType()"
                           toolbar-button="item"
                           on-item-click="vm.onItemClick(item, $event)">
       </miq-toolbar-button>
-      <miq-toolbar-button ng-repeat="item in toolbarItem | filterByStateAndView"
+      <miq-toolbar-button ng-if="tem.type === vm.getButtonTwoState() && tem.id.indexOf('view_') === -1"
                           toolbar-button="item"
                           on-item-click="vm.onItemClick(item, $event)">
       </miq-toolbar-button>
-      <miq-toolbar-list ng-repeat="item in toolbarItem | filter: {type: vm.getToolbarListType()}"
+      <miq-toolbar-list ng-if="item.type === vm.getToolbarListType()"
                         toolbar-list="item"
                         on-item-click="vm.onItemClick(item, $event)">
       </miq-toolbar-list>
-      <div ng-repeat="item in toolbarItem | filter: {name: 'custom'}"
+      <div ng-if="item.name == 'custom'"
            ng-bind-html="vm.trustAsHtml(item.args.html)"
            class="miq-custom-html"></div>
-    </div>
-    <miq-toolbar-view toolbar-views="vm.toolbarViews"
-                      on-item-click="vm.onViewClick({item: item})"
-                      class="miq-view-list">
-    </miq-toolbar-view>
+    </ng-repeat>
+  </div>
+  <miq-toolbar-view toolbar-views="vm.toolbarViews"
+                    on-item-click="vm.onViewClick({item: item})"
+                    class="miq-view-list">
+  </miq-toolbar-view>
 </div>

@@ -104,6 +104,10 @@ export class ToolbarController {
     return ToolbarType.CUSTOM;
   }
 
+  public getButtonTwoState() {
+    return ToolbarType.BUTTON_TWO_STATE;
+  }
+
   /**
    * Private static function for decoding html.
    * @memberof ToolbarController

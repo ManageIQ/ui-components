@@ -128,9 +128,10 @@
 
 /***/ },
 /* 19 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	var toolbarType_1 = __webpack_require__(23);
 	var ToolbarSettingsService = (function () {
 	    /*@ngInject*/
 	    ToolbarSettingsService.$inject = ["$http", "MiQEndpointsService"];
@@ -166,7 +167,7 @@
 	     * @returns {{items: Array<Array<IToolbarItem>>, dataViews: Array<IToolbarItem>}}
 	       */
 	    ToolbarSettingsService.prototype.generateToolbarObject = function (toolbarObject) {
-	        this.items = toolbarObject.filter(function (item) { return !!item; });
+	        this.items = this.separateItems(toolbarObject.filter(function (item) { return !!item; }));
 	        this.dataViews = this.filterViews();
 	        return {
 	            items: this.items,
@@ -180,14 +181,27 @@
 	     */
 	    ToolbarSettingsService.prototype.getSettings = function (getData) {
 	        var _this = this;
-	        return this.httpGet(this.MiQEndpointsService.rootPoint + this.MiQEndpointsService.endpoints.toolbarSettings, getData).then(function (items) {
-	            _this.items = items.filter(function (item) { return !!item; });
-	            _this.dataViews = _this.filterViews();
-	            return {
-	                items: items,
-	                dataViews: _this.dataViews
-	            };
+	        return this.httpGet(this.MiQEndpointsService.rootPoint + this.MiQEndpointsService.endpoints.toolbarSettings, getData).then(function (items) { return _this.generateToolbarObject(items); });
+	    };
+	    /**
+	     * Helper method for separating items in toolbar by separators.
+	     * @param toolbarItems all toolbar items.
+	     * @returns {Array} of separated items.
+	     */
+	    ToolbarSettingsService.prototype.separateItems = function (toolbarItems) {
+	        var separatedArray = [];
+	        toolbarItems.forEach(function (items) {
+	            var arrayIndex = separatedArray.push([]);
+	            items.forEach(function (item) {
+	                if (item.type !== toolbarType_1.ToolbarType.SEPARATOR) {
+	                    separatedArray[arrayIndex - 1].push(item);
+	                }
+	                else {
+	                    arrayIndex = separatedArray.push([]);
+	                }
+	            });
 	        });
+	        return separatedArray;
 	    };
 	    /**
 	     *
@@ -522,6 +536,11 @@
 	     * @type {string}
 	     */
 	    CUSTOM: 'custom',
+	    /**
+	     * Separator type: `separator`
+	     * @type {string}
+	     */
+	    SEPARATOR: 'separator'
 	};
 
 
@@ -529,7 +548,7 @@
 /* 24 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"toolbar-pf-actions miq-toolbar-actions\">\n  <div class=\"form-group miq-toolbar-group\"\n       ng-repeat=\"toolbarItem in vm.toolbarItems\"\n       ng-if=\"vm.hasContent(toolbarItem)\">\n    <ng-repeat ng-repeat=\"item in toolbarItem \">\n      <miq-toolbar-button ng-if=\"item.type === vm.getButtonType()\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-button ng-if=\"tem.type === vm.getButtonTwoState() && tem.id.indexOf('view_') === -1\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-list ng-if=\"item.type === vm.getToolbarListType()\"\n                        toolbar-list=\"item\"\n                        on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-list>\n      <div ng-if=\"item.name == 'custom' && item.args && item.args.html\"\n           ng-bind-html=\"vm.trustAsHtml(item.args.html)\"\n           class=\"miq-custom-html\"></div>\n    </ng-repeat>\n  </div>\n  <miq-toolbar-view toolbar-views=\"vm.toolbarViews\"\n                    on-item-click=\"vm.onViewClick({item: item})\"\n                    class=\"miq-view-list\">\n  </miq-toolbar-view>\n</div>\n"
+	module.exports = "<div class=\"toolbar-pf-actions miq-toolbar-actions\">\n  <div class=\"form-group miq-toolbar-group\"\n       ng-repeat=\"toolbarItem in vm.toolbarItems\"\n       ng-if=\"vm.hasContent(toolbarItem)\">\n    <ng-repeat ng-repeat=\"item in toolbarItem \">\n      <miq-toolbar-button ng-if=\"item.type === vm.getButtonType()\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-button ng-if=\"item.type === vm.getButtonTwoState() && item.id.indexOf('view_') === -1\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-list ng-if=\"item.type === vm.getToolbarListType()\"\n                        toolbar-list=\"item\"\n                        on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-list>\n      <div ng-if=\"item.name == 'custom' && item.args && item.args.html\"\n           ng-bind-html=\"vm.trustAsHtml(item.args.html)\"\n           class=\"miq-custom-html\"></div>\n    </ng-repeat>\n  </div>\n  <miq-toolbar-view toolbar-views=\"vm.toolbarViews\"\n                    on-item-click=\"vm.onViewClick({item: item})\"\n                    class=\"miq-view-list\">\n  </miq-toolbar-view>\n</div>\n"
 
 /***/ },
 /* 25 */

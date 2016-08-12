@@ -7,7 +7,7 @@
                           toolbar-button="item"
                           on-item-click="vm.onItemClick(item, $event)">
       </miq-toolbar-button>
-      <miq-toolbar-button ng-if="tem.type === vm.getButtonTwoState() && tem.id.indexOf('view_') === -1"
+      <miq-toolbar-button ng-if="item.type === vm.getButtonTwoState() && item.id.indexOf('view_') === -1"
                           toolbar-button="item"
                           on-item-click="vm.onItemClick(item, $event)">
       </miq-toolbar-button>

@@ -35,6 +35,10 @@
       ]
     },
     {
+      "id": "sep_1",
+      "type": "separator"
+    },
+    {
       "id": "middleware_server_power_choice",
       "type": "buttonSelect",
       "img": "middleware_server_power_choice.png",

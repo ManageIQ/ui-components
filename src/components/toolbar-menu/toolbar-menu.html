@@ -15,7 +15,7 @@
                         toolbar-list="item"
                         on-item-click="vm.onItemClick(item, $event)">
       </miq-toolbar-list>
-      <div ng-if="item.name == 'custom'"
+      <div ng-if="item.name == 'custom' && item.args && item.args.html"
            ng-bind-html="vm.trustAsHtml(item.args.html)"
            class="miq-custom-html"></div>
     </ng-repeat>

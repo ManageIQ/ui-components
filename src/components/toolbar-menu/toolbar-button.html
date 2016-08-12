@@ -1,4 +1,6 @@
 <button title="{{toolbarButton.title}}"
+        data-explorer="{{item.explorer}}"
+        data-confirm-tb="{{item.confirm}}"
         id="{{toolbarButton.id}}"
         name="{{toolbarButton.name}}"
         type="button"
@@ -6,6 +8,8 @@
         data-click="{{toolbarButton.id}}"
         data-url="{{toolbarButton.url}}"
         data-url_parms="{{toolbarButton.url_parms}}"
+        ng-class="{active: toolbarButton.selected, disabled: !toolbarButton.enabled}"
+        ng-hide="toolbarButton.hidden"
         ng-click="onItemClick({item: toolbarButton, $event: $event})">
   <i class="{{toolbarButton.icon}}" style=""></i>&nbsp;
 </button>

@@ -1,4 +1,6 @@
 import {IToolbarItem} from '../../interfaces/toolbar';
+import {ToolbarType} from '../../interfaces/toolbarType';
+
 /**
  * @memberof miqStaticAssets
  * @ngdoc controller
@@ -73,6 +75,36 @@ export class ToolbarController {
   }
 
   /**
+   * Helper method for getting string value of {@link ToolbarType.BUTTON_SELECT}
+   * @memberof ToolbarController
+   * @function getToolbarListType
+   * @returns {string}
+   */
+  public getToolbarListType(): string {
+    return ToolbarType.BUTTON_SELECT;
+  }
+
+  /**
+   * Helper method for getting string value of {@link ToolbarType.BUTTON}
+   * @memberof ToolbarController
+   * @function getToolbarListType
+   * @returns {string}
+   */
+  public getButtonType(): string {
+    return ToolbarType.BUTTON;
+  }
+
+  /**
+   * Helper method for getting string value of {@link ToolbarType.CUSTOM}
+   * @memberof ToolbarController
+   * @function getToolbarListType
+   * @returns {string}
+   */
+  public getCustomType(): string {
+    return ToolbarType.CUSTOM;
+  }
+
+  /**
    * Private static function for decoding html.
    * @memberof ToolbarController
    * @function htmlDecode
@@ -93,7 +125,7 @@ export class ToolbarController {
    * @returns {boolean} true|false if it's item with custom html.
    */
   private static isCustom(item: IToolbarItem): boolean {
-    return item.name && item.name === 'custom';
+    return item.name && item.name === ToolbarType.CUSTOM;
   }
 
   /**
@@ -106,7 +138,12 @@ export class ToolbarController {
    * @returns {boolean} true|false if it's item with button or button select type.
    */
   private static isButtonOrSelect(item: IToolbarItem): boolean {
-    return item.type && ToolbarController.isButtonSelect(item) || ToolbarController.isButton(item);
+    return item.type && (ToolbarController.isButtonSelect(item) || ToolbarController.isButton(item) ||
+      ToolbarController.isButtonTwoState(item));
+  }
+
+  private static isButtonTwoState(item: IToolbarItem): boolean {
+    return item.type === ToolbarType.BUTTON_TWO_STATE;
   }
 
   /**
@@ -117,7 +154,7 @@ export class ToolbarController {
    * @returns {boolean} true|false if it's item with type equals to `"buttonSelect"`.
    */
   private static isButtonSelect(item: IToolbarItem): boolean {
-    return item.type === 'buttonSelect';
+    return item.type === ToolbarType.BUTTON_SELECT;
   }
 
   /**
@@ -128,7 +165,7 @@ export class ToolbarController {
    * @returns {boolean} true|false if it's item with type equals to `"button"`.
    */
   private static isButton(item): boolean {
-    return item.type === 'button';
+    return item.type === ToolbarType.BUTTON;
   }
 }
 

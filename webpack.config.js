@@ -1,3 +1,4 @@
+"use strict";
 const settings = require('./application-settings.js');
 const webpack = require('webpack'),
   path = require('path'),

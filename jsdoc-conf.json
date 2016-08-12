@@ -5,7 +5,7 @@
   "opts": {
     "template": "node_modules/angular-jsdoc/angular-template",
     "destination": "dist/docs",
-    "readme": "README.adoc",
+    "readme": "README.md",
     "recourse": true
   },
   "plugins": [

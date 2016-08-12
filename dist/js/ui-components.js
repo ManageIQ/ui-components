@@ -76,11 +76,13 @@
 	///<reference path="tsd.d.ts"/>
 	var services_1 = __webpack_require__(17);
 	var components_1 = __webpack_require__(20);
+	var filters_1 = __webpack_require__(30);
 	var miqStaticAssets;
 	(function (miqStaticAssets) {
 	    miqStaticAssets.app = angular.module('miqStaticAssets', ['ui.bootstrap', 'ui.bootstrap.tabs', 'rx', 'ngSanitize']);
 	    services_1.default(miqStaticAssets.app);
 	    components_1.default(miqStaticAssets.app);
+	    filters_1.default(miqStaticAssets.app);
 	})(miqStaticAssets || (miqStaticAssets = {}));
 
 
@@ -270,6 +272,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	var toolbarType_1 = __webpack_require__(32);
 	/**
 	 * @memberof miqStaticAssets
 	 * @ngdoc controller
@@ -342,6 +345,33 @@
 	        return this.$sce.trustAsHtml(escapedString);
 	    };
 	    /**
+	     * Helper method for getting string value of {@link ToolbarType.BUTTON_SELECT}
+	     * @memberof ToolbarController
+	     * @function getToolbarListType
+	     * @returns {string}
+	     */
+	    ToolbarController.prototype.getToolbarListType = function () {
+	        return toolbarType_1.ToolbarType.BUTTON_SELECT;
+	    };
+	    /**
+	     * Helper method for getting string value of {@link ToolbarType.BUTTON}
+	     * @memberof ToolbarController
+	     * @function getToolbarListType
+	     * @returns {string}
+	     */
+	    ToolbarController.prototype.getButtonType = function () {
+	        return toolbarType_1.ToolbarType.BUTTON;
+	    };
+	    /**
+	     * Helper method for getting string value of {@link ToolbarType.CUSTOM}
+	     * @memberof ToolbarController
+	     * @function getToolbarListType
+	     * @returns {string}
+	     */
+	    ToolbarController.prototype.getCustomType = function () {
+	        return toolbarType_1.ToolbarType.CUSTOM;
+	    };
+	    /**
 	     * Private static function for decoding html.
 	     * @memberof ToolbarController
 	     * @function htmlDecode
@@ -361,7 +391,7 @@
 	     * @returns {boolean} true|false if it's item with custom html.
 	     */
 	    ToolbarController.isCustom = function (item) {
-	        return item.name && item.name === 'custom';
+	        return item.name && item.name === toolbarType_1.ToolbarType.CUSTOM;
 	    };
 	    /**
 	     * Private static function for checking if toolbar item type and if this type is button or select.
@@ -373,7 +403,11 @@
 	     * @returns {boolean} true|false if it's item with button or button select type.
 	     */
 	    ToolbarController.isButtonOrSelect = function (item) {
-	        return item.type && ToolbarController.isButtonSelect(item) || ToolbarController.isButton(item);
+	        return item.type && (ToolbarController.isButtonSelect(item) || ToolbarController.isButton(item) ||
+	            ToolbarController.isButtonTwoState(item));
+	    };
+	    ToolbarController.isButtonTwoState = function (item) {
+	        return item.type === toolbarType_1.ToolbarType.BUTTON_TWO_STATE;
 	    };
 	    /**
 	     * Private static function for checking if toolbar item type is buttonSelect.
@@ -383,7 +417,7 @@
 	     * @returns {boolean} true|false if it's item with type equals to `"buttonSelect"`.
 	     */
 	    ToolbarController.isButtonSelect = function (item) {
-	        return item.type === 'buttonSelect';
+	        return item.type === toolbarType_1.ToolbarType.BUTTON_SELECT;
 	    };
 	    /**
 	     * Private static function for checking if toolbar item type is button.
@@ -393,7 +427,7 @@
 	     * @returns {boolean} true|false if it's item with type equals to `"button"`.
 	     */
 	    ToolbarController.isButton = function (item) {
-	        return item.type === 'button';
+	        return item.type === toolbarType_1.ToolbarType.BUTTON;
 	    };
 	    return ToolbarController;
 	}());
@@ -459,7 +493,7 @@
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"toolbar-pf-actions miq-toolbar-actions\">\n    <div class=\"form-group miq-toolbar-group\"\n         ng-repeat=\"toolbarItem in vm.toolbarItems\"\n         ng-if=\"vm.hasContent(toolbarItem)\">\n      <miq-toolbar-button ng-repeat=\"item in toolbarItem | filter: {type: 'button'}:true\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-list ng-repeat=\"item in toolbarItem | filter: {type: 'buttonSelect'}\"\n                        toolbar-list=\"item\"\n                        on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-list>\n      <div ng-repeat=\"item in toolbarItem | filter: {name: 'custom'}\"\n           ng-bind-html=\"vm.trustAsHtml(item.args.html)\"\n           class=\"miq-custom-html\"></div>\n    </div>\n    <miq-toolbar-view toolbar-views=\"vm.toolbarViews\"\n                      on-item-click=\"vm.onViewClick({item: item})\"\n                      class=\"miq-view-list\">\n    </miq-toolbar-view>\n</div>\n"
+	module.exports = "<div class=\"toolbar-pf-actions miq-toolbar-actions\">\n    <div class=\"form-group miq-toolbar-group\"\n         ng-repeat=\"toolbarItem in vm.toolbarItems\"\n         ng-if=\"vm.hasContent(toolbarItem)\">\n      <miq-toolbar-button ng-repeat=\"item in toolbarItem | filter: {type: vm.getButtonType()}:true\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-button ng-repeat=\"item in toolbarItem | filterByStateAndView\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-list ng-repeat=\"item in toolbarItem | filter: {type: vm.getToolbarListType()}\"\n                        toolbar-list=\"item\"\n                        on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-list>\n      <div ng-repeat=\"item in toolbarItem | filter: {name: 'custom'}\"\n           ng-bind-html=\"vm.trustAsHtml(item.args.html)\"\n           class=\"miq-custom-html\"></div>\n    </div>\n    <miq-toolbar-view toolbar-views=\"vm.toolbarViews\"\n                      on-item-click=\"vm.onViewClick({item: item})\"\n                      class=\"miq-view-list\">\n    </miq-toolbar-view>\n</div>\n"
 
 /***/ },
 /* 24 */
@@ -506,7 +540,7 @@
 /* 25 */
 /***/ function(module, exports) {
 
-	module.exports = "<button title=\"{{toolbarButton.title}}\"\n        id=\"{{toolbarButton.id}}\"\n        name=\"{{toolbarButton.name}}\"\n        type=\"button\"\n        class=\"btn btn-default\"\n        data-click=\"{{toolbarButton.id}}\"\n        data-url=\"{{toolbarButton.url}}\"\n        data-url_parms=\"{{toolbarButton.url_parms}}\"\n        ng-click=\"onItemClick({item: toolbarButton, $event: $event})\">\n  <i class=\"{{toolbarButton.icon}}\" style=\"\"></i>&nbsp;\n</button>\n"
+	module.exports = "<button title=\"{{toolbarButton.title}}\"\n        data-explorer=\"{{item.explorer}}\"\n        data-confirm-tb=\"{{item.confirm}}\"\n        id=\"{{toolbarButton.id}}\"\n        name=\"{{toolbarButton.name}}\"\n        type=\"button\"\n        class=\"btn btn-default\"\n        data-click=\"{{toolbarButton.id}}\"\n        data-url=\"{{toolbarButton.url}}\"\n        data-url_parms=\"{{toolbarButton.url_parms}}\"\n        ng-class=\"{active: toolbarButton.selected, disabled: !toolbarButton.enabled}\"\n        ng-hide=\"toolbarButton.hidden\"\n        ng-click=\"onItemClick({item: toolbarButton, $event: $event})\">\n  <i class=\"{{toolbarButton.icon}}\" style=\"\"></i>&nbsp;\n</button>\n"
 
 /***/ },
 /* 26 */
@@ -565,7 +599,7 @@
 /* 27 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"btn-group\" dropdown>\n  <button type=\"button\" dropdown-toggle class=\"btn dropdown-toggle btn-default\"\n          ng-class=\"{disabled: !vm.toolbarList.enabled}\" title=\"{{vm.toolbarList.title}}\">\n    <i class=\"{{vm.toolbarList.icon}}\" style=\"margin-right: 5px;\" ng-if=\"vm.toolbarList.icon\"></i>\n    {{vm.toolbarList.text}}\n    <span class=\"caret\"></span>\n  </button>\n  <ul class=\"dropdown-menu\" role=\"menu\">\n    <li ng-repeat=\"item in vm.toolbarList.items track by $index\" ng-class=\"{disabled: !item.enabled}\">\n      <a href=\"\"\n         ng-click=\"vm.onItemClick({item: item, $event: $event})\"\n         data-function=\"{{item.data.function}}\"\n         data-function-data=\"{{item.data['function-data']}}\"\n         data-target=\"{{item.data.target}}\"\n         data-toggle=\"{{item.data.toggle}}\"\n         data-click=\"{{item.id}}\"\n         name=\"{{item.id}}\"\n         id=\"{{item.id}}\"\n         data-url_parms=\"{{item.url_parms}}\"\n         data-url=\"{{item.url}}\">\n        <i ng-if=\"item.icon\" class=\"{{item.icon}}\"></i>\n        {{item.text}}\n      </a>\n    </li>\n  </ul>\n</div>\n"
+	module.exports = "<div class=\"btn-group\" dropdown>\n  <button type=\"button\" dropdown-toggle class=\"btn dropdown-toggle btn-default\"\n          ng-class=\"{disabled: !vm.toolbarList.enabled}\" title=\"{{vm.toolbarList.title}}\">\n    <i class=\"{{vm.toolbarList.icon}}\" style=\"margin-right: 5px;\" ng-if=\"vm.toolbarList.icon\"></i>\n    {{vm.toolbarList.text}}\n    <span class=\"caret\"></span>\n  </button>\n  <ul class=\"dropdown-menu\" role=\"menu\">\n    <li ng-repeat=\"item in vm.toolbarList.items track by $index\" ng-class=\"{disabled: !item.enabled}\">\n      <a ng-if=\"item.type !== 'separator'\"\n         href=\"\"\n         data-explorer=\"{{item.explorer}}\"\n         data-confirm-tb=\"{{item.confirm}}\"\n         ng-click=\"vm.onItemClick({item: item, $event: $event})\"\n         data-function=\"{{item.data.function}}\"\n         data-function-data=\"{{item.data['function-data']}}\"\n         data-target=\"{{item.data.target}}\"\n         data-toggle=\"{{item.data.toggle}}\"\n         data-click=\"{{item.id}}\"\n         name=\"{{item.id}}\"\n         id=\"{{item.id}}\"\n         data-url_parms=\"{{item.url_parms}}\"\n         data-url=\"{{item.url}}\">\n        <i ng-if=\"item.icon\" class=\"{{item.icon}}\"></i>\n        {{item.text}}\n      </a>\n      <div ng-if=\"item.type === 'separator'\" class=\"divider \" role=\"presentation\"></div>\n    </li>\n    <!---->\n  </ul>\n</div>\n"
 
 /***/ },
 /* 28 */
@@ -622,6 +656,87 @@
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"toolbar-pf-view-selector form-group\">\n  <ul class=\"list-inline\">\n    <li ng-repeat=\"item in vm.toolbarViews\" ng-class=\"{active: item.selected}\">\n      <a href=\"javascript:void(0)\"\n         title=\"{{item.title}}\"\n         id=\"{{item.id}}\"\n         data-url=\"{{item.url}}\"\n         data-url_parms=\"{{item.url_parms}}\"\n         ng-click=\"vm.onItemClick({item: item})\"\n         name=\"{{item.name}}\">\n        <i class=\"{{item.icon}}\" style=\"\"></i>\n      </a>\n    </li>\n  </ul>\n</div>\n"
+
+/***/ },
+/* 30 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var stateAndView_1 = __webpack_require__(31);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = function (module) {
+	    module.filter('filterByStateAndView', stateAndView_1.default.filter);
+	};
+
+
+/***/ },
+/* 31 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var toolbarType_1 = __webpack_require__(32);
+	/**
+	 * @memberof miqStaticAssets
+	 * @ngdoc filter
+	 * @name StateAndViewFilter
+	 */
+	var StateAndViewFilter = (function () {
+	    function StateAndViewFilter() {
+	    }
+	    /**
+	     * Filter items based on type and id. Type has to be {@link miqStaticAssets.ToolbarType.BUTTON_TWO_STATE} and id
+	     * can't start with `view_`.
+	     * @memberof StateAndView
+	     * @function filter
+	     * @returns {function(any): any}
+	     */
+	    StateAndViewFilter.filter = function () {
+	        return function (toolbarItems) {
+	            return toolbarItems.filter(function (toolbarItem) {
+	                return toolbarItem.type === toolbarType_1.ToolbarType.BUTTON_TWO_STATE && toolbarItem.id.indexOf('view_') === -1;
+	            });
+	        };
+	    };
+	    return StateAndViewFilter;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = StateAndViewFilter;
+
+
+/***/ },
+/* 32 */
+/***/ function(module, exports) {
+
+	"use strict";
+	/**
+	 * Enum for toolbar types. It holds string value of item's type.
+	 * @memberof miqStaticAssets
+	 * @ngdoc enum
+	 * @name ToolbarType
+	 */
+	exports.ToolbarType = {
+	    /**
+	     * Button type: `button`
+	     * @type {string}
+	     */
+	    BUTTON: 'button',
+	    /**
+	     * Button two state type: `buttonTwoState`
+	     * @type {string}
+	     */
+	    BUTTON_TWO_STATE: 'buttonTwoState',
+	    /**
+	     * Button select type: `buttonSelect`
+	     * @type {string}
+	     */
+	    BUTTON_SELECT: 'buttonSelect',
+	    /**
+	     * Custom type: `custom`
+	     * @type {string}
+	     */
+	    CUSTOM: 'custom',
+	};
+
 
 /***/ }
 /******/ ]);

@@ -2,11 +2,15 @@
     <div class="form-group miq-toolbar-group"
          ng-repeat="toolbarItem in vm.toolbarItems"
          ng-if="vm.hasContent(toolbarItem)">
-      <miq-toolbar-button ng-repeat="item in toolbarItem | filter: {type: 'button'}:true"
+      <miq-toolbar-button ng-repeat="item in toolbarItem | filter: {type: vm.getButtonType()}:true"
                           toolbar-button="item"
                           on-item-click="vm.onItemClick(item, $event)">
       </miq-toolbar-button>
-      <miq-toolbar-list ng-repeat="item in toolbarItem | filter: {type: 'buttonSelect'}"
+      <miq-toolbar-button ng-repeat="item in toolbarItem | filterByStateAndView"
+                          toolbar-button="item"
+                          on-item-click="vm.onItemClick(item, $event)">
+      </miq-toolbar-button>
+      <miq-toolbar-list ng-repeat="item in toolbarItem | filter: {type: vm.getToolbarListType()}"
                         toolbar-list="item"
                         on-item-click="vm.onItemClick(item, $event)">
       </miq-toolbar-list>

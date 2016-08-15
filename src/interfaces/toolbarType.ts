@@ -25,5 +25,11 @@ export const ToolbarType  = {
    * @type {string}
    */
   CUSTOM: 'custom',
+
+  /**
+   * Separator type: `separator`
+   * @type {string}
+   */
+  SEPARATOR: 'separator'
 };
 

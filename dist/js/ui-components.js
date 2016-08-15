@@ -76,13 +76,11 @@
 	///<reference path="tsd.d.ts"/>
 	var services_1 = __webpack_require__(17);
 	var components_1 = __webpack_require__(20);
-	var filters_1 = __webpack_require__(30);
 	var miqStaticAssets;
 	(function (miqStaticAssets) {
 	    miqStaticAssets.app = angular.module('miqStaticAssets', ['ui.bootstrap', 'ui.bootstrap.tabs', 'rx', 'ngSanitize']);
 	    services_1.default(miqStaticAssets.app);
 	    components_1.default(miqStaticAssets.app);
-	    filters_1.default(miqStaticAssets.app);
 	})(miqStaticAssets || (miqStaticAssets = {}));
 
 
@@ -130,9 +128,10 @@
 
 /***/ },
 /* 19 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	var toolbarType_1 = __webpack_require__(23);
 	var ToolbarSettingsService = (function () {
 	    /*@ngInject*/
 	    ToolbarSettingsService.$inject = ["$http", "MiQEndpointsService"];
@@ -168,7 +167,7 @@
 	     * @returns {{items: Array<Array<IToolbarItem>>, dataViews: Array<IToolbarItem>}}
 	       */
 	    ToolbarSettingsService.prototype.generateToolbarObject = function (toolbarObject) {
-	        this.items = toolbarObject.filter(function (item) { return !!item; });
+	        this.items = this.separateItems(toolbarObject.filter(function (item) { return !!item; }));
 	        this.dataViews = this.filterViews();
 	        return {
 	            items: this.items,
@@ -182,14 +181,27 @@
 	     */
 	    ToolbarSettingsService.prototype.getSettings = function (getData) {
 	        var _this = this;
-	        return this.httpGet(this.MiQEndpointsService.rootPoint + this.MiQEndpointsService.endpoints.toolbarSettings, getData).then(function (items) {
-	            _this.items = items.filter(function (item) { return !!item; });
-	            _this.dataViews = _this.filterViews();
-	            return {
-	                items: items,
-	                dataViews: _this.dataViews
-	            };
+	        return this.httpGet(this.MiQEndpointsService.rootPoint + this.MiQEndpointsService.endpoints.toolbarSettings, getData).then(function (items) { return _this.generateToolbarObject(items); });
+	    };
+	    /**
+	     * Helper method for separating items in toolbar by separators.
+	     * @param toolbarItems all toolbar items.
+	     * @returns {Array} of separated items.
+	     */
+	    ToolbarSettingsService.prototype.separateItems = function (toolbarItems) {
+	        var separatedArray = [];
+	        toolbarItems.forEach(function (items) {
+	            var arrayIndex = separatedArray.push([]);
+	            items.forEach(function (item) {
+	                if (item.type !== toolbarType_1.ToolbarType.SEPARATOR) {
+	                    separatedArray[arrayIndex - 1].push(item);
+	                }
+	                else {
+	                    arrayIndex = separatedArray.push([]);
+	                }
+	            });
 	        });
+	        return separatedArray;
 	    };
 	    /**
 	     *
@@ -255,9 +267,9 @@
 
 	"use strict";
 	var toolbarComponent_1 = __webpack_require__(22);
-	var toolbarButtonDirective_1 = __webpack_require__(24);
-	var toolbarListComponent_1 = __webpack_require__(26);
-	var toolbarViewComponent_1 = __webpack_require__(28);
+	var toolbarButtonDirective_1 = __webpack_require__(25);
+	var toolbarListComponent_1 = __webpack_require__(27);
+	var toolbarViewComponent_1 = __webpack_require__(29);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.component('miqToolbarMenu', new toolbarComponent_1.default);
@@ -272,7 +284,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var toolbarType_1 = __webpack_require__(32);
+	var toolbarType_1 = __webpack_require__(23);
 	/**
 	 * @memberof miqStaticAssets
 	 * @ngdoc controller
@@ -370,6 +382,9 @@
 	     */
 	    ToolbarController.prototype.getCustomType = function () {
 	        return toolbarType_1.ToolbarType.CUSTOM;
+	    };
+	    ToolbarController.prototype.getButtonTwoState = function () {
+	        return toolbarType_1.ToolbarType.BUTTON_TWO_STATE;
 	    };
 	    /**
 	     * Private static function for decoding html.
@@ -474,7 +489,7 @@
 	var Toolbar = (function () {
 	    function Toolbar() {
 	        this.replace = true;
-	        this.template = __webpack_require__(23);
+	        this.template = __webpack_require__(24);
 	        this.controller = ToolbarController;
 	        this.controllerAs = 'vm';
 	        this.bindings = {
@@ -493,10 +508,50 @@
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"toolbar-pf-actions miq-toolbar-actions\">\n    <div class=\"form-group miq-toolbar-group\"\n         ng-repeat=\"toolbarItem in vm.toolbarItems\"\n         ng-if=\"vm.hasContent(toolbarItem)\">\n      <miq-toolbar-button ng-repeat=\"item in toolbarItem | filter: {type: vm.getButtonType()}:true\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-button ng-repeat=\"item in toolbarItem | filterByStateAndView\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-list ng-repeat=\"item in toolbarItem | filter: {type: vm.getToolbarListType()}\"\n                        toolbar-list=\"item\"\n                        on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-list>\n      <div ng-repeat=\"item in toolbarItem | filter: {name: 'custom'}\"\n           ng-bind-html=\"vm.trustAsHtml(item.args.html)\"\n           class=\"miq-custom-html\"></div>\n    </div>\n    <miq-toolbar-view toolbar-views=\"vm.toolbarViews\"\n                      on-item-click=\"vm.onViewClick({item: item})\"\n                      class=\"miq-view-list\">\n    </miq-toolbar-view>\n</div>\n"
+	"use strict";
+	/**
+	 * Enum for toolbar types. It holds string value of item's type.
+	 * @memberof miqStaticAssets
+	 * @ngdoc enum
+	 * @name ToolbarType
+	 */
+	exports.ToolbarType = {
+	    /**
+	     * Button type: `button`
+	     * @type {string}
+	     */
+	    BUTTON: 'button',
+	    /**
+	     * Button two state type: `buttonTwoState`
+	     * @type {string}
+	     */
+	    BUTTON_TWO_STATE: 'buttonTwoState',
+	    /**
+	     * Button select type: `buttonSelect`
+	     * @type {string}
+	     */
+	    BUTTON_SELECT: 'buttonSelect',
+	    /**
+	     * Custom type: `custom`
+	     * @type {string}
+	     */
+	    CUSTOM: 'custom',
+	    /**
+	     * Separator type: `separator`
+	     * @type {string}
+	     */
+	    SEPARATOR: 'separator'
+	};
+
 
 /***/ },
 /* 24 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"toolbar-pf-actions miq-toolbar-actions\">\n  <div class=\"form-group miq-toolbar-group\"\n       ng-repeat=\"toolbarItem in vm.toolbarItems\"\n       ng-if=\"vm.hasContent(toolbarItem)\">\n    <ng-repeat ng-repeat=\"item in toolbarItem \">\n      <miq-toolbar-button ng-if=\"item.type === vm.getButtonType()\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-button ng-if=\"item.type === vm.getButtonTwoState() && item.id.indexOf('view_') === -1\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-list ng-if=\"item.type === vm.getToolbarListType()\"\n                        toolbar-list=\"item\"\n                        on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-list>\n      <div ng-if=\"item.name == 'custom' && item.args && item.args.html\"\n           ng-bind-html=\"vm.trustAsHtml(item.args.html)\"\n           class=\"miq-custom-html\"></div>\n    </ng-repeat>\n  </div>\n  <miq-toolbar-view toolbar-views=\"vm.toolbarViews\"\n                    on-item-click=\"vm.onViewClick({item: item})\"\n                    class=\"miq-view-list\">\n  </miq-toolbar-view>\n</div>\n"
+
+/***/ },
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -519,7 +574,7 @@
 	var ToolbarButton = (function () {
 	    function ToolbarButton() {
 	        this.replace = true;
-	        this.template = __webpack_require__(25);
+	        this.template = __webpack_require__(26);
 	        this.scope = {
 	            toolbarButton: '<',
 	            onItemClick: '&'
@@ -537,13 +592,13 @@
 
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports) {
 
 	module.exports = "<button title=\"{{toolbarButton.title}}\"\n        data-explorer=\"{{item.explorer}}\"\n        data-confirm-tb=\"{{item.confirm}}\"\n        id=\"{{toolbarButton.id}}\"\n        name=\"{{toolbarButton.name}}\"\n        type=\"button\"\n        class=\"btn btn-default\"\n        data-click=\"{{toolbarButton.id}}\"\n        data-url=\"{{toolbarButton.url}}\"\n        data-url_parms=\"{{toolbarButton.url_parms}}\"\n        ng-class=\"{active: toolbarButton.selected, disabled: !toolbarButton.enabled}\"\n        ng-hide=\"toolbarButton.hidden\"\n        ng-click=\"onItemClick({item: toolbarButton, $event: $event})\">\n  <i class=\"{{toolbarButton.icon}}\" style=\"\"></i>&nbsp;\n</button>\n"
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -581,7 +636,7 @@
 	var ToolbarList = (function () {
 	    function ToolbarList() {
 	        this.replace = true;
-	        this.template = __webpack_require__(27);
+	        this.template = __webpack_require__(28);
 	        this.controller = ToolbarListController;
 	        this.controllerAs = 'vm';
 	        this.bindings = {
@@ -596,13 +651,13 @@
 
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"btn-group\" dropdown>\n  <button type=\"button\" dropdown-toggle class=\"btn dropdown-toggle btn-default\"\n          ng-class=\"{disabled: !vm.toolbarList.enabled}\" title=\"{{vm.toolbarList.title}}\">\n    <i class=\"{{vm.toolbarList.icon}}\" style=\"margin-right: 5px;\" ng-if=\"vm.toolbarList.icon\"></i>\n    {{vm.toolbarList.text}}\n    <span class=\"caret\"></span>\n  </button>\n  <ul class=\"dropdown-menu\" role=\"menu\">\n    <li ng-repeat=\"item in vm.toolbarList.items track by $index\" ng-class=\"{disabled: !item.enabled}\">\n      <a ng-if=\"item.type !== 'separator'\"\n         href=\"\"\n         data-explorer=\"{{item.explorer}}\"\n         data-confirm-tb=\"{{item.confirm}}\"\n         ng-click=\"vm.onItemClick({item: item, $event: $event})\"\n         data-function=\"{{item.data.function}}\"\n         data-function-data=\"{{item.data['function-data']}}\"\n         data-target=\"{{item.data.target}}\"\n         data-toggle=\"{{item.data.toggle}}\"\n         data-click=\"{{item.id}}\"\n         name=\"{{item.id}}\"\n         id=\"{{item.id}}\"\n         data-url_parms=\"{{item.url_parms}}\"\n         data-url=\"{{item.url}}\">\n        <i ng-if=\"item.icon\" class=\"{{item.icon}}\"></i>\n        {{item.text}}\n      </a>\n      <div ng-if=\"item.type === 'separator'\" class=\"divider \" role=\"presentation\"></div>\n    </li>\n    <!---->\n  </ul>\n</div>\n"
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -637,7 +692,7 @@
 	var ToolbarView = (function () {
 	    function ToolbarView() {
 	        this.replace = false;
-	        this.template = __webpack_require__(29);
+	        this.template = __webpack_require__(30);
 	        this.controller = ToolbarViewController;
 	        this.controllerAs = 'vm';
 	        this.bindings = {
@@ -652,91 +707,10 @@
 
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"toolbar-pf-view-selector form-group\">\n  <ul class=\"list-inline\">\n    <li ng-repeat=\"item in vm.toolbarViews\" ng-class=\"{active: item.selected}\">\n      <a href=\"javascript:void(0)\"\n         title=\"{{item.title}}\"\n         id=\"{{item.id}}\"\n         data-url=\"{{item.url}}\"\n         data-url_parms=\"{{item.url_parms}}\"\n         ng-click=\"vm.onItemClick({item: item})\"\n         name=\"{{item.name}}\">\n        <i class=\"{{item.icon}}\" style=\"\"></i>\n      </a>\n    </li>\n  </ul>\n</div>\n"
-
-/***/ },
-/* 30 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var stateAndView_1 = __webpack_require__(31);
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = function (module) {
-	    module.filter('filterByStateAndView', stateAndView_1.default.filter);
-	};
-
-
-/***/ },
-/* 31 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var toolbarType_1 = __webpack_require__(32);
-	/**
-	 * @memberof miqStaticAssets
-	 * @ngdoc filter
-	 * @name StateAndViewFilter
-	 */
-	var StateAndViewFilter = (function () {
-	    function StateAndViewFilter() {
-	    }
-	    /**
-	     * Filter items based on type and id. Type has to be {@link miqStaticAssets.ToolbarType.BUTTON_TWO_STATE} and id
-	     * can't start with `view_`.
-	     * @memberof StateAndView
-	     * @function filter
-	     * @returns {function(any): any}
-	     */
-	    StateAndViewFilter.filter = function () {
-	        return function (toolbarItems) {
-	            return toolbarItems.filter(function (toolbarItem) {
-	                return toolbarItem.type === toolbarType_1.ToolbarType.BUTTON_TWO_STATE && toolbarItem.id.indexOf('view_') === -1;
-	            });
-	        };
-	    };
-	    return StateAndViewFilter;
-	}());
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = StateAndViewFilter;
-
-
-/***/ },
-/* 32 */
-/***/ function(module, exports) {
-
-	"use strict";
-	/**
-	 * Enum for toolbar types. It holds string value of item's type.
-	 * @memberof miqStaticAssets
-	 * @ngdoc enum
-	 * @name ToolbarType
-	 */
-	exports.ToolbarType = {
-	    /**
-	     * Button type: `button`
-	     * @type {string}
-	     */
-	    BUTTON: 'button',
-	    /**
-	     * Button two state type: `buttonTwoState`
-	     * @type {string}
-	     */
-	    BUTTON_TWO_STATE: 'buttonTwoState',
-	    /**
-	     * Button select type: `buttonSelect`
-	     * @type {string}
-	     */
-	    BUTTON_SELECT: 'buttonSelect',
-	    /**
-	     * Custom type: `custom`
-	     * @type {string}
-	     */
-	    CUSTOM: 'custom',
-	};
-
 
 /***/ }
 /******/ ]);

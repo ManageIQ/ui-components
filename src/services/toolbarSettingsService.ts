@@ -1,4 +1,5 @@
 import {IToolbarItem, IToolbarSettings, IRequestData} from '../interfaces/toolbar';
+import {ToolbarType} from '../interfaces/toolbarType';
 
 export default class ToolbarSettingsService {
   private countSelected: number = 0;
@@ -35,7 +36,7 @@ export default class ToolbarSettingsService {
    * @returns {{items: Array<Array<IToolbarItem>>, dataViews: Array<IToolbarItem>}}
      */
   public generateToolbarObject(toolbarObject: Array<Array<IToolbarItem>>): IToolbarSettings {
-    this.items = toolbarObject.filter(item => !!item);
+    this.items = this.separateItems(toolbarObject.filter(item => !!item));
     this.dataViews = this.filterViews();
     return {
       items: this.items,
@@ -52,14 +53,27 @@ export default class ToolbarSettingsService {
     return this.httpGet(
       this.MiQEndpointsService.rootPoint + this.MiQEndpointsService.endpoints.toolbarSettings,
       getData
-    ).then((items: Array<IToolbarItem>[]) => {
-      this.items = items.filter(item => !!item);
-      this.dataViews = this.filterViews();
-      return {
-        items: items,
-        dataViews: this.dataViews
-      };
+    ).then((items: Array<IToolbarItem>[]) => this.generateToolbarObject(items));
+  }
+
+  /**
+   * Helper method for separating items in toolbar by separators.
+   * @param toolbarItems all toolbar items.
+   * @returns {Array} of separated items.
+   */
+  private separateItems(toolbarItems: Array<Array<IToolbarItem>>): Array<Array<IToolbarItem>> {
+    let separatedArray = [];
+    toolbarItems.forEach((items: IToolbarItem[]) => {
+      let arrayIndex = separatedArray.push([]);
+      items.forEach((item: IToolbarItem) => {
+        if (item.type !== ToolbarType.SEPARATOR) {
+          separatedArray[arrayIndex - 1].push(item);
+        } else {
+          arrayIndex = separatedArray.push([]);
+        }
+      });
     });
+    return separatedArray;
   }
 
   /**

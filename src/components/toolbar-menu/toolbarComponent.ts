@@ -13,7 +13,7 @@ import {ToolbarType} from '../../interfaces/toolbarType';
 export class ToolbarController {
   public toolbarItems: any;
   public toolbarViews: any;
-  public onViewClick: (args: {item: any}) => void;
+  public onViewClick: (args: {item: any, $event: any}) => void;
   /*@ngInject*/
   constructor(private $window: ng.IWindowService,
               private $location: ng.ILocationService,

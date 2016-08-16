@@ -11,7 +11,7 @@
                           toolbar-button="item"
                           on-item-click="vm.onItemClick(item, $event)">
       </miq-toolbar-button>
-      <miq-toolbar-list ng-if="item.type === vm.getToolbarListType()"
+      <miq-toolbar-list ng-if="item.type === vm.getToolbarListType() && item.items.length > 0"
                         toolbar-list="item"
                         on-item-click="vm.onItemClick(item, $event)">
       </miq-toolbar-list>
@@ -21,7 +21,7 @@
     </ng-repeat>
   </div>
   <miq-toolbar-view toolbar-views="vm.toolbarViews"
-                    on-item-click="vm.onViewClick({item: item})"
+                    on-item-click="vm.onViewClick({item: item, $event: $event})"
                     class="miq-view-list">
   </miq-toolbar-view>
 </div>

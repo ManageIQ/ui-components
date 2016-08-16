@@ -30,6 +30,9 @@ export interface IToolbarItem {
   hidden?: boolean;
   url_parms?: string;
   url?: string;
+  img?: string;
+  icon?: string;
+  image?: any;
   items?: IToolbarItem[];
   args?: ICustomToolbarItem;
   data?: IToolbarData;

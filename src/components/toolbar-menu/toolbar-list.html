@@ -9,6 +9,7 @@
     <li ng-repeat="item in vm.toolbarList.items track by $index" ng-class="{disabled: !item.enabled}">
       <a ng-if="item.type !== 'separator'"
          href=""
+         title="{{item.title}}"
          data-explorer="{{item.explorer}}"
          data-confirm-tb="{{item.confirm}}"
          ng-click="vm.onItemClick({item: item, $event: $event})"

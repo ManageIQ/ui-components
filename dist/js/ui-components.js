@@ -167,6 +167,7 @@
 	     * @returns {{items: Array<Array<IToolbarItem>>, dataViews: Array<IToolbarItem>}}
 	       */
 	    ToolbarSettingsService.prototype.generateToolbarObject = function (toolbarObject) {
+	        this.countSelected = 0;
 	        this.items = this.separateItems(toolbarObject.filter(function (item) { return !!item; }));
 	        this.dataViews = this.filterViews();
 	        return {

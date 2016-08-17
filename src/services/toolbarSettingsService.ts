@@ -36,6 +36,7 @@ export default class ToolbarSettingsService {
    * @returns {{items: Array<Array<IToolbarItem>>, dataViews: Array<IToolbarItem>}}
      */
   public generateToolbarObject(toolbarObject: Array<Array<IToolbarItem>>): IToolbarSettings {
+    this.countSelected = 0;
     this.items = this.separateItems(toolbarObject.filter(item => !!item));
     this.dataViews = this.filterViews();
     return {

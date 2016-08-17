@@ -6,7 +6,7 @@
  */
 export interface IToolbarViewBindings {
   toolbarViews: any;
-  onItemClick: (args: {item: any}) => void;
+  onItemClick: (args: {item: any, $event: any}) => void;
 }
 
 /**

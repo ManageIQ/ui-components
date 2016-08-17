@@ -6,7 +6,7 @@
          id="{{item.id}}"
          data-url="{{item.url}}"
          data-url_parms="{{item.url_parms}}"
-         ng-click="vm.onItemClick({item: item})"
+         ng-click="vm.onItemClick({item: item, $event: $event})"
          name="{{item.name}}">
         <i class="{{item.icon}}" style=""></i>
       </a>

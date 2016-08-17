@@ -75,7 +75,7 @@
 	"use strict";
 	///<reference path="tsd.d.ts"/>
 	var services_1 = __webpack_require__(17);
-	var components_1 = __webpack_require__(20);
+	var components_1 = __webpack_require__(21);
 	var miqStaticAssets;
 	(function (miqStaticAssets) {
 	    miqStaticAssets.app = angular.module('miqStaticAssets', ['ui.bootstrap', 'ui.bootstrap.tabs', 'rx', 'ngSanitize']);
@@ -131,7 +131,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var toolbarType_1 = __webpack_require__(23);
+	var toolbarType_1 = __webpack_require__(20);
 	var ToolbarSettingsService = (function () {
 	    /*@ngInject*/
 	    ToolbarSettingsService.$inject = ["$http", "MiQEndpointsService"];
@@ -251,13 +251,41 @@
 
 /***/ },
 /* 20 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	"use strict";
-	var toolbar_menu_1 = __webpack_require__(21);
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = function (module) {
-	    toolbar_menu_1.default(module);
+	/**
+	 * Enum for toolbar types. It holds string value of item's type.
+	 * @memberof miqStaticAssets
+	 * @ngdoc enum
+	 * @name ToolbarType
+	 */
+	exports.ToolbarType = {
+	    /**
+	     * Button type: `button`
+	     * @type {string}
+	     */
+	    BUTTON: 'button',
+	    /**
+	     * Button two state type: `buttonTwoState`
+	     * @type {string}
+	     */
+	    BUTTON_TWO_STATE: 'buttonTwoState',
+	    /**
+	     * Button select type: `buttonSelect`
+	     * @type {string}
+	     */
+	    BUTTON_SELECT: 'buttonSelect',
+	    /**
+	     * Custom type: `custom`
+	     * @type {string}
+	     */
+	    CUSTOM: 'custom',
+	    /**
+	     * Separator type: `separator`
+	     * @type {string}
+	     */
+	    SEPARATOR: 'separator'
 	};
 
 
@@ -266,7 +294,19 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var toolbarComponent_1 = __webpack_require__(22);
+	var toolbar_menu_1 = __webpack_require__(22);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = function (module) {
+	    toolbar_menu_1.default(module);
+	};
+
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var toolbarComponent_1 = __webpack_require__(23);
 	var toolbarButtonDirective_1 = __webpack_require__(25);
 	var toolbarListComponent_1 = __webpack_require__(27);
 	var toolbarViewComponent_1 = __webpack_require__(29);
@@ -280,11 +320,11 @@
 
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var toolbarType_1 = __webpack_require__(23);
+	var toolbarType_1 = __webpack_require__(20);
 	/**
 	 * @memberof miqStaticAssets
 	 * @ngdoc controller
@@ -505,50 +545,10 @@
 
 
 /***/ },
-/* 23 */
-/***/ function(module, exports) {
-
-	"use strict";
-	/**
-	 * Enum for toolbar types. It holds string value of item's type.
-	 * @memberof miqStaticAssets
-	 * @ngdoc enum
-	 * @name ToolbarType
-	 */
-	exports.ToolbarType = {
-	    /**
-	     * Button type: `button`
-	     * @type {string}
-	     */
-	    BUTTON: 'button',
-	    /**
-	     * Button two state type: `buttonTwoState`
-	     * @type {string}
-	     */
-	    BUTTON_TWO_STATE: 'buttonTwoState',
-	    /**
-	     * Button select type: `buttonSelect`
-	     * @type {string}
-	     */
-	    BUTTON_SELECT: 'buttonSelect',
-	    /**
-	     * Custom type: `custom`
-	     * @type {string}
-	     */
-	    CUSTOM: 'custom',
-	    /**
-	     * Separator type: `separator`
-	     * @type {string}
-	     */
-	    SEPARATOR: 'separator'
-	};
-
-
-/***/ },
 /* 24 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"toolbar-pf-actions miq-toolbar-actions\">\n  <div class=\"form-group miq-toolbar-group\"\n       ng-repeat=\"toolbarItem in vm.toolbarItems\"\n       ng-if=\"vm.hasContent(toolbarItem)\">\n    <ng-repeat ng-repeat=\"item in toolbarItem \">\n      <miq-toolbar-button ng-if=\"item.type === vm.getButtonType()\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-button ng-if=\"item.type === vm.getButtonTwoState() && item.id.indexOf('view_') === -1\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-list ng-if=\"item.type === vm.getToolbarListType()\"\n                        toolbar-list=\"item\"\n                        on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-list>\n      <div ng-if=\"item.name == 'custom' && item.args && item.args.html\"\n           ng-bind-html=\"vm.trustAsHtml(item.args.html)\"\n           class=\"miq-custom-html\"></div>\n    </ng-repeat>\n  </div>\n  <miq-toolbar-view toolbar-views=\"vm.toolbarViews\"\n                    on-item-click=\"vm.onViewClick({item: item})\"\n                    class=\"miq-view-list\">\n  </miq-toolbar-view>\n</div>\n"
+	module.exports = "<div class=\"toolbar-pf-actions miq-toolbar-actions\">\n  <div class=\"form-group miq-toolbar-group\"\n       ng-repeat=\"toolbarItem in vm.toolbarItems\"\n       ng-if=\"vm.hasContent(toolbarItem)\">\n    <ng-repeat ng-repeat=\"item in toolbarItem \">\n      <miq-toolbar-button ng-if=\"item.type === vm.getButtonType()\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-button ng-if=\"item.type === vm.getButtonTwoState() && item.id.indexOf('view_') === -1\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-list ng-if=\"item.type === vm.getToolbarListType() && item.items.length > 0\"\n                        toolbar-list=\"item\"\n                        on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-list>\n      <div ng-if=\"item.name == 'custom' && item.args && item.args.html\"\n           ng-bind-html=\"vm.trustAsHtml(item.args.html)\"\n           class=\"miq-custom-html\"></div>\n    </ng-repeat>\n  </div>\n  <miq-toolbar-view toolbar-views=\"vm.toolbarViews\"\n                    on-item-click=\"vm.onViewClick({item: item, $event: $event})\"\n                    class=\"miq-view-list\">\n  </miq-toolbar-view>\n</div>\n"
 
 /***/ },
 /* 25 */
@@ -654,7 +654,7 @@
 /* 28 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"btn-group\" dropdown>\n  <button type=\"button\" dropdown-toggle class=\"btn dropdown-toggle btn-default\"\n          ng-class=\"{disabled: !vm.toolbarList.enabled}\" title=\"{{vm.toolbarList.title}}\">\n    <i class=\"{{vm.toolbarList.icon}}\" style=\"margin-right: 5px;\" ng-if=\"vm.toolbarList.icon\"></i>\n    {{vm.toolbarList.text}}\n    <span class=\"caret\"></span>\n  </button>\n  <ul class=\"dropdown-menu\" role=\"menu\">\n    <li ng-repeat=\"item in vm.toolbarList.items track by $index\" ng-class=\"{disabled: !item.enabled}\">\n      <a ng-if=\"item.type !== 'separator'\"\n         href=\"\"\n         data-explorer=\"{{item.explorer}}\"\n         data-confirm-tb=\"{{item.confirm}}\"\n         ng-click=\"vm.onItemClick({item: item, $event: $event})\"\n         data-function=\"{{item.data.function}}\"\n         data-function-data=\"{{item.data['function-data']}}\"\n         data-target=\"{{item.data.target}}\"\n         data-toggle=\"{{item.data.toggle}}\"\n         data-click=\"{{item.id}}\"\n         name=\"{{item.id}}\"\n         id=\"{{item.id}}\"\n         data-url_parms=\"{{item.url_parms}}\"\n         data-url=\"{{item.url}}\">\n        <i ng-if=\"item.icon\" class=\"{{item.icon}}\"></i>\n        {{item.text}}\n      </a>\n      <div ng-if=\"item.type === 'separator'\" class=\"divider \" role=\"presentation\"></div>\n    </li>\n    <!---->\n  </ul>\n</div>\n"
+	module.exports = "<div class=\"btn-group\" dropdown>\n  <button type=\"button\" dropdown-toggle class=\"btn dropdown-toggle btn-default\"\n          ng-class=\"{disabled: !vm.toolbarList.enabled}\" title=\"{{vm.toolbarList.title}}\">\n    <i class=\"{{vm.toolbarList.icon}}\" style=\"margin-right: 5px;\" ng-if=\"vm.toolbarList.icon\"></i>\n    {{vm.toolbarList.text}}\n    <span class=\"caret\"></span>\n  </button>\n  <ul class=\"dropdown-menu\" role=\"menu\">\n    <li ng-repeat=\"item in vm.toolbarList.items track by $index\" ng-class=\"{disabled: !item.enabled}\">\n      <a ng-if=\"item.type !== 'separator'\"\n         href=\"\"\n         title=\"{{item.title}}\"\n         data-explorer=\"{{item.explorer}}\"\n         data-confirm-tb=\"{{item.confirm}}\"\n         ng-click=\"vm.onItemClick({item: item, $event: $event})\"\n         data-function=\"{{item.data.function}}\"\n         data-function-data=\"{{item.data['function-data']}}\"\n         data-target=\"{{item.data.target}}\"\n         data-toggle=\"{{item.data.toggle}}\"\n         data-click=\"{{item.id}}\"\n         name=\"{{item.id}}\"\n         id=\"{{item.id}}\"\n         data-url_parms=\"{{item.url_parms}}\"\n         data-url=\"{{item.url}}\">\n        <i ng-if=\"item.icon\" class=\"{{item.icon}}\"></i>\n        <img ng-if=\"item.img_url && !item.icon\" ng-src=\"{{item.img_url}}\"\n             data-enabled=\"{{item.img_url}}\"\n             data-disabled=\"{{item.img_url}}\">\n        {{item.text}}\n      </a>\n      <div ng-if=\"item.type === 'separator'\" class=\"divider \" role=\"presentation\"></div>\n    </li>\n    <!---->\n  </ul>\n</div>\n"
 
 /***/ },
 /* 29 */
@@ -710,7 +710,7 @@
 /* 30 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"toolbar-pf-view-selector form-group\">\n  <ul class=\"list-inline\">\n    <li ng-repeat=\"item in vm.toolbarViews\" ng-class=\"{active: item.selected}\">\n      <a href=\"javascript:void(0)\"\n         title=\"{{item.title}}\"\n         id=\"{{item.id}}\"\n         data-url=\"{{item.url}}\"\n         data-url_parms=\"{{item.url_parms}}\"\n         ng-click=\"vm.onItemClick({item: item})\"\n         name=\"{{item.name}}\">\n        <i class=\"{{item.icon}}\" style=\"\"></i>\n      </a>\n    </li>\n  </ul>\n</div>\n"
+	module.exports = "<div class=\"toolbar-pf-view-selector form-group\">\n  <ul class=\"list-inline\">\n    <li ng-repeat=\"item in vm.toolbarViews\" ng-class=\"{active: item.selected}\">\n      <a href=\"javascript:void(0)\"\n         title=\"{{item.title}}\"\n         id=\"{{item.id}}\"\n         data-url=\"{{item.url}}\"\n         data-url_parms=\"{{item.url_parms}}\"\n         ng-click=\"vm.onItemClick({item: item, $event: $event})\"\n         name=\"{{item.name}}\">\n        <i class=\"{{item.icon}}\" style=\"\"></i>\n      </a>\n    </li>\n  </ul>\n</div>\n"
 
 /***/ }
 /******/ ]);

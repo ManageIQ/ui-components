@@ -1,3 +1,4 @@
+import {IToolbarItem} from '../../interfaces/toolbar';
 /**
  * Asf
  *
@@ -15,7 +16,8 @@ export interface IToolbarListBindings {
  * @implements {IToolbarListBindings}
  */
 export class ToolbarListController implements IToolbarListBindings {
-  public toolbarList: any;
+  public toolbarList: IToolbarItem;
+  public isEmpty: boolean = false;
 
   /**
    * Method for handling clicking on toolbar list's item.
@@ -24,6 +26,30 @@ export class ToolbarListController implements IToolbarListBindings {
    * @param {Object} {item: Object} object with item property set to which item was clicked.
    */
   public onItemClick: (args: {item: any, $event: any}) => void;
+
+  /**
+   * Angular's function to observe on changes.
+   * @memberof ToolbarListController
+   * @function isToolbarEmpty
+   * @param changesObj changed object.
+   */
+  public $onChanges(changesObj: any) {
+    if (changesObj.toolbarList) {
+      this.isEmpty = this.isToolbarEmpty();
+    }
+  }
+
+  /**
+   * Method which filters out
+   * @memberof ToolbarListController
+   * @function isToolbarEmpty
+   * @returns {boolean}
+   */
+  private isToolbarEmpty(): boolean {
+    return this.toolbarList &&
+      this.toolbarList.items &&
+      this.toolbarList.items.filter((item: IToolbarItem) => !item.hidden).length > 0;
+  }
 }
 
 /**

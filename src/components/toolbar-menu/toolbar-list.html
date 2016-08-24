@@ -1,4 +1,4 @@
-<div class="btn-group" dropdown>
+<div class="btn-group" dropdown ng-if="vm.isEmpty">
   <button type="button" dropdown-toggle class="btn dropdown-toggle btn-default"
           ng-class="{disabled: !vm.toolbarList.enabled}" title="{{vm.toolbarList.title}}">
     <i class="{{vm.toolbarList.icon}}" style="margin-right: 5px;" ng-if="vm.toolbarList.icon"></i>
@@ -31,6 +31,5 @@
       </a>
       <div ng-if="item.type === 'separator'" class="divider " role="presentation" ng-hide="item.hidden"></div>
     </li>
-    <!---->
   </ul>
 </div>

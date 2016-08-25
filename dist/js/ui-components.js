@@ -711,7 +711,7 @@
 /* 30 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"toolbar-pf-view-selector form-group\">\n  <ul class=\"list-inline\">\n    <li ng-repeat=\"item in vm.toolbarViews\" ng-class=\"{active: item.selected}\">\n      <a href=\"javascript:void(0)\"\n         title=\"{{item.title}}\"\n         id=\"{{item.id}}\"\n         data-url=\"{{item.url}}\"\n         data-url_parms=\"{{item.url_parms}}\"\n         ng-click=\"vm.onItemClick({item: item, $event: $event})\"\n         name=\"{{item.name}}\">\n        <i class=\"{{item.icon}}\" style=\"\"></i>\n      </a>\n    </li>\n  </ul>\n</div>\n"
+	module.exports = "<div class=\"toolbar-pf-view-selector pull-right form-group\">\n  <ul class=\"list-inline\">\n    <li ng-repeat=\"item in vm.toolbarViews\" ng-class=\"{active: item.selected}\">\n      <a href=\"javascript:void(0)\"\n         title=\"{{item.title}}\"\n         id=\"{{item.id}}\"\n         data-url=\"{{item.url}}\"\n         data-url_parms=\"{{item.url_parms}}\"\n         ng-click=\"vm.onItemClick({item: item, $event: $event})\"\n         name=\"{{item.name}}\">\n        <i class=\"{{item.icon}}\" style=\"\"></i>\n      </a>\n    </li>\n  </ul>\n</div>\n"
 
 /***/ }
 /******/ ]);

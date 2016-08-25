@@ -10,7 +10,10 @@
   "onwhen": null,
   "data": null,
   "enabled": true,
+  "confirm": "some-confirm",
   "title": "Reload current display",
+  "img_url": "data/some_img.png",
+  "explorer": true,
   "url": "reload",
   "url_parms": "url_parms"
 }

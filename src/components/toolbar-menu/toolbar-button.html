@@ -11,5 +11,8 @@
         ng-class="{active: toolbarButton.selected, disabled: !toolbarButton.enabled}"
         ng-hide="toolbarButton.hidden"
         ng-click="onItemClick({item: toolbarButton, $event: $event})">
-  <i class="{{toolbarButton.icon}}" style=""></i>&nbsp;
+  <i ng-if="toolbarButton.icon" class="{{toolbarButton.icon}}" style=""></i>
+  <img ng-if="toolbarButton.img_url && !toolbarButton.icon" ng-src="{{toolbarButton.img_url}}"
+       data-enabled="{{toolbarButton.img_url}}"
+       data-disabled="{{toolbarButton.img_url}}">
 </button>

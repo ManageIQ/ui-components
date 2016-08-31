@@ -44,8 +44,8 @@ describe('ToolbarButton test', () =>  {
 
     it('each view should have correct settings', () => {
       angular.forEach(compiledElement.find('li'), (element, key) => {
-        const liElem = angular.element(element);
-        const linkElem = angular.element(liElem.html());
+        let liElem = angular.element(element);
+        let linkElem = angular.element(liElem.html());
         expect(liElem.hasClass('active')).toBe(!!scope.toolbarViews[key].selected);
         expect(linkElem.attr('title')).toBe(scope.toolbarViews[key].title);
         expect(linkElem.attr('id')).toBe(scope.toolbarViews[key].id);

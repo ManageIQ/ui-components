@@ -1,0 +1,61 @@
+{
+  "id": "middleware_server_power_choice",
+  "type": "buttonSelect",
+  "img": "middleware_server_power_choice.png",
+  "imgdis": "middleware_server_power_choice.png",
+  "icon": "fa fa-power-off fa-lg",
+  "name": "middleware_server_power_choice",
+  "hidden": false,
+  "pressed": null,
+  "onwhen": "1+",
+  "data": null,
+  "enabled": true,
+  "title": "Power",
+  "text": "Power",
+  "items": [
+    {
+      "child_id": "middleware_server_reload",
+      "id": "middleware_server_power_choice__middleware_server_reload",
+      "type": "button",
+      "img": "middleware_server_reload.png",
+      "imgdis": "middleware_server_reload.png",
+      "icon": "pficon pficon-restart fa-lg",
+      "name": "middleware_server_power_choice__middleware_server_reload",
+      "hidden": false,
+      "pressed": null,
+      "explorer": true,
+      "onwhen": "1+",
+      "data": null,
+      "enabled": true,
+      "title": "Reload these Middleware Servers",
+      "text": "Reload Server",
+      "confirm": "Do you want to reload selected servers?",
+      "url_parms": "main_div"
+    },
+    {
+      "child_id": "middleware_server_stop",
+      "id": "middleware_server_power_choice__middleware_server_stop",
+      "type": "button",
+      "img": "guest_shutdown.png",
+      "imgdis": "guest_shutdown.png",
+      "icon": null,
+      "name": "middleware_server_power_choice__middleware_server_stop",
+      "hidden": false,
+      "explorer": false,
+      "pressed": null,
+      "onwhen": "1+",
+      "data": {
+        "function": "someFunction",
+        "function-data": "{\"name\":\"refresh\", \"args\":[]}",
+        "toggle": "modal",
+        "target": "#modal_param_div"
+      },
+      "enabled": false,
+      "title": "Stop these Middleware Servers",
+      "text": "Stop Server",
+      "confirm": "Do you want to stop selected servers?",
+      "url_parms": "main_div",
+      "img_url": "data/some_img.png"
+    }
+  ]
+}

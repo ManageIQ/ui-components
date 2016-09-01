@@ -3,6 +3,7 @@
   "type": "button",
   "img": "summary_reload.png",
   "imgdis": "summary_reload.png",
+  "text": "some text",
   "icon": "fa fa-repeat fa-lg",
   "name": "summary_reload",
   "hidden": false,

@@ -27,7 +27,7 @@
           "pressed": null,
           "onwhen": "1+",
           "data": null,
-          "enabled": true,
+          "enabled": false,
           "title": "Edit Tags for this Middleware Servers",
           "text": "Edit Tags",
           "url_parms": "main_div"

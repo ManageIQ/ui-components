@@ -42,6 +42,7 @@
         {
           "title": "View this item",
           "image": "100/vendor-hawkular.png",
+          "img_url": "/assets/100/vendor-hawkular.png",
           "icon": null
         },
         {
@@ -67,6 +68,7 @@
         {
           "title": "View this item",
           "image": "100/vendor-hawkular.png",
+          "img_url": "/assets/100/vendor-hawkular.png",
           "icon": null
         },
         {

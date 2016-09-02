@@ -37,7 +37,8 @@
                  class="list-grid-checkbox">
         </td>
         <td ng-repeat="(columnKey, column) in tableCtrl.columns" ng-if="!$last">
-          <img ng-if="tableCtrl.isIconOrImage(row, columnKey)"
+          <img ng-if="row.cells[columnKey].icon === null && tableCtrl.isIconOrImage(row, columnKey)"
+               ng-src="{{row.cells[columnKey].img_url}}"
                alt="{{row.cells[columnKey].title}}"
                title="{{row.cells[columnKey].title}}" />
           <span ng-if="row.cells[columnKey].text">

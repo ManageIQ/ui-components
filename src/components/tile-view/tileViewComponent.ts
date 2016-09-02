@@ -1,8 +1,10 @@
+import {TileType} from '../../interfaces/tileType';
 export class TileViewcontroller {
   public perPage: number;
   public items: any[];
-  public headers: any[];
+  public columns: any[];
   public options: any;
+  public type: string;
   /* @ngInject */
   constructor() {
     this.initOptions();
@@ -15,8 +17,29 @@ export class TileViewcontroller {
       multiSelect: true,
       showSelectBox: false,
       onClick: _.bind(this.handleClick, this),
+      fetchTileName: _.bind(this.fetchTileName, this),
       selectedItems: this.filterSelected(),
     };
+  }
+
+  public fetchTileName(item): string {
+    const nameIndex = _.findIndex(this.columns, {text: "Name"}) - 1;
+    return (nameIndex != -1 && item.cells && item.cells[nameIndex])? item.cells[nameIndex]['text'] : '';
+  }
+
+  public $onChanges(changesObj: any) {
+    if (changesObj.type) {
+      this.options.type = this.type;
+    } else if (changesObj.columns) {
+      this.options.columns = this.columns;
+    }
+  }
+
+  public tileClass() {
+    return {
+      'miq-small-tile': this.type === TileType.SMALL,
+      'miq-tile-with-body': this.type === TileType.BIG
+    }
   }
 
   public handleClick() {
@@ -24,7 +47,7 @@ export class TileViewcontroller {
   }
 
   public filterSelected() {
-    console.log('onFilerClick');
+    return [];
   }
 }
 

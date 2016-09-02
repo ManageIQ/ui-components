@@ -1,0 +1,72 @@
+<div>
+  <div class="dataTables_header miq-data-tables-header" ng-if="!tableCtrl.isHeaderEmpty()">
+    <div class="row">
+      <div class="col-md-1 col-ld-1">
+        <ng-transclude></ng-transclude>
+      </div>
+    </div>
+  </div>
+  <table class="table table-bordered table-striped table-hover mig-table-with-footer mig-table">
+    <thead>
+      <tr>
+        <th class="narrow miq-select">
+          <input ng-if="tableCtrl.rows.length !== 0" type="checkbox" ng-model="isChecked" ng-click="tableCtrl.onCheckAll(isChecked)" title="Select all" />
+        </th>
+        <ng-repeat ng-repeat="column in tableCtrl.columns">
+          <th ng-if="$index !== 0"
+              ng-repeat="column in tableCtrl.columns"
+              ng-click="tableCtrl.onSortClick(column)"
+              ng-class="tableCtrl.getColumnClass(column)">
+            {{column.text}}
+          </th>
+        </ng-repeat>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="row in tableCtrl.rows"
+          ng-class="{active : row.selected}"
+          ng-click="vm.onRowClick({$event: $event, rowData: row})">
+        <td class="narrow">
+          <input ng-click="tableCtrl.onRowSelected($event, isSelected, row)"
+                 onclick="event.stopPropagation();"
+                 type="checkbox"
+                 ng-model="isSelected"
+                 name="check_{{row.id}}"
+                 value="{{row.id}}"
+                 ng-checked="row.selected"
+                 class="list-grid-checkbox">
+        </td>
+        <td ng-repeat="(columnKey, column) in tableCtrl.columns" ng-if="!$last">
+          <img ng-if="tableCtrl.isIconOrImage(row, columnKey)"
+               alt="{{row.cells[columnKey].title}}"
+               title="{{row.cells[columnKey].title}}" />
+          <span ng-if="row.cells[columnKey].text">
+              {{row.cells[columnKey].text}}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="dataTables_footer">
+    <div class="dataTables_paginate paging_bootstrap_input">
+      <ul class="pagination">
+        <li ng-class="{disabled: currentPage === 0}" class="first" ng-click="tableCtrl.goToFirst()"><span
+          class="i fa fa-angle-double-left"></span></li>
+        <li ng-class="{disabled: currentPage === 0}" class="prev" ng-click="tableCtrl.setPage(currentPage - 1)"><span
+          class="i fa fa-angle-left"></span></li>
+      </ul>
+      <div class="pagination-input">
+        <form ng-submit="tableCtrl.setPage(currentPageView - 1)">
+          <input type="text" class="paginate_input" ng-model="currentPageView">
+          <span class="paginate_of">of <b>{{tableCtrl.length}}</b></span>
+        </form>
+      </div>
+      <ul class="pagination">
+        <li ng-class="{disabled: currentPage === tableCtrl.toTos.length -1}" class="next" ng-click="tableCtrl.setPage(currentPage + 1)"><span
+          class="i fa fa-angle-right"></span></li>
+        <li ng-class="{disabled: currentPage === tableCtrl.toTos.length -1}" class="last" ng-click="tableCtrl.goToLast()"><span
+          class="i fa fa-angle-double-right"></span></li>
+      </ul>
+    </div>
+  </div>
+</div>

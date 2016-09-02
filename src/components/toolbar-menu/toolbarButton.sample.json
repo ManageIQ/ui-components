@@ -1,0 +1,20 @@
+{
+  "id": "summary_reload",
+  "type": "button",
+  "img": "summary_reload.png",
+  "imgdis": "summary_reload.png",
+  "text": "some text",
+  "icon": "fa fa-repeat fa-lg",
+  "name": "summary_reload",
+  "hidden": false,
+  "pressed": null,
+  "onwhen": null,
+  "data": null,
+  "enabled": true,
+  "confirm": "some-confirm",
+  "title": "Reload current display",
+  "img_url": "data/some_img.png",
+  "explorer": true,
+  "url": "reload",
+  "url_parms": "url_parms"
+}

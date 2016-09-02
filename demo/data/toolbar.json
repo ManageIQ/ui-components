@@ -27,12 +27,30 @@
           "pressed": null,
           "onwhen": "1+",
           "data": null,
-          "enabled": true,
+          "enabled": false,
           "title": "Edit Tags for this Middleware Servers",
           "text": "Edit Tags",
           "url_parms": "main_div"
         }
       ]
+    },
+    {
+      "child_id": "download_csv",
+      "id": "download_choice__download_csv",
+      "type": "button",
+      "img": "download_csv.png",
+      "imgdis": "download_csv.png",
+      "icon": "fa fa-file-text-o fa-lg",
+      "name": "download_choice__download_csv",
+      "hidden": false,
+      "pressed": null,
+      "onwhen": null,
+      "data": null,
+      "enabled": true,
+      "title": "Download this report in CSV format",
+      "text": "Download as CSV",
+      "url_parms": "?download_type=csv",
+      "url": "/download_data"
     },
     {
       "id": "sep_1",

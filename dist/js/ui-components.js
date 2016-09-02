@@ -89,12 +89,19 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+<<<<<<< 1d7d36c643d3104347fc1cf8bc82c679ca3d441d
 	var endpointsService_1 = __webpack_require__(18);
 	var toolbarSettingsService_1 = __webpack_require__(19);
+=======
+	var endpointsService_1 = __webpack_require__(22);
+	var toolbarSettingsService_1 = __webpack_require__(23);
+	var dataTableService_1 = __webpack_require__(25);
+>>>>>>> Add gtl tile components
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.service('MiQEndpointsService', endpointsService_1.default);
 	    module.service('MiQToolbarSettingsService', toolbarSettingsService_1.default);
+	    module.service('MiQDataTableService', dataTableService_1.default);
 	};
 
 
@@ -291,14 +298,77 @@
 
 
 /***/ },
+<<<<<<< 1d7d36c643d3104347fc1cf8bc82c679ca3d441d
 /* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var toolbar_menu_1 = __webpack_require__(22);
+=======
+/* 25 */
+/***/ function(module, exports) {
+
+	"use strict";
+	/**
+	 *
+	 */
+	var DataTableService = (function () {
+	    /*@ngInject*/
+	    DataTableService.$inject = ["$http", "MiQEndpointsService"];
+	    function DataTableService($http, MiQEndpointsService) {
+	        this.$http = $http;
+	        this.MiQEndpointsService = MiQEndpointsService;
+	    }
+	    /**
+	     *
+	     * @returns {any}
+	     */
+	    DataTableService.prototype.retrieveRowsAndColumnsFromUrl = function (modelName, activeTree, currId) {
+	        var _this = this;
+	        var config = { params: {} };
+	        _.assign(config.params, DataTableService.generateModelConfig(modelName));
+	        _.assign(config.params, DataTableService.generateActiveTreeConfig(activeTree));
+	        _.assign(config.params, DataTableService.generateModuleIdConfig(currId));
+	        return this.$http.get(this.MiQEndpointsService.rootPoint + this.MiQEndpointsService.endpoints.listDataTable, config).then(function (responseData) {
+	            _this.columns = responseData.data.data.head;
+	            _this.rows = responseData.data.data.rows;
+	            _this.settings = responseData.data.settings;
+	            return {
+	                cols: _this.columns,
+	                rows: _this.rows,
+	                settings: responseData.data.settings
+	            };
+	        });
+	    };
+	    DataTableService.generateModelConfig = function (modelName) {
+	        return modelName && { model: modelName };
+	    };
+	    DataTableService.generateActiveTreeConfig = function (activeTree) {
+	        return activeTree && { active_tree: activeTree };
+	    };
+	    DataTableService.generateModuleIdConfig = function (currId) {
+	        return currId && { model_id: currId };
+	    };
+	    return DataTableService;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = DataTableService;
+
+
+/***/ },
+/* 26 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var toolbar_menu_1 = __webpack_require__(27);
+	var tile_view_1 = __webpack_require__(36);
+	var data_table_1 = __webpack_require__(40);
+>>>>>>> Add gtl tile components
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    toolbar_menu_1.default(module);
+	    tile_view_1.default(module);
+	    data_table_1.default(module);
 	};
 
 
@@ -735,6 +805,209 @@
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"toolbar-pf-view-selector pull-right form-group\">\n  <button class=\"btn btn-link\"\n          ng-repeat=\"item in vm.toolbarViews\"\n          ng-class=\"{active: item.selected}\"\n          title=\"{{item.title}}\"\n          id=\"{{item.id}}\"\n          data-url=\"{{item.url}}\"\n          data-url_parms=\"{{item.url_parms}}\"\n          ng-click=\"vm.onItemClick({item: item, $event: $event})\"\n          name=\"{{item.name}}\">\n    <i class=\"{{item.icon}}\" style=\"\"></i>\n  </button>\n</div>\n"
+
+/***/ },
+/* 36 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var tileViewComponent_1 = __webpack_require__(37);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = function (module) {
+	    module.component('miqTileView', new tileViewComponent_1.default);
+	};
+
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var tileType_1 = __webpack_require__(38);
+	var TileViewController = (function () {
+	    /* @ngInject */
+	    TileViewController.$inject = ["$sce"];
+	    function TileViewController($sce) {
+	        this.$sce = $sce;
+	        this.initOptions();
+	    }
+	    TileViewController.prototype.initOptions = function () {
+	        var _this = this;
+	        this.options = {
+	            selectionMatchProp: 'id',
+	            selectItems: true,
+	            multiSelect: true,
+	            showSelectBox: false,
+	            onClick: function (item, event) { return _this.onTileClick(item); },
+	            onItemClick: function (item) { return _this.onRowClick({ item: item }); },
+	            fetchTileName: function (item) { return _this.fetchTileName(item); },
+	            trustAsHtmlQuadicon: function (item) { return _this.trustAsHtmlQuadicon(item); },
+	            type: this.type
+	        };
+	    };
+	    TileViewController.prototype.trustAsHtmlQuadicon = function (item) {
+	        return this.$sce.trustAsHtml(item.quadicon);
+	    };
+	    TileViewController.prototype.fetchTileName = function (item) {
+	        var nameIndex = _.findIndex(this.columns, function (oneColumn) { return oneColumn.text && oneColumn.text.indexOf('Name') !== -1; });
+	        return (nameIndex !== -1 && item.cells && item.cells[nameIndex]) ? item.cells[nameIndex]['text'] : '';
+	    };
+	    TileViewController.prototype.$onChanges = function (changesObj) {
+	        if (changesObj.type) {
+	            this.options.type = this.type;
+	            console.log(this.options);
+	        }
+	        else if (changesObj.columns) {
+	            this.options.columns = this.columns;
+	        }
+	    };
+	    TileViewController.prototype.onTileClick = function (item) {
+	        this.onItemSelected({ item: item, isSelected: item === _.find(this.options.selectedItems, { id: item.id }) });
+	    };
+	    TileViewController.prototype.tileClass = function () {
+	        return {
+	            'miq-small-tile': this.type === tileType_1.TileType.SMALL,
+	            'miq-tile-with-body': this.type === tileType_1.TileType.BIG
+	        };
+	    };
+	    TileViewController.prototype.perPageClick = function (item) {
+	        console.log(item);
+	    };
+	    TileViewController.prototype.onSortClick = function (sortId, isAscending) {
+	        console.log(sortId, isAscending);
+	    };
+	    return TileViewController;
+	}());
+	exports.TileViewController = TileViewController;
+	var TileView = (function () {
+	    function TileView() {
+	        this.replace = true;
+	        this.controller = TileViewController;
+	        this.template = __webpack_require__(39);
+	        this.controllerAs = 'tileCtrl';
+	        this.bindings = {
+	            type: '<',
+	            rows: '<',
+	            columns: '<',
+	            perPage: '<',
+	            settings: '<',
+	            loadMoreItems: '&',
+	            onSort: '&',
+	            onRowClick: '&',
+	            onItemSelected: '&'
+	        };
+	    }
+	    return TileView;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = TileView;
+
+
+/***/ },
+/* 38 */
+/***/ function(module, exports) {
+
+	"use strict";
+	/**
+	 *
+	 * @type {{}}
+	 */
+	exports.TileType = {
+	    SMALL: 'small',
+	    BIG: 'big'
+	};
+
+
+/***/ },
+/* 39 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"miq-tile-section\">\n  <div class=\"row\">\n    <div class=\"miq-per-page col-md-2 col-ld-2\" ng-if=\"tileCtrl.rows.length > 0\">\n      <label>{{tileCtrl.perPage.label}}: </label>\n      <miq-toolbar-list on-item-click=\"tileCtrl.perPageClick(item)\"\n                        toolbar-list=\"tileCtrl.perPage\"></miq-toolbar-list>\n    </div>\n    <miq-sort-items class=\"col-md-2 col-ld-2\" headers=\"tileCtrl.columns\" on-sort=\"tileCtrl.onSortClick(sortId, isAscending)\"></miq-sort-items>\n  </div>\n  <div pf-card-view\n       config=\"tileCtrl.options\"\n       items=\"tileCtrl.rows\"\n       ng-class=\"tileCtrl.tileClass()\">\n    <div ng-switch=\"config.type\">\n      <ng-switch-when ng-switch-when=\"small\">\n        <div>\n          <a href=\"javascript:void(0)\" title=\"{{config.fetchTileName(item)}}\" ng-click=\"config.onItemClick(item)\">{{config.fetchTileName(item) | limitToSuffix : 5 : 5 }}</a>\n        </div>\n        <div class=\"miq-quadicon\">\n          <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item)\">\n            <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n          </a>\n        </div>\n      </ng-switch-when>\n      <ng-switch-when ng-switch-when=\"big\">\n        <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item)\">{{config.fetchTileName(item)}}</a>\n        <div class=\"row miq-row-margin-only-top \">\n          <div class=\"col-md-3 col-ld-3 miq-icon-section\">\n            <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item)\">\n              <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n            </a>\n          </div>\n          <div class=\"col-md-9 col-ld-9 miq-info-section\">\n            <dl class=\"dl-horizontal tile\">\n              <dt ng-repeat-start=\"(key, header) in config.columns | limitTo: 6\" ng-if=\"header.text && header.text.indexOf('Name') === -1\">{{header.text}}:</dt>\n              <dd ng-repeat-end ng-if=\"header.text && header.text.indexOf('Name') === -1\" title=\"{{item.cells[key].text}}\">{{item.cells[key].text | limitToSuffix : 25 : 25}}</dd>\n            </dl>\n          </div>\n        </div>\n      </ng-switch-when>\n    </div>\n  </div>\n</div>\n"
+
+/***/ },
+/* 40 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var dataTableComponent_1 = __webpack_require__(41);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = function (module) {
+	    module.component('miqDataTable', new dataTableComponent_1.default);
+	};
+
+
+/***/ },
+/* 41 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var DataTableController = (function () {
+	    /*@ngInject*/
+	    DataTableController.$inject = ["$transclude"];
+	    function DataTableController($transclude) {
+	        this.$transclude = $transclude;
+	        this.isAscending = true;
+	        this.currentPageView = 0;
+	        console.log(this);
+	    }
+	    DataTableController.prototype.onSortClick = function (sortId, isAscending) {
+	        this.onSort({ sortId: sortId, isAscending: this.isAscending });
+	    };
+	    DataTableController.prototype.getColumnClass = function (column) {
+	        return {
+	            narrow: column.is_narrow
+	        };
+	    };
+	    DataTableController.prototype.onCheckAll = function (isCheckec) {
+	        console.log(isCheckec);
+	    };
+	    DataTableController.prototype.isHeaderEmpty = function () {
+	        return this.$transclude().length === 0;
+	    };
+	    DataTableController.prototype.isIconOrImage = function (row, columnKey) {
+	        return row && row.cells &&
+	            (row.cells[columnKey].hasOwnProperty('icon') || row.cells[columnKey].hasOwnProperty('image'));
+	    };
+	    DataTableController.prototype.perPageClick = function (item) {
+	        console.log(item);
+	    };
+	    DataTableController.prototype.$onChanges = function (changesObj) {
+	        if (changesObj.settings) {
+	            this.currentPageView = this.settings.current;
+	        }
+	    };
+	    return DataTableController;
+	}());
+	exports.DataTableController = DataTableController;
+	var DataTable = (function () {
+	    function DataTable() {
+	        this.replace = true;
+	        this.template = __webpack_require__(42);
+	        this.controller = DataTableController;
+	        this.transclude = true;
+	        this.controllerAs = 'tableCtrl';
+	        this.bindings = {
+	            rows: '<',
+	            columns: '<',
+	            perPage: '<',
+	            settings: '<',
+	            loadMoreItems: '&',
+	            onSort: '&',
+	            onRowClick: '&',
+	            onItemSelected: '&'
+	        };
+	    }
+	    return DataTable;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = DataTable;
+
+
+/***/ },
+/* 42 */
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n  <div class=\"dataTables_header miq-data-tables-header\" ng-if=\"tableCtrl.rows.length > 0\">\n    <div class=\"row\">\n      <div class=\"pull-right\">\n        <div>\n          <label>{{tableCtrl.perPage.label}}: </label>\n          <miq-toolbar-list on-item-click=\"tableCtrl.perPageClick(item)\"\n                            toolbar-list=\"tableCtrl.perPage\"></miq-toolbar-list>\n        </div>\n        <div>\n          Some text sorted by\n        </div>\n      </div>\n    </div>\n  </div>\n  <table class=\"table table-bordered table-striped table-hover mig-table-with-footer mig-table\">\n    <thead>\n      <tr>\n        <th class=\"narrow miq-select\">\n          <input ng-if=\"tableCtrl.rows.length !== 0\" type=\"checkbox\" ng-model=\"isChecked\" ng-click=\"tableCtrl.onCheckAll(isChecked)\" title=\"Select all\" />\n        </th>\n        <ng-repeat ng-repeat=\"column in tableCtrl.columns\">\n          <th ng-if=\"$index !== 0\"\n              ng-repeat=\"column in tableCtrl.columns\"\n              ng-click=\"tableCtrl.onSortClick(column)\"\n              ng-class=\"tableCtrl.getColumnClass(column)\">\n            {{column.text}}\n          </th>\n        </ng-repeat>\n      </tr>\n    </thead>\n    <tbody>\n      <tr ng-repeat=\"row in tableCtrl.rows\"\n          ng-class=\"{active : row.selected}\"\n          ng-click=\"vm.onRowClick({$event: $event, rowData: row})\">\n        <td ng-repeat=\"(columnKey, column) in tableCtrl.columns\" ng-class=\"{narrow: row.cells[columnKey].is_checkbox}\">\n          <input ng-if=\"row.cells[columnKey].is_checkbox\"\n                 ng-click=\"tableCtrl.onRowSelected($event, isSelected, row)\"\n                 onclick=\"event.stopPropagation();\"\n                 type=\"checkbox\"\n                 ng-model=\"isSelected\"\n                 name=\"check_{{row.id}}\"\n                 value=\"{{row.id}}\"\n                 ng-checked=\"row.selected\"\n                 class=\"list-grid-checkbox\">\n          <i ng-if=\"row.cells[columnKey].icon && tableCtrl.isIconOrImage(row, columnKey)\"\n             class=\"{{row.cells[columnKey].icon}}\"\n             title=\"row.cells[columnKey].title\"></i>\n          <img ng-if=\"row.cells[columnKey].icon === null && tableCtrl.isIconOrImage(row, columnKey)\"\n               ng-src=\"{{row.img_url}}\"\n               alt=\"{{row.cells[columnKey].title}}\"\n               title=\"{{row.cells[columnKey].title}}\" />\n          <span ng-if=\"row.cells[columnKey].text\">\n              {{row.cells[columnKey].text}}\n          </span>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n  <div class=\"dataTables_footer\">\n    <div class=\"dataTables_paginate paging_bootstrap_input\">\n      <ul class=\"pagination\">\n        <li ng-class=\"{disabled: currentPage === 0}\" class=\"first\" ng-click=\"tableCtrl.goToFirst()\"><span\n          class=\"i fa fa-angle-double-left\"></span></li>\n        <li ng-class=\"{disabled: currentPage === 0}\" class=\"prev\" ng-click=\"tableCtrl.setPage(currentPage - 1)\"><span\n          class=\"i fa fa-angle-left\"></span></li>\n      </ul>\n      <div class=\"pagination-input\">\n        <form ng-submit=\"tableCtrl.setPage(currentPageView - 1)\">\n          <input type=\"text\" class=\"paginate_input\" ng-model=\"tableCtrl.currentPageView\">\n          <span class=\"paginate_of\">of <b>{{tableCtrl.settings.total}}</b></span>\n        </form>\n      </div>\n      <ul class=\"pagination\">\n        <li ng-class=\"{disabled: currentPage === tableCtrl.toTos.length -1}\" class=\"next\" ng-click=\"tableCtrl.setPage(currentPage + 1)\"><span\n          class=\"i fa fa-angle-right\"></span></li>\n        <li ng-class=\"{disabled: currentPage === tableCtrl.toTos.length -1}\" class=\"last\" ng-click=\"tableCtrl.goToLast()\"><span\n          class=\"i fa fa-angle-double-right\"></span></li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }
 /******/ ]);

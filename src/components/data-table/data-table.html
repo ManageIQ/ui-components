@@ -1,8 +1,15 @@
 <div>
-  <div class="dataTables_header miq-data-tables-header" ng-if="!tableCtrl.isHeaderEmpty()">
+  <div class="dataTables_header miq-data-tables-header" ng-if="tableCtrl.rows.length > 0">
     <div class="row">
-      <div class="col-md-1 col-ld-1">
-        <ng-transclude></ng-transclude>
+      <div class="pull-right">
+        <div>
+          <label>{{tableCtrl.perPage.label}}: </label>
+          <miq-toolbar-list on-item-click="tableCtrl.perPageClick(item)"
+                            toolbar-list="tableCtrl.perPage"></miq-toolbar-list>
+        </div>
+        <div>
+          Some text sorted by
+        </div>
       </div>
     </div>
   </div>
@@ -26,8 +33,9 @@
       <tr ng-repeat="row in tableCtrl.rows"
           ng-class="{active : row.selected}"
           ng-click="vm.onRowClick({$event: $event, rowData: row})">
-        <td class="narrow">
-          <input ng-click="tableCtrl.onRowSelected($event, isSelected, row)"
+        <td ng-repeat="(columnKey, column) in tableCtrl.columns" ng-class="{narrow: row.cells[columnKey].is_checkbox}">
+          <input ng-if="row.cells[columnKey].is_checkbox"
+                 ng-click="tableCtrl.onRowSelected($event, isSelected, row)"
                  onclick="event.stopPropagation();"
                  type="checkbox"
                  ng-model="isSelected"
@@ -35,10 +43,11 @@
                  value="{{row.id}}"
                  ng-checked="row.selected"
                  class="list-grid-checkbox">
-        </td>
-        <td ng-repeat="(columnKey, column) in tableCtrl.columns" ng-if="!$last">
+          <i ng-if="row.cells[columnKey].icon && tableCtrl.isIconOrImage(row, columnKey)"
+             class="{{row.cells[columnKey].icon}}"
+             title="row.cells[columnKey].title"></i>
           <img ng-if="row.cells[columnKey].icon === null && tableCtrl.isIconOrImage(row, columnKey)"
-               ng-src="{{row.cells[columnKey].img_url}}"
+               ng-src="{{row.img_url}}"
                alt="{{row.cells[columnKey].title}}"
                title="{{row.cells[columnKey].title}}" />
           <span ng-if="row.cells[columnKey].text">
@@ -58,8 +67,8 @@
       </ul>
       <div class="pagination-input">
         <form ng-submit="tableCtrl.setPage(currentPageView - 1)">
-          <input type="text" class="paginate_input" ng-model="currentPageView">
-          <span class="paginate_of">of <b>{{tableCtrl.length}}</b></span>
+          <input type="text" class="paginate_input" ng-model="tableCtrl.currentPageView">
+          <span class="paginate_of">of <b>{{tableCtrl.settings.total}}</b></span>
         </form>
       </div>
       <ul class="pagination">

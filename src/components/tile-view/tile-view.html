@@ -1,4 +1,12 @@
 <div class="miq-tile-section">
+  <div class="row">
+    <div class="miq-per-page col-md-2 col-ld-2" ng-if="tileCtrl.rows.length > 0">
+      <label>{{tileCtrl.perPage.label}}: </label>
+      <miq-toolbar-list on-item-click="tileCtrl.perPageClick(item)"
+                        toolbar-list="tileCtrl.perPage"></miq-toolbar-list>
+    </div>
+    <miq-sort-items class="col-md-2 col-ld-2" headers="tileCtrl.columns" on-sort="tileCtrl.onSortClick(sortId, isAscending)"></miq-sort-items>
+  </div>
   <div pf-card-view
        config="tileCtrl.options"
        items="tileCtrl.rows"
@@ -6,26 +14,26 @@
     <div ng-switch="config.type">
       <ng-switch-when ng-switch-when="small">
         <div>
-          <a href="javascript:void(0)">{{config.fetchTileName(item)}}</a>
+          <a href="javascript:void(0)" title="{{config.fetchTileName(item)}}" ng-click="config.onItemClick(item)">{{config.fetchTileName(item) | limitToSuffix : 5 : 5 }}</a>
         </div>
-        <div>
-          <a href="javascript:void(0)">
-            <img ng-if="item.cells[0].icon === null" height="72" ng-src="{{item.cells[0].img_url}}" width="72">
+        <div class="miq-quadicon">
+          <a href="javascript:void(0)" ng-click="config.onItemClick(item)">
+            <div ng-bind-html="config.trustAsHtmlQuadicon(item)"></div>
           </a>
         </div>
       </ng-switch-when>
       <ng-switch-when ng-switch-when="big">
-        <a href="javascript:void(0)">{{config.fetchTileName(item)}}</a>
+        <a href="javascript:void(0)" ng-click="config.onItemClick(item)">{{config.fetchTileName(item)}}</a>
         <div class="row miq-row-margin-only-top ">
           <div class="col-md-3 col-ld-3 miq-icon-section">
-            <a href="javascript:void(0)">
-              <img ng-if="item.cells[0].icon === null" height="72" ng-src="{{item.cells[0].img_url}}" width="72">
+            <a href="javascript:void(0)" ng-click="config.onItemClick(item)">
+              <div ng-bind-html="config.trustAsHtmlQuadicon(item)"></div>
             </a>
           </div>
           <div class="col-md-9 col-ld-9 miq-info-section">
             <dl class="dl-horizontal tile">
-              <dt ng-repeat-start="(key, header) in config.columns" ng-if="header.text && header.text !== 'Name'">{{header.text}}</dt>
-              <dd ng-repeat-end ng-if="header.text && header.text !== 'Name'">{{item.cells[key-1].text}}</dd>
+              <dt ng-repeat-start="(key, header) in config.columns | limitTo: 6" ng-if="header.text && header.text.indexOf('Name') === -1">{{header.text}}:</dt>
+              <dd ng-repeat-end ng-if="header.text && header.text.indexOf('Name') === -1" title="{{item.cells[key].text}}">{{item.cells[key].text | limitToSuffix : 25 : 25}}</dd>
             </dl>
           </div>
         </div>

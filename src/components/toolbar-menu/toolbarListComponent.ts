@@ -46,6 +46,7 @@ export class ToolbarListController implements IToolbarListBindings {
    * @returns {boolean}
    */
   private isToolbarEmpty(): boolean {
+    console.log(this.toolbarList.items);
     return this.toolbarList &&
       this.toolbarList.items &&
       this.toolbarList.items.filter((item: IToolbarItem) => !item.hidden).length > 0;

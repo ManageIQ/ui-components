@@ -74,13 +74,20 @@
 
 	"use strict";
 	///<reference path="tsd.d.ts"/>
+<<<<<<< 12a75bfaf5ff28ba38be2b2ef576a470462e3d26
 	var services_1 = __webpack_require__(17);
 	var components_1 = __webpack_require__(21);
+=======
+	var services_1 = __webpack_require__(21);
+	var components_1 = __webpack_require__(26);
+	var filters_1 = __webpack_require__(45);
+>>>>>>> Add filter for too, long names in tiles, update tiles to work with MiQ
 	var miqStaticAssets;
 	(function (miqStaticAssets) {
 	    miqStaticAssets.app = angular.module('miqStaticAssets', ['rx', 'ngSanitize']);
 	    services_1.default(miqStaticAssets.app);
 	    components_1.default(miqStaticAssets.app);
+	    filters_1.default(miqStaticAssets.app);
 	})(miqStaticAssets || (miqStaticAssets = {}));
 
 
@@ -363,12 +370,17 @@
 	var toolbar_menu_1 = __webpack_require__(27);
 	var tile_view_1 = __webpack_require__(36);
 	var data_table_1 = __webpack_require__(40);
+<<<<<<< 12a75bfaf5ff28ba38be2b2ef576a470462e3d26
 >>>>>>> Add gtl tile components
+=======
+	var sortItemsComponent_1 = __webpack_require__(43);
+>>>>>>> Add filter for too, long names in tiles, update tiles to work with MiQ
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    toolbar_menu_1.default(module);
 	    tile_view_1.default(module);
 	    data_table_1.default(module);
+	    module.component('miqSortItems', new sortItemsComponent_1.default);
 	};
 
 
@@ -701,6 +713,7 @@
 	     * @returns {boolean}
 	     */
 	    ToolbarListController.prototype.isToolbarEmpty = function () {
+	        console.log(this.toolbarList.items);
 	        return this.toolbarList &&
 	            this.toolbarList.items &&
 	            this.toolbarList.items.filter(function (item) { return !item.hidden; }).length > 0;
@@ -1008,6 +1021,91 @@
 /***/ function(module, exports) {
 
 	module.exports = "<div>\n  <div class=\"dataTables_header miq-data-tables-header\" ng-if=\"tableCtrl.rows.length > 0\">\n    <div class=\"row\">\n      <div class=\"pull-right\">\n        <div>\n          <label>{{tableCtrl.perPage.label}}: </label>\n          <miq-toolbar-list on-item-click=\"tableCtrl.perPageClick(item)\"\n                            toolbar-list=\"tableCtrl.perPage\"></miq-toolbar-list>\n        </div>\n        <div>\n          Some text sorted by\n        </div>\n      </div>\n    </div>\n  </div>\n  <table class=\"table table-bordered table-striped table-hover mig-table-with-footer mig-table\">\n    <thead>\n      <tr>\n        <th class=\"narrow miq-select\">\n          <input ng-if=\"tableCtrl.rows.length !== 0\" type=\"checkbox\" ng-model=\"isChecked\" ng-click=\"tableCtrl.onCheckAll(isChecked)\" title=\"Select all\" />\n        </th>\n        <ng-repeat ng-repeat=\"column in tableCtrl.columns\">\n          <th ng-if=\"$index !== 0\"\n              ng-repeat=\"column in tableCtrl.columns\"\n              ng-click=\"tableCtrl.onSortClick(column)\"\n              ng-class=\"tableCtrl.getColumnClass(column)\">\n            {{column.text}}\n          </th>\n        </ng-repeat>\n      </tr>\n    </thead>\n    <tbody>\n      <tr ng-repeat=\"row in tableCtrl.rows\"\n          ng-class=\"{active : row.selected}\"\n          ng-click=\"vm.onRowClick({$event: $event, rowData: row})\">\n        <td ng-repeat=\"(columnKey, column) in tableCtrl.columns\" ng-class=\"{narrow: row.cells[columnKey].is_checkbox}\">\n          <input ng-if=\"row.cells[columnKey].is_checkbox\"\n                 ng-click=\"tableCtrl.onRowSelected($event, isSelected, row)\"\n                 onclick=\"event.stopPropagation();\"\n                 type=\"checkbox\"\n                 ng-model=\"isSelected\"\n                 name=\"check_{{row.id}}\"\n                 value=\"{{row.id}}\"\n                 ng-checked=\"row.selected\"\n                 class=\"list-grid-checkbox\">\n          <i ng-if=\"row.cells[columnKey].icon && tableCtrl.isIconOrImage(row, columnKey)\"\n             class=\"{{row.cells[columnKey].icon}}\"\n             title=\"row.cells[columnKey].title\"></i>\n          <img ng-if=\"row.cells[columnKey].icon === null && tableCtrl.isIconOrImage(row, columnKey)\"\n               ng-src=\"{{row.img_url}}\"\n               alt=\"{{row.cells[columnKey].title}}\"\n               title=\"{{row.cells[columnKey].title}}\" />\n          <span ng-if=\"row.cells[columnKey].text\">\n              {{row.cells[columnKey].text}}\n          </span>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n  <div class=\"dataTables_footer\">\n    <div class=\"dataTables_paginate paging_bootstrap_input\">\n      <ul class=\"pagination\">\n        <li ng-class=\"{disabled: currentPage === 0}\" class=\"first\" ng-click=\"tableCtrl.goToFirst()\"><span\n          class=\"i fa fa-angle-double-left\"></span></li>\n        <li ng-class=\"{disabled: currentPage === 0}\" class=\"prev\" ng-click=\"tableCtrl.setPage(currentPage - 1)\"><span\n          class=\"i fa fa-angle-left\"></span></li>\n      </ul>\n      <div class=\"pagination-input\">\n        <form ng-submit=\"tableCtrl.setPage(currentPageView - 1)\">\n          <input type=\"text\" class=\"paginate_input\" ng-model=\"tableCtrl.currentPageView\">\n          <span class=\"paginate_of\">of <b>{{tableCtrl.settings.total}}</b></span>\n        </form>\n      </div>\n      <ul class=\"pagination\">\n        <li ng-class=\"{disabled: currentPage === tableCtrl.toTos.length -1}\" class=\"next\" ng-click=\"tableCtrl.setPage(currentPage + 1)\"><span\n          class=\"i fa fa-angle-right\"></span></li>\n        <li ng-class=\"{disabled: currentPage === tableCtrl.toTos.length -1}\" class=\"last\" ng-click=\"tableCtrl.goToLast()\"><span\n          class=\"i fa fa-angle-double-right\"></span></li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
+
+/***/ },
+/* 43 */
+/***/ function(module, exports) {
+
+	"use strict";
+	var SortItemsController = (function () {
+	    function SortItemsController() {
+	        this.initOptions();
+	    }
+	    SortItemsController.prototype.$onChanges = function (changesObj) {
+	        if (changesObj.headers) {
+	            this.fillFields();
+	        }
+	    };
+	    SortItemsController.prototype.initOptions = function () {
+	        var _this = this;
+	        this.options = {
+	            fields: [],
+	            onSortChange: function (sortId, isAscending) { return _this.onSort({ sortId: sortId, isAscending: isAscending }); }
+	        };
+	    };
+	    SortItemsController.prototype.fillFields = function () {
+	        var _this = this;
+	        _.each(this.headers, function (oneCol) {
+	            if (!oneCol.hasOwnProperty('is_narrow') && oneCol.hasOwnProperty('text')) {
+	                _this.options.fields.push({
+	                    id: oneCol.text.toLowerCase(),
+	                    title: oneCol.text,
+	                    sortType: oneCol.sort === 'str' ? 'alpha' : 'numeric'
+	                });
+	            }
+	        });
+	    };
+	    return SortItemsController;
+	}());
+	exports.SortItemsController = SortItemsController;
+	var SortItems = (function () {
+	    function SortItems() {
+	        this.replace = true;
+	        this.template = "<div pf-sort config=\"vm.options\"></div>";
+	        this.controller = SortItemsController;
+	        this.controllerAs = 'vm';
+	        this.bindings = {
+	            onSort: '&',
+	            headers: '<'
+	        };
+	    }
+	    return SortItems;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = SortItems;
+
+
+/***/ },
+/* 44 */,
+/* 45 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var limitToSuffixFilter_1 = __webpack_require__(46);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = function (module) {
+	    module.filter('limitToSuffix', limitToSuffixFilter_1.default.filter);
+	};
+
+
+/***/ },
+/* 46 */
+/***/ function(module, exports) {
+
+	"use strict";
+	var LimitToSuffix = (function () {
+	    function LimitToSuffix() {
+	    }
+	    LimitToSuffix.filter = function () {
+	        return function (value, start, end) {
+	            return value.length > start + end + 3 ? value.slice(0, start) + "..." + value.slice(-end) : value;
+	        };
+	    };
+	    return LimitToSuffix;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = LimitToSuffix;
+
 
 /***/ }
 /******/ ]);

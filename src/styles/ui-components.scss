@@ -57,14 +57,23 @@ img.miq-gradient-background {
 }
 
 
-.miq-tile-section div.miq-load-more {
-  text-align: center;
+.miq-tile-section {
+  .miq-per-page {
+    display: inline-block;
+  }
+  .card .card-content {
+    padding-right: 5px;
+  }
+
+  div.miq-load-more {
+    text-align: center;
+  }
 }
 
 .miq-tile-with-body .card-view-pf {
   .card {
-    width: 350px;
-    height: 170px;
+    width: 375px;
+    height: 140px;
     animation: fade-in 2s;
 
     .card-content {
@@ -76,9 +85,14 @@ img.miq-gradient-background {
 
     .miq-info-section {
       padding-left: 0;
-
-      dd {
-        text-align: left;
+      dl.dl-horizontal.tile {
+        dt {
+          margin-left: 10px;
+        }
+        dd {
+          margin-left: 120px;
+          text-align: left;
+        }
       }
     }
   }
@@ -86,11 +100,14 @@ img.miq-gradient-background {
 
 .miq-small-tile .card-view-pf {
   .card {
-    width: 170px;
-    height: 140px;
+    width: 130px;
+    height: 131px;
     animation: fade-in 2s;
 
     .card-content {
+      .miq-quadicon {
+        display: inline-block;
+      }
       a {
         word-wrap: break-word;
       }
@@ -115,25 +132,53 @@ img.miq-gradient-background {
 
 .miq-data-tables-header {
   text-align: left;
+  .pull-right {
+    padding-right: 20px;
+    div {
+      display: inline-block;
+      margin-right: 10px;
+    }
+  }
 }
 
 .paginate_of b {
   display: inline-block;
 }
 
-.form-group.miq-toolbar-group {
-  margin-right: 20px;
-  display: inline-block;
+/* begin toolbar styling (to be moved to the ui-components repo) */
 
+.toolbar-pf .form-group { /*compensates for filter-pf not being implemented */
+  padding-left: 0;
+}
+
+.toolbar-pf-actions .btn-group .dropdown button img { /* styling for images (not part of toolbar-pf) */
+  padding-right: 3px;
+}
+
+.toolbar-pf .toolbar-pf-actions .form-group { /* adds padding between buttons when they wrap */
+  margin-bottom: 10px !important
+}
+
+.toolbar-pf .form-group .btn,
+.toolbar-pf .form-group .btn-group { /* overrides _toolbar.scss to account for intermediate Angular markup */
+  margin-left: 5px;
+}
+
+.form-group.miq-toolbar-group { /* fixes the display for the main dashboard toolbar only */
+  display: inline-block;
   .miq-custom-html {
-    form{
+    form {
       display: inline-block;
     }
-
     .form-group {
       margin-bottom: 0 !important;
       border-right: 0;
+      &:last-child {
+        padding-right: 0px
+      }
     }
   }
 }
+
+/* end toolbar styling */
 

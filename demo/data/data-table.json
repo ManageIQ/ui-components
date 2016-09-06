@@ -1,92 +1,412 @@
-{"head": [
-  {
-    "is_narrow": true
+{
+  "settings": {
+    "perpage": 20,
+    "current": 1,
+    "items": 17,
+    "total": 1
   },
-  {
-    "is_narrow": true
-  },
-  {
-    "text": "Name",
-    "sort": "str",
-    "col_idx": 0,
-    "align": "left"
-  },
-  {
-    "text": "Hostname",
-    "sort": "str",
-    "col_idx": 1,
-    "align": "left"
-  },
-  {
-    "text": "IP Address",
-    "sort": "str",
-    "col_idx": 2,
-    "align": "left"
-  },
-  {
-    "text": "Port",
-    "sort": "str",
-    "align": "right"
-  },
-  {
-    "text": "Type",
-    "sort": "str",
-    "col_idx": 4,
-    "align": "left"
+  "data": {
+    "head": [
+      {
+        "is_narrow": true
+      },
+      {
+        "is_narrow": true
+      },
+      {
+        "text": "Messaging Name",
+        "sort": "str",
+        "col_idx": 0,
+        "align": "left"
+      },
+      {
+        "text": "Messaging Type",
+        "sort": "str",
+        "col_idx": 1,
+        "align": "left"
+      },
+      {
+        "text": "Server",
+        "sort": "str",
+        "col_idx": 2,
+        "align": "left"
+      }
+    ],
+    "rows": [
+      {
+        "id": "16",
+        "cells": [
+          {
+            "is_checkbox": true
+          },
+          {
+            "title": "View this item",
+            "image": "100/middleware_messaging.png",
+            "icon": "fa fa-exchange"
+          },
+          {
+            "text": "JMS Queue [DLQ]"
+          },
+          {
+            "text": "JMS Queue"
+          },
+          {
+            "text": "server-one"
+          }
+        ]
+      },
+      {
+        "id": "14",
+        "cells": [
+          {
+            "is_checkbox": true
+          },
+          {
+            "title": "View this item",
+            "image": "100/middleware_messaging.png",
+            "icon": "fa fa-exchange"
+          },
+          {
+            "text": "JMS Queue [DLQ]"
+          },
+          {
+            "text": "JMS Queue"
+          },
+          {
+            "text": "Local"
+          }
+        ]
+      },
+      {
+        "id": "10",
+        "cells": [
+          {
+            "is_checkbox": true
+          },
+          {
+            "title": "View this item",
+            "image": "100/middleware_messaging.png",
+            "icon": "fa fa-exchange"
+          },
+          {
+            "text": "JMS Queue [ExpiryQueue]"
+          },
+          {
+            "text": "JMS Queue"
+          },
+          {
+            "text": "Local"
+          }
+        ]
+      },
+      {
+        "id": "17",
+        "cells": [
+          {
+            "is_checkbox": true
+          },
+          {
+            "title": "View this item",
+            "image": "100/middleware_messaging.png",
+            "icon": "fa fa-exchange"
+          },
+          {
+            "text": "JMS Queue [ExpiryQueue]"
+          },
+          {
+            "text": "JMS Queue"
+          },
+          {
+            "text": "server-one"
+          }
+        ]
+      },
+      {
+        "id": "12",
+        "cells": [
+          {
+            "is_checkbox": true
+          },
+          {
+            "title": "View this item",
+            "image": "100/middleware_messaging.png",
+            "icon": "fa fa-exchange"
+          },
+          {
+            "text": "JMS Queue [HawkularAlertsActionsResponseQueue]"
+          },
+          {
+            "text": "JMS Queue"
+          },
+          {
+            "text": "Local"
+          }
+        ]
+      },
+      {
+        "id": "13",
+        "cells": [
+          {
+            "is_checkbox": true
+          },
+          {
+            "title": "View this item",
+            "image": "100/middleware_messaging.png",
+            "icon": "fa fa-exchange"
+          },
+          {
+            "text": "JMS Queue [HawkularAlertsPluginsQueue]"
+          },
+          {
+            "text": "JMS Queue"
+          },
+          {
+            "text": "Local"
+          }
+        ]
+      },
+      {
+        "id": "9",
+        "cells": [
+          {
+            "is_checkbox": true
+          },
+          {
+            "title": "View this item",
+            "image": "100/middleware_messaging.png",
+            "icon": "fa fa-exchange"
+          },
+          {
+            "text": "JMS Queue [hawkular/metrics/availability/new]"
+          },
+          {
+            "text": "JMS Queue"
+          },
+          {
+            "text": "Local"
+          }
+        ]
+      },
+      {
+        "id": "11",
+        "cells": [
+          {
+            "is_checkbox": true
+          },
+          {
+            "title": "View this item",
+            "image": "100/middleware_messaging.png",
+            "icon": "fa fa-exchange"
+          },
+          {
+            "text": "JMS Queue [hawkular/metrics/counters/new]"
+          },
+          {
+            "text": "JMS Queue"
+          },
+          {
+            "text": "Local"
+          }
+        ]
+      },
+      {
+        "id": "15",
+        "cells": [
+          {
+            "is_checkbox": true
+          },
+          {
+            "title": "View this item",
+            "image": "100/middleware_messaging.png",
+            "icon": "fa fa-exchange"
+          },
+          {
+            "text": "JMS Queue [hawkular/metrics/gauges/new]"
+          },
+          {
+            "text": "JMS Queue"
+          },
+          {
+            "text": "Local"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "cells": [
+          {
+            "is_checkbox": true
+          },
+          {
+            "title": "View this item",
+            "image": "100/middleware_messaging.png",
+            "icon": "fa fa-exchange"
+          },
+          {
+            "text": "JMS Topic [HawkularAlertData]"
+          },
+          {
+            "text": "JMS Topic"
+          },
+          {
+            "text": "Local"
+          }
+        ]
+      },
+      {
+        "id": "7",
+        "cells": [
+          {
+            "is_checkbox": true
+          },
+          {
+            "title": "View this item",
+            "image": "100/middleware_messaging.png",
+            "icon": "fa fa-exchange"
+          },
+          {
+            "text": "JMS Topic [HawkularAlertsActionsTopic]"
+          },
+          {
+            "text": "JMS Topic"
+          },
+          {
+            "text": "Local"
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "cells": [
+          {
+            "is_checkbox": true
+          },
+          {
+            "title": "View this item",
+            "image": "100/middleware_messaging.png",
+            "icon": "fa fa-exchange"
+          },
+          {
+            "text": "JMS Topic [HawkularAvailData]"
+          },
+          {
+            "text": "JMS Topic"
+          },
+          {
+            "text": "Local"
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "cells": [
+          {
+            "is_checkbox": true
+          },
+          {
+            "title": "View this item",
+            "image": "100/middleware_messaging.png",
+            "icon": "fa fa-exchange"
+          },
+          {
+            "text": "JMS Topic [HawkularCommandEvent]"
+          },
+          {
+            "text": "JMS Topic"
+          },
+          {
+            "text": "Local"
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "cells": [
+          {
+            "is_checkbox": true
+          },
+          {
+            "title": "View this item",
+            "image": "100/middleware_messaging.png",
+            "icon": "fa fa-exchange"
+          },
+          {
+            "text": "JMS Topic [HawkularInventoryChanges]"
+          },
+          {
+            "text": "JMS Topic"
+          },
+          {
+            "text": "Local"
+          }
+        ]
+      },
+      {
+        "id": "1",
+        "cells": [
+          {
+            "is_checkbox": true
+          },
+          {
+            "title": "View this item",
+            "image": "100/middleware_messaging.png",
+            "icon": "fa fa-exchange"
+          },
+          {
+            "text": "JMS Topic [HawkularMetricData]"
+          },
+          {
+            "text": "JMS Topic"
+          },
+          {
+            "text": "Local"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "cells": [
+          {
+            "is_checkbox": true
+          },
+          {
+            "title": "View this item",
+            "image": "100/middleware_messaging.png",
+            "icon": "fa fa-exchange"
+          },
+          {
+            "text": "JMS Topic [HawkularQueue]"
+          },
+          {
+            "text": "JMS Topic"
+          },
+          {
+            "text": "Local"
+          }
+        ]
+      },
+      {
+        "id": "8",
+        "cells": [
+          {
+            "is_checkbox": true
+          },
+          {
+            "title": "View this item",
+            "image": "100/middleware_messaging.png",
+            "icon": "fa fa-exchange"
+          },
+          {
+            "text": "JMS Topic [HawkularTopic]"
+          },
+          {
+            "text": "JMS Topic"
+          },
+          {
+            "text": "Local"
+          }
+        ]
+      }
+    ]
   }
-],
-  "rows": [
-    {
-      "id": "1r12",
-      "cells": [
-        {
-          "title": "View this item",
-          "image": "100/vendor-hawkular.png",
-          "img_url": "/assets/100/vendor-hawkular.png",
-          "icon": null
-        },
-        {
-          "text": "hk"
-        },
-        {
-          "text": "10.40.0.248"
-        },
-        {
-          "text": ""
-        },
-        {
-          "text": "8080"
-        },
-        {
-          "text": "Hawkular"
-        }
-      ]
-    },
-    {
-      "id": "1r13",
-      "cells": [
-        {
-          "title": "View this item",
-          "image": "100/vendor-hawkular.png",
-          "img_url": "/assets/100/vendor-hawkular.png",
-          "icon": null
-        },
-        {
-          "text": "aa"
-        },
-        {
-          "text": "10.40.0.248"
-        },
-        {
-          "text": ""
-        },
-        {
-          "text": "a8080"
-        },
-        {
-          "text": "aHawkular"
-        }
-      ]
-    }
-  ]
 }

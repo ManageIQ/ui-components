@@ -1,15 +1,13 @@
 <div class="toolbar-pf-view-selector pull-right form-group">
-  <ul class="list-inline">
-    <li ng-repeat="item in vm.toolbarViews" ng-class="{active: item.selected}">
-      <a href="javascript:void(0)"
-         title="{{item.title}}"
-         id="{{item.id}}"
-         data-url="{{item.url}}"
-         data-url_parms="{{item.url_parms}}"
-         ng-click="vm.onItemClick({item: item, $event: $event})"
-         name="{{item.name}}">
-        <i class="{{item.icon}}" style=""></i>
-      </a>
-    </li>
-  </ul>
+  <button class="btn btn-link"
+          ng-repeat="item in vm.toolbarViews"
+          ng-class="{active: item.selected}"
+          title="{{item.title}}"
+          id="{{item.id}}"
+          data-url="{{item.url}}"
+          data-url_parms="{{item.url_parms}}"
+          ng-click="vm.onItemClick({item: item, $event: $event})"
+          name="{{item.name}}">
+    <i class="{{item.icon}}" style=""></i>
+  </button>
 </div>

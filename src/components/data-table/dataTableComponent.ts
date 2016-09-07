@@ -4,19 +4,17 @@ export class DataTableController implements IDataTableBinding{
   public perPage: any;
   public rows: any[];
   public columns: any[];
-  public onSort: (args: {sortId: any, isAscending: boolean}) => void;
+  public onSort: (args: {headerId: any, isAscending: boolean}) => void;
   public onItemSelected: (args: {item: any, isSelected: boolean}) => void;
+  public loadMoreItems: (args: {start: number; perPage: number}) => void;
   public onRowClick: (args: {item: any}) => void;
-  public isAscending: boolean = true;
   public settings: ITableSettings;
   public currentPageView: number = 0;
   /*@ngInject*/
-  constructor(private $transclude: any) {
-    console.log(this);
-  }
+  constructor(private $transclude: any) {}
 
   public onSortClick(sortId, isAscending) {
-    this.onSort({sortId: sortId, isAscending: this.isAscending});
+    this.onSort({headerId: sortId, isAscending: isAscending});
   }
 
   public getColumnClass(column) {
@@ -26,7 +24,9 @@ export class DataTableController implements IDataTableBinding{
   }
 
   public onCheckAll(isCheckec: boolean) {
-    console.log(isCheckec);
+    _.each(this.rows, oneRow => {
+      this.onItemSelected({item: oneRow, isSelected: isCheckec});
+    });
   }
 
   public isHeaderEmpty(): boolean {
@@ -38,13 +38,39 @@ export class DataTableController implements IDataTableBinding{
       (row.cells[columnKey].hasOwnProperty('icon') || row.cells[columnKey].hasOwnProperty('image'));
   }
 
+  public isFilteredBy(column: any) {
+    return !!this.settings.sortBy && (this.settings.sortBy.sortObject.col_idx === column.col_idx);
+  }
+
+  public getSortClass(colum) {
+    return {
+      'fa-sort-asc': !!this.settings.sortBy && this.settings.sortBy.isAscending,
+      'fa-sort-desc': !(!!this.settings.sortBy && this.settings.sortBy.isAscending)
+    };
+  }
+
   public perPageClick(item) {
     console.log(item);
   }
+
+  public setPage(pageNumber) {
+    if (pageNumber > this.settings.total)
+    {
+      this.currentPageView = this.settings.total;
+      pageNumber = this.currentPageView;
+    }
+    const start = DataTableController.calculateStartIndex(pageNumber, this.settings.perpage);
+    this.loadMoreItems({start: start, perPage: 0});
+  }
+
   public $onChanges(changesObj: any) {
-    if (changesObj.settings) {
+    if (changesObj.settings && this.settings) {
       this.currentPageView = this.settings.current;
     }
+  }
+
+  private static calculateStartIndex(pageNumber, perPage) {
+    return (pageNumber - 1) * perPage;
   }
 
 }

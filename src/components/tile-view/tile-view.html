@@ -5,7 +5,10 @@
       <miq-toolbar-list on-item-click="tileCtrl.perPageClick(item)"
                         toolbar-list="tileCtrl.perPage"></miq-toolbar-list>
     </div>
-    <miq-sort-items class="col-md-2 col-ld-2" headers="tileCtrl.columns" on-sort="tileCtrl.onSortClick(sortId, isAscending)"></miq-sort-items>
+    <miq-sort-items class="col-md-2 col-ld-2"
+                    sort-object="tileCtrl.settings.sortBy"
+                    headers="tileCtrl.columns"
+                    on-sort="tileCtrl.onSortClick(sortObject, isAscending)"></miq-sort-items>
   </div>
   <div pf-card-view
        config="tileCtrl.options"

@@ -2,14 +2,15 @@ import {TileType} from '../../interfaces/tileType';
 import {ITableSettings, IDataTableBinding} from '../../interfaces/dataTable';
 export class TileViewController implements IDataTableBinding{
   public rows: any[];
-  public onSort: (args: {sortId: any; isAscending: boolean}) => void;
   public onRowClick: (args: {item: any}) => void;
+  public onItemSelected: (args: {item: any, isSelected: boolean}) => void;
+  public onSort: (args: {headerId: any; isAscending: boolean}) => void;
+  public loadMoreItems: (args: {start: number; perPage: number}) => void;
   public perPage: number;
   public columns: any[];
   public options: any;
   public type: string;
   public settings: ITableSettings;
-  public onItemSelected: (args: {item: any, isSelected: boolean}) => void;
   /* @ngInject */
   constructor(private $sce: any) {
     this.initOptions();
@@ -60,10 +61,11 @@ export class TileViewController implements IDataTableBinding{
 
   public perPageClick(item) {
     console.log(item);
+
   }
 
-  public onSortClick(sortId, isAscending) {
-    console.log(sortId, isAscending);
+  public onSortClick(sortObject, isAscending) {
+    this.onSort({headerId: sortObject.colId, isAscending: isAscending});
   }
 }
 

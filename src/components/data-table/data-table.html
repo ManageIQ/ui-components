@@ -22,9 +22,12 @@
         <ng-repeat ng-repeat="column in tableCtrl.columns">
           <th ng-if="$index !== 0"
               ng-repeat="column in tableCtrl.columns"
-              ng-click="tableCtrl.onSortClick(column)"
+              ng-click="tableCtrl.onSortClick($index, !!tableCtrl.settings.sortBy && !tableCtrl.settings.sortBy.isAscending)"
               ng-class="tableCtrl.getColumnClass(column)">
             {{column.text}}
+            <div class="pull-right" ng-if="tableCtrl.isFilteredBy(column)" >
+              <i class="fa" ng-class="tableCtrl.getSortClass(column)"></i>
+            </div>
           </th>
         </ng-repeat>
       </tr>
@@ -41,7 +44,7 @@
                  ng-model="isSelected"
                  name="check_{{row.id}}"
                  value="{{row.id}}"
-                 ng-checked="row.selected"
+                 ng-checked="row.checked"
                  class="list-grid-checkbox">
           <i ng-if="row.cells[columnKey].icon && tableCtrl.isIconOrImage(row, columnKey)"
              class="{{row.cells[columnKey].icon}}"
@@ -60,22 +63,34 @@
   <div class="dataTables_footer">
     <div class="dataTables_paginate paging_bootstrap_input">
       <ul class="pagination">
-        <li ng-class="{disabled: currentPage === 0}" class="first" ng-click="tableCtrl.goToFirst()"><span
-          class="i fa fa-angle-double-left"></span></li>
-        <li ng-class="{disabled: currentPage === 0}" class="prev" ng-click="tableCtrl.setPage(currentPage - 1)"><span
-          class="i fa fa-angle-left"></span></li>
+        <li ng-class="{disabled: tableCtrl.settings.current === 1}"
+            class="first"
+            ng-click="tableCtrl.setPage(1)">
+          <span class="i fa fa-angle-double-left"></span>
+        </li>
+        <li ng-class="{disabled: tableCtrl.settings.current === 1}"
+            class="prev"
+            ng-click="tableCtrl.setPage(tableCtrl.currentPageView - 1)">
+          <span class="i fa fa-angle-left"></span>
+        </li>
       </ul>
       <div class="pagination-input">
-        <form ng-submit="tableCtrl.setPage(currentPageView - 1)">
+        <form ng-submit="tableCtrl.setPage(tableCtrl.currentPageView)">
           <input type="text" class="paginate_input" ng-model="tableCtrl.currentPageView">
           <span class="paginate_of">of <b>{{tableCtrl.settings.total}}</b></span>
         </form>
       </div>
       <ul class="pagination">
-        <li ng-class="{disabled: currentPage === tableCtrl.toTos.length -1}" class="next" ng-click="tableCtrl.setPage(currentPage + 1)"><span
-          class="i fa fa-angle-right"></span></li>
-        <li ng-class="{disabled: currentPage === tableCtrl.toTos.length -1}" class="last" ng-click="tableCtrl.goToLast()"><span
-          class="i fa fa-angle-double-right"></span></li>
+        <li ng-class="{disabled: tableCtrl.settings.current === tableCtrl.settings.total}"
+            class="next"
+            ng-click="tableCtrl.setPage(tableCtrl.currentPageView + 1)">
+          <span class="i fa fa-angle-right"></span>
+        </li>
+        <li ng-class="{disabled: tableCtrl.settings.current === tableCtrl.settings.total}"
+            class="last"
+            ng-click="tableCtrl.setPage(tableCtrl.settings.total)">
+          <span class="i fa fa-angle-double-right"></span>
+        </li>
       </ul>
     </div>
   </div>

@@ -7,7 +7,8 @@ export interface IDataTableBinding {
   columns: any[];
   settings: ITableSettings;
   perPage: any;
-  onSort: (args: {sortId: any, isAscending: boolean}) => void;
+  loadMoreItems: (args: {start: number, perPage: number}) => void;
+  onSort: (args: {headerId: any, isAscending: boolean}) => void;
   onItemSelected: (args: {item: any, isSelected: boolean}) => void;
   onRowClick: (args: {item: any}) => void;
 }
@@ -23,5 +24,16 @@ export interface ITableSettings {
   items: number;
   perpage: string;
   total: number;
+  sortBy: ITableSortBy;
+  paging: ITablePaging;
 }
 
+export interface ITableSortBy {
+  isAscending: boolean;
+  sortObject: any;
+}
+
+export interface ITablePaging {
+  end: number;
+  start: number;
+}

@@ -39,19 +39,18 @@ describe('ToolbarButton test', () =>  {
 
     it('should create 3 views', () => {
       const contentElement = angular.element(compiledElement.html());
-      expect(contentElement.find('li').length).toBe(3);
+      expect(contentElement.find('button').length).toBe(3);
     });
 
     it('each view should have correct settings', () => {
-      angular.forEach(compiledElement.find('li'), (element, key) => {
-        let liElem = angular.element(element);
-        let linkElem = angular.element(liElem.html());
-        expect(liElem.hasClass('active')).toBe(!!scope.toolbarViews[key].selected);
-        expect(linkElem.attr('title')).toBe(scope.toolbarViews[key].title);
-        expect(linkElem.attr('id')).toBe(scope.toolbarViews[key].id);
-        expect(linkElem.attr('data-url')).toBe(scope.toolbarViews[key].url);
-        expect(linkElem.attr('data-url_parms')).toBe(scope.toolbarViews[key].url_parms);
-        expect(linkElem.attr('name')).toBe(scope.toolbarViews[key].name);
+      angular.forEach(compiledElement.find('button'), (element, key) => {
+        let btnElem = angular.element(element);
+        expect(btnElem.hasClass('active')).toBe(!!scope.toolbarViews[key].selected);
+        expect(btnElem.attr('title')).toBe(scope.toolbarViews[key].title);
+        expect(btnElem.attr('id')).toBe(scope.toolbarViews[key].id);
+        expect(btnElem.attr('data-url')).toBe(scope.toolbarViews[key].url);
+        expect(btnElem.attr('data-url_parms')).toBe(scope.toolbarViews[key].url_parms);
+        expect(btnElem.attr('name')).toBe(scope.toolbarViews[key].name);
       });
     });
   });

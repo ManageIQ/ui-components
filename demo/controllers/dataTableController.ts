@@ -1,7 +1,9 @@
 export default class DataTableController {
-  public tableData;
+  public rows;
+  public cols;
   public perPage;
   public filteredRows: any;
+  public settings: any;
   /* @ngInject */
   constructor(public MiQDataTableService: any, private MiQEndpointsService: any, private $filter: any) {
     this.perPage = {
@@ -22,7 +24,11 @@ export default class DataTableController {
     };
     this.setEndpoints();
     this.fetchData().then(data => {
-      this.tableData = data;
+      this.rows = data.rows;
+      this.cols = data.cols;
+      this.settings = data.settings;
+      let start = (this.settings.current - 1) * this.settings.perpage;
+      this.onLoadNext(start, this.settings.perpage);
       this.onSort(2, true);
     });
   }
@@ -30,43 +36,44 @@ export default class DataTableController {
   public onLoadNext(start, perPage) {
     this.perPage.value = perPage;
     this.perPage.text = perPage;
-    this.tableData.settings.perpage = perPage;
-    this.tableData.settings.startIndex = start;
-    this.tableData.settings.current = ( start / perPage) + 1;
-    this.tableData.settings.total = Math.ceil(this.tableData.settings.items / this.tableData.settings.perpage);
+    this.settings.perpage = perPage;
+    this.settings.startIndex = start;
+    this.settings.current = ( start / perPage) + 1;
+    this.settings.total = Math.ceil(this.settings.items / this.settings.perpage);
     this.filterAndSort();
   }
 
   public onSort(headerId, isAscending) {
-    this.tableData.settings.sortBy = {
-      sortObject: this.tableData.cols[headerId],
+    this.settings.sortBy = {
+      sortObject: this.cols[headerId],
       isAscending: isAscending
     };
     this.filterAndSort();
   }
 
   public filterAndSort() {
-    this.filteredRows = this.tableData.rows;
-    if (this.tableData.settings.sortBy) {
-      this.sortItems();
+    this.filteredRows = this.rows;
+    if (this.settings.sortBy) {
+      this.filteredRows = this.sortItems(this.filteredRows);
     }
-    this.limitTo();
+    this.filteredRows = this.limitTo();
   }
 
-  public sortItems() {
-    this.filteredRows = _.sortBy(this.filteredRows, (row: any) => {
-      let indexOfColumn = this.tableData.cols.indexOf(this.tableData.settings.sortBy.sortObject);
+  public sortItems(rows) {
+    let filteredRows = _.sortBy(rows, (row: any) => {
+      let indexOfColumn = this.cols.indexOf(this.settings.sortBy.sortObject);
       return row.cells[indexOfColumn]['text'];
     });
-    this.filteredRows = this.tableData.settings.sortBy.isAscending ? this.filteredRows : this.filteredRows.reverse();
-    return this.filteredRows;
+    this.filteredRows = this.settings.sortBy.isAscending ? this.filteredRows : this.filteredRows.reverse();
+    return filteredRows;
   }
 
   public limitTo() {
+    console.log(this);
     this.filteredRows = this.$filter('limitTo')(
       this.filteredRows,
-      this.tableData.settings.perpage,
-      this.tableData.settings.startIndex
+      this.settings.perpage,
+      this.settings.startIndex
     );
     return this.filteredRows;
   }

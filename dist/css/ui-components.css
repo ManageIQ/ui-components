@@ -56,6 +56,20 @@ img.miq-gradient-background {
 .miq-tile-section div.miq-load-more {
   text-align: center; }
 
+.miq-tile-section div.miq-paging {
+  display: block;
+  margin: auto;
+  width: 20%;
+  padding-left: 15px; }
+  .miq-tile-section div.miq-paging .disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    background-color: #fafafa !important;
+    background-image: none !important;
+    border-color: #d1d1d1 !important;
+    color: #8b8d8f !important;
+    opacity: 1; }
+
 .miq-tile-with-body .card-view-pf .card {
   width: 375px;
   height: 140px;

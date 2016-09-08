@@ -22,7 +22,7 @@ export interface IRowsColsResponse {
 export interface ITableSettings {
   current: number;
   items: number;
-  perpage: string;
+  perpage: number;
   total: number;
   sortBy: ITableSortBy;
   paging: ITablePaging;

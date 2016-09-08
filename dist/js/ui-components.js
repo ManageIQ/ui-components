@@ -829,9 +829,11 @@
 
 	"use strict";
 	var tileViewComponent_1 = __webpack_require__(37);
+	var pagingComponent_1 = __webpack_require__(47);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.component('miqTileView', new tileViewComponent_1.default);
+	    module.component('miqPaging', new pagingComponent_1.default);
 	};
 
 
@@ -840,11 +842,19 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
 	var tileType_1 = __webpack_require__(38);
-	var TileViewController = (function () {
+	var abstractDataViewClass_1 = __webpack_require__(46);
+	var TileViewController = (function (_super) {
+	    __extends(TileViewController, _super);
 	    /* @ngInject */
 	    TileViewController.$inject = ["$sce"];
 	    function TileViewController($sce) {
+	        _super.call(this);
 	        this.$sce = $sce;
 	        this.initOptions();
 	    }
@@ -872,7 +882,6 @@
 	    TileViewController.prototype.$onChanges = function (changesObj) {
 	        if (changesObj.type) {
 	            this.options.type = this.type;
-	            console.log(this.options);
 	        }
 	        else if (changesObj.columns) {
 	            this.options.columns = this.columns;
@@ -887,14 +896,8 @@
 	            'miq-tile-with-body': this.type === tileType_1.TileType.BIG
 	        };
 	    };
-	    TileViewController.prototype.perPageClick = function (item) {
-	        console.log(item);
-	    };
-	    TileViewController.prototype.onSortClick = function (sortObject, isAscending) {
-	        this.onSort({ headerId: sortObject.colId, isAscending: isAscending });
-	    };
 	    return TileViewController;
-	}());
+	}(abstractDataViewClass_1.DataViewClass));
 	exports.TileViewController = TileViewController;
 	var TileView = (function () {
 	    function TileView() {
@@ -939,7 +942,7 @@
 /* 39 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"miq-tile-section\">\n  <div class=\"row\">\n    <div class=\"miq-per-page col-md-2 col-ld-2\" ng-if=\"tileCtrl.rows.length > 0\">\n      <label>{{tileCtrl.perPage.label}}: </label>\n      <miq-toolbar-list on-item-click=\"tileCtrl.perPageClick(item)\"\n                        toolbar-list=\"tileCtrl.perPage\"></miq-toolbar-list>\n    </div>\n    <miq-sort-items class=\"col-md-2 col-ld-2\"\n                    sort-object=\"tileCtrl.settings.sortBy\"\n                    headers=\"tileCtrl.columns\"\n                    on-sort=\"tileCtrl.onSortClick(sortObject, isAscending)\"></miq-sort-items>\n  </div>\n  <div pf-card-view\n       config=\"tileCtrl.options\"\n       items=\"tileCtrl.rows\"\n       ng-class=\"tileCtrl.tileClass()\">\n    <div ng-switch=\"config.type\">\n      <ng-switch-when ng-switch-when=\"small\">\n        <div>\n          <a href=\"javascript:void(0)\" title=\"{{config.fetchTileName(item)}}\" ng-click=\"config.onItemClick(item)\">{{config.fetchTileName(item) | limitToSuffix : 5 : 5 }}</a>\n        </div>\n        <div class=\"miq-quadicon\">\n          <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item)\">\n            <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n          </a>\n        </div>\n      </ng-switch-when>\n      <ng-switch-when ng-switch-when=\"big\">\n        <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item)\">{{config.fetchTileName(item)}}</a>\n        <div class=\"row miq-row-margin-only-top \">\n          <div class=\"col-md-3 col-ld-3 miq-icon-section\">\n            <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item)\">\n              <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n            </a>\n          </div>\n          <div class=\"col-md-9 col-ld-9 miq-info-section\">\n            <dl class=\"dl-horizontal tile\">\n              <dt ng-repeat-start=\"(key, header) in config.columns | limitTo: 6\" ng-if=\"header.text && header.text.indexOf('Name') === -1\">{{header.text}}:</dt>\n              <dd ng-repeat-end ng-if=\"header.text && header.text.indexOf('Name') === -1\" title=\"{{item.cells[key].text}}\">{{item.cells[key].text | limitToSuffix : 25 : 25}}</dd>\n            </dl>\n          </div>\n        </div>\n      </ng-switch-when>\n    </div>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"miq-tile-section\">\n  <div class=\"row\">\n    <div class=\"miq-per-page col-md-2 col-ld-2\" ng-if=\"tileCtrl.rows.length > 0\">\n      <label>{{tileCtrl.perPage.label}}: </label>\n      <miq-toolbar-list on-item-click=\"tileCtrl.perPageClick(item)\"\n                        toolbar-list=\"tileCtrl.perPage\"></miq-toolbar-list>\n    </div>\n    <miq-sort-items class=\"col-md-2 col-ld-2\"\n                    sort-object=\"tileCtrl.settings.sortBy\"\n                    headers=\"tileCtrl.columns\"\n                    on-sort=\"tileCtrl.onSortClick(sortObject.colId, isAscending)\"></miq-sort-items>\n  </div>\n  <div class=\"miq-paging\">\n    <miq-paging settings=\"tileCtrl.settings\" on-change-page=\"tileCtrl.setPage(pageNumber)\"></miq-paging>\n  </div>\n  <div pf-card-view\n       config=\"tileCtrl.options\"\n       items=\"tileCtrl.rows\"\n       ng-class=\"tileCtrl.tileClass()\">\n    <div ng-switch=\"config.type\">\n      <ng-switch-when ng-switch-when=\"small\">\n        <div>\n          <a href=\"javascript:void(0)\" title=\"{{config.fetchTileName(item)}}\" ng-click=\"config.onItemClick(item)\">{{config.fetchTileName(item) | limitToSuffix : 5 : 5 }}</a>\n        </div>\n        <div class=\"miq-quadicon\">\n          <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item)\">\n            <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n          </a>\n        </div>\n      </ng-switch-when>\n      <ng-switch-when ng-switch-when=\"big\">\n        <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item)\">{{config.fetchTileName(item)}}</a>\n        <div class=\"row miq-row-margin-only-top \">\n          <div class=\"col-md-3 col-ld-3 miq-icon-section\">\n            <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item)\">\n              <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n            </a>\n          </div>\n          <div class=\"col-md-9 col-ld-9 miq-info-section\">\n            <dl class=\"dl-horizontal tile\">\n              <dt ng-repeat-start=\"(key, header) in config.columns | limitTo: 6\" ng-if=\"header.text && header.text.indexOf('Name') === -1\">{{header.text}}:</dt>\n              <dd ng-repeat-end ng-if=\"header.text && header.text.indexOf('Name') === -1\" title=\"{{item.cells[key].text}}\">{{item.cells[key].text | limitToSuffix : 25 : 25}}</dd>\n            </dl>\n          </div>\n        </div>\n      </ng-switch-when>\n    </div>\n  </div>\n  <div class=\"miq-paging\">\n    <miq-paging settings=\"tileCtrl.settings\" on-change-page=\"tileCtrl.setPage(pageNumber)\"></miq-paging>\n  </div>\n</div>\n"
 
 /***/ },
 /* 40 */
@@ -958,26 +961,24 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var DataTableController = (function () {
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var abstractDataViewClass_1 = __webpack_require__(46);
+	var DataTableController = (function (_super) {
+	    __extends(DataTableController, _super);
 	    /*@ngInject*/
 	    DataTableController.$inject = ["$transclude"];
 	    function DataTableController($transclude) {
+	        _super.call(this);
 	        this.$transclude = $transclude;
-	        this.currentPageView = 0;
 	    }
-	    DataTableController.prototype.onSortClick = function (sortId, isAscending) {
-	        this.onSort({ headerId: sortId, isAscending: isAscending });
-	    };
 	    DataTableController.prototype.getColumnClass = function (column) {
 	        return {
 	            narrow: column.is_narrow
 	        };
-	    };
-	    DataTableController.prototype.onCheckAll = function (isCheckec) {
-	        var _this = this;
-	        _.each(this.rows, function (oneRow) {
-	            _this.onItemSelected({ item: oneRow, isSelected: isCheckec });
-	        });
 	    };
 	    DataTableController.prototype.isHeaderEmpty = function () {
 	        return this.$transclude().length === 0;
@@ -995,27 +996,13 @@
 	            'fa-sort-desc': !(!!this.settings.sortBy && this.settings.sortBy.isAscending)
 	        };
 	    };
-	    DataTableController.prototype.perPageClick = function (item) {
-	        console.log(item);
-	    };
-	    DataTableController.prototype.setPage = function (pageNumber) {
-	        if (pageNumber > this.settings.total) {
-	            this.currentPageView = this.settings.total;
-	            pageNumber = this.currentPageView;
-	        }
-	        var start = DataTableController.calculateStartIndex(pageNumber, this.settings.perpage);
-	        this.loadMoreItems({ start: start, perPage: 0 });
-	    };
 	    DataTableController.prototype.$onChanges = function (changesObj) {
 	        if (changesObj.settings && this.settings) {
 	            this.currentPageView = this.settings.current;
 	        }
 	    };
-	    DataTableController.calculateStartIndex = function (pageNumber, perPage) {
-	        return (pageNumber - 1) * perPage;
-	    };
 	    return DataTableController;
-	}());
+	}(abstractDataViewClass_1.DataViewClass));
 	exports.DataTableController = DataTableController;
 	var DataTable = (function () {
 	    function DataTable() {
@@ -1045,7 +1032,7 @@
 /* 42 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n  <div class=\"dataTables_header miq-data-tables-header\" ng-if=\"tableCtrl.rows.length > 0\">\n    <div class=\"row\">\n      <div class=\"pull-right\">\n        <div>\n          <label>{{tableCtrl.perPage.label}}: </label>\n          <miq-toolbar-list on-item-click=\"tableCtrl.perPageClick(item)\"\n                            toolbar-list=\"tableCtrl.perPage\"></miq-toolbar-list>\n        </div>\n        <div>\n          Some text sorted by\n        </div>\n      </div>\n    </div>\n  </div>\n  <table class=\"table table-bordered table-striped table-hover mig-table-with-footer mig-table\">\n    <thead>\n      <tr>\n        <th class=\"narrow miq-select\">\n          <input ng-if=\"tableCtrl.rows.length !== 0\" type=\"checkbox\" ng-model=\"isChecked\" ng-click=\"tableCtrl.onCheckAll(isChecked)\" title=\"Select all\" />\n        </th>\n        <ng-repeat ng-repeat=\"column in tableCtrl.columns\">\n          <th ng-if=\"$index !== 0\"\n              ng-repeat=\"column in tableCtrl.columns\"\n              ng-click=\"tableCtrl.onSortClick($index, !!tableCtrl.settings.sortBy && !tableCtrl.settings.sortBy.isAscending)\"\n              ng-class=\"tableCtrl.getColumnClass(column)\">\n            {{column.text}}\n            <div class=\"pull-right\" ng-if=\"tableCtrl.isFilteredBy(column)\" >\n              <i class=\"fa\" ng-class=\"tableCtrl.getSortClass(column)\"></i>\n            </div>\n          </th>\n        </ng-repeat>\n      </tr>\n    </thead>\n    <tbody>\n      <tr ng-repeat=\"row in tableCtrl.rows\"\n          ng-class=\"{active : row.selected}\"\n          ng-click=\"vm.onRowClick({$event: $event, rowData: row})\">\n        <td ng-repeat=\"(columnKey, column) in tableCtrl.columns\" ng-class=\"{narrow: row.cells[columnKey].is_checkbox}\">\n          <input ng-if=\"row.cells[columnKey].is_checkbox\"\n                 ng-click=\"tableCtrl.onRowSelected($event, isSelected, row)\"\n                 onclick=\"event.stopPropagation();\"\n                 type=\"checkbox\"\n                 ng-model=\"isSelected\"\n                 name=\"check_{{row.id}}\"\n                 value=\"{{row.id}}\"\n                 ng-checked=\"row.checked\"\n                 class=\"list-grid-checkbox\">\n          <i ng-if=\"row.cells[columnKey].icon && tableCtrl.isIconOrImage(row, columnKey)\"\n             class=\"{{row.cells[columnKey].icon}}\"\n             title=\"row.cells[columnKey].title\"></i>\n          <img ng-if=\"row.cells[columnKey].icon === null && tableCtrl.isIconOrImage(row, columnKey)\"\n               ng-src=\"{{row.img_url}}\"\n               alt=\"{{row.cells[columnKey].title}}\"\n               title=\"{{row.cells[columnKey].title}}\" />\n          <span ng-if=\"row.cells[columnKey].text\">\n              {{row.cells[columnKey].text}}\n          </span>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n  <div class=\"dataTables_footer\">\n    <div class=\"dataTables_paginate paging_bootstrap_input\">\n      <ul class=\"pagination\">\n        <li ng-class=\"{disabled: tableCtrl.settings.current === 1}\"\n            class=\"first\"\n            ng-click=\"tableCtrl.setPage(1)\">\n          <span class=\"i fa fa-angle-double-left\"></span>\n        </li>\n        <li ng-class=\"{disabled: tableCtrl.settings.current === 1}\"\n            class=\"prev\"\n            ng-click=\"tableCtrl.setPage(tableCtrl.currentPageView - 1)\">\n          <span class=\"i fa fa-angle-left\"></span>\n        </li>\n      </ul>\n      <div class=\"pagination-input\">\n        <form ng-submit=\"tableCtrl.setPage(tableCtrl.currentPageView)\">\n          <input type=\"text\" class=\"paginate_input\" ng-model=\"tableCtrl.currentPageView\">\n          <span class=\"paginate_of\">of <b>{{tableCtrl.settings.total}}</b></span>\n        </form>\n      </div>\n      <ul class=\"pagination\">\n        <li ng-class=\"{disabled: tableCtrl.settings.current === tableCtrl.settings.total}\"\n            class=\"next\"\n            ng-click=\"tableCtrl.setPage(tableCtrl.currentPageView + 1)\">\n          <span class=\"i fa fa-angle-right\"></span>\n        </li>\n        <li ng-class=\"{disabled: tableCtrl.settings.current === tableCtrl.settings.total}\"\n            class=\"last\"\n            ng-click=\"tableCtrl.setPage(tableCtrl.settings.total)\">\n          <span class=\"i fa fa-angle-double-right\"></span>\n        </li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
+	module.exports = "<div>\n  <div class=\"dataTables_header miq-data-tables-header\" ng-if=\"tableCtrl.rows.length > 0\">\n    <div class=\"row\">\n      <div class=\"pull-right\">\n        <div>\n          <label>{{tableCtrl.perPage.label}}: </label>\n          <miq-toolbar-list on-item-click=\"tableCtrl.perPageClick(item)\"\n                            toolbar-list=\"tableCtrl.perPage\"></miq-toolbar-list>\n        </div>\n        <div>\n          Some text sorted by\n        </div>\n      </div>\n    </div>\n  </div>\n  <table class=\"table table-bordered table-striped table-hover mig-table-with-footer mig-table\">\n    <thead>\n      <tr>\n        <th class=\"narrow miq-select\">\n          <input ng-if=\"tableCtrl.rows.length !== 0\" type=\"checkbox\" ng-model=\"isChecked\" ng-click=\"tableCtrl.onCheckAll(isChecked)\" title=\"Select all\" />\n        </th>\n        <ng-repeat ng-repeat=\"column in tableCtrl.columns\">\n          <th ng-if=\"$index !== 0\"\n              ng-repeat=\"column in tableCtrl.columns\"\n              ng-click=\"tableCtrl.onSortClick($index, !!tableCtrl.settings.sortBy && !tableCtrl.settings.sortBy.isAscending)\"\n              ng-class=\"tableCtrl.getColumnClass(column)\">\n            {{column.text}}\n            <div class=\"pull-right\" ng-if=\"tableCtrl.isFilteredBy(column)\" >\n              <i class=\"fa\" ng-class=\"tableCtrl.getSortClass(column)\"></i>\n            </div>\n          </th>\n        </ng-repeat>\n      </tr>\n    </thead>\n    <tbody>\n      <tr ng-repeat=\"row in tableCtrl.rows\"\n          ng-class=\"{active : row.selected}\"\n          ng-click=\"vm.onRowClick({$event: $event, rowData: row})\">\n        <td ng-repeat=\"(columnKey, column) in tableCtrl.columns\" ng-class=\"{narrow: row.cells[columnKey].is_checkbox}\">\n          <input ng-if=\"row.cells[columnKey].is_checkbox\"\n                 ng-click=\"tableCtrl.onRowSelected($event, isSelected, row)\"\n                 onclick=\"event.stopPropagation();\"\n                 type=\"checkbox\"\n                 ng-model=\"isSelected\"\n                 name=\"check_{{row.id}}\"\n                 value=\"{{row.id}}\"\n                 ng-checked=\"row.checked\"\n                 class=\"list-grid-checkbox\">\n          <i ng-if=\"row.cells[columnKey].icon && tableCtrl.isIconOrImage(row, columnKey)\"\n             class=\"{{row.cells[columnKey].icon}}\"\n             title=\"row.cells[columnKey].title\"></i>\n          <img ng-if=\"row.cells[columnKey].icon === null && tableCtrl.isIconOrImage(row, columnKey)\"\n               ng-src=\"{{row.img_url}}\"\n               alt=\"{{row.cells[columnKey].title}}\"\n               title=\"{{row.cells[columnKey].title}}\" />\n          <span ng-if=\"row.cells[columnKey].text\">\n              {{row.cells[columnKey].text}}\n          </span>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n  <div class=\"dataTables_footer\">\n    <div class=\"dataTables_paginate paging_bootstrap_input\">\n      <ul class=\"pagination\">\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === 1}\"\n            class=\"first\"\n            ng-click=\"tableCtrl.setPage(1)\">\n          <span class=\"i fa fa-angle-double-left\"></span>\n        </li>\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === 1}\"\n            class=\"prev\"\n            ng-click=\"tableCtrl.setPage(tableCtrl.currentPageView - 1)\">\n          <span class=\"i fa fa-angle-left\"></span>\n        </li>\n      </ul>\n      <div class=\"pagination-input\">\n        <form ng-submit=\"tableCtrl.setPage(tableCtrl.currentPageView)\">\n          <input type=\"text\" class=\"paginate_input\" ng-model=\"tableCtrl.currentPageView\">\n          <span class=\"paginate_of\">of <b>{{tableCtrl.settings.total}}</b></span>\n        </form>\n      </div>\n      <ul class=\"pagination\">\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === tableCtrl.settings.total}\"\n            class=\"next\"\n            ng-click=\"tableCtrl.setPage(tableCtrl.currentPageView + 1)\">\n          <span class=\"i fa fa-angle-right\"></span>\n        </li>\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === tableCtrl.settings.total}\"\n            class=\"last\"\n            ng-click=\"tableCtrl.setPage(tableCtrl.settings.total)\">\n          <span class=\"i fa fa-angle-double-right\"></span>\n        </li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 /* 43 */
@@ -1143,6 +1130,93 @@
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = LimitToSuffix;
 
+
+/***/ },
+/* 46 */
+/***/ function(module, exports) {
+
+	"use strict";
+	var DataViewClass = (function () {
+	    function DataViewClass() {
+	        this.currentPageView = 1;
+	    }
+	    DataViewClass.prototype.onCheckAll = function (isCheckec) {
+	        var _this = this;
+	        _.each(this.rows, function (oneRow) {
+	            _this.onItemSelected({ item: oneRow, isSelected: isCheckec });
+	        });
+	    };
+	    DataViewClass.prototype.onSortClick = function (sortId, isAscending) {
+	        this.onSort({ headerId: sortId, isAscending: isAscending });
+	    };
+	    DataViewClass.prototype.perPageClick = function (item) {
+	        var maxPage = Math.ceil(this.settings.items / item.value);
+	        this.currentPageView = this.currentPageView > maxPage ? maxPage : this.currentPageView;
+	        var start = DataViewClass.calculateStartIndex(this.currentPageView, item.value);
+	        this.loadMoreItems({ start: start, perPage: item.value });
+	    };
+	    DataViewClass.prototype.setPage = function (pageNumber) {
+	        console.log(pageNumber);
+	        if (pageNumber > this.settings.total) {
+	            this.currentPageView = this.settings.total;
+	            pageNumber = this.currentPageView;
+	        }
+	        this.currentPageView = pageNumber;
+	        var start = DataViewClass.calculateStartIndex(pageNumber, this.settings.perpage);
+	        this.loadMoreItems({ start: start, perPage: this.settings.perpage });
+	    };
+	    DataViewClass.calculateStartIndex = function (pageNumber, perPage) {
+	        return (pageNumber - 1) * perPage;
+	    };
+	    return DataViewClass;
+	}());
+	exports.DataViewClass = DataViewClass;
+
+
+/***/ },
+/* 47 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var PagingController = (function () {
+	    function PagingController() {
+	        this.MAX_PAGES = 6;
+	    }
+	    PagingController.prototype.updatePages = function (total) {
+	        var _this = this;
+	        if (total > this.MAX_PAGES) {
+	            this.pages = _.times(this.MAX_PAGES, function (item) { return _this.settings.current + item; });
+	        }
+	        else {
+	            this.pages = new Array(total);
+	        }
+	        return this.pages;
+	    };
+	    return PagingController;
+	}());
+	exports.PagingController = PagingController;
+	var Paging = (function () {
+	    function Paging() {
+	        this.replace = true;
+	        this.controller = PagingController;
+	        this.template = __webpack_require__(48);
+	        this.controllerAs = 'pagingCtrl';
+	        this.bindings = {
+	            settings: '<',
+	            onChangePage: '&'
+	        };
+	    }
+	    return Paging;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = Paging;
+
+
+/***/ },
+/* 48 */
+/***/ function(module, exports) {
+
+	module.exports = "<ul class=\"pagination\">\n  <li>\n    <a ng-class=\"{disabled: pagingCtrl.settings.current === 0}\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: 1})\"\n       href=\"javascript:void(0)\">\n      <span class=\"i fa fa-angle-double-left\"></span>\n    </a>\n  </li>\n  <li>\n    <a ng-class=\"{disabled: pagingCtrl.settings.current === 0}\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: pagingCtrl.settings.current})\"\n       href=\"javascript:void(0)\">\n      <span class=\"i fa fa-angle-left\"></span>\n    </a>\n  </li>\n  <li ng-repeat=\"page in pagingCtrl.updatePages(pagingCtrl.settings.total) track by $index\">\n    <a ng-class=\"{disabled: pagingCtrl.settings.current === $index}\" href=\"javascript:void(0)\" ng-click=\"pagingCtrl.onChangePage({pageNumber: $index +1})\">{{$index + 1}}</a>\n  </li>\n  <li>\n    <a ng-class=\"{disabled: (pagingCtrl.settings.current + 1) === pagingCtrl.settings.total}\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: (pagingCtrl.settings.current + 2)})\"\n       href=\"javascript:void(0)\">\n      <span class=\"i fa fa-angle-right\"></span>\n    </a>\n  </li>\n  <li>\n    <a ng-class=\"{disabled: (pagingCtrl.settings.current + 1) === pagingCtrl.settings.total}\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: pagingCtrl.settings.total})\"\n       href=\"javascript:void(0)\">\n      <span class=\"i fa fa-angle-double-right\"></span>\n    </a>\n  </li>\n</ul>\n"
 
 /***/ }
 /******/ ]);

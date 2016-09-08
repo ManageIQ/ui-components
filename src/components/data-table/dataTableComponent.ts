@@ -1,32 +1,16 @@
-import {ITableSettings, IDataTableBinding} from '../../interfaces/dataTable';
+import {IDataTableBinding} from '../../interfaces/dataTable';
+import {DataViewClass} from '../../interfaces/abstractDataViewClass';
 
-export class DataTableController implements IDataTableBinding{
-  public perPage: any;
-  public rows: any[];
-  public columns: any[];
-  public onSort: (args: {headerId: any, isAscending: boolean}) => void;
-  public onItemSelected: (args: {item: any, isSelected: boolean}) => void;
-  public loadMoreItems: (args: {start: number; perPage: number}) => void;
-  public onRowClick: (args: {item: any}) => void;
-  public settings: ITableSettings;
-  public currentPageView: number = 0;
+export class DataTableController extends DataViewClass implements IDataTableBinding {
   /*@ngInject*/
-  constructor(private $transclude: any) {}
-
-  public onSortClick(sortId, isAscending) {
-    this.onSort({headerId: sortId, isAscending: isAscending});
+  constructor(private $transclude: any) {
+    super();
   }
 
   public getColumnClass(column) {
     return {
       narrow: column.is_narrow
     };
-  }
-
-  public onCheckAll(isCheckec: boolean) {
-    _.each(this.rows, oneRow => {
-      this.onItemSelected({item: oneRow, isSelected: isCheckec});
-    });
   }
 
   public isHeaderEmpty(): boolean {
@@ -49,28 +33,10 @@ export class DataTableController implements IDataTableBinding{
     };
   }
 
-  public perPageClick(item) {
-    console.log(item);
-  }
-
-  public setPage(pageNumber) {
-    if (pageNumber > this.settings.total)
-    {
-      this.currentPageView = this.settings.total;
-      pageNumber = this.currentPageView;
-    }
-    const start = DataTableController.calculateStartIndex(pageNumber, this.settings.perpage);
-    this.loadMoreItems({start: start, perPage: 0});
-  }
-
   public $onChanges(changesObj: any) {
     if (changesObj.settings && this.settings) {
       this.currentPageView = this.settings.current;
     }
-  }
-
-  private static calculateStartIndex(pageNumber, perPage) {
-    return (pageNumber - 1) * perPage;
   }
 
 }

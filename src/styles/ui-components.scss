@@ -68,6 +68,23 @@ img.miq-gradient-background {
   div.miq-load-more {
     text-align: center;
   }
+
+  div.miq-paging {
+    display: block;
+    margin: auto;
+    width: 20%;
+    padding-left: 15px;
+
+    .disabled {
+      pointer-events: none;
+      cursor: not-allowed;
+      background-color: #fafafa !important;
+      background-image: none !important;
+      border-color: #d1d1d1 !important;
+      color: #8b8d8f !important;
+      opacity: 1;
+    }
+  }
 }
 
 .miq-tile-with-body .card-view-pf {

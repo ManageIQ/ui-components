@@ -1,18 +1,12 @@
 import {TileType} from '../../interfaces/tileType';
-import {ITableSettings, IDataTableBinding} from '../../interfaces/dataTable';
-export class TileViewController implements IDataTableBinding{
-  public rows: any[];
-  public onRowClick: (args: {item: any}) => void;
-  public onItemSelected: (args: {item: any, isSelected: boolean}) => void;
-  public onSort: (args: {headerId: any; isAscending: boolean}) => void;
-  public loadMoreItems: (args: {start: number; perPage: number}) => void;
-  public perPage: number;
-  public columns: any[];
-  public options: any;
+import {IDataTableBinding} from '../../interfaces/dataTable';
+import {DataViewClass} from '../../interfaces/abstractDataViewClass';
+export class TileViewController extends DataViewClass implements IDataTableBinding {
   public type: string;
-  public settings: ITableSettings;
+  public options: any;
   /* @ngInject */
   constructor(private $sce: any) {
+    super();
     this.initOptions();
   }
 
@@ -42,7 +36,6 @@ export class TileViewController implements IDataTableBinding{
   public $onChanges(changesObj: any) {
     if (changesObj.type) {
       this.options.type = this.type;
-      console.log(this.options);
     } else if (changesObj.columns) {
       this.options.columns = this.columns;
     }
@@ -57,15 +50,6 @@ export class TileViewController implements IDataTableBinding{
       'miq-small-tile': this.type === TileType.SMALL,
       'miq-tile-with-body': this.type === TileType.BIG
     };
-  }
-
-  public perPageClick(item) {
-    console.log(item);
-
-  }
-
-  public onSortClick(sortObject, isAscending) {
-    this.onSort({headerId: sortObject.colId, isAscending: isAscending});
   }
 }
 

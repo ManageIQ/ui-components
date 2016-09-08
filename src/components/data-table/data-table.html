@@ -63,12 +63,12 @@
   <div class="dataTables_footer">
     <div class="dataTables_paginate paging_bootstrap_input">
       <ul class="pagination">
-        <li ng-class="{disabled: tableCtrl.settings.current === 1}"
+        <li ng-class="{disabled: tableCtrl.currentPageView === 1}"
             class="first"
             ng-click="tableCtrl.setPage(1)">
           <span class="i fa fa-angle-double-left"></span>
         </li>
-        <li ng-class="{disabled: tableCtrl.settings.current === 1}"
+        <li ng-class="{disabled: tableCtrl.currentPageView === 1}"
             class="prev"
             ng-click="tableCtrl.setPage(tableCtrl.currentPageView - 1)">
           <span class="i fa fa-angle-left"></span>
@@ -81,12 +81,12 @@
         </form>
       </div>
       <ul class="pagination">
-        <li ng-class="{disabled: tableCtrl.settings.current === tableCtrl.settings.total}"
+        <li ng-class="{disabled: tableCtrl.currentPageView === tableCtrl.settings.total}"
             class="next"
             ng-click="tableCtrl.setPage(tableCtrl.currentPageView + 1)">
           <span class="i fa fa-angle-right"></span>
         </li>
-        <li ng-class="{disabled: tableCtrl.settings.current === tableCtrl.settings.total}"
+        <li ng-class="{disabled: tableCtrl.currentPageView === tableCtrl.settings.total}"
             class="last"
             ng-click="tableCtrl.setPage(tableCtrl.settings.total)">
           <span class="i fa fa-angle-double-right"></span>

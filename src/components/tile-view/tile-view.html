@@ -8,7 +8,10 @@
     <miq-sort-items class="col-md-2 col-ld-2"
                     sort-object="tileCtrl.settings.sortBy"
                     headers="tileCtrl.columns"
-                    on-sort="tileCtrl.onSortClick(sortObject, isAscending)"></miq-sort-items>
+                    on-sort="tileCtrl.onSortClick(sortObject.colId, isAscending)"></miq-sort-items>
+  </div>
+  <div class="miq-paging">
+    <miq-paging settings="tileCtrl.settings" on-change-page="tileCtrl.setPage(pageNumber)"></miq-paging>
   </div>
   <div pf-card-view
        config="tileCtrl.options"
@@ -42,5 +45,8 @@
         </div>
       </ng-switch-when>
     </div>
+  </div>
+  <div class="miq-paging">
+    <miq-paging settings="tileCtrl.settings" on-change-page="tileCtrl.setPage(pageNumber)"></miq-paging>
   </div>
 </div>

@@ -6,9 +6,13 @@ export class PagingController {
 
   public updatePages(total) {
     if (total > this.MAX_PAGES) {
-      this.pages = _.times(this.MAX_PAGES, item => this.settings.current + item);
+      let currentPage = (this.settings.current !== (this.settings.total - 1)) ?  this.settings.current : this.settings.current - 1;
+      this.pages = _.times(this.MAX_PAGES, item => currentPage + item);
     } else {
       this.pages = new Array(total);
+      _.each(this.pages, (item, key) => {
+        this.pages[key] = key;
+      });
     }
     return this.pages;
   }

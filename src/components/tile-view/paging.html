@@ -14,7 +14,11 @@
     </a>
   </li>
   <li ng-repeat="page in pagingCtrl.updatePages(pagingCtrl.settings.total) track by $index">
-    <a ng-class="{disabled: pagingCtrl.settings.current === $index}" href="javascript:void(0)" ng-click="pagingCtrl.onChangePage({pageNumber: $index +1})">{{$index + 1}}</a>
+    <a ng-class="{disabled: pagingCtrl.settings.current === page}"
+       href="javascript:void(0)"
+       ng-click="pagingCtrl.onChangePage({pageNumber: page + 1})">
+      {{page + 1}}
+    </a>
   </li>
   <li>
     <a ng-class="{disabled: (pagingCtrl.settings.current + 1) === pagingCtrl.settings.total}"

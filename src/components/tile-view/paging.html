@@ -1,34 +1,34 @@
 <ul class="pagination">
   <li>
-    <a ng-class="{disabled: pagingCtrl.settings.current === 0}"
+    <a ng-class="{disabled: pagingCtrl.settings.current === 1}"
        ng-click="pagingCtrl.onChangePage({pageNumber: 1})"
        href="javascript:void(0)">
       <span class="i fa fa-angle-double-left"></span>
     </a>
   </li>
   <li>
-    <a ng-class="{disabled: pagingCtrl.settings.current === 0}"
+    <a ng-class="{disabled: pagingCtrl.settings.current === 1}"
        ng-click="pagingCtrl.onChangePage({pageNumber: pagingCtrl.settings.current})"
        href="javascript:void(0)">
       <span class="i fa fa-angle-left"></span>
     </a>
   </li>
   <li ng-repeat="page in pagingCtrl.updatePages(pagingCtrl.settings.total) track by $index">
-    <a ng-class="{disabled: pagingCtrl.settings.current === page}"
+    <a ng-class="{disabled: pagingCtrl.settings.current === (page + 1)}"
        href="javascript:void(0)"
        ng-click="pagingCtrl.onChangePage({pageNumber: page + 1})">
       {{page + 1}}
     </a>
   </li>
   <li>
-    <a ng-class="{disabled: (pagingCtrl.settings.current + 1) === pagingCtrl.settings.total}"
+    <a ng-class="{disabled: (pagingCtrl.settings.current) === pagingCtrl.settings.total}"
        ng-click="pagingCtrl.onChangePage({pageNumber: (pagingCtrl.settings.current + 2)})"
        href="javascript:void(0)">
       <span class="i fa fa-angle-right"></span>
     </a>
   </li>
   <li>
-    <a ng-class="{disabled: (pagingCtrl.settings.current + 1) === pagingCtrl.settings.total}"
+    <a ng-class="{disabled: (pagingCtrl.settings.current) === pagingCtrl.settings.total}"
        ng-click="pagingCtrl.onChangePage({pageNumber: pagingCtrl.settings.total})"
        href="javascript:void(0)">
       <span class="i fa fa-angle-double-right"></span>

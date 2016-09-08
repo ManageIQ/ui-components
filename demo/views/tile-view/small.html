@@ -1,1 +1,9 @@
-<miq-tile-view per-page="vm.perPage" type="'small'" rows="vm.tableData.rows" columns="vm.tableData.cols"></miq-tile-view>
+<miq-tile-view type="'small'"
+               settings="vm.tableData.settings"
+               per-page="vm.perPage"
+               rows="vm.filteredRows"
+               columns="vm.tableData.cols"
+               on-row-click="vm.onRowClick(item)"
+               on-sort="vm.onSort(headerId, isAscending)"
+               load-more-items="vm.onLoadNext(start, perPage)"
+               on-item-selected="vm.onItemSelect(item, isSelected)"></miq-tile-view>

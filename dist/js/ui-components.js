@@ -44,8 +44,8 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(14);
-	module.exports = __webpack_require__(16);
+	__webpack_require__(18);
+	module.exports = __webpack_require__(20);
 
 
 /***/ },
@@ -62,44 +62,52 @@
 /* 11 */,
 /* 12 */,
 /* 13 */,
-/* 14 */
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 15 */,
-/* 16 */
+/* 19 */,
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	///<reference path="tsd.d.ts"/>
-	var services_1 = __webpack_require__(17);
-	var components_1 = __webpack_require__(21);
+	var services_1 = __webpack_require__(21);
+	var components_1 = __webpack_require__(26);
+	var filters_1 = __webpack_require__(47);
 	var miqStaticAssets;
 	(function (miqStaticAssets) {
 	    miqStaticAssets.app = angular.module('miqStaticAssets', ['rx', 'ngSanitize']);
 	    services_1.default(miqStaticAssets.app);
 	    components_1.default(miqStaticAssets.app);
+	    filters_1.default(miqStaticAssets.app);
 	})(miqStaticAssets || (miqStaticAssets = {}));
 
 
 /***/ },
-/* 17 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var endpointsService_1 = __webpack_require__(18);
-	var toolbarSettingsService_1 = __webpack_require__(19);
+	var endpointsService_1 = __webpack_require__(22);
+	var toolbarSettingsService_1 = __webpack_require__(23);
+	var dataTableService_1 = __webpack_require__(25);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.service('MiQEndpointsService', endpointsService_1.default);
 	    module.service('MiQToolbarSettingsService', toolbarSettingsService_1.default);
+	    module.service('MiQDataTableService', dataTableService_1.default);
 	};
 
 
 /***/ },
-/* 18 */
+/* 22 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -127,11 +135,11 @@
 
 
 /***/ },
-/* 19 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var toolbarType_1 = __webpack_require__(20);
+	var toolbarType_1 = __webpack_require__(24);
 	var ToolbarSettingsService = (function () {
 	    /*@ngInject*/
 	    ToolbarSettingsService.$inject = ["$http", "MiQEndpointsService"];
@@ -251,7 +259,7 @@
 
 
 /***/ },
-/* 20 */
+/* 24 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -291,26 +299,83 @@
 
 
 /***/ },
-/* 21 */
+/* 25 */
+/***/ function(module, exports) {
+
+	"use strict";
+	/**
+	 *
+	 */
+	var DataTableService = (function () {
+	    /*@ngInject*/
+	    DataTableService.$inject = ["$http", "MiQEndpointsService"];
+	    function DataTableService($http, MiQEndpointsService) {
+	        this.$http = $http;
+	        this.MiQEndpointsService = MiQEndpointsService;
+	    }
+	    /**
+	     *
+	     * @returns {any}
+	     */
+	    DataTableService.prototype.retrieveRowsAndColumnsFromUrl = function (modelName, activeTree, currId) {
+	        var _this = this;
+	        var config = { params: {} };
+	        _.assign(config.params, DataTableService.generateModelConfig(modelName));
+	        _.assign(config.params, DataTableService.generateActiveTreeConfig(activeTree));
+	        _.assign(config.params, DataTableService.generateModuleIdConfig(currId));
+	        return this.$http.get(this.MiQEndpointsService.rootPoint + this.MiQEndpointsService.endpoints.listDataTable, config).then(function (responseData) {
+	            _this.columns = responseData.data.data.head;
+	            _this.rows = responseData.data.data.rows;
+	            _this.settings = responseData.data.settings;
+	            return {
+	                cols: _this.columns,
+	                rows: _this.rows,
+	                settings: responseData.data.settings
+	            };
+	        });
+	    };
+	    DataTableService.generateModelConfig = function (modelName) {
+	        return modelName && { model: modelName };
+	    };
+	    DataTableService.generateActiveTreeConfig = function (activeTree) {
+	        return activeTree && { active_tree: activeTree };
+	    };
+	    DataTableService.generateModuleIdConfig = function (currId) {
+	        return currId && { model_id: currId };
+	    };
+	    return DataTableService;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = DataTableService;
+
+
+/***/ },
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var toolbar_menu_1 = __webpack_require__(22);
+	var toolbar_menu_1 = __webpack_require__(27);
+	var tile_view_1 = __webpack_require__(36);
+	var data_table_1 = __webpack_require__(43);
+	var sortItemsComponent_1 = __webpack_require__(46);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    toolbar_menu_1.default(module);
+	    tile_view_1.default(module);
+	    data_table_1.default(module);
+	    module.component('miqSortItems', new sortItemsComponent_1.default);
 	};
 
 
 /***/ },
-/* 22 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var toolbarComponent_1 = __webpack_require__(23);
-	var toolbarButtonDirective_1 = __webpack_require__(25);
-	var toolbarListComponent_1 = __webpack_require__(27);
-	var toolbarViewComponent_1 = __webpack_require__(29);
+	var toolbarComponent_1 = __webpack_require__(28);
+	var toolbarButtonDirective_1 = __webpack_require__(30);
+	var toolbarListComponent_1 = __webpack_require__(32);
+	var toolbarViewComponent_1 = __webpack_require__(34);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.component('miqToolbarMenu', new toolbarComponent_1.default);
@@ -321,11 +386,11 @@
 
 
 /***/ },
-/* 23 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var toolbarType_1 = __webpack_require__(20);
+	var toolbarType_1 = __webpack_require__(24);
 	/**
 	 * @memberof miqStaticAssets
 	 * @ngdoc controller
@@ -530,7 +595,7 @@
 	var Toolbar = (function () {
 	    function Toolbar() {
 	        this.replace = true;
-	        this.template = __webpack_require__(24);
+	        this.template = __webpack_require__(29);
 	        this.controller = ToolbarController;
 	        this.controllerAs = 'vm';
 	        this.bindings = {
@@ -546,13 +611,13 @@
 
 
 /***/ },
-/* 24 */
+/* 29 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"toolbar-pf-actions miq-toolbar-actions\">\n  <div class=\"form-group miq-toolbar-group\"\n       ng-repeat=\"toolbarItem in vm.toolbarItems\"\n       ng-if=\"vm.hasContent(toolbarItem)\">\n    <ng-repeat ng-repeat=\"item in toolbarItem \">\n      <miq-toolbar-button ng-if=\"item.type === vm.getButtonType()\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-button ng-if=\"item.type === vm.getButtonTwoState() && item.id.indexOf('view_') === -1\"\n                          toolbar-button=\"item\"\n                          on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-button>\n      <miq-toolbar-list ng-if=\"item.type === vm.getToolbarListType() && item.items.length > 0\"\n                        toolbar-list=\"item\"\n                        on-item-click=\"vm.onItemClick(item, $event)\">\n      </miq-toolbar-list>\n      <div ng-if=\"item.name == 'custom' && item.args && item.args.html\"\n           ng-bind-html=\"vm.trustAsHtml(item.args.html)\"\n           class=\"miq-custom-html\"></div>\n    </ng-repeat>\n  </div>\n  <miq-toolbar-view toolbar-views=\"vm.toolbarViews\"\n                    on-item-click=\"vm.onViewClick({item: item, $event: $event})\"\n                    class=\"miq-view-list\">\n  </miq-toolbar-view>\n</div>\n"
 
 /***/ },
-/* 25 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -575,7 +640,7 @@
 	var ToolbarButton = (function () {
 	    function ToolbarButton() {
 	        this.replace = true;
-	        this.template = __webpack_require__(26);
+	        this.template = __webpack_require__(31);
 	        this.scope = {
 	            toolbarButton: '<',
 	            onItemClick: '&'
@@ -593,13 +658,13 @@
 
 
 /***/ },
-/* 26 */
+/* 31 */
 /***/ function(module, exports) {
 
 	module.exports = "<button title=\"{{toolbarButton.title}}\"\n        data-explorer=\"{{toolbarButton.explorer}}\"\n        data-confirm-tb=\"{{toolbarButton.confirm}}\"\n        id=\"{{toolbarButton.id}}\"\n        name=\"{{toolbarButton.name}}\"\n        type=\"button\"\n        class=\"btn btn-default\"\n        data-click=\"{{toolbarButton.id}}\"\n        data-url=\"{{toolbarButton.url}}\"\n        data-url_parms=\"{{toolbarButton.url_parms}}\"\n        ng-class=\"{active: toolbarButton.selected, disabled: !toolbarButton.enabled}\"\n        ng-hide=\"toolbarButton.hidden\"\n        ng-click=\"onItemClick({item: toolbarButton, $event: $event})\">\n  <i ng-if=\"toolbarButton.icon\" class=\"{{toolbarButton.icon}}\" style=\"\"></i>\n  <img ng-if=\"toolbarButton.img_url && !toolbarButton.icon\" ng-src=\"{{toolbarButton.img_url}}\"\n       data-enabled=\"{{toolbarButton.img_url}}\"\n       data-disabled=\"{{toolbarButton.img_url}}\">\n  {{toolbarButton.text}}\n</button>\n"
 
 /***/ },
-/* 27 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -631,6 +696,7 @@
 	     * @returns {boolean}
 	     */
 	    ToolbarListController.prototype.isToolbarEmpty = function () {
+	        console.log(this.toolbarList.items);
 	        return this.toolbarList &&
 	            this.toolbarList.items &&
 	            this.toolbarList.items.filter(function (item) { return !item.hidden; }).length > 0;
@@ -660,7 +726,7 @@
 	var ToolbarList = (function () {
 	    function ToolbarList() {
 	        this.replace = true;
-	        this.template = __webpack_require__(28);
+	        this.template = __webpack_require__(33);
 	        this.controller = ToolbarListController;
 	        this.controllerAs = 'vm';
 	        this.bindings = {
@@ -675,13 +741,13 @@
 
 
 /***/ },
-/* 28 */
+/* 33 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"btn-group\" dropdown ng-if=\"vm.isEmpty\">\n  <button type=\"button\" dropdown-toggle class=\"btn dropdown-toggle btn-default\"\n          ng-class=\"{disabled: !vm.toolbarList.enabled}\" title=\"{{vm.toolbarList.title}}\">\n    <i class=\"{{vm.toolbarList.icon}}\" style=\"margin-right: 5px;\" ng-if=\"vm.toolbarList.icon\"></i>\n    {{vm.toolbarList.text}}\n    <span class=\"caret\"></span>\n  </button>\n  <ul class=\"dropdown-menu\" role=\"menu\">\n    <li ng-repeat=\"item in vm.toolbarList.items track by $index\" ng-class=\"{disabled: !item.enabled}\">\n      <a ng-if=\"item.type !== 'separator'\"\n         ng-hide=\"item.hidden\"\n         href=\"\"\n         title=\"{{item.title}}\"\n         data-explorer=\"{{item.explorer}}\"\n         data-confirm-tb=\"{{item.confirm}}\"\n         ng-click=\"vm.onItemClick({item: item, $event: $event})\"\n         data-function=\"{{item.data.function}}\"\n         data-function-data=\"{{item.data['function-data']}}\"\n         data-target=\"{{item.data.target}}\"\n         data-toggle=\"{{item.data.toggle}}\"\n         data-click=\"{{item.id}}\"\n         name=\"{{item.id}}\"\n         id=\"{{item.id}}\"\n         data-url_parms=\"{{item.url_parms}}\"\n         data-url=\"{{item.url}}\">\n        <i ng-if=\"item.icon\" class=\"{{item.icon}}\"></i>\n        <img ng-if=\"item.img_url && !item.icon\" ng-src=\"{{item.img_url}}\"\n             data-enabled=\"{{item.img_url}}\"\n             data-disabled=\"{{item.img_url}}\">\n        {{item.text}}\n      </a>\n      <div ng-if=\"item.type === 'separator'\" class=\"divider \" role=\"presentation\" ng-hide=\"item.hidden\"></div>\n    </li>\n  </ul>\n</div>\n"
 
 /***/ },
-/* 29 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -716,7 +782,7 @@
 	var ToolbarView = (function () {
 	    function ToolbarView() {
 	        this.replace = false;
-	        this.template = __webpack_require__(30);
+	        this.template = __webpack_require__(35);
 	        this.controller = ToolbarViewController;
 	        this.controllerAs = 'vm';
 	        this.bindings = {
@@ -731,10 +797,410 @@
 
 
 /***/ },
-/* 30 */
+/* 35 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"toolbar-pf-view-selector pull-right form-group\">\n  <button class=\"btn btn-link\"\n          ng-repeat=\"item in vm.toolbarViews\"\n          ng-class=\"{active: item.selected}\"\n          title=\"{{item.title}}\"\n          id=\"{{item.id}}\"\n          data-url=\"{{item.url}}\"\n          data-url_parms=\"{{item.url_parms}}\"\n          ng-click=\"vm.onItemClick({item: item, $event: $event})\"\n          name=\"{{item.name}}\">\n    <i class=\"{{item.icon}}\" style=\"\"></i>\n  </button>\n</div>\n"
+
+/***/ },
+/* 36 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var tileViewComponent_1 = __webpack_require__(37);
+	var pagingComponent_1 = __webpack_require__(41);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = function (module) {
+	    module.component('miqTileView', new tileViewComponent_1.default);
+	    module.component('miqPaging', new pagingComponent_1.default);
+	};
+
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var tileType_1 = __webpack_require__(38);
+	var abstractDataViewClass_1 = __webpack_require__(39);
+	var TileViewController = (function (_super) {
+	    __extends(TileViewController, _super);
+	    /* @ngInject */
+	    TileViewController.$inject = ["$sce"];
+	    function TileViewController($sce) {
+	        _super.call(this);
+	        this.$sce = $sce;
+	        this.initOptions();
+	    }
+	    TileViewController.prototype.initOptions = function () {
+	        var _this = this;
+	        this.options = {
+	            selectionMatchProp: 'id',
+	            selectItems: true,
+	            multiSelect: true,
+	            showSelectBox: false,
+	            onClick: function (item, event) { return _this.onTileClick(item); },
+	            onItemClick: function (item) { return _this.onRowClick({ item: item }); },
+	            fetchTileName: function (item) { return _this.fetchTileName(item); },
+	            trustAsHtmlQuadicon: function (item) { return _this.trustAsHtmlQuadicon(item); },
+	            type: this.type
+	        };
+	    };
+	    TileViewController.prototype.trustAsHtmlQuadicon = function (item) {
+	        return this.$sce.trustAsHtml(item.quadicon);
+	    };
+	    TileViewController.prototype.fetchTileName = function (item) {
+	        var nameIndex = _.findIndex(this.columns, function (oneColumn) { return oneColumn.text && oneColumn.text.indexOf('Name') !== -1; });
+	        return (nameIndex !== -1 && item.cells && item.cells[nameIndex]) ? item.cells[nameIndex]['text'] : '';
+	    };
+	    TileViewController.prototype.$onChanges = function (changesObj) {
+	        if (changesObj.type) {
+	            this.options.type = this.type;
+	        }
+	        else if (changesObj.columns) {
+	            this.options.columns = this.columns;
+	        }
+	    };
+	    TileViewController.prototype.onTileClick = function (item) {
+	        this.onItemSelected({ item: item, isSelected: item === _.find(this.options.selectedItems, { id: item.id }) });
+	    };
+	    TileViewController.prototype.tileClass = function () {
+	        return {
+	            'miq-small-tile': this.type === tileType_1.TileType.SMALL,
+	            'miq-tile-with-body': this.type === tileType_1.TileType.BIG
+	        };
+	    };
+	    return TileViewController;
+	}(abstractDataViewClass_1.DataViewClass));
+	exports.TileViewController = TileViewController;
+	var TileView = (function () {
+	    function TileView() {
+	        this.replace = true;
+	        this.controller = TileViewController;
+	        this.template = __webpack_require__(40);
+	        this.controllerAs = 'tileCtrl';
+	        this.bindings = {
+	            type: '<',
+	            rows: '<',
+	            columns: '<',
+	            perPage: '<',
+	            settings: '<',
+	            loadMoreItems: '&',
+	            onSort: '&',
+	            onRowClick: '&',
+	            onItemSelected: '&'
+	        };
+	    }
+	    return TileView;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = TileView;
+
+
+/***/ },
+/* 38 */
+/***/ function(module, exports) {
+
+	"use strict";
+	/**
+	 *
+	 * @type {{}}
+	 */
+	exports.TileType = {
+	    SMALL: 'small',
+	    BIG: 'big'
+	};
+
+
+/***/ },
+/* 39 */
+/***/ function(module, exports) {
+
+	"use strict";
+	var DataViewClass = (function () {
+	    function DataViewClass() {
+	        this.currentPageView = 1;
+	    }
+	    DataViewClass.prototype.onCheckAll = function (isCheckec) {
+	        var _this = this;
+	        _.each(this.rows, function (oneRow) {
+	            _this.onItemSelected({ item: oneRow, isSelected: isCheckec });
+	        });
+	    };
+	    DataViewClass.prototype.onSortClick = function (sortId, isAscending) {
+	        this.onSort({ headerId: sortId, isAscending: isAscending });
+	    };
+	    DataViewClass.prototype.perPageClick = function (item) {
+	        var maxPage = Math.ceil(this.settings.items / item.value);
+	        this.currentPageView = this.currentPageView > maxPage ? maxPage : this.currentPageView;
+	        var start = DataViewClass.calculateStartIndex(this.currentPageView, item.value);
+	        this.loadMoreItems({ start: start, perPage: item.value });
+	    };
+	    DataViewClass.prototype.setPage = function (pageNumber) {
+	        console.log(pageNumber);
+	        if (pageNumber > this.settings.total) {
+	            this.currentPageView = this.settings.total;
+	            pageNumber = this.currentPageView;
+	        }
+	        this.currentPageView = pageNumber;
+	        var start = DataViewClass.calculateStartIndex(pageNumber, this.settings.perpage);
+	        this.loadMoreItems({ start: start, perPage: this.settings.perpage });
+	    };
+	    DataViewClass.calculateStartIndex = function (pageNumber, perPage) {
+	        return (pageNumber - 1) * perPage;
+	    };
+	    return DataViewClass;
+	}());
+	exports.DataViewClass = DataViewClass;
+
+
+/***/ },
+/* 40 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"miq-tile-section\">\n  <div class=\"row\">\n    <div class=\"miq-per-page col-md-2 col-ld-2\" ng-if=\"tileCtrl.rows.length > 0\">\n      <label>{{tileCtrl.perPage.label}}: </label>\n      <miq-toolbar-list on-item-click=\"tileCtrl.perPageClick(item)\"\n                        toolbar-list=\"tileCtrl.perPage\"></miq-toolbar-list>\n    </div>\n    <miq-sort-items class=\"col-md-2 col-ld-2\"\n                    sort-object=\"tileCtrl.settings.sortBy\"\n                    headers=\"tileCtrl.columns\"\n                    on-sort=\"tileCtrl.onSortClick(sortObject.colId, isAscending)\"></miq-sort-items>\n  </div>\n  <div class=\"miq-paging\">\n    <miq-paging settings=\"tileCtrl.settings\" on-change-page=\"tileCtrl.setPage(pageNumber)\"></miq-paging>\n  </div>\n  <div pf-card-view\n       config=\"tileCtrl.options\"\n       items=\"tileCtrl.rows\"\n       ng-class=\"tileCtrl.tileClass()\">\n    <div ng-switch=\"config.type\">\n      <ng-switch-when ng-switch-when=\"small\">\n        <div>\n          <a href=\"javascript:void(0)\" title=\"{{config.fetchTileName(item)}}\" ng-click=\"config.onItemClick(item)\">{{config.fetchTileName(item) | limitToSuffix : 5 : 5 }}</a>\n        </div>\n        <div class=\"miq-quadicon\">\n          <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item)\">\n            <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n          </a>\n        </div>\n      </ng-switch-when>\n      <ng-switch-when ng-switch-when=\"big\">\n        <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item)\">{{config.fetchTileName(item)}}</a>\n        <div class=\"row miq-row-margin-only-top \">\n          <div class=\"col-md-3 col-ld-3 miq-icon-section\">\n            <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item)\">\n              <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n            </a>\n          </div>\n          <div class=\"col-md-9 col-ld-9 miq-info-section\">\n            <dl class=\"dl-horizontal tile\">\n              <dt ng-repeat-start=\"(key, header) in config.columns | limitTo: 6 track by $index\" ng-if=\"header.text && header.text.indexOf('Name') === -1\">{{header.text}}:</dt>\n              <dd ng-repeat-end ng-if=\"header.text && header.text.indexOf('Name') === -1\" title=\"{{item.cells[key].text}}\">{{item.cells[key].text | limitToSuffix : 25 : 25}}</dd>\n            </dl>\n          </div>\n        </div>\n      </ng-switch-when>\n    </div>\n  </div>\n  <div class=\"miq-paging\">\n    <miq-paging settings=\"tileCtrl.settings\" on-change-page=\"tileCtrl.setPage(pageNumber)\"></miq-paging>\n  </div>\n</div>\n"
+
+/***/ },
+/* 41 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var PagingController = (function () {
+	    function PagingController() {
+	        this.MAX_PAGES = 6;
+	        console.log(this);
+	    }
+	    PagingController.prototype.updatePages = function (total) {
+	        var _this = this;
+	        if (total > this.MAX_PAGES) {
+	            var currentPage_1 = (this.settings.current !== (this.settings.total - 1)) ? this.settings.current : this.settings.current - 1;
+	            this.pages = _.times(this.MAX_PAGES, function (item) { return currentPage_1 + item; });
+	        }
+	        else {
+	            this.pages = new Array(total);
+	            _.each(this.pages, function (item, key) {
+	                _this.pages[key] = key;
+	            });
+	        }
+	        return this.pages;
+	    };
+	    return PagingController;
+	}());
+	exports.PagingController = PagingController;
+	var Paging = (function () {
+	    function Paging() {
+	        this.replace = true;
+	        this.controller = PagingController;
+	        this.template = __webpack_require__(42);
+	        this.controllerAs = 'pagingCtrl';
+	        this.bindings = {
+	            settings: '<',
+	            onChangePage: '&'
+	        };
+	    }
+	    return Paging;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = Paging;
+
+
+/***/ },
+/* 42 */
+/***/ function(module, exports) {
+
+	module.exports = "<ul class=\"pagination\">\n  <li>\n    <a ng-class=\"{disabled: pagingCtrl.settings.current === 1}\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: 1})\"\n       href=\"javascript:void(0)\">\n      <span class=\"i fa fa-angle-double-left\"></span>\n    </a>\n  </li>\n  <li>\n    <a ng-class=\"{disabled: pagingCtrl.settings.current === 1}\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: pagingCtrl.settings.current})\"\n       href=\"javascript:void(0)\">\n      <span class=\"i fa fa-angle-left\"></span>\n    </a>\n  </li>\n  <li ng-repeat=\"page in pagingCtrl.updatePages(pagingCtrl.settings.total) track by $index\">\n    <a ng-class=\"{disabled: pagingCtrl.settings.current === (page + 1)}\"\n       href=\"javascript:void(0)\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: page + 1})\">\n      {{page + 1}}\n    </a>\n  </li>\n  <li>\n    <a ng-class=\"{disabled: (pagingCtrl.settings.current) === pagingCtrl.settings.total}\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: (pagingCtrl.settings.current + 2)})\"\n       href=\"javascript:void(0)\">\n      <span class=\"i fa fa-angle-right\"></span>\n    </a>\n  </li>\n  <li>\n    <a ng-class=\"{disabled: (pagingCtrl.settings.current) === pagingCtrl.settings.total}\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: pagingCtrl.settings.total})\"\n       href=\"javascript:void(0)\">\n      <span class=\"i fa fa-angle-double-right\"></span>\n    </a>\n  </li>\n</ul>\n"
+
+/***/ },
+/* 43 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var dataTableComponent_1 = __webpack_require__(44);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = function (module) {
+	    module.component('miqDataTable', new dataTableComponent_1.default);
+	};
+
+
+/***/ },
+/* 44 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var abstractDataViewClass_1 = __webpack_require__(39);
+	var DataTableController = (function (_super) {
+	    __extends(DataTableController, _super);
+	    /*@ngInject*/
+	    DataTableController.$inject = ["$transclude"];
+	    function DataTableController($transclude) {
+	        _super.call(this);
+	        this.$transclude = $transclude;
+	    }
+	    DataTableController.prototype.getColumnClass = function (column) {
+	        return {
+	            narrow: column.is_narrow
+	        };
+	    };
+	    DataTableController.prototype.isHeaderEmpty = function () {
+	        return this.$transclude().length === 0;
+	    };
+	    DataTableController.prototype.isIconOrImage = function (row, columnKey) {
+	        return row && row.cells &&
+	            (row.cells[columnKey].hasOwnProperty('icon') || row.cells[columnKey].hasOwnProperty('image'));
+	    };
+	    DataTableController.prototype.isFilteredBy = function (column) {
+	        return !!this.settings.sortBy && (this.settings.sortBy.sortObject.col_idx === column.col_idx);
+	    };
+	    DataTableController.prototype.getSortClass = function (colum) {
+	        return {
+	            'fa-sort-asc': !!this.settings.sortBy && this.settings.sortBy.isAscending,
+	            'fa-sort-desc': !(!!this.settings.sortBy && this.settings.sortBy.isAscending)
+	        };
+	    };
+	    DataTableController.prototype.$onChanges = function (changesObj) {
+	        if (changesObj.settings && this.settings) {
+	            this.currentPageView = this.settings.current;
+	        }
+	    };
+	    return DataTableController;
+	}(abstractDataViewClass_1.DataViewClass));
+	exports.DataTableController = DataTableController;
+	var DataTable = (function () {
+	    function DataTable() {
+	        this.replace = true;
+	        this.template = __webpack_require__(45);
+	        this.controller = DataTableController;
+	        this.transclude = true;
+	        this.controllerAs = 'tableCtrl';
+	        this.bindings = {
+	            rows: '<',
+	            columns: '<',
+	            perPage: '<',
+	            settings: '<',
+	            loadMoreItems: '&',
+	            onSort: '&',
+	            onRowClick: '&',
+	            onItemSelected: '&'
+	        };
+	    }
+	    return DataTable;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = DataTable;
+
+
+/***/ },
+/* 45 */
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n  <div class=\"dataTables_header miq-data-tables-header\" ng-if=\"tableCtrl.rows.length > 0\">\n    <div class=\"row\">\n      <div class=\"pull-right\">\n        <div>\n          <label>{{tableCtrl.perPage.label}}: </label>\n          <miq-toolbar-list on-item-click=\"tableCtrl.perPageClick(item)\"\n                            toolbar-list=\"tableCtrl.perPage\"></miq-toolbar-list>\n        </div>\n        <div>\n          Some text sorted by\n        </div>\n      </div>\n    </div>\n  </div>\n  <table class=\"table table-bordered table-striped table-hover mig-table-with-footer mig-table\">\n    <thead>\n      <tr>\n        <th class=\"narrow miq-select\">\n          <input ng-if=\"tableCtrl.rows.length !== 0\" type=\"checkbox\" ng-model=\"isChecked\" ng-click=\"tableCtrl.onCheckAll(isChecked)\" title=\"Select all\" />\n        </th>\n          <th ng-if=\"$index !== 0\"\n              ng-repeat=\"column in tableCtrl.columns track by $index\"\n              ng-click=\"tableCtrl.onSortClick($index, !!tableCtrl.settings.sortBy && !tableCtrl.settings.sortBy.isAscending)\"\n              ng-class=\"tableCtrl.getColumnClass(column)\">\n            {{column.text}}\n            <div class=\"pull-right\" ng-if=\"tableCtrl.isFilteredBy(column)\" >\n              <i class=\"fa\" ng-class=\"tableCtrl.getSortClass(column)\"></i>\n            </div>\n          </th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr ng-repeat=\"row in tableCtrl.rows\"\n          ng-class=\"{active : row.selected}\"\n          ng-click=\"vm.onRowClick({$event: $event, rowData: row})\">\n        <td ng-repeat=\"(columnKey, column) in tableCtrl.columns\" ng-class=\"{narrow: row.cells[columnKey].is_checkbox}\">\n          <input ng-if=\"row.cells[columnKey].is_checkbox\"\n                 ng-click=\"tableCtrl.onRowSelected($event, isSelected, row)\"\n                 onclick=\"event.stopPropagation();\"\n                 type=\"checkbox\"\n                 ng-model=\"isSelected\"\n                 name=\"check_{{row.id}}\"\n                 value=\"{{row.id}}\"\n                 ng-checked=\"row.checked\"\n                 class=\"list-grid-checkbox\">\n          <i ng-if=\"row.cells[columnKey].icon && tableCtrl.isIconOrImage(row, columnKey)\"\n             class=\"{{row.cells[columnKey].icon}}\"\n             title=\"row.cells[columnKey].title\"></i>\n          <img ng-if=\"row.cells[columnKey].icon === null && tableCtrl.isIconOrImage(row, columnKey)\"\n               ng-src=\"{{row.img_url}}\"\n               alt=\"{{row.cells[columnKey].title}}\"\n               title=\"{{row.cells[columnKey].title}}\" />\n          <span ng-if=\"row.cells[columnKey].text\">\n              {{row.cells[columnKey].text}}\n          </span>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n  <div class=\"dataTables_footer\">\n    <div class=\"dataTables_paginate paging_bootstrap_input\">\n      <ul class=\"pagination\">\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === 1}\"\n            class=\"first\"\n            ng-click=\"tableCtrl.setPage(1)\">\n          <span class=\"i fa fa-angle-double-left\"></span>\n        </li>\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === 1}\"\n            class=\"prev\"\n            ng-click=\"tableCtrl.setPage(tableCtrl.currentPageView - 1)\">\n          <span class=\"i fa fa-angle-left\"></span>\n        </li>\n      </ul>\n      <div class=\"pagination-input\">\n        <form ng-submit=\"tableCtrl.setPage(tableCtrl.currentPageView)\">\n          <input type=\"text\" class=\"paginate_input\" ng-model=\"tableCtrl.currentPageView\">\n          <span class=\"paginate_of\">of <b>{{tableCtrl.settings.total}}</b></span>\n        </form>\n      </div>\n      <ul class=\"pagination\">\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === tableCtrl.settings.total}\"\n            class=\"next\"\n            ng-click=\"tableCtrl.setPage(tableCtrl.currentPageView + 1)\">\n          <span class=\"i fa fa-angle-right\"></span>\n        </li>\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === tableCtrl.settings.total}\"\n            class=\"last\"\n            ng-click=\"tableCtrl.setPage(tableCtrl.settings.total)\">\n          <span class=\"i fa fa-angle-double-right\"></span>\n        </li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
+
+/***/ },
+/* 46 */
+/***/ function(module, exports) {
+
+	"use strict";
+	var SortItemsController = (function () {
+	    function SortItemsController() {
+	        this.initOptions();
+	    }
+	    SortItemsController.prototype.$onChanges = function (changesObj) {
+	        if (changesObj.headers) {
+	            this.fillFields();
+	            if (this.sortObject) {
+	                this.setSortItem();
+	            }
+	        }
+	    };
+	    SortItemsController.prototype.setSortItem = function () {
+	        this.options.currentField = {
+	            colId: this.headers.indexOf(this.sortObject.sortObject),
+	            id: this.sortObject.sortObject.text.toLowerCase(),
+	            title: this.sortObject.sortObject.text
+	        };
+	        this.options.isAscending = this.sortObject.isAscending;
+	    };
+	    SortItemsController.prototype.initOptions = function () {
+	        var _this = this;
+	        this.options = {
+	            fields: [],
+	            onSortChange: function (item, isAscending) { return _this.onSort({ sortObject: item, isAscending: isAscending }); },
+	            currentField: {}
+	        };
+	    };
+	    SortItemsController.prototype.fillFields = function () {
+	        var _this = this;
+	        _.each(this.headers, function (oneCol, key) {
+	            if (!oneCol.hasOwnProperty('is_narrow') && oneCol.hasOwnProperty('text')) {
+	                _this.options.fields.push({
+	                    colId: key,
+	                    id: oneCol.text.toLowerCase(),
+	                    title: oneCol.text
+	                });
+	            }
+	        });
+	    };
+	    return SortItemsController;
+	}());
+	exports.SortItemsController = SortItemsController;
+	var SortItems = (function () {
+	    function SortItems() {
+	        this.replace = true;
+	        this.template = "<div pf-sort config=\"vm.options\"></div>";
+	        this.controller = SortItemsController;
+	        this.controllerAs = 'vm';
+	        this.bindings = {
+	            onSort: '&',
+	            headers: '<',
+	            sortObject: '<'
+	        };
+	    }
+	    return SortItems;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = SortItems;
+
+
+/***/ },
+/* 47 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var limitToSuffixFilter_1 = __webpack_require__(48);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = function (module) {
+	    module.filter('limitToSuffix', limitToSuffixFilter_1.default.filter);
+	};
+
+
+/***/ },
+/* 48 */
+/***/ function(module, exports) {
+
+	"use strict";
+	var LimitToSuffix = (function () {
+	    function LimitToSuffix() {
+	    }
+	    LimitToSuffix.filter = function () {
+	        return function (value, start, end) {
+	            return value.length > start + end + 3 ? value.slice(0, start) + "..." + value.slice(-end) : value;
+	        };
+	    };
+	    return LimitToSuffix;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = LimitToSuffix;
+
 
 /***/ }
 /******/ ]);

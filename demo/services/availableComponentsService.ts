@@ -38,18 +38,36 @@ export default class AvailableComponentsService {
 
   private initComponents() {
       this.availableComponents = [
-      new AvailableGroup('toolbar-menu', 'Toolbar Menu Components', '/toolbar-menu', [
-        new AvailableComponent('basic', '' +
-          'Basic Toolbar Menu',
-          '/basic',
-          require<string>('./../views/toolbar-menu/basic.html'),
-          'demoToolbarMenu as vm'),
-        new AvailableComponent('custom_html', '' +
-          'Custom Html Toolbar Menu',
-          '/custom',
-          require<string>('./../views/toolbar-menu/custom-html.html'),
-          'demoToolbarMenu as vm')
-      ])
+        new AvailableGroup('toolbar-menu', 'Toolbar Menu Components', '/toolbar-menu', [
+          new AvailableComponent('basic', '' +
+            'Basic Toolbar Menu',
+            '/basic',
+            require<string>('./../views/toolbar-menu/basic.html'),
+            'demoToolbarMenu as vm'),
+          new AvailableComponent('custom_html', '' +
+            'Custom Html Toolbar Menu',
+            '/custom',
+            require<string>('./../views/toolbar-menu/custom-html.html'),
+            'demoToolbarMenu as vm')
+        ]),
+        new AvailableGroup('tile-menu', 'Tile Components', '/tile-view', [
+          new AvailableComponent('small',
+            'Small tile',
+            '/small',
+            require<string>('./../views/tile-view/small.html'),
+            'demoDataTable as vm'),
+          new AvailableComponent('big',
+            'Big tile',
+            '/big',
+            require<string>('./../views/tile-view/big.html'),
+            'demoDataTable as vm'),
+        ]),
+        new AvailableGroup('data-table', 'Data table Components', '/data-table', [
+          new AvailableComponent('basic',
+            'Basic data table',
+            '/basic',
+            require<string>('./../views/data-table/basic.html'),'demoDataTable as vm')
+        ])
     ];
   }
 }

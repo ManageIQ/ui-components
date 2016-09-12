@@ -45,7 +45,9 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(14);
-	module.exports = __webpack_require__(16);
+	__webpack_require__(16);
+	__webpack_require__(17);
+	module.exports = __webpack_require__(31);
 
 
 /***/ },
@@ -70,17 +72,12 @@
 /***/ },
 /* 15 */,
 /* 16 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	"use strict";
 	///<reference path="tsd.d.ts"/>
-	var services_1 = __webpack_require__(17);
-	var components_1 = __webpack_require__(21);
 	var miqStaticAssets;
 	(function (miqStaticAssets) {
-	    miqStaticAssets.app = angular.module('miqStaticAssets', ['rx', 'ngSanitize']);
-	    services_1.default(miqStaticAssets.app);
-	    components_1.default(miqStaticAssets.app);
+	    angular.module('miqStaticAssets', ['miqStaticAssets.toolbar', 'miqStaticAssets.common']);
 	})(miqStaticAssets || (miqStaticAssets = {}));
 
 
@@ -89,41 +86,27 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var endpointsService_1 = __webpack_require__(18);
-	var toolbarSettingsService_1 = __webpack_require__(19);
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = function (module) {
-	    module.service('MiQEndpointsService', endpointsService_1.default);
-	    module.service('MiQToolbarSettingsService', toolbarSettingsService_1.default);
-	};
+	///<reference path="../tsd.d.ts"/>
+	var services_1 = __webpack_require__(18);
+	var components_1 = __webpack_require__(21);
+	var toolbar;
+	(function (toolbar) {
+	    toolbar.app = angular.module('miqStaticAssets.toolbar', ['ngSanitize']);
+	    services_1.default(toolbar.app);
+	    components_1.default(toolbar.app);
+	})(toolbar || (toolbar = {}));
 
 
 /***/ },
 /* 18 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var DefaultEndpoints = (function () {
-	    function DefaultEndpoints() {
-	        this.listDataTable = '/list';
-	        this.deleteItemDataTable = '/delete';
-	        this.validateItem = '/validate';
-	        this.createItem = '/create';
-	        this.providerSettings = '/list_providers_settings';
-	        this.toolbarSettings = '/toolbar';
-	    }
-	    return DefaultEndpoints;
-	}());
-	exports.DefaultEndpoints = DefaultEndpoints;
-	var EndpointsService = (function () {
-	    function EndpointsService() {
-	        this.rootPoint = '';
-	        this.endpoints = new DefaultEndpoints;
-	    }
-	    return EndpointsService;
-	}());
+	var toolbarSettingsService_1 = __webpack_require__(19);
 	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = EndpointsService;
+	exports.default = function (module) {
+	    module.service('MiQToolbarSettingsService', toolbarSettingsService_1.default);
+	};
 
 
 /***/ },
@@ -735,6 +718,60 @@
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"toolbar-pf-view-selector pull-right form-group\">\n  <button class=\"btn btn-link\"\n          ng-repeat=\"item in vm.toolbarViews\"\n          ng-class=\"{active: item.selected}\"\n          title=\"{{item.title}}\"\n          id=\"{{item.id}}\"\n          data-url=\"{{item.url}}\"\n          data-url_parms=\"{{item.url_parms}}\"\n          ng-click=\"vm.onItemClick({item: item, $event: $event})\"\n          name=\"{{item.name}}\">\n    <i class=\"{{item.icon}}\" style=\"\"></i>\n  </button>\n</div>\n"
+
+/***/ },
+/* 31 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	///<reference path="../tsd.d.ts"/>
+	var services_1 = __webpack_require__(32);
+	var common;
+	(function (common) {
+	    common.app = angular.module('miqStaticAssets.common', []);
+	    services_1.default(common.app);
+	})(common || (common = {}));
+
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var endpointsService_1 = __webpack_require__(33);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = function (module) {
+	    module.service('MiQEndpointsService', endpointsService_1.default);
+	};
+
+
+/***/ },
+/* 33 */
+/***/ function(module, exports) {
+
+	"use strict";
+	var DefaultEndpoints = (function () {
+	    function DefaultEndpoints() {
+	        this.listDataTable = '/list';
+	        this.deleteItemDataTable = '/delete';
+	        this.validateItem = '/validate';
+	        this.createItem = '/create';
+	        this.providerSettings = '/list_providers_settings';
+	        this.toolbarSettings = '/toolbar';
+	    }
+	    return DefaultEndpoints;
+	}());
+	exports.DefaultEndpoints = DefaultEndpoints;
+	var EndpointsService = (function () {
+	    function EndpointsService() {
+	        this.rootPoint = '';
+	        this.endpoints = new DefaultEndpoints;
+	    }
+	    return EndpointsService;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = EndpointsService;
+
 
 /***/ }
 /******/ ]);

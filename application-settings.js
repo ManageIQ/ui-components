@@ -1,3 +1,4 @@
+"use strict";
 module.exports = {
   stylesFolder: '/styles',
   sourceFolder: '/src',
@@ -6,6 +7,10 @@ module.exports = {
   stylesheetFolder: 'css',
   appName: 'ui-components',
   bowerLibs: 'libs/',
+  modules: {
+    toolbar: '/toolbar',
+    common: '/common'
+  },
   nodePackages: 'node_modules/',
   get stylesheetPath() {
     return this.stylesheetFolder + '/[name]' + '.css';
@@ -21,6 +26,13 @@ module.exports = {
   },
   get tsEntryPoint() {
     return '.' + this.sourceFolder + '/index.ts'
+  },
+  get tsModules() {
+    let availableObjects = [];
+    Object.keys(this.modules).forEach(key => {
+      availableObjects.push('.' + this.sourceFolder + this.modules[key]);
+    });
+    return availableObjects;
   },
   get outputFolder() {
     return __dirname + this.distFolder

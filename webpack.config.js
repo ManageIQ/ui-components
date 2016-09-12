@@ -49,7 +49,7 @@ let appEntry = {};
 appEntry[settings.appName] = [
   settings.sassEntryPoint,
   settings.tsEntryPoint
-];
+].concat(settings.tsModules);
 appEntry['demo-app'] = [
   './demo/index.ts',
   './demo/styles/demo-app.scss'

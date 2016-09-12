@@ -56,7 +56,7 @@ describe('Toolbar test', () =>  {
       compile,
       compiledElement;
 
-    const toolbarData = require<string>('../../../demo/data/toolbar.json');
+    const toolbarData = require<string>('../../../../demo/data/toolbar.json');
 
     beforeEach(() => {
       angular.mock.module('miqStaticAssets');

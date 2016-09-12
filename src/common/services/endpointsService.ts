@@ -1,12 +1,4 @@
-export interface IEndpoints {
-  listDataTable: string;
-  deleteItemDataTable: string;
-  validateItem: string;
-  createItem: string;
-  providerSettings: string;
-  toolbarSettings: string;
-}
-
+import {IEndpoints} from '../interfaces/endpoints';
 export class DefaultEndpoints implements IEndpoints {
   public listDataTable: string;
   public deleteItemDataTable: string;

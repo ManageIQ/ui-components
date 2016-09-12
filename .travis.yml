@@ -14,4 +14,4 @@ cache:
 before_install:
   - 'npm install -g typings bower webpack karma typescript'
 
-script: ./build.sh
+script: ./.build.sh

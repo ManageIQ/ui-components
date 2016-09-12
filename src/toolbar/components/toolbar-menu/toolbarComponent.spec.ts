@@ -14,7 +14,7 @@ describe('Toolbar test', () =>  {
     let toolbarCtrl, sce;
 
     beforeEach(() => {
-      angular.mock.module('miqStaticAssets');
+      angular.mock.module('miqStaticAssets.toolbar');
       angular.mock.inject(($window, $location, $sce) => {
         sce = $sce;
         toolbarCtrl = new ToolbarController($window, $location, $sce);
@@ -59,7 +59,7 @@ describe('Toolbar test', () =>  {
     const toolbarData = require<string>('../../../../demo/data/toolbar.json');
 
     beforeEach(() => {
-      angular.mock.module('miqStaticAssets');
+      angular.mock.module('miqStaticAssets.toolbar');
       angular.mock.inject(($rootScope, $compile: ng.ICompileService) => {
         scope = $rootScope.$new();
         compile = $compile;

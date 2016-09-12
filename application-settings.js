@@ -9,7 +9,8 @@ module.exports = {
   bowerLibs: 'libs/',
   modules: {
     toolbar: '/toolbar',
-    common: '/common'
+    common: '/common',
+    gtl: '/gtl'
   },
   nodePackages: 'node_modules/',
   get stylesheetPath() {

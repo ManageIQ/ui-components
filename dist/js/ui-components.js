@@ -44,10 +44,18 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+<<<<<<< 012a9698092a6a1700b72e22e9e3ca4d5ee923c5
 	__webpack_require__(18);
 	__webpack_require__(20);
 	__webpack_require__(21);
 	module.exports = __webpack_require__(35);
+=======
+	__webpack_require__(14);
+	__webpack_require__(16);
+	__webpack_require__(17);
+	__webpack_require__(31);
+	module.exports = __webpack_require__(34);
+>>>>>>> Create gtl module with service and filter
 
 
 /***/ },
@@ -81,7 +89,7 @@
 	///<reference path="tsd.d.ts"/>
 	var miqStaticAssets;
 	(function (miqStaticAssets) {
-	    angular.module('miqStaticAssets', ['miqStaticAssets.toolbar', 'miqStaticAssets.common']);
+	    angular.module('miqStaticAssets', ['miqStaticAssets.toolbar', 'miqStaticAssets.common', 'miqStaticAssets.gtl']);
 	})(miqStaticAssets || (miqStaticAssets = {}));
 
 
@@ -781,6 +789,7 @@
 
 
 /***/ },
+<<<<<<< 96077d97117bccf9f21831b07a9e029bb7eb01d6
 /* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -789,15 +798,46 @@
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.component('miqSortItems', new sortItemsComponent_1.default);
+=======
+/* 34 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	///<reference path="../tsd.d.ts"/>
+	var services_1 = __webpack_require__(35);
+	var filters_1 = __webpack_require__(37);
+	var gtl;
+	(function (gtl) {
+	    gtl.app = angular.module('miqStaticAssets.gtl', []);
+	    services_1.default(gtl.app);
+	    filters_1.default(gtl.app);
+	})(gtl || (gtl = {}));
+
+
+/***/ },
+/* 35 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var dataTableService_1 = __webpack_require__(36);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = function (module) {
+	    module.service('MiQEndpointsService', dataTableService_1.default);
+>>>>>>> Create gtl module with service and filter
 	};
 
 
 /***/ },
+<<<<<<< 96077d97117bccf9f21831b07a9e029bb7eb01d6
 /* 39 */
+=======
+/* 36 */
+>>>>>>> Create gtl module with service and filter
 /***/ function(module, exports) {
 
 	"use strict";
 	/**
+<<<<<<< 96077d97117bccf9f21831b07a9e029bb7eb01d6
 	 * Controller for sort items component, it filters headers to fit config object of `pf-sort`.
 	 * @memberof miqStaticAssets.common
 	 * @ngdoc controller
@@ -913,6 +953,131 @@
 	}());
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = SortItems;
+=======
+	 * @memberof miqStaticAssets.gtl
+	 * @ngdoc service
+	 * @name DataTableService
+	 * @param $http {ng.IHttpService} http service for fetching rows and columns of data table.
+	 * @param MiQEndpointsService {Object} service which holds endpoints to each data store.
+	 */
+	var DataTableService = (function () {
+	    /*@ngInject*/
+	    DataTableService.$inject = ["$http", "MiQEndpointsService"];
+	    function DataTableService($http, MiQEndpointsService) {
+	        this.$http = $http;
+	        this.MiQEndpointsService = MiQEndpointsService;
+	    }
+	    /**
+	     * Public method for fetching data from url combined from `MiQEndpointsService.rootPoint` and
+	     * `MiQEndpointsService.endpoints.listDataTable`. Result will be promise with type `IRowsColsResponse`. Which is
+	     * ```javascript
+	     * interface IRowsColsResponse {
+	     *  rows: any[];
+	     *  cols: any[];
+	     *  settings: ITableSettings;
+	     * }
+	     * ```
+	     * @methodOf miqStaticAssets.gtl
+	     * @memberof DataTableService
+	     * @function retrieveRowsAndColumnsFromUrl
+	     * @returns {ng.IPromise<IRowsColsResponse>} promise with type `IRowsColsResponse`.
+	     */
+	    DataTableService.prototype.retrieveRowsAndColumnsFromUrl = function (modelName, activeTree, currId) {
+	        var _this = this;
+	        return this.fetchData(DataTableService.generateConfig(modelName, activeTree, currId))
+	            .then(function (responseData) {
+	            _this.columns = responseData.data.data.head;
+	            _this.rows = responseData.data.data.rows;
+	            _this.settings = responseData.data.settings;
+	            return {
+	                cols: _this.columns,
+	                rows: _this.rows,
+	                settings: responseData.data.settings
+	            };
+	        });
+	    };
+	    /**
+	     * Method which will do actual http get request using $http service.
+	     * @param config which contains config params.
+	     * @returns {IHttpPromise<any>} promise for later data filtering.
+	     */
+	    DataTableService.prototype.fetchData = function (config) {
+	        return this.$http.get(this.MiQEndpointsService.rootPoint + this.MiQEndpointsService.endpoints.listDataTable, config);
+	    };
+	    /**
+	     * Static function which will generate http get config from given variables.
+	     * @param modelName string with name of model.
+	     * @param activeTree string with active tree.
+	     * @param currId ID of current item.
+	     * @returns {{params: {}}} config object with params set.
+	     */
+	    DataTableService.generateConfig = function (modelName, activeTree, currId) {
+	        var config = { params: {} };
+	        _.assign(config.params, DataTableService.generateModelConfig(modelName));
+	        _.assign(config.params, DataTableService.generateActiveTreeConfig(activeTree));
+	        _.assign(config.params, DataTableService.generateModuleIdConfig(currId));
+	        return config;
+	    };
+	    /**
+	     * Static function for generating model object, this object will be assigned to `config.params`.
+	     * @param modelName name of currently selected model.
+	     * @returns {any|{model: any}} object if any model is selected.
+	     */
+	    DataTableService.generateModelConfig = function (modelName) {
+	        return modelName && { model: modelName };
+	    };
+	    /**
+	     * Static function for generating active tree object, this object will be assigned to `config.params`.
+	     * @param activeTree name of currently selected tree.
+	     * @returns {any|{active_tree: any}} object if any tree is selected.
+	     */
+	    DataTableService.generateActiveTreeConfig = function (activeTree) {
+	        return activeTree && { active_tree: activeTree };
+	    };
+	    /**
+	     * Static function for generating module id object, this object will be assigned to `config.params`.
+	     * @param currId currently selected module's ID.
+	     * @returns {any|{model_id: any}} object if any module ID is present.
+	     */
+	    DataTableService.generateModuleIdConfig = function (currId) {
+	        return currId && { model_id: currId };
+	    };
+	    return DataTableService;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = DataTableService;
+
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var limitToSuffixFilter_1 = __webpack_require__(38);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = function (module) {
+	    module.filter('limitToSuffix', limitToSuffixFilter_1.default.filter);
+	};
+
+
+/***/ },
+/* 38 */
+/***/ function(module, exports) {
+
+	"use strict";
+	var LimitToSuffix = (function () {
+	    function LimitToSuffix() {
+	    }
+	    LimitToSuffix.filter = function () {
+	        return function (value, start, end) {
+	            return value.length > start + end + 3 ? value.slice(0, start) + "..." + value.slice(-end) : value;
+	        };
+	    };
+	    return LimitToSuffix;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = LimitToSuffix;
+>>>>>>> Create gtl module with service and filter
 
 
 /***/ }

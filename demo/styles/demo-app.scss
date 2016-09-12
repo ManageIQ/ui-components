@@ -63,3 +63,13 @@ table .narrow {
     }
   }
 }
+
+.dl-horizontal.tile dt {
+  float: left;
+  width: 100px;
+  clear: left;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

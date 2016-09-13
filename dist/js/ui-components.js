@@ -729,11 +729,17 @@
 
 	"use strict";
 	///<reference path="../tsd.d.ts"/>
+<<<<<<< 012a9698092a6a1700b72e22e9e3ca4d5ee923c5
 	var services_1 = __webpack_require__(36);
+=======
+	var services_1 = __webpack_require__(32);
+	var components_1 = __webpack_require__(34);
+>>>>>>> Add sort component to common module
 	var common;
 	(function (common) {
 	    common.app = angular.module('miqStaticAssets.common', []);
 	    services_1.default(common.app);
+	    components_1.default(common.app);
 	})(common || (common = {}));
 
 
@@ -775,6 +781,141 @@
 	}());
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = EndpointsService;
+
+
+/***/ },
+/* 34 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var sortItemsComponent_1 = __webpack_require__(35);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = function (module) {
+	    module.component('miqSortItems', new sortItemsComponent_1.default);
+	};
+
+
+/***/ },
+/* 35 */
+/***/ function(module, exports) {
+
+	"use strict";
+	/**
+	 * Controller for sort items component, it filters headers to fit config object of `pf-sort`.
+	 * @memberof miqStaticAssets.common
+	 * @ngdoc controller
+	 * @name SortItemsController
+	 */
+	var SortItemsController = (function () {
+	    function SortItemsController() {
+	        this.initOptions();
+	    }
+	    /**
+	     * Angular's method for checking one way data bounded properties changes.
+	     * @memberof SortItemsController
+	     * @function $onChanges
+	     * @param changesObj {Object} angular changes object.
+	     */
+	    SortItemsController.prototype.$onChanges = function (changesObj) {
+	        if (changesObj.headers) {
+	            this.fillFields();
+	            if (this.sortObject) {
+	                this.setSortItem();
+	            }
+	        }
+	    };
+	    /**
+	     * Public method for setting item which is currently sorted by. It will take id of object in `headers` as `colId`, it's text as
+	     * actual Id and same applies to `title`.
+	     * @memberof SortItemsController
+	     * @function setSortItem
+	     */
+	    SortItemsController.prototype.setSortItem = function () {
+	        this.options.currentField = {
+	            colId: this.headers.indexOf(this.sortObject.sortObject),
+	            id: this.sortObject.sortObject.text.toLowerCase(),
+	            title: this.sortObject.sortObject.text
+	        };
+	        this.options.isAscending = this.sortObject.isAscending;
+	    };
+	    /**
+	     * Public method which is called after constructing this controller. It will set default values for config object,
+	     * along side with sort method.
+	     * @memberof SortItemsController
+	     * @function initOptions
+	     */
+	    SortItemsController.prototype.initOptions = function () {
+	        var _this = this;
+	        this.options = {
+	            fields: [],
+	            onSortChange: function (item, isAscending) { return _this.onSort({ sortObject: item, isAscending: isAscending }); },
+	            currentField: {}
+	        };
+	    };
+	    /**
+	     * Private method which will filter out and transform headers to config object. This function will filter out all
+	     * columns which has `is_narrow` and no `text` is set fot them. Also it will use each header key as `colId`,
+	     * text as `id` and again text as `title`.
+	     * @memberof SortItemsController
+	     * @function fillFields
+	     */
+	    SortItemsController.prototype.fillFields = function () {
+	        var _this = this;
+	        _.each(this.headers, function (oneCol, key) {
+	            if (!oneCol.hasOwnProperty('is_narrow') && oneCol.hasOwnProperty('text')) {
+	                _this.options.fields.push({
+	                    colId: key,
+	                    id: oneCol.text.toLowerCase(),
+	                    title: oneCol.text
+	                });
+	            }
+	        });
+	    };
+	    return SortItemsController;
+	}());
+	exports.SortItemsController = SortItemsController;
+	/**
+	 * @description
+	 *    Component for showing sort component. See {@link miqStaticAssets.common.SortItemsController} on how functions
+	 *    and properties are handled, This component requires `pf-sort` (see
+	 *    <a href="http://angular-patternfly.rhcloud.com/#/api/patternfly.sort.directive:pfSort">patternfly's
+	 *    implemetnation</a>) component to be part of application scope.
+	 *    If you do not provide such component no sort will be show. `pf-sort` requires `config` property which consists of:
+	 *    ```javascript
+	 *    config = {
+	 *      fields: [],
+	 *      onSortChange: (item: any, isAscending: boolean) => void,
+	 *      currentField: {}
+	 *    }
+	 *    ```
+	 * @memberof miqStaticAssets.common
+	 * @ngdoc component
+	 * @name miqSortItems
+	 * @attr {Expression} onSort function which is called after sorting has changed.
+	 * @attr {Object} headers items which will be present in sort chooser.
+	 * @attr {Object} sortObject object which is currently sorted by.
+	 * @example
+	 * <miq-sort-items on-sort="ctrl.onSort(sortObject, isAscending)"
+	 *                 headers="ctrl.headers"
+	 *                 sort-object="ctrl.currentSortObject">
+	 * </miq-sort-items>
+	 */
+	var SortItems = (function () {
+	    function SortItems() {
+	        this.replace = true;
+	        this.template = "<div pf-sort config=\"vm.options\"></div>";
+	        this.controller = SortItemsController;
+	        this.controllerAs = 'vm';
+	        this.bindings = {
+	            onSort: '&',
+	            headers: '<',
+	            sortObject: '<'
+	        };
+	    }
+	    return SortItems;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = SortItems;
 
 
 /***/ }

@@ -30,14 +30,14 @@ export class SortItemsController {
   }
 
   /**
-   * Public method for setting item which is currently sorted by. It will take id of object in `headers` as `colId`, it's text as
-   * actual Id and same applies to `title`.
+   * Public method for setting item which is currently sorted by. It will take id of object in `headers` as `colId`,
+   * it's text as actual Id and same applies to `title`.
    * @memberof SortItemsController
    * @function setSortItem
    */
   public setSortItem() {
     this.options.currentField = {
-      colId: this.headers.indexOf(this.sortObject.sortObject),
+      colId: _.findIndex(this.headers, this.sortObject.sortObject),
       id: this.sortObject.sortObject.text.toLowerCase(),
       title: this.sortObject.sortObject.text
     };

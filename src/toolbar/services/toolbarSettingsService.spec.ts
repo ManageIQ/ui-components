@@ -3,9 +3,10 @@ import ToolbarSettings from './toolbarSettingsService';
 describe('EndpointsService test', () =>  {
   let toolbarSettings, scope, httpBackend;
 
-  const toolbarData = require<string>('../../demo/data/toolbar.json');
+  const toolbarData = require<string>('../../../demo/data/toolbar.json');
   beforeEach(() => {
-    angular.mock.module('miqStaticAssets');
+    angular.mock.module('miqStaticAssets.toolbar');
+    angular.mock.module('miqStaticAssets.common');
     angular.mock.inject(($http, MiQEndpointsService, $rootScope, $httpBackend) => {
       httpBackend = $httpBackend;
       scope = $rootScope.$new();

@@ -44,38 +44,11 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-<<<<<<< 7d69bd98ab5d259d0f670283582a8d5f27566411
 	__webpack_require__(18);
 	__webpack_require__(20);
 	__webpack_require__(21);
-<<<<<<< 6860a992b924a41b99da04626cde9fe7df61e10d
-<<<<<<< d8bffab3605cec282282c2440c65757f35048610
 	__webpack_require__(35);
 	module.exports = __webpack_require__(40);
-=======
-	module.exports = __webpack_require__(35);
-=======
-	__webpack_require__(14);
-	__webpack_require__(16);
-	__webpack_require__(17);
-	__webpack_require__(31);
-	module.exports = __webpack_require__(34);
->>>>>>> Create gtl module with service and filter
->>>>>>> Create gtl module with service and filter
-=======
-	__webpack_require__(35);
-	module.exports = __webpack_require__(38);
-<<<<<<< c41033d8ebd13355cb24e82e1169e628b5321f71
->>>>>>> Update dist after rebase
-=======
-=======
-	__webpack_require__(14);
-	__webpack_require__(16);
-	__webpack_require__(17);
-	__webpack_require__(31);
-	module.exports = __webpack_require__(34);
->>>>>>> Create gtl module with service and filter
->>>>>>> Create gtl module with service and filter
 
 
 /***/ },
@@ -809,9 +782,6 @@
 
 
 /***/ },
-<<<<<<< c41033d8ebd13355cb24e82e1169e628b5321f71
-<<<<<<< 6860a992b924a41b99da04626cde9fe7df61e10d
-<<<<<<< d8bffab3605cec282282c2440c65757f35048610
 /* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -948,52 +918,13 @@
 
 /***/ },
 /* 40 */
-=======
-/* 34 */
->>>>>>> Create gtl module with service and filter
-=======
-/* 38 */
->>>>>>> Update dist after rebase
-=======
-<<<<<<< 7d69bd98ab5d259d0f670283582a8d5f27566411
-/* 38 */
-=======
-/* 34 */
->>>>>>> Create gtl module with service and filter
->>>>>>> Create gtl module with service and filter
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	///<reference path="../tsd.d.ts"/>
-<<<<<<< c41033d8ebd13355cb24e82e1169e628b5321f71
-<<<<<<< 6860a992b924a41b99da04626cde9fe7df61e10d
-<<<<<<< d8bffab3605cec282282c2440c65757f35048610
 	var services_1 = __webpack_require__(41);
 	var filters_1 = __webpack_require__(43);
-=======
-	var services_1 = __webpack_require__(35);
-	var filters_1 = __webpack_require__(37);
->>>>>>> Create gtl module with service and filter
-=======
-	var services_1 = __webpack_require__(39);
-	var filters_1 = __webpack_require__(41);
->>>>>>> Update dist after rebase
-=======
-<<<<<<< 7d69bd98ab5d259d0f670283582a8d5f27566411
-	var services_1 = __webpack_require__(39);
-	var filters_1 = __webpack_require__(41);
-=======
-	var services_1 = __webpack_require__(35);
-	var filters_1 = __webpack_require__(37);
-<<<<<<< 561aa538077aa64a091964ab6513f04d7a846e14
->>>>>>> Create gtl module with service and filter
-<<<<<<< deb1fdde223c562c88d4d2ca3878dc6ed6537be6
->>>>>>> Create gtl module with service and filter
-=======
-=======
-	var components_1 = __webpack_require__(39);
->>>>>>> Add datable component to gtl module
->>>>>>> Add datable component to gtl module
+	var components_1 = __webpack_require__(45);
 	var gtl;
 	(function (gtl) {
 	    gtl.app = angular.module('miqStaticAssets.gtl', []);
@@ -1004,9 +935,6 @@
 
 
 /***/ },
-<<<<<<< c41033d8ebd13355cb24e82e1169e628b5321f71
-<<<<<<< 6860a992b924a41b99da04626cde9fe7df61e10d
-<<<<<<< d8bffab3605cec282282c2440c65757f35048610
 /* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -1015,54 +943,11 @@
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.service('MiQDataTableService', dataTableService_1.default);
-=======
-/* 35 */
-=======
-=======
-<<<<<<< 7d69bd98ab5d259d0f670283582a8d5f27566411
->>>>>>> Create gtl module with service and filter
-/* 39 */
->>>>>>> Update dist after rebase
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var dataTableService_1 = __webpack_require__(40);
-=======
-/* 35 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var dataTableService_1 = __webpack_require__(36);
->>>>>>> Create gtl module with service and filter
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = function (module) {
-<<<<<<< d31fc7da842b386c46930fa5bfc0d18bb00a682a
-	    module.service('MiQEndpointsService', dataTableService_1.default);
->>>>>>> Create gtl module with service and filter
-=======
-	    module.service('MiQDataTableService', dataTableService_1.default);
->>>>>>> Change name of gtl loader service
 	};
 
 
 /***/ },
-<<<<<<< c41033d8ebd13355cb24e82e1169e628b5321f71
-<<<<<<< 6860a992b924a41b99da04626cde9fe7df61e10d
-<<<<<<< d8bffab3605cec282282c2440c65757f35048610
 /* 42 */
-=======
-/* 36 */
->>>>>>> Create gtl module with service and filter
-=======
-/* 40 */
->>>>>>> Update dist after rebase
-=======
-<<<<<<< 7d69bd98ab5d259d0f670283582a8d5f27566411
-/* 40 */
-=======
-/* 36 */
->>>>>>> Create gtl module with service and filter
->>>>>>> Create gtl module with service and filter
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1162,41 +1047,11 @@
 
 
 /***/ },
-<<<<<<< c41033d8ebd13355cb24e82e1169e628b5321f71
-<<<<<<< 6860a992b924a41b99da04626cde9fe7df61e10d
-<<<<<<< d8bffab3605cec282282c2440c65757f35048610
 /* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var limitToSuffixFilter_1 = __webpack_require__(44);
-=======
-/* 37 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var limitToSuffixFilter_1 = __webpack_require__(38);
->>>>>>> Create gtl module with service and filter
-=======
-=======
-<<<<<<< 7d69bd98ab5d259d0f670283582a8d5f27566411
->>>>>>> Create gtl module with service and filter
-/* 41 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var limitToSuffixFilter_1 = __webpack_require__(42);
-<<<<<<< c41033d8ebd13355cb24e82e1169e628b5321f71
->>>>>>> Update dist after rebase
-=======
-=======
-/* 37 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var limitToSuffixFilter_1 = __webpack_require__(38);
->>>>>>> Create gtl module with service and filter
->>>>>>> Create gtl module with service and filter
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.filter('limitToSuffix', limitToSuffixFilter_1.default.filter);
@@ -1204,23 +1059,7 @@
 
 
 /***/ },
-<<<<<<< c41033d8ebd13355cb24e82e1169e628b5321f71
-<<<<<<< 6860a992b924a41b99da04626cde9fe7df61e10d
-<<<<<<< d8bffab3605cec282282c2440c65757f35048610
 /* 44 */
-=======
-/* 38 */
->>>>>>> Create gtl module with service and filter
-=======
-/* 42 */
->>>>>>> Update dist after rebase
-=======
-<<<<<<< 7d69bd98ab5d259d0f670283582a8d5f27566411
-/* 42 */
-=======
-/* 38 */
->>>>>>> Create gtl module with service and filter
->>>>>>> Create gtl module with service and filter
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1239,11 +1078,11 @@
 
 
 /***/ },
-/* 39 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var data_table_1 = __webpack_require__(40);
+	var data_table_1 = __webpack_require__(46);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    data_table_1.default(module);
@@ -1251,11 +1090,11 @@
 
 
 /***/ },
-/* 40 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var dataTableComponent_1 = __webpack_require__(41);
+	var dataTableComponent_1 = __webpack_require__(47);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.component('miqDataTable', new dataTableComponent_1.default);
@@ -1263,7 +1102,7 @@
 
 
 /***/ },
-/* 41 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1272,7 +1111,7 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var abstractDataViewClass_1 = __webpack_require__(42);
+	var abstractDataViewClass_1 = __webpack_require__(48);
 	/**
 	 * This controller is for managing data table entities. It extends {@link miqStaticAssets.gtl.DataViewClass}
 	 * which is abstract class with basic methods for filtering, sorting and limiting entries in data table.
@@ -1350,7 +1189,7 @@
 	var DataTable = (function () {
 	    function DataTable() {
 	        this.replace = true;
-	        this.template = __webpack_require__(43);
+	        this.template = __webpack_require__(49);
 	        this.controller = DataTableController;
 	        this.transclude = true;
 	        this.controllerAs = 'tableCtrl';
@@ -1372,7 +1211,7 @@
 
 
 /***/ },
-/* 42 */
+/* 48 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1452,7 +1291,7 @@
 
 
 /***/ },
-/* 43 */
+/* 49 */
 /***/ function(module, exports) {
 
 	module.exports = "<div>\n  <div class=\"dataTables_header miq-data-tables-header\" ng-if=\"tableCtrl.rows.length > 0\">\n    <div class=\"row\">\n      <div class=\"pull-right\">\n        <div>\n          <label>{{tableCtrl.perPage.label}}: </label>\n          <miq-toolbar-list on-item-click=\"tableCtrl.perPageClick(item)\"\n                            toolbar-list=\"tableCtrl.perPage\"></miq-toolbar-list>\n        </div>\n        <div>\n          Some text sorted by\n        </div>\n      </div>\n    </div>\n  </div>\n  <table class=\"table table-bordered table-striped table-hover mig-table-with-footer mig-table\">\n    <thead>\n    <tr>\n      <th class=\"narrow miq-select\">\n        <input ng-if=\"tableCtrl.rows.length !== 0\" type=\"checkbox\" ng-model=\"isChecked\" ng-click=\"tableCtrl.onCheckAll(isChecked)\" title=\"Select all\" />\n      </th>\n      <th ng-if=\"$index !== 0\"\n          ng-repeat=\"column in tableCtrl.columns track by $index\"\n          ng-click=\"tableCtrl.onSortClick($index, !!tableCtrl.settings.sortBy && !tableCtrl.settings.sortBy.isAscending)\"\n          ng-class=\"tableCtrl.getColumnClass(column)\">\n        {{column.text}}\n        <div class=\"pull-right\" ng-if=\"tableCtrl.isFilteredBy(column)\" >\n          <i class=\"fa\" ng-class=\"tableCtrl.getSortClass()\"></i>\n        </div>\n      </th>\n    </tr>\n    </thead>\n    <tbody>\n    <tr ng-repeat=\"row in tableCtrl.rows\"\n        ng-class=\"{active : row.selected}\"\n        ng-click=\"vm.onRowClick({$event: $event, rowData: row})\">\n      <td ng-repeat=\"(columnKey, column) in tableCtrl.columns\" ng-class=\"{narrow: row.cells[columnKey].is_checkbox}\">\n        <input ng-if=\"row.cells[columnKey].is_checkbox\"\n               ng-click=\"tableCtrl.onRowSelected($event, isSelected, row)\"\n               onclick=\"event.stopPropagation();\"\n               type=\"checkbox\"\n               ng-model=\"isSelected\"\n               name=\"check_{{row.id}}\"\n               value=\"{{row.id}}\"\n               ng-checked=\"row.checked\"\n               class=\"list-grid-checkbox\">\n        <i ng-if=\"row.cells[columnKey].icon && tableCtrl.isIconOrImage(row, columnKey)\"\n           class=\"{{row.cells[columnKey].icon}}\"\n           title=\"row.cells[columnKey].title\"></i>\n        <img ng-if=\"row.cells[columnKey].icon === null && tableCtrl.isIconOrImage(row, columnKey)\"\n             ng-src=\"{{row.img_url}}\"\n             alt=\"{{row.cells[columnKey].title}}\"\n             title=\"{{row.cells[columnKey].title}}\" />\n        <span ng-if=\"row.cells[columnKey].text\">\n              {{row.cells[columnKey].text}}\n          </span>\n      </td>\n    </tr>\n    </tbody>\n  </table>\n  <div class=\"dataTables_footer\">\n    <div class=\"dataTables_paginate paging_bootstrap_input\">\n      <ul class=\"pagination\">\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === 1}\"\n            class=\"first\"\n            ng-click=\"tableCtrl.setPage(1)\">\n          <span class=\"i fa fa-angle-double-left\"></span>\n        </li>\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === 1}\"\n            class=\"prev\"\n            ng-click=\"tableCtrl.setPage(tableCtrl.currentPageView - 1)\">\n          <span class=\"i fa fa-angle-left\"></span>\n        </li>\n      </ul>\n      <div class=\"pagination-input\">\n        <form ng-submit=\"tableCtrl.setPage(tableCtrl.currentPageView)\">\n          <input type=\"text\" class=\"paginate_input\" ng-model=\"tableCtrl.currentPageView\">\n          <span class=\"paginate_of\">of <b>{{tableCtrl.settings.total}}</b></span>\n        </form>\n      </div>\n      <ul class=\"pagination\">\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === tableCtrl.settings.total}\"\n            class=\"next\"\n            ng-click=\"tableCtrl.setPage(tableCtrl.currentPageView + 1)\">\n          <span class=\"i fa fa-angle-right\"></span>\n        </li>\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === tableCtrl.settings.total}\"\n            class=\"last\"\n            ng-click=\"tableCtrl.setPage(tableCtrl.settings.total)\">\n          <span class=\"i fa fa-angle-double-right\"></span>\n        </li>\n      </ul>\n    </div>\n  </div>\n</div>\n"

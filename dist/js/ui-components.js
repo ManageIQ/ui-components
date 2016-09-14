@@ -729,12 +729,8 @@
 
 	"use strict";
 	///<reference path="../tsd.d.ts"/>
-<<<<<<< 012a9698092a6a1700b72e22e9e3ca4d5ee923c5
 	var services_1 = __webpack_require__(36);
-=======
-	var services_1 = __webpack_require__(32);
-	var components_1 = __webpack_require__(34);
->>>>>>> Add sort component to common module
+	var components_1 = __webpack_require__(38);
 	var common;
 	(function (common) {
 	    common.app = angular.module('miqStaticAssets.common', []);
@@ -784,11 +780,11 @@
 
 
 /***/ },
-/* 34 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var sortItemsComponent_1 = __webpack_require__(35);
+	var sortItemsComponent_1 = __webpack_require__(39);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.component('miqSortItems', new sortItemsComponent_1.default);
@@ -796,7 +792,7 @@
 
 
 /***/ },
-/* 35 */
+/* 39 */
 /***/ function(module, exports) {
 
 	"use strict";

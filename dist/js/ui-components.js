@@ -48,7 +48,7 @@
 	__webpack_require__(20);
 	__webpack_require__(21);
 	__webpack_require__(35);
-	module.exports = __webpack_require__(38);
+	module.exports = __webpack_require__(40);
 
 
 /***/ },
@@ -782,8 +782,6 @@
 
 
 /***/ },
-<<<<<<< fbb5b5d9487846287f2045ab35dac62e9671389b
-<<<<<<< 96077d97117bccf9f21831b07a9e029bb7eb01d6
 /* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -792,53 +790,15 @@
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.component('miqSortItems', new sortItemsComponent_1.default);
-=======
-/* 34 */
-=======
-/* 38 */
->>>>>>> Update dist after rebase
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	///<reference path="../tsd.d.ts"/>
-	var services_1 = __webpack_require__(39);
-	var filters_1 = __webpack_require__(41);
-	var gtl;
-	(function (gtl) {
-	    gtl.app = angular.module('miqStaticAssets.gtl', []);
-	    services_1.default(gtl.app);
-	    filters_1.default(gtl.app);
-	})(gtl || (gtl = {}));
-
-
-/***/ },
-/* 39 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var dataTableService_1 = __webpack_require__(40);
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = function (module) {
-	    module.service('MiQEndpointsService', dataTableService_1.default);
->>>>>>> Create gtl module with service and filter
 	};
 
 
 /***/ },
-<<<<<<< fbb5b5d9487846287f2045ab35dac62e9671389b
-<<<<<<< 96077d97117bccf9f21831b07a9e029bb7eb01d6
 /* 39 */
-=======
-/* 36 */
->>>>>>> Create gtl module with service and filter
-=======
-/* 40 */
->>>>>>> Update dist after rebase
 /***/ function(module, exports) {
 
 	"use strict";
 	/**
-<<<<<<< 96077d97117bccf9f21831b07a9e029bb7eb01d6
 	 * Controller for sort items component, it filters headers to fit config object of `pf-sort`.
 	 * @memberof miqStaticAssets.common
 	 * @ngdoc controller
@@ -954,7 +914,42 @@
 	}());
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = SortItems;
-=======
+
+
+/***/ },
+/* 40 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	///<reference path="../tsd.d.ts"/>
+	var services_1 = __webpack_require__(41);
+	var filters_1 = __webpack_require__(43);
+	var gtl;
+	(function (gtl) {
+	    gtl.app = angular.module('miqStaticAssets.gtl', []);
+	    services_1.default(gtl.app);
+	    filters_1.default(gtl.app);
+	})(gtl || (gtl = {}));
+
+
+/***/ },
+/* 41 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var dataTableService_1 = __webpack_require__(42);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = function (module) {
+	    module.service('MiQDataTableService', dataTableService_1.default);
+	};
+
+
+/***/ },
+/* 42 */
+/***/ function(module, exports) {
+
+	"use strict";
+	/**
 	 * @memberof miqStaticAssets.gtl
 	 * @ngdoc service
 	 * @name DataTableService
@@ -1050,11 +1045,11 @@
 
 
 /***/ },
-/* 41 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var limitToSuffixFilter_1 = __webpack_require__(42);
+	var limitToSuffixFilter_1 = __webpack_require__(44);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.filter('limitToSuffix', limitToSuffixFilter_1.default.filter);
@@ -1062,7 +1057,7 @@
 
 
 /***/ },
-/* 42 */
+/* 44 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1078,7 +1073,6 @@
 	}());
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = LimitToSuffix;
->>>>>>> Create gtl module with service and filter
 
 
 /***/ }

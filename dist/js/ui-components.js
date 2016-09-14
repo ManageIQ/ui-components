@@ -44,18 +44,11 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-<<<<<<< 012a9698092a6a1700b72e22e9e3ca4d5ee923c5
 	__webpack_require__(18);
 	__webpack_require__(20);
 	__webpack_require__(21);
-	module.exports = __webpack_require__(35);
-=======
-	__webpack_require__(14);
-	__webpack_require__(16);
-	__webpack_require__(17);
-	__webpack_require__(31);
-	module.exports = __webpack_require__(34);
->>>>>>> Create gtl module with service and filter
+	__webpack_require__(35);
+	module.exports = __webpack_require__(38);
 
 
 /***/ },
@@ -789,6 +782,7 @@
 
 
 /***/ },
+<<<<<<< fbb5b5d9487846287f2045ab35dac62e9671389b
 <<<<<<< 96077d97117bccf9f21831b07a9e029bb7eb01d6
 /* 38 */
 /***/ function(module, exports, __webpack_require__) {
@@ -800,12 +794,15 @@
 	    module.component('miqSortItems', new sortItemsComponent_1.default);
 =======
 /* 34 */
+=======
+/* 38 */
+>>>>>>> Update dist after rebase
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	///<reference path="../tsd.d.ts"/>
-	var services_1 = __webpack_require__(35);
-	var filters_1 = __webpack_require__(37);
+	var services_1 = __webpack_require__(39);
+	var filters_1 = __webpack_require__(41);
 	var gtl;
 	(function (gtl) {
 	    gtl.app = angular.module('miqStaticAssets.gtl', []);
@@ -815,11 +812,11 @@
 
 
 /***/ },
-/* 35 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var dataTableService_1 = __webpack_require__(36);
+	var dataTableService_1 = __webpack_require__(40);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.service('MiQEndpointsService', dataTableService_1.default);
@@ -828,11 +825,15 @@
 
 
 /***/ },
+<<<<<<< fbb5b5d9487846287f2045ab35dac62e9671389b
 <<<<<<< 96077d97117bccf9f21831b07a9e029bb7eb01d6
 /* 39 */
 =======
 /* 36 */
 >>>>>>> Create gtl module with service and filter
+=======
+/* 40 */
+>>>>>>> Update dist after rebase
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1049,11 +1050,11 @@
 
 
 /***/ },
-/* 37 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var limitToSuffixFilter_1 = __webpack_require__(38);
+	var limitToSuffixFilter_1 = __webpack_require__(42);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.filter('limitToSuffix', limitToSuffixFilter_1.default.filter);
@@ -1061,7 +1062,7 @@
 
 
 /***/ },
-/* 38 */
+/* 42 */
 /***/ function(module, exports) {
 
 	"use strict";

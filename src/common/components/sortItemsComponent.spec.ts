@@ -12,7 +12,6 @@ describe('Sort items test', () =>  {
     let sortItemsCtrl;
 
     beforeEach(() => {
-      angular.mock.module('miqStaticAssets.toolbar');
       angular.mock.inject(() => {
         sortItemsCtrl = new SortItemsController();
       });

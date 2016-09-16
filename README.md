@@ -54,3 +54,11 @@ tsmft -r
 ```
 
 This formats the code according to the tslint rules.
+
+#### Documentation
+
+If you want to see documentation for each component, controller, filter, etc. run
+```
+npm run-script build-docs
+```
+This will generate docs from JS docs and after running `npm start` this documentation will be available on `localhost:4000/docs`

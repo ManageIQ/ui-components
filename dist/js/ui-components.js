@@ -446,8 +446,9 @@
 	     * @returns {boolean} true|false if it's item with button or button select type.
 	     */
 	    ToolbarController.isButtonOrSelect = function (item) {
-	        return item.type && (ToolbarController.isButtonSelect(item) || ToolbarController.isButton(item) ||
-	            ToolbarController.isButtonTwoState(item));
+	        return item.type && ((ToolbarController.isButtonSelect(item) && item.items && item.items.length !== 0)
+	            || ToolbarController.isButton(item)
+	            || ToolbarController.isButtonTwoState(item));
 	    };
 	    ToolbarController.isButtonTwoState = function (item) {
 	        return item.type === toolbarType_1.ToolbarType.BUTTON_TWO_STATE;

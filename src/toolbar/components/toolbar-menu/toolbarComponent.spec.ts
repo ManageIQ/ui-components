@@ -36,11 +36,30 @@ describe('Toolbar test', () =>  {
       expect(toolbarCtrl.hasContent(items)).toBe(false);
     });
 
+    it('should have no content even with correct type', () => {
+      let items: Array<IToolbarItem> = [{
+        type: 'someBadType'
+      }, {
+        type: ToolbarType.BUTTON_SELECT
+      }];
+      expect(toolbarCtrl.hasContent(items)).toBe(false);
+      items = [{
+        type: 'someBadType'
+      }, {
+        type: ToolbarType.BUTTON_SELECT,
+        items: []
+      }];
+      expect(toolbarCtrl.hasContent(items)).toBe(false);
+    });
+
     it('should have content', () => {
       const items: Array<IToolbarItem> = [{
         type: 'someBadType'
       }, {
-        type: ToolbarType.BUTTON_SELECT
+        type: ToolbarType.BUTTON_SELECT,
+        items: [{
+          type: ToolbarType.BUTTON
+        }]
       }];
       expect(toolbarCtrl.hasContent(items)).toBe(true);
     });

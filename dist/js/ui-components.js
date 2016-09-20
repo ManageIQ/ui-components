@@ -1186,6 +1186,43 @@
 	    return DataTableController;
 	}(abstractDataViewClass_1.DataViewClass));
 	exports.DataTableController = DataTableController;
+	/**
+	 * @description
+	 * @memberof miqStaticAssets.gtl
+	 * @ngdoc component
+	 * @name miqDataTable
+	 * @attr {Object} type
+	 *    TODO
+	 * @attr {Object} rows
+	 *    TODO
+	 * @attr {Object} perPage
+	 *    TODO
+	 * @attr {Object} columns
+	 *    TODO
+	 * @attr {Object} perPage
+	 *    TODO
+	 * @attr {Object} settings
+	 *    TODO
+	 * @attr {Expression} loadMoreItems
+	 *    TODO
+	 * @attr {Expression} onSort
+	 *    TODO
+	 * @attr {Expression} onRowClick
+	 *    TODO
+	 * @attr {Expression} onItemSelected
+	 *    TODO.
+	 * @example
+	 * <miq-data-table type=""
+	 *                 rows=""
+	 *                 columns=""
+	 *                 per-page=""
+	 *                 settings=""
+	 *                 load-more-items=""
+	 *                 on-sort=""
+	 *                 on-row-click=""
+	 *                 on-item-selected="">
+	 * </miq-data-table>
+	 */
 	var DataTable = (function () {
 	    function DataTable() {
 	        this.replace = true;

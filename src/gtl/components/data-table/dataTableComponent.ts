@@ -75,6 +75,43 @@ export class DataTableController extends DataViewClass implements IDataTableBind
 
 }
 
+/**
+ * @description
+ * @memberof miqStaticAssets.gtl
+ * @ngdoc component
+ * @name miqDataTable
+ * @attr {Object} type
+ *    TODO
+ * @attr {Object} rows
+ *    TODO
+ * @attr {Object} perPage
+ *    TODO
+ * @attr {Object} columns
+ *    TODO
+ * @attr {Object} perPage
+ *    TODO
+ * @attr {Object} settings
+ *    TODO
+ * @attr {Expression} loadMoreItems
+ *    TODO
+ * @attr {Expression} onSort
+ *    TODO
+ * @attr {Expression} onRowClick
+ *    TODO
+ * @attr {Expression} onItemSelected
+ *    TODO.
+ * @example
+ * <miq-data-table type=""
+ *                 rows=""
+ *                 columns=""
+ *                 per-page=""
+ *                 settings=""
+ *                 load-more-items=""
+ *                 on-sort=""
+ *                 on-row-click=""
+ *                 on-item-selected="">
+ * </miq-data-table>
+ */
 export default class DataTable {
   public replace: boolean = true;
   public template = require<string>('./data-table.html');

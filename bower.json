@@ -4,7 +4,8 @@
   "description": "UI components for ManageIQ project",
   "main": [
     "dist/css/ui-components.css",
-    "dist/js/ui-components.js"
+    "dist/js/ui-components.js",
+    "dist/js/ui-components.js.map"
   ],
   "authors": [
     ""

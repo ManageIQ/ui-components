@@ -1351,7 +1351,7 @@
 
 	"use strict";
 	var tileViewComponent_1 = __webpack_require__(51);
-	var pagingComponent_1 = __webpack_require__(52);
+	var pagingComponent_1 = __webpack_require__(54);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.component('miqTileView', new tileViewComponent_1.default);
@@ -1369,8 +1369,14 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var tileType_1 = __webpack_require__(54);
+	var tileType_1 = __webpack_require__(52);
 	var abstractDataViewClass_1 = __webpack_require__(48);
+	/**
+	 * Controller for tile components. It will extend {@link miqStaticAssets.gtl.DataViewClass}.
+	 * @memberof miqStaticAssets.gtl
+	 * @ngdoc controller
+	 * @name TileViewController
+	 */
 	var TileViewController = (function (_super) {
 	    __extends(TileViewController, _super);
 	    /* @ngInject */
@@ -1380,6 +1386,10 @@
 	        this.$sce = $sce;
 	        this.initOptions();
 	    }
+	    /**
+	     * @memberof TileViewController
+	     * @function initOptions
+	     */
 	    TileViewController.prototype.initOptions = function () {
 	        var _this = this;
 	        this.options = {
@@ -1394,13 +1404,33 @@
 	            type: this.type
 	        };
 	    };
+	    /**
+	     *
+	     * @memberof TileViewController
+	     * @function trustAsHtmlQuadicon
+	     * @param item
+	     * @returns {any}
+	     */
 	    TileViewController.prototype.trustAsHtmlQuadicon = function (item) {
 	        return this.$sce.trustAsHtml(item.quadicon);
 	    };
+	    /**
+	     *
+	     * @memberof TileViewController
+	     * @function fetchTileName
+	     * @param item
+	     * @returns {string}
+	     */
 	    TileViewController.prototype.fetchTileName = function (item) {
 	        var nameIndex = _.findIndex(this.columns, function (oneColumn) { return oneColumn.text && oneColumn.text.indexOf('Name') !== -1; });
 	        return (nameIndex !== -1 && item.cells && item.cells[nameIndex]) ? item.cells[nameIndex]['text'] : '';
 	    };
+	    /**
+	     *
+	     * @memberof TileViewController
+	     * @function $onChanges
+	     * @param changesObj
+	     */
 	    TileViewController.prototype.$onChanges = function (changesObj) {
 	        if (changesObj.type) {
 	            this.options.type = this.type;
@@ -1409,9 +1439,21 @@
 	            this.options.columns = this.columns;
 	        }
 	    };
+	    /**
+	     *
+	     * @memberof TileViewController
+	     * @function onTileClick
+	     * @param item
+	     */
 	    TileViewController.prototype.onTileClick = function (item) {
 	        this.onItemSelected({ item: item, isSelected: item === _.find(this.options.selectedItems, { id: item.id }) });
 	    };
+	    /**
+	     *
+	     * @memberof TileViewController
+	     * @function tileClass
+	     * @returns {Object} {miq-small-tile: boolean, miq-tile-with-body: boolean}
+	     */
 	    TileViewController.prototype.tileClass = function () {
 	        return {
 	            'miq-small-tile': this.type === tileType_1.TileType.SMALL,
@@ -1421,11 +1463,56 @@
 	    return TileViewController;
 	}(abstractDataViewClass_1.DataViewClass));
 	exports.TileViewController = TileViewController;
+	/**
+	 * @description
+	 *    Component for show tile list.
+	 *    Settings object example:
+	 *    ```javascript
+	 *    {
+	 *      current: 1,
+	 *      total: 5
+	 *    }
+	 *    ```
+	 * @memberof miqStaticAssets.gtl
+	 * @ngdoc component
+	 * @name miqTileView
+	 * @attr {Object} type
+	 *    TODO
+	 * @attr {Object} rows
+	 *    TODO
+	 * @attr {Object} perPage
+	 *    TODO
+	 * @attr {Object} columns
+	 *    TODO
+	 * @attr {Object} perPage
+	 *    TODO
+	 * @attr {Object} settings
+	 *    TODO
+	 * @attr {Expression} loadMoreItems
+	 *    TODO
+	 * @attr {Expression} onSort
+	 *    TODO
+	 * @attr {Expression} onRowClick
+	 *    TODO
+	 * @attr {Expression} onItemSelected
+	 *    TODO.
+	 * @example
+	 * <miq-tile-view type=""
+	 *                rows=""
+	 *                columns=""
+	 *                per-page=""
+	 *                settings=""
+	 *                load-more-items=""
+	 *                on-sort=""
+	 *                on-row-click=""
+	 *                on-item-selected="">
+	 * </miq-tile-view>
+	 */
 	var TileView = (function () {
 	    function TileView() {
 	        this.replace = true;
 	        this.controller = TileViewController;
-	        this.template = __webpack_require__(55);
+	        this.template = __webpack_require__(53);
 	        this.controllerAs = 'tileCtrl';
 	        this.bindings = {
 	            type: '<',
@@ -1447,13 +1534,57 @@
 
 /***/ },
 /* 52 */
+/***/ function(module, exports) {
+
+	"use strict";
+	/**
+	 * Enum for tile types. It holds string value of types for tiles.
+	 * @memberof miqStaticAssets.gtl
+	 * @ngdoc enum
+	 * @name TileType
+	 */
+	exports.TileType = {
+	    /**
+	     * Tile type: `small`
+	     * @type {string}
+	     */
+	    SMALL: 'small',
+	    /**
+	     * Tile type: `big`
+	     * @type {string}
+	     */
+	    BIG: 'big'
+	};
+
+
+/***/ },
+/* 53 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"miq-tile-section\">\n  <div class=\"row\">\n    <div class=\"miq-per-page col-md-2 col-ld-2\" ng-if=\"tileCtrl.rows.length > 0\">\n      <label>{{tileCtrl.perPage.label}}: </label>\n      <miq-toolbar-list on-item-click=\"tileCtrl.perPageClick(item)\"\n                        toolbar-list=\"tileCtrl.perPage\"></miq-toolbar-list>\n    </div>\n    <miq-sort-items class=\"col-md-2 col-ld-2\"\n                    sort-object=\"tileCtrl.settings.sortBy\"\n                    headers=\"tileCtrl.columns\"\n                    on-sort=\"tileCtrl.onSortClick(sortObject.colId, isAscending)\"></miq-sort-items>\n  </div>\n  <div class=\"miq-paging\">\n    <miq-paging settings=\"tileCtrl.settings\" on-change-page=\"tileCtrl.setPage(pageNumber)\"></miq-paging>\n  </div>\n  <div pf-card-view\n       config=\"tileCtrl.options\"\n       items=\"tileCtrl.rows\"\n       ng-class=\"tileCtrl.tileClass()\">\n    <div ng-switch=\"config.type\">\n      <ng-switch-when ng-switch-when=\"small\">\n        <div>\n          <a href=\"javascript:void(0)\" title=\"{{config.fetchTileName(item)}}\" ng-click=\"config.onItemClick(item)\">{{config.fetchTileName(item) | limitToSuffix : 5 : 5 }}</a>\n        </div>\n        <div class=\"miq-quadicon\">\n          <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item)\">\n            <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n          </a>\n        </div>\n      </ng-switch-when>\n      <ng-switch-when ng-switch-when=\"big\">\n        <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item)\">{{config.fetchTileName(item)}}</a>\n        <div class=\"row miq-row-margin-only-top \">\n          <div class=\"col-md-3 col-ld-3 miq-icon-section\">\n            <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item)\">\n              <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n            </a>\n          </div>\n          <div class=\"col-md-9 col-ld-9 miq-info-section\">\n            <dl class=\"dl-horizontal tile\">\n              <dt ng-repeat-start=\"(key, header) in config.columns | limitTo: 6 track by $index\" ng-if=\"header.text && header.text.indexOf('Name') === -1\">{{header.text}}:</dt>\n              <dd ng-repeat-end ng-if=\"header.text && header.text.indexOf('Name') === -1\" title=\"{{item.cells[key].text}}\">{{item.cells[key].text | limitToSuffix : 25 : 25}}</dd>\n            </dl>\n          </div>\n        </div>\n      </ng-switch-when>\n    </div>\n  </div>\n  <div class=\"miq-paging\">\n    <miq-paging settings=\"tileCtrl.settings\" on-change-page=\"tileCtrl.setPage(pageNumber)\"></miq-paging>\n  </div>\n</div>\n"
+
+/***/ },
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	/**
+	 * Controller for paging component
+	 * @memberof miqStaticAssets.gtl
+	 * @ngdoc controller
+	 * @name PagingController
+	 */
 	var PagingController = (function () {
 	    function PagingController() {
 	        this.MAX_PAGES = 6;
 	    }
+	    /**
+	     * Public method for updating current paging, it will limit number of visible pages to `MAX_PAGES`.
+	     * @memberof PagingController
+	     * @function updatePages
+	     * @param total number of all item's pages.
+	     * @returns {any} array with page numbers which will be visible.
+	     */
 	    PagingController.prototype.updatePages = function (total) {
 	        var _this = this;
 	        if (total > this.MAX_PAGES) {
@@ -1471,11 +1602,34 @@
 	    return PagingController;
 	}());
 	exports.PagingController = PagingController;
+	/**
+	 * @description
+	 *    Component for show paging for some long list (e.g. these are used in tile lists).
+	 *    Settings object example:
+	 *    ```javascript
+	 *    {
+	 *      current: 1,
+	 *      total: 5
+	 *    }
+	 *    ```
+	 * @memberof miqStaticAssets.gtl
+	 * @ngdoc component
+	 * @name miqPaging
+	 * @attr {Object} settings
+	 *    settings for paging component. It has `current` attribute `Number` and total `Number`
+	 *
+	 * @attr {Expression} onChangePage
+	 *    object which is currently sorted by.
+	 * @example
+	 * <miq-paging settings="settings"
+	 *             on-change-page="setPage(pageNumber)">
+	 * </miq-paging>
+	 */
 	var Paging = (function () {
 	    function Paging() {
 	        this.replace = true;
 	        this.controller = PagingController;
-	        this.template = __webpack_require__(53);
+	        this.template = __webpack_require__(55);
 	        this.controllerAs = 'pagingCtrl';
 	        this.bindings = {
 	            settings: '<',
@@ -1489,31 +1643,10 @@
 
 
 /***/ },
-/* 53 */
-/***/ function(module, exports) {
-
-	module.exports = "<ul class=\"pagination\">\n  <li>\n    <a ng-class=\"{disabled: pagingCtrl.settings.current === 1}\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: 1})\"\n       href=\"javascript:void(0)\">\n      <span class=\"i fa fa-angle-double-left\"></span>\n    </a>\n  </li>\n  <li>\n    <a ng-class=\"{disabled: pagingCtrl.settings.current === 1}\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: pagingCtrl.settings.current})\"\n       href=\"javascript:void(0)\">\n      <span class=\"i fa fa-angle-left\"></span>\n    </a>\n  </li>\n  <li ng-repeat=\"page in pagingCtrl.updatePages(pagingCtrl.settings.total) track by $index\">\n    <a ng-class=\"{disabled: pagingCtrl.settings.current === (page + 1)}\"\n       href=\"javascript:void(0)\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: page + 1})\">\n      {{page + 1}}\n    </a>\n  </li>\n  <li>\n    <a ng-class=\"{disabled: (pagingCtrl.settings.current) === pagingCtrl.settings.total}\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: (pagingCtrl.settings.current + 1)})\"\n       href=\"javascript:void(0)\">\n      <span class=\"i fa fa-angle-right\"></span>\n    </a>\n  </li>\n  <li>\n    <a ng-class=\"{disabled: (pagingCtrl.settings.current) === pagingCtrl.settings.total}\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: pagingCtrl.settings.total})\"\n       href=\"javascript:void(0)\">\n      <span class=\"i fa fa-angle-double-right\"></span>\n    </a>\n  </li>\n</ul>\n"
-
-/***/ },
-/* 54 */
-/***/ function(module, exports) {
-
-	"use strict";
-	/**
-	 *
-	 * @type {{}}
-	 */
-	exports.TileType = {
-	    SMALL: 'small',
-	    BIG: 'big'
-	};
-
-
-/***/ },
 /* 55 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"miq-tile-section\">\n  <div class=\"row\">\n    <div class=\"miq-per-page col-md-2 col-ld-2\" ng-if=\"tileCtrl.rows.length > 0\">\n      <label>{{tileCtrl.perPage.label}}: </label>\n      <miq-toolbar-list on-item-click=\"tileCtrl.perPageClick(item)\"\n                        toolbar-list=\"tileCtrl.perPage\"></miq-toolbar-list>\n    </div>\n    <miq-sort-items class=\"col-md-2 col-ld-2\"\n                    sort-object=\"tileCtrl.settings.sortBy\"\n                    headers=\"tileCtrl.columns\"\n                    on-sort=\"tileCtrl.onSortClick(sortObject.colId, isAscending)\"></miq-sort-items>\n  </div>\n  <div class=\"miq-paging\">\n    <miq-paging settings=\"tileCtrl.settings\" on-change-page=\"tileCtrl.setPage(pageNumber)\"></miq-paging>\n  </div>\n  <div pf-card-view\n       config=\"tileCtrl.options\"\n       items=\"tileCtrl.rows\"\n       ng-class=\"tileCtrl.tileClass()\">\n    <div ng-switch=\"config.type\">\n      <ng-switch-when ng-switch-when=\"small\">\n        <div>\n          <a href=\"javascript:void(0)\" title=\"{{config.fetchTileName(item)}}\" ng-click=\"config.onItemClick(item)\">{{config.fetchTileName(item) | limitToSuffix : 5 : 5 }}</a>\n        </div>\n        <div class=\"miq-quadicon\">\n          <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item)\">\n            <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n          </a>\n        </div>\n      </ng-switch-when>\n      <ng-switch-when ng-switch-when=\"big\">\n        <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item)\">{{config.fetchTileName(item)}}</a>\n        <div class=\"row miq-row-margin-only-top \">\n          <div class=\"col-md-3 col-ld-3 miq-icon-section\">\n            <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item)\">\n              <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n            </a>\n          </div>\n          <div class=\"col-md-9 col-ld-9 miq-info-section\">\n            <dl class=\"dl-horizontal tile\">\n              <dt ng-repeat-start=\"(key, header) in config.columns | limitTo: 6 track by $index\" ng-if=\"header.text && header.text.indexOf('Name') === -1\">{{header.text}}:</dt>\n              <dd ng-repeat-end ng-if=\"header.text && header.text.indexOf('Name') === -1\" title=\"{{item.cells[key].text}}\">{{item.cells[key].text | limitToSuffix : 25 : 25}}</dd>\n            </dl>\n          </div>\n        </div>\n      </ng-switch-when>\n    </div>\n  </div>\n  <div class=\"miq-paging\">\n    <miq-paging settings=\"tileCtrl.settings\" on-change-page=\"tileCtrl.setPage(pageNumber)\"></miq-paging>\n  </div>\n</div>\n"
+	module.exports = "<ul class=\"pagination\">\n  <li>\n    <a ng-class=\"{disabled: pagingCtrl.settings.current === 1}\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: 1})\"\n       href=\"javascript:void(0)\">\n      <span class=\"i fa fa-angle-double-left\"></span>\n    </a>\n  </li>\n  <li>\n    <a ng-class=\"{disabled: pagingCtrl.settings.current === 1}\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: pagingCtrl.settings.current})\"\n       href=\"javascript:void(0)\">\n      <span class=\"i fa fa-angle-left\"></span>\n    </a>\n  </li>\n  <li ng-repeat=\"page in pagingCtrl.updatePages(pagingCtrl.settings.total) track by $index\">\n    <a ng-class=\"{disabled: pagingCtrl.settings.current === (page + 1)}\"\n       href=\"javascript:void(0)\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: page + 1})\">\n      {{page + 1}}\n    </a>\n  </li>\n  <li>\n    <a ng-class=\"{disabled: (pagingCtrl.settings.current) === pagingCtrl.settings.total}\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: (pagingCtrl.settings.current + 1)})\"\n       href=\"javascript:void(0)\">\n      <span class=\"i fa fa-angle-right\"></span>\n    </a>\n  </li>\n  <li>\n    <a ng-class=\"{disabled: (pagingCtrl.settings.current) === pagingCtrl.settings.total}\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: pagingCtrl.settings.total})\"\n       href=\"javascript:void(0)\">\n      <span class=\"i fa fa-angle-double-right\"></span>\n    </a>\n  </li>\n</ul>\n"
 
 /***/ }
 /******/ ]);

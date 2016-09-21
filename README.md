@@ -3,6 +3,7 @@
 [![score](https://www.bithound.io/github/ManageIQ/ui-components/badges/score.svg)](https://www.bithound.io/github/ManageIQ/ui-components)
 [![dependencies](https://www.bithound.io/github/ManageIQ/ui-components/badges/dependencies.svg)](https://www.bithound.io/github/ManageIQ/ui-components/master/dependencies/npm)
 [![Build Status](https://travis-ci.org/ManageIQ/ui-components.svg)](https://travis-ci.org/ManageIQ/ui-components)
+[![Coverage Status](https://coveralls.io/repos/github/ManageIQ/ui-components/badge.svg)](https://coveralls.io/github/ManageIQ/ui-components)
 
 
 ## Architectural Goals

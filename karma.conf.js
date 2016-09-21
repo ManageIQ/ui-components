@@ -27,14 +27,15 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
 
     // web server port
     port: 9876,
 
     preprocessors: {
-      [fileGlob]: ['webpack'],
-      [jsonGlob]: ['webpack']
+      [fileGlob]: ['webpack', 'coverage'],
+      [jsonGlob]: ['webpack'],
+      applicationFile: 'coverage'
     },
     webpack: webpackConfig,
     webpackMiddleware: {noInfo: true},
@@ -56,6 +57,11 @@ module.exports = function(config) {
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: true,
+    coverageReporter : {
+      type : 'lcov',
+      dir : 'coverage/',
+      subdir: '.'
+    },
 
     // Concurrency level
     // how many browser should be started simultaneous

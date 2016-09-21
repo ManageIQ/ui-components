@@ -36,4 +36,6 @@ vendor.js
 *.iws
 *.iml
 
+coverage
+
 !dist/js/ui-components.js.map

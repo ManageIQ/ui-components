@@ -69,7 +69,6 @@ export default class DataTableController {
   }
 
   public limitTo() {
-    console.log(this);
     this.filteredRows = this.$filter('limitTo')(
       this.filteredRows,
       this.settings.perpage,

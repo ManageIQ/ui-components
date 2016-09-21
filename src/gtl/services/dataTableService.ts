@@ -65,7 +65,7 @@ export default class DataTableService implements IDataTableService {
    * @param currId ID of current item.
    * @returns {{params: {}}} config object with params set.
    */
-  private static generateConfig(modelName?: string, activeTree?: string, currId?: string) {
+  public static generateConfig(modelName?: string, activeTree?: string, currId?: string) {
     let config = {params: {}};
     _.assign(config.params, DataTableService.generateModelConfig(modelName));
     _.assign(config.params, DataTableService.generateActiveTreeConfig(activeTree));

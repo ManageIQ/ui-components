@@ -44,11 +44,38 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+<<<<<<< 7d69bd98ab5d259d0f670283582a8d5f27566411
 	__webpack_require__(18);
 	__webpack_require__(20);
 	__webpack_require__(21);
+<<<<<<< 6860a992b924a41b99da04626cde9fe7df61e10d
+<<<<<<< d8bffab3605cec282282c2440c65757f35048610
 	__webpack_require__(35);
 	module.exports = __webpack_require__(40);
+=======
+	module.exports = __webpack_require__(35);
+=======
+	__webpack_require__(14);
+	__webpack_require__(16);
+	__webpack_require__(17);
+	__webpack_require__(31);
+	module.exports = __webpack_require__(34);
+>>>>>>> Create gtl module with service and filter
+>>>>>>> Create gtl module with service and filter
+=======
+	__webpack_require__(35);
+	module.exports = __webpack_require__(38);
+<<<<<<< c41033d8ebd13355cb24e82e1169e628b5321f71
+>>>>>>> Update dist after rebase
+=======
+=======
+	__webpack_require__(14);
+	__webpack_require__(16);
+	__webpack_require__(17);
+	__webpack_require__(31);
+	module.exports = __webpack_require__(34);
+>>>>>>> Create gtl module with service and filter
+>>>>>>> Create gtl module with service and filter
 
 
 /***/ },
@@ -782,6 +809,9 @@
 
 
 /***/ },
+<<<<<<< c41033d8ebd13355cb24e82e1169e628b5321f71
+<<<<<<< 6860a992b924a41b99da04626cde9fe7df61e10d
+<<<<<<< d8bffab3605cec282282c2440c65757f35048610
 /* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -918,12 +948,45 @@
 
 /***/ },
 /* 40 */
+=======
+/* 34 */
+>>>>>>> Create gtl module with service and filter
+=======
+/* 38 */
+>>>>>>> Update dist after rebase
+=======
+<<<<<<< 7d69bd98ab5d259d0f670283582a8d5f27566411
+/* 38 */
+=======
+/* 34 */
+>>>>>>> Create gtl module with service and filter
+>>>>>>> Create gtl module with service and filter
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	///<reference path="../tsd.d.ts"/>
+<<<<<<< c41033d8ebd13355cb24e82e1169e628b5321f71
+<<<<<<< 6860a992b924a41b99da04626cde9fe7df61e10d
+<<<<<<< d8bffab3605cec282282c2440c65757f35048610
 	var services_1 = __webpack_require__(41);
 	var filters_1 = __webpack_require__(43);
+=======
+	var services_1 = __webpack_require__(35);
+	var filters_1 = __webpack_require__(37);
+>>>>>>> Create gtl module with service and filter
+=======
+	var services_1 = __webpack_require__(39);
+	var filters_1 = __webpack_require__(41);
+>>>>>>> Update dist after rebase
+=======
+<<<<<<< 7d69bd98ab5d259d0f670283582a8d5f27566411
+	var services_1 = __webpack_require__(39);
+	var filters_1 = __webpack_require__(41);
+=======
+	var services_1 = __webpack_require__(35);
+	var filters_1 = __webpack_require__(37);
+>>>>>>> Create gtl module with service and filter
+>>>>>>> Create gtl module with service and filter
 	var gtl;
 	(function (gtl) {
 	    gtl.app = angular.module('miqStaticAssets.gtl', []);
@@ -933,6 +996,9 @@
 
 
 /***/ },
+<<<<<<< c41033d8ebd13355cb24e82e1169e628b5321f71
+<<<<<<< 6860a992b924a41b99da04626cde9fe7df61e10d
+<<<<<<< d8bffab3605cec282282c2440c65757f35048610
 /* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -941,11 +1007,54 @@
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.service('MiQDataTableService', dataTableService_1.default);
+=======
+/* 35 */
+=======
+=======
+<<<<<<< 7d69bd98ab5d259d0f670283582a8d5f27566411
+>>>>>>> Create gtl module with service and filter
+/* 39 */
+>>>>>>> Update dist after rebase
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var dataTableService_1 = __webpack_require__(40);
+=======
+/* 35 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var dataTableService_1 = __webpack_require__(36);
+>>>>>>> Create gtl module with service and filter
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = function (module) {
+<<<<<<< d31fc7da842b386c46930fa5bfc0d18bb00a682a
+	    module.service('MiQEndpointsService', dataTableService_1.default);
+>>>>>>> Create gtl module with service and filter
+=======
+	    module.service('MiQDataTableService', dataTableService_1.default);
+>>>>>>> Change name of gtl loader service
 	};
 
 
 /***/ },
+<<<<<<< c41033d8ebd13355cb24e82e1169e628b5321f71
+<<<<<<< 6860a992b924a41b99da04626cde9fe7df61e10d
+<<<<<<< d8bffab3605cec282282c2440c65757f35048610
 /* 42 */
+=======
+/* 36 */
+>>>>>>> Create gtl module with service and filter
+=======
+/* 40 */
+>>>>>>> Update dist after rebase
+=======
+<<<<<<< 7d69bd98ab5d259d0f670283582a8d5f27566411
+/* 40 */
+=======
+/* 36 */
+>>>>>>> Create gtl module with service and filter
+>>>>>>> Create gtl module with service and filter
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1045,11 +1154,41 @@
 
 
 /***/ },
+<<<<<<< c41033d8ebd13355cb24e82e1169e628b5321f71
+<<<<<<< 6860a992b924a41b99da04626cde9fe7df61e10d
+<<<<<<< d8bffab3605cec282282c2440c65757f35048610
 /* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var limitToSuffixFilter_1 = __webpack_require__(44);
+=======
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var limitToSuffixFilter_1 = __webpack_require__(38);
+>>>>>>> Create gtl module with service and filter
+=======
+=======
+<<<<<<< 7d69bd98ab5d259d0f670283582a8d5f27566411
+>>>>>>> Create gtl module with service and filter
+/* 41 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var limitToSuffixFilter_1 = __webpack_require__(42);
+<<<<<<< c41033d8ebd13355cb24e82e1169e628b5321f71
+>>>>>>> Update dist after rebase
+=======
+=======
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var limitToSuffixFilter_1 = __webpack_require__(38);
+>>>>>>> Create gtl module with service and filter
+>>>>>>> Create gtl module with service and filter
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    module.filter('limitToSuffix', limitToSuffixFilter_1.default.filter);
@@ -1057,7 +1196,23 @@
 
 
 /***/ },
+<<<<<<< c41033d8ebd13355cb24e82e1169e628b5321f71
+<<<<<<< 6860a992b924a41b99da04626cde9fe7df61e10d
+<<<<<<< d8bffab3605cec282282c2440c65757f35048610
 /* 44 */
+=======
+/* 38 */
+>>>>>>> Create gtl module with service and filter
+=======
+/* 42 */
+>>>>>>> Update dist after rebase
+=======
+<<<<<<< 7d69bd98ab5d259d0f670283582a8d5f27566411
+/* 42 */
+=======
+/* 38 */
+>>>>>>> Create gtl module with service and filter
+>>>>>>> Create gtl module with service and filter
 /***/ function(module, exports) {
 
 	"use strict";

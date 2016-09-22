@@ -17,7 +17,7 @@ export abstract class DataViewClass implements IDataTableBinding {
 
   public onSort: (args: {headerId: any, isAscending: boolean}) => void;
   public onItemSelected: (args: {item: any, isSelected: boolean}) => void;
-  public loadMoreItems: (args: {start: number; perPage: number}) => void;
+  public loadMoreItems: (args: {start: number, perPage: number}) => void;
 
   /**
    * Public method which will perform checking all entities.

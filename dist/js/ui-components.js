@@ -1191,36 +1191,32 @@
 	 * @memberof miqStaticAssets.gtl
 	 * @ngdoc component
 	 * @name miqDataTable
-	 * @attr {Object} type
-	 *    TODO
 	 * @attr {Object} rows
-	 *    TODO
+	 *    Array of rows which will be displayed.
 	 * @attr {Object} perPage
-	 *    TODO
+	 *    Object which will be displayed as dropdown picker to filter number of rows.
 	 * @attr {Object} columns
-	 *    TODO
-	 * @attr {Object} perPage
-	 *    TODO
+	 *    Columns which will be displayed as header in table.
 	 * @attr {Object} settings
-	 *    TODO
+	 *    Table settings look at {@see ITableSettings} for more information.
 	 * @attr {Expression} loadMoreItems
-	 *    TODO
+	 *    Function which will be called upon loading more items. Function call has to have `start`, `perPage` params.
 	 * @attr {Expression} onSort
-	 *    TODO
+	 *    Function to triggering sorting items. Function call has to have `headerId`, `isAscending` params.
 	 * @attr {Expression} onRowClick
-	 *    TODO
+	 *    Function which will be executed when click on row event is fired. Function call has to have `item` param.
 	 * @attr {Expression} onItemSelected
-	 *    TODO.
+	 *    Function to be called on selecting item (trough selectbox next to each row). Function call has to have `item`,
+	 *    `isSelected` params.
 	 * @example
-	 * <miq-data-table type=""
-	 *                 rows=""
-	 *                 columns=""
-	 *                 per-page=""
-	 *                 settings=""
-	 *                 load-more-items=""
-	 *                 on-sort=""
-	 *                 on-row-click=""
-	 *                 on-item-selected="">
+	 * <miq-data-table rows="ctrl.rows"
+	 *                 columns="ctrl.columns"
+	 *                 per-page="ctrl.perPage"
+	 *                 settings="ctrl.settings"
+	 *                 load-more-items="ctrl.onLoadMoreItems(start, perPage)"
+	 *                 on-sort="ctrl.onSort(headerId, isAscending)"
+	 *                 on-row-click="ctrl.onRowClick(item)"
+	 *                 on-item-selected="ctrl.onItemSelect(item, isSelected)">
 	 * </miq-data-table>
 	 */
 	var DataTable = (function () {

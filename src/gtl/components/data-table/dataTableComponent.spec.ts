@@ -32,7 +32,7 @@ describe('DataTable test', () =>  {
         onRowClick = jasmine.createSpy('onRowClick', (item: any) => {}),
         onSort = jasmine.createSpy('onSort', (headerId: any, isAscending: boolean) => {}),
         loadMoreItems = jasmine.createSpy('loadMoreItems', (start: number, perPage: number) => {});
-  
+
   describe('controller', () => {
     let dataTableCtrl;
 

@@ -31,6 +31,7 @@ export default class DataTableController {
       this.onLoadNext(start, this.settings.perpage);
       this.onSort(2, true);
     });
+    console.log(this);
   }
 
   public onLoadNext(start, perPage) {

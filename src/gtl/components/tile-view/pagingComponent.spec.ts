@@ -1,7 +1,7 @@
 describe('paging component test', () =>  {
   let settings = {perpage: 5, current: 1, items: 6, total: 2, sortBy: {sortObject: {col_idx: 0}, isAscending: true}};
 
-  const onChangePage = jasmine.createSpy('onChangePage', pagenumber => {});
+  const onChangePage = jasmine.createSpy('onChangePage');
   describe('controller', () => {
     let pagingCtrl, bindings;
     beforeEach(() => {

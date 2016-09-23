@@ -44,7 +44,7 @@ describe('DataTableSettingsService test', () =>  {
       expect(responseData.rows.length > 0).toBeTruthy();
       expect(angular.equals(
         responseData.settings,
-        {perpage: 20, current: 1, items: 17, total: 1}
+        {perpage: 20, current: 1, items: 6, total: 1}
       )).toBeTruthy();
       done();
     });

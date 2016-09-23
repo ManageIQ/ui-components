@@ -1204,6 +1204,7 @@
 	exports.DataTableController = DataTableController;
 	/**
 	 * @description
+	 *    Component for data table.
 	 * @memberof miqStaticAssets.gtl
 	 * @ngdoc component
 	 * @name miqDataTable
@@ -1372,7 +1373,7 @@
 	var tileType_1 = __webpack_require__(52);
 	var abstractDataViewClass_1 = __webpack_require__(48);
 	/**
-	 * Controller for tile components. It will extend {@link miqStaticAssets.gtl.DataViewClass}.
+	 * Controller for tile components. It extends {@link miqStaticAssets.gtl.DataViewClass}.
 	 * @memberof miqStaticAssets.gtl
 	 * @ngdoc controller
 	 * @name TileViewController
@@ -1387,6 +1388,7 @@
 	        this.initOptions();
 	    }
 	    /**
+	     * Method for creating basic options for tiles.
 	     * @memberof TileViewController
 	     * @function initOptions
 	     */
@@ -1405,31 +1407,34 @@
 	        };
 	    };
 	    /**
-	     *
+	     * Method for enabling quadicons html to be displayed inside tile.
 	     * @memberof TileViewController
 	     * @function trustAsHtmlQuadicon
-	     * @param item
-	     * @returns {any}
+	     * @param item item with quadicon.
+	     * @returns {any} trusted html object, which cn be used as `bind-html`.
 	     */
 	    TileViewController.prototype.trustAsHtmlQuadicon = function (item) {
 	        return this.$sce.trustAsHtml(item.quadicon);
 	    };
 	    /**
-	     *
+	     * Method for fetching name of item, it will try to guess which column should be showed as name of tile, usually it's
+	     * column with Name in them.
 	     * @memberof TileViewController
 	     * @function fetchTileName
-	     * @param item
-	     * @returns {string}
+	     * @param item which will be displayed in tile. If no column with name is not present third cell text will be used.
+	     * @returns {string} text which will be displayed as tile header.
 	     */
 	    TileViewController.prototype.fetchTileName = function (item) {
 	        var nameIndex = _.findIndex(this.columns, function (oneColumn) { return oneColumn.text && oneColumn.text.indexOf('Name') !== -1; });
-	        return (nameIndex !== -1 && item.cells && item.cells[nameIndex]) ? item.cells[nameIndex]['text'] : '';
+	        return (nameIndex !== -1 && item.cells && item.cells[nameIndex]) ?
+	            item.cells[nameIndex]['text'] :
+	            item.cells[2]['text'];
 	    };
 	    /**
-	     *
+	     * Angular's method for fetching change events.
 	     * @memberof TileViewController
 	     * @function $onChanges
-	     * @param changesObj
+	     * @param changesObj angular's change object.
 	     */
 	    TileViewController.prototype.$onChanges = function (changesObj) {
 	        if (changesObj.type) {
@@ -1440,19 +1445,19 @@
 	        }
 	    };
 	    /**
-	     *
+	     * Method which will be called when clicking on tile.
 	     * @memberof TileViewController
 	     * @function onTileClick
-	     * @param item
+	     * @param item which tile was clicked.
 	     */
 	    TileViewController.prototype.onTileClick = function (item) {
 	        this.onItemSelected({ item: item, isSelected: item === _.find(this.options.selectedItems, { id: item.id }) });
 	    };
 	    /**
-	     *
+	     * Angular's method for getting tile's class based on it's type.
 	     * @memberof TileViewController
 	     * @function tileClass
-	     * @returns {Object} {miq-small-tile: boolean, miq-tile-with-body: boolean}
+	     * @returns {Object} it will return angular class object: `{miq-small-tile: boolean, miq-tile-with-body: boolean}`
 	     */
 	    TileViewController.prototype.tileClass = function () {
 	        return {
@@ -1465,47 +1470,41 @@
 	exports.TileViewController = TileViewController;
 	/**
 	 * @description
-	 *    Component for show tile list.
-	 *    Settings object example:
-	 *    ```javascript
-	 *    {
-	 *      current: 1,
-	 *      total: 5
-	 *    }
-	 *    ```
+	 *    Component for tile list. This component requires pf-tile to be part of angular's components. For patternfly's
+	 *    implementation look at
+	 *    <a href="http://angular-patternfly.rhcloud.com/#/api/patternfly.views.directive:pfCardView">pfCardView</a>
 	 * @memberof miqStaticAssets.gtl
 	 * @ngdoc component
 	 * @name miqTileView
 	 * @attr {Object} type
-	 *    TODO
+	 *    Type of tile look at {@see miqStaticAssets.gtl.TileType}
 	 * @attr {Object} rows
-	 *    TODO
+	 *    Array of rows which will be displayed.
 	 * @attr {Object} perPage
-	 *    TODO
+	 *    Object which will be displayed as dropdown picker to filter number of tiles.
 	 * @attr {Object} columns
-	 *    TODO
-	 * @attr {Object} perPage
-	 *    TODO
+	 *    Columns which will be displayed as header in tile.
 	 * @attr {Object} settings
-	 *    TODO
+	 *    Tile settings look at {@see ITableSettings} for more information.
 	 * @attr {Expression} loadMoreItems
-	 *    TODO
+	 *    Function which will be called upon loading more items. Function call has to have `start`, `perPage` params.
 	 * @attr {Expression} onSort
-	 *    TODO
+	 *    Function to triggering sorting items. Function call has to have `headerId`, `isAscending` params.
 	 * @attr {Expression} onRowClick
-	 *    TODO
+	 *    Function which will be executed when click on tile event is fired. Function call has to have `item` param.
 	 * @attr {Expression} onItemSelected
-	 *    TODO.
+	 *    Function to be called on selecting item (trough clicking on tile). Function call has to have `item`, `isSelected`
+	 *    params.
 	 * @example
-	 * <miq-tile-view type=""
-	 *                rows=""
-	 *                columns=""
-	 *                per-page=""
-	 *                settings=""
-	 *                load-more-items=""
-	 *                on-sort=""
-	 *                on-row-click=""
-	 *                on-item-selected="">
+	 * <miq-tile-view type="ctrl.type"
+	 *                rows="ctrl.rows"
+	 *                columns="ctrl.columns"
+	 *                per-page="ctrl.perPage"
+	 *                settings="ctrl.settings"
+	 *                load-more-items="ctrl.onLoadMoreItems(start, perPage)"
+	 *                on-sort="ctrl.onSort(headerId, isAscending)"
+	 *                on-row-click="ctrl.onRowClick(item)"
+	 *                on-item-selected="ctrl.onItemSelect(item, isSelected)>
 	 * </miq-tile-view>
 	 */
 	var TileView = (function () {

@@ -77,6 +77,7 @@ export class DataTableController extends DataViewClass implements IDataTableBind
 
 /**
  * @description
+ *    Component for data table.
  * @memberof miqStaticAssets.gtl
  * @ngdoc component
  * @name miqDataTable

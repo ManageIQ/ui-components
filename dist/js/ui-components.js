@@ -924,11 +924,13 @@
 	///<reference path="../tsd.d.ts"/>
 	var services_1 = __webpack_require__(41);
 	var filters_1 = __webpack_require__(43);
+	var components_1 = __webpack_require__(45);
 	var gtl;
 	(function (gtl) {
 	    gtl.app = angular.module('miqStaticAssets.gtl', []);
 	    services_1.default(gtl.app);
 	    filters_1.default(gtl.app);
+	    components_1.default(gtl.app);
 	})(gtl || (gtl = {}));
 
 
@@ -1074,6 +1076,258 @@
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = LimitToSuffix;
 
+
+/***/ },
+/* 45 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var data_table_1 = __webpack_require__(46);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = function (module) {
+	    data_table_1.default(module);
+	};
+
+
+/***/ },
+/* 46 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var dataTableComponent_1 = __webpack_require__(47);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = function (module) {
+	    module.component('miqDataTable', new dataTableComponent_1.default);
+	};
+
+
+/***/ },
+/* 47 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var abstractDataViewClass_1 = __webpack_require__(48);
+	/**
+	 * This controller is for managing data table entities. It extends {@link miqStaticAssets.gtl.DataViewClass}
+	 * which is abstract class with basic methods for filtering, sorting and limiting entries in data table.
+	 * @extends miqStaticAssets.gtl.DataViewClass
+	 * @memberof miqStaticAssets.gtl
+	 * @ngdoc controller
+	 * @name DataTableController
+	 */
+	var DataTableController = (function (_super) {
+	    __extends(DataTableController, _super);
+	    function DataTableController() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * Public method for getting column class, narrow column with checkbox or image.
+	     * @memberof DataTableController
+	     * @function getColumnClass
+	     * @param column {Object} header column. This column will have `is_narrow` property set to true and `narrow` class
+	     * will be present in classes.
+	     * @returns {Object} angular class object. `{narrow: boolean}`
+	     */
+	    DataTableController.prototype.getColumnClass = function (column) {
+	        return {
+	            narrow: column.is_narrow
+	        };
+	    };
+	    /**
+	     * Public method for checking if column of table is icon or image.
+	     * @memberof DataTableController
+	     * @function isIconOrImage
+	     * @param row {object} whole row with data.
+	     * @param columnKey header column key.
+	     * @returns {boolean} true | false, if column is image or icon.
+	     */
+	    DataTableController.prototype.isIconOrImage = function (row, columnKey) {
+	        return row && row.cells &&
+	            (row.cells[columnKey].hasOwnProperty('icon') || row.cells[columnKey].hasOwnProperty('image'));
+	    };
+	    /**
+	     * Public method for finding out if it's filtered by header column.
+	     * @memberof DataTableController
+	     * @function isFilteredBy
+	     * @param column column which is checked if it's filtered by.
+	     * @returns {boolean} true | false if `this.settings.sortBy.sortObject.col_idx` is equal to `column.col_idx`.
+	     */
+	    DataTableController.prototype.isFilteredBy = function (column) {
+	        return !!this.settings.sortBy && (this.settings.sortBy.sortObject.col_idx === column.col_idx);
+	    };
+	    /**
+	     * Public method for getting sort class, either `fa-sort-asc` or `fa-sort-desc`.
+	     * @memberof DataTableController
+	     * @function getSortClass
+	     * @returns {Object} angular class object: `{fa-sort-asc: boolean, fa-sort-desc: boolean}`
+	     */
+	    DataTableController.prototype.getSortClass = function () {
+	        return {
+	            'fa-sort-asc': !!this.settings.sortBy && this.settings.sortBy.isAscending,
+	            'fa-sort-desc': !(!!this.settings.sortBy && this.settings.sortBy.isAscending)
+	        };
+	    };
+	    /**
+	     * Angular's $onchange function to find out if one of bounded option has changed.
+	     * @memberof DataTableController
+	     * @function $onChanges
+	     * @param changesObj angular changed object.
+	     */
+	    DataTableController.prototype.$onChanges = function (changesObj) {
+	        if (changesObj.settings && this.settings) {
+	            this.currentPageView = this.settings.current;
+	        }
+	    };
+	    return DataTableController;
+	}(abstractDataViewClass_1.DataViewClass));
+	exports.DataTableController = DataTableController;
+	/**
+	 * @description
+	 * @memberof miqStaticAssets.gtl
+	 * @ngdoc component
+	 * @name miqDataTable
+	 * @attr {Object} rows
+	 *    Array of rows which will be displayed.
+	 * @attr {Object} perPage
+	 *    Object which will be displayed as dropdown picker to filter number of rows.
+	 * @attr {Object} columns
+	 *    Columns which will be displayed as header in table.
+	 * @attr {Object} settings
+	 *    Table settings look at {@see ITableSettings} for more information.
+	 * @attr {Expression} loadMoreItems
+	 *    Function which will be called upon loading more items. Function call has to have `start`, `perPage` params.
+	 * @attr {Expression} onSort
+	 *    Function to triggering sorting items. Function call has to have `headerId`, `isAscending` params.
+	 * @attr {Expression} onRowClick
+	 *    Function which will be executed when click on row event is fired. Function call has to have `item` param.
+	 * @attr {Expression} onItemSelected
+	 *    Function to be called on selecting item (trough selectbox next to each row). Function call has to have `item`,
+	 *    `isSelected` params.
+	 * @example
+	 * <miq-data-table rows="ctrl.rows"
+	 *                 columns="ctrl.columns"
+	 *                 per-page="ctrl.perPage"
+	 *                 settings="ctrl.settings"
+	 *                 load-more-items="ctrl.onLoadMoreItems(start, perPage)"
+	 *                 on-sort="ctrl.onSort(headerId, isAscending)"
+	 *                 on-row-click="ctrl.onRowClick(item)"
+	 *                 on-item-selected="ctrl.onItemSelect(item, isSelected)">
+	 * </miq-data-table>
+	 */
+	var DataTable = (function () {
+	    function DataTable() {
+	        this.replace = true;
+	        this.template = __webpack_require__(49);
+	        this.controller = DataTableController;
+	        this.transclude = true;
+	        this.controllerAs = 'tableCtrl';
+	        this.bindings = {
+	            rows: '<',
+	            columns: '<',
+	            perPage: '<',
+	            settings: '<',
+	            loadMoreItems: '&',
+	            onSort: '&',
+	            onRowClick: '&',
+	            onItemSelected: '&'
+	        };
+	    }
+	    return DataTable;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = DataTable;
+
+
+/***/ },
+/* 48 */
+/***/ function(module, exports) {
+
+	"use strict";
+	/**
+	 * This is abstract controller for implementing shared methods between data table and tile views.
+	 * @memberof miqStaticAssets.gtl
+	 * @ngdoc controller
+	 * @name DataViewClass
+	 */
+	var DataViewClass = (function () {
+	    function DataViewClass() {
+	        this.currentPageView = 1;
+	    }
+	    /**
+	     * Public method which will perform checking all entities.
+	     * @memberof DataViewClass
+	     * @function onCheckAll
+	     * @param isChecked true | false based on checked value.
+	     */
+	    DataViewClass.prototype.onCheckAll = function (isChecked) {
+	        var _this = this;
+	        _.each(this.rows, function (oneRow) {
+	            _this.onItemSelected({ item: oneRow, isSelected: isChecked });
+	        });
+	    };
+	    /**
+	     * Helper method which will pass sortId and isAscending to parent controller.
+	     * @memberof DataViewClass
+	     * @function onSortClick
+	     * @param sortId id of sorted header column.
+	     * @param isAscending true | false based on ascending order.
+	     */
+	    DataViewClass.prototype.onSortClick = function (sortId, isAscending) {
+	        this.onSort({ headerId: sortId, isAscending: isAscending });
+	    };
+	    /**
+	     * Helper method for calculating loading more items after selecting how many items per page should be visible.
+	     * @memberof DataViewClass
+	     * @function perPageClick
+	     * @param item {Object} enhanced IToolbarItem with value.
+	     */
+	    DataViewClass.prototype.perPageClick = function (item) {
+	        var maxPage = Math.ceil(this.settings.items / item.value);
+	        this.currentPageView = this.currentPageView > maxPage ? maxPage : this.currentPageView;
+	        var start = DataViewClass.calculateStartIndex(this.currentPageView, item.value);
+	        this.loadMoreItems({ start: start, perPage: item.value });
+	    };
+	    /**
+	     * Helper method for calculating what page should be visible, it works with perPage and total amount of values.
+	     * @memberof DataViewClass
+	     * @function setPage
+	     * @param pageNumber {number} number of desired page, if this page is out of bound, it will be rounded.
+	     */
+	    DataViewClass.prototype.setPage = function (pageNumber) {
+	        if (pageNumber > this.settings.total) {
+	            this.currentPageView = this.settings.total;
+	            pageNumber = this.currentPageView;
+	        }
+	        this.currentPageView = pageNumber;
+	        var start = DataViewClass.calculateStartIndex(pageNumber, this.settings.perpage);
+	        this.loadMoreItems({ start: start, perPage: this.settings.perpage });
+	    };
+	    /**
+	     * Helper static method for calculating start index based on pageNumber and number of visible items.
+	     * @memberof DataViewClass
+	     * @function calculateStartIndex
+	     * @param pageNumber {number} current page number.
+	     * @param perPage {number} how many of items are visible per page.
+	     * @returns {number} start index for limit filter.
+	     */
+	    DataViewClass.calculateStartIndex = function (pageNumber, perPage) {
+	        return (pageNumber - 1) * perPage;
+	    };
+	    return DataViewClass;
+	}());
+	exports.DataViewClass = DataViewClass;
+
+
+/***/ },
+/* 49 */
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n  <div class=\"dataTables_header miq-data-tables-header\" ng-if=\"tableCtrl.rows.length > 0\">\n    <div class=\"row\">\n      <div class=\"pull-right\">\n        <div>\n          <label>{{tableCtrl.perPage.label}}: </label>\n          <miq-toolbar-list on-item-click=\"tableCtrl.perPageClick(item)\"\n                            toolbar-list=\"tableCtrl.perPage\"></miq-toolbar-list>\n        </div>\n        <div>\n          Some text sorted by\n        </div>\n      </div>\n    </div>\n  </div>\n  <table class=\"table table-bordered table-striped table-hover mig-table-with-footer mig-table\">\n    <thead>\n    <tr>\n      <th class=\"narrow miq-select\">\n        <input ng-if=\"tableCtrl.rows.length !== 0\" type=\"checkbox\" ng-model=\"isChecked\" ng-click=\"tableCtrl.onCheckAll(isChecked)\" title=\"Select all\" />\n      </th>\n      <th ng-if=\"$index !== 0\"\n          ng-repeat=\"column in tableCtrl.columns track by $index\"\n          ng-click=\"tableCtrl.onSortClick($index, !!tableCtrl.settings.sortBy && !tableCtrl.settings.sortBy.isAscending)\"\n          ng-class=\"tableCtrl.getColumnClass(column)\">\n        {{column.text}}\n        <div class=\"pull-right\" ng-if=\"tableCtrl.isFilteredBy(column)\" >\n          <i class=\"fa\" ng-class=\"tableCtrl.getSortClass()\"></i>\n        </div>\n      </th>\n    </tr>\n    </thead>\n    <tbody>\n    <tr ng-repeat=\"row in tableCtrl.rows\"\n        ng-class=\"{active : row.selected}\"\n        ng-click=\"vm.onRowClick({$event: $event, rowData: row})\">\n      <td ng-repeat=\"(columnKey, column) in tableCtrl.columns\" ng-class=\"{narrow: row.cells[columnKey].is_checkbox}\">\n        <input ng-if=\"row.cells[columnKey].is_checkbox\"\n               ng-click=\"tableCtrl.onRowSelected($event, isSelected, row)\"\n               onclick=\"event.stopPropagation();\"\n               type=\"checkbox\"\n               ng-model=\"isSelected\"\n               name=\"check_{{row.id}}\"\n               value=\"{{row.id}}\"\n               ng-checked=\"row.checked\"\n               class=\"list-grid-checkbox\">\n        <i ng-if=\"row.cells[columnKey].icon && tableCtrl.isIconOrImage(row, columnKey)\"\n           class=\"{{row.cells[columnKey].icon}}\"\n           title=\"row.cells[columnKey].title\"></i>\n        <img ng-if=\"row.cells[columnKey].icon === null && tableCtrl.isIconOrImage(row, columnKey)\"\n             ng-src=\"{{row.img_url}}\"\n             alt=\"{{row.cells[columnKey].title}}\"\n             title=\"{{row.cells[columnKey].title}}\" />\n        <span ng-if=\"row.cells[columnKey].text\">\n              {{row.cells[columnKey].text}}\n          </span>\n      </td>\n    </tr>\n    </tbody>\n  </table>\n  <div class=\"dataTables_footer\">\n    <div class=\"dataTables_paginate paging_bootstrap_input\">\n      <ul class=\"pagination\">\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === 1}\"\n            class=\"first\"\n            ng-click=\"tableCtrl.setPage(1)\">\n          <span class=\"fa fa-angle-double-left\"></span>\n        </li>\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === 1}\"\n            class=\"prev\"\n            ng-click=\"tableCtrl.setPage(tableCtrl.currentPageView - 1)\">\n          <span class=\"fa fa-angle-left\"></span>\n        </li>\n      </ul>\n      <div class=\"pagination-input\">\n        <form ng-submit=\"tableCtrl.setPage(tableCtrl.currentPageView)\">\n          <input type=\"text\" class=\"paginate_input\" ng-model=\"tableCtrl.currentPageView\">\n          <span class=\"paginate_of\">of <b>{{tableCtrl.settings.total}}</b></span>\n        </form>\n      </div>\n      <ul class=\"pagination\">\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === tableCtrl.settings.total}\"\n            class=\"next\"\n            ng-click=\"tableCtrl.setPage(tableCtrl.currentPageView + 1)\">\n          <span class=\"fa fa-angle-right\"></span>\n        </li>\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === tableCtrl.settings.total}\"\n            class=\"last\"\n            ng-click=\"tableCtrl.setPage(tableCtrl.settings.total)\">\n          <span class=\"fa fa-angle-double-right\"></span>\n        </li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }
 /******/ ]);

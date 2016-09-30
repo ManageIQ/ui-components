@@ -10,6 +10,28 @@ import {DataViewClass} from '../../interfaces/abstractDataViewClass';
  * @name DataTableController
  */
 export class DataTableController extends DataViewClass implements IDataTableBinding {
+  public currentPageView: number;
+
+  /**
+   * This method will check if user wants to go to non existent page and will validate it.
+   * @memberof DataTableController
+   * @function setTablePage
+   * @param pageNumber {Number} desired page.
+   */
+  public setTablePage(pageNumber) {
+    pageNumber = Number(pageNumber);
+    if (_.isNaN(pageNumber)) {
+      this.currentPageView = this.settings.current;
+      pageNumber = this.currentPageView;
+    } else {
+      if (pageNumber <= 0) {
+        this.currentPageView = 1;
+        pageNumber = 1;
+      }
+      this.setPage(pageNumber);
+    }
+  }
+
   /**
    * Public method for getting column class, narrow column with checkbox or image.
    * @memberof DataTableController

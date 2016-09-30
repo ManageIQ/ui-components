@@ -63,17 +63,17 @@
       <ul class="pagination">
         <li ng-class="{disabled: tableCtrl.currentPageView === 1}"
             class="first"
-            ng-click="tableCtrl.setPage(1)">
+            ng-click="tableCtrl.setTablePage(1)">
           <span class="fa fa-angle-double-left"></span>
         </li>
         <li ng-class="{disabled: tableCtrl.currentPageView === 1}"
             class="prev"
-            ng-click="tableCtrl.setPage(tableCtrl.currentPageView - 1)">
+            ng-click="tableCtrl.setTablePage(tableCtrl.currentPageView - 1)">
           <span class="fa fa-angle-left"></span>
         </li>
       </ul>
       <div class="pagination-input">
-        <form ng-submit="tableCtrl.setPage(tableCtrl.currentPageView)">
+        <form ng-submit="tableCtrl.setTablePage(tableCtrl.currentPageView)">
           <input type="text" class="paginate_input" ng-model="tableCtrl.currentPageView">
           <span class="paginate_of">of <b>{{tableCtrl.settings.total}}</b></span>
         </form>
@@ -81,12 +81,12 @@
       <ul class="pagination">
         <li ng-class="{disabled: tableCtrl.currentPageView === tableCtrl.settings.total}"
             class="next"
-            ng-click="tableCtrl.setPage(tableCtrl.currentPageView + 1)">
+            ng-click="tableCtrl.setTablePage(tableCtrl.currentPageView + 1)">
           <span class="fa fa-angle-right"></span>
         </li>
         <li ng-class="{disabled: tableCtrl.currentPageView === tableCtrl.settings.total}"
             class="last"
-            ng-click="tableCtrl.setPage(tableCtrl.settings.total)">
+            ng-click="tableCtrl.setTablePage(tableCtrl.settings.total)">
           <span class="fa fa-angle-double-right"></span>
         </li>
       </ul>

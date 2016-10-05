@@ -1139,8 +1139,7 @@
 	var DataTableController = (function (_super) {
 	    __extends(DataTableController, _super);
 	    function DataTableController() {
-	        _super.call(this);
-	        console.log(this);
+	        _super.apply(this, arguments);
 	    }
 	    /**
 	     * This method will check if user wants to go to non existent page and will validate it.
@@ -1459,7 +1458,6 @@
 	     * @param changesObj angular's change object.
 	     */
 	    TileViewController.prototype.$onChanges = function (changesObj) {
-	        console.log(changesObj);
 	        if (changesObj.type) {
 	            this.options.type = this.type;
 	        }

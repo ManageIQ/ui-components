@@ -70,7 +70,6 @@ export class TileViewController extends DataViewClass implements IDataTableBindi
    * @param changesObj angular's change object.
    */
   public $onChanges(changesObj: any) {
-    console.log(changesObj);
     if (changesObj.type) {
       this.options.type = this.type;
     } else if (changesObj.columns) {

@@ -91,7 +91,7 @@ describe('paging component test', () =>  {
     });
 
     it('should check all', () => {
-      tileController.onCheckAll(true);
+      tileController.onCheckAllTiles(true);
       expect(tileController.onItemSelected).toHaveBeenCalledTimes(rows.length);
     });
 
@@ -117,7 +117,6 @@ describe('paging component test', () =>  {
 
     it('should trust as html quadicon', () => {
       let htmlContent = {quadicon: '<div>Some content</div>'};
-      console.log();
       expect(
         angular.equals(
           tileController.trustAsHtmlQuadicon(htmlContent),
@@ -133,6 +132,12 @@ describe('paging component test', () =>  {
     it('should perform on tile click', () => {
       tileController.onTileClick(rows[0]);
       expect(tileController.onItemSelected).toHaveBeenCalledWith({item: rows[0], isSelected: true});
+    });
+
+    it('should filter selected items', () => {
+      expect(!!tileController.rows[0].checked).toBeFalsy();
+      tileController.rows[0].checked = true;
+      expect(angular.equals([rows[0]],tileController.filterSelected())).toBeTruthy();
     });
   });
 

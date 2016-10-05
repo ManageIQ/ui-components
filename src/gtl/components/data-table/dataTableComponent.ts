@@ -11,10 +11,6 @@ import {DataViewClass} from '../../interfaces/abstractDataViewClass';
  */
 export class DataTableController extends DataViewClass implements IDataTableBinding {
   public currentPageView: number;
-  constructor() {
-    super();
-    console.log(this);
-  }
 
   /**
    * This method will check if user wants to go to non existent page and will validate it.

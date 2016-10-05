@@ -30,6 +30,8 @@ export default class DataTableController {
       let start = (this.settings.current - 1) * this.settings.perpage;
       this.onLoadNext(start, this.settings.perpage);
       this.onSort(2, true);
+      this.settings.selectAllTitle = 'Select All';
+      this.settings.sortedByTitle = 'Sorted By';
     });
     console.log(this);
   }
@@ -58,6 +60,7 @@ export default class DataTableController {
       this.filteredRows = this.sortItems(this.filteredRows);
     }
     this.filteredRows = this.limitTo();
+    console.log(this);
   }
 
   public sortItems(rows) {
@@ -83,6 +86,8 @@ export default class DataTableController {
   }
 
   public onItemSelect(item, isSelected) {
+    let selectedItem: any = _.find(this.rows, {id: item.id});
+    selectedItem.checked = isSelected;
     console.log('Item which was selected and was selected?', item, isSelected);
   }
 

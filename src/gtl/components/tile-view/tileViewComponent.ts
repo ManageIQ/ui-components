@@ -28,6 +28,7 @@ export class TileViewController extends DataViewClass implements IDataTableBindi
       selectItems: true,
       multiSelect: true,
       showSelectBox: false,
+      selectedItems: this.filterSelected(),
       onClick: (item, event) => this.onTileClick(item),
       onItemClick: (item) => this.onRowClick({item: item}),
       fetchTileName: (item) => this.fetchTileName(item),
@@ -69,6 +70,7 @@ export class TileViewController extends DataViewClass implements IDataTableBindi
    * @param changesObj angular's change object.
    */
   public $onChanges(changesObj: any) {
+    console.log(changesObj);
     if (changesObj.type) {
       this.options.type = this.type;
     } else if (changesObj.columns) {
@@ -84,6 +86,27 @@ export class TileViewController extends DataViewClass implements IDataTableBindi
    */
   public onTileClick(item) {
     this.onItemSelected({item: item, isSelected: item === _.find(this.options.selectedItems, {id: item.id})});
+  }
+
+  /**
+   * Method for checking all tiles and then filtering selected items.
+   * @memberof TileViewController
+   * @function tileClass
+   * @param isSelected true | false.
+   */
+  public onCheckAllTiles(isSelected: boolean) {
+    this.onCheckAll(isSelected);
+    this.options.selectedItems = this.filterSelected();
+  }
+
+  /**
+   * Method for filtering selected tiles based on checked property.
+   * @memberof TileViewController
+   * @function tileClass
+   * @returns filtered array of checked items.
+   */
+  public filterSelected() {
+    return _.filter(this.rows, {checked: true});
   }
 
   /**

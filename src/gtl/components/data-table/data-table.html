@@ -8,7 +8,7 @@
                             toolbar-list="tableCtrl.perPage"></miq-toolbar-list>
         </div>
         <div>
-          Some text sorted by
+          <label>{{tableCtrl.settings.sortedByTitle}}:</label> {{tableCtrl.settings.sortBy.sortObject.text}} - {{tableCtrl.settings.sortBy.isAscending ? 'ASC': 'DESC'}}
         </div>
       </div>
     </div>
@@ -17,7 +17,7 @@
     <thead>
     <tr>
       <th class="narrow miq-select">
-        <input ng-if="tableCtrl.rows.length !== 0" type="checkbox" ng-model="isChecked" ng-click="tableCtrl.onCheckAll(isChecked)" title="Select all" />
+        <input ng-if="tableCtrl.rows.length !== 0" type="checkbox" ng-model="isChecked" ng-click="tableCtrl.onCheckAll(isChecked)" title="{{tableCtrl.settings.selectAllTitle}}" />
       </th>
       <th ng-if="$index !== 0"
           ng-repeat="column in tableCtrl.columns track by $index"
@@ -36,7 +36,7 @@
         ng-click="vm.onRowClick({$event: $event, rowData: row})">
       <td ng-repeat="(columnKey, column) in tableCtrl.columns" ng-class="{narrow: row.cells[columnKey].is_checkbox}">
         <input ng-if="row.cells[columnKey].is_checkbox"
-               ng-click="tableCtrl.onRowSelected($event, isSelected, row)"
+               ng-click="tableCtrl.onItemSelected({item: row, isSelected: isSelected})"
                onclick="event.stopPropagation();"
                type="checkbox"
                ng-model="isSelected"

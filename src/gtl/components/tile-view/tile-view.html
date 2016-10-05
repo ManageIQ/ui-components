@@ -9,6 +9,10 @@
                     sort-object="tileCtrl.settings.sortBy"
                     headers="tileCtrl.columns"
                     on-sort="tileCtrl.onSortClick(sortObject.colId, isAscending)"></miq-sort-items>
+    <div ng-if="tableCtrl.rows.length !== 0" >
+      <label>{{tileCtrl.settings.selectAllTitle}}: </label>
+      <input type="checkbox" ng-model="isChecked" ng-click="tileCtrl.onCheckAllTiles(isChecked)" title="{{tableCtrl.settings.selectAllTitle}}" />
+    </div>
   </div>
   <div class="miq-paging">
     <miq-paging settings="tileCtrl.settings" on-change-page="tileCtrl.setPage(pageNumber)"></miq-paging>

@@ -33,7 +33,6 @@ export default class DataTableController {
       this.settings.selectAllTitle = 'Select All';
       this.settings.sortedByTitle = 'Sorted By';
     });
-    console.log(this);
   }
 
   public onLoadNext(start, perPage) {

@@ -57,10 +57,7 @@ img.miq-gradient-background {
   text-align: center; }
 
 .miq-tile-section div.miq-paging {
-  display: block;
-  margin: auto;
-  width: 20%;
-  padding-left: 15px; }
+  text-align: center; }
   .miq-tile-section div.miq-paging .disabled {
     pointer-events: none;
     cursor: not-allowed;

@@ -13,7 +13,7 @@
       </div>
     </div>
   </div>
-  <table class="table table-bordered table-striped table-hover mig-table-with-footer mig-table">
+  <table class="table table-bordered table-striped table-hover mig-table-with-footer mig-table" ng-if="tableCtrl.rows.length !== 0">
     <thead>
     <tr>
       <th class="narrow miq-select">
@@ -58,7 +58,7 @@
     </tr>
     </tbody>
   </table>
-  <div class="dataTables_footer">
+  <div class="dataTables_footer" ng-if="tableCtrl.rows.length !== 0">
     <div class="dataTables_paginate paging_bootstrap_input">
       <ul class="pagination">
         <li ng-class="{disabled: tableCtrl.currentPageView === 1}"

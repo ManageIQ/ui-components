@@ -1,8 +1,8 @@
 describe('paging component test', () =>  {
-  let settings = {perpage: 5, current: 1, items: 6, total: 2, sortBy: {sortObject: {col_idx: 0}, isAscending: true}};
 
   const onChangePage = jasmine.createSpy('onChangePage');
   describe('controller', () => {
+    let settings = {perpage: 5, current: 1, items: 6, total: 2, sortBy: {sortObject: {col_idx: 0}, isAscending: true}};
     let pagingCtrl, bindings;
     beforeEach(() => {
       bindings = {
@@ -20,15 +20,19 @@ describe('paging component test', () =>  {
     });
 
     it('should create non limited array pages', () => {
-      expect(pagingCtrl.updatePages(5).length).toBe(5);
+      expect(pagingCtrl.updatePages(2).length).toBe(2);
     });
 
     it('should create limited number of pages', () => {
-      expect(pagingCtrl.updatePages(100).length).toBe(6);
+      pagingCtrl.settings.total = 10;
+      pagingCtrl.settings.current = 9;
+      expect(pagingCtrl.updatePages(10).length).toBe(6);
+      expect(angular.equals(pagingCtrl.pages, [4, 5, 6, 7, 8, 9])).toBeTruthy();
     });
   });
 
   describe('component', () => {
+    let settings = {perpage: 5, current: 1, items: 6, total: 2, sortBy: {sortObject: {col_idx: 0}, isAscending: true}};
     let scope, compile, compiledElement;
     beforeEach(() => {
       angular.mock.module('miqStaticAssets.gtl');

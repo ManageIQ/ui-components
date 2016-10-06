@@ -157,6 +157,15 @@ img.miq-gradient-background {
   display: inline-block;
 }
 
+.miq-select-all {
+  input[type="checkbox"] {
+    margin: 0 10px 0;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+  }
+}
+
 /* begin toolbar styling (to be moved to the ui-components repo) */
 
 .toolbar-pf .form-group { /*compensates for filter-pf not being implemented */

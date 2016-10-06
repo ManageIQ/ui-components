@@ -11,7 +11,7 @@ export abstract class DataViewClass implements IDataTableBinding {
   public rows: any[];
   public columns: any[];
 
-  public onRowClick: (args: {item: any}) => void;
+  public onRowClick: (args: {item: any, event: ng.IAngularEvent}) => void;
   public settings: ITableSettings;
   public currentPageView: number = 1;
 

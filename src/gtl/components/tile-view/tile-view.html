@@ -1,5 +1,5 @@
 <div class="miq-tile-section">
-  <div class="row" ng-if="tileCtrl.rows">
+  <div class="row" ng-if="tileCtrl.rows && tileCtrl.rows.length !== 0">
     <div class="miq-per-page col-md-2 col-ld-2">
       <label>{{tileCtrl.perPage.label}}: </label>
       <miq-toolbar-list on-item-click="tileCtrl.perPageClick(item)"
@@ -9,12 +9,12 @@
                     sort-object="tileCtrl.settings.sortBy"
                     headers="tileCtrl.columns"
                     on-sort="tileCtrl.onSortClick(sortObject.colId, isAscending)"></miq-sort-items>
-    <div ng-if="tableCtrl.rows.length !== 0" >
+    <div ng-if="tableCtrl.rows.length !== 0" class="miq-select-all">
       <label>{{tileCtrl.settings.selectAllTitle}}: </label>
       <input type="checkbox" ng-model="isChecked" ng-click="tileCtrl.onCheckAllTiles(isChecked)" title="{{tableCtrl.settings.selectAllTitle}}" />
     </div>
   </div>
-  <div class="miq-paging" ng-if="tileCtrl.rows">
+  <div class="miq-paging" ng-if="tileCtrl.rows && tileCtrl.rows.length !== 0">
     <miq-paging settings="tileCtrl.settings" on-change-page="tileCtrl.setPage(pageNumber)"></miq-paging>
   </div>
   <div pf-card-view
@@ -24,19 +24,19 @@
     <div ng-switch="config.type">
       <ng-switch-when ng-switch-when="small">
         <div>
-          <a href="javascript:void(0)" title="{{config.fetchTileName(item)}}" ng-click="config.onItemClick(item)">{{config.fetchTileName(item) | limitToSuffix : 5 : 5 }}</a>
+          <a href="javascript:void(0)" title="{{config.fetchTileName(item)}}" ng-click="config.onItemClick(item, $event)">{{config.fetchTileName(item) | limitToSuffix : 5 : 5 }}</a>
         </div>
         <div class="miq-quadicon">
-          <a href="javascript:void(0)" ng-click="config.onItemClick(item)">
+          <a href="javascript:void(0)" ng-click="config.onItemClick(item, $event)">
             <div ng-bind-html="config.trustAsHtmlQuadicon(item)"></div>
           </a>
         </div>
       </ng-switch-when>
       <ng-switch-when ng-switch-when="big">
-        <a href="javascript:void(0)" ng-click="config.onItemClick(item)">{{config.fetchTileName(item)}}</a>
+        <a href="javascript:void(0)" ng-click="config.onItemClick(item, $event)">{{config.fetchTileName(item)}}</a>
         <div class="row miq-row-margin-only-top ">
           <div class="col-md-3 col-ld-3 miq-icon-section">
-            <a href="javascript:void(0)" ng-click="config.onItemClick(item)">
+            <a href="javascript:void(0)" ng-click="config.onItemClick(item, $event)">
               <div ng-bind-html="config.trustAsHtmlQuadicon(item)"></div>
             </a>
           </div>
@@ -50,7 +50,7 @@
       </ng-switch-when>
     </div>
   </div>
-  <div class="miq-paging" ng-if="tileCtrl.rows">
+  <div class="miq-paging" ng-if="tileCtrl.rows && tileCtrl.rows.length !== 0">
     <miq-paging settings="tileCtrl.settings" on-change-page="tileCtrl.setPage(pageNumber)"></miq-paging>
   </div>
 </div>

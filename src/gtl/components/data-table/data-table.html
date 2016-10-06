@@ -33,7 +33,7 @@
     <tbody>
     <tr ng-repeat="row in tableCtrl.rows"
         ng-class="{active : row.selected}"
-        ng-click="vm.onRowClick({$event: $event, rowData: row})">
+        ng-click="vm.onRowClick({item: item, event: $event})">
       <td ng-repeat="(columnKey, column) in tableCtrl.columns" ng-class="{narrow: row.cells[columnKey].is_checkbox}">
         <input ng-if="row.cells[columnKey].is_checkbox"
                ng-click="tableCtrl.onItemSelected({item: row, isSelected: isSelected})"

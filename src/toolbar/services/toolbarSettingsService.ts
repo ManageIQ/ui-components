@@ -10,11 +10,27 @@ export default class ToolbarSettingsService {
   constructor(private $http: any, private MiQEndpointsService: any) {}
 
   /**
-   * Method which will travers trough all items and enables them by number of selected items.
+   * FIXME: the method is obsolete and should be removed once setCount is being used instead
    * @param isClicked
    */
   public checkboxClicked(isClicked: boolean): void {
     isClicked ? this.countSelected++ : this.countSelected--;
+    this.updateByCount();
+  }
+
+  /**
+   * Update the selected item count, and enable/disable onwhen toolbar items
+   * @param count - the number of currently selected items
+   */
+  public setCount(count: number): void {
+    this.countSelected = count;
+    this.updateByCount();
+  }
+
+  /**
+    * Traverses through all the items and enables them by number of selected items.
+    */
+  private updateByCount(): void {
     _.chain(this.items)
       .flatten()
       .filter(item => item)
@@ -34,7 +50,7 @@ export default class ToolbarSettingsService {
    *
    * @param toolbarObject
    * @returns {{items: Array<Array<IToolbarItem>>, dataViews: Array<IToolbarItem>}}
-     */
+   */
   public generateToolbarObject(toolbarObject: Array<Array<IToolbarItem>>): IToolbarSettings {
     this.countSelected = 0;
     this.items = this.separateItems(toolbarObject.filter(item => !!item));

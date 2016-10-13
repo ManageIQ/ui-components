@@ -129,12 +129,26 @@
 	        this.countSelected = 0;
 	    }
 	    /**
-	     * Method which will travers trough all items and enables them by number of selected items.
+	     * FIXME: the method is obsolete and should be removed once setCount is being used instead
 	     * @param isClicked
 	     */
 	    ToolbarSettingsService.prototype.checkboxClicked = function (isClicked) {
-	        var _this = this;
 	        isClicked ? this.countSelected++ : this.countSelected--;
+	        this.updateByCount();
+	    };
+	    /**
+	     * Update the selected item count, and enable/disable onwhen toolbar items
+	     * @param count - the number of currently selected items
+	     */
+	    ToolbarSettingsService.prototype.setCount = function (count) {
+	        this.countSelected = count;
+	        this.updateByCount();
+	    };
+	    /**
+	      * Traverses through all the items and enables them by number of selected items.
+	      */
+	    ToolbarSettingsService.prototype.updateByCount = function () {
+	        var _this = this;
 	        _.chain(this.items)
 	            .flatten()
 	            .filter(function (item) { return item; })
@@ -153,7 +167,7 @@
 	     *
 	     * @param toolbarObject
 	     * @returns {{items: Array<Array<IToolbarItem>>, dataViews: Array<IToolbarItem>}}
-	       */
+	     */
 	    ToolbarSettingsService.prototype.generateToolbarObject = function (toolbarObject) {
 	        this.countSelected = 0;
 	        this.items = this.separateItems(toolbarObject.filter(function (item) { return !!item; }));

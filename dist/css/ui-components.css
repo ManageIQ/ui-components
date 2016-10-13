@@ -89,6 +89,10 @@ img.miq-gradient-background {
     display: inline-block; }
   .miq-small-tile .card-view-pf .card .card-content a {
     word-wrap: break-word; }
+  .miq-small-tile .card-view-pf .card .card-check-box {
+    top: inherit;
+    bottom: 5px;
+    left: 2px; }
 
 @keyframes fade-in {
   0% {

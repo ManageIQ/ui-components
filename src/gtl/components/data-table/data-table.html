@@ -1,5 +1,6 @@
 <div>
-  <div class="dataTables_header miq-data-tables-header" ng-if="tableCtrl.rows.length > 0">
+  <div ng-if="tableCtrl.settings.isLoading" class="spinner spinner-lg"></div>
+  <div class="dataTables_header miq-data-tables-header" ng-if="tableCtrl.rows && tableCtrl.rows.length > 0">
     <div class="row">
       <div class="pull-right">
         <div>

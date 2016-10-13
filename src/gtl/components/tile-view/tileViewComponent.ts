@@ -25,9 +25,9 @@ export class TileViewController extends DataViewClass implements IDataTableBindi
   private initOptions(): void {
     this.options = {
       selectionMatchProp: 'id',
-      selectItems: true,
+      selectItems: false,
       multiSelect: true,
-      showSelectBox: false,
+      showSelectBox: true,
       selectedItems: this.filterSelected(),
       onClick: (item, event) => this.onTileClick(item),
       onItemClick: (item: any, $event: any) => this.onRowClick({item: item, event: $event}),

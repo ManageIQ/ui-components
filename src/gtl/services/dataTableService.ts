@@ -100,7 +100,7 @@ export default class DataTableService implements IDataTableService {
    * @returns {any|{model_id: any}} object if any module ID is present.
    */
   private static generateModuleIdConfig(currId): any {
-    return currId && {model_id: currId};
+    return currId && currId !== null && {model_id: currId};
   }
 
   private static generateParamsFromSettings(settings): any {

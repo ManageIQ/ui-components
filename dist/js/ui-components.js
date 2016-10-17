@@ -1054,7 +1054,7 @@
 	     * @returns {any|{model_id: any}} object if any module ID is present.
 	     */
 	    DataTableService.generateModuleIdConfig = function (currId) {
-	        return currId && { model_id: currId };
+	        return currId && currId !== null && { model_id: currId };
 	    };
 	    DataTableService.generateParamsFromSettings = function (settings) {
 	        var params = {};

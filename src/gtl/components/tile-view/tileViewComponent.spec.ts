@@ -1,4 +1,4 @@
-describe('paging component test', () =>  {
+describe('tile component test', () =>  {
   let bindings;
 
   let columns = [{is_narrow: true}, {is_narrow: true}, {text: 'Name', col_idx: 0}, {text: 'First value', col_idx: 1}];
@@ -57,14 +57,14 @@ describe('paging component test', () =>  {
     it('should create controller and init options', () => {
       expect(tileController).toBeDefined();
       expect(tileController.options.selectionMatchProp).toBe('id');
-      expect(tileController.options.selectItems).toBeTruthy();
+      expect(tileController.options.selectItems).toBeFalsy();
       expect(tileController.options.multiSelect).toBeTruthy();
-      expect(tileController.options.showSelectBox).toBeFalsy();
+      expect(tileController.options.showSelectBox).toBeTruthy();
       expect(tileController.options.onClick instanceof Function).toBeTruthy();
       expect(tileController.options.onItemClick instanceof Function).toBeTruthy();
       expect(tileController.options.fetchTileName instanceof Function).toBeTruthy();
       expect(tileController.options.trustAsHtmlQuadicon instanceof Function).toBeTruthy();
-      expect(tileController.options.type).toBeTruthy(bindings.type);
+      expect(tileController.options.type).toBe(bindings.type);
     });
 
     it('should get correct class based on tile type', () => {

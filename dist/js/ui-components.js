@@ -1433,6 +1433,7 @@
 	            showSelectBox: true,
 	            selectedItems: this.filterSelected(),
 	            onClick: function (item, event) { return _this.onTileClick(item); },
+	            onCheckBoxChange: function (item) { return _this.onTileSelect(item); },
 	            onItemClick: function (item, $event) { return _this.onRowClick({ item: item, event: $event }); },
 	            fetchTileName: function (item) { return _this.fetchTileName(item); },
 	            trustAsHtmlQuadicon: function (item) { return _this.trustAsHtmlQuadicon(item); },
@@ -1485,6 +1486,9 @@
 	     */
 	    TileViewController.prototype.onTileClick = function (item) {
 	        this.onItemSelected({ item: item, isSelected: item === _.find(this.options.selectedItems, { id: item.id }) });
+	    };
+	    TileViewController.prototype.onTileSelect = function (item) {
+	        this.onItemSelected({ item: item, isSelected: item.selected });
 	    };
 	    /**
 	     * Method for checking all tiles and then filtering selected items.

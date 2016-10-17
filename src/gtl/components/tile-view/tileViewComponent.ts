@@ -30,6 +30,7 @@ export class TileViewController extends DataViewClass implements IDataTableBindi
       showSelectBox: true,
       selectedItems: this.filterSelected(),
       onClick: (item, event) => this.onTileClick(item),
+      onCheckBoxChange: (item) => this.onTileSelect(item),
       onItemClick: (item: any, $event: any) => this.onRowClick({item: item, event: $event}),
       fetchTileName: (item) => this.fetchTileName(item),
       trustAsHtmlQuadicon: (item) => this.trustAsHtmlQuadicon(item),
@@ -85,6 +86,10 @@ export class TileViewController extends DataViewClass implements IDataTableBindi
    */
   public onTileClick(item) {
     this.onItemSelected({item: item, isSelected: item === _.find(this.options.selectedItems, {id: item.id})});
+  }
+
+  public onTileSelect(item) {
+    this.onItemSelected({item: item, isSelected: item.selected});
   }
 
   /**

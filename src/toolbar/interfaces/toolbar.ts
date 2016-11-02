@@ -44,7 +44,7 @@ export interface IToolbarItem {
 export interface IToolbarData {
   'function': string;
   'function-data': string;
-  targer: string;
+  target: string;
   toggle: string;
 }
 

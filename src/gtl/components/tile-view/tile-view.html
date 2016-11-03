@@ -43,7 +43,7 @@
           </div>
           <div class="col-md-9 col-ld-9 miq-info-section">
             <dl class="dl-horizontal tile">
-              <dt ng-repeat-start="(key, header) in config.columns | limitTo: 6 track by $index" ng-if="header.text && header.text.indexOf('Name') === -1">{{header.text}}:</dt>
+              <dt ng-repeat-start="(key, header) in config.columns | limitTo: 7 track by $index" ng-if="header.text && header.text.indexOf('Name') === -1" title="{{header.text}}">{{header.text}}:</dt>
               <dd ng-repeat-end ng-if="header.text && header.text.indexOf('Name') === -1" title="{{item.cells[key].text}}">{{item.cells[key].text | limitToSuffix : 25 : 25}}</dd>
             </dl>
           </div>

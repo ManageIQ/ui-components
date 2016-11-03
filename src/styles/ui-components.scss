@@ -87,7 +87,7 @@ img.miq-gradient-background {
 .miq-tile-with-body .card-view-pf {
   .card {
     width: 375px;
-    height: 140px;
+    height: 100%;
 
     .card-content {
       overflow: hidden;
@@ -170,6 +170,10 @@ img.miq-gradient-background {
     position: relative;
     top: -1px;
   }
+}
+
+.miq-sand-paper {
+  background: #f5f5f5;
 }
 
 /* begin toolbar styling (to be moved to the ui-components repo) */

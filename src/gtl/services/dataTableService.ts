@@ -32,8 +32,9 @@ export default class DataTableService implements IDataTableService {
   public retrieveRowsAndColumnsFromUrl(modelName?: string,
                                        activeTree?: string,
                                        currId?: string,
+                                       isExplorer?: string,
                                        settings?: any): ng.IPromise<IRowsColsResponse> {
-    return this.fetchData(DataTableService.generateConfig(modelName, activeTree, currId, settings))
+    return this.fetchData(DataTableService.generateConfig(modelName, activeTree, currId, isExplorer, settings))
       .then(responseData => {
         this.columns = responseData.data.data.head;
         this.rows = responseData.data.data.rows;
@@ -64,14 +65,20 @@ export default class DataTableService implements IDataTableService {
    * @param modelName string with name of model.
    * @param activeTree string with active tree.
    * @param currId ID of current item.
+   * @param isExplorer
    * @param settings
    * @returns {{params: {}}} config object with params set.
    */
-  public static generateConfig(modelName?: string, activeTree?: string, currId?: string, settings?: any) {
+  public static generateConfig(modelName?: string,
+                               activeTree?: string,
+                               currId?: string,
+                               isExplorer?: string,
+                               settings?: any) {
     let config = {params: {}};
     _.assign(config.params, DataTableService.generateModelConfig(modelName));
     _.assign(config.params, DataTableService.generateActiveTreeConfig(activeTree));
     _.assign(config.params, DataTableService.generateModuleIdConfig(currId));
+    _.assign(config.params, DataTableService.generateExplorerConfig(isExplorer));
     _.assign(config.params, DataTableService.generateParamsFromSettings(settings));
     return config;
   }
@@ -101,6 +108,15 @@ export default class DataTableService implements IDataTableService {
    */
   private static generateModuleIdConfig(currId): any {
     return currId && currId !== null && {model_id: currId};
+  }
+
+  /**
+   *
+   * @param isExplorer
+   * @returns {any|boolean|{explorer: any}}
+   */
+  private static generateExplorerConfig(isExplorer): any {
+    return isExplorer && isExplorer !== null && {explorer: isExplorer};
   }
 
   private static generateParamsFromSettings(settings): any {

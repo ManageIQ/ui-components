@@ -8,6 +8,7 @@
         data-click="{{toolbarButton.id}}"
         data-url="{{toolbarButton.url}}"
         data-url_parms="{{toolbarButton.url_parms}}"
+        data-prompt="{{toolbarButton.prompt}}"
         ng-class="{active: toolbarButton.selected, disabled: !toolbarButton.enabled}"
         ng-hide="toolbarButton.hidden"
         ng-click="onItemClick({item: toolbarButton, $event: $event})">

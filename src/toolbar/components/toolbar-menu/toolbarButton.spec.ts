@@ -38,6 +38,7 @@ describe('ToolbarButton test', () =>  {
       expect(compiledElement.attr('data-url')).toBe(scope.toolbarButtonData.url);
       expect(compiledElement.attr('data-click')).toBe(scope.toolbarButtonData.name);
       expect(compiledElement.attr('data-url_parms')).toBe(scope.toolbarButtonData.url_parms);
+      expect(compiledElement.attr('data-prompt')).toBe(scope.toolbarButtonData.prompt);
     });
 
     it('toolbar button should contain text', () => {

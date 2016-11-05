@@ -16,5 +16,6 @@
   "img_url": "data/some_img.png",
   "explorer": true,
   "url": "reload",
-  "url_parms": "url_parms"
+  "url_parms": "url_parms",
+  "prompt": "true"
 }

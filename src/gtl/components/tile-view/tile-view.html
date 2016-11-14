@@ -24,13 +24,13 @@
        ng-class="tileCtrl.tileClass()">
     <div ng-switch="config.type">
       <ng-switch-when ng-switch-when="small">
+        <div class="miq-tile-head">
+          <a href="javascript:void(0)" title="{{config.fetchTileName(item)}}" ng-click="config.onItemClick(item, $event)">{{config.fetchTileName(item) | limitToSuffix : 5 : 5 }}</a>
+        </div>
         <div class="miq-quadicon">
           <a href="javascript:void(0)" ng-click="config.onItemClick(item, $event)">
             <div ng-bind-html="config.trustAsHtmlQuadicon(item)"></div>
           </a>
-        </div>
-        <div>
-          <a href="javascript:void(0)" title="{{config.fetchTileName(item)}}" ng-click="config.onItemClick(item, $event)">{{config.fetchTileName(item) | limitToSuffix : 5 : 5 }}</a>
         </div>
       </ng-switch-when>
       <ng-switch-when ng-switch-when="big">

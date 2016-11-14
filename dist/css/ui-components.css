@@ -89,10 +89,8 @@ img.miq-gradient-background {
     display: inline-block; }
   .miq-small-tile .card-view-pf .card .card-content a {
     word-wrap: break-word; }
-  .miq-small-tile .card-view-pf .card .card-check-box {
-    top: inherit;
-    bottom: 5px;
-    left: 2px; }
+  .miq-small-tile .card-view-pf .card .card-content .miq-tile-head {
+    margin-left: 20px; }
 
 @keyframes fade-in {
   0% {
@@ -119,7 +117,7 @@ img.miq-gradient-background {
   position: relative;
   top: -1px; }
 
-.miq-sand-paper {
+.miq-sand-paper, .miq-sand-paper > div {
   background: #f5f5f5; }
 
 /* begin toolbar styling (to be moved to the ui-components repo) */

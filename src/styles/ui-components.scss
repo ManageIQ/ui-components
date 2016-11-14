@@ -123,12 +123,10 @@ img.miq-gradient-background {
       a {
         word-wrap: break-word;
       }
-    }
 
-    .card-check-box {
-      top: inherit;
-      bottom: 5px;
-      left: 2px;
+      .miq-tile-head {
+        margin-left: 20px;
+      }
     }
   }
 }
@@ -172,7 +170,7 @@ img.miq-gradient-background {
   }
 }
 
-.miq-sand-paper {
+.miq-sand-paper, .miq-sand-paper > div {
   background: #f5f5f5;
 }
 

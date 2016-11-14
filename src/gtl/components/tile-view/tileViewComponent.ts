@@ -85,7 +85,7 @@ export class TileViewController extends DataViewClass implements IDataTableBindi
    * @param item which tile was clicked.
    */
   public onTileClick(item) {
-    this.onItemSelected({item: item, isSelected: item === _.find(this.options.selectedItems, {id: item.id})});
+    this.onItemSelected({item: item, isSelected: !item.selected});
   }
 
   public onTileSelect(item) {

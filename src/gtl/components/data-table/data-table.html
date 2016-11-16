@@ -1,5 +1,6 @@
 <div>
-  <div class="dataTables_header miq-data-tables-header" ng-if="tableCtrl.rows.length > 0">
+  <div ng-if="tableCtrl.settings.isLoading" class="spinner spinner-lg"></div>
+  <div class="dataTables_header miq-data-tables-header" ng-if="tableCtrl.rows && tableCtrl.rows.length > 0">
     <div class="row">
       <div class="pull-right">
         <div>
@@ -8,16 +9,16 @@
                             toolbar-list="tableCtrl.perPage"></miq-toolbar-list>
         </div>
         <div>
-          Some text sorted by
+          <label>{{tableCtrl.settings.sortedByTitle}}:</label> {{tableCtrl.settings.sortBy.sortObject.text}} - {{tableCtrl.settings.sortBy.isAscending ? 'ASC': 'DESC'}}
         </div>
       </div>
     </div>
   </div>
-  <table class="table table-bordered table-striped table-hover mig-table-with-footer mig-table">
+  <table class="table table-bordered table-striped table-hover mig-table-with-footer mig-table" ng-if="tableCtrl.rows.length !== 0">
     <thead>
     <tr>
       <th class="narrow miq-select">
-        <input ng-if="tableCtrl.rows.length !== 0" type="checkbox" ng-model="isChecked" ng-click="tableCtrl.onCheckAll(isChecked)" title="Select all" />
+        <input ng-if="tableCtrl.rows.length !== 0" type="checkbox" ng-model="isChecked" ng-click="tableCtrl.onCheckAll(isChecked)" title="{{tableCtrl.settings.selectAllTitle}}" />
       </th>
       <th ng-if="$index !== 0"
           ng-repeat="column in tableCtrl.columns track by $index"
@@ -33,10 +34,10 @@
     <tbody>
     <tr ng-repeat="row in tableCtrl.rows"
         ng-class="{active : row.selected}"
-        ng-click="vm.onRowClick({$event: $event, rowData: row})">
+        ng-click="tableCtrl.onRowClick({item: row, event: $event})">
       <td ng-repeat="(columnKey, column) in tableCtrl.columns" ng-class="{narrow: row.cells[columnKey].is_checkbox}">
         <input ng-if="row.cells[columnKey].is_checkbox"
-               ng-click="tableCtrl.onRowSelected($event, isSelected, row)"
+               ng-click="tableCtrl.onItemSelected({item: row, isSelected: isSelected})"
                onclick="event.stopPropagation();"
                type="checkbox"
                ng-model="isSelected"
@@ -58,22 +59,22 @@
     </tr>
     </tbody>
   </table>
-  <div class="dataTables_footer">
+  <div class="dataTables_footer" ng-if="tableCtrl.rows.length !== 0">
     <div class="dataTables_paginate paging_bootstrap_input">
       <ul class="pagination">
         <li ng-class="{disabled: tableCtrl.currentPageView === 1}"
             class="first"
-            ng-click="tableCtrl.setPage(1)">
+            ng-click="tableCtrl.setTablePage(1)">
           <span class="fa fa-angle-double-left"></span>
         </li>
         <li ng-class="{disabled: tableCtrl.currentPageView === 1}"
             class="prev"
-            ng-click="tableCtrl.setPage(tableCtrl.currentPageView - 1)">
+            ng-click="tableCtrl.setTablePage(tableCtrl.currentPageView - 1)">
           <span class="fa fa-angle-left"></span>
         </li>
       </ul>
       <div class="pagination-input">
-        <form ng-submit="tableCtrl.setPage(tableCtrl.currentPageView)">
+        <form ng-submit="tableCtrl.setTablePage(tableCtrl.currentPageView)">
           <input type="text" class="paginate_input" ng-model="tableCtrl.currentPageView">
           <span class="paginate_of">of <b>{{tableCtrl.settings.total}}</b></span>
         </form>
@@ -81,12 +82,12 @@
       <ul class="pagination">
         <li ng-class="{disabled: tableCtrl.currentPageView === tableCtrl.settings.total}"
             class="next"
-            ng-click="tableCtrl.setPage(tableCtrl.currentPageView + 1)">
+            ng-click="tableCtrl.setTablePage(tableCtrl.currentPageView + 1)">
           <span class="fa fa-angle-right"></span>
         </li>
         <li ng-class="{disabled: tableCtrl.currentPageView === tableCtrl.settings.total}"
             class="last"
-            ng-click="tableCtrl.setPage(tableCtrl.settings.total)">
+            ng-click="tableCtrl.setTablePage(tableCtrl.settings.total)">
           <span class="fa fa-angle-double-right"></span>
         </li>
       </ul>

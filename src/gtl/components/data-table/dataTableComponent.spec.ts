@@ -112,6 +112,13 @@ describe('DataTable test', () =>  {
         )
       );
     });
+
+    it('should validate page number if wrong number is inserted', () => {
+      dataTableCtrl.setTablePage('-1');
+      expect(dataTableCtrl.settings.current).toBe(1);
+      dataTableCtrl.setTablePage('d');
+      expect(dataTableCtrl.settings.current).toBe(1);
+    });
   });
 
   describe('component', () => {

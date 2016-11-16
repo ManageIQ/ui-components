@@ -6,6 +6,7 @@ export default class DataTableController {
   public settings: any;
   /* @ngInject */
   constructor(public MiQDataTableService: any, private MiQEndpointsService: any, private $filter: any) {
+    this.settings = {};
     this.perPage = {
       label: 'Items per page',
       enabled: true,
@@ -30,6 +31,8 @@ export default class DataTableController {
       let start = (this.settings.current - 1) * this.settings.perpage;
       this.onLoadNext(start, this.settings.perpage);
       this.onSort(2, true);
+      this.settings.selectAllTitle = 'Select All';
+      this.settings.sortedByTitle = 'Sorted By';
     });
   }
 
@@ -82,6 +85,9 @@ export default class DataTableController {
   }
 
   public onItemSelect(item, isSelected) {
+    let selectedItem: any = _.find(this.rows, {id: item.id});
+    selectedItem.checked = isSelected;
+    selectedItem.selected = isSelected;
     console.log('Item which was selected and was selected?', item, isSelected);
   }
 

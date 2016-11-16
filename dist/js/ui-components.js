@@ -994,9 +994,9 @@
 	     * @function retrieveRowsAndColumnsFromUrl
 	     * @returns {ng.IPromise<IRowsColsResponse>} promise with type `IRowsColsResponse`.
 	     */
-	    DataTableService.prototype.retrieveRowsAndColumnsFromUrl = function (modelName, activeTree, currId) {
+	    DataTableService.prototype.retrieveRowsAndColumnsFromUrl = function (modelName, activeTree, currId, isExplorer, settings) {
 	        var _this = this;
-	        return this.fetchData(DataTableService.generateConfig(modelName, activeTree, currId))
+	        return this.fetchData(DataTableService.generateConfig(modelName, activeTree, currId, isExplorer, settings))
 	            .then(function (responseData) {
 	            _this.columns = responseData.data.data.head;
 	            _this.rows = responseData.data.data.rows;
@@ -1021,13 +1021,17 @@
 	     * @param modelName string with name of model.
 	     * @param activeTree string with active tree.
 	     * @param currId ID of current item.
+	     * @param isExplorer
+	     * @param settings
 	     * @returns {{params: {}}} config object with params set.
 	     */
-	    DataTableService.generateConfig = function (modelName, activeTree, currId) {
+	    DataTableService.generateConfig = function (modelName, activeTree, currId, isExplorer, settings) {
 	        var config = { params: {} };
 	        _.assign(config.params, DataTableService.generateModelConfig(modelName));
 	        _.assign(config.params, DataTableService.generateActiveTreeConfig(activeTree));
 	        _.assign(config.params, DataTableService.generateModuleIdConfig(currId));
+	        _.assign(config.params, DataTableService.generateExplorerConfig(isExplorer));
+	        _.assign(config.params, DataTableService.generateParamsFromSettings(settings));
 	        return config;
 	    };
 	    /**
@@ -1052,7 +1056,25 @@
 	     * @returns {any|{model_id: any}} object if any module ID is present.
 	     */
 	    DataTableService.generateModuleIdConfig = function (currId) {
-	        return currId && { model_id: currId };
+	        return currId && currId !== null && { model_id: currId };
+	    };
+	    /**
+	     *
+	     * @param isExplorer
+	     * @returns {any|boolean|{explorer: any}}
+	     */
+	    DataTableService.generateExplorerConfig = function (isExplorer) {
+	        return isExplorer && isExplorer !== null && { explorer: isExplorer };
+	    };
+	    DataTableService.generateParamsFromSettings = function (settings) {
+	        var params = {};
+	        if (settings) {
+	            _.assign(params, settings.current && { page: settings.current });
+	            _.assign(params, settings.perpage && { ppsetting: settings.perpage });
+	            _.assign(params, settings.sortBy && settings.sortBy.sortObject && { sort_choice: settings.sortBy.sortObject.text });
+	            _.assign(params, settings.sortBy && settings.sortBy.isAscending && { is_ascending: settings.sortBy.isAscending });
+	        }
+	        return params;
 	    };
 	    return DataTableService;
 	}());
@@ -1097,9 +1119,11 @@
 
 	"use strict";
 	var data_table_1 = __webpack_require__(46);
+	var tile_view_1 = __webpack_require__(50);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = function (module) {
 	    data_table_1.default(module);
+	    tile_view_1.default(module);
 	};
 
 
@@ -1139,6 +1163,26 @@
 	    function DataTableController() {
 	        _super.apply(this, arguments);
 	    }
+	    /**
+	     * This method will check if user wants to go to non existent page and will validate it.
+	     * @memberof DataTableController
+	     * @function setTablePage
+	     * @param pageNumber {Number} desired page.
+	     */
+	    DataTableController.prototype.setTablePage = function (pageNumber) {
+	        pageNumber = Number(pageNumber);
+	        if (_.isNaN(pageNumber)) {
+	            this.currentPageView = this.settings.current;
+	            pageNumber = this.currentPageView;
+	        }
+	        else {
+	            if (pageNumber <= 0) {
+	                this.currentPageView = 1;
+	                pageNumber = 1;
+	            }
+	            this.setPage(pageNumber);
+	        }
+	    };
 	    /**
 	     * Public method for getting column class, narrow column with checkbox or image.
 	     * @memberof DataTableController
@@ -1202,6 +1246,7 @@
 	exports.DataTableController = DataTableController;
 	/**
 	 * @description
+	 *    Component for data table.
 	 * @memberof miqStaticAssets.gtl
 	 * @ngdoc component
 	 * @name miqDataTable
@@ -1341,7 +1386,334 @@
 /* 49 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n  <div class=\"dataTables_header miq-data-tables-header\" ng-if=\"tableCtrl.rows.length > 0\">\n    <div class=\"row\">\n      <div class=\"pull-right\">\n        <div>\n          <label>{{tableCtrl.perPage.label}}: </label>\n          <miq-toolbar-list on-item-click=\"tableCtrl.perPageClick(item)\"\n                            toolbar-list=\"tableCtrl.perPage\"></miq-toolbar-list>\n        </div>\n        <div>\n          Some text sorted by\n        </div>\n      </div>\n    </div>\n  </div>\n  <table class=\"table table-bordered table-striped table-hover mig-table-with-footer mig-table\">\n    <thead>\n    <tr>\n      <th class=\"narrow miq-select\">\n        <input ng-if=\"tableCtrl.rows.length !== 0\" type=\"checkbox\" ng-model=\"isChecked\" ng-click=\"tableCtrl.onCheckAll(isChecked)\" title=\"Select all\" />\n      </th>\n      <th ng-if=\"$index !== 0\"\n          ng-repeat=\"column in tableCtrl.columns track by $index\"\n          ng-click=\"tableCtrl.onSortClick($index, !!tableCtrl.settings.sortBy && !tableCtrl.settings.sortBy.isAscending)\"\n          ng-class=\"tableCtrl.getColumnClass(column)\">\n        {{column.text}}\n        <div class=\"pull-right\" ng-if=\"tableCtrl.isFilteredBy(column)\" >\n          <i class=\"fa\" ng-class=\"tableCtrl.getSortClass()\"></i>\n        </div>\n      </th>\n    </tr>\n    </thead>\n    <tbody>\n    <tr ng-repeat=\"row in tableCtrl.rows\"\n        ng-class=\"{active : row.selected}\"\n        ng-click=\"vm.onRowClick({$event: $event, rowData: row})\">\n      <td ng-repeat=\"(columnKey, column) in tableCtrl.columns\" ng-class=\"{narrow: row.cells[columnKey].is_checkbox}\">\n        <input ng-if=\"row.cells[columnKey].is_checkbox\"\n               ng-click=\"tableCtrl.onRowSelected($event, isSelected, row)\"\n               onclick=\"event.stopPropagation();\"\n               type=\"checkbox\"\n               ng-model=\"isSelected\"\n               name=\"check_{{row.id}}\"\n               value=\"{{row.id}}\"\n               ng-checked=\"row.checked\"\n               class=\"list-grid-checkbox\">\n        <i ng-if=\"row.cells[columnKey].icon && tableCtrl.isIconOrImage(row, columnKey)\"\n           class=\"{{row.cells[columnKey].icon}}\"\n           title=\"row.cells[columnKey].title\"></i>\n        <img ng-if=\"row.cells[columnKey].icon === null && tableCtrl.isIconOrImage(row, columnKey)\"\n             ng-src=\"{{row.img_url}}\"\n             alt=\"{{row.cells[columnKey].title}}\"\n             title=\"{{row.cells[columnKey].title}}\" />\n        <span ng-if=\"row.cells[columnKey].text\">\n              {{row.cells[columnKey].text}}\n          </span>\n      </td>\n    </tr>\n    </tbody>\n  </table>\n  <div class=\"dataTables_footer\">\n    <div class=\"dataTables_paginate paging_bootstrap_input\">\n      <ul class=\"pagination\">\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === 1}\"\n            class=\"first\"\n            ng-click=\"tableCtrl.setPage(1)\">\n          <span class=\"fa fa-angle-double-left\"></span>\n        </li>\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === 1}\"\n            class=\"prev\"\n            ng-click=\"tableCtrl.setPage(tableCtrl.currentPageView - 1)\">\n          <span class=\"fa fa-angle-left\"></span>\n        </li>\n      </ul>\n      <div class=\"pagination-input\">\n        <form ng-submit=\"tableCtrl.setPage(tableCtrl.currentPageView)\">\n          <input type=\"text\" class=\"paginate_input\" ng-model=\"tableCtrl.currentPageView\">\n          <span class=\"paginate_of\">of <b>{{tableCtrl.settings.total}}</b></span>\n        </form>\n      </div>\n      <ul class=\"pagination\">\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === tableCtrl.settings.total}\"\n            class=\"next\"\n            ng-click=\"tableCtrl.setPage(tableCtrl.currentPageView + 1)\">\n          <span class=\"fa fa-angle-right\"></span>\n        </li>\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === tableCtrl.settings.total}\"\n            class=\"last\"\n            ng-click=\"tableCtrl.setPage(tableCtrl.settings.total)\">\n          <span class=\"fa fa-angle-double-right\"></span>\n        </li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
+	module.exports = "<div>\n  <div ng-if=\"tableCtrl.settings.isLoading\" class=\"spinner spinner-lg\"></div>\n  <div class=\"dataTables_header miq-data-tables-header\" ng-if=\"tableCtrl.rows && tableCtrl.rows.length > 0\">\n    <div class=\"row\">\n      <div class=\"pull-right\">\n        <div>\n          <label>{{tableCtrl.perPage.label}}: </label>\n          <miq-toolbar-list on-item-click=\"tableCtrl.perPageClick(item)\"\n                            toolbar-list=\"tableCtrl.perPage\"></miq-toolbar-list>\n        </div>\n        <div>\n          <label>{{tableCtrl.settings.sortedByTitle}}:</label> {{tableCtrl.settings.sortBy.sortObject.text}} - {{tableCtrl.settings.sortBy.isAscending ? 'ASC': 'DESC'}}\n        </div>\n      </div>\n    </div>\n  </div>\n  <table class=\"table table-bordered table-striped table-hover mig-table-with-footer mig-table\" ng-if=\"tableCtrl.rows.length !== 0\">\n    <thead>\n    <tr>\n      <th class=\"narrow miq-select\">\n        <input ng-if=\"tableCtrl.rows.length !== 0\" type=\"checkbox\" ng-model=\"isChecked\" ng-click=\"tableCtrl.onCheckAll(isChecked)\" title=\"{{tableCtrl.settings.selectAllTitle}}\" />\n      </th>\n      <th ng-if=\"$index !== 0\"\n          ng-repeat=\"column in tableCtrl.columns track by $index\"\n          ng-click=\"tableCtrl.onSortClick($index, !!tableCtrl.settings.sortBy && !tableCtrl.settings.sortBy.isAscending)\"\n          ng-class=\"tableCtrl.getColumnClass(column)\">\n        {{column.text}}\n        <div class=\"pull-right\" ng-if=\"tableCtrl.isFilteredBy(column)\" >\n          <i class=\"fa\" ng-class=\"tableCtrl.getSortClass()\"></i>\n        </div>\n      </th>\n    </tr>\n    </thead>\n    <tbody>\n    <tr ng-repeat=\"row in tableCtrl.rows\"\n        ng-class=\"{active : row.selected}\"\n        ng-click=\"tableCtrl.onRowClick({item: row, event: $event})\">\n      <td ng-repeat=\"(columnKey, column) in tableCtrl.columns\" ng-class=\"{narrow: row.cells[columnKey].is_checkbox}\">\n        <input ng-if=\"row.cells[columnKey].is_checkbox\"\n               ng-click=\"tableCtrl.onItemSelected({item: row, isSelected: isSelected})\"\n               onclick=\"event.stopPropagation();\"\n               type=\"checkbox\"\n               ng-model=\"isSelected\"\n               name=\"check_{{row.id}}\"\n               value=\"{{row.id}}\"\n               ng-checked=\"row.checked\"\n               class=\"list-grid-checkbox\">\n        <i ng-if=\"row.cells[columnKey].icon && tableCtrl.isIconOrImage(row, columnKey)\"\n           class=\"{{row.cells[columnKey].icon}}\"\n           title=\"row.cells[columnKey].title\"></i>\n        <img ng-if=\"row.cells[columnKey].icon === null && tableCtrl.isIconOrImage(row, columnKey)\"\n             ng-src=\"{{row.img_url}}\"\n             alt=\"{{row.cells[columnKey].title}}\"\n             title=\"{{row.cells[columnKey].title}}\" />\n        <span ng-if=\"row.cells[columnKey].text\">\n              {{row.cells[columnKey].text}}\n          </span>\n      </td>\n    </tr>\n    </tbody>\n  </table>\n  <div class=\"dataTables_footer\" ng-if=\"tableCtrl.rows.length !== 0\">\n    <div class=\"dataTables_paginate paging_bootstrap_input\">\n      <ul class=\"pagination\">\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === 1}\"\n            class=\"first\"\n            ng-click=\"tableCtrl.setTablePage(1)\">\n          <span class=\"fa fa-angle-double-left\"></span>\n        </li>\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === 1}\"\n            class=\"prev\"\n            ng-click=\"tableCtrl.setTablePage(tableCtrl.currentPageView - 1)\">\n          <span class=\"fa fa-angle-left\"></span>\n        </li>\n      </ul>\n      <div class=\"pagination-input\">\n        <form ng-submit=\"tableCtrl.setTablePage(tableCtrl.currentPageView)\">\n          <input type=\"text\" class=\"paginate_input\" ng-model=\"tableCtrl.currentPageView\">\n          <span class=\"paginate_of\">of <b>{{tableCtrl.settings.total}}</b></span>\n        </form>\n      </div>\n      <ul class=\"pagination\">\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === tableCtrl.settings.total}\"\n            class=\"next\"\n            ng-click=\"tableCtrl.setTablePage(tableCtrl.currentPageView + 1)\">\n          <span class=\"fa fa-angle-right\"></span>\n        </li>\n        <li ng-class=\"{disabled: tableCtrl.currentPageView === tableCtrl.settings.total}\"\n            class=\"last\"\n            ng-click=\"tableCtrl.setTablePage(tableCtrl.settings.total)\">\n          <span class=\"fa fa-angle-double-right\"></span>\n        </li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
+
+/***/ },
+/* 50 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var tileViewComponent_1 = __webpack_require__(51);
+	var pagingComponent_1 = __webpack_require__(54);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = function (module) {
+	    module.component('miqTileView', new tileViewComponent_1.default);
+	    module.component('miqPaging', new pagingComponent_1.default);
+	};
+
+
+/***/ },
+/* 51 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var tileType_1 = __webpack_require__(52);
+	var abstractDataViewClass_1 = __webpack_require__(48);
+	/**
+	 * Controller for tile components. It extends {@link miqStaticAssets.gtl.DataViewClass}.
+	 * @memberof miqStaticAssets.gtl
+	 * @ngdoc controller
+	 * @name TileViewController
+	 */
+	var TileViewController = (function (_super) {
+	    __extends(TileViewController, _super);
+	    /* @ngInject */
+	    TileViewController.$inject = ["$sce"];
+	    function TileViewController($sce) {
+	        _super.call(this);
+	        this.$sce = $sce;
+	        this.initOptions();
+	    }
+	    /**
+	     * Method for creating basic options for tiles.
+	     * @memberof TileViewController
+	     * @function initOptions
+	     */
+	    TileViewController.prototype.initOptions = function () {
+	        var _this = this;
+	        this.options = {
+	            selectionMatchProp: 'id',
+	            selectItems: false,
+	            multiSelect: true,
+	            showSelectBox: true,
+	            selectedItems: this.filterSelected(),
+	            onClick: function (item, event) { return _this.onTileClick(item); },
+	            onCheckBoxChange: function (item) { return _this.onTileSelect(item); },
+	            onItemClick: function (item, $event) { return _this.onRowClick({ item: item, event: $event }); },
+	            fetchTileName: function (item) { return _this.fetchTileName(item); },
+	            trustAsHtmlQuadicon: function (item) { return _this.trustAsHtmlQuadicon(item); },
+	            type: this.type
+	        };
+	    };
+	    /**
+	     * Method for enabling quadicons html to be displayed inside tile.
+	     * @memberof TileViewController
+	     * @function trustAsHtmlQuadicon
+	     * @param item item with quadicon.
+	     * @returns {any} trusted html object, which cn be used as `bind-html`.
+	     */
+	    TileViewController.prototype.trustAsHtmlQuadicon = function (item) {
+	        return this.$sce.trustAsHtml(item.quadicon);
+	    };
+	    /**
+	     * Method for fetching name of item, it will try to guess which column should be showed as name of tile, usually it's
+	     * column with Name in them.
+	     * @memberof TileViewController
+	     * @function fetchTileName
+	     * @param item which will be displayed in tile. If no column with name is not present third cell text will be used.
+	     * @returns {string} text which will be displayed as tile header.
+	     */
+	    TileViewController.prototype.fetchTileName = function (item) {
+	        var nameIndex = _.findIndex(this.columns, function (oneColumn) { return oneColumn.text && oneColumn.text.indexOf('Name') !== -1; });
+	        return (nameIndex !== -1 && item.cells && item.cells[nameIndex]) ?
+	            item.cells[nameIndex]['text'] :
+	            item.cells[2]['text'];
+	    };
+	    /**
+	     * Angular's method for fetching change events.
+	     * @memberof TileViewController
+	     * @function $onChanges
+	     * @param changesObj angular's change object.
+	     */
+	    TileViewController.prototype.$onChanges = function (changesObj) {
+	        if (changesObj.type) {
+	            this.options.type = this.type;
+	        }
+	        else if (changesObj.columns) {
+	            this.options.columns = this.columns;
+	        }
+	    };
+	    /**
+	     * Method which will be called when clicking on tile.
+	     * @memberof TileViewController
+	     * @function onTileClick
+	     * @param item which tile was clicked.
+	     */
+	    TileViewController.prototype.onTileClick = function (item) {
+	        this.onItemSelected({ item: item, isSelected: !item.selected });
+	    };
+	    TileViewController.prototype.onTileSelect = function (item) {
+	        this.onItemSelected({ item: item, isSelected: item.selected });
+	    };
+	    /**
+	     * Method for checking all tiles and then filtering selected items.
+	     * @memberof TileViewController
+	     * @function tileClass
+	     * @param isSelected true | false.
+	     */
+	    TileViewController.prototype.onCheckAllTiles = function (isSelected) {
+	        this.onCheckAll(isSelected);
+	        this.options.selectedItems = this.filterSelected();
+	    };
+	    /**
+	     * Method for filtering selected tiles based on checked property.
+	     * @memberof TileViewController
+	     * @function tileClass
+	     * @returns filtered array of checked items.
+	     */
+	    TileViewController.prototype.filterSelected = function () {
+	        return _.filter(this.rows, { checked: true });
+	    };
+	    /**
+	     * Angular's method for getting tile's class based on it's type.
+	     * @memberof TileViewController
+	     * @function tileClass
+	     * @returns {Object} it will return angular class object: `{miq-small-tile: boolean, miq-tile-with-body: boolean}`
+	     */
+	    TileViewController.prototype.tileClass = function () {
+	        return {
+	            'miq-small-tile': this.type === tileType_1.TileType.SMALL,
+	            'miq-tile-with-body': this.type === tileType_1.TileType.BIG
+	        };
+	    };
+	    return TileViewController;
+	}(abstractDataViewClass_1.DataViewClass));
+	exports.TileViewController = TileViewController;
+	/**
+	 * @description
+	 *    Component for tile list. This component requires pf-tile to be part of angular's components. For patternfly's
+	 *    implementation look at
+	 *    <a href="http://angular-patternfly.rhcloud.com/#/api/patternfly.views.directive:pfCardView">pfCardView</a>
+	 * @memberof miqStaticAssets.gtl
+	 * @ngdoc component
+	 * @name miqTileView
+	 * @attr {Object} type
+	 *    Type of tile look at {@see miqStaticAssets.gtl.TileType}
+	 * @attr {Object} rows
+	 *    Array of rows which will be displayed.
+	 * @attr {Object} perPage
+	 *    Object which will be displayed as dropdown picker to filter number of tiles.
+	 * @attr {Object} columns
+	 *    Columns which will be displayed as header in tile.
+	 * @attr {Object} settings
+	 *    Tile settings look at {@see ITableSettings} for more information.
+	 * @attr {Expression} loadMoreItems
+	 *    Function which will be called upon loading more items. Function call has to have `start`, `perPage` params.
+	 * @attr {Expression} onSort
+	 *    Function to triggering sorting items. Function call has to have `headerId`, `isAscending` params.
+	 * @attr {Expression} onRowClick
+	 *    Function which will be executed when click on tile event is fired. Function call has to have `item` param.
+	 * @attr {Expression} onItemSelected
+	 *    Function to be called on selecting item (trough clicking on tile). Function call has to have `item`, `isSelected`
+	 *    params.
+	 * @example
+	 * <miq-tile-view type="ctrl.type"
+	 *                rows="ctrl.rows"
+	 *                columns="ctrl.columns"
+	 *                per-page="ctrl.perPage"
+	 *                settings="ctrl.settings"
+	 *                load-more-items="ctrl.onLoadMoreItems(start, perPage)"
+	 *                on-sort="ctrl.onSort(headerId, isAscending)"
+	 *                on-row-click="ctrl.onRowClick(item)"
+	 *                on-item-selected="ctrl.onItemSelect(item, isSelected)>
+	 * </miq-tile-view>
+	 */
+	var TileView = (function () {
+	    function TileView() {
+	        this.replace = true;
+	        this.controller = TileViewController;
+	        this.template = __webpack_require__(53);
+	        this.controllerAs = 'tileCtrl';
+	        this.bindings = {
+	            type: '<',
+	            rows: '<',
+	            columns: '<',
+	            perPage: '<',
+	            settings: '<',
+	            loadMoreItems: '&',
+	            onSort: '&',
+	            onRowClick: '&',
+	            onItemSelected: '&'
+	        };
+	    }
+	    return TileView;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = TileView;
+
+
+/***/ },
+/* 52 */
+/***/ function(module, exports) {
+
+	"use strict";
+	/**
+	 * Enum for tile types. It holds string value of types for tiles.
+	 * @memberof miqStaticAssets.gtl
+	 * @ngdoc enum
+	 * @name TileType
+	 */
+	exports.TileType = {
+	    /**
+	     * Tile type: `small`
+	     * @type {string}
+	     */
+	    SMALL: 'small',
+	    /**
+	     * Tile type: `big`
+	     * @type {string}
+	     */
+	    BIG: 'big'
+	};
+
+
+/***/ },
+/* 53 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"miq-tile-section\">\n  <div ng-if=\"tileCtrl.settings.isLoading\" class=\"spinner spinner-lg\"></div>\n  <div class=\"row\" ng-if=\"tileCtrl.rows && tileCtrl.rows.length !== 0\">\n    <div class=\"miq-per-page col-md-2 col-ld-2\">\n      <label>{{tileCtrl.perPage.label}}: </label>\n      <miq-toolbar-list on-item-click=\"tileCtrl.perPageClick(item)\"\n                        toolbar-list=\"tileCtrl.perPage\"></miq-toolbar-list>\n    </div>\n    <miq-sort-items class=\"col-md-2 col-ld-2\"\n                    sort-object=\"tileCtrl.settings.sortBy\"\n                    headers=\"tileCtrl.columns\"\n                    on-sort=\"tileCtrl.onSortClick(sortObject.colId, isAscending)\"></miq-sort-items>\n    <div ng-if=\"tableCtrl.rows.length !== 0\" class=\"miq-select-all\">\n      <label>{{tileCtrl.settings.selectAllTitle}}: </label>\n      <input type=\"checkbox\" ng-model=\"isChecked\" ng-click=\"tileCtrl.onCheckAllTiles(isChecked)\" title=\"{{tableCtrl.settings.selectAllTitle}}\" />\n    </div>\n  </div>\n  <div class=\"miq-paging\" ng-if=\"tileCtrl.rows && tileCtrl.rows.length !== 0\">\n    <miq-paging settings=\"tileCtrl.settings\" on-change-page=\"tileCtrl.setPage(pageNumber)\"></miq-paging>\n  </div>\n  <div pf-card-view\n       config=\"tileCtrl.options\"\n       items=\"tileCtrl.rows\"\n       ng-class=\"tileCtrl.tileClass()\">\n    <div ng-switch=\"config.type\">\n      <ng-switch-when ng-switch-when=\"small\">\n        <div class=\"miq-tile-head\">\n          <a href=\"javascript:void(0)\" title=\"{{config.fetchTileName(item)}}\" ng-click=\"config.onItemClick(item, $event)\">{{config.fetchTileName(item) | limitToSuffix : 5 : 5 }}</a>\n        </div>\n        <div class=\"miq-quadicon\">\n          <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item, $event)\">\n            <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n          </a>\n        </div>\n      </ng-switch-when>\n      <ng-switch-when ng-switch-when=\"big\">\n        <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item, $event)\">{{config.fetchTileName(item)}}</a>\n        <div class=\"row miq-row-margin-only-top \">\n          <div class=\"col-md-3 col-ld-3 miq-icon-section\">\n            <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item, $event)\">\n              <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n            </a>\n          </div>\n          <div class=\"col-md-9 col-ld-9 miq-info-section\">\n            <dl class=\"dl-horizontal tile\">\n              <dt ng-repeat-start=\"(key, header) in config.columns | limitTo: 7 track by $index\" ng-if=\"header.text && header.text.indexOf('Name') === -1\" title=\"{{header.text}}\">{{header.text}}:</dt>\n              <dd ng-repeat-end ng-if=\"header.text && header.text.indexOf('Name') === -1\" title=\"{{item.cells[key].text}}\">{{item.cells[key].text | limitToSuffix : 25 : 25}}</dd>\n            </dl>\n          </div>\n        </div>\n      </ng-switch-when>\n    </div>\n  </div>\n  <div class=\"miq-paging\" ng-if=\"tileCtrl.rows && tileCtrl.rows.length !== 0\">\n    <miq-paging settings=\"tileCtrl.settings\" on-change-page=\"tileCtrl.setPage(pageNumber)\"></miq-paging>\n  </div>\n</div>\n"
+
+/***/ },
+/* 54 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	/**
+	 * Controller for paging component
+	 * @memberof miqStaticAssets.gtl
+	 * @ngdoc controller
+	 * @name PagingController
+	 */
+	var PagingController = (function () {
+	    function PagingController() {
+	        this.MAX_PAGES = 6;
+	    }
+	    /**
+	     * Public method for updating current paging, it will limit number of visible pages to `MAX_PAGES`.
+	     * @memberof PagingController
+	     * @function updatePages
+	     * @param total number of all item's pages.
+	     * @returns {any} array with page numbers which will be visible.
+	     */
+	    PagingController.prototype.updatePages = function (total) {
+	        var _this = this;
+	        if (total > this.MAX_PAGES) {
+	            var currentPage_1 = (this.settings.current < (this.settings.total - this.MAX_PAGES + 1)) ?
+	                this.settings.current :
+	                (this.settings.total - this.MAX_PAGES + 1);
+	            this.pages = _.times(this.MAX_PAGES, function (item) { return (currentPage_1 + item) - 1; });
+	        }
+	        else {
+	            this.pages = new Array(total);
+	            _.each(this.pages, function (item, key) {
+	                _this.pages[key] = key;
+	            });
+	        }
+	        return this.pages;
+	    };
+	    return PagingController;
+	}());
+	exports.PagingController = PagingController;
+	/**
+	 * @description
+	 *    Component for show paging for some long list (e.g. these are used in tile lists).
+	 *    Settings object example:
+	 *    ```javascript
+	 *    {
+	 *      current: 1,
+	 *      total: 5
+	 *    }
+	 *    ```
+	 * @memberof miqStaticAssets.gtl
+	 * @ngdoc component
+	 * @name miqPaging
+	 * @attr {Object} settings
+	 *    settings for paging component. It has `current` attribute `Number` and total `Number`
+	 *
+	 * @attr {Expression} onChangePage
+	 *    object which is currently sorted by.
+	 * @example
+	 * <miq-paging settings="settings"
+	 *             on-change-page="setPage(pageNumber)">
+	 * </miq-paging>
+	 */
+	var Paging = (function () {
+	    function Paging() {
+	        this.replace = true;
+	        this.controller = PagingController;
+	        this.template = __webpack_require__(55);
+	        this.controllerAs = 'pagingCtrl';
+	        this.bindings = {
+	            settings: '<',
+	            onChangePage: '&'
+	        };
+	    }
+	    return Paging;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = Paging;
+
+
+/***/ },
+/* 55 */
+/***/ function(module, exports) {
+
+	module.exports = "<ul class=\"pagination\">\n  <li>\n    <a ng-class=\"{disabled: pagingCtrl.settings.current === 1}\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: 1})\"\n       href=\"javascript:void(0)\">\n      <span class=\"i fa fa-angle-double-left\"></span>\n    </a>\n  </li>\n  <li>\n    <a ng-class=\"{disabled: pagingCtrl.settings.current === 1}\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: pagingCtrl.settings.current - 1})\"\n       href=\"javascript:void(0)\">\n      <span class=\"i fa fa-angle-left\"></span>\n    </a>\n  </li>\n  <li ng-repeat=\"page in pagingCtrl.updatePages(pagingCtrl.settings.total) track by $index\">\n    <a ng-class=\"{disabled: pagingCtrl.settings.current === (page + 1)}\"\n       href=\"javascript:void(0)\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: page + 1})\">\n      {{page + 1}}\n    </a>\n  </li>\n  <li>\n    <a ng-class=\"{disabled: (pagingCtrl.settings.current) === pagingCtrl.settings.total}\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: (pagingCtrl.settings.current + 1)})\"\n       href=\"javascript:void(0)\">\n      <span class=\"i fa fa-angle-right\"></span>\n    </a>\n  </li>\n  <li>\n    <a ng-class=\"{disabled: (pagingCtrl.settings.current) === pagingCtrl.settings.total}\"\n       ng-click=\"pagingCtrl.onChangePage({pageNumber: pagingCtrl.settings.total})\"\n       href=\"javascript:void(0)\">\n      <span class=\"i fa fa-angle-double-right\"></span>\n    </a>\n  </li>\n</ul>\n"
 
 /***/ }
 /******/ ]);

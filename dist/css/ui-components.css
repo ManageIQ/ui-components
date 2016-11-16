@@ -57,10 +57,7 @@ img.miq-gradient-background {
   text-align: center; }
 
 .miq-tile-section div.miq-paging {
-  display: block;
-  margin: auto;
-  width: 20%;
-  padding-left: 15px; }
+  text-align: center; }
   .miq-tile-section div.miq-paging .disabled {
     pointer-events: none;
     cursor: not-allowed;
@@ -72,8 +69,7 @@ img.miq-gradient-background {
 
 .miq-tile-with-body .card-view-pf .card {
   width: 375px;
-  height: 140px;
-  animation: fade-in 2s; }
+  height: 100%; }
   .miq-tile-with-body .card-view-pf .card .card-content {
     overflow: hidden; }
   .miq-tile-with-body .card-view-pf .card .miq-icon-section {
@@ -88,12 +84,13 @@ img.miq-gradient-background {
 
 .miq-small-tile .card-view-pf .card {
   width: 130px;
-  height: 131px;
-  animation: fade-in 2s; }
+  height: 131px; }
   .miq-small-tile .card-view-pf .card .card-content .miq-quadicon {
     display: inline-block; }
   .miq-small-tile .card-view-pf .card .card-content a {
     word-wrap: break-word; }
+  .miq-small-tile .card-view-pf .card .card-content .miq-tile-head {
+    margin-left: 20px; }
 
 @keyframes fade-in {
   0% {
@@ -113,6 +110,15 @@ img.miq-gradient-background {
 
 .paginate_of b {
   display: inline-block; }
+
+.miq-select-all input[type="checkbox"] {
+  margin: 0 10px 0;
+  vertical-align: middle;
+  position: relative;
+  top: -1px; }
+
+.miq-sand-paper, .miq-sand-paper > div {
+  background: #f5f5f5; }
 
 /* begin toolbar styling (to be moved to the ui-components repo) */
 .toolbar-pf .form-group {

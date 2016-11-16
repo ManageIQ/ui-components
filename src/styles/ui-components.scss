@@ -70,10 +70,7 @@ img.miq-gradient-background {
   }
 
   div.miq-paging {
-    display: block;
-    margin: auto;
-    width: 20%;
-    padding-left: 15px;
+    text-align: center;
 
     .disabled {
       pointer-events: none;
@@ -90,8 +87,7 @@ img.miq-gradient-background {
 .miq-tile-with-body .card-view-pf {
   .card {
     width: 375px;
-    height: 140px;
-    animation: fade-in 2s;
+    height: 100%;
 
     .card-content {
       overflow: hidden;
@@ -119,7 +115,6 @@ img.miq-gradient-background {
   .card {
     width: 130px;
     height: 131px;
-    animation: fade-in 2s;
 
     .card-content {
       .miq-quadicon {
@@ -127,6 +122,10 @@ img.miq-gradient-background {
       }
       a {
         word-wrap: break-word;
+      }
+
+      .miq-tile-head {
+        margin-left: 20px;
       }
     }
   }
@@ -160,6 +159,19 @@ img.miq-gradient-background {
 
 .paginate_of b {
   display: inline-block;
+}
+
+.miq-select-all {
+  input[type="checkbox"] {
+    margin: 0 10px 0;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+  }
+}
+
+.miq-sand-paper, .miq-sand-paper > div {
+  background: #f5f5f5;
 }
 
 /* begin toolbar styling (to be moved to the ui-components repo) */

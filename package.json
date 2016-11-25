@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack --watch",
     "test": "karma start",
-    "postinstall": "bower install && typings install && webpack && webpack --config webpack.vendor.config.js",
+    "prepublish": "typings install && webpack && webpack --config webpack.vendor.config.js",
     "build-docs": "jsdoc -c jsdoc-conf.json"
   },
   "repository": {

@@ -1,13 +1,14 @@
 {
   "name": "manageiq-ui-components",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "UI components for ManageIQ project",
   "main": "index.js",
   "scripts": {
     "start": "webpack --watch",
     "test": "karma start",
-    "postinstall": "bower install && typings install && webpack && webpack --config webpack.vendor.config.js",
-    "build-docs": "jsdoc -c jsdoc-conf.json"
+    "prepublish": "typings install && webpack && webpack --config webpack.vendor.config.js",
+    "build-docs": "jsdoc -c jsdoc-conf.json",
+    "bower": "bower install"
   },
   "repository": {
     "type": "git",

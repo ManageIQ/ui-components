@@ -32,4 +32,3 @@ export const ToolbarType  = {
    */
   SEPARATOR: 'separator'
 };
-

@@ -26,5 +26,5 @@ export default class ToolbarButton implements ng.IDirective {
     let directive: ng.IDirectiveFactory = () => new ToolbarButton();
     directive.$inject = [];
     return directive;
-  };
+  }
 }

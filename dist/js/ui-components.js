@@ -363,7 +363,7 @@
 	            this.$location.path(item.actionUrl);
 	        }
 	        else if (item.hasOwnProperty('redirectUrl')) {
-	            this.$window.location = item.redirectUrl;
+	            this.$window.location.replace(item.redirectUrl);
 	        }
 	        else if (item.hasOwnProperty('actionFunction')) {
 	            item.actionFunction();

@@ -7,7 +7,8 @@
     "start": "webpack --watch",
     "test": "karma start",
     "prepublish": "typings install && webpack && webpack --config webpack.vendor.config.js",
-    "build-docs": "jsdoc -c jsdoc-conf.json"
+    "build-docs": "jsdoc -c jsdoc-conf.json",
+    "bower": "bower install"
   },
   "repository": {
     "type": "git",

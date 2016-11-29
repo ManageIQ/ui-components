@@ -10,9 +10,7 @@ npm:
 cache:
   directories:
     - node_modules
-
-before_install:
-  - 'npm install -g typings bower webpack karma typescript'
+    - libs
 
 script: ./scripts/.build.sh
 

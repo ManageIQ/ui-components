@@ -2,6 +2,7 @@ import Toolbar from './toolbarComponent';
 import {ToolbarController} from './toolbarComponent';
 import {ToolbarType} from '../../interfaces/toolbarType';
 import {IToolbarItem} from '../../interfaces/toolbar';
+import * as angular from 'angular';
 
 describe('Toolbar test', () =>  {
 
@@ -75,7 +76,7 @@ describe('Toolbar test', () =>  {
       compile,
       compiledElement;
 
-    const toolbarData = require<string>('../../../../demo/data/toolbar.json');
+    const toolbarData = require('../../../../demo/data/toolbar.json');
 
     beforeEach(() => {
       angular.mock.module('miqStaticAssets.toolbar');

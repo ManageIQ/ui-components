@@ -1,12 +1,13 @@
 import DataTableSettingsService from './dataTableService';
 import {IRowsColsResponse} from '../interfaces/dataTable';
+import * as angular from 'angular';
 
 describe('DataTableSettingsService test', () =>  {
   let dataTableSettings, scope, httpBackend;
 
   let modelName = 'modelName', tree = 'someTree', currId = 'currId';
 
-  const dataTableData = require<string>('../../../demo/data/data-table.json');
+  const dataTableData = require('../../../demo/data/data-table.json');
   beforeEach(() => {
     angular.mock.module('miqStaticAssets.gtl');
     angular.mock.module('miqStaticAssets.common');

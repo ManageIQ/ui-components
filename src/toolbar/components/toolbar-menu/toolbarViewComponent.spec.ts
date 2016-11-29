@@ -1,4 +1,5 @@
 import ToolbarView from './toolbarViewComponent';
+import * as angular from 'angular';
 
 describe('ToolbarButton test', () =>  {
 

@@ -1,4 +1,5 @@
 import ToolbarButton from './toolbarButtonDirective';
+import * as angular from 'angular';
 
 describe('ToolbarButton test', () =>  {
 

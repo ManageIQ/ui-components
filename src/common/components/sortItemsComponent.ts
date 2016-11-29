@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+import * as ng from 'angular';
 /**
  * Controller for sort items component, it filters headers to fit config object of `pf-sort`.
  * @memberof miqStaticAssets.common

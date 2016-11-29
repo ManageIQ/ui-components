@@ -48,8 +48,12 @@
 	__webpack_require__(22);
 	__webpack_require__(23);
 	__webpack_require__(37);
+<<<<<<< 22723076a79daff9fe39f62e5400c8ef15f18dc5
 	__webpack_require__(42);
 	module.exports = __webpack_require__(58);
+=======
+	module.exports = __webpack_require__(42);
+>>>>>>> remove typings, add loading of types via importing module
 
 
 /***/ },
@@ -61,18 +65,42 @@
 /* 6 */,
 /* 7 */,
 /* 8 */,
-/* 9 */,
+/* 9 */
+/***/ function(module, exports) {
+
+	module.exports = angular;
+
+/***/ },
 /* 10 */,
 /* 11 */,
 /* 12 */,
 /* 13 */,
 /* 14 */,
+<<<<<<< 22723076a79daff9fe39f62e5400c8ef15f18dc5
 /* 15 */,
 /* 16 */,
 /* 17 */,
 /* 18 */,
 /* 19 */,
 /* 20 */
+=======
+/* 15 */
+>>>>>>> remove typings, add loading of types via importing module
+/***/ function(module, exports) {
+
+	module.exports = _;
+
+/***/ },
+<<<<<<< 22723076a79daff9fe39f62e5400c8ef15f18dc5
+/* 21 */,
+/* 22 */
+=======
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */
+>>>>>>> remove typings, add loading of types via importing module
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
@@ -80,9 +108,10 @@
 /***/ },
 /* 21 */,
 /* 22 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	///<reference path="tsd.d.ts"/>
+	"use strict";
+	var angular = __webpack_require__(9);
 	var miqStaticAssets;
 	(function (miqStaticAssets) {
 	    angular.module('miqStaticAssets', ['miqStaticAssets.toolbar', 'miqStaticAssets.common', 'miqStaticAssets.gtl',
@@ -95,9 +124,15 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+<<<<<<< 22723076a79daff9fe39f62e5400c8ef15f18dc5
 	///<reference path="../tsd.d.ts"/>
 	var services_1 = __webpack_require__(24);
 	var components_1 = __webpack_require__(27);
+=======
+	var services_1 = __webpack_require__(24);
+	var components_1 = __webpack_require__(27);
+	var angular = __webpack_require__(9);
+>>>>>>> remove typings, add loading of types via importing module
 	var toolbar;
 	(function (toolbar) {
 	    toolbar.app = angular.module('miqStaticAssets.toolbar', ['ngSanitize']);
@@ -124,6 +159,10 @@
 
 	"use strict";
 	var toolbarType_1 = __webpack_require__(26);
+<<<<<<< 22723076a79daff9fe39f62e5400c8ef15f18dc5
+=======
+	var _ = __webpack_require__(15);
+>>>>>>> remove typings, add loading of types via importing module
 	var ToolbarSettingsService = (function () {
 	    /*@ngInject*/
 	    ToolbarSettingsService.$inject = ["$http", "MiQEndpointsService"];
@@ -749,9 +788,15 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+<<<<<<< 22723076a79daff9fe39f62e5400c8ef15f18dc5
 	///<reference path="../tsd.d.ts"/>
 	var services_1 = __webpack_require__(38);
 	var components_1 = __webpack_require__(40);
+=======
+	var services_1 = __webpack_require__(38);
+	var components_1 = __webpack_require__(40);
+	var angular = __webpack_require__(9);
+>>>>>>> remove typings, add loading of types via importing module
 	var common;
 	(function (common) {
 	    common.app = angular.module('miqStaticAssets.common', []);
@@ -814,9 +859,14 @@
 
 /***/ },
 /* 41 */
+<<<<<<< 22723076a79daff9fe39f62e5400c8ef15f18dc5
 /***/ function(module, exports) {
+=======
+/***/ function(module, exports, __webpack_require__) {
+>>>>>>> remove typings, add loading of types via importing module
 
 	"use strict";
+	var _ = __webpack_require__(15);
 	/**
 	 * Controller for sort items component, it filters headers to fit config object of `pf-sort`.
 	 * @memberof miqStaticAssets.common
@@ -965,10 +1015,17 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+<<<<<<< 22723076a79daff9fe39f62e5400c8ef15f18dc5
 	///<reference path="../tsd.d.ts"/>
 	var services_1 = __webpack_require__(43);
 	var filters_1 = __webpack_require__(45);
 	var components_1 = __webpack_require__(47);
+=======
+	var services_1 = __webpack_require__(43);
+	var filters_1 = __webpack_require__(45);
+	var components_1 = __webpack_require__(47);
+	var angular = __webpack_require__(9);
+>>>>>>> remove typings, add loading of types via importing module
 	var gtl;
 	(function (gtl) {
 	    gtl.app = angular.module('miqStaticAssets.gtl', []);
@@ -992,9 +1049,14 @@
 
 /***/ },
 /* 44 */
+<<<<<<< 22723076a79daff9fe39f62e5400c8ef15f18dc5
 /***/ function(module, exports) {
+=======
+/***/ function(module, exports, __webpack_require__) {
+>>>>>>> remove typings, add loading of types via importing module
 
 	"use strict";
+	var _ = __webpack_require__(15);
 	/**
 	 * @memberof miqStaticAssets.gtl
 	 * @ngdoc service
@@ -1180,6 +1242,10 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var abstractDataViewClass_1 = __webpack_require__(50);
+<<<<<<< 22723076a79daff9fe39f62e5400c8ef15f18dc5
+=======
+	var _ = __webpack_require__(15);
+>>>>>>> remove typings, add loading of types via importing module
 	/**
 	 * This controller is for managing data table entities. It extends {@link miqStaticAssets.gtl.DataViewClass}
 	 * which is abstract class with basic methods for filtering, sorting and limiting entries in data table.
@@ -1334,9 +1400,14 @@
 
 /***/ },
 /* 50 */
+<<<<<<< 22723076a79daff9fe39f62e5400c8ef15f18dc5
 /***/ function(module, exports) {
+=======
+/***/ function(module, exports, __webpack_require__) {
+>>>>>>> remove typings, add loading of types via importing module
 
 	"use strict";
+	var _ = __webpack_require__(15);
 	/**
 	 * This is abstract controller for implementing shared methods between data table and tile views.
 	 * @memberof miqStaticAssets.gtl
@@ -1445,6 +1516,10 @@
 	};
 	var tileType_1 = __webpack_require__(54);
 	var abstractDataViewClass_1 = __webpack_require__(50);
+<<<<<<< 22723076a79daff9fe39f62e5400c8ef15f18dc5
+=======
+	var _ = __webpack_require__(15);
+>>>>>>> remove typings, add loading of types via importing module
 	/**
 	 * Controller for tile components. It extends {@link miqStaticAssets.gtl.DataViewClass}.
 	 * @memberof miqStaticAssets.gtl
@@ -1664,6 +1739,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	var _ = __webpack_require__(15);
 	/**
 	 * Controller for paging component
 	 * @memberof miqStaticAssets.gtl

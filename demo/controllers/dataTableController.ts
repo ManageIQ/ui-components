@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+
 export default class DataTableController {
   public rows;
   public cols;

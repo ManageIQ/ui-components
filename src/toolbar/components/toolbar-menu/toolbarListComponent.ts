@@ -75,7 +75,7 @@ export class ToolbarListController implements IToolbarListBindings {
  */
 export default class ToolbarList {
   public replace: boolean = true;
-  public template = require<string>('./toolbar-list.html');
+  public template = require('./toolbar-list.html');
   public controller: any = ToolbarListController;
   public controllerAs: string = 'vm';
   public bindings: any = {

@@ -1,9 +1,10 @@
 import AvailableComponentsService from './../services/availableComponentsService';
+import * as angular from 'angular';
 
-export default (module: ng.IModule) => {
+export default (module: angular.IModule) => {
   /* @ngInject */
-  module.config(($stateProvider: ng.ui.IStateProvider,
-                 $urlRouterProvider: ng.ui.IUrlRouterProvider) => {
+  module.config(($stateProvider: any,
+                 $urlRouterProvider: any) => {
     const allComponents = new AvailableComponentsService();
     angular.forEach(allComponents.availableComponents, (oneGroup) => {
       angular.forEach(oneGroup.components, (oneComp) => {
@@ -18,7 +19,7 @@ export default (module: ng.IModule) => {
 
     $stateProvider.state('main', {
       url: '/',
-      template: require<string>('./main.html')
+      template: require('./main.html')
     });
   });
 };

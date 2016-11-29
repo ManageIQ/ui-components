@@ -1,5 +1,6 @@
 import {IDataTableService, IRowsColsResponse} from '../interfaces/dataTable';
-
+import * as _ from 'lodash';
+import * as ng from 'angular';
 /**
  * @memberof miqStaticAssets.gtl
  * @ngdoc service

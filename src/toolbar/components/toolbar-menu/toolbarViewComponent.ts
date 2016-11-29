@@ -38,7 +38,7 @@ export class ToolbarViewController implements IToolbarViewBindings {
  */
 export default class ToolbarView {
   public replace: boolean = false;
-  public template = require<string>('./toolbar-view.html');
+  public template = require('./toolbar-view.html');
   public controller: any = ToolbarViewController;
   public controllerAs: string = 'vm';
   public bindings: any = {

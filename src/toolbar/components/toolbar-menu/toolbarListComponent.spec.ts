@@ -12,7 +12,7 @@ describe('ToolbarButton test', () =>  {
       compile,
     compiledElement;
 
-    const toolbarListData = require<string>('./toolbarList.sample.json');
+    const toolbarListData = require('./toolbarList.sample.json');
 
     beforeEach(() => {
       angular.mock.module('miqStaticAssets.toolbar');

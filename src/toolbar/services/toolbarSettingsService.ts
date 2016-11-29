@@ -1,5 +1,7 @@
 import {IToolbarItem, IToolbarSettings, IRequestData} from '../interfaces/toolbar';
 import {ToolbarType} from '../interfaces/toolbarType';
+import * as _ from 'lodash';
+import * as ng from 'angular';
 
 export default class ToolbarSettingsService {
   private countSelected: number = 0;

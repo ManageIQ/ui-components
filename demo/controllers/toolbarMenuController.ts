@@ -1,5 +1,3 @@
-///<reference path="../tsd.d.ts"/>
-
 export default class ToolbarMenuController {
   public toolbarMenu: any;
   public customToolbarItems: any;

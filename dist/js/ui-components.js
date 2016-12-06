@@ -602,7 +602,7 @@
 /* 32 */
 /***/ function(module, exports) {
 
-	module.exports = "<button title=\"{{toolbarButton.title}}\"\n        data-explorer=\"{{toolbarButton.explorer}}\"\n        data-confirm-tb=\"{{toolbarButton.confirm}}\"\n        id=\"{{toolbarButton.id}}\"\n        name=\"{{toolbarButton.name}}\"\n        type=\"button\"\n        class=\"btn btn-default\"\n        data-click=\"{{toolbarButton.id}}\"\n        data-url=\"{{toolbarButton.url}}\"\n        data-url_parms=\"{{toolbarButton.url_parms}}\"\n        data-prompt=\"{{toolbarButton.prompt}}\"\n        ng-class=\"{active: toolbarButton.selected, disabled: !toolbarButton.enabled}\"\n        ng-hide=\"toolbarButton.hidden\"\n        ng-click=\"onItemClick({item: toolbarButton, $event: $event})\">\n  <i ng-if=\"toolbarButton.icon\" class=\"{{toolbarButton.icon}}\" style=\"\"></i>\n  <img ng-if=\"toolbarButton.img_url && !toolbarButton.icon\" ng-src=\"{{toolbarButton.img_url}}\"\n       data-enabled=\"{{toolbarButton.img_url}}\"\n       data-disabled=\"{{toolbarButton.img_url}}\">\n  {{toolbarButton.text}}\n</button>\n"
+	module.exports = "<button title=\"{{toolbarButton.title}}\"\n        data-explorer=\"{{toolbarButton.explorer}}\"\n        data-confirm-tb=\"{{toolbarButton.confirm}}\"\n        id=\"{{toolbarButton.id}}\"\n        name=\"{{toolbarButton.name}}\"\n        type=\"button\"\n        class=\"btn btn-default\"\n        data-click=\"{{toolbarButton.id}}\"\n        data-url=\"{{toolbarButton.url}}\"\n        data-url_parms=\"{{toolbarButton.url_parms}}\"\n        data-prompt=\"{{toolbarButton.prompt}}\"\n        ng-class=\"{active: toolbarButton.selected, disabled: !toolbarButton.enabled}\"\n        ng-hide=\"toolbarButton.hidden\"\n        ng-click=\"onItemClick({item: toolbarButton, $event: $event})\">\n  <i ng-if=\"toolbarButton.icon && toolbarButton.text\" class=\"{{toolbarButton.icon}}\" style=\"margin-right: 5px;\"></i>\n  <i ng-if=\"toolbarButton.icon && !toolbarButton.text\" class=\"{{toolbarButton.icon}}\"></i>\n  <img ng-if=\"toolbarButton.img_url && !toolbarButton.icon\" ng-src=\"{{toolbarButton.img_url}}\"\n       data-enabled=\"{{toolbarButton.img_url}}\"\n       data-disabled=\"{{toolbarButton.img_url}}\">\n  {{toolbarButton.text}}\n</button>\n"
 
 /***/ },
 /* 33 */
@@ -684,7 +684,7 @@
 /* 34 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"btn-group\" dropdown ng-if=\"vm.isEmpty\">\n  <button type=\"button\" dropdown-toggle class=\"btn dropdown-toggle btn-default\"\n          ng-class=\"{disabled: !vm.toolbarList.enabled}\" title=\"{{vm.toolbarList.title}}\">\n    <i class=\"{{vm.toolbarList.icon}}\" style=\"margin-right: 5px;\" ng-if=\"vm.toolbarList.icon\"></i>\n    {{vm.toolbarList.text}}\n    <span class=\"caret\"></span>\n  </button>\n  <ul class=\"dropdown-menu\" role=\"menu\">\n    <li ng-repeat=\"item in vm.toolbarList.items track by $index\" ng-class=\"{disabled: !item.enabled}\">\n      <a ng-if=\"item.type !== 'separator'\"\n         ng-hide=\"item.hidden\"\n         href=\"\"\n         title=\"{{item.title}}\"\n         data-explorer=\"{{item.explorer}}\"\n         data-confirm-tb=\"{{item.confirm}}\"\n         ng-click=\"vm.onItemClick({item: item, $event: $event})\"\n         data-function=\"{{item.data.function}}\"\n         data-function-data=\"{{item.data['function-data']}}\"\n         data-target=\"{{item.data.target}}\"\n         data-toggle=\"{{item.data.toggle}}\"\n         data-click=\"{{item.id}}\"\n         name=\"{{item.id}}\"\n         id=\"{{item.id}}\"\n         data-url_parms=\"{{item.url_parms}}\"\n         data-prompt=\"{{item.prompt}}\"\n         data-url=\"{{item.url}}\">\n        <i ng-if=\"item.icon\" class=\"{{item.icon}}\"></i>\n        <img ng-if=\"item.img_url && !item.icon\" ng-src=\"{{item.img_url}}\"\n             data-enabled=\"{{item.img_url}}\"\n             data-disabled=\"{{item.img_url}}\">\n        {{item.text}}\n      </a>\n      <div ng-if=\"item.type === 'separator'\" class=\"divider \" role=\"presentation\" ng-hide=\"item.hidden\"></div>\n    </li>\n  </ul>\n</div>\n"
+	module.exports = "<div class=\"btn-group\" dropdown ng-if=\"vm.isEmpty\">\n  <button type=\"button\" dropdown-toggle class=\"btn dropdown-toggle btn-default\"\n          ng-class=\"{disabled: !vm.toolbarList.enabled}\" title=\"{{vm.toolbarList.title}}\">\n    <i class=\"{{vm.toolbarList.icon}}\" style=\"margin-right: 5px;\" ng-if=\"vm.toolbarList.icon\"></i>\n    {{vm.toolbarList.text}}\n    <span class=\"caret\"></span>\n  </button>\n  <ul class=\"dropdown-menu\" role=\"menu\">\n    <li ng-repeat=\"item in vm.toolbarList.items track by $index\" ng-class=\"{disabled: !item.enabled}\">\n      <a ng-if=\"item.type !== 'separator'\"\n         ng-hide=\"item.hidden\"\n         href=\"\"\n         title=\"{{item.title}}\"\n         data-explorer=\"{{item.explorer}}\"\n         data-confirm-tb=\"{{item.confirm}}\"\n         ng-click=\"vm.onItemClick({item: item, $event: $event})\"\n         data-function=\"{{item.data.function}}\"\n         data-function-data=\"{{item.data['function-data']}}\"\n         data-target=\"{{item.data.target}}\"\n         data-toggle=\"{{item.data.toggle}}\"\n         data-click=\"{{item.id}}\"\n         name=\"{{item.id}}\"\n         id=\"{{item.id}}\"\n         data-url_parms=\"{{item.url_parms}}\"\n         data-prompt=\"{{item.prompt}}\"\n         data-url=\"{{item.url}}\">\n        <i ng-if=\"item.icon && item.text\" class=\"{{item.icon}}\" style=\"margin-right: 5px;\"></i>\n        <i ng-if=\"item.icon && !item.text\" class=\"{{item.icon}}\"></i>\n        <img ng-if=\"item.img_url && !item.icon\" ng-src=\"{{item.img_url}}\"\n             data-enabled=\"{{item.img_url}}\"\n             data-disabled=\"{{item.img_url}}\">\n        {{item.text}}\n      </a>\n      <div ng-if=\"item.type === 'separator'\" class=\"divider \" role=\"presentation\" ng-hide=\"item.hidden\"></div>\n    </li>\n  </ul>\n</div>\n"
 
 /***/ },
 /* 35 */
@@ -1744,17 +1744,7 @@
 	 */
 	var SiteSwitcherController = (function () {
 	    function SiteSwitcherController() {
-	        this.showSwitcher = false;
 	    }
-	    /**
-	      * Public method for showing the switcher drop down
-	      * @memberof SiteSwitcherController
-	      * @function toggleSwitcher
-	      */
-	    SiteSwitcherController.prototype.toggleSwitcher = function () {
-	        this.showSwitcher = !this.showSwitcher;
-	        console.log(this.showSwitcher + ' changed');
-	    };
 	    return SiteSwitcherController;
 	}());
 	exports.SiteSwitcherController = SiteSwitcherController;
@@ -1764,15 +1754,29 @@
 	 *    Settings object example:
 	 *    ```javascript
 	 *    {
-	 *      sites: [],
+	 *      sites: [{
+	 *        title: 'Launch Operations UI',
+	 *        tooltip: 'Launch Operations UI',
+	 *        iconClass: 'fa-cogs',
+	 *        url: 'http://www.manageiq.com'
+	 *      }, {
+	 *        title: 'Launch Service UI',
+	 *        tooltip: 'Launch Service UI',
+	 *        iconClass: 'fa-cog',
+	 *        url: 'http://www.manageiq.com'
+	 *      }, {
+	 *        title: 'Home',
+	 *        tooltip: 'Home',
+	 *        iconClass: 'fa-home',
+	 *        url: 'http://www.manageiq.com'
+	 *      }]
 	 *    }
 	 *    ```
 	 * @memberof miqStaticAssets
 	 * @ngdoc component
 	 * @name miqSiteSwitcher
-	 * @attr {Object} sites
-
-	 *     An array of sites to display in the switcher (includes url, iconClass and title)
+	 * @attr {Array} sites
+	 *     An array of sites to display in the switcher (includes url, iconClass, tooltip and title).  Since we use typescript this attribute has specific type of: `Array<ISite>`
 	 *
 	 * @example
 	 * <miq-site-switcher sites="sites">
@@ -1797,7 +1801,7 @@
 /* 60 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"dropdown miq-siteswitcher\">\n  <button class=\"btn btn-link dropdown-toggle\" type=\"button\" id=\"domain-switcher\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"true\">\n    <span class=\"fa fa-lg fa-th miq-siteswitcher-icon\"></span>\n  </button>\n  <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"domain-switcher\">\n    <div ng-repeat=\"site in ctrl.sites\" class=\"miq-siteswitcher-entry\">\n      <a class=\"miq-siteswitcher-link\" href=\"{{site.url}}\" target=\"_blank\">\n        <span title=\"{{site.tooltip}}\" class=\"fa fa-3x {{site.iconClass}}\"></span>\n        <div>{{site.title}}</div>\n      </a>\n    </div>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"dropdown miq-siteswitcher\">\n  <button class=\"btn btn-link dropdown-toggle\" type=\"button\" id=\"domain-switcher\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"true\">\n    <span class=\"fa fa-lg fa-th miq-siteswitcher-icon\"></span>\n  </button>\n  <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"domain-switcher\">\n    <div ng-repeat=\"site in ctrl.sites\" class=\"miq-siteswitcher-entry\">\n      <a class=\"miq-siteswitcher-link\" ng-href=\"{{site.url}}\" target=\"_blank\">\n        <span title=\"{{site.tooltip}}\" class=\"fa fa-3x\" ng-class=\"site.iconClass\"></span>\n        <div>{{site.title}}</div>\n      </a>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }
 /******/ ]);

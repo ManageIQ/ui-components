@@ -8,5 +8,5 @@ export default (module: ng.IModule) => {
   module.controller('demoAvailableComponents', AvailableComponentsController);
   module.controller('demoToolbarMenu', ToolbarMenuController);
   module.controller('demoDataTable', DataTableController);
-  module.controller('siteSwitcher', SiteSwitcherController);
+  module.controller('demoSiteSwitcher', SiteSwitcherController);
 };

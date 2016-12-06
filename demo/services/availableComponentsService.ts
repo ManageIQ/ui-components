@@ -72,7 +72,7 @@ export default class AvailableComponentsService {
         new AvailableComponent('basic',
           'Site switcher',
           '/basic',
-          require<string>('./../views/site-switcher/basic.html'), 'siteSwitcher as vm')
+          require<string>('./../views/site-switcher/basic.html'), 'demoSiteSwitcher as vm')
       ])
     ];
   }

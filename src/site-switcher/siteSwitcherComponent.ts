@@ -1,21 +1,20 @@
 /**
+ * @interface
+ */
+export interface ISite {
+  url: string;
+  title: string;
+  tooltip?: string;
+  iconClass: any;
+}
+
+/**
  * Controller for site switcher component
  * @memberof miqStaticAssets
  * @ngdoc controller
  * @name SiteSwitcherController
  */
 export class SiteSwitcherController {
-  public showSwitcher: boolean = false;
-
-  /**
-    * Public method for showing the switcher drop down
-    * @memberof SiteSwitcherController
-    * @function toggleSwitcher
-    */
-  public toggleSwitcher() {
-    this.showSwitcher = !this.showSwitcher;
-    console.log(this.showSwitcher + ' changed');
-  }
 }
 
 /**
@@ -24,14 +23,29 @@ export class SiteSwitcherController {
  *    Settings object example:
  *    ```javascript
  *    {
- *      sites: [],
+ *      sites: [{
+ *        title: 'Launch Operations UI',
+ *        tooltip: 'Launch Operations UI',
+ *        iconClass: 'fa-cogs',
+ *        url: 'http://www.manageiq.com'
+ *      }, {
+ *        title: 'Launch Service UI',
+ *        tooltip: 'Launch Service UI',
+ *        iconClass: 'fa-cog',
+ *        url: 'http://www.manageiq.com'
+ *      }, {
+ *        title: 'Home',
+ *        tooltip: 'Home',
+ *        iconClass: 'fa-home',
+ *        url: 'http://www.manageiq.com'
+ *      }]
  *    }
  *    ```
  * @memberof miqStaticAssets
  * @ngdoc component
  * @name miqSiteSwitcher
- * @attr {Object} sites 
- *     An array of sites to display in the switcher (includes url, iconClass and title)
+ * @attr {Array} sites
+ *     An array of sites to display in the switcher (includes url, iconClass, tooltip and title).  Since we use typescript this attribute has specific type of: `Array<ISite>`
  *
  * @example
  * <miq-site-switcher sites="sites">

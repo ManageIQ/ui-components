@@ -24,6 +24,7 @@ dist/index.html
 tsd/
 typings/
 vendor.js
+vendor.css
 *.css.map
 *.js.map
 

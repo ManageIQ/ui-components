@@ -1,6 +1,5 @@
 import * as _ from 'lodash';
 import * as ng from 'angular';
-
 /**
  * Controller for paging component
  * @memberof miqStaticAssets.gtl

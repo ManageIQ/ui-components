@@ -54,7 +54,7 @@ export class SiteSwitcherController {
  */
 export default class SiteSwitcher implements ng.IComponentOptions {
   public controller = SiteSwitcherController;
-  public template = require<string>('./site-switcher.html');
+  public template = require('./site-switcher.html');
   public controllerAs = 'ctrl';
   public bindings: any = {
     sites: '<'

@@ -10,7 +10,8 @@ module.exports = {
   modules: {
     toolbar: '/toolbar',
     common: '/common',
-    gtl: '/gtl'
+    gtl: '/gtl',
+    siteSwitcher: '/site-switcher'
   },
   nodePackages: 'node_modules/',
   get stylesheetPath() {

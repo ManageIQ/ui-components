@@ -17,17 +17,17 @@ export interface IAvailableGroup {
 
 export class AvailableGroup implements IAvailableGroup {
   public constructor(public name: string,
-                     public title: string,
-                     public location: string,
-                     public components: IAvailComponent[]) {}
+    public title: string,
+    public location: string,
+    public components: IAvailComponent[]) { }
 }
 
 export class AvailableComponent implements IAvailComponent {
   public constructor(public name: string,
-                     public title: string,
-                     public location: string,
-                     public template: string,
-                     public controller: string) {}
+    public title: string,
+    public location: string,
+    public template: string,
+    public controller: string) { }
 }
 export default class AvailableComponentsService {
   public availableComponents: IAvailableGroup[];
@@ -66,7 +66,13 @@ export default class AvailableComponentsService {
         new AvailableComponent('basic',
           'Basic data table',
           '/basic',
-          require<string>('./../views/data-table/basic.html'),'demoDataTable as vm')
+          require<string>('./../views/data-table/basic.html'), 'demoDataTable as vm')
+      ]),
+      new AvailableGroup('site-switcher', 'Site Switcher Components', '/site-switcher', [
+        new AvailableComponent('basic',
+          'Site switcher',
+          '/basic',
+          require<string>('./../views/site-switcher/basic.html'), 'demoSiteSwitcher as vm')
       ])
     ];
   }

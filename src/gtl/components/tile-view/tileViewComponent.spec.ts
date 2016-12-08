@@ -183,9 +183,9 @@ describe('tile component test', () =>  {
       expect(perPage.querySelectorAll('miq-toolbar-list li').length).toBe(1);
     });
 
-    it('should show paging at top and bottom', () => {
+    it('should show paging at top', () => {
       let paging = compiledElement[0].querySelectorAll('.miq-paging');
-      expect(paging.length).toBe(2);
+      expect(paging.length).toBe(1);
     });
 
     it('should contain card view', () => {

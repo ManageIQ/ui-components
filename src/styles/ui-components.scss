@@ -72,15 +72,28 @@ img.miq-gradient-background {
   div.miq-paging {
     text-align: center;
 
-    .disabled {
-      pointer-events: none;
-      cursor: not-allowed;
-      background-color: #fafafa !important;
-      background-image: none !important;
-      border-color: #d1d1d1 !important;
-      color: #8b8d8f !important;
-      opacity: 1;
+    ul {
+      margin-top: 0;
     }
+  }
+}
+
+.miq-tile-section, .miq-data-table {
+  .disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    background-color: #fafafa !important;
+    background-image: none !important;
+    border-color: #d1d1d1 !important;
+    color: #8b8d8f !important;
+    opacity: 1;
+  }
+}
+
+.miq-data-table {
+  .miq-paging ul.pagination{
+    margin-top: 0;
+    margin-bottom: 10px;
   }
 }
 
@@ -162,6 +175,11 @@ img.miq-gradient-background {
 }
 
 .miq-select-all {
+
+  label {
+    margin-left: 35px;
+  }
+
   input[type="checkbox"] {
     margin: 0 10px 0;
     vertical-align: middle;
@@ -172,6 +190,17 @@ img.miq-gradient-background {
 
 .miq-sand-paper, .miq-sand-paper > div {
   background: #f5f5f5;
+  overflow: hidden;
+}
+
+.miq-tile-view {
+  height: 100vh;
+
+  .card-view-pf {
+    height: 72%;
+    overflow-y: auto;
+    margin-right: -20px;
+  }
 }
 
 /* begin toolbar styling (to be moved to the ui-components repo) */

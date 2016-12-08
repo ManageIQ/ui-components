@@ -45,7 +45,8 @@ export class SiteSwitcherController {
  * @ngdoc component
  * @name miqSiteSwitcher
  * @attr {Array} sites
- *     An array of sites to display in the switcher (includes url, iconClass, tooltip and title).  Since we use typescript this attribute has specific type of: `Array<ISite>`
+ *     An array of sites to display in the switcher (includes url, iconClass, tooltip and title).
+ *     Since we use typescript this attribute has specific type of: `Array<ISite>`
  *
  * @example
  * <miq-site-switcher sites="sites">

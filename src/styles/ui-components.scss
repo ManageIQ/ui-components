@@ -91,9 +91,13 @@ img.miq-gradient-background {
 }
 
 .miq-data-table {
-  .miq-paging ul.pagination{
-    margin-top: 0;
-    margin-bottom: 10px;
+  .miq-paging {
+    text-align: center;
+
+    ul.pagination{
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
   }
 }
 

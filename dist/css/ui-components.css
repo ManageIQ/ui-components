@@ -70,9 +70,11 @@ img.miq-gradient-background {
   color: #8b8d8f !important;
   opacity: 1; }
 
-.miq-data-table .miq-paging ul.pagination {
-  margin-top: 0;
-  margin-bottom: 10px; }
+.miq-data-table .miq-paging {
+  text-align: center; }
+  .miq-data-table .miq-paging ul.pagination {
+    margin-top: 0;
+    margin-bottom: 10px; }
 
 .miq-tile-with-body .card-view-pf .card {
   width: 375px;

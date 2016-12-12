@@ -18,20 +18,6 @@
       <miq-paging settings="tableCtrl.settings" on-change-page="tableCtrl.setTablePage(pageNumber)"></miq-paging>
     </div>
   </div>
-  <div class="dataTables_header miq-data-tables-header" ng-if="tableCtrl.rows && tableCtrl.rows.length > 0">
-    <div class="row">
-      <div class="pull-right">
-        <div>
-          <label>{{tableCtrl.perPage.label}}: </label>
-          <miq-toolbar-list on-item-click="tableCtrl.perPageClick(item)"
-                            toolbar-list="tableCtrl.perPage"></miq-toolbar-list>
-        </div>
-        <div>
-          <label>{{tableCtrl.settings.sortedByTitle}}:</label> {{tableCtrl.settings.sortBy.sortObject.text}} - {{tableCtrl.settings.sortBy.isAscending ? 'ASC': 'DESC'}}
-        </div>
-      </div>
-    </div>
-  </div>
   <table class="table table-bordered table-striped table-hover mig-table-with-footer mig-table" ng-if="tableCtrl.rows.length !== 0">
     <thead>
     <tr>

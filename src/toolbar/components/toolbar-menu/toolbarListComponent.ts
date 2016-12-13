@@ -21,10 +21,6 @@ export class ToolbarListController implements IToolbarListBindings {
   public isEmpty: boolean = false;
   public dropDownClass: any[];
 
-  constructor() {
-    console.log(this);
-  }
-
   /**
    * Method for handling clicking on toolbar list's item.
    * @memberof ToolbarListController

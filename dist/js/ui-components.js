@@ -619,7 +619,6 @@
 	var ToolbarListController = (function () {
 	    function ToolbarListController() {
 	        this.isEmpty = false;
-	        console.log(this);
 	    }
 	    /**
 	     * Angular's function to observe on changes.

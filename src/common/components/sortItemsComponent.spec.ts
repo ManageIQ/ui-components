@@ -3,6 +3,8 @@ import {SortItemsController} from './sortItemsComponent';
 
 describe('Sort items test', () =>  {
   let headers = [{is_narrow: true}, {col_id: 2, text: 'something'}, {col_id: 3, text: 'something2'}];
+  let sortObject = {sortObject: {col_id: 3, text: 'something2'}, isAscending: true};
+
   it('should create component', () => {
     let sortItems = new SortItems;
     expect(sortItems).toBeDefined();
@@ -10,10 +12,18 @@ describe('Sort items test', () =>  {
 
   describe('controller', () => {
     let sortItemsCtrl;
+    const onSort = jasmine.createSpy('onSort');
 
     beforeEach(() => {
-      angular.mock.inject(() => {
-        sortItemsCtrl = new SortItemsController();
+      let bindings = {
+        onSort: onSort,
+        headers: headers,
+        sortObject: sortObject,
+        dropDownClass: ['someClass']
+      };
+      angular.mock.module('miqStaticAssets.common');
+      angular.mock.inject(($componentController) => {
+        sortItemsCtrl = $componentController('miqSortItems', {$element: angular.element()}, bindings);
       });
     });
 

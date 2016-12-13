@@ -6,6 +6,7 @@ import {IToolbarItem} from '../../interfaces/toolbar';
  */
 export interface IToolbarListBindings {
   toolbarList: any;
+  dropDownClass: any[];
   onItemClick: (args: {item: any}) => void;
 }
 
@@ -18,6 +19,11 @@ export interface IToolbarListBindings {
 export class ToolbarListController implements IToolbarListBindings {
   public toolbarList: IToolbarItem;
   public isEmpty: boolean = false;
+  public dropDownClass: any[];
+
+  constructor() {
+    console.log(this);
+  }
 
   /**
    * Method for handling clicking on toolbar list's item.
@@ -78,6 +84,7 @@ export default class ToolbarList {
   public controllerAs: string = 'vm';
   public bindings: any = {
     toolbarList: '<',
-    onItemClick: '&'
+    onItemClick: '&',
+    dropDownClass: '<'
   };
 }

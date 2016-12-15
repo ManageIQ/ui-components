@@ -6,12 +6,30 @@
 [![Coverage Status](https://coveralls.io/repos/github/ManageIQ/ui-components/badge.svg)](https://coveralls.io/github/ManageIQ/ui-components)
 
 
+## Purpose
+
+The purpose of this repository is to provide reusable components for the [ManageIQ](http:github.com/manageiq/manageiq) 
+project. These are not general purpose components, but specific to ManageIQ, however, reusable across all of 
+ManageIQ (providers). The intention is to provide components that are reusable in various ways. Many of these components
+are 'Smart Components' that know how to communicate to backend endpoints(data-driven by provider) and retrieve relevant data for 
+the component's configuration.
+
+As we achieve greater reuse, the idea is to move more and more components to this repository. Creating a repository for
+*smart* reusable components (specific to a domain) across providers.
+
 ## Architectural Goals
 
-   * Separate git repository from ManageIQ
-   * Components communicate via REST with ManageIQ API
-   * Maintain routing inside ManageIQ (routes.rb)
+* Separate git repository from ManageIQ
+* Components communicate via REST with ManageIQ API
+* Maintain routing inside ManageIQ (routes.rb)
 
+## Technologies
+
+* Angular 1.5+ (soon to be Angular 2.x)
+* Typescript
+* Webpack
+* Npm Libraries 
+* Bower (soon to be removed and replaced with npm/yarn)
 
 ## Architecture
 
@@ -28,6 +46,8 @@ For a great overview of using Angular 1.5.x Components please see: [NG-Conf 2016
 ## Development Environment
 
 You need to have installed [Node.js >= 6  and npm >= 3](https://docs.npmjs.com/getting-started/installing-node) on your system.
+It is recommended to use a node version manager such as [n](https://www.npmjs.com/package/n). If you have node installed then it is 
+just `npm install -g n` and then `n lts` to use the latest LTS version of node (see the doces for switching versions).
 
 Install these node packages globally in the system
 ```

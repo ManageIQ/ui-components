@@ -69,6 +69,7 @@ export abstract class DataViewClass implements IDataTableBinding {
     this.currentPageView = pageNumber;
     const start = DataViewClass.calculateStartIndex(pageNumber, this.settings.perpage);
     this.loadMoreItems({start: start, perPage: this.settings.perpage});
+    this.onCheckAll(true);
   }
 
   /**

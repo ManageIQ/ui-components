@@ -1,17 +1,23 @@
-<div>
+<div class="miq-data-table">
   <div ng-if="tableCtrl.settings.isLoading" class="spinner spinner-lg"></div>
-  <div class="dataTables_header miq-data-tables-header" ng-if="tableCtrl.rows && tableCtrl.rows.length > 0">
-    <div class="row">
-      <div class="pull-right">
-        <div>
-          <label>{{tableCtrl.perPage.label}}: </label>
-          <miq-toolbar-list on-item-click="tableCtrl.perPageClick(item)"
-                            toolbar-list="tableCtrl.perPage"></miq-toolbar-list>
-        </div>
-        <div>
-          <label>{{tableCtrl.settings.sortedByTitle}}:</label> {{tableCtrl.settings.sortBy.sortObject.text}} - {{tableCtrl.settings.sortBy.isAscending ? 'ASC': 'DESC'}}
-        </div>
-      </div>
+  <div class="row miq-pagination" ng-if="tableCtrl.rows && tableCtrl.rows.length !== 0">
+    <div ng-if="tableCtrl.rows.length !== 0" class="miq-select-all col-md-3 col-ld-3">
+      <label>{{tableCtrl.settings.selectAllTitle}}: </label>
+      <input type="checkbox" ng-model="isChecked" ng-click="tableCtrl.onCheckAll(isChecked)" title="{{tableCtrl.settings.selectAllTitle}}" />
+    </div>
+    <div class="miq-per-page col-md-2 col-ld-2">
+      <label>{{tableCtrl.perPage.label}}: </label>
+      <miq-toolbar-list on-item-click="tableCtrl.perPageClick(item)"
+                        drop-down-class="tableCtrl.settings.dropDownClass"
+                        toolbar-list="tableCtrl.perPage"></miq-toolbar-list>
+    </div>
+    <miq-sort-items class="col-md-2 col-ld-2"
+                    sort-object="tableCtrl.settings.sortBy"
+                    headers="tableCtrl.columns"
+                    drop-down-class="tableCtrl.settings.dropDownClass"
+                    on-sort="tableCtrl.onSortClick(sortObject.colId, isAscending)"></miq-sort-items>
+    <div class="miq-paging col-md-3 col-ld-3" ng-if="tableCtrl.rows && tableCtrl.rows.length !== 0">
+      <miq-paging settings="tableCtrl.settings" on-change-page="tableCtrl.setTablePage(pageNumber)"></miq-paging>
     </div>
   </div>
   <table class="table table-bordered table-striped table-hover mig-table-with-footer mig-table" ng-if="tableCtrl.rows.length !== 0">
@@ -59,38 +65,4 @@
     </tr>
     </tbody>
   </table>
-  <div class="dataTables_footer" ng-if="tableCtrl.rows.length !== 0">
-    <div class="dataTables_paginate paging_bootstrap_input">
-      <ul class="pagination">
-        <li ng-class="{disabled: tableCtrl.currentPageView === 1}"
-            class="first"
-            ng-click="tableCtrl.setTablePage(1)">
-          <span class="fa fa-angle-double-left"></span>
-        </li>
-        <li ng-class="{disabled: tableCtrl.currentPageView === 1}"
-            class="prev"
-            ng-click="tableCtrl.setTablePage(tableCtrl.currentPageView - 1)">
-          <span class="fa fa-angle-left"></span>
-        </li>
-      </ul>
-      <div class="pagination-input">
-        <form ng-submit="tableCtrl.setTablePage(tableCtrl.currentPageView)">
-          <input type="text" class="paginate_input" ng-model="tableCtrl.currentPageView">
-          <span class="paginate_of">of <b>{{tableCtrl.settings.total}}</b></span>
-        </form>
-      </div>
-      <ul class="pagination">
-        <li ng-class="{disabled: tableCtrl.currentPageView === tableCtrl.settings.total}"
-            class="next"
-            ng-click="tableCtrl.setTablePage(tableCtrl.currentPageView + 1)">
-          <span class="fa fa-angle-right"></span>
-        </li>
-        <li ng-class="{disabled: tableCtrl.currentPageView === tableCtrl.settings.total}"
-            class="last"
-            ng-click="tableCtrl.setTablePage(tableCtrl.settings.total)">
-          <span class="fa fa-angle-double-right"></span>
-        </li>
-      </ul>
-    </div>
-  </div>
 </div>

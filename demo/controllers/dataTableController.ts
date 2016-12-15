@@ -33,6 +33,7 @@ export default class DataTableController {
       this.onSort(2, true);
       this.settings.selectAllTitle = 'Select All';
       this.settings.sortedByTitle = 'Sorted By';
+      this.settings.dropDownClass = ['someClass'];
     });
   }
 

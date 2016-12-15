@@ -154,23 +154,6 @@ describe('DataTable test', () =>  {
       scope.$digest();
     });
 
-    it('creates data table header with dropdown as per page selector', () => {
-      let header = compiledElement[0].querySelector('.miq-data-tables-header');
-      expect(header).toBeDefined();
-      expect(header.querySelectorAll('miq-toolbar-list li').length).toBe(1);
-    });
-
-    it('creates table footer with paging', () => {
-      let footer = compiledElement[0].querySelector('.dataTables_footer');
-      expect(footer.querySelectorAll('.pagination').length).toBe(2);
-      expect(footer.querySelectorAll('.pagination-input').length).toBeDefined();
-      expect(footer.querySelectorAll('.pagination li').length).toBe(4);
-      expect(footer.querySelector('.pagination .first').classList[1]).toBe('disabled');
-      expect(footer.querySelector('.pagination .prev').classList[1]).toBe('disabled');
-      expect(footer.querySelector('.pagination .next').classList[1]).toBe('disabled');
-      expect(footer.querySelector('.pagination .last').classList[1]).toBe('disabled');
-    });
-
     it('creates table head', () => {
       let header = compiledElement[0].querySelector('.mig-table-with-footer thead');
       expect(header).toBeDefined();

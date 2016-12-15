@@ -1,4 +1,4 @@
-<div class="btn-group" dropdown ng-if="vm.isEmpty">
+<div class="btn-group" ng-class="vm.dropDownClass" dropdown ng-if="vm.isEmpty">
   <button type="button" dropdown-toggle class="btn dropdown-toggle btn-default"
           ng-class="{disabled: !vm.toolbarList.enabled}" title="{{vm.toolbarList.title}}">
     <i class="{{vm.toolbarList.icon}}" style="margin-right: 5px;" ng-if="vm.toolbarList.icon"></i>

@@ -58,14 +58,23 @@ img.miq-gradient-background {
 
 .miq-tile-section div.miq-paging {
   text-align: center; }
-  .miq-tile-section div.miq-paging .disabled {
-    pointer-events: none;
-    cursor: not-allowed;
-    background-color: #fafafa !important;
-    background-image: none !important;
-    border-color: #d1d1d1 !important;
-    color: #8b8d8f !important;
-    opacity: 1; }
+  .miq-tile-section div.miq-paging ul {
+    margin-top: 0; }
+
+.miq-tile-section .disabled, .miq-data-table .disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: #fafafa !important;
+  background-image: none !important;
+  border-color: #d1d1d1 !important;
+  color: #8b8d8f !important;
+  opacity: 1; }
+
+.miq-data-table .miq-paging {
+  text-align: center; }
+  .miq-data-table .miq-paging ul.pagination {
+    margin-top: 0;
+    margin-bottom: 10px; }
 
 .miq-tile-with-body .card-view-pf .card {
   width: 375px;
@@ -111,6 +120,9 @@ img.miq-gradient-background {
 .paginate_of b {
   display: inline-block; }
 
+.miq-select-all label {
+  margin-left: 35px; }
+
 .miq-select-all input[type="checkbox"] {
   margin: 0 10px 0;
   vertical-align: middle;
@@ -118,7 +130,15 @@ img.miq-gradient-background {
   top: -1px; }
 
 .miq-sand-paper, .miq-sand-paper > div {
-  background: #f5f5f5; }
+  background: #f5f5f5;
+  overflow: hidden; }
+
+.miq-tile-view {
+  height: 100vh; }
+  .miq-tile-view .card-view-pf {
+    height: 72%;
+    overflow-y: auto;
+    margin-right: -20px; }
 
 /* begin toolbar styling (to be moved to the ui-components repo) */
 .toolbar-pf .form-group {

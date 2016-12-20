@@ -2,7 +2,7 @@ sudo: required
 dist: trusty
 language: node_js
 node_js:
-  - '5'
+  - '6'
 
 npm:
   - '3'
@@ -14,7 +14,7 @@ cache:
     - libs
 
 before_install:
-  - 'yarn add -g typings bower webpack karma typescript'
+  - 'yarn global add typings bower webpack karma typescript'
 
 script: ./scripts/.build.sh
 

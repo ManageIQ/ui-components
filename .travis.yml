@@ -8,9 +8,13 @@ npm:
   - '3'
 
 cache:
+  yarn: true
   directories:
     - node_modules
     - libs
+
+before_install:
+  - 'yarn add -g typings bower webpack karma typescript'
 
 script: ./scripts/.build.sh
 

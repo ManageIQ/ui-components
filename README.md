@@ -31,7 +31,7 @@ As we achieve greater reuse, the idea is to move more and more components to thi
 * Angular 1.5+ (soon to be Angular 2.x)
 * Typescript
 * Webpack
-* Npm Libraries 
+* Yarn
 * Bower (soon to be removed and replaced with npm/yarn)
 
 ## Architecture
@@ -54,22 +54,27 @@ just `npm install -g n` and then `n lts` to use the latest LTS version of node (
 
 Install these node packages globally in the system
 ```
-npm install -g typings bower webpack wiredep-cli typescript typescript-formatter
+npm install -g yarn typings bower webpack wiredep-cli typescript typescript-formatter
 ```
+
+After [yarn](http://yarn.io) is installed, it is pretty much a replacement for npm, with faster, more dependable  builds
+but still utilizing the npm pacakges.
+
+See comparison: [npm vs. yarn commands](https://yarnpkg.com/en/docs/migrating-from-npm)
 
 Install local node dependencies
 ```
-npm install
+yarn
 ```
 
 To run:
 ```
-npm start
+yarn start
 ```
 
 To run tests:
 ```
-npm t
+yarn run tests
 ```
 
 Before submitting code, run the following command to format the code according to the tslint rules:
@@ -83,6 +88,6 @@ This formats the code according to the tslint rules.
 
 If you want to see documentation for each component, controller, filter, etc. run
 ```
-npm run-script build-docs
+yarn run-script build-docs
 ```
-This will generate docs from JS docs and after running `npm start` this documentation will be available on `localhost:4000/docs`
+This will generate docs from JS docs and after running `yarn start` this documentation will be available on `localhost:4000/docs`

@@ -1,22 +1,22 @@
 <div class="miq-data-table">
   <div ng-if="tableCtrl.settings.isLoading" class="spinner spinner-lg"></div>
   <div class="row miq-pagination" ng-if="tableCtrl.rows && tableCtrl.rows.length !== 0">
-    <div ng-if="tableCtrl.rows.length !== 0" class="miq-select-all col-md-3 col-ld-3">
+    <div ng-if="tableCtrl.rows.length !== 0" class="miq-select-all col-md-2 col-lg-2 col-xs-2">
       <label>{{tableCtrl.settings.selectAllTitle}}: </label>
       <input type="checkbox" ng-model="isChecked" ng-click="tableCtrl.onCheckAll(isChecked)" title="{{tableCtrl.settings.selectAllTitle}}" />
     </div>
-    <div class="miq-per-page col-md-2 col-ld-2">
+    <div class="miq-per-page col-md-2 col-lg-2 col-xs-3">
       <label>{{tableCtrl.perPage.label}}: </label>
       <miq-toolbar-list on-item-click="tableCtrl.perPageClick(item)"
                         drop-down-class="tableCtrl.settings.dropDownClass"
                         toolbar-list="tableCtrl.perPage"></miq-toolbar-list>
     </div>
-    <miq-sort-items class="col-md-2 col-ld-2"
+    <miq-sort-items class="col-md-2 col-lg-2 col-xs-2"
                     sort-object="tableCtrl.settings.sortBy"
                     headers="tableCtrl.columns"
                     drop-down-class="tableCtrl.settings.dropDownClass"
                     on-sort="tableCtrl.onSortClick(sortObject.colId, isAscending)"></miq-sort-items>
-    <div class="miq-paging col-md-3 col-ld-3" ng-if="tableCtrl.rows && tableCtrl.rows.length !== 0">
+    <div class="miq-paging col-md-3 col-lg-3 col-xs-5" ng-if="tableCtrl.rows && tableCtrl.rows.length !== 0">
       <miq-paging settings="tableCtrl.settings" on-change-page="tableCtrl.setTablePage(pageNumber)"></miq-paging>
     </div>
   </div>

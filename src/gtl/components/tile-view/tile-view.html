@@ -1,25 +1,25 @@
 <div class="miq-tile-section">
-  <div ng-if="tileCtrl.settings.isLoading" class="spinner spinner-lg"></div>
-  <div class="row miq-pagination" ng-if="tileCtrl.rows && tileCtrl.rows.length !== 0">
-    <div ng-if="tileCtrl.rows.length !== 0" class="miq-select-all col-md-3 col-ld-3">
-      <label>{{tileCtrl.settings.selectAllTitle}}: </label>
-      <input type="checkbox" ng-model="isChecked" ng-click="tileCtrl.onCheckAllTiles(isChecked)" title="{{tileCtrl.settings.selectAllTitle}}" />
+    <div ng-if="tileCtrl.settings.isLoading" class="spinner spinner-lg"></div>
+    <div class="row miq-pagination" ng-if="tileCtrl.rows && tileCtrl.rows.length !== 0">
+      <div ng-if="tileCtrl.rows.length !== 0" class="miq-select-all col-md-2 col-lg-2 col-xs-2">
+        <label>{{tileCtrl.settings.selectAllTitle}}: </label>
+        <input type="checkbox" ng-model="isChecked" ng-click="tileCtrl.onCheckAllTiles(isChecked)" title="{{tileCtrl.settings.selectAllTitle}}" />
+      </div>
+      <div class="miq-per-page col-md-2 col-lg-2 col-xs-3">
+        <label>{{tileCtrl.perPage.label}}: </label>
+        <miq-toolbar-list on-item-click="tileCtrl.perPageClick(item)"
+                          drop-down-class="tileCtrl.settings.dropDownClass"
+                          toolbar-list="tileCtrl.perPage"></miq-toolbar-list>
+      </div>
+      <miq-sort-items class="col-md-2 col-lg-2 col-xs-2"
+                      sort-object="tileCtrl.settings.sortBy"
+                      headers="tileCtrl.columns"
+                      drop-down-class="tileCtrl.settings.dropDownClass"
+                      on-sort="tileCtrl.onSortClick(sortObject.colId, isAscending)"></miq-sort-items>
+      <div class="miq-paging col-md-3 col-lg-3 col-xs-5" ng-if="tileCtrl.rows && tileCtrl.rows.length !== 0">
+        <miq-paging settings="tileCtrl.settings" on-change-page="tileCtrl.setPage(pageNumber)"></miq-paging>
+      </div>
     </div>
-    <div class="miq-per-page col-md-2 col-ld-2">
-      <label>{{tileCtrl.perPage.label}}: </label>
-      <miq-toolbar-list on-item-click="tileCtrl.perPageClick(item)"
-                        drop-down-class="tileCtrl.settings.dropDownClass"
-                        toolbar-list="tileCtrl.perPage"></miq-toolbar-list>
-    </div>
-    <miq-sort-items class="col-md-2 col-ld-2"
-                    sort-object="tileCtrl.settings.sortBy"
-                    headers="tileCtrl.columns"
-                    drop-down-class="tileCtrl.settings.dropDownClass"
-                    on-sort="tileCtrl.onSortClick(sortObject.colId, isAscending)"></miq-sort-items>
-    <div class="miq-paging col-md-3 col-ld-3" ng-if="tileCtrl.rows && tileCtrl.rows.length !== 0">
-      <miq-paging settings="tileCtrl.settings" on-change-page="tileCtrl.setPage(pageNumber)"></miq-paging>
-    </div>
-  </div>
   <div pf-card-view
        config="tileCtrl.options"
        items="tileCtrl.rows"
@@ -39,12 +39,12 @@
       <ng-switch-when ng-switch-when="big">
         <a href="javascript:void(0)" ng-click="config.onItemClick(item, $event)">{{config.fetchTileName(item)}}</a>
         <div class="row miq-row-margin-only-top ">
-          <div class="col-md-3 col-ld-3 miq-icon-section">
+          <div class="col-md-3 col-lg-3 col-xs-3 miq-icon-section">
             <a href="javascript:void(0)" ng-click="config.onItemClick(item, $event)">
               <div ng-bind-html="config.trustAsHtmlQuadicon(item)"></div>
             </a>
           </div>
-          <div class="col-md-9 col-ld-9 miq-info-section">
+          <div class="col-md-9 col-lg-9 col-xs-9 miq-info-section">
             <dl class="dl-horizontal tile">
               <dt ng-repeat-start="(key, header) in config.columns | limitTo: 7 track by $index" ng-if="header.text && header.text.indexOf('Name') === -1" title="{{header.text}}">{{header.text}}:</dt>
               <dd ng-repeat-end ng-if="header.text && header.text.indexOf('Name') === -1" title="{{item.cells[key].text}}">{{item.cells[key].text | limitToSuffix : 25 : 25}}</dd>

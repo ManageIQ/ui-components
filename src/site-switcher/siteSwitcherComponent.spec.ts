@@ -1,4 +1,5 @@
 import SiteSwitcher from './siteSwitcherComponent';
+import * as angular from 'angular';
 
 describe('SiteSwitcher test', () => {
   let bindings;

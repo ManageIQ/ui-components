@@ -1,5 +1,6 @@
 import {IDataTableBinding} from '../../interfaces/dataTable';
 import {DataViewClass} from '../../interfaces/abstractDataViewClass';
+import * as _ from 'lodash';
 
 /**
  * This controller is for managing data table entities. It extends {@link miqStaticAssets.gtl.DataViewClass}
@@ -133,7 +134,7 @@ export class DataTableController extends DataViewClass implements IDataTableBind
  */
 export default class DataTable {
   public replace: boolean = true;
-  public template = require<string>('./data-table.html');
+  public template = require('./data-table.html');
   public controller: any = DataTableController;
   public transclude: boolean = true;
   public controllerAs: string = 'tableCtrl';

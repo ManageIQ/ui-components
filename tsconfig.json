@@ -3,18 +3,16 @@
     "target": "es5",
     "module": "commonjs",
     "removeComments": false,
-    "sourceMap": true
+    "sourceMap": true,
+    "typeRoots" : ["./node_modules/@types"]
   },
   "files": [
-    "typings/index.d.ts",
     "src/index.ts"
   ],
   "exclude": [
     "node_modules",
     "dist",
     "libs",
-    "bower",
-    "tsd",
-    "typings"
+    "bower"
   ]
 }

@@ -1,4 +1,3 @@
-///<reference path="../tsd.d.ts"/>
 import AvailableComponentsService from './../services/availableComponentsService';
 import {IAvailableGroup} from '../services/availableComponentsService';
 

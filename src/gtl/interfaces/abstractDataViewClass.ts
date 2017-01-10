@@ -1,5 +1,6 @@
 import {IDataTableBinding, ITableSettings} from './dataTable';
-
+import * as _ from 'lodash';
+import * as ng from 'angular';
 /**
  * This is abstract controller for implementing shared methods between data table and tile views.
  * @memberof miqStaticAssets.gtl

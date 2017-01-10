@@ -217,7 +217,7 @@ export class ToolbarController {
  */
 export default class Toolbar {
   public replace: boolean = true;
-  public template = require<string>('./toolbar-menu.html');
+  public template = require('./toolbar-menu.html');
   public controller: any = ToolbarController;
   public controllerAs: string = 'vm';
   public bindings: any = {

@@ -1,4 +1,5 @@
 import ToolbarView from './toolbarViewComponent';
+import * as angular from 'angular';
 
 describe('ToolbarButton test', () =>  {
 
@@ -12,7 +13,7 @@ describe('ToolbarButton test', () =>  {
       compile,
       compiledElement;
 
-    const toolbarViewData = require<string>('./toolbarView.sample.json');
+    const toolbarViewData = require('./toolbarView.sample.json');
 
     beforeEach(() => {
       angular.mock.module('miqStaticAssets.toolbar');

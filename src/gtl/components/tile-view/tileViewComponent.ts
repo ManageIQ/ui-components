@@ -1,7 +1,8 @@
 import {TileType} from '../../interfaces/tileType';
 import {IDataTableBinding} from '../../interfaces/dataTable';
 import {DataViewClass} from '../../interfaces/abstractDataViewClass';
-
+import * as _ from 'lodash';
+import * as ng from 'angular';
 /**
  * Controller for tile components. It extends {@link miqStaticAssets.gtl.DataViewClass}.
  * @memberof miqStaticAssets.gtl
@@ -169,7 +170,7 @@ export class TileViewController extends DataViewClass implements IDataTableBindi
 export default class TileView implements ng.IComponentOptions {
   public replace = true;
   public controller = TileViewController;
-  public template = require<string>('./tile-view.html');
+  public template = require('./tile-view.html');
   public controllerAs = 'tileCtrl';
   public bindings: any = {
     type: '<',

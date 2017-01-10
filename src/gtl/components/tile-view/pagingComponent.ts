@@ -1,3 +1,6 @@
+import * as _ from 'lodash';
+import * as ng from 'angular';
+
 /**
  * Controller for paging component
  * @memberof miqStaticAssets.gtl
@@ -60,7 +63,7 @@ export class PagingController {
 export default class Paging implements ng.IComponentOptions {
   public replace = true;
   public controller = PagingController;
-  public template = require<string>('./paging.html');
+  public template = require('./paging.html');
   public controllerAs = 'pagingCtrl';
   public bindings: any = {
     settings: '<',

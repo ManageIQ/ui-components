@@ -1,5 +1,3 @@
-///<reference path="../tsd.d.ts"/>
-
 export interface IAvailComponent {
   name: string;
   title: string;
@@ -42,37 +40,37 @@ export default class AvailableComponentsService {
         new AvailableComponent('basic', '' +
           'Basic Toolbar Menu',
           '/basic',
-          require<string>('./../views/toolbar-menu/basic.html'),
+          require('./../views/toolbar-menu/basic.html'),
           'demoToolbarMenu as vm'),
         new AvailableComponent('custom_html', '' +
           'Custom Html Toolbar Menu',
           '/custom',
-          require<string>('./../views/toolbar-menu/custom-html.html'),
+          require('./../views/toolbar-menu/custom-html.html'),
           'demoToolbarMenu as vm')
       ]),
       new AvailableGroup('tile-menu', 'Tile Components', '/tile-view', [
         new AvailableComponent('small',
           'Small tile',
           '/small',
-          require<string>('./../views/tile-view/small.html'),
+          require('./../views/tile-view/small.html'),
           'demoDataTable as vm'),
         new AvailableComponent('big',
           'Big tile',
           '/big',
-          require<string>('./../views/tile-view/big.html'),
+          require('./../views/tile-view/big.html'),
           'demoDataTable as vm'),
       ]),
       new AvailableGroup('data-table', 'Data table Components', '/data-table', [
         new AvailableComponent('basic',
           'Basic data table',
           '/basic',
-          require<string>('./../views/data-table/basic.html'), 'demoDataTable as vm')
+          require('./../views/data-table/basic.html'), 'demoDataTable as vm')
       ]),
       new AvailableGroup('site-switcher', 'Site Switcher Components', '/site-switcher', [
         new AvailableComponent('basic',
           'Site switcher',
           '/basic',
-          require<string>('./../views/site-switcher/basic.html'), 'demoSiteSwitcher as vm')
+          require('./../views/site-switcher/basic.html'), 'demoSiteSwitcher as vm')
       ])
     ];
   }

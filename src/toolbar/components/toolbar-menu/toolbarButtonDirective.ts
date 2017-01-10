@@ -1,3 +1,4 @@
+import * as ng from 'angular';
 /**
  * @memberof miqStaticAssets
  * @ngdoc directive
@@ -16,7 +17,7 @@
  */
 export default class ToolbarButton implements ng.IDirective {
   public replace: boolean = true;
-  public template = require<string>('./toolbar-button.html');
+  public template = require('./toolbar-button.html');
   public scope: any = {
     toolbarButton: '<',
     onItemClick: '&'

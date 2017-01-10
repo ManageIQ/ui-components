@@ -1,5 +1,6 @@
 import SortItems from './sortItemsComponent';
 import {SortItemsController} from './sortItemsComponent';
+import * as angular from 'angular';
 
 describe('Sort items test', () =>  {
   let headers = [{is_narrow: true}, {col_id: 2, text: 'something'}, {col_id: 3, text: 'something2'}];

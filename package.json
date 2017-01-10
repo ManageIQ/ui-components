@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack --watch",
     "test": "karma start",
-    "prepublish": "typings install && webpack && webpack --config webpack.vendor.config.js",
+    "prepublish": "webpack && npm run install-vendor",
+    "install-vendor": "npm run bower && webpack --config webpack.vendor.config.js",
     "build-docs": "jsdoc -c jsdoc-conf.json",
     "bower": "bower install"
   },
@@ -23,6 +24,12 @@
   "devDependencies": {
     "angular": "~1.5.9",
     "angular-animate": "~1.5.9",
+    "@types/angular-mocks": "^1.5.7",
+    "@types/angular-ui-router": "^1.1.35",
+    "@types/jasmine": "^2.5.38",
+    "@types/lodash": "^4.14.41",
+    "@types/node": "0.0.0",
+    "@types/rx": "^2.5.34",
     "angular-bootstrap": "^0.12.2",
     "angular-jsdoc": "~1.5.0",
     "angular-mocks": "~1.5.9",

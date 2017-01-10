@@ -10,7 +10,7 @@
     "install-vendor": "npm run bower && webpack --config webpack.vendor.config.js",
     "build-docs": "jsdoc -c jsdoc-conf.json",
     "bower": "bower install",
-    "postinstall": "bower install"
+    "preinstall": "bower install"
   },
   "repository": {
     "type": "git",

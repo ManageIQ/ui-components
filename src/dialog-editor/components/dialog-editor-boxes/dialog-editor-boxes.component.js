@@ -3,7 +3,7 @@
 (function() {
   'use strict';
 
-  angular.module('app.components')
+  angular.module('miqStaticAssets.dialogEditor')
     .component('dialogEditorBoxes', {
       controller: ComponentController,
       controllerAs: 'vm',

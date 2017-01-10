@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('app.components')
+  angular.module('miqStaticAssets.dialogEditor')
     .factory('DialogEditorModal', EditDialogFactory);
 
   /** @ngInject */

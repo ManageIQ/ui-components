@@ -36,7 +36,7 @@
   }
 
   // works as placeholders for drag&drop dialog components
-  angular.module('app.components')
+  angular.module('miqStaticAssets.dialogEditor')
     .component('dialogEditorFieldStatic', {
       controller: ComponentController,
       controllerAs: 'vm',

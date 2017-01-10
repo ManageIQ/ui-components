@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('app.components')
+  angular.module('miqStaticAssets.dialogEditor')
     .directive('dialogEditorModalFieldTemplate', function() {
       return {
         templateUrl: function(tElement, tAttrs) {

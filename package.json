@@ -41,7 +41,6 @@
     "bootstrap-datepicker": "^1.6.4",
     "bootstrap-select": "^1.12.1",
     "bootstrap-switch": "^3.3.2",
-    "bootstrap-treeview": "^1.2.0",
     "browser-sync": "^2.18.2",
     "browser-sync-spa": "^1.0.3",
     "browser-sync-webpack-plugin": "^1.1.3",

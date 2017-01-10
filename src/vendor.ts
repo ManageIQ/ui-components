@@ -10,7 +10,6 @@ import 'bootstrap-combobox';
 import 'bootstrap-datepicker';
 import 'bootstrap-select';
 import 'bootstrap-switch';
-import 'bootstrap-treeview/src/js/bootstrap-treeview';
 import 'd3';
 import 'c3';
 import 'datatables';

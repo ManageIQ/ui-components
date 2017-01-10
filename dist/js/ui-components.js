@@ -98,8 +98,12 @@
 	var angular = __webpack_require__(10);
 	var miqStaticAssets;
 	(function (miqStaticAssets) {
-	    angular.module('miqStaticAssets', ['miqStaticAssets.toolbar', 'miqStaticAssets.common', 'miqStaticAssets.gtl',
-	        'miqStaticAssets.siteSwitcher']);
+	    angular.module('miqStaticAssets', [
+	        'miqStaticAssets.toolbar',
+	        'miqStaticAssets.common',
+	        'miqStaticAssets.gtl',
+	        'miqStaticAssets.siteSwitcher'
+	    ]);
 	})(miqStaticAssets || (miqStaticAssets = {}));
 
 

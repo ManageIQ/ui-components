@@ -21,6 +21,5 @@
     "!README.adoc"
   ],
   "dependencies": {},
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

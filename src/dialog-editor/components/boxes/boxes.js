@@ -7,7 +7,7 @@
     .component('dialogEditorBoxes', {
       controller: ComponentController,
       controllerAs: 'vm',
-      templateUrl: 'app/components/dialog-editor-boxes/dialog-editor-boxes.html',
+      template: require('./boxes.html'),
     });
 
   function ComponentController(DialogEditor, DialogEditorModal, lodash) {

@@ -9,7 +9,7 @@
       },
       controller: ComponentController,
       controllerAs: 'vm',
-      templateUrl: 'app/components/dialog-editor-field/dialog-editor-field.html',
+      template: require('./field.html'),
     });
 
   function ComponentController(DialogEditor, DialogEditorModal) {

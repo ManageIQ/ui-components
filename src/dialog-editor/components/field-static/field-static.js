@@ -40,7 +40,7 @@
     .component('dialogEditorFieldStatic', {
       controller: ComponentController,
       controllerAs: 'vm',
-      templateUrl: 'app/components/dialog-editor-field-static/dialog-editor-field-static.html',
+      template: require('./field-static.html'),
     });
 
   function ComponentController() {

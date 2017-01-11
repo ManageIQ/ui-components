@@ -4,8 +4,8 @@
   angular.module('miqStaticAssets.dialogEditor')
     .directive('dialogEditorModalFieldTemplate', function() {
       return {
-        templateUrl: function(tElement, tAttrs) {
-          return 'app/components/dialog-editor-modal-field-template/' + tAttrs.template;
+        template: function(tElement, tAttrs) {
+          return require('./' + tAttrs.template);
         },
         scope: true,
       };

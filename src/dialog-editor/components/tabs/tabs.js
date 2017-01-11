@@ -7,7 +7,7 @@
     .component('dialogEditorTabs', {
       controller: ComponentController,
       controllerAs: 'vm',
-      templateUrl: 'app/components/dialog-editor-tabs/dialog-editor-tabs.html',
+      template: require('./tabs.html'),
     });
 
   function ComponentController(DialogEditor, lodash, DialogEditorModal) {

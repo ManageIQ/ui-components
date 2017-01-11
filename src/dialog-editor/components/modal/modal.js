@@ -14,7 +14,7 @@
 
     function showModal(tab, box, field) {
       var modalOptions = {
-        templateUrl: 'app/components/dialog-editor-modal/dialog-editor-modal.html',
+        template: require('./modal.html'),
         controller: DialogEditorModalController,
         controllerAs: 'vm',
         size: 'lg',

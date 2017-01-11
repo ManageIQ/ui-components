@@ -10,6 +10,7 @@
       template: require('./boxes.html'),
     });
 
+  /** @ngInject */
   function ComponentController(DialogEditor, DialogEditorModal, lodash) {
     var vm = this;
 

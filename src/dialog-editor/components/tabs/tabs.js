@@ -10,6 +10,7 @@
       template: require('./tabs.html'),
     });
 
+  /** @ngInject */
   function ComponentController(DialogEditor, lodash, DialogEditorModal) {
     var vm = this;
 

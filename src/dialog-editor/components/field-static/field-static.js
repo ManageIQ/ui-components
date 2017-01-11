@@ -43,6 +43,7 @@
       template: require('./field-static.html'),
     });
 
+  /** @ngInject */
   function ComponentController() {
     var vm = this;
 

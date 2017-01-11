@@ -12,6 +12,7 @@
       template: require('./field.html'),
     });
 
+  /** @ngInject */
   function ComponentController(DialogEditor, DialogEditorModal) {
     var vm = this;
 

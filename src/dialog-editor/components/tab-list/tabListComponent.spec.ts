@@ -47,7 +47,7 @@ describe('component: dialogEditorTabs', function() {
     it('correct tab is removed', function() {
       DialogEditor.activeTab = 0;
       expect(DialogEditor.getDialogTabs()[0].label).to.equal("Tab 1");
-      controller.deleteTab(0);
+      controller.removeTab(0);
       expect(DialogEditor.getDialogTabs()[0].label).to.equal("Tab 2");
     });
 
@@ -56,7 +56,7 @@ describe('component: dialogEditorTabs', function() {
       // new tab is added -> activity is passed on new tab (id: 2)
       controller.addTab();
       // remove last tab  -> activity is passed on previous tab (id: 1)
-      controller.deleteTab(2);
+      controller.removeTab(2);
       expect(DialogEditor.activeTab).to.equal(1);
     });
 

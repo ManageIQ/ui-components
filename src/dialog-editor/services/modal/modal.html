@@ -51,28 +51,28 @@
     <form class="form-horizontal">
       <div ng-if="!vm.modalData.dynamic" ng-switch on="vm.modalData.type">
         <dialog-editor-modal-field-template ng-switch-when="DialogFieldTextBox"
-                               template="text-box.html">
+                                            template="text-box.html">
         </dialog-editor-modal-field-template>
         <dialog-editor-modal-field-template ng-switch-when="DialogFieldTextAreaBox"
-                               template="text-area-box.html">
+                                            template="text-area-box.html">
         </dialog-editor-modal-field-template>
         <dialog-editor-modal-field-template ng-switch-when="DialogFieldCheckBox"
-                               template="check-box.html">
+                                            template="check-box.html">
         </dialog-editor-modal-field-template>
         <dialog-editor-modal-field-template ng-switch-when="DialogFieldDateControl"
-                               template="date-time-control.html">
+                                            template="date-time-control.html">
         </dialog-editor-modal-field-template>
         <dialog-editor-modal-field-template ng-switch-when="DialogFieldDateTimeControl"
-                               template="date-time-control.html">
+                                            template="date-time-control.html">
         </dialog-editor-modal-field-template>
         <dialog-editor-modal-field-template ng-switch-when="DialogFieldRadioButton"
-                               template="radio-button-drop-down-list.html">
+                                            template="radio-button-drop-down-list.html">
         </dialog-editor-modal-field-template>
         <dialog-editor-modal-field-template ng-switch-when="DialogFieldDropDownList"
-                               template="radio-button-drop-down-list.html">
+                                            template="radio-button-drop-down-list.html">
         </dialog-editor-modal-field-template>
         <dialog-editor-modal-field-template ng-switch-when="DialogFieldTagControl"
-                               template="tag-control.html">
+                                            template="tag-control.html">
         </dialog-editor-modal-field-template>
       </div>
       <div ng-if="vm.modalData.dynamic">

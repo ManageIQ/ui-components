@@ -1,1 +1,2 @@
-require('./dialog-edit.service.js');
+require('./dialog-edit.service.ts');
+require('./modal/modal.ts');

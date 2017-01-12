@@ -2,15 +2,19 @@ sudo: required
 dist: trusty
 language: node_js
 node_js:
-  - '5'
+  - '6'
 
 npm:
   - '3'
 
 cache:
+  yarn: true
   directories:
     - node_modules
     - libs
+
+before_install:
+  - 'yarn global add typings bower webpack karma typescript'
 
 script: ./scripts/.build.sh
 

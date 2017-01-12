@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-npm install
-npm t
+yarn install
+yarn test

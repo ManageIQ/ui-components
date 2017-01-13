@@ -28,7 +28,7 @@ module.exports = {
     loaders: [
       { test: require.resolve('jquery'), loader: 'expose?jQuery!expose?$' },
       {test: /\.ts$/, loaders: ['ts-loader'], exclude: /(node_modules|libs)/},
-      {test: /\.html$/, loader: 'raw', exclude: /(node_modules|libs|dist|tsd|bower)/},
+      {test: /\.html$/, loader: 'raw', exclude: /(node_modules|libs|dist|tsd)/},
       {test: /\.(png|jpg|gif|svg|woff|ttf|eot)/, loader:  'url-loader?limit=20480'},
       // stylesheets
       {test: /\.scss/, exclude: /(node_modules|lib)/, loader: ExtractTextPlugin.extract('style-loader',

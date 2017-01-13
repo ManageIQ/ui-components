@@ -77,7 +77,7 @@ module.exports = {
     ],
     loaders: [
       {test: /\.ts$/, loaders: ['ts-loader'], exclude: /(node_modules|libs)/},
-      {test: /\.html$/, loader: 'raw', exclude: /(node_modules|libs|dist|tsd|bower)/},
+      {test: /\.html$/, loader: 'raw', exclude: /(node_modules|libs|dist|tsd)/},
       // stylesheets
       {test: /\.scss/, exclude: /(node_modules|lib)/, loader: ExtractTextPlugin.extract('style-loader',
         'css-loader!sass-loader')},

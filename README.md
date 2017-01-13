@@ -11,10 +11,10 @@
 
 ## Purpose
 
-The purpose of this repository is to provide reusable components for the [ManageIQ](http:github.com/manageiq/manageiq) 
-project. These are not general purpose components, but specific to ManageIQ, however, reusable across all of 
+The purpose of this repository is to provide reusable components for the [ManageIQ](http:github.com/manageiq/manageiq)
+project. These are not general purpose components, but specific to ManageIQ, however, reusable across all of
 ManageIQ (providers). The intention is to provide components that are reusable in various ways. Many of these components
-are 'Smart Components' that know how to communicate to backend endpoints(data-driven by provider) and retrieve relevant data for 
+are 'Smart Components' that know how to communicate to backend endpoints(data-driven by provider) and retrieve relevant data for
 the component's configuration.
 
 As we achieve greater reuse, the idea is to move more and more components to this repository. Creating a repository for
@@ -32,7 +32,6 @@ As we achieve greater reuse, the idea is to move more and more components to thi
 * Typescript
 * Webpack
 * Yarn
-* Bower (soon to be removed and replaced with npm/yarn)
 
 ## Architecture
 
@@ -49,13 +48,13 @@ For a great overview of using Angular 1.5.x Components please see: [NG-Conf 2016
 ## Development Environment
 
 You need to have installed [Node.js >= 6  and npm >= 3](https://docs.npmjs.com/getting-started/installing-node) on your system.
-It is recommended to use a node version manager such as [n](https://www.npmjs.com/package/n). If you have node installed then it is 
+It is recommended to use a node version manager such as [n](https://www.npmjs.com/package/n). If you have node installed then it is
 just `yarn global add n` and then `n lts` to use the latest LTS version of node (see the doces for switching versions).
 
 Install these node packages globally in the system
 ```
-npm install -g yarn 
-yarn global add typings bower webpack wiredep-cli typescript typescript-formatter
+npm install -g yarn
+yarn global add typings webpack wiredep-cli typescript typescript-formatter
 ```
 
 After [yarn](http://yarn.io) is installed, it is pretty much a replacement for npm, with faster, more dependable  builds

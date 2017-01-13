@@ -6,7 +6,6 @@ module.exports = {
   javascriptFolder: 'js',
   stylesheetFolder: 'css',
   appName: 'ui-components',
-  bowerLibs: 'libs/',
   modules: {
     toolbar: '/toolbar',
     common: '/common',

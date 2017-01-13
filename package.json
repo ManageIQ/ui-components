@@ -6,8 +6,9 @@
   "scripts": {
     "start": "webpack --watch",
     "test": "karma start",
-    "prepublish": "webpack && npm run install-vendor",
+    "prepublish": "webpack",
     "install-vendor": "npm run bower && webpack --config webpack.vendor.config.js",
+    "build": "bower install && webpack --config webpack.vendor.config.js && webpack",
     "build-docs": "jsdoc -c jsdoc-conf.json",
     "bower": "bower install",
     "preinstall": "bower install"

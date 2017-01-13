@@ -6,8 +6,8 @@
   "scripts": {
     "start": "webpack --watch",
     "test": "karma start",
+    "prepublish": "webpack",
     "build": "webpack --config webpack.vendor.config.js && webpack",
-    "prepublish": "webpack && npm run install-vendor",
     "install-vendor": "webpack --config webpack.vendor.config.js",
     "build-docs": "jsdoc -c jsdoc-conf.json"
   },

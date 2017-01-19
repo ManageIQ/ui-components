@@ -21,9 +21,5 @@
     "!README.adoc"
   ],
   "dependencies": {},
-  "devDependencies": {
-    "angular-patternfly": "^3.11.0",
-    "ui-select": "angular-ui-select#^0.16.1",
-    "bootstrap-combobox": "^1.1.6"
-  }
+  "devDependencies": {}
 }

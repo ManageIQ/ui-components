@@ -32,7 +32,7 @@ describe('ToolbarButton test', () =>  {
     });
 
     it('should create toolbar view', () => {
-      const contentElement = angular.element(compiledElement.html());
+      const contentElement: any = angular.element(compiledElement.html());
       expect(contentElement.hasClass('toolbar-pf-view-selector')).toBe(true);
       expect(contentElement.hasClass('pull-right')).toBe(true);
       expect(contentElement.hasClass('form-group')).toBe(true);
@@ -40,12 +40,13 @@ describe('ToolbarButton test', () =>  {
 
     it('should create 3 views', () => {
       const contentElement = angular.element(compiledElement.html());
-      expect(contentElement.find('button').length).toBe(3);
+      const button: any = contentElement.find('button');
+      expect(button.length).toBe(3);
     });
 
     it('each view should have correct settings', () => {
       angular.forEach(compiledElement.find('button'), (element, key) => {
-        let btnElem = angular.element(element);
+        let btnElem: any = angular.element(element);
         expect(btnElem.hasClass('active')).toBe(!!scope.toolbarViews[key].selected);
         expect(btnElem.attr('title')).toBe(scope.toolbarViews[key].title);
         expect(btnElem.attr('id')).toBe(scope.toolbarViews[key].id);

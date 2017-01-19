@@ -41,7 +41,7 @@ describe('ToolbarButton test', () =>  {
       const toolbarListItems = compiledElement.find('li');
       expect(toolbarListItems.length).toBe(2);
       angular.forEach(toolbarListItems, (listItem, key) => {
-        let ngListItem = angular.element(listItem);
+        let ngListItem: any = angular.element(listItem);
         let linkItem = ngListItem.find('a');
         let currItem = scope.toolbarList.items[key];
         expect(ngListItem.hasClass('disabled')).toBe(!currItem.enabled);
@@ -52,7 +52,7 @@ describe('ToolbarButton test', () =>  {
 
     it('each list item should contain specific attributes', () => {
       angular.forEach(compiledElement.find('li'), (listItem, key) => {
-        let linkItem = angular.element(listItem).find('a');
+        let linkItem: any = angular.element(listItem).find('a');
         let currItem = scope.toolbarList.items[key];
         expect(linkItem.attr('title')).toBe(currItem.title);
         expect(JSON.parse(linkItem.attr('data-explorer'))).toBe(currItem.explorer);

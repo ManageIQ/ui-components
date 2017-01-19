@@ -6,7 +6,6 @@ module.exports = {
   javascriptFolder: 'js',
   stylesheetFolder: 'css',
   appName: 'ui-components',
-  bowerLibs: 'libs/',
   modules: {
     toolbar: '/toolbar',
     common: '/common',
@@ -23,8 +22,11 @@ module.exports = {
   isMinified: function (production) {
     return (!production ? '.js' : '.min.js');
   },
+  get sassRootFolder() {
+    return '.' + this.sourceFolder + this.stylesFolder;
+  },
   get sassEntryPoint() {
-    return '.' + this.sourceFolder + this.stylesFolder + '/' + this.appName + '.scss'
+    return this.sassRootFolder + '/' + this.appName + '.scss'
   },
   get tsEntryPoint() {
     return '.' + this.sourceFolder + '/index.ts'

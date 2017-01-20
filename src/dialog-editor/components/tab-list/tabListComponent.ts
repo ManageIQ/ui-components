@@ -7,7 +7,7 @@ import * as _ from 'lodash';
  * @ngdoc controller
  * @name TabListController
  */
-export class TabListController {
+class TabListController {
   public tabList: any;
   public sortableOptions: any;
 

@@ -4,7 +4,7 @@
  * @ngdoc controller
  * @name FieldController
  */
-export class FieldController {
+class FieldController {
   public service: any;
 
   /*@ngInject*/

@@ -1,9 +1,6 @@
 import * as _ from 'lodash';
 import * as ng from 'angular';
 
-ng.module('miqStaticAssets.dialogEditor')
-  .service('DialogEditorModal', EditDialogService);
-
 /**
  * Controller for the Dialog Editor modal service
  * @ngdoc controller
@@ -266,14 +263,14 @@ class ModalController {
   }
 }
 
-class EditDialogService {
+export default class ModalService {
   /** @ngInject */
   constructor(private $uibModal: any) {
   }
 
   /**
    * Show modal of the element.
-   * @memberof EditDialogService
+   * @memberof ModalService
    * @function showModal
    * @param {number} index of tab, where the box is placed
    * @param {number} index of box, where the field is placed
@@ -296,4 +293,3 @@ class EditDialogService {
     return modal.result;
   }
 }
-

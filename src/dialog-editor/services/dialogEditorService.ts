@@ -1,4 +1,4 @@
-class DialogEditorService {
+export default class DialogEditorService {
   public data: any = {};
   public activeTab: number = 0;
 
@@ -54,7 +54,7 @@ class DialogEditorService {
    * @function updatePositions
    * @param {any[]} array of elements to sort
    */
-  public updatePositions(elements: any[]) {
+  public updatePosition(elements: any[]) {
     if (elements.length !== 0) {
       for (let i = 0; i < elements.length; i++) {
         elements[i].position = i;
@@ -62,6 +62,3 @@ class DialogEditorService {
     }
   }
 }
-
-angular.module('miqStaticAssets.dialogEditor')
-  .service('DialogEditor', DialogEditorService);

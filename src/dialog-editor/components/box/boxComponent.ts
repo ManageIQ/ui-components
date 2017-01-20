@@ -7,7 +7,7 @@ import * as _ from 'lodash';
  * @ngdoc controller
  * @name BoxController
  */
-export class BoxController {
+class BoxController {
   public sortableOptionsBox: any;
   public sortableOptionsFields: any;
   public service: any;

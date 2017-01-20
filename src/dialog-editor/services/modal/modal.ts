@@ -109,7 +109,7 @@ class ModalController {
         );
         // load categories from API, if the field is Tag Control
         if (this.modalData.type === 'DialogFieldTagControl') {
-          this.resolveCategories(this.CollectionsApi).then(function(categories: any) {
+          this.resolveCategories().then(function(categories: any) {
             this.categories = categories;
           });
         }

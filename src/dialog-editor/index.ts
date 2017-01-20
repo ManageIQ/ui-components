@@ -3,6 +3,5 @@ angular.module('miqStaticAssets.dialogEditor', [
   'ngDragDrop',
   'frapontillo.bootstrap-switch'
 ]);
-
 require('./components/index.ts');
 require('./services/index.ts');

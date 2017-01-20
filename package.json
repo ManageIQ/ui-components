@@ -87,5 +87,10 @@
     "ui-router": "^1.0.0-alpha0",
     "url-loader": "^0.5.7",
     "webpack": "2.2.0"
+  },
+  "dependencies": {
+    "angular-bootstrap-switch": "^0.5.1",
+    "angular-dragdrop": "^1.0.13",
+    "angular-ui-sortable": "^0.16.1"
   }
 }

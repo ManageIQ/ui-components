@@ -4,37 +4,6 @@ import * as ng from 'angular';
 ng.module('miqStaticAssets.dialogEditor')
   .service('DialogEditorModal', EditDialogService);
 
-class EditDialogService {
-  /** @ngInject */
-  constructor(private $uibModal: any) {
-  }
-
-  /**
-   * Show modal of the element.
-   * @memberof EditDialogService
-   * @function showModal
-   * @param {number} index of tab, where the box is placed
-   * @param {number} index of box, where the field is placed
-   * @param {number} index of field
-   */
-  public showModal(tab: number, box: number, field: number) {
-    let modalOptions = {
-      template: require('./modal.html'),
-      controller: ModalController,
-      controllerAs: 'vm',
-      size: 'lg',
-      resolve: {
-        dialogDetails: function() {
-          return {tabId: tab, boxId: box, fieldId: field};
-        },
-      },
-    };
-    let modal = this.$uibModal.open(modalOptions);
-
-    return modal.result;
-  }
-}
-
 /**
  * Controller for the Dialog Editor modal service
  * @ngdoc controller
@@ -296,3 +265,35 @@ class ModalController {
     _.pullAt(this.modalData.values, entry);
   }
 }
+
+class EditDialogService {
+  /** @ngInject */
+  constructor(private $uibModal: any) {
+  }
+
+  /**
+   * Show modal of the element.
+   * @memberof EditDialogService
+   * @function showModal
+   * @param {number} index of tab, where the box is placed
+   * @param {number} index of box, where the field is placed
+   * @param {number} index of field
+   */
+  public showModal(tab: number, box: number, field: number) {
+    let modalOptions = {
+      template: require('./modal.html'),
+      controller: ModalController,
+      controllerAs: 'vm',
+      size: 'lg',
+      resolve: {
+        dialogDetails: function() {
+          return {tabId: tab, boxId: box, fieldId: field};
+        },
+      },
+    };
+    let modal = this.$uibModal.open(modalOptions);
+
+    return modal.result;
+  }
+}
+

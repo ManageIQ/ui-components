@@ -1,6 +1,3 @@
-angular.module('miqStaticAssets.dialogEditor')
-  .service('DialogEditor', DialogEditorService);
-
 class DialogEditorService {
   public data: any = {};
   public activeTab: number = 0;
@@ -65,3 +62,6 @@ class DialogEditorService {
     }
   }
 }
+
+angular.module('miqStaticAssets.dialogEditor')
+  .service('DialogEditor', DialogEditorService);

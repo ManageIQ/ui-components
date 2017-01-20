@@ -2,11 +2,12 @@ import * as ng from 'angular';
 import * as _ from 'lodash';
 
 /**
+ * Controller for the Dialog Editor tab list component
  * @memberof miqStaticAssets
  * @ngdoc controller
- * @name ComponentController
+ * @name TabListController
  */
-export class ComponentController {
+export class TabListController {
   public tabList: any;
   public sortableOptions: any;
 
@@ -16,7 +17,7 @@ export class ComponentController {
 
   /**
    * Activate the first tab in tab list, if there is any.
-   * @memberof ComponentController
+   * @memberof TabListController
    * @function onInit
    */
   public $onInit() {
@@ -46,7 +47,7 @@ export class ComponentController {
    * Add a new tab to the list.
    * New tab is automatically appended to the last position of the list and
    * set as active.
-   * @memberof ComponentController
+   * @memberof TabListController
    * @function addTab
    */
   public addTab() {
@@ -74,7 +75,7 @@ export class ComponentController {
    * After removing tab, position attributes needs to be updated.
    * If the tab to delete is active in the moment of the deletion, the
    * activity goes to the other tab.
-   * @memberof ComponentController
+   * @memberof TabListController
    * @function removeTab
    * @param {number} id is an index of remove tab
    */
@@ -115,7 +116,7 @@ export class ComponentController {
 
   /**
    * Assign activity to the selected tab.
-   * @memberof ComponentController
+   * @memberof TabListController
    * @function selectTab
    * @param {number} id is an index of remove tab
    */
@@ -134,7 +135,7 @@ export class ComponentController {
 
   /**
    * Show modal to edit label and description of the tab
-   * @memberof ComponentController
+   * @memberof TabListController
    * @function editDialogModal
    * @param {number} tab is an index of tab
    */
@@ -156,6 +157,6 @@ export class ComponentController {
  */
 export default class TabList {
   public template = require('./tab-list.html');
-  public controller: any = ComponentController;
+  public controller: any = TabListController;
   public controllerAs: string = 'vm';
 }

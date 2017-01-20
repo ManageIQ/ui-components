@@ -1,4 +1,10 @@
-export class ComponentController {
+/**
+ * Controller for the Dialog Editor field component
+ * @memberof miqStaticAssets
+ * @ngdoc controller
+ * @name FieldController
+ */
+export class FieldController {
   public service: any;
 
   /*@ngInject*/
@@ -8,7 +14,7 @@ export class ComponentController {
 
   /**
    * Load service to be able to access it form the template.
-   * @memberof ComponentController
+   * @memberof FieldController
    * @function $onInit
    */
   public $onInit() {
@@ -17,7 +23,7 @@ export class ComponentController {
 
   /**
    * Show modal to edit details of the component
-   * @memberof ComponentController
+   * @memberof FieldController
    * @function editDialogModal
    * @param {number} tab is an index of tab, where the box is placed
    * @param {number} box is an index of box, where the field is placed
@@ -42,7 +48,7 @@ export class ComponentController {
  */
 export default class Field {
   public template = require('./field.html');
-  public controller: any = ComponentController;
+  public controller: any = FieldController;
   public controllerAs: string = 'vm';
   public bindings: any = {
     fieldData: '<',

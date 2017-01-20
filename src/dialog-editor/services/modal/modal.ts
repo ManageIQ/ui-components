@@ -20,7 +20,7 @@ class EditDialogService {
   public showModal(tab: number, box: number, field: number) {
     let modalOptions = {
       template: require('./modal.html'),
-      controller: DialogEditorModalController,
+      controller: ModalController,
       controllerAs: 'vm',
       size: 'lg',
       resolve: {
@@ -35,7 +35,12 @@ class EditDialogService {
   }
 }
 
-class DialogEditorModalController {
+/**
+ * Controller for the Dialog Editor modal service
+ * @ngdoc controller
+ * @name ModalController
+ */
+class ModalController {
   public modalTab: string = 'element_information';
   public modalData: any;
   public element: string;
@@ -112,32 +117,46 @@ class DialogEditorModalController {
       default:
         break;
     }
-
-    this.activate();
   }
 
   /**
-   *
+   * Load categories data from API.
+   * @memberof ModalController
+   * @function resolveCategories
    */
-  public activate() {
+  public resolveCategories() {
+    let options = {
+      expand: 'resources',
+      attributes: ['description', 'single_value', 'children'],
+    };
+
+    return this.CollectionsApi.query('categories', options);
   }
 
   /**
-   *
+   * Store the name of the tab, that is currently selected.
+   * @memberof ModalController
+   * @function modalTabSet
+   * @param tab is a name of the tab in the modal
    */
   public modalTabSet(tab: string) {
     this.modalTab = tab;
   }
 
   /**
-   *
+   * Returns true/false according to which tab is currently
+   * selected in the modal.
+   * @memberof ModalController
+   * @function modalTabIsSet
    */
   public modalTabIsSet(tab: string) {
     return this.modalTab === tab;
   }
 
   /**
-   * Check for changes in modal
+   * Check for changes in the modal.
+   * @memberof ModalController
+   * @function modalUnchanged
    */
   public modalUnchanged() {
     switch (this.element) {
@@ -174,7 +193,9 @@ class DialogEditorModalController {
   }
 
   /**
-   * Store modified data to service
+   * Store modified data back to the service.
+   * @memberof ModalController
+   * @function saveDialogFieldDetails
    */
   public saveDialogFieldDetails() {
     // TODO: add verification for required forms
@@ -221,7 +242,9 @@ class DialogEditorModalController {
   }
 
   /**
-   * Delete dialog field selected in modal
+   * Delete dialog field selected in modal.
+   * @memberof ModalController
+   * @function deleteField
    */
   public deleteField() {
     _.remove(
@@ -240,19 +263,9 @@ class DialogEditorModalController {
   }
 
   /**
-   *
-   */
-  public resolveCategories() {
-    let options = {
-      expand: 'resources',
-      attributes: ['description', 'single_value', 'children'],
-    };
-
-    return this.CollectionsApi.query('categories', options);
-  }
-
-  /**
-   * Finds entries for the selected category
+   * Finds entries for the selected category.
+   * @memberof ModalController
+   * @function currentCategoryEntries
    */
   public currentCategoryEntries() {
     if (ng.isDefined(this.categories)) {
@@ -265,7 +278,9 @@ class DialogEditorModalController {
   }
 
   /**
-   * Add entry for radio button / dropdown select
+   * Add entry for radio button / dropdown select.
+   * @memberof ModalController
+   * @function addEntry
    */
   public addEntry() {
     this.modalData.values.push(['', '']);
@@ -273,8 +288,9 @@ class DialogEditorModalController {
 
   /**
    * Remove entry for radio button / dropdown select
-   *
-   * Parameter: entry -- entry to remove from array
+   * @memberof ModalController
+   * @function addEntry
+   * @param entry to remove from array
    */
   public removeEntry(entry: any) {
     _.pullAt(this.modalData.values, entry);

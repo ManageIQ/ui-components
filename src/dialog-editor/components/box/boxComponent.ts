@@ -1,7 +1,13 @@
 import * as ng from 'angular';
 import * as _ from 'lodash';
 
-export class ComponentController {
+/**
+ * Controller for the Dialog Editor box component
+ * @memberof miqStaticAssets
+ * @ngdoc controller
+ * @name BoxController
+ */
+export class BoxController {
   public sortableOptionsBox: any;
   public sortableOptionsFields: any;
   public service: any;
@@ -14,7 +20,7 @@ export class ComponentController {
   /**
    * Load service to be able to access it form the template.
    * Load status of tabs.
-   * @memberof ComponentController
+   * @memberof BoxController
    * @function $onInit
    */
   public $onInit() {
@@ -54,7 +60,7 @@ export class ComponentController {
   /**
    * Add a new box to the list.
    * The new box is automatically appended to the last position of the list
-   * @memberof ComponentController
+   * @memberof BoxController
    * @function addBox
    */
   public addBox() {
@@ -72,7 +78,7 @@ export class ComponentController {
 
   /**
    * Remove box and all its content from the dialog.
-   * @memberof ComponentController
+   * @memberof BoxController
    * @function removeBox
    * @param {number} id as index of removed box
    */
@@ -91,7 +97,7 @@ export class ComponentController {
 
   /**
    * Handle Drag&Drop event.
-   * @memberof ComponentController
+   * @memberof BoxController
    * @function droppableOptions
    * @param {number} event jQuery object
    * @param {number} ui jQuery object
@@ -106,7 +112,7 @@ export class ComponentController {
 
   /**
    * Show modal to edit label and description of the box.
-   * @memberof ComponentController
+   * @memberof BoxController
    * @function editDialogModal
    * @param {number} tab is an index of tab, where the box is placed
    * @param {number} box is an index of box
@@ -129,6 +135,6 @@ export class ComponentController {
  */
 export default class Box {
   public template = require('./box.html');
-  public controller: any = ComponentController;
+  public controller: any = BoxController;
   public controllerAs: string = 'vm';
 }

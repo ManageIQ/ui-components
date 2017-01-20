@@ -37,7 +37,13 @@ class DialogField {
   }
 }
 
-export class ComponentController {
+/**
+ * Controller for the Dialog Editor toolbox component
+ * @memberof miqStaticAssets
+ * @ngdoc controller
+ * @name ToolboxController
+ */
+export class ToolboxController {
   public fields: any = {
     dialogFieldTextBox:
       new DialogField(
@@ -121,6 +127,6 @@ export class ComponentController {
  */
 export default class Toolbox {
   public template = require('./toolbox.html');
-  public controller: any = ComponentController;
+  public controller: any = ToolboxController;
   public controllerAs: string = 'vm';
 }

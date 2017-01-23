@@ -26,9 +26,9 @@ export default class ModalFieldTemplate {
   /*@ngInject*/
   public template = ($element: any, $attrs: any) => {
     return require('./' + $attrs.template);
-  };
+  }
   public scope: boolean = true;
-  public controllerAs: string = "vm";
+  public controllerAs: string = 'vm';
   public bindings: any = {
     modalData: '=',
     addEntry: '=?',

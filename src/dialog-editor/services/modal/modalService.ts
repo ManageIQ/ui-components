@@ -290,6 +290,6 @@ export default class ModalService {
     };
     let modal = this.$uibModal.open(modalOptions);
 
-    return modal.result;
+    return modal.result.catch(() => undefined);
   }
 }

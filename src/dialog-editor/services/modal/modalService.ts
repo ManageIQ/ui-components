@@ -50,14 +50,14 @@ class ModalController {
       case 'tab':
         this.modalData = _.cloneDeep(
           this.DialogEditor.getDialogTabs()[
-            this.DialogEditor.activeTab
+            this.dialog.tabId
           ]
         );
         break;
       case 'box':
         this.modalData = _.cloneDeep(
           this.DialogEditor.getDialogTabs()[
-            this.DialogEditor.activeTab
+            this.dialog.tabId
           ].dialog_groups[
             this.dialog.boxId
           ]
@@ -66,7 +66,7 @@ class ModalController {
       case 'field':
         this.modalData = _.cloneDeep(
           this.DialogEditor.getDialogTabs()[
-            this.DialogEditor.activeTab
+            this.dialog.tabId
           ].dialog_groups[
             this.dialog.boxId
           ].dialog_fields[

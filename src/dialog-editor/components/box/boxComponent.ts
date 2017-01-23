@@ -70,6 +70,10 @@ class BoxController {
           dialog_fields: [],
         }
       );
+    // update indexes of other boxes after adding a new one
+    this.DialogEditor.updatePositions(
+      this.dialogTabs[this.DialogEditor.activeTab].dialog_groups
+    );
   }
 
   /**

@@ -68,6 +68,7 @@ class TabListController {
       }
     );
     this.DialogEditor.activeTab = nextIndex;
+    this.DialogEditor.updatePositions(this.tabList);
   }
 
   /**

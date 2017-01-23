@@ -34,7 +34,7 @@ class TabListController {
       cursor: 'move',
       helper: 'clone',
       revert: 50,
-      stop: function(e: any, ui: any) {
+      stop: (e: any, ui: any) => {
         let sortedTab = ui.item.scope();
         let tabList = sortedTab.$parent.dialogEditorTabs.tabList;
         this.DialogEditor.updatePositions(tabList);

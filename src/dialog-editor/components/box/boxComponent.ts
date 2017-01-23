@@ -33,12 +33,10 @@ class BoxController {
       cursor: 'move',
       opacity: 0.5,
       revert: 50,
-      stop: function(e: any, ui: any) {
-        let sortedBox = ui.item.scope();
+      stop: (e: any, ui: any) => {
+        let sortedBox = ui.item.scope().$parent.tab.dialog_groups;
         // update indexes of other boxes after changing their order
-        this.DialogEditor.updatePositions(
-          sortedBox.$parent.tab.dialog_groups
-        );
+        this.DialogEditor.updatePositions(sortedBox);
       },
     };
     // Rules for Drag&Drop sorting of elements inside of boxes
@@ -47,12 +45,10 @@ class BoxController {
       cancel: '.nosort',
       cursor: 'move',
       revert: 50,
-      stop: function(e: any, ui: any) {
-        let sortedField = ui.item.scope();
+      stop: (e: any, ui: any) => {
+        let sortedField = ui.item.scope().$parent.box.dialog_fields;
         // update indexes of other fields after changing their order
-        this.DialogEditor.updatePositions(
-          sortedField.$parent.box.dialog_fields
-        );
+        this.DialogEditor.updatePositions(sortedField);
       },
     };
   }
@@ -105,7 +101,7 @@ class BoxController {
   public droppableOptions(e: any, ui: any) {
     let droppedItem = ng.element(e.target).scope();
     // update indexes of other boxes after changing their order
-    this.DialogEditor.updatePosition(
+    this.DialogEditor.updatePositions(
       droppedItem.box.dialog_fields
     );
   }

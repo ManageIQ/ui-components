@@ -54,7 +54,7 @@ export default class DialogEditorService {
    * @function updatePositions
    * @param {any[]} array of elements to sort
    */
-  public updatePosition(elements: any[]) {
+  public updatePositions(elements: any[]) {
     if (elements.length !== 0) {
       for (let i = 0; i < elements.length; i++) {
         elements[i].position = i;

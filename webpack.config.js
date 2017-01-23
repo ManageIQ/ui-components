@@ -2,7 +2,7 @@
 const settings = require('./application-settings.js');
 const webpack = require('webpack'),
   path = require('path'),
-  production = process.argv.indexOf('--production') !== -1,
+  production = process.env.NODE_ENV === 'production',
   NgAnnotatePlugin = require('ng-annotate-webpack-plugin'),
   BrowserSyncPlugin = require('browser-sync-webpack-plugin'),
   CopyWebpackPlugin = require('copy-webpack-plugin'),
@@ -19,10 +19,10 @@ const webpack = require('webpack'),
       template: 'demo/template-index.ejs', // Load a custom template
       inject: 'body'
     }),
-    !production ? undefined : new webpack.optimize.CommonsChunkPlugin(
-      settings.appName,
-      settings.javascriptFolder + '/' + settings.appName + settings.isMinified(production)
-    ),
+    !production ? undefined : new webpack.optimize.CommonsChunkPlugin({
+      name: settings.appName,
+      filename: settings.javascriptFolder + '/' + settings.appName + settings.isMinified(production)
+    }),
     new BrowserSyncPlugin({
       host: 'localhost',
       port: 4000,
@@ -40,8 +40,6 @@ const webpack = require('webpack'),
   ].filter(p => !!p);
 
 if(production){
-  plugins.push(new webpack.optimize.DedupePlugin());
-  plugins.push(new webpack.optimize.OccurenceOrderPlugin());
   plugins.push(new webpack.optimize.UglifyJsPlugin({warnings: false, minimize: true, drop_console: true}));
 }
 

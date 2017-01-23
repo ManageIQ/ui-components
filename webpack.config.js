@@ -64,7 +64,7 @@ module.exports = {
     filename: settings.javascriptFolder + "/[name]" + settings.isMinified(production)
   },
   resolve: {
-    extensions: ['', '.ts', '.js']
+    extensions: ['.ts', '.js']
   },
   stats: {
     colors: true,
@@ -72,18 +72,25 @@ module.exports = {
   },
   devtool: !production && 'source-map',
   module: {
-    preLoaders: [
-      {test: /\.ts$/, loader: 'tslint', exclude: /(node_modules|libs)/}
-    ],
-    loaders: [
+    rules: [
+      {enforce: 'pre', test: /\.ts?$/, loader: 'tslint-loader', exclude: /(node_modules|libs)/},
       {test: /\.ts$/, loaders: ['ts-loader'], exclude: /(node_modules|libs)/},
-      {test: /\.html$/, loader: 'raw', exclude: /(node_modules|libs|dist|tsd)/},
+      {test: /\.html$/, loader: 'raw-loader', exclude: /(node_modules|libs|dist|tsd)/},
       // stylesheets
-      {test: /\.scss/, exclude: /(node_modules|lib)/, loader: ExtractTextPlugin.extract('style-loader',
-        'css-loader!sass-loader')},
-      {test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader')},
+      {test: /\.scss/, exclude: /(node_modules|lib)/, loader: ExtractTextPlugin.extract(
+        {
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader!sass-loader'
+        }
+      )},
+      {test: /\.css$/, loader: ExtractTextPlugin.extract(
+        {
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader!sass-loader'
+        }
+      )},
       {test: /\.(png|jpg|gif|svg|woff|ttf|eot)/, loader:  'url-loader?limit=20480'},
-      {test: /\.json$/,  loader: 'json'}
+      {test: /\.json$/,  loader: 'json-loader'}
     ]
   },
   plugins: plugins,

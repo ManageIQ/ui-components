@@ -14,7 +14,7 @@ class BoxController {
   public dialogTabs: any;
 
   /*@ngInject*/
-  constructor(private DialogEditor: any) {
+  constructor(private DialogEditor: any, private DialogEditorModal: any) {
   }
 
   /**
@@ -118,7 +118,7 @@ class BoxController {
    * @param {number} box is an index of box
    */
   public editDialogModal(tab: number, box: number) {
-    this.DialogEditor.showModal(tab, box);
+    this.DialogEditorModal.showModal(tab, box);
   }
 }
 

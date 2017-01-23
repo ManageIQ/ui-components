@@ -12,7 +12,7 @@ class TabListController {
   public sortableOptions: any;
 
   /*@ngInject*/
-  constructor(private DialogEditor: any) {
+  constructor(private DialogEditor: any, private DialogEditorModal: any) {
   }
 
   /**
@@ -140,7 +140,7 @@ class TabListController {
    * @param {number} tab is an index of tab
    */
   public editDialogModal(tab: number) {
-    this.DialogEditor.showModal(tab);
+    this.DialogEditorModal.showModal(tab);
   }
 }
 

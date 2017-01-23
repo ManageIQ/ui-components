@@ -219,9 +219,7 @@ class ModalController {
       ].dialog_groups[
         this.dialog.boxId
       ].dialog_fields,
-      function(field: any) {
-        return field.position === this.dialog.fieldId;
-      }
+      (field: any) => field.position === this.dialog.fieldId
     );
 
     // close modal

@@ -20,7 +20,7 @@ class DialogField {
       required_method_options: {},
       default_value: '',
       values_method_options: {},
-      label: '',
+      label: label,
       position: 0,
       dynamic: false,
       show_refresh_button: false,

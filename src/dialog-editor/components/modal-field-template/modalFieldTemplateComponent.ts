@@ -1,4 +1,13 @@
+import * as _ from 'lodash';
+
+/**
+ * Controller for the Dialog Editor Modal Field Template component
+ * @ngdoc controller
+ * @name ModalFieldController
+ */
 class ModalFieldController {
+  public modalData: any;
+
 }
 
 /**
@@ -9,14 +18,23 @@ class ModalFieldController {
  *    Component contains templates for the modal for each field type
  * @example
  * <dialog-editor-modal-field-template ng-switch-when="DialogFieldTextBox"
- *                                     template="text-box.html">
+ *                                     template="text-box.html"
+ *                                     modal-data="vm.modalData">
  * </dialog-editor-modal-field-template>
  */
 export default class ModalFieldTemplate {
-  public template = ['$element', '$attrs', function($element: any, $attrs: any) {
+  /*@ngInject*/
+  public template = ($element: any, $attrs: any) => {
     return require('./' + $attrs.template);
-  }];
-  public controller: any = ModalFieldController;
-  public controllerAs: string = 'vm';
+  };
   public scope: boolean = true;
+  public controllerAs: string = "vm";
+  public bindings: any = {
+    modalData: '=',
+    addEntry: '=?',
+    removeEntry: '=?',
+    currentCategoryEntries: '=?',
+    resolveCategories: '=?',
+    categories: '=?',
+  };
 }

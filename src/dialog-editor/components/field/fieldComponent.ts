@@ -52,6 +52,6 @@ export default class Field {
   public controllerAs: string = 'vm';
   public bindings: any = {
     fieldData: '<',
-    boxPosition: '<'
+    boxPosition: '<',
   };
 }

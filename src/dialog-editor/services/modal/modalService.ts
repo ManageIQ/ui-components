@@ -21,10 +21,10 @@ class ModalController {
     ng.extend(this, {
       dialog: this.dialogDetails,
       saveDialogFieldDetails: this.saveDialogFieldDetails,
-      deleteField: this.deleteField,
-      modalUnchanged: this.modalUnchanged,
       addEntry: this.addEntry,
       removeEntry: this.removeEntry,
+      deleteField: this.deleteField,
+      modalUnchanged: this.modalUnchanged,
       modalTabSet: this.modalTabSet,
       modalTabIsSet: this.modalTabIsSet,
       currentCategoryEntries: this.currentCategoryEntries,
@@ -75,9 +75,11 @@ class ModalController {
         );
         // load categories from API, if the field is Tag Control
         if (this.modalData.type === 'DialogFieldTagControl') {
-          this.resolveCategories().then(function(categories: any) {
-            this.categories = categories;
-          });
+          this.resolveCategories().then(
+            (categories: any) => {
+              this.categories = categories;
+            }
+          );
         }
         break;
       default:
@@ -227,6 +229,25 @@ class ModalController {
   }
 
   /**
+   * Add entry for radio button / dropdown select.
+   * @memberof ModalFieldController
+   * @function addEntry
+   */
+  public addEntry() {
+    this.modalData.values.push(['', '']);
+  }
+
+  /**
+   * Remove entry for radio button / dropdown select
+   * @memberof ModalFieldController
+   * @function removeEntry
+   * @param entry to remove from array
+   */
+  public removeEntry(entry: any) {
+    _.pull(this.modalData.values, entry);
+  }
+
+  /**
    * Finds entries for the selected category.
    * @memberof ModalController
    * @function currentCategoryEntries
@@ -239,25 +260,6 @@ class ModalController {
         Number(this.modalData.options.category_id)
       );
     }
-  }
-
-  /**
-   * Add entry for radio button / dropdown select.
-   * @memberof ModalController
-   * @function addEntry
-   */
-  public addEntry() {
-    this.modalData.values.push(['', '']);
-  }
-
-  /**
-   * Remove entry for radio button / dropdown select
-   * @memberof ModalController
-   * @function addEntry
-   * @param entry to remove from array
-   */
-  public removeEntry(entry: any) {
-    _.pullAt(this.modalData.values, entry);
   }
 }
 

@@ -283,7 +283,7 @@ export default class ModalService {
       controllerAs: 'vm',
       size: 'lg',
       resolve: {
-        dialogDetails: function() {
+        dialogDetails: () => {
           return {tabId: tab, boxId: box, fieldId: field};
         },
       },

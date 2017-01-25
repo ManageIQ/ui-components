@@ -85,9 +85,7 @@ class BoxController {
   public removeBox(id: number) {
     _.remove(
       this.dialogTabs[this.DialogEditor.activeTab].dialog_groups,
-      function(box) {
-        return box.position === id;
-      }
+      (box) => box.position === id
     );
     // update indexes of other boxes after removing
     this.DialogEditor.updatePositions(

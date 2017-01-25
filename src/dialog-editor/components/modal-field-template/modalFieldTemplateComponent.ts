@@ -24,17 +24,15 @@ class ModalFieldController {
  */
 export default class ModalFieldTemplate {
   /*@ngInject*/
-  public template = ($element: any, $attrs: any) => {
-    return require('./' + $attrs.template);
-  }
+  public template = ($element: any, $attrs: any) => require(`./${$attrs.template}`);
   public scope: boolean = true;
   public controllerAs: string = 'vm';
   public bindings: any = {
     modalData: '=',
-    addEntry: '=?',
-    removeEntry: '=?',
-    currentCategoryEntries: '=?',
-    resolveCategories: '=?',
     categories: '=?',
+    addEntry: '&?',
+    removeEntry: '&?',
+    currentCategoryEntries: '&?',
+    resolveCategories: '&?',
   };
 }

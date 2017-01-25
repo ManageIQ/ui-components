@@ -6,6 +6,8 @@
  */
 class FieldController {
   public service: any;
+  public fieldData: any;
+  public boxPosition: any;
 
   /*@ngInject*/
   constructor(private DialogEditor: any,

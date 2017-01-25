@@ -52,9 +52,7 @@ class TabListController {
    */
   public addTab() {
     // deactivate currently active tab
-    this.tabList.forEach(function(tab) {
-      tab.active = false;
-    });
+    this.tabList.forEach((tab) =>  tab.active = false);
     // create a new tab
     let nextIndex = this.tabList.length;
     this.tabList.push(
@@ -93,12 +91,7 @@ class TabListController {
       }
     }
     // remove tab with matching id
-    _.remove(
-      this.tabList,
-      function(tab) {
-        return tab.position === id;
-      }
-    );
+    _.remove(this.tabList, (tab) => tab.position === id);
     // update indexes of other tabs after removing
     if (this.tabList.length !== 0) {
       this.DialogEditor.updatePositions(this.tabList);

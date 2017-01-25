@@ -55,10 +55,6 @@ export default class DialogEditorService {
    * @param {any[]} array of elements to sort
    */
   public updatePositions(elements: any[]) {
-    if (elements.length !== 0) {
-      for (let i = 0; i < elements.length; i++) {
-        elements[i].position = i;
-      }
-    }
+    elements.forEach((value, key) => value.position = key);
   }
 }

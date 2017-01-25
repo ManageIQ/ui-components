@@ -7,7 +7,7 @@
     "start": "webpack --watch",
     "test": "karma start",
     "prepublish": "webpack",
-    "build": "webpack --config webpack.vendor.config.js && webpack",
+    "build": "webpack --config webpack.vendor.config.js && webpack -p",
     "install-vendor": "webpack --config webpack.vendor.config.js",
     "build-docs": "jsdoc -c jsdoc-conf.json"
   },
@@ -52,7 +52,7 @@
     "drmonty-datatables-colvis": "^1.1.2",
     "eonasdan-bootstrap-datetimepicker": "^4.17.43",
     "expose-loader": "^0.7.1",
-    "extract-text-webpack-plugin": "1.0.1",
+    "extract-text-webpack-plugin": "^2.0.0-beta.5",
     "file-loader": "^0.9.0",
     "google-code-prettify": "^1.0.5",
     "html-webpack-plugin": "^2.24.1",
@@ -83,6 +83,6 @@
     "typescript": "2.0.10",
     "ui-router": "^1.0.0-alpha0",
     "url-loader": "^0.5.7",
-    "webpack": "1.13.3"
+    "webpack": "2.2.0"
   }
 }

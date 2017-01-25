@@ -22,21 +22,28 @@ module.exports = {
   },
   plugins: plugins,
   module: {
-    preLoaders: [
-      {test: /\.ts$/, loader: 'tslint', exclude: /(node_modules|libs)/}
-    ],
-    loaders: [
-      { test: require.resolve('jquery'), loader: 'expose?jQuery!expose?$' },
+    rules: [
+      {enforce: 'pre', test: /\.ts?$/, loader: 'tslint-loader', exclude: /(node_modules|libs)/},
+      { test: require.resolve('jquery'), loader: 'expose-loader?jQuery!expose-loader?$' },
       {test: /\.ts$/, loaders: ['ts-loader'], exclude: /(node_modules|libs)/},
-      {test: /\.html$/, loader: 'raw', exclude: /(node_modules|libs|dist|tsd)/},
+      {test: /\.html$/, loader: 'raw-loader', exclude: /(node_modules|libs|dist|tsd)/},
       {test: /\.(png|jpg|gif|svg|woff|ttf|eot)/, loader:  'url-loader?limit=20480'},
       // stylesheets
-      {test: /\.scss/, exclude: /(node_modules|lib)/, loader: ExtractTextPlugin.extract('style-loader',
-        'css-loader!sass-loader')},
-      {test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader')},
+      {test: /\.scss/, exclude: /(node_modules|lib)/, loader: ExtractTextPlugin.extract(
+        {
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader!sass-loader'
+        }
+      )},
+      {test: /\.css$/, loader: ExtractTextPlugin.extract(
+        {
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader!sass-loader'
+        }
+      )},
       { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
       { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
-      {test: /\.json$/,  loader: 'json'}
+      {test: /\.json$/,  loader: 'json-loader'}
     ]
   },
   output: {

@@ -2,7 +2,7 @@
 const settings = require('./application-settings.js');
 const webpack = require('webpack'),
   path = require('path'),
-  production = process.argv.indexOf('--production') !== -1,
+  production = process.env.NODE_ENV === 'production',
   NgAnnotatePlugin = require('ng-annotate-webpack-plugin'),
   BrowserSyncPlugin = require('browser-sync-webpack-plugin'),
   CopyWebpackPlugin = require('copy-webpack-plugin'),
@@ -19,10 +19,10 @@ const webpack = require('webpack'),
       template: 'demo/template-index.ejs', // Load a custom template
       inject: 'body'
     }),
-    !production ? undefined : new webpack.optimize.CommonsChunkPlugin(
-      settings.appName,
-      settings.javascriptFolder + '/' + settings.appName + settings.isMinified(production)
-    ),
+    !production ? undefined : new webpack.optimize.CommonsChunkPlugin({
+      name: settings.appName,
+      filename: settings.javascriptFolder + '/' + settings.appName + settings.isMinified(production)
+    }),
     new BrowserSyncPlugin({
       host: 'localhost',
       port: 4000,
@@ -40,8 +40,6 @@ const webpack = require('webpack'),
   ].filter(p => !!p);
 
 if(production){
-  plugins.push(new webpack.optimize.DedupePlugin());
-  plugins.push(new webpack.optimize.OccurenceOrderPlugin());
   plugins.push(new webpack.optimize.UglifyJsPlugin({warnings: false, minimize: true, drop_console: true}));
 }
 
@@ -64,7 +62,7 @@ module.exports = {
     filename: settings.javascriptFolder + "/[name]" + settings.isMinified(production)
   },
   resolve: {
-    extensions: ['', '.ts', '.js']
+    extensions: ['.ts', '.js']
   },
   stats: {
     colors: true,
@@ -72,18 +70,25 @@ module.exports = {
   },
   devtool: !production && 'source-map',
   module: {
-    preLoaders: [
-      {test: /\.ts$/, loader: 'tslint', exclude: /(node_modules|libs)/}
-    ],
-    loaders: [
+    rules: [
+      {enforce: 'pre', test: /\.ts?$/, loader: 'tslint-loader', exclude: /(node_modules|libs)/},
       {test: /\.ts$/, loaders: ['ts-loader'], exclude: /(node_modules|libs)/},
-      {test: /\.html$/, loader: 'raw', exclude: /(node_modules|libs|dist|tsd)/},
+      {test: /\.html$/, loader: 'raw-loader', exclude: /(node_modules|libs|dist|tsd)/},
       // stylesheets
-      {test: /\.scss/, exclude: /(node_modules|lib)/, loader: ExtractTextPlugin.extract('style-loader',
-        'css-loader!sass-loader')},
-      {test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader')},
+      {test: /\.scss/, exclude: /(node_modules|lib)/, loader: ExtractTextPlugin.extract(
+        {
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader!sass-loader'
+        }
+      )},
+      {test: /\.css$/, loader: ExtractTextPlugin.extract(
+        {
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader!sass-loader'
+        }
+      )},
       {test: /\.(png|jpg|gif|svg|woff|ttf|eot)/, loader:  'url-loader?limit=20480'},
-      {test: /\.json$/,  loader: 'json'}
+      {test: /\.json$/,  loader: 'json-loader'}
     ]
   },
   plugins: plugins,

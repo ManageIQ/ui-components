@@ -70,6 +70,14 @@ img.miq-gradient-background {
   color: #8b8d8f !important;
   opacity: 1; }
 
+.miq-pagination .miq-pager {
+  float: right; }
+  .miq-pagination .miq-pager .miq-per-page {
+    display: inline-block;
+    vertical-align: top; }
+  .miq-pagination .miq-pager .miq-paging {
+    display: inline-block; }
+
 .miq-data-table .miq-paging {
   text-align: center; }
   .miq-data-table .miq-paging ul.pagination {

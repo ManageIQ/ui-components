@@ -2,7 +2,7 @@ import {TileType} from '../../interfaces/tileType';
 import {IDataTableBinding} from '../../interfaces/dataTable';
 import {DataViewClass} from '../../interfaces/abstractDataViewClass';
 import * as _ from 'lodash';
-import * as ng from 'angular';
+
 /**
  * Controller for tile components. It extends {@link miqStaticAssets.gtl.DataViewClass}.
  * @memberof miqStaticAssets.gtl
@@ -16,6 +16,7 @@ export class TileViewController extends DataViewClass implements IDataTableBindi
   constructor(private $sce: any) {
     super();
     this.initOptions();
+    console.log(this);
   }
 
   /**

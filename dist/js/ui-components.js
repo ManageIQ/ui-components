@@ -624,7 +624,8 @@ var SortItemsController = (function () {
      */
     SortItemsController.prototype.applyClass = function () {
         if (this.dropDownClass) {
-            Array.isArray(this.dropDownClass) ? (_a = this.$element.find('.dropdown')).addClass.apply(_a, this.dropDownClass) :
+            Array.isArray(this.dropDownClass) ?
+                (_a = this.$element.find('.dropdown')).addClass.apply(_a, this.dropDownClass) :
                 this.$element.find('.dropdown').addClass(this.dropDownClass);
         }
         var _a;
@@ -1578,7 +1579,7 @@ var _ = __webpack_require__(0);
 var DataTableController = (function (_super) {
     __extends(DataTableController, _super);
     function DataTableController() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     /**
      * This method will check if user wants to go to non existent page and will validate it.
@@ -1870,11 +1871,10 @@ var TileViewController = (function (_super) {
     /* @ngInject */
     TileViewController.$inject = ["$sce"];
     function TileViewController($sce) {
-        var _this = _super.call(this) || this;
-        _this.$sce = $sce;
-        _this.initOptions();
-        console.log(_this);
-        return _this;
+        _super.call(this);
+        this.$sce = $sce;
+        this.initOptions();
+        console.log(this);
     }
     /**
      * Method for creating basic options for tiles.
@@ -2371,13 +2371,13 @@ var ToolbarButton = (function () {
             onItemClick: '&'
         };
     }
+    ToolbarButton.Factory = function () {
+        var directive = function () { return new ToolbarButton(); };
+        directive.$inject = [];
+        return directive;
+    };
     return ToolbarButton;
 }());
-ToolbarButton.Factory = function () {
-    var directive = function () { return new ToolbarButton(); };
-    directive.$inject = [];
-    return directive;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = ToolbarButton;
 

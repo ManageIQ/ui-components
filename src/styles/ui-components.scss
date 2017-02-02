@@ -90,6 +90,21 @@ img.miq-gradient-background {
   }
 }
 
+.miq-pagination {
+  .miq-pager {
+    float: right;
+
+    .miq-per-page {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .miq-paging {
+      display: inline-block;
+    }
+  }
+}
+
 .miq-data-table {
   .miq-paging {
     text-align: center;

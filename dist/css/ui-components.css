@@ -233,6 +233,17 @@ img.miq-gradient-background {
     border-top-color: #fff;
     bottom: -10px; }
 
+.dialog-editor-tab-list {
+  margin-bottom: 20px; }
+
+.delete-tab {
+  opacity: .3;
+  visibility: visible; }
+
+.select-tab:hover .delete-tab {
+  opacity: 1;
+  visibility: visible; }
+
 /* end switcher styling */
 
 /*# sourceMappingURL=ui-components.css.map*/

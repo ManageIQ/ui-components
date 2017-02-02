@@ -9,6 +9,7 @@ module.exports = {
   modules: {
     toolbar: '/toolbar',
     common: '/common',
+    dialogEditor: '/dialog-editor',
     gtl: '/gtl',
     siteSwitcher: '/site-switcher'
   },

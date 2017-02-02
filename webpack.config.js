@@ -94,6 +94,7 @@ module.exports = {
   plugins: plugins,
   externals: {
     'angular': 'angular',
-    'lodash': '_'
+    'lodash': '_',
+    '__': '__'
   }
 };

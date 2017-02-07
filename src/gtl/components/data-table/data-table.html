@@ -23,6 +23,11 @@
         </div>
       </div>
     </div>
+    <div class="col-md-1 col-lg-1 col-xs-1 miq-page-counter">
+      <label>{{tableCtrl.settings.startIndex + 1}} - {{tableCtrl.settings.endIndex + 1}}
+        {{tableCtrl.MiQTranslateService.translateString('of')}}
+        {{tableCtrl.settings.items}}</label>
+    </div>
   </div>
   <table class="table table-bordered table-striped table-hover mig-table-with-footer mig-table" ng-if="tableCtrl.rows.length !== 0">
     <thead>

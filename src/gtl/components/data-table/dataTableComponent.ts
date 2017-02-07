@@ -94,8 +94,9 @@ export class DataTableController extends DataViewClass implements IDataTableBind
     if (changesObj.settings && this.settings) {
       this.currentPageView = this.settings.current;
     }
-  }
 
+    this.setPagingNumbers();
+  }
 }
 
 /**

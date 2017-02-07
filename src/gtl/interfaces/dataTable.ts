@@ -27,6 +27,8 @@ export interface ITableSettings {
   sortBy: ITableSortBy;
   paging: ITablePaging;
   dropDownClass?: any[];
+  startIndex?: number;
+  endIndex?: number;
 }
 
 export interface ITableSortBy {

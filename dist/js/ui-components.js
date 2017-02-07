@@ -156,7 +156,10 @@ var _ = __webpack_require__(0);
  * @name DataViewClass
  */
 var DataViewClass = (function () {
-    function DataViewClass() {
+    /*@ngInject*/
+    DataViewClass.$inject = ["MiQTranslateService"];
+    function DataViewClass(MiQTranslateService) {
+        this.MiQTranslateService = MiQTranslateService;
         this.currentPageView = 1;
     }
     /**
@@ -207,7 +210,22 @@ var DataViewClass = (function () {
         this.currentPageView = pageNumber;
         var start = DataViewClass.calculateStartIndex(pageNumber, this.settings.perpage);
         this.loadMoreItems({ start: start, perPage: this.settings.perpage });
-        this.onCheckAll(true);
+    };
+    DataViewClass.prototype.translateString = function (translateText) {
+        return this.MiQTranslateService.translateString(translateText);
+    };
+    DataViewClass.prototype.setPagingNumbers = function () {
+        if (this.settings.hasOwnProperty('current') && this.settings.hasOwnProperty('perpage')) {
+            this.settings.startIndex =
+                this.settings.startIndex ||
+                    DataViewClass.calculateStartIndex(this.settings.current, this.settings.perpage);
+            if (this.settings.current === this.settings.total) {
+                this.settings.endIndex = this.settings.items - 1;
+            }
+            else {
+                this.settings.endIndex = this.settings.current * this.settings.perpage - 1;
+            }
+        }
     };
     /**
      * Helper static method for calculating start index based on pageNumber and number of visible items.
@@ -286,6 +304,13 @@ var angular = __webpack_require__(1);
 var common;
 (function (common) {
     common.app = angular.module('miqStaticAssets.common', []);
+    /*@ngInject*/
+    common.app.config(["$windowProvider", function ($windowProvider) {
+        var windowService = $windowProvider.$get();
+        if (!windowService.hasOwnProperty('__')) {
+            windowService.__ = function (translateString) { return translateString; };
+        }
+    }]);
     services_1.default(common.app);
     components_1.default(common.app);
 })(common || (common = {}));
@@ -465,7 +490,7 @@ module.exports = "<div class=\"modal-header\">\n  <button type=\"button\" class=
 /* 35 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"miq-data-table\">\n  <div ng-if=\"tableCtrl.settings.isLoading\" class=\"spinner spinner-lg\"></div>\n  <div class=\"row miq-pagination\" ng-if=\"tableCtrl.rows && tableCtrl.rows.length !== 0\">\n    <div ng-if=\"tableCtrl.rows.length !== 0\" class=\"miq-select-all col-md-3 col-lg-3 col-xs-3\">\n      <label>{{tableCtrl.settings.selectAllTitle}}: </label>\n      <input type=\"checkbox\" ng-model=\"isChecked\" ng-click=\"tableCtrl.onCheckAll(isChecked)\" title=\"{{tableCtrl.settings.selectAllTitle}}\" />\n    </div>\n    <miq-sort-items class=\"col-md-3 col-lg-3 col-xs-3\"\n                    sort-object=\"tableCtrl.settings.sortBy\"\n                    headers=\"tableCtrl.columns\"\n                    drop-down-class=\"tableCtrl.settings.dropDownClass\"\n                    on-sort=\"tableCtrl.onSortClick(sortObject.colId, isAscending)\"></miq-sort-items>\n    <div class=\"col-md-5 col-lg-5 col-xs-6\">\n      <div class=\"miq-pager\">\n        <div class=\"miq-per-page\">\n          <label>{{tableCtrl.perPage.label}}: </label>\n          <miq-toolbar-list on-item-click=\"tableCtrl.perPageClick(item)\"\n                            drop-down-class=\"tableCtrl.settings.dropDownClass\"\n                            toolbar-list=\"tableCtrl.perPage\"></miq-toolbar-list>\n        </div>\n        <div class=\"miq-paging\" ng-if=\"tableCtrl.rows && tableCtrl.rows.length !== 0\">\n          <miq-paging settings=\"tableCtrl.settings\" on-change-page=\"tableCtrl.setTablePage(pageNumber)\"></miq-paging>\n        </div>\n      </div>\n    </div>\n  </div>\n  <table class=\"table table-bordered table-striped table-hover mig-table-with-footer mig-table\" ng-if=\"tableCtrl.rows.length !== 0\">\n    <thead>\n    <tr>\n      <th class=\"narrow\">\n\n      </th>\n      <th ng-if=\"$index !== 0\"\n          ng-repeat=\"column in tableCtrl.columns track by $index\"\n          ng-click=\"tableCtrl.onSortClick($index, !!tableCtrl.settings.sortBy && !tableCtrl.settings.sortBy.isAscending)\"\n          ng-class=\"tableCtrl.getColumnClass(column)\">\n        {{column.text}}\n        <div class=\"pull-right\" ng-if=\"tableCtrl.isFilteredBy(column)\" >\n          <i class=\"fa\" ng-class=\"tableCtrl.getSortClass()\"></i>\n        </div>\n      </th>\n    </tr>\n    </thead>\n    <tbody>\n    <tr ng-repeat=\"row in tableCtrl.rows\"\n        ng-class=\"{active : row.selected}\"\n        ng-click=\"tableCtrl.onRowClick({item: row, event: $event})\">\n      <td ng-repeat=\"(columnKey, column) in tableCtrl.columns\" ng-class=\"{narrow: row.cells[columnKey].is_checkbox}\">\n        <input ng-if=\"row.cells[columnKey].is_checkbox\"\n               ng-click=\"tableCtrl.onItemSelected({item: row, isSelected: isSelected})\"\n               onclick=\"event.stopPropagation();\"\n               type=\"checkbox\"\n               ng-model=\"isSelected\"\n               name=\"check_{{row.id}}\"\n               value=\"{{row.id}}\"\n               ng-checked=\"row.checked\"\n               class=\"list-grid-checkbox\">\n        <i ng-if=\"row.cells[columnKey].icon && tableCtrl.isIconOrImage(row, columnKey)\"\n           class=\"{{row.cells[columnKey].icon}}\"\n           title=\"row.cells[columnKey].title\"></i>\n        <img ng-if=\"row.cells[columnKey].icon === null && tableCtrl.isIconOrImage(row, columnKey)\"\n             ng-src=\"{{row.img_url}}\"\n             alt=\"{{row.cells[columnKey].title}}\"\n             title=\"{{row.cells[columnKey].title}}\" />\n        <span ng-if=\"row.cells[columnKey].text\">\n              {{row.cells[columnKey].text}}\n          </span>\n      </td>\n    </tr>\n    </tbody>\n  </table>\n</div>\n"
+module.exports = "<div class=\"miq-data-table\">\n  <div ng-if=\"tableCtrl.settings.isLoading\" class=\"spinner spinner-lg\"></div>\n  <div class=\"row miq-pagination\" ng-if=\"tableCtrl.rows && tableCtrl.rows.length !== 0\">\n    <div ng-if=\"tableCtrl.rows.length !== 0\" class=\"miq-select-all col-md-3 col-lg-3 col-xs-3\">\n      <label>{{tableCtrl.settings.selectAllTitle}}: </label>\n      <input type=\"checkbox\" ng-model=\"isChecked\" ng-click=\"tableCtrl.onCheckAll(isChecked)\" title=\"{{tableCtrl.settings.selectAllTitle}}\" />\n    </div>\n    <miq-sort-items class=\"col-md-3 col-lg-3 col-xs-3\"\n                    sort-object=\"tableCtrl.settings.sortBy\"\n                    headers=\"tableCtrl.columns\"\n                    drop-down-class=\"tableCtrl.settings.dropDownClass\"\n                    on-sort=\"tableCtrl.onSortClick(sortObject.colId, isAscending)\"></miq-sort-items>\n    <div class=\"col-md-5 col-lg-5 col-xs-6\">\n      <div class=\"miq-pager\">\n        <div class=\"miq-per-page\">\n          <label>{{tableCtrl.perPage.label}}: </label>\n          <miq-toolbar-list on-item-click=\"tableCtrl.perPageClick(item)\"\n                            drop-down-class=\"tableCtrl.settings.dropDownClass\"\n                            toolbar-list=\"tableCtrl.perPage\"></miq-toolbar-list>\n        </div>\n        <div class=\"miq-paging\" ng-if=\"tableCtrl.rows && tableCtrl.rows.length !== 0\">\n          <miq-paging settings=\"tableCtrl.settings\" on-change-page=\"tableCtrl.setTablePage(pageNumber)\"></miq-paging>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-1 col-lg-1 col-xs-1 miq-page-counter\">\n      <label>{{tableCtrl.settings.startIndex + 1}} - {{tableCtrl.settings.endIndex + 1}}\n        {{tableCtrl.MiQTranslateService.translateString('of')}}\n        {{tableCtrl.settings.items}}</label>\n    </div>\n  </div>\n  <table class=\"table table-bordered table-striped table-hover mig-table-with-footer mig-table\" ng-if=\"tableCtrl.rows.length !== 0\">\n    <thead>\n    <tr>\n      <th class=\"narrow\">\n\n      </th>\n      <th ng-if=\"$index !== 0\"\n          ng-repeat=\"column in tableCtrl.columns track by $index\"\n          ng-click=\"tableCtrl.onSortClick($index, !!tableCtrl.settings.sortBy && !tableCtrl.settings.sortBy.isAscending)\"\n          ng-class=\"tableCtrl.getColumnClass(column)\">\n        {{column.text}}\n        <div class=\"pull-right\" ng-if=\"tableCtrl.isFilteredBy(column)\" >\n          <i class=\"fa\" ng-class=\"tableCtrl.getSortClass()\"></i>\n        </div>\n      </th>\n    </tr>\n    </thead>\n    <tbody>\n    <tr ng-repeat=\"row in tableCtrl.rows\"\n        ng-class=\"{active : row.selected}\"\n        ng-click=\"tableCtrl.onRowClick({item: row, event: $event})\">\n      <td ng-repeat=\"(columnKey, column) in tableCtrl.columns\" ng-class=\"{narrow: row.cells[columnKey].is_checkbox}\">\n        <input ng-if=\"row.cells[columnKey].is_checkbox\"\n               ng-click=\"tableCtrl.onItemSelected({item: row, isSelected: isSelected})\"\n               onclick=\"event.stopPropagation();\"\n               type=\"checkbox\"\n               ng-model=\"isSelected\"\n               name=\"check_{{row.id}}\"\n               value=\"{{row.id}}\"\n               ng-checked=\"row.checked\"\n               class=\"list-grid-checkbox\">\n        <i ng-if=\"row.cells[columnKey].icon && tableCtrl.isIconOrImage(row, columnKey)\"\n           class=\"{{row.cells[columnKey].icon}}\"\n           title=\"row.cells[columnKey].title\"></i>\n        <img ng-if=\"row.cells[columnKey].icon === null && tableCtrl.isIconOrImage(row, columnKey)\"\n             ng-src=\"{{row.img_url}}\"\n             alt=\"{{row.cells[columnKey].title}}\"\n             title=\"{{row.cells[columnKey].title}}\" />\n        <span ng-if=\"row.cells[columnKey].text\">\n              {{row.cells[columnKey].text}}\n          </span>\n      </td>\n    </tr>\n    </tbody>\n  </table>\n</div>\n"
 
 /***/ }),
 /* 36 */
@@ -477,7 +502,7 @@ module.exports = "<ul class=\"pagination\">\n  <li>\n    <a ng-class=\"{disabled
 /* 37 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"miq-tile-section\">\n    <div ng-if=\"tileCtrl.settings.isLoading\" class=\"spinner spinner-lg\"></div>\n    <div class=\"row miq-pagination\" ng-if=\"tileCtrl.rows && tableCtrl.rows.length !== 0\">\n      <div class=\"miq-select-all col-md-3 col-lg-3 col-xs-3\">\n        <label>{{tileCtrl.settings.selectAllTitle}}: </label>\n        <input type=\"checkbox\" ng-model=\"isChecked\" ng-click=\"tileCtrl.onCheckAllTiles(isChecked)\" title=\"{{tileCtrl.settings.selectAllTitle}}\" />\n      </div>\n      <miq-sort-items class=\"col-md-3 col-lg-3 col-xs-3\"\n                      sort-object=\"tileCtrl.settings.sortBy\"\n                      headers=\"tileCtrl.columns\"\n                      drop-down-class=\"tileCtrl.settings.dropDownClass\"\n                      on-sort=\"tileCtrl.onSortClick(sortObject.colId, isAscending)\"></miq-sort-items>\n      <div class=\"col-md-5 col-lg-5 col-xs-6\">\n        <div class=\"miq-pager\">\n          <div class=\"miq-per-page\">\n            <label>{{tileCtrl.perPage.label}}: </label>\n            <miq-toolbar-list on-item-click=\"tileCtrl.perPageClick(item)\"\n                              drop-down-class=\"tileCtrl.settings.dropDownClass\"\n                              toolbar-list=\"tileCtrl.perPage\"></miq-toolbar-list>\n          </div>\n          <div class=\"miq-paging\" ng-if=\"tileCtrl.rows && tileCtrl.rows.length !== 0\">\n            <miq-paging settings=\"tileCtrl.settings\" on-change-page=\"tileCtrl.setPage(pageNumber)\"></miq-paging>\n          </div>\n        </div>\n      </div>\n    </div>\n  <div pf-card-view\n       config=\"tileCtrl.options\"\n       items=\"tileCtrl.rows\"\n       class=\"miq-tile-view\"\n       ng-class=\"tileCtrl.tileClass()\">\n    <div ng-switch=\"config.type\">\n      <ng-switch-when ng-switch-when=\"small\">\n        <div class=\"miq-tile-head\">\n          <a href=\"javascript:void(0)\" title=\"{{config.fetchTileName(item)}}\" ng-click=\"config.onItemClick(item, $event)\">{{config.fetchTileName(item) | limitToSuffix : 5 : 5 }}</a>\n        </div>\n        <div class=\"miq-quadicon\">\n          <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item, $event)\">\n            <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n          </a>\n        </div>\n      </ng-switch-when>\n      <ng-switch-when ng-switch-when=\"big\">\n        <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item, $event)\">{{config.fetchTileName(item)}}</a>\n        <div class=\"row miq-row-margin-only-top \">\n          <div class=\"col-md-3 col-lg-3 col-xs-3 miq-icon-section\">\n            <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item, $event)\">\n              <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n            </a>\n          </div>\n          <div class=\"col-md-9 col-lg-9 col-xs-9 miq-info-section\">\n            <dl class=\"dl-horizontal tile\">\n              <dt ng-repeat-start=\"(key, header) in config.columns | limitTo: 7 track by $index\" ng-if=\"header.text && header.text.indexOf('Name') === -1\" title=\"{{header.text}}\">{{header.text}}:</dt>\n              <dd ng-repeat-end ng-if=\"header.text && header.text.indexOf('Name') === -1\" title=\"{{item.cells[key].text}}\">{{item.cells[key].text | limitToSuffix : 25 : 25}}</dd>\n            </dl>\n          </div>\n        </div>\n      </ng-switch-when>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"miq-tile-section\">\n    <div ng-if=\"tileCtrl.settings.isLoading\" class=\"spinner spinner-lg\"></div>\n    <div class=\"row miq-pagination\" ng-if=\"tileCtrl.rows && tileCtrl.rows.length !== 0\">\n      <div class=\"miq-select-all col-md-3 col-lg-3 col-xs-3\">\n        <label>{{tileCtrl.settings.selectAllTitle}}: </label>\n        <input type=\"checkbox\" ng-model=\"isChecked\" ng-click=\"tileCtrl.onCheckAllTiles(isChecked)\" title=\"{{tileCtrl.settings.selectAllTitle}}\" />\n      </div>\n      <miq-sort-items class=\"col-md-3 col-lg-3 col-xs-3\"\n                      sort-object=\"tileCtrl.settings.sortBy\"\n                      headers=\"tileCtrl.columns\"\n                      drop-down-class=\"tileCtrl.settings.dropDownClass\"\n                      on-sort=\"tileCtrl.onSortClick(sortObject.colId, isAscending)\"></miq-sort-items>\n      <div class=\"col-md-5 col-lg-5 col-xs-6\">\n        <div class=\"miq-pager\">\n          <div class=\"miq-per-page\">\n            <label>{{tileCtrl.perPage.label}}: </label>\n            <miq-toolbar-list on-item-click=\"tileCtrl.perPageClick(item)\"\n                              drop-down-class=\"tileCtrl.settings.dropDownClass\"\n                              toolbar-list=\"tileCtrl.perPage\"></miq-toolbar-list>\n          </div>\n          <div class=\"miq-paging\" ng-if=\"tileCtrl.rows && tileCtrl.rows.length !== 0\">\n            <miq-paging settings=\"tileCtrl.settings\" on-change-page=\"tileCtrl.setPage(pageNumber)\"></miq-paging>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-1 col-lg-1 col-xs-1 miq-page-counter\">\n        <label>{{tileCtrl.settings.startIndex + 1}} - {{tileCtrl.settings.endIndex + 1}}\n          {{tileCtrl.MiQTranslateService.translateString('of')}}\n          {{tileCtrl.settings.items}}</label>\n      </div>\n    </div>\n  <div pf-card-view\n       config=\"tileCtrl.options\"\n       items=\"tileCtrl.rows\"\n       class=\"miq-tile-view\"\n       ng-class=\"tileCtrl.tileClass()\">\n    <div ng-switch=\"config.type\">\n      <ng-switch-when ng-switch-when=\"small\">\n        <div class=\"miq-tile-head\">\n          <a href=\"javascript:void(0)\" title=\"{{config.fetchTileName(item)}}\" ng-click=\"config.onItemClick(item, $event)\">{{config.fetchTileName(item) | limitToSuffix : 5 : 5 }}</a>\n        </div>\n        <div class=\"miq-quadicon\">\n          <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item, $event)\">\n            <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n          </a>\n        </div>\n      </ng-switch-when>\n      <ng-switch-when ng-switch-when=\"big\">\n        <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item, $event)\">{{config.fetchTileName(item)}}</a>\n        <div class=\"row miq-row-margin-only-top \">\n          <div class=\"col-md-3 col-lg-3 col-xs-3 miq-icon-section\">\n            <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item, $event)\">\n              <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n            </a>\n          </div>\n          <div class=\"col-md-9 col-lg-9 col-xs-9 miq-info-section\">\n            <dl class=\"dl-horizontal tile\">\n              <dt ng-repeat-start=\"(key, header) in config.columns | limitTo: 7 track by $index\" ng-if=\"header.text && header.text.indexOf('Name') === -1\" title=\"{{header.text}}\">{{header.text}}:</dt>\n              <dd ng-repeat-end ng-if=\"header.text && header.text.indexOf('Name') === -1\" title=\"{{item.cells[key].text}}\">{{item.cells[key].text | limitToSuffix : 25 : 25}}</dd>\n            </dl>\n          </div>\n        </div>\n      </ng-switch-when>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 /* 38 */
@@ -714,9 +739,11 @@ exports.default = EndpointsService;
 "use strict";
 
 var endpointsService_1 = __webpack_require__(51);
+var translateService_1 = __webpack_require__(92);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (module) {
     module.service('MiQEndpointsService', endpointsService_1.default);
+    module.service('MiQTranslateService', translateService_1.default);
 };
 
 
@@ -1658,6 +1685,7 @@ var DataTableController = (function (_super) {
         if (changesObj.settings && this.settings) {
             this.currentPageView = this.settings.current;
         }
+        this.setPagingNumbers();
     };
     return DataTableController;
 }(abstractDataViewClass_1.DataViewClass));
@@ -1869,12 +1897,11 @@ var _ = __webpack_require__(0);
 var TileViewController = (function (_super) {
     __extends(TileViewController, _super);
     /* @ngInject */
-    TileViewController.$inject = ["$sce"];
-    function TileViewController($sce) {
-        _super.call(this);
+    TileViewController.$inject = ["$sce", "MiQTranslateService"];
+    function TileViewController($sce, MiQTranslateService) {
+        _super.call(this, MiQTranslateService);
         this.$sce = $sce;
         this.initOptions();
-        console.log(this);
     }
     /**
      * Method for creating basic options for tiles.
@@ -1934,6 +1961,7 @@ var TileViewController = (function (_super) {
         else if (changesObj.columns) {
             this.options.columns = this.columns;
         }
+        this.setPagingNumbers();
     };
     /**
      * Method which will be called when clicking on tile.
@@ -2937,6 +2965,31 @@ __webpack_require__(10);
 __webpack_require__(11);
 __webpack_require__(12);
 module.exports = __webpack_require__(14);
+
+
+/***/ }),
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var TranslateService = (function () {
+    /*@ngInject*/
+    TranslateService.$inject = ["$window"];
+    function TranslateService($window) {
+        this.$window = $window;
+    }
+    TranslateService.prototype.translateString = function (stringToTranslate) {
+        return this.$window.__(stringToTranslate);
+    };
+    return TranslateService;
+}());
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = TranslateService;
 
 
 /***/ })

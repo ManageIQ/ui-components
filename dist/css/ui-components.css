@@ -77,6 +77,11 @@ img.miq-gradient-background {
     vertical-align: top; }
   .miq-pagination .miq-pager .miq-paging {
     display: inline-block; }
+    .miq-pagination .miq-pager .miq-paging ul li a {
+      cursor: pointer; }
+
+.miq-page-counter {
+  padding-top: 3px; }
 
 .miq-data-table .miq-paging {
   text-align: center; }

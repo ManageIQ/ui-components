@@ -63,6 +63,10 @@ module.exports = function(config) {
       subdir: '.'
     },
 
+    mime: {
+      'text/x-typescript': ['ts','tsx']
+    },
+
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity

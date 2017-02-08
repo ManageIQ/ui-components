@@ -48,12 +48,14 @@ export class SortItemsController {
    * @function setSortItem
    */
   public setSortItem() {
-    this.options.currentField = {
-      colId: _.findIndex(this.headers, this.sortObject.sortObject),
-      id: this.sortObject.sortObject.text.toLowerCase(),
-      title: this.sortObject.sortObject.text
-    };
-    this.options.isAscending = this.sortObject.isAscending;
+    if (this.sortObject && this.sortObject.sortObject && this.sortObject && this.sortObject.sortObject.text) {
+      this.options.currentField = {
+        colId: _.findIndex(this.headers, this.sortObject.sortObject),
+        id: this.sortObject.sortObject.text.toLowerCase(),
+        title: this.sortObject.sortObject.text
+      };
+      this.options.isAscending = this.sortObject.isAscending;
+    }
   }
 
   /**

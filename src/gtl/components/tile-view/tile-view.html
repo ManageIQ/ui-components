@@ -24,9 +24,11 @@
         </div>
       </div>
       <div class="col-md-1 col-lg-1 col-xs-1 miq-page-counter">
-        <label>{{tileCtrl.settings.startIndex + 1}} - {{tileCtrl.settings.endIndex + 1}}
-          {{tileCtrl.MiQTranslateService.translateString('of')}}
-          {{tileCtrl.settings.items}}</label>
+        <label>{{tileCtrl.translateString(
+          (tileCtrl.settings.startIndex + 1) +
+          ' - ' + (tileCtrl.settings.endIndex + 1) +
+          ' of ' + tileCtrl.settings.items)}}
+        </label>
       </div>
     </div>
   <div pf-card-view

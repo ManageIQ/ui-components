@@ -61,7 +61,7 @@ img.miq-gradient-background {
   .miq-tile-section div.miq-paging ul {
     margin-top: 0; }
 
-.miq-tile-section .disabled, .miq-data-table .disabled {
+.miq-pagination .miq-pager .miq-paging .disabled {
   pointer-events: none;
   cursor: not-allowed;
   background-color: #fafafa !important;

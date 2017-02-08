@@ -133,11 +133,19 @@ img.miq-gradient-background {
 .paginate_of b {
   display: inline-block; }
 
-.miq-select-all input[type="checkbox"] {
-  margin: 0 10px 0;
-  vertical-align: middle;
-  position: relative;
-  top: -1px; }
+.miq-sort-items {
+  padding-right: 0; }
+  .miq-sort-items .sort-pf .dropdown button {
+    max-width: 150px;
+    overflow: hidden; }
+
+.miq-select-all {
+  padding-right: 0; }
+  .miq-select-all input[type="checkbox"] {
+    margin: 0 4px 0;
+    vertical-align: middle;
+    position: relative;
+    top: -1px; }
 
 .miq-sand-paper, .miq-sand-paper > div {
   background: #f5f5f5;

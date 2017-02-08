@@ -1,16 +1,16 @@
 <div class="miq-tile-section">
     <div ng-if="tileCtrl.settings.isLoading" class="spinner spinner-lg"></div>
     <div class="row miq-pagination" ng-if="tileCtrl.rows && tileCtrl.rows.length !== 0">
-      <div class="miq-select-all col-md-3 col-lg-3 col-xs-3">
+      <div class="miq-select-all col-md-2 col-lg-2 col-xs-2">
         <label>{{tileCtrl.settings.selectAllTitle}}: </label>
         <input type="checkbox" ng-model="isChecked" ng-click="tileCtrl.onCheckAllTiles(isChecked)" title="{{tileCtrl.settings.selectAllTitle}}" />
       </div>
-      <miq-sort-items class="col-md-3 col-lg-3 col-xs-3"
+      <miq-sort-items class="miq-sort-items col-md-2 col-lg-2 col-xs-2"
                       sort-object="tileCtrl.settings.sortBy"
                       headers="tileCtrl.columns"
                       drop-down-class="tileCtrl.settings.dropDownClass"
                       on-sort="tileCtrl.onSortClick(sortObject.colId, isAscending)"></miq-sort-items>
-      <div class="col-md-5 col-lg-5 col-xs-6">
+      <div class="col-md-7 col-lg-7 col-xs-7">
         <div class="miq-pager">
           <div class="miq-per-page">
             <label>{{tileCtrl.perPage.label}}: </label>

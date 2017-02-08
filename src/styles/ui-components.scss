@@ -201,10 +201,21 @@ img.miq-gradient-background {
   display: inline-block;
 }
 
+.miq-sort-items {
+  padding-right: 0;
+
+  .sort-pf .dropdown button {
+    max-width: 150px;
+    overflow: hidden;
+  }
+}
+
 .miq-select-all {
 
+  padding-right: 0;
+
   input[type="checkbox"] {
-    margin: 0 10px 0;
+    margin: 0 4px 0;
     vertical-align: middle;
     position: relative;
     top: -1px;

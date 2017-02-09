@@ -95,6 +95,14 @@ export class DataTableController extends DataViewClass implements IDataTableBind
       this.currentPageView = this.settings.current;
     }
 
+    if (changesObj.perPage) {
+      this.perPage.text += ' ' + this.perPage.labelItems;
+      this.perPage.items = this.perPage.items.map(oneItem => {
+        oneItem.text += ' ' + this.perPage.labelItems;
+        return oneItem;
+      });
+    }
+
     this.setPagingNumbers();
   }
 }

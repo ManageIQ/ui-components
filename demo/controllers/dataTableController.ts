@@ -10,7 +10,7 @@ export default class DataTableController {
   constructor(public MiQDataTableService: any, private MiQEndpointsService: any, private $filter: any) {
     this.settings = {};
     this.perPage = {
-      label: 'Items per page',
+      labelItems: 'Items',
       enabled: true,
       text: 20,
       value: 20,
@@ -41,7 +41,7 @@ export default class DataTableController {
 
   public onLoadNext(start, perPage) {
     this.perPage.value = perPage;
-    this.perPage.text = perPage;
+    this.perPage.text = perPage + ' ' + this.perPage.labelItems;
     this.settings.perpage = perPage;
     this.settings.startIndex = start;
     this.settings.current = ( start / perPage) + 1;

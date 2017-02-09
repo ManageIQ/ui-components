@@ -1,6 +1,5 @@
 import {IDataTableBinding, ITableSettings} from './dataTable';
 import * as _ from 'lodash';
-import * as ng from 'angular';
 /**
  * This is abstract controller for implementing shared methods between data table and tile views.
  * @memberof miqStaticAssets.gtl
@@ -19,6 +18,10 @@ export abstract class DataViewClass implements IDataTableBinding {
   public onSort: (args: {headerId: any, isAscending: boolean}) => void;
   public onItemSelected: (args: {item: any, isSelected: boolean}) => void;
   public loadMoreItems: (args: {start: number, perPage: number}) => void;
+
+  /*@ngInject*/
+  constructor(public MiQTranslateService: any) {
+  }
 
   /**
    * Public method which will perform checking all entities.
@@ -70,7 +73,26 @@ export abstract class DataViewClass implements IDataTableBinding {
     this.currentPageView = pageNumber;
     const start = DataViewClass.calculateStartIndex(pageNumber, this.settings.perpage);
     this.loadMoreItems({start: start, perPage: this.settings.perpage});
-    this.onCheckAll(true);
+  }
+
+  public translateOf(start, end, total): string {
+    return this.settings && this.settings.hasOwnProperty('translateTotalof') ?
+      this.settings.translateTotalOf(start, end, total) :
+      `${start} - ${end} of ${total}`;
+  }
+
+  protected setPagingNumbers() {
+    if (this.settings.hasOwnProperty('current') && this.settings.hasOwnProperty('perpage')) {
+      this.settings.startIndex =
+        this.settings.startIndex ||
+        DataViewClass.calculateStartIndex(this.settings.current, this.settings.perpage);
+
+      if (this.settings.current === this.settings.total) {
+        this.settings.endIndex = this.settings.items - 1;
+      } else {
+        this.settings.endIndex = this.settings.current * this.settings.perpage - 1;
+      }
+    }
   }
 
   /**

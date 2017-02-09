@@ -1,19 +1,18 @@
 <div class="miq-data-table">
   <div ng-if="tableCtrl.settings.isLoading" class="spinner spinner-lg"></div>
   <div class="row miq-pagination" ng-if="tableCtrl.rows && tableCtrl.rows.length !== 0">
-    <div ng-if="tableCtrl.rows.length !== 0" class="miq-select-all col-md-3 col-lg-3 col-xs-3">
+    <div ng-if="tableCtrl.rows.length !== 0" class="miq-select-all col-md-2 col-lg-2 col-xs-2">
       <label>{{tableCtrl.settings.selectAllTitle}}: </label>
       <input type="checkbox" ng-model="isChecked" ng-click="tableCtrl.onCheckAll(isChecked)" title="{{tableCtrl.settings.selectAllTitle}}" />
     </div>
-    <miq-sort-items class="col-md-3 col-lg-3 col-xs-3"
+    <miq-sort-items class="miq-sort-items col-md-2 col-lg-2 col-xs-2"
                     sort-object="tableCtrl.settings.sortBy"
                     headers="tableCtrl.columns"
                     drop-down-class="tableCtrl.settings.dropDownClass"
                     on-sort="tableCtrl.onSortClick(sortObject.colId, isAscending)"></miq-sort-items>
-    <div class="col-md-5 col-lg-5 col-xs-6">
+    <div class="col-md-7 col-lg-7 col-xs-7">
       <div class="miq-pager">
         <div class="miq-per-page">
-          <label>{{tableCtrl.perPage.label}}: </label>
           <miq-toolbar-list on-item-click="tableCtrl.perPageClick(item)"
                             drop-down-class="tableCtrl.settings.dropDownClass"
                             toolbar-list="tableCtrl.perPage"></miq-toolbar-list>
@@ -23,8 +22,14 @@
         </div>
       </div>
     </div>
+    <div class="col-md-1 col-lg-1 col-xs-1 miq-page-counter">
+      <label>
+        {{tableCtrl.translateOf(tableCtrl.settings.startIndex, tableCtrl.settings.endIndex, tableCtrl.settings.items)}}
+      </label>
+    </div>
   </div>
-  <table class="table table-bordered table-striped table-hover mig-table-with-footer mig-table" ng-if="tableCtrl.rows.length !== 0">
+  <table class="table table-bordered table-striped table-hover mig-table-with-footer mig-table"
+         ng-if="tableCtrl.rows && tableCtrl.rows.length !== 0">
     <thead>
     <tr>
       <th class="narrow">

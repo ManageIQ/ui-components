@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = ".";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 87);
+/******/ 	return __webpack_require__(__webpack_require__.s = 88);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -122,7 +122,7 @@ var ModalFieldController = (function () {
 var ModalFieldTemplate = (function () {
     function ModalFieldTemplate() {
         /*@ngInject*/
-        this.template = function ($element, $attrs) { return __webpack_require__(85)("./" + $attrs.template); };
+        this.template = function ($element, $attrs) { return __webpack_require__(86)("./" + $attrs.template); };
         this.template.$inject = ["$element", "$attrs"];
         this.scope = true;
         this.controllerAs = 'vm';
@@ -156,7 +156,10 @@ var _ = __webpack_require__(0);
  * @name DataViewClass
  */
 var DataViewClass = (function () {
-    function DataViewClass() {
+    /*@ngInject*/
+    DataViewClass.$inject = ["MiQTranslateService"];
+    function DataViewClass(MiQTranslateService) {
+        this.MiQTranslateService = MiQTranslateService;
         this.currentPageView = 1;
     }
     /**
@@ -207,7 +210,24 @@ var DataViewClass = (function () {
         this.currentPageView = pageNumber;
         var start = DataViewClass.calculateStartIndex(pageNumber, this.settings.perpage);
         this.loadMoreItems({ start: start, perPage: this.settings.perpage });
-        this.onCheckAll(true);
+    };
+    DataViewClass.prototype.translateOf = function (start, end, total) {
+        return this.settings && this.settings.hasOwnProperty('translateTotalof') ?
+            this.settings.translateTotalOf(start, end, total) :
+            start + " - " + end + " of " + total;
+    };
+    DataViewClass.prototype.setPagingNumbers = function () {
+        if (this.settings.hasOwnProperty('current') && this.settings.hasOwnProperty('perpage')) {
+            this.settings.startIndex =
+                this.settings.startIndex ||
+                    DataViewClass.calculateStartIndex(this.settings.current, this.settings.perpage);
+            if (this.settings.current === this.settings.total) {
+                this.settings.endIndex = this.settings.items - 1;
+            }
+            else {
+                this.settings.endIndex = this.settings.current * this.settings.perpage - 1;
+            }
+        }
     };
     /**
      * Helper static method for calculating start index based on pageNumber and number of visible items.
@@ -286,6 +306,13 @@ var angular = __webpack_require__(1);
 var common;
 (function (common) {
     common.app = angular.module('miqStaticAssets.common', []);
+    /*@ngInject*/
+    common.app.config(["$windowProvider", function ($windowProvider) {
+        var windowService = $windowProvider.$get();
+        if (!windowService.hasOwnProperty('__')) {
+            windowService.__ = function (translateString) { return translateString; };
+        }
+    }]);
     services_1.default(common.app);
     components_1.default(common.app);
 })(common || (common = {}));
@@ -297,8 +324,8 @@ var common;
 
 "use strict";
 
-var services_1 = __webpack_require__(63);
-var components_1 = __webpack_require__(57);
+var services_1 = __webpack_require__(64);
+var components_1 = __webpack_require__(58);
 var angular = __webpack_require__(1);
 var dialogEditor;
 (function (dialogEditor) {
@@ -318,9 +345,9 @@ var dialogEditor;
 
 "use strict";
 
-var services_1 = __webpack_require__(75);
-var filters_1 = __webpack_require__(71);
-var components_1 = __webpack_require__(67);
+var services_1 = __webpack_require__(76);
+var filters_1 = __webpack_require__(72);
+var components_1 = __webpack_require__(68);
 var angular = __webpack_require__(1);
 var gtl;
 (function (gtl) {
@@ -356,7 +383,7 @@ var miqStaticAssets;
 
 "use strict";
 
-var siteSwitcherComponent_1 = __webpack_require__(76);
+var siteSwitcherComponent_1 = __webpack_require__(77);
 var angular = __webpack_require__(1);
 var siteSwitcher;
 (function (siteSwitcher) {
@@ -371,8 +398,8 @@ var siteSwitcher;
 
 "use strict";
 
-var services_1 = __webpack_require__(83);
-var components_1 = __webpack_require__(77);
+var services_1 = __webpack_require__(84);
+var components_1 = __webpack_require__(78);
 var angular = __webpack_require__(1);
 var toolbar;
 (function (toolbar) {
@@ -465,7 +492,7 @@ module.exports = "<div class=\"modal-header\">\n  <button type=\"button\" class=
 /* 35 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"miq-data-table\">\n  <div ng-if=\"tableCtrl.settings.isLoading\" class=\"spinner spinner-lg\"></div>\n  <div class=\"row miq-pagination\" ng-if=\"tableCtrl.rows && tableCtrl.rows.length !== 0\">\n    <div ng-if=\"tableCtrl.rows.length !== 0\" class=\"miq-select-all col-md-3 col-lg-3 col-xs-3\">\n      <label>{{tableCtrl.settings.selectAllTitle}}: </label>\n      <input type=\"checkbox\" ng-model=\"isChecked\" ng-click=\"tableCtrl.onCheckAll(isChecked)\" title=\"{{tableCtrl.settings.selectAllTitle}}\" />\n    </div>\n    <miq-sort-items class=\"col-md-3 col-lg-3 col-xs-3\"\n                    sort-object=\"tableCtrl.settings.sortBy\"\n                    headers=\"tableCtrl.columns\"\n                    drop-down-class=\"tableCtrl.settings.dropDownClass\"\n                    on-sort=\"tableCtrl.onSortClick(sortObject.colId, isAscending)\"></miq-sort-items>\n    <div class=\"col-md-5 col-lg-5 col-xs-6\">\n      <div class=\"miq-pager\">\n        <div class=\"miq-per-page\">\n          <label>{{tableCtrl.perPage.label}}: </label>\n          <miq-toolbar-list on-item-click=\"tableCtrl.perPageClick(item)\"\n                            drop-down-class=\"tableCtrl.settings.dropDownClass\"\n                            toolbar-list=\"tableCtrl.perPage\"></miq-toolbar-list>\n        </div>\n        <div class=\"miq-paging\" ng-if=\"tableCtrl.rows && tableCtrl.rows.length !== 0\">\n          <miq-paging settings=\"tableCtrl.settings\" on-change-page=\"tableCtrl.setTablePage(pageNumber)\"></miq-paging>\n        </div>\n      </div>\n    </div>\n  </div>\n  <table class=\"table table-bordered table-striped table-hover mig-table-with-footer mig-table\" ng-if=\"tableCtrl.rows.length !== 0\">\n    <thead>\n    <tr>\n      <th class=\"narrow\">\n\n      </th>\n      <th ng-if=\"$index !== 0\"\n          ng-repeat=\"column in tableCtrl.columns track by $index\"\n          ng-click=\"tableCtrl.onSortClick($index, !!tableCtrl.settings.sortBy && !tableCtrl.settings.sortBy.isAscending)\"\n          ng-class=\"tableCtrl.getColumnClass(column)\">\n        {{column.text}}\n        <div class=\"pull-right\" ng-if=\"tableCtrl.isFilteredBy(column)\" >\n          <i class=\"fa\" ng-class=\"tableCtrl.getSortClass()\"></i>\n        </div>\n      </th>\n    </tr>\n    </thead>\n    <tbody>\n    <tr ng-repeat=\"row in tableCtrl.rows\"\n        ng-class=\"{active : row.selected}\"\n        ng-click=\"tableCtrl.onRowClick({item: row, event: $event})\">\n      <td ng-repeat=\"(columnKey, column) in tableCtrl.columns\" ng-class=\"{narrow: row.cells[columnKey].is_checkbox}\">\n        <input ng-if=\"row.cells[columnKey].is_checkbox\"\n               ng-click=\"tableCtrl.onItemSelected({item: row, isSelected: isSelected})\"\n               onclick=\"event.stopPropagation();\"\n               type=\"checkbox\"\n               ng-model=\"isSelected\"\n               name=\"check_{{row.id}}\"\n               value=\"{{row.id}}\"\n               ng-checked=\"row.checked\"\n               class=\"list-grid-checkbox\">\n        <i ng-if=\"row.cells[columnKey].icon && tableCtrl.isIconOrImage(row, columnKey)\"\n           class=\"{{row.cells[columnKey].icon}}\"\n           title=\"row.cells[columnKey].title\"></i>\n        <img ng-if=\"row.cells[columnKey].icon === null && tableCtrl.isIconOrImage(row, columnKey)\"\n             ng-src=\"{{row.img_url}}\"\n             alt=\"{{row.cells[columnKey].title}}\"\n             title=\"{{row.cells[columnKey].title}}\" />\n        <span ng-if=\"row.cells[columnKey].text\">\n              {{row.cells[columnKey].text}}\n          </span>\n      </td>\n    </tr>\n    </tbody>\n  </table>\n</div>\n"
+module.exports = "<div class=\"miq-data-table\">\n  <div ng-if=\"tableCtrl.settings.isLoading\" class=\"spinner spinner-lg\"></div>\n  <div class=\"row miq-pagination\" ng-if=\"tableCtrl.rows && tableCtrl.rows.length !== 0\">\n    <div ng-if=\"tableCtrl.rows.length !== 0\" class=\"miq-select-all col-md-2 col-lg-2 col-xs-2\">\n      <label>{{tableCtrl.settings.selectAllTitle}}: </label>\n      <input type=\"checkbox\" ng-model=\"isChecked\" ng-click=\"tableCtrl.onCheckAll(isChecked)\" title=\"{{tableCtrl.settings.selectAllTitle}}\" />\n    </div>\n    <miq-sort-items class=\"miq-sort-items col-md-2 col-lg-2 col-xs-2\"\n                    sort-object=\"tableCtrl.settings.sortBy\"\n                    headers=\"tableCtrl.columns\"\n                    drop-down-class=\"tableCtrl.settings.dropDownClass\"\n                    on-sort=\"tableCtrl.onSortClick(sortObject.colId, isAscending)\"></miq-sort-items>\n    <div class=\"col-md-7 col-lg-7 col-xs-7\">\n      <div class=\"miq-pager\">\n        <div class=\"miq-per-page\">\n          <miq-toolbar-list on-item-click=\"tableCtrl.perPageClick(item)\"\n                            drop-down-class=\"tableCtrl.settings.dropDownClass\"\n                            toolbar-list=\"tableCtrl.perPage\"></miq-toolbar-list>\n        </div>\n        <div class=\"miq-paging\" ng-if=\"tableCtrl.rows && tableCtrl.rows.length !== 0\">\n          <miq-paging settings=\"tableCtrl.settings\" on-change-page=\"tableCtrl.setTablePage(pageNumber)\"></miq-paging>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-1 col-lg-1 col-xs-1 miq-page-counter\">\n      <label>\n        {{tableCtrl.translateOf(tableCtrl.settings.startIndex, tableCtrl.settings.endIndex, tableCtrl.settings.items)}}\n      </label>\n    </div>\n  </div>\n  <table class=\"table table-bordered table-striped table-hover mig-table-with-footer mig-table\"\n         ng-if=\"tableCtrl.rows && tableCtrl.rows.length !== 0\">\n    <thead>\n    <tr>\n      <th class=\"narrow\">\n\n      </th>\n      <th ng-if=\"$index !== 0\"\n          ng-repeat=\"column in tableCtrl.columns track by $index\"\n          ng-click=\"tableCtrl.onSortClick($index, !!tableCtrl.settings.sortBy && !tableCtrl.settings.sortBy.isAscending)\"\n          ng-class=\"tableCtrl.getColumnClass(column)\">\n        {{column.text}}\n        <div class=\"pull-right\" ng-if=\"tableCtrl.isFilteredBy(column)\" >\n          <i class=\"fa\" ng-class=\"tableCtrl.getSortClass()\"></i>\n        </div>\n      </th>\n    </tr>\n    </thead>\n    <tbody>\n    <tr ng-repeat=\"row in tableCtrl.rows\"\n        ng-class=\"{active : row.selected}\"\n        ng-click=\"tableCtrl.onRowClick({item: row, event: $event})\">\n      <td ng-repeat=\"(columnKey, column) in tableCtrl.columns\" ng-class=\"{narrow: row.cells[columnKey].is_checkbox}\">\n        <input ng-if=\"row.cells[columnKey].is_checkbox\"\n               ng-click=\"tableCtrl.onItemSelected({item: row, isSelected: isSelected})\"\n               onclick=\"event.stopPropagation();\"\n               type=\"checkbox\"\n               ng-model=\"isSelected\"\n               name=\"check_{{row.id}}\"\n               value=\"{{row.id}}\"\n               ng-checked=\"row.checked\"\n               class=\"list-grid-checkbox\">\n        <i ng-if=\"row.cells[columnKey].icon && tableCtrl.isIconOrImage(row, columnKey)\"\n           class=\"{{row.cells[columnKey].icon}}\"\n           title=\"row.cells[columnKey].title\"></i>\n        <img ng-if=\"row.cells[columnKey].icon === null && tableCtrl.isIconOrImage(row, columnKey)\"\n             ng-src=\"{{row.img_url}}\"\n             alt=\"{{row.cells[columnKey].title}}\"\n             title=\"{{row.cells[columnKey].title}}\" />\n        <span ng-if=\"row.cells[columnKey].text\">\n              {{row.cells[columnKey].text}}\n          </span>\n      </td>\n    </tr>\n    </tbody>\n  </table>\n</div>\n"
 
 /***/ }),
 /* 36 */
@@ -477,7 +504,7 @@ module.exports = "<ul class=\"pagination\">\n  <li>\n    <a ng-class=\"{disabled
 /* 37 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"miq-tile-section\">\n    <div ng-if=\"tileCtrl.settings.isLoading\" class=\"spinner spinner-lg\"></div>\n    <div class=\"row miq-pagination\" ng-if=\"tileCtrl.rows && tableCtrl.rows.length !== 0\">\n      <div class=\"miq-select-all col-md-3 col-lg-3 col-xs-3\">\n        <label>{{tileCtrl.settings.selectAllTitle}}: </label>\n        <input type=\"checkbox\" ng-model=\"isChecked\" ng-click=\"tileCtrl.onCheckAllTiles(isChecked)\" title=\"{{tileCtrl.settings.selectAllTitle}}\" />\n      </div>\n      <miq-sort-items class=\"col-md-3 col-lg-3 col-xs-3\"\n                      sort-object=\"tileCtrl.settings.sortBy\"\n                      headers=\"tileCtrl.columns\"\n                      drop-down-class=\"tileCtrl.settings.dropDownClass\"\n                      on-sort=\"tileCtrl.onSortClick(sortObject.colId, isAscending)\"></miq-sort-items>\n      <div class=\"col-md-5 col-lg-5 col-xs-6\">\n        <div class=\"miq-pager\">\n          <div class=\"miq-per-page\">\n            <label>{{tileCtrl.perPage.label}}: </label>\n            <miq-toolbar-list on-item-click=\"tileCtrl.perPageClick(item)\"\n                              drop-down-class=\"tileCtrl.settings.dropDownClass\"\n                              toolbar-list=\"tileCtrl.perPage\"></miq-toolbar-list>\n          </div>\n          <div class=\"miq-paging\" ng-if=\"tileCtrl.rows && tileCtrl.rows.length !== 0\">\n            <miq-paging settings=\"tileCtrl.settings\" on-change-page=\"tileCtrl.setPage(pageNumber)\"></miq-paging>\n          </div>\n        </div>\n      </div>\n    </div>\n  <div pf-card-view\n       config=\"tileCtrl.options\"\n       items=\"tileCtrl.rows\"\n       class=\"miq-tile-view\"\n       ng-class=\"tileCtrl.tileClass()\">\n    <div ng-switch=\"config.type\">\n      <ng-switch-when ng-switch-when=\"small\">\n        <div class=\"miq-tile-head\">\n          <a href=\"javascript:void(0)\" title=\"{{config.fetchTileName(item)}}\" ng-click=\"config.onItemClick(item, $event)\">{{config.fetchTileName(item) | limitToSuffix : 5 : 5 }}</a>\n        </div>\n        <div class=\"miq-quadicon\">\n          <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item, $event)\">\n            <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n          </a>\n        </div>\n      </ng-switch-when>\n      <ng-switch-when ng-switch-when=\"big\">\n        <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item, $event)\">{{config.fetchTileName(item)}}</a>\n        <div class=\"row miq-row-margin-only-top \">\n          <div class=\"col-md-3 col-lg-3 col-xs-3 miq-icon-section\">\n            <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item, $event)\">\n              <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n            </a>\n          </div>\n          <div class=\"col-md-9 col-lg-9 col-xs-9 miq-info-section\">\n            <dl class=\"dl-horizontal tile\">\n              <dt ng-repeat-start=\"(key, header) in config.columns | limitTo: 7 track by $index\" ng-if=\"header.text && header.text.indexOf('Name') === -1\" title=\"{{header.text}}\">{{header.text}}:</dt>\n              <dd ng-repeat-end ng-if=\"header.text && header.text.indexOf('Name') === -1\" title=\"{{item.cells[key].text}}\">{{item.cells[key].text | limitToSuffix : 25 : 25}}</dd>\n            </dl>\n          </div>\n        </div>\n      </ng-switch-when>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"miq-tile-section\">\n    <div ng-if=\"tileCtrl.settings.isLoading\" class=\"spinner spinner-lg\"></div>\n    <div class=\"row miq-pagination\" ng-if=\"tileCtrl.rows && tileCtrl.rows.length !== 0\">\n      <div class=\"miq-select-all col-md-2 col-lg-2 col-xs-2\">\n        <label>{{tileCtrl.settings.selectAllTitle}}: </label>\n        <input type=\"checkbox\" ng-model=\"isChecked\" ng-click=\"tileCtrl.onCheckAllTiles(isChecked)\" title=\"{{tileCtrl.settings.selectAllTitle}}\" />\n      </div>\n      <miq-sort-items class=\"miq-sort-items col-md-2 col-lg-2 col-xs-2\"\n                      sort-object=\"tileCtrl.settings.sortBy\"\n                      headers=\"tileCtrl.columns\"\n                      drop-down-class=\"tileCtrl.settings.dropDownClass\"\n                      on-sort=\"tileCtrl.onSortClick(sortObject.colId, isAscending)\"></miq-sort-items>\n      <div class=\"col-md-7 col-lg-7 col-xs-7\">\n        <div class=\"miq-pager\">\n          <div class=\"miq-per-page\">\n            <miq-toolbar-list on-item-click=\"tileCtrl.perPageClick(item)\"\n                              drop-down-class=\"tileCtrl.settings.dropDownClass\"\n                              toolbar-list=\"tileCtrl.perPage\"></miq-toolbar-list>\n          </div>\n          <div class=\"miq-paging\" ng-if=\"tileCtrl.rows && tileCtrl.rows.length !== 0\">\n            <miq-paging settings=\"tileCtrl.settings\" on-change-page=\"tileCtrl.setPage(pageNumber)\"></miq-paging>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-1 col-lg-1 col-xs-1 miq-page-counter\">\n        <label>\n          {{tileCtrl.translateOf(tileCtrl.settings.startIndex, tileCtrl.settings.endIndex, tileCtrl.settings.items)}}\n        </label>\n      </div>\n    </div>\n  <div pf-card-view\n       config=\"tileCtrl.options\"\n       items=\"tileCtrl.rows\"\n       class=\"miq-tile-view\"\n       ng-class=\"tileCtrl.tileClass()\">\n    <div ng-switch=\"config.type\">\n      <ng-switch-when ng-switch-when=\"small\">\n        <div class=\"miq-tile-head\">\n          <a href=\"javascript:void(0)\" title=\"{{config.fetchTileName(item)}}\" ng-click=\"config.onItemClick(item, $event)\">{{config.fetchTileName(item) | limitToSuffix : 5 : 5 }}</a>\n        </div>\n        <div class=\"miq-quadicon\">\n          <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item, $event)\">\n            <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n          </a>\n        </div>\n      </ng-switch-when>\n      <ng-switch-when ng-switch-when=\"big\">\n        <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item, $event)\">{{config.fetchTileName(item)}}</a>\n        <div class=\"row miq-row-margin-only-top \">\n          <div class=\"col-md-3 col-lg-3 col-xs-3 miq-icon-section\">\n            <a href=\"javascript:void(0)\" ng-click=\"config.onItemClick(item, $event)\">\n              <div ng-bind-html=\"config.trustAsHtmlQuadicon(item)\"></div>\n            </a>\n          </div>\n          <div class=\"col-md-9 col-lg-9 col-xs-9 miq-info-section\">\n            <dl class=\"dl-horizontal tile\">\n              <dt ng-repeat-start=\"(key, header) in config.columns | limitTo: 7 track by $index\" ng-if=\"header.text && header.text.indexOf('Name') === -1\" title=\"{{header.text}}\">{{header.text}}:</dt>\n              <dd ng-repeat-end ng-if=\"header.text && header.text.indexOf('Name') === -1\" title=\"{{item.cells[key].text}}\">{{item.cells[key].text | limitToSuffix : 25 : 25}}</dd>\n            </dl>\n          </div>\n        </div>\n      </ng-switch-when>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 /* 38 */
@@ -578,12 +605,14 @@ var SortItemsController = (function () {
      * @function setSortItem
      */
     SortItemsController.prototype.setSortItem = function () {
-        this.options.currentField = {
-            colId: _.findIndex(this.headers, this.sortObject.sortObject),
-            id: this.sortObject.sortObject.text.toLowerCase(),
-            title: this.sortObject.sortObject.text
-        };
-        this.options.isAscending = this.sortObject.isAscending;
+        if (this.sortObject && this.sortObject.sortObject && this.sortObject && this.sortObject.sortObject.text) {
+            this.options.currentField = {
+                colId: _.findIndex(this.headers, this.sortObject.sortObject),
+                id: this.sortObject.sortObject.text.toLowerCase(),
+                title: this.sortObject.sortObject.text
+            };
+            this.options.isAscending = this.sortObject.isAscending;
+        }
     };
     /**
      * Public method which is called after constructing this controller. It will set default values for config object,
@@ -714,14 +743,37 @@ exports.default = EndpointsService;
 "use strict";
 
 var endpointsService_1 = __webpack_require__(51);
+var translateService_1 = __webpack_require__(53);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (module) {
     module.service('MiQEndpointsService', endpointsService_1.default);
+    module.service('MiQTranslateService', translateService_1.default);
 };
 
 
 /***/ }),
 /* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var TranslateService = (function () {
+    /*@ngInject*/
+    TranslateService.$inject = ["$window"];
+    function TranslateService($window) {
+        this.$window = $window;
+    }
+    TranslateService.prototype.translateString = function (stringToTranslate) {
+        return this.$window.__(stringToTranslate);
+    };
+    return TranslateService;
+}());
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = TranslateService;
+
+
+/***/ }),
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -854,12 +906,12 @@ exports.default = Box;
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var boxComponent_1 = __webpack_require__(53);
+var boxComponent_1 = __webpack_require__(54);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (module) {
     module.component('dialogEditorBoxes', new boxComponent_1.default);
@@ -867,7 +919,7 @@ exports.default = function (module) {
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -935,12 +987,12 @@ exports.default = Field;
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var fieldComponent_1 = __webpack_require__(55);
+var fieldComponent_1 = __webpack_require__(56);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (module) {
     module.component('dialogEditorField', new fieldComponent_1.default);
@@ -948,15 +1000,15 @@ exports.default = function (module) {
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var tab_list_1 = __webpack_require__(58);
-var box_1 = __webpack_require__(54);
-var field_1 = __webpack_require__(56);
-var toolbox_1 = __webpack_require__(60);
+var tab_list_1 = __webpack_require__(59);
+var box_1 = __webpack_require__(55);
+var field_1 = __webpack_require__(57);
+var toolbox_1 = __webpack_require__(61);
 var modal_field_template_1 = __webpack_require__(2);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (module) {
@@ -969,12 +1021,12 @@ exports.default = function (module) {
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var tabListComponent_1 = __webpack_require__(59);
+var tabListComponent_1 = __webpack_require__(60);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (module) {
     module.component('dialogEditorTabs', new tabListComponent_1.default);
@@ -982,7 +1034,7 @@ exports.default = function (module) {
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1140,12 +1192,12 @@ exports.default = TabList;
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var toolboxComponent_1 = __webpack_require__(61);
+var toolboxComponent_1 = __webpack_require__(62);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (module) {
     module.component('dialogEditorFieldStatic', new toolboxComponent_1.default);
@@ -1153,7 +1205,7 @@ exports.default = function (module) {
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1252,7 +1304,7 @@ exports.default = Toolbox;
 
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1319,13 +1371,13 @@ exports.default = DialogEditorService;
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var dialogEditorService_1 = __webpack_require__(62);
-var modalService_1 = __webpack_require__(64);
+var dialogEditorService_1 = __webpack_require__(63);
+var modalService_1 = __webpack_require__(65);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (module) {
     module.service('DialogEditor', dialogEditorService_1.default);
@@ -1334,7 +1386,7 @@ exports.default = function (module) {
 
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1556,7 +1608,7 @@ exports.default = ModalService;
 
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1655,9 +1707,18 @@ var DataTableController = (function (_super) {
      * @param changesObj angular changed object.
      */
     DataTableController.prototype.$onChanges = function (changesObj) {
+        var _this = this;
         if (changesObj.settings && this.settings) {
             this.currentPageView = this.settings.current;
         }
+        if (changesObj.perPage) {
+            this.perPage.text += ' ' + this.perPage.labelItems;
+            this.perPage.items = this.perPage.items.map(function (oneItem) {
+                oneItem.text += ' ' + _this.perPage.labelItems;
+                return oneItem;
+            });
+        }
+        this.setPagingNumbers();
     };
     return DataTableController;
 }(abstractDataViewClass_1.DataViewClass));
@@ -1721,30 +1782,15 @@ exports.default = DataTable;
 
 
 /***/ }),
-/* 66 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var dataTableComponent_1 = __webpack_require__(65);
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = function (module) {
-    module.component('miqDataTable', new dataTableComponent_1.default);
-};
-
-
-/***/ }),
 /* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var data_table_1 = __webpack_require__(66);
-var tile_view_1 = __webpack_require__(68);
+var dataTableComponent_1 = __webpack_require__(66);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (module) {
-    data_table_1.default(module);
-    tile_view_1.default(module);
+    module.component('miqDataTable', new dataTableComponent_1.default);
 };
 
 
@@ -1754,8 +1800,23 @@ exports.default = function (module) {
 
 "use strict";
 
-var tileViewComponent_1 = __webpack_require__(70);
-var pagingComponent_1 = __webpack_require__(69);
+var data_table_1 = __webpack_require__(67);
+var tile_view_1 = __webpack_require__(69);
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = function (module) {
+    data_table_1.default(module);
+    tile_view_1.default(module);
+};
+
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var tileViewComponent_1 = __webpack_require__(71);
+var pagingComponent_1 = __webpack_require__(70);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (module) {
     module.component('miqTileView', new tileViewComponent_1.default);
@@ -1764,7 +1825,7 @@ exports.default = function (module) {
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1847,7 +1908,7 @@ exports.default = Paging;
 
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1857,7 +1918,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var tileType_1 = __webpack_require__(73);
+var tileType_1 = __webpack_require__(74);
 var abstractDataViewClass_1 = __webpack_require__(5);
 var _ = __webpack_require__(0);
 /**
@@ -1869,12 +1930,11 @@ var _ = __webpack_require__(0);
 var TileViewController = (function (_super) {
     __extends(TileViewController, _super);
     /* @ngInject */
-    TileViewController.$inject = ["$sce"];
-    function TileViewController($sce) {
-        _super.call(this);
+    TileViewController.$inject = ["$sce", "MiQTranslateService"];
+    function TileViewController($sce, MiQTranslateService) {
+        _super.call(this, MiQTranslateService);
         this.$sce = $sce;
         this.initOptions();
-        console.log(this);
     }
     /**
      * Method for creating basic options for tiles.
@@ -1928,12 +1988,21 @@ var TileViewController = (function (_super) {
      * @param changesObj angular's change object.
      */
     TileViewController.prototype.$onChanges = function (changesObj) {
+        var _this = this;
         if (changesObj.type) {
             this.options.type = this.type;
         }
         else if (changesObj.columns) {
             this.options.columns = this.columns;
         }
+        if (changesObj.perPage) {
+            this.perPage.text += ' ' + this.perPage.labelItems;
+            this.perPage.items = this.perPage.items.map(function (oneItem) {
+                oneItem.text += ' ' + _this.perPage.labelItems;
+                return oneItem;
+            });
+        }
+        this.setPagingNumbers();
     };
     /**
      * Method which will be called when clicking on tile.
@@ -2045,12 +2114,12 @@ exports.default = TileView;
 
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var limitToSuffixFilter_1 = __webpack_require__(72);
+var limitToSuffixFilter_1 = __webpack_require__(73);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (module) {
     module.filter('limitToSuffix', limitToSuffixFilter_1.default.filter);
@@ -2058,7 +2127,7 @@ exports.default = function (module) {
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2078,7 +2147,7 @@ exports.default = LimitToSuffix;
 
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2104,7 +2173,7 @@ exports.TileType = {
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2228,12 +2297,12 @@ exports.default = DataTableService;
 
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var dataTableService_1 = __webpack_require__(74);
+var dataTableService_1 = __webpack_require__(75);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (module) {
     module.service('MiQDataTableService', dataTableService_1.default);
@@ -2241,7 +2310,7 @@ exports.default = function (module) {
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2309,12 +2378,12 @@ exports.default = SiteSwitcher;
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var toolbar_menu_1 = __webpack_require__(78);
+var toolbar_menu_1 = __webpack_require__(79);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (module) {
     toolbar_menu_1.default(module);
@@ -2322,15 +2391,15 @@ exports.default = function (module) {
 
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var toolbarComponent_1 = __webpack_require__(80);
-var toolbarButtonDirective_1 = __webpack_require__(79);
-var toolbarListComponent_1 = __webpack_require__(81);
-var toolbarViewComponent_1 = __webpack_require__(82);
+var toolbarComponent_1 = __webpack_require__(81);
+var toolbarButtonDirective_1 = __webpack_require__(80);
+var toolbarListComponent_1 = __webpack_require__(82);
+var toolbarViewComponent_1 = __webpack_require__(83);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (module) {
     module.component('miqToolbarMenu', new toolbarComponent_1.default);
@@ -2341,7 +2410,7 @@ exports.default = function (module) {
 
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2383,7 +2452,7 @@ exports.default = ToolbarButton;
 
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2610,7 +2679,7 @@ exports.default = Toolbar;
 
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2688,7 +2757,7 @@ exports.default = ToolbarList;
 
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2739,12 +2808,12 @@ exports.default = ToolbarView;
 
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var toolbarSettingsService_1 = __webpack_require__(84);
+var toolbarSettingsService_1 = __webpack_require__(85);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = function (module) {
     module.service('MiQToolbarSettingsService', toolbarSettingsService_1.default);
@@ -2752,7 +2821,7 @@ exports.default = function (module) {
 
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2892,7 +2961,7 @@ exports.default = ToolbarSettingsService;
 
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -2922,12 +2991,12 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 85;
+webpackContext.id = 86;
 
 
 /***/ }),
-/* 86 */,
-/* 87 */
+/* 87 */,
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(8);

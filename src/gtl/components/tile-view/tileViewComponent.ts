@@ -13,10 +13,9 @@ export class TileViewController extends DataViewClass implements IDataTableBindi
   public type: string;
   public options: any;
   /* @ngInject */
-  constructor(private $sce: any) {
-    super();
+  constructor(private $sce: any, MiQTranslateService: any) {
+    super(MiQTranslateService);
     this.initOptions();
-    console.log(this);
   }
 
   /**
@@ -78,6 +77,16 @@ export class TileViewController extends DataViewClass implements IDataTableBindi
     } else if (changesObj.columns) {
       this.options.columns = this.columns;
     }
+
+    if (changesObj.perPage) {
+      this.perPage.text += ' ' + this.perPage.labelItems;
+      this.perPage.items = this.perPage.items.map(oneItem => {
+        oneItem.text += ' ' + this.perPage.labelItems;
+        return oneItem;
+      });
+    }
+
+    this.setPagingNumbers();
   }
 
   /**

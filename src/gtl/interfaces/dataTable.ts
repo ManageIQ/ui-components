@@ -27,6 +27,9 @@ export interface ITableSettings {
   sortBy: ITableSortBy;
   paging: ITablePaging;
   dropDownClass?: any[];
+  startIndex?: number;
+  endIndex?: number;
+  translateTotalOf?: (start: number, end: number, total: number) => string;
 }
 
 export interface ITableSortBy {

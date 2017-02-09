@@ -78,7 +78,7 @@ img.miq-gradient-background {
   }
 }
 
-.miq-tile-section, .miq-data-table {
+.miq-pagination .miq-pager .miq-paging {
   .disabled {
     pointer-events: none;
     cursor: not-allowed;
@@ -101,8 +101,16 @@ img.miq-gradient-background {
 
     .miq-paging {
       display: inline-block;
+
+      ul li a {
+        cursor: pointer;
+      }
     }
   }
+}
+
+.miq-page-counter {
+  padding-top: 3px;
 }
 
 .miq-data-table {
@@ -193,10 +201,21 @@ img.miq-gradient-background {
   display: inline-block;
 }
 
+.miq-sort-items {
+  padding-right: 0;
+
+  .sort-pf .dropdown button {
+    max-width: 150px;
+    overflow: hidden;
+  }
+}
+
 .miq-select-all {
 
+  padding-right: 0;
+
   input[type="checkbox"] {
-    margin: 0 10px 0;
+    margin: 0 4px 0;
     vertical-align: middle;
     position: relative;
     top: -1px;

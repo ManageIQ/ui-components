@@ -48,6 +48,7 @@ describe('tile component test', () =>  {
         onItemSelected: onItemSelected
       };
       angular.mock.module('miqStaticAssets.gtl');
+      angular.mock.module('miqStaticAssets.common');
       angular.mock.inject(($componentController, $sce) => {
         sce = $sce;
         tileController = $componentController('miqTileView', null, bindings);
@@ -144,7 +145,7 @@ describe('tile component test', () =>  {
   describe('component', () => {
     let scope, compile, compiledElement;
     beforeEach(() => {
-      angular.mock.module('miqStaticAssets.gtl');
+      angular.mock.module('miqStaticAssets');
       angular.mock.module('miqStaticAssets.common');
       angular.mock.module('miqStaticAssets.toolbar');
       angular.mock.inject(($rootScope, $compile: ng.ICompileService) => {
@@ -175,6 +176,7 @@ describe('tile component test', () =>  {
                            on-item-selected="onItemSelect(item, isSelected)"></miq-tile-view>`
         ))(scope);
       scope.$digest();
+      scope.$apply();
     });
 
     it('should show per page picker', () => {

@@ -61,7 +61,7 @@ img.miq-gradient-background {
   .miq-tile-section div.miq-paging ul {
     margin-top: 0; }
 
-.miq-tile-section .disabled, .miq-data-table .disabled {
+.miq-pagination .miq-pager .miq-paging .disabled {
   pointer-events: none;
   cursor: not-allowed;
   background-color: #fafafa !important;
@@ -77,6 +77,11 @@ img.miq-gradient-background {
     vertical-align: top; }
   .miq-pagination .miq-pager .miq-paging {
     display: inline-block; }
+    .miq-pagination .miq-pager .miq-paging ul li a {
+      cursor: pointer; }
+
+.miq-page-counter {
+  padding-top: 3px; }
 
 .miq-data-table .miq-paging {
   text-align: center; }
@@ -128,11 +133,19 @@ img.miq-gradient-background {
 .paginate_of b {
   display: inline-block; }
 
-.miq-select-all input[type="checkbox"] {
-  margin: 0 10px 0;
-  vertical-align: middle;
-  position: relative;
-  top: -1px; }
+.miq-sort-items {
+  padding-right: 0; }
+  .miq-sort-items .sort-pf .dropdown button {
+    max-width: 150px;
+    overflow: hidden; }
+
+.miq-select-all {
+  padding-right: 0; }
+  .miq-select-all input[type="checkbox"] {
+    margin: 0 4px 0;
+    vertical-align: middle;
+    position: relative;
+    top: -1px; }
 
 .miq-sand-paper, .miq-sand-paper > div {
   background: #f5f5f5;

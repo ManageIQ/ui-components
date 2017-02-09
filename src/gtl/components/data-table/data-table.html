@@ -23,7 +23,9 @@
       </div>
     </div>
     <div class="col-md-1 col-lg-1 col-xs-1 miq-page-counter">
-      <label>{{tableCtrl.settings.startIndex}} - {{tableCtrl.settings.endIndex}} : {{tableCtrl.settings.items}}</label>
+      <label>
+        {{tableCtrl.translateOf(tableCtrl.settings.startIndex, tableCtrl.settings.endIndex, tableCtrl.settings.items)}}
+      </label>
     </div>
   </div>
   <table class="table table-bordered table-striped table-hover mig-table-with-footer mig-table"

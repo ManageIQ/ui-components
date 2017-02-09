@@ -75,8 +75,10 @@ export abstract class DataViewClass implements IDataTableBinding {
     this.loadMoreItems({start: start, perPage: this.settings.perpage});
   }
 
-  public translateString(translateText) {
-    return this.MiQTranslateService.translateString(translateText);
+  public translateOf(start, end, total): string {
+    return this.settings && this.settings.hasOwnProperty('translateTotalof') ?
+      this.settings.translateTotalOf(start, end, total) :
+      `${start} - ${end} of ${total}`;
   }
 
   protected setPagingNumbers() {

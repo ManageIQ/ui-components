@@ -29,6 +29,7 @@ export interface ITableSettings {
   dropDownClass?: any[];
   startIndex?: number;
   endIndex?: number;
+  translateTotalOf?: (start: number, end: number, total: number) => string;
 }
 
 export interface ITableSortBy {

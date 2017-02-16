@@ -2014,7 +2014,9 @@ var TileViewController = (function (_super) {
      * @param item which tile was clicked.
      */
     TileViewController.prototype.onTileClick = function (item) {
-        this.onItemSelected({ item: item, isSelected: !item.selected });
+        if (!this.settings.hideSelect) {
+            this.onItemSelected({ item: item, isSelected: !item.selected });
+        }
     };
     TileViewController.prototype.onTileSelect = function (item) {
         this.onItemSelected({ item: item, isSelected: item.selected });

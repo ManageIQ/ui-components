@@ -227,6 +227,22 @@ img.miq-gradient-background {
   overflow: hidden;
 }
 
+.miq-tile-view .card-view-pf {
+  .card {
+    padding: 0 !important;
+    cursor: pointer;
+
+    .card-content > div {
+      padding-top: 10px;
+    }
+
+    .card-check-box {
+      left: 0 !important;
+      top: 12px !important;
+    }
+  }
+}
+
 /* begin toolbar styling (to be moved to the ui-components repo) */
 
 .toolbar-pf .form-group { /*compensates for filter-pf not being implemented */

@@ -1,7 +1,8 @@
 <div class="miq-tile-section">
     <div ng-if="tileCtrl.settings.isLoading" class="spinner spinner-lg"></div>
     <div class="row miq-pagination" ng-if="tileCtrl.rows && tileCtrl.rows.length !== 0">
-      <div class="miq-select-all col-md-2 col-lg-2 col-xs-2">
+      <div class="miq-select-all col-md-2 col-lg-2 col-xs-2"
+           ng-if="!tileCtrl.settings.hideSelect">
         <label>{{tileCtrl.settings.selectAllTitle}}: </label>
         <input type="checkbox" ng-model="isChecked" ng-click="tileCtrl.onCheckAllTiles(isChecked)" title="{{tileCtrl.settings.selectAllTitle}}" />
       </div>

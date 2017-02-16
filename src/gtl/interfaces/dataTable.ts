@@ -29,6 +29,7 @@ export interface ITableSettings {
   dropDownClass?: any[];
   startIndex?: number;
   endIndex?: number;
+  hideSelect?: boolean;
   translateTotalOf?: (start: number, end: number, total: number) => string;
 }
 

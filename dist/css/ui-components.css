@@ -1,2 +1,262 @@
-.miqGreeter{background-color:red;color:#fff}td.miqTextLeft{text-align:left}td.miqTextRight{text-align:right}table.mig-table-with-footer{margin-bottom:0}.dataTables_footer span{margin-left:10px}.form-actions button.btn{margin-right:5px}.mig-table thead th{color:#0099d3;cursor:pointer}.miq-alert-section{margin-top:10px}.miq-alert-section .miq-info-alert{text-align:center}.toolbar-pf-actions .toolbar-pf-actions.miq-toolbar-actions{display:inline}img.miq-gradient-background{border-radius:15px;background:#adadad;background:-moz-linear-gradient(top,#adadad 5%,#adadad 5%,#000 98%,#000 98%);background:-webkit-linear-gradient(top,#adadad 5%,#adadad 0,#000 98%,#000 0);background:linear-gradient(180deg,#adadad 5%,#adadad 0,#000 98%,#000 0);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#adadad",endColorstr="#000000",GradientType=0)}.miq-row-margin-only-top{margin-top:15px;margin-left:0;margin-right:0}.miq-tile-section .miq-per-page{display:inline-block}.miq-tile-section .card .card-content{padding-right:5px}.miq-tile-section div.miq-load-more,.miq-tile-section div.miq-paging{text-align:center}.miq-tile-section div.miq-paging ul{margin-top:0}.miq-pagination .miq-pager .miq-paging .disabled{pointer-events:none;cursor:not-allowed;background-color:#fafafa!important;background-image:none!important;border-color:#d1d1d1!important;color:#8b8d8f!important;opacity:1}.miq-pagination .miq-pager{float:right}.miq-pagination .miq-pager .miq-per-page{display:inline-block;vertical-align:top}.miq-pagination .miq-pager .miq-paging{display:inline-block}.miq-pagination .miq-pager .miq-paging ul li a{cursor:pointer}.miq-page-counter{padding-top:3px}.miq-data-table .miq-paging{text-align:center}.miq-data-table .miq-paging ul.pagination{margin-top:0;margin-bottom:10px}.miq-tile-with-body .card-view-pf .card{width:375px;height:175px}.miq-tile-with-body .card-view-pf .card .card-content{overflow:hidden}.miq-tile-with-body .card-view-pf .card .miq-icon-section{padding-right:0}.miq-tile-with-body .card-view-pf .card .miq-info-section{padding-left:0}.miq-tile-with-body .card-view-pf .card .miq-info-section dl.dl-horizontal.tile dt{margin-left:10px}.miq-tile-with-body .card-view-pf .card .miq-info-section dl.dl-horizontal.tile dd{margin-left:120px;text-align:left}.miq-small-tile .card-view-pf .card{width:130px;height:131px}.miq-small-tile .card-view-pf .card .card-content .miq-quadicon{display:inline-block}.miq-small-tile .card-view-pf .card .card-content a{word-wrap:break-word}.miq-small-tile .card-view-pf .card .card-content .miq-tile-head{margin-left:20px}@keyframes fade-in{0%{opacity:0}60%{opacity:1}to{opacity:1}}.miq-data-tables-header{text-align:left}.miq-data-tables-header .pull-right{padding-right:20px}.miq-data-tables-header .pull-right div{display:inline-block;margin-right:10px}.paginate_of b{display:inline-block}.miq-sort-items{padding-right:0}.miq-sort-items .sort-pf .dropdown button{max-width:150px;overflow:hidden}.miq-select-all{padding-right:0}.miq-select-all input[type=checkbox]{margin:0 4px;vertical-align:middle;position:relative;top:-1px}.miq-sand-paper,.miq-sand-paper>div{background:#f5f5f5;overflow:hidden}.toolbar-pf .form-group{padding-left:0}.toolbar-pf-actions .btn-group .dropdown button img{padding-right:3px}.toolbar-pf .toolbar-pf-actions .form-group{margin-bottom:10px!important}.toolbar-pf .form-group .btn,.toolbar-pf .form-group .btn-group{margin-left:5px}.form-group.miq-toolbar-group,.form-group.miq-toolbar-group .miq-custom-html form{display:inline-block}.form-group.miq-toolbar-group .miq-custom-html .form-group{margin-bottom:0!important;border-right:0}.form-group.miq-toolbar-group .miq-custom-html .form-group:last-child{padding-right:0}.miq-siteswitcher-icon{color:#fff}.miq-siteswitcher-link{color:#000}.miq-siteswitcher-entry{display:inline-block;padding:10px;text-align:center;min-width:90px;border:1px solid #fff}.miq-siteswitcher-entry:hover{border:1px solid #bbb}.miq-siteswitcher-entry:hover a{color:#0088ce}.miq-siteswitcher .dropdown-menu{padding:9px;left:8px;margin-top:11px;min-width:220px}.miq-siteswitcher .dropdown-menu.dropdown-menu-right{left:auto;right:-2px}.miq-siteswitcher .dropdown-menu.dropdown-menu-right:after,.miq-siteswitcher .dropdown-menu.dropdown-menu-right:before{left:auto;right:6px}.miq-siteswitcher .dropdown-menu:after,.miq-siteswitcher .dropdown-menu:before{border-bottom-color:#bbb;border-bottom-style:solid;border-bottom-width:10px;border-left:10px solid transparent;border-right:10px solid transparent;content:"";display:inline-block;left:6px;position:absolute;top:-11px}.miq-siteswitcher .dropdown-menu:after{border-bottom-color:#fff;top:-10px}.miq-siteswitcher.dropup .dropdown-menu{margin-bottom:11px;margin-top:0}.miq-siteswitcher.dropup .dropdown-menu:after,.miq-siteswitcher.dropup .dropdown-menu:before{border-bottom:none;border-top-color:#bbb;border-top-style:solid;border-top-width:10px;bottom:-11px;top:auto}.miq-siteswitcher.dropup .dropdown-menu:after{border-top-color:#fff;bottom:-10px}.dialog-editor-tab-list{margin-bottom:20px}.delete-tab{opacity:.3;visibility:visible}.select-tab:hover .delete-tab{opacity:1;visibility:visible}
+.miqGreeter {
+  background-color: red;
+  color: white; }
+
+td.miqTextLeft {
+  text-align: left; }
+
+td.miqTextRight {
+  text-align: right; }
+
+table.mig-table-with-footer {
+  margin-bottom: 0px; }
+
+.dataTables_footer span {
+  margin-left: 10px; }
+
+.form-actions button.btn {
+  margin-right: 5px; }
+
+.mig-table thead th {
+  color: #0099d3;
+  cursor: pointer; }
+
+.miq-alert-section {
+  margin-top: 10px; }
+  .miq-alert-section .miq-info-alert {
+    text-align: center; }
+
+.toolbar-pf-actions .toolbar-pf-actions.miq-toolbar-actions {
+  display: inline; }
+
+img.miq-gradient-background {
+  border-radius: 15px;
+  background: #adadad;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #adadad 5%, #adadad 5%, #000000 98%, #000000 98%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #adadad 5%, #adadad 5%, #000000 98%, #000000 98%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #adadad 5%, #adadad 5%, #000000 98%, #000000 98%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#adadad', endColorstr='#000000',GradientType=0 );
+  /* IE6-9 */ }
+
+.miq-row-margin-only-top {
+  margin-top: 15px;
+  margin-left: 0;
+  margin-right: 0; }
+
+.miq-tile-section .miq-per-page {
+  display: inline-block; }
+
+.miq-tile-section .card .card-content {
+  padding-right: 5px; }
+
+.miq-tile-section div.miq-load-more {
+  text-align: center; }
+
+.miq-tile-section div.miq-paging {
+  text-align: center; }
+  .miq-tile-section div.miq-paging ul {
+    margin-top: 0; }
+
+.miq-pagination .miq-pager .miq-paging .disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: #fafafa !important;
+  background-image: none !important;
+  border-color: #d1d1d1 !important;
+  color: #8b8d8f !important;
+  opacity: 1; }
+
+.miq-pagination .miq-pager {
+  float: right; }
+  .miq-pagination .miq-pager .miq-per-page {
+    display: inline-block;
+    vertical-align: top; }
+  .miq-pagination .miq-pager .miq-paging {
+    display: inline-block; }
+    .miq-pagination .miq-pager .miq-paging ul li a {
+      cursor: pointer; }
+
+.miq-page-counter {
+  padding-top: 3px; }
+
+.miq-data-table .miq-paging {
+  text-align: center; }
+  .miq-data-table .miq-paging ul.pagination {
+    margin-top: 0;
+    margin-bottom: 10px; }
+
+.miq-tile-with-body .card-view-pf .card {
+  width: 375px;
+  height: 175px; }
+  .miq-tile-with-body .card-view-pf .card .card-content {
+    overflow: hidden; }
+  .miq-tile-with-body .card-view-pf .card .miq-icon-section {
+    padding-right: 0; }
+  .miq-tile-with-body .card-view-pf .card .miq-info-section {
+    padding-left: 0; }
+    .miq-tile-with-body .card-view-pf .card .miq-info-section dl.dl-horizontal.tile dt {
+      margin-left: 10px; }
+    .miq-tile-with-body .card-view-pf .card .miq-info-section dl.dl-horizontal.tile dd {
+      margin-left: 120px;
+      text-align: left; }
+
+.miq-small-tile .card-view-pf .card {
+  width: 130px;
+  height: 131px; }
+  .miq-small-tile .card-view-pf .card .card-content .miq-quadicon {
+    display: inline-block; }
+  .miq-small-tile .card-view-pf .card .card-content a {
+    word-wrap: break-word; }
+  .miq-small-tile .card-view-pf .card .card-content .miq-tile-head {
+    margin-left: 20px; }
+
+@keyframes fade-in {
+  0% {
+    opacity: 0; }
+  60% {
+    opacity: 1; }
+  100% {
+    opacity: 1; } }
+
+.miq-data-tables-header {
+  text-align: left; }
+  .miq-data-tables-header .pull-right {
+    padding-right: 20px; }
+    .miq-data-tables-header .pull-right div {
+      display: inline-block;
+      margin-right: 10px; }
+
+.paginate_of b {
+  display: inline-block; }
+
+.miq-sort-items {
+  padding-right: 0; }
+  .miq-sort-items .sort-pf .dropdown button {
+    max-width: 150px;
+    overflow: hidden; }
+
+.miq-select-all {
+  padding-right: 0; }
+  .miq-select-all input[type="checkbox"] {
+    margin: 0 4px 0;
+    vertical-align: middle;
+    position: relative;
+    top: -1px; }
+
+.miq-sand-paper, .miq-sand-paper > div {
+  background: #f5f5f5;
+  overflow: hidden; }
+
+/* begin toolbar styling (to be moved to the ui-components repo) */
+.toolbar-pf .form-group {
+  /*compensates for filter-pf not being implemented */
+  padding-left: 0; }
+
+.toolbar-pf-actions .btn-group .dropdown button img {
+  /* styling for images (not part of toolbar-pf) */
+  padding-right: 3px; }
+
+.toolbar-pf .toolbar-pf-actions .form-group {
+  /* adds padding between buttons when they wrap */
+  margin-bottom: 10px !important; }
+
+.toolbar-pf .form-group .btn,
+.toolbar-pf .form-group .btn-group {
+  /* overrides _toolbar.scss to account for intermediate Angular markup */
+  margin-left: 5px; }
+
+.form-group.miq-toolbar-group {
+  /* fixes the display for the main dashboard toolbar only */
+  display: inline-block; }
+  .form-group.miq-toolbar-group .miq-custom-html form {
+    display: inline-block; }
+  .form-group.miq-toolbar-group .miq-custom-html .form-group {
+    margin-bottom: 0 !important;
+    border-right: 0; }
+    .form-group.miq-toolbar-group .miq-custom-html .form-group:last-child {
+      padding-right: 0px; }
+
+/* end toolbar styling */
+/* Site switcher styling */
+.miq-siteswitcher-icon {
+  color: white; }
+
+.miq-siteswitcher-link {
+  color: black; }
+
+.miq-siteswitcher-entry {
+  display: inline-block;
+  padding: 10px;
+  text-align: center;
+  min-width: 90px; }
+
+.miq-siteswitcher-entry {
+  border-color: #fff;
+  border-style: solid;
+  border-width: 1px; }
+
+.miq-siteswitcher-entry:hover {
+  border-color: #bbb;
+  border-style: solid;
+  border-width: 1px; }
+  .miq-siteswitcher-entry:hover a {
+    color: #0088CE; }
+
+.miq-siteswitcher .dropdown-menu {
+  padding: 9px;
+  left: 8px;
+  margin-top: 11px;
+  min-width: 220px; }
+  .miq-siteswitcher .dropdown-menu.dropdown-menu-right {
+    left: auto;
+    right: -2px; }
+    .miq-siteswitcher .dropdown-menu.dropdown-menu-right:after, .miq-siteswitcher .dropdown-menu.dropdown-menu-right:before {
+      left: auto;
+      right: 6px; }
+  .miq-siteswitcher .dropdown-menu:after, .miq-siteswitcher .dropdown-menu:before {
+    border-bottom-color: #bbb;
+    border-bottom-style: solid;
+    border-bottom-width: 10px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    content: "";
+    display: inline-block;
+    left: 6px;
+    position: absolute;
+    top: -11px; }
+  .miq-siteswitcher .dropdown-menu:after {
+    border-bottom-color: #fff;
+    top: -10px; }
+
+.miq-siteswitcher.dropup .dropdown-menu {
+  margin-bottom: 11px;
+  margin-top: 0; }
+  .miq-siteswitcher.dropup .dropdown-menu:after, .miq-siteswitcher.dropup .dropdown-menu:before {
+    border-bottom: none;
+    border-top-color: #bbb;
+    border-top-style: solid;
+    border-top-width: 10px;
+    bottom: -11px;
+    top: auto; }
+  .miq-siteswitcher.dropup .dropdown-menu:after {
+    border-top-color: #fff;
+    bottom: -10px; }
+
+.dialog-editor-tab-list {
+  margin-bottom: 20px; }
+
+.delete-tab {
+  opacity: .3;
+  visibility: visible; }
+
+.select-tab:hover .delete-tab {
+  opacity: 1;
+  visibility: visible; }
+
+/* end switcher styling */
+
 /*# sourceMappingURL=ui-components.css.map*/

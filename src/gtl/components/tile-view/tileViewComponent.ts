@@ -86,6 +86,10 @@ export class TileViewController extends DataViewClass implements IDataTableBindi
       });
     }
 
+    if (changesObj.settings) {
+      this.options.showSelectBox = !this.settings.hideSelect;
+    }
+
     this.setPagingNumbers();
   }
 

@@ -1,6 +1,6 @@
 import {IDataTableService, IRowsColsResponse} from '../interfaces/dataTable';
 import * as _ from 'lodash';
-import * as ng from 'angular';
+
 /**
  * @memberof miqStaticAssets.gtl
  * @ngdoc service
@@ -34,8 +34,9 @@ export default class DataTableService implements IDataTableService {
                                        activeTree?: string,
                                        currId?: string,
                                        isExplorer?: string,
-                                       settings?: any): ng.IPromise<IRowsColsResponse> {
-    return this.fetchData(DataTableService.generateConfig(modelName, activeTree, currId, isExplorer, settings))
+                                       settings?: any,
+                                       records?: any): ng.IPromise<IRowsColsResponse> {
+    return this.fetchData(DataTableService.generateConfig(modelName, activeTree, currId, isExplorer, settings, records))
       .then(responseData => {
         this.columns = responseData.data.data.head;
         this.rows = responseData.data.data.rows;
@@ -68,19 +69,22 @@ export default class DataTableService implements IDataTableService {
    * @param currId ID of current item.
    * @param isExplorer
    * @param settings
+   * @param records
    * @returns {{params: {}}} config object with params set.
    */
   public static generateConfig(modelName?: string,
                                activeTree?: string,
                                currId?: string,
                                isExplorer?: string,
-                               settings?: any) {
+                               settings?: any,
+                               records?: any) {
     let config = {params: {}};
     _.assign(config.params, DataTableService.generateModelConfig(modelName));
     _.assign(config.params, DataTableService.generateActiveTreeConfig(activeTree));
     _.assign(config.params, DataTableService.generateModuleIdConfig(currId));
     _.assign(config.params, DataTableService.generateExplorerConfig(isExplorer));
     _.assign(config.params, DataTableService.generateParamsFromSettings(settings));
+    _.assign(config.params, DataTableService.generateRecords(records));
     return config;
   }
 
@@ -129,5 +133,9 @@ export default class DataTableService implements IDataTableService {
       _.assign(params, settings.sortBy && settings.sortBy.isAscending && {is_ascending: settings.sortBy.isAscending});
     }
     return params;
+  }
+
+  private static generateRecords(records) {
+    return records && records !== null && {'records[]': records};
   }
 }

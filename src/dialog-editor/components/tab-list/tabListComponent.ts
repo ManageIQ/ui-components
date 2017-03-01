@@ -36,7 +36,7 @@ class TabListController {
       revert: 50,
       stop: (e: any, ui: any) => {
         let sortedTab = ui.item.scope();
-        let tabList = sortedTab.$parent.dialogEditorTabs.tabList;
+        let tabList = sortedTab.$parent.vm.tabList;
         this.DialogEditor.updatePositions(tabList);
         this.DialogEditor.activeTab = _.find(tabList, {active: true}).position;
       },

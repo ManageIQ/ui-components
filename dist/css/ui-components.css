@@ -135,6 +135,9 @@ img.miq-gradient-background {
 
 .miq-sort-items {
   padding-right: 0; }
+  .miq-sort-items .sort-pf .dropdown-menu {
+    max-height: 400px;
+    overflow-y: auto; }
   .miq-sort-items .sort-pf .dropdown button {
     max-width: 150px;
     overflow: hidden; }

@@ -1,12 +1,14 @@
 <div class="miq-tile-section">
     <div ng-if="tileCtrl.settings.isLoading" class="spinner spinner-lg"></div>
-    <div class="row miq-pagination" ng-if="tileCtrl.rows && tileCtrl.rows.length !== 0">
+    <div class="row miq-pagination"
+         ng-if="tileCtrl.settings && tileCtrl.settings.sortBy && (tileCtrl.settings.isLoading || tileCtrl.rows.length !== 0)">
       <div class="miq-select-all col-md-2 col-lg-2 col-xs-2"
            ng-if="!tileCtrl.settings.hideSelect">
         <label>{{tileCtrl.settings.selectAllTitle}}: </label>
         <input type="checkbox" ng-model="isChecked" ng-click="tileCtrl.onCheckAllTiles(isChecked)" title="{{tileCtrl.settings.selectAllTitle}}" />
       </div>
-      <miq-sort-items class="miq-sort-items col-md-2 col-lg-2 col-xs-2"
+      <miq-sort-items ng-if="tileCtrl.settings.sortBy"
+                      class="miq-sort-items col-md-2 col-lg-2 col-xs-2"
                       sort-object="tileCtrl.settings.sortBy"
                       headers="tileCtrl.columns"
                       drop-down-class="tileCtrl.settings.dropDownClass"
@@ -18,12 +20,12 @@
                               drop-down-class="tileCtrl.settings.dropDownClass"
                               toolbar-list="tileCtrl.perPage"></miq-toolbar-list>
           </div>
-          <div class="miq-paging" ng-if="tileCtrl.rows && tileCtrl.rows.length !== 0">
+          <div class="miq-paging" ng-if="tileCtrl.settings.current">
             <miq-paging settings="tileCtrl.settings" on-change-page="tileCtrl.setPage(pageNumber)"></miq-paging>
           </div>
         </div>
       </div>
-      <div class="col-md-1 col-lg-1 col-xs-1 miq-page-counter">
+      <div ng-if="tileCtrl.settings.items" class="col-md-1 col-lg-1 col-xs-1 miq-page-counter">
         <label>
           {{tileCtrl.translateOf(tileCtrl.settings.startIndex, tileCtrl.settings.endIndex, tileCtrl.settings.items)}}
         </label>
@@ -58,6 +60,16 @@
               <dt ng-repeat-start="(key, header) in config.columns | limitTo: 7 track by $index" ng-if="header.text && header.text.indexOf('Name') === -1" title="{{header.text}}">{{header.text}}:</dt>
               <dd ng-repeat-end ng-if="header.text && header.text.indexOf('Name') === -1" title="{{item.cells[key].text}}">{{item.cells[key].text | limitToSuffix : 25 : 25}}</dd>
             </dl>
+            <div ng-repeat="(columnKey, column) in config.columns"
+                 ng-if="item.cells[columnKey].is_button && item.cells[columnKey].onclick"
+                 align="right">
+              <button class="btn btn-primary"
+                      title="{{item.cells[columnKey].title}}"
+                      alt="{{item.cells[columnKey].title}}"
+                      ng-click="config.onButtonItemClick(item.cells[columnKey])">
+                {{item.cells[columnKey].text}}
+              </button>
+            </div>
           </div>
         </div>
       </ng-switch-when>

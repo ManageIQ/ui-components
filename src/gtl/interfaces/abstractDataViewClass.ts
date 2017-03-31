@@ -81,6 +81,12 @@ export abstract class DataViewClass implements IDataTableBinding {
       `${start} - ${end} of ${total}`;
   }
 
+  public onItemButtonClick(item: any) {
+    if (item.hasOwnProperty('onclick')) {
+      new Function(item.onclick)();
+    }
+  }
+
   protected setPagingNumbers() {
     if (this.settings.hasOwnProperty('current') && this.settings.hasOwnProperty('perpage')) {
       this.settings.startIndex =

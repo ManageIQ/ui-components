@@ -1,12 +1,14 @@
 <div class="miq-data-table">
   <div ng-if="tableCtrl.settings.isLoading" class="spinner spinner-lg"></div>
-  <div class="row miq-pagination" ng-if="tableCtrl.rows && tableCtrl.rows.length !== 0">
-    <div ng-if="tableCtrl.rows.length !== 0 && !tableCtrl.settings.hideSelect"
+  <div class="row miq-pagination"
+       ng-if="tableCtrl.settings && tableCtrl.settings.sortBy && (tableCtrl.settings.isLoading || tableCtrl.rows.length !== 0)">
+    <div ng-if="!tableCtrl.settings.hideSelect"
          class="miq-select-all col-md-2 col-lg-2 col-xs-2">
       <label>{{tableCtrl.settings.selectAllTitle}}: </label>
       <input type="checkbox" ng-model="isChecked" ng-click="tableCtrl.onCheckAll(isChecked)" title="{{tableCtrl.settings.selectAllTitle}}" />
     </div>
-    <miq-sort-items class="miq-sort-items col-md-2 col-lg-2 col-xs-2"
+    <miq-sort-items ng-if="tableCtrl.settings.sortBy"
+                    class="miq-sort-items col-md-2 col-lg-2 col-xs-2"
                     sort-object="tableCtrl.settings.sortBy"
                     headers="tableCtrl.columns"
                     drop-down-class="tableCtrl.settings.dropDownClass"
@@ -18,12 +20,12 @@
                             drop-down-class="tableCtrl.settings.dropDownClass"
                             toolbar-list="tableCtrl.perPage"></miq-toolbar-list>
         </div>
-        <div class="miq-paging" ng-if="tableCtrl.rows && tableCtrl.rows.length !== 0">
+        <div class="miq-paging" ng-if="tableCtrl.settings.current">
           <miq-paging settings="tableCtrl.settings" on-change-page="tableCtrl.setTablePage(pageNumber)"></miq-paging>
         </div>
       </div>
     </div>
-    <div class="col-md-1 col-lg-1 col-xs-1 miq-page-counter">
+    <div ng-if="tableCtrl.settings.items" class="col-md-1 col-lg-1 col-xs-1 miq-page-counter">
       <label>
         {{tableCtrl.translateOf(tableCtrl.settings.startIndex, tableCtrl.settings.endIndex, tableCtrl.settings.items)}}
       </label>
@@ -52,7 +54,9 @@
         ng-class="{active : row.selected}"
         ng-click="tableCtrl.onRowClick({item: row, event: $event})">
       <td ng-repeat="(columnKey, column) in tableCtrl.columns"
-          ng-class="{narrow: row.cells[columnKey].is_checkbox || row.cells[columnKey].icon}">
+          ng-class="{
+            narrow: row.cells[columnKey].is_checkbox || row.cells[columnKey].icon || row.cells[columnKey].is_button
+          }">
         <input ng-if="row.cells[columnKey].is_checkbox && !tableCtrl.settings.hideSelect"
                ng-click="tableCtrl.onItemSelected({item: row, isSelected: isSelected})"
                onclick="event.stopPropagation();"
@@ -64,16 +68,23 @@
                class="list-grid-checkbox">
         <i ng-if="row.cells[columnKey].icon && tableCtrl.isIconOrImage(row, columnKey)"
            class="{{row.cells[columnKey].icon}}"
-           title="row.cells[columnKey].title">
+           title="{{row.cells[columnKey].title}}">
           <i ng-if="row.cells[columnKey].icon2" ng-class="row.cells[columnKey].icon2"></i>
         </i>
         <img ng-if="row.cells[columnKey].icon === null && tableCtrl.isIconOrImage(row, columnKey)"
              ng-src="{{row.img_url}}"
              alt="{{row.cells[columnKey].title}}"
              title="{{row.cells[columnKey].title}}" />
-        <span ng-if="row.cells[columnKey].text">
+        <span ng-if="row.cells[columnKey].text && !row.cells[columnKey].is_button">
               {{row.cells[columnKey].text}}
-          </span>
+        </span>
+        <button ng-if="row.cells[columnKey].is_button && row.cells[columnKey].onclick"
+                class="btn btn-primary"
+                title="{{row.cells[columnKey].title}}"
+                alt="{{row.cells[columnKey].title}}"
+                ng-click="tableCtrl.onItemButtonClick(row.cells[columnKey])">
+          {{row.cells[columnKey].text}}
+        </button>
       </td>
     </tr>
     </tbody>

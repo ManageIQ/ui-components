@@ -44,6 +44,7 @@ export default class DataTableService implements IDataTableService {
         return {
           cols: this.columns,
           rows: this.rows,
+          messages: responseData.data.messages,
           settings: responseData.data.settings
         };
       }

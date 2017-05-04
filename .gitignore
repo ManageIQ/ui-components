@@ -40,3 +40,4 @@ vendor.css
 coverage
 
 !dist/js/ui-components.js.map
+!dist/css/ui-components.css.map

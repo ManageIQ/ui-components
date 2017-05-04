@@ -4,9 +4,7 @@
   "description": "UI components for ManageIQ project",
   "main": [
     "dist/css/ui-components.css",
-    "dist/css/ui-components.css.map",
-    "dist/js/ui-components.js",
-    "dist/js/ui-components.js.map"
+    "dist/js/ui-components.js"
   ],
   "authors": [
     ""
@@ -18,8 +16,10 @@
     "*",
     "!dist/",
     "!dist/*",
+    "!dist/js/*",
+    "!dist/css/*",
     "!LICENSE",
-    "!README.adoc"
+    "!README.md"
   ],
   "dependencies": {},
   "devDependencies": {}

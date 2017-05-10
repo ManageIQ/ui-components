@@ -1,72 +1,95 @@
-.miqGreeter {
-  background-color: red;
-  color: white;
+.miq-sand-paper, .miq-sand-paper > div { /* emulates "cards-pf" background color */
+  background: #f5f5f5;
+  overflow: hidden;
 }
 
-td.miqTextLeft {
+
+/* Begin Patternfly Toolbar overrides */
+
+.toolbar-pf .form-group .btn,
+.toolbar-pf .form-group .btn-group { /* overrides _toolbar.scss to account for intermediate Angular markup */
+  margin-left: 5px;
+}
+
+.form-group.miq-toolbar-group { /* styling for "Custom Html Toolbar Menu" example (used on classic-ui topology screen) */
+  display: inline-block;
+  .miq-custom-html {
+    form {
+      display: inline-block;
+    }
+    .form-group {
+      margin-bottom: 0 !important;
+      border-right: 0;
+      &:last-child {
+        padding-right: 0px
+      }
+    }
+  }
+}
+
+/* End Patternfly Toolbar overrides */
+
+
+
+/* Begin Patternfly Tab overrides used in the Dialog Editor */
+
+.dialog-editor-tab-list {
+  margin-bottom: 20px;
+}
+
+.delete-tab {
+  opacity: .3;
+  visibility: visible;
+}
+
+.select-tab {
+  &:hover {
+    .delete-tab {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+/* End Patternfly Tab overrides */
+
+
+
+/* Begin Patternfly Table View overrides */
+
+.miq-data-tables-header {
   text-align: left;
+  .pull-right {
+    padding-right: 20px;
+    div {
+      display: inline-block;
+      margin-right: 10px;
+    }
+  }
 }
 
-td.miqTextRight {
-  text-align: right;
-}
-
-table.mig-table-with-footer {
+table.miq-table-with-footer { /* not currently used */
   margin-bottom: 0px;
+}
+
+.miq-table thead th{
+  color: #0099d3;
+  cursor: pointer;
 }
 
 .dataTables_footer span {
   margin-left: 10px;
 }
 
-.form-actions button.btn {
-  margin-right: 5px;
-}
+/* End Patternfly Table View overrides */
 
-.mig-table thead th{
-  color: #0099d3;
-  cursor: pointer;
-}
 
-.miq-alert-section {
-  margin-top: 10px;
-  .miq-info-alert {
-    text-align: center;
-  }
-}
-
-.toolbar-pf-actions {
-  .toolbar-pf-actions.miq-toolbar-actions {
-    display: inline;
-  }
-}
-
-img.miq-gradient-background {
-  border-radius: 15px;
-  background: #adadad; /* Old browsers */
-  background: -moz-linear-gradient(top,  #adadad 5%, #adadad 5%, #000000 98%, #000000 98%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top,  #adadad 5%,#adadad 5%,#000000 98%,#000000 98%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom,  #adadad 5%,#adadad 5%,#000000 98%,#000000 98%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#adadad', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
-}
-
-.miq-row-margin-only-top {
-  margin-top: 15px;
-  margin-left: 0;
-  margin-right: 0;
-}
-
+/* Begin Grid View (Quad Icon) & Tile View Styling */
 
 .miq-tile-section {
-  .miq-per-page {
-    display: inline-block;
-  }
+
   .card .card-content {
     padding-right: 5px;
-  }
-
-  div.miq-load-more {
-    text-align: center;
   }
 
   div.miq-paging {
@@ -74,6 +97,108 @@ img.miq-gradient-background {
 
     ul {
       margin-top: 0;
+    }
+  }
+}
+
+.miq-tile-view .card-view-pf { /* Styling for Cards in Tile & Grid Views  */
+  .card {
+    padding: 0 !important;
+    cursor: pointer;
+
+    .card-content > div {
+      padding-top: 10px;
+    }
+
+    .card-check-box {
+      left: 0 !important;
+      top: 12px !important;
+    }
+  }
+}
+
+.miq-tile-with-body .card-view-pf { /* Styling for Cards in Tile View */
+  .card {
+    width: 375px;
+    height: 175px;
+
+    .card-content {
+      overflow: hidden;
+    }
+    .miq-icon-section {
+      padding-right: 0;
+    }
+
+    .miq-info-section {
+      padding-left: 0;
+      dl.dl-horizontal.tile {
+        dt {
+          margin-left: 10px;
+        }
+        dd {
+          margin-left: 120px;
+          text-align: left;
+        }
+      }
+    }
+  }
+}
+
+.miq-row-margin-only-top { /* Adds a row after the title in Tile View Card */
+  margin-top: 15px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+
+.miq-small-tile .card-view-pf { /* Styling for Cards in Grid View */
+  .card {
+    width: 130px;
+    height: 131px;
+
+    .card-content {
+      .miq-quadicon {
+        display: inline-block;
+      }
+      .miq-tile-head {
+        margin-left: 20px;
+      }
+      a {
+        word-wrap: break-word;
+      }
+    }
+  }
+}
+
+/* End Grid View (Quad Icon) & Tile View Styling */
+
+
+
+/* Begin paginator styling */
+
+.miq-select-all { /* styles "Select All" text and checkbox */
+
+  padding-right: 0;
+
+  input[type="checkbox"] {
+    margin: 0 4px 0;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+  }
+}
+
+.miq-sort-items { /* styles "Sort by" dropdown */
+  padding-right: 0;
+
+  .sort-pf {
+    .dropdown-menu {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .dropdown button {
+      max-width: 150px;
+      overflow: hidden;
     }
   }
 }
@@ -102,6 +227,7 @@ img.miq-gradient-background {
     .miq-paging {
       display: inline-block;
 
+
       ul li a {
         cursor: pointer;
       }
@@ -124,167 +250,14 @@ img.miq-gradient-background {
   }
 }
 
-.miq-tile-with-body .card-view-pf {
-  .card {
-    width: 375px;
-    height: 175px;
 
-    .card-content {
-      overflow: hidden;
-    }
-    .miq-icon-section {
-      padding-right: 0;
-    }
-
-    .miq-info-section {
-      padding-left: 0;
-      dl.dl-horizontal.tile {
-        dt {
-          margin-left: 10px;
-        }
-        dd {
-          margin-left: 120px;
-          text-align: left;
-        }
-      }
-    }
-  }
-}
-
-.miq-small-tile .card-view-pf {
-  .card {
-    width: 130px;
-    height: 131px;
-
-    .card-content {
-      .miq-quadicon {
-        display: inline-block;
-      }
-      a {
-        word-wrap: break-word;
-      }
-
-      .miq-tile-head {
-        margin-left: 20px;
-      }
-    }
-  }
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-
-  60% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-
-.miq-data-tables-header {
-  text-align: left;
-  .pull-right {
-    padding-right: 20px;
-    div {
-      display: inline-block;
-      margin-right: 10px;
-    }
-  }
-}
-
-.paginate_of b {
+.paginate_of b { /* required for demo page */
   display: inline-block;
 }
 
-.miq-sort-items {
-  padding-right: 0;
+/* End pagination styling */
 
-  .sort-pf {
-    .dropdown-menu {
-      max-height: 400px;
-      overflow-y: auto;
-    }
-    .dropdown button {
-      max-width: 150px;
-      overflow: hidden;
-    }
-  }
-}
 
-.miq-select-all {
-
-  padding-right: 0;
-
-  input[type="checkbox"] {
-    margin: 0 4px 0;
-    vertical-align: middle;
-    position: relative;
-    top: -1px;
-  }
-}
-
-.miq-sand-paper, .miq-sand-paper > div {
-  background: #f5f5f5;
-  overflow: hidden;
-}
-
-.miq-tile-view .card-view-pf {
-  .card {
-    padding: 0 !important;
-    cursor: pointer;
-
-    .card-content > div {
-      padding-top: 10px;
-    }
-
-    .card-check-box {
-      left: 0 !important;
-      top: 12px !important;
-    }
-  }
-}
-
-/* begin toolbar styling (to be moved to the ui-components repo) */
-
-.toolbar-pf .form-group { /*compensates for filter-pf not being implemented */
-  padding-left: 0;
-}
-
-.toolbar-pf-actions .btn-group .dropdown button img { /* styling for images (not part of toolbar-pf) */
-  padding-right: 3px;
-}
-
-.toolbar-pf .toolbar-pf-actions .form-group { /* adds padding between buttons when they wrap */
-  margin-bottom: 10px !important
-}
-
-.toolbar-pf .form-group .btn,
-.toolbar-pf .form-group .btn-group { /* overrides _toolbar.scss to account for intermediate Angular markup */
-  margin-left: 5px;
-}
-
-.form-group.miq-toolbar-group { /* fixes the display for the main dashboard toolbar only */
-  display: inline-block;
-  .miq-custom-html {
-    form {
-      display: inline-block;
-    }
-    .form-group {
-      margin-bottom: 0 !important;
-      border-right: 0;
-      &:last-child {
-        padding-right: 0px
-      }
-    }
-  }
-}
-
-/* end toolbar styling */
 
 /* Site switcher styling */
 
@@ -366,24 +339,6 @@ img.miq-gradient-background {
     &:after {
       border-top-color: #fff;
       bottom: -10px;
-    }
-  }
-}
-
-.dialog-editor-tab-list {
-  margin-bottom: 20px;
-}
-
-.delete-tab {
-  opacity: .3;
-  visibility: visible;
-}
-
-.select-tab {
-  &:hover {
-    .delete-tab {
-      opacity: 1;
-      visibility: visible;
     }
   }
 }

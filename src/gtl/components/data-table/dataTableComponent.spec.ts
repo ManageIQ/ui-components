@@ -157,7 +157,7 @@ describe('DataTable test', () =>  {
     });
 
     it('creates table head', () => {
-      let header = compiledElement[0].querySelector('.mig-table-with-footer thead');
+      let header = compiledElement[0].querySelector('.miq-table-with-footer thead');
       expect(header).toBeDefined();
       expect(header.querySelectorAll('th').length).toBe(columns.length);
       let filteredByIndex = columns.map((column: any) => column.col_idx).indexOf(settings.sortBy.sortObject.col_idx);
@@ -166,7 +166,7 @@ describe('DataTable test', () =>  {
     });
 
     xit('creates tbody', () => {
-      let body = compiledElement[0].querySelector('.mig-table-with-footer tbody');
+      let body = compiledElement[0].querySelector('.miq-table-with-footer tbody');
       expect(body.querySelectorAll('tr').length).toBe(rows.length);
       let firstRowTds = body.querySelectorAll('tr')[0].querySelectorAll('td');
       expect(firstRowTds.length).toBe(rows[0].cells.length);

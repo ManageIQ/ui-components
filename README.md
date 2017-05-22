@@ -54,7 +54,7 @@ just `yarn global add n` and then `n lts` to use the latest LTS version of node 
 Install these node packages globally in the system
 ```
 npm install -g yarn
-yarn global add typings webpack wiredep-cli typescript typescript-formatter
+yarn global add webpack wiredep-cli typescript typescript-formatter
 ```
 
 After [yarn](http://yarn.io) is installed, it is pretty much a replacement for npm, with faster, more dependable  builds
@@ -65,6 +65,12 @@ See comparison: [npm vs. yarn commands](https://yarnpkg.com/en/docs/migrating-fr
 Install local node dependencies
 ```
 yarn
+```
+
+Create library dependencies (run this every time you make any changes to `vendor.ts`) - no need to worry about any TS
+errors. Also, if you are pushing some changes please run this command so you will push minifed version of JS and CSS.
+```
+yarn run build
 ```
 
 To run:

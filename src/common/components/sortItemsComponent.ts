@@ -98,8 +98,8 @@ export class SortItemsController {
   private applyClass() {
     if (this.dropDownClass) {
       Array.isArray(this.dropDownClass) ?
-        this.$element.find('.dropdown').addClass(...this.dropDownClass) :
-        this.$element.find('.dropdown').addClass(this.dropDownClass);
+        this.$element.find('.uib-dropdown').addClass(...this.dropDownClass) :
+        this.$element.find('.uib-dropdown').addClass(this.dropDownClass);
     }
   }
 }

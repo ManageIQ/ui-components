@@ -32,8 +32,8 @@ describe('ToolbarButton test', () =>  {
     });
 
     it('creates toolbar list, which means button with dropdown-toggle/menu and ul list', () => {
-      expect(compiledElement.find('button').hasClass('dropdown-toggle')).toBe(true);
-      expect(compiledElement.find('ul').hasClass('dropdown-menu')).toBe(true);
+      expect(compiledElement.find('button').hasClass('uib-dropdown-toggle')).toBe(true);
+      expect(compiledElement.find('ul').hasClass('uib-dropdown-menu')).toBe(true);
       expect(compiledElement.find('ul').length).toBe(1);
     });
 

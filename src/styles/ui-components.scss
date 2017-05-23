@@ -192,11 +192,11 @@ table.miq-table-with-footer { /* not currently used */
   padding-right: 0;
 
   .sort-pf {
-    .dropdown-menu {
+    .uib-dropdown-menu {
       max-height: 400px;
       overflow-y: auto;
     }
-    .dropdown button {
+    .uib-dropdown button {
       max-width: 150px;
       overflow: hidden;
     }
@@ -292,12 +292,12 @@ table.miq-table-with-footer { /* not currently used */
 }
 
 .miq-siteswitcher {
-  .dropdown-menu {
+  .uib-dropdown-menu {
     padding: 9px;
     left: 8px;
     margin-top: 11px;
     min-width: 220px;
-    &.dropdown-menu-right {
+    &.uib-dropdown-menu-right {
       left: auto;
       right: -2px;
       &:after,
@@ -324,7 +324,7 @@ table.miq-table-with-footer { /* not currently used */
       top: -10px;
     }
   }
-  &.dropup .dropdown-menu {
+  &.dropup .uib-dropdown-menu {
     margin-bottom: 11px;
     margin-top: 0;
     &:after,

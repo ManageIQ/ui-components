@@ -94,7 +94,7 @@ describe('Toolbar test', () =>  {
     });
 
     it('creates toolbar', () => {
-      const dropdownToggle: any = angular.element(compiledElement[0].querySelectorAll('button:not(.dropdown-toggle)'));
+      const dropdownToggle: any = angular.element(compiledElement[0].querySelectorAll('button:not(.uib-dropdown-toggle)'));
       expect(dropdownToggle.length).toBe(1);
       expect(compiledElement.find('miq-toolbar-list').length).toBe(3);
     });

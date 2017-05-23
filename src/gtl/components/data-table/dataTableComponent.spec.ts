@@ -81,11 +81,11 @@ describe('DataTable test', () =>  {
 
     it('should get correct column class', () => {
       expect(
-        angular.equals(dataTableCtrl.getColumnClass(columns[0]), {narrow: true})
-      );
+        angular.equals(dataTableCtrl.getColumnClass(columns[0]), {narrow: true, 'table-view-pf-select': true})
+      ).toBeTruthy();
       expect(
-        angular.equals(dataTableCtrl.getColumnClass(columns[2]), {narrow: false})
-      );
+        angular.equals(dataTableCtrl.getColumnClass(columns[2]), {narrow: undefined, 'table-view-pf-select': undefined})
+      ).toBeTruthy();
     });
 
     it('should check if column is icon or image', () => {

@@ -43,7 +43,8 @@ export class DataTableController extends DataViewClass implements IDataTableBind
    */
   public getColumnClass(column: any) {
     return {
-      narrow: column.is_narrow
+      narrow: column.is_narrow,
+      'table-view-pf-select': column.is_narrow
     };
   }
 

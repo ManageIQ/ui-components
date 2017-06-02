@@ -1,2 +1,252 @@
-.miq-sand-paper,.miq-sand-paper>div{background:#f5f5f5;overflow:hidden}.toolbar-pf .form-group .btn,.toolbar-pf .form-group .btn-group{margin-left:5px}.form-group.miq-toolbar-group,.form-group.miq-toolbar-group .miq-custom-html form{display:inline-block}.form-group.miq-toolbar-group .miq-custom-html .form-group{margin-bottom:0!important;border-right:0}.form-group.miq-toolbar-group .miq-custom-html .form-group:last-child{padding-right:0}.dialog-editor-tab-list{margin-bottom:20px}.delete-tab{opacity:.3;visibility:visible}.select-tab:hover .delete-tab{opacity:1;visibility:visible}.miq-data-tables-header{text-align:left}.miq-data-tables-header .pull-right{padding-right:20px}.miq-data-tables-header .pull-right div{display:inline-block;margin-right:10px}table.miq-table-with-footer{margin-bottom:0}.miq-table thead th{color:#0099d3;cursor:pointer}.dataTables_footer span{margin-left:10px}.miq-tile-section .card .card-content{padding-right:5px}.miq-tile-section div.miq-paging{text-align:center}.miq-tile-section div.miq-paging ul{margin-top:0}.miq-tile-view .card-view-pf .card{padding:0!important;cursor:pointer}.miq-tile-view .card-view-pf .card .card-content>div{padding-top:10px}.miq-tile-view .card-view-pf .card .card-check-box{left:0!important;top:12px!important}.miq-tile-with-body .card-view-pf .card{width:375px;height:175px}.miq-tile-with-body .card-view-pf .card .card-content{overflow:hidden}.miq-tile-with-body .card-view-pf .card .miq-icon-section{padding-right:0}.miq-tile-with-body .card-view-pf .card .miq-info-section{padding-left:0}.miq-tile-with-body .card-view-pf .card .miq-info-section dl.dl-horizontal.tile dt{margin-left:10px}.miq-tile-with-body .card-view-pf .card .miq-info-section dl.dl-horizontal.tile dd{margin-left:120px;text-align:left}.miq-row-margin-only-top{margin-top:15px;margin-left:0;margin-right:0}.miq-small-tile .card-view-pf .card{width:130px;height:131px}.miq-small-tile .card-view-pf .card .card-content .miq-quadicon{display:inline-block}.miq-small-tile .card-view-pf .card .card-content .miq-tile-head{margin-left:20px}.miq-small-tile .card-view-pf .card .card-content a{word-wrap:break-word}.miq-select-all{padding-right:0}.miq-select-all input[type=checkbox]{margin:0 4px;vertical-align:middle;position:relative;top:-1px}.miq-sort-items{padding-right:0}.miq-sort-items .sort-pf .dropdown-menu{max-height:400px;overflow-y:auto}.miq-sort-items .sort-pf .dropdown button{max-width:150px;overflow:hidden}.miq-pagination .miq-pager .miq-paging .disabled{pointer-events:none;cursor:not-allowed;background-color:#fafafa!important;background-image:none!important;border-color:#d1d1d1!important;color:#8b8d8f!important;opacity:1}.miq-pagination .miq-pager{float:right}.miq-pagination .miq-pager .miq-per-page{display:inline-block;vertical-align:top}.miq-pagination .miq-pager .miq-paging{display:inline-block}.miq-pagination .miq-pager .miq-paging ul li a{cursor:pointer}.miq-page-counter{padding-top:3px}.miq-data-table .miq-paging{text-align:center}.miq-data-table .miq-paging ul.pagination{margin-top:0;margin-bottom:10px}.paginate_of b{display:inline-block}.miq-siteswitcher-icon{color:#fff}.miq-siteswitcher-link{color:#000}.miq-siteswitcher-entry{display:inline-block;padding:10px;text-align:center;min-width:90px;border:1px solid #fff}.miq-siteswitcher-entry:hover{border:1px solid #bbb}.miq-siteswitcher-entry:hover a{color:#0088ce}.miq-siteswitcher .dropdown-menu{padding:9px;left:8px;margin-top:11px;min-width:220px}.miq-siteswitcher .dropdown-menu.dropdown-menu-right{left:auto;right:-2px}.miq-siteswitcher .dropdown-menu.dropdown-menu-right:after,.miq-siteswitcher .dropdown-menu.dropdown-menu-right:before{left:auto;right:6px}.miq-siteswitcher .dropdown-menu:after,.miq-siteswitcher .dropdown-menu:before{border-bottom-color:#bbb;border-bottom-style:solid;border-bottom-width:10px;border-left:10px solid transparent;border-right:10px solid transparent;content:"";display:inline-block;left:6px;position:absolute;top:-11px}.miq-siteswitcher .dropdown-menu:after{border-bottom-color:#fff;top:-10px}.miq-siteswitcher.dropup .dropdown-menu{margin-bottom:11px;margin-top:0}.miq-siteswitcher.dropup .dropdown-menu:after,.miq-siteswitcher.dropup .dropdown-menu:before{border-bottom:none;border-top-color:#bbb;border-top-style:solid;border-top-width:10px;bottom:-11px;top:auto}.miq-siteswitcher.dropup .dropdown-menu:after{border-top-color:#fff;bottom:-10px}
+.miq-sand-paper, .miq-sand-paper > div {
+  /* emulates "cards-pf" background color */
+  background: #f5f5f5;
+  overflow: hidden; }
+
+/* Begin Patternfly Toolbar overrides */
+.toolbar-pf .form-group .btn,
+.toolbar-pf .form-group .btn-group {
+  /* overrides _toolbar.scss to account for intermediate Angular markup */
+  margin-left: 5px; }
+
+.form-group.miq-toolbar-group {
+  /* styling for "Custom Html Toolbar Menu" example (used on classic-ui topology screen) */
+  display: inline-block; }
+  .form-group.miq-toolbar-group .miq-custom-html form {
+    display: inline-block; }
+  .form-group.miq-toolbar-group .miq-custom-html .form-group {
+    margin-bottom: 0 !important;
+    border-right: 0; }
+    .form-group.miq-toolbar-group .miq-custom-html .form-group:last-child {
+      padding-right: 0px; }
+
+/* End Patternfly Toolbar overrides */
+/* Begin Patternfly Tab overrides used in the Dialog Editor */
+.dialog-editor-tab-list {
+  margin-bottom: 20px; }
+
+.delete-tab {
+  opacity: .3;
+  visibility: visible; }
+
+.select-tab:hover .delete-tab {
+  opacity: 1;
+  visibility: visible; }
+
+/* End Patternfly Tab overrides */
+/* Begin Patternfly Table View overrides */
+.miq-data-tables-header {
+  text-align: left; }
+  .miq-data-tables-header .pull-right {
+    padding-right: 20px; }
+    .miq-data-tables-header .pull-right div {
+      display: inline-block;
+      margin-right: 10px; }
+
+table.miq-table-with-footer {
+  /* not currently used */
+  margin-bottom: 0px; }
+
+.miq-table thead th {
+  color: #0099d3;
+  cursor: pointer; }
+
+.dataTables_footer span {
+  margin-left: 10px; }
+
+/* End Patternfly Table View overrides */
+/* Begin Grid View (Quad Icon) & Tile View Styling */
+.miq-tile-section .card .card-content {
+  padding-right: 5px; }
+
+.miq-tile-section div.miq-paging {
+  text-align: center; }
+  .miq-tile-section div.miq-paging ul {
+    margin-top: 0; }
+
+.miq-tile-view .card-view-pf {
+  /* Styling for Cards in Tile & Grid Views  */ }
+  .miq-tile-view .card-view-pf .card {
+    padding: 0 !important;
+    cursor: pointer; }
+    .miq-tile-view .card-view-pf .card .card-content > div {
+      padding-top: 10px; }
+    .miq-tile-view .card-view-pf .card .card-check-box {
+      left: 0 !important;
+      top: 12px !important; }
+
+.miq-tile-with-body .card-view-pf {
+  /* Styling for Cards in Tile View */ }
+  .miq-tile-with-body .card-view-pf .card {
+    width: 375px;
+    height: 175px; }
+    .miq-tile-with-body .card-view-pf .card .card-content {
+      overflow: hidden; }
+    .miq-tile-with-body .card-view-pf .card .miq-icon-section {
+      padding-right: 0; }
+    .miq-tile-with-body .card-view-pf .card .miq-info-section {
+      padding-left: 0; }
+      .miq-tile-with-body .card-view-pf .card .miq-info-section dl.dl-horizontal.tile dt {
+        margin-left: 10px; }
+      .miq-tile-with-body .card-view-pf .card .miq-info-section dl.dl-horizontal.tile dd {
+        margin-left: 120px;
+        text-align: left; }
+
+.miq-row-margin-only-top {
+  /* Adds a row after the title in Tile View Card */
+  margin-top: 15px;
+  margin-left: 0;
+  margin-right: 0; }
+
+.miq-small-tile .card-view-pf {
+  /* Styling for Cards in Grid View */ }
+  .miq-small-tile .card-view-pf .card {
+    width: 130px;
+    height: 131px; }
+    .miq-small-tile .card-view-pf .card .card-content .miq-quadicon {
+      display: inline-block; }
+    .miq-small-tile .card-view-pf .card .card-content .miq-tile-head {
+      margin-left: 20px; }
+    .miq-small-tile .card-view-pf .card .card-content a {
+      word-wrap: break-word; }
+
+/* End Grid View (Quad Icon) & Tile View Styling */
+/* Begin paginator styling */
+.miq-select-all {
+  /* styles "Select All" text and checkbox */
+  padding-right: 0; }
+  .miq-select-all input[type="checkbox"] {
+    margin: 0 4px 0;
+    vertical-align: middle;
+    position: relative;
+    top: -1px; }
+
+.miq-sort-items {
+  /* styles "Sort by" dropdown */
+  padding-right: 0; }
+  .miq-sort-items .sort-pf .dropdown-menu {
+    max-height: 400px;
+    overflow-y: auto; }
+  .miq-sort-items .sort-pf .dropdown button {
+    max-width: 150px;
+    overflow: hidden; }
+
+.miq-pagination .miq-pager .miq-paging .disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: #fafafa !important;
+  background-image: none !important;
+  border-color: #d1d1d1 !important;
+  color: #8b8d8f !important;
+  opacity: 1; }
+
+.miq-pagination .miq-pager {
+  float: right; }
+  .miq-pagination .miq-pager .miq-per-page {
+    display: inline-block;
+    vertical-align: top; }
+  .miq-pagination .miq-pager .miq-paging {
+    display: inline-block; }
+    .miq-pagination .miq-pager .miq-paging ul li a {
+      cursor: pointer; }
+
+.miq-page-counter {
+  padding-top: 3px; }
+
+.miq-data-table .miq-paging {
+  text-align: center; }
+  .miq-data-table .miq-paging ul.pagination {
+    margin-top: 0;
+    margin-bottom: 10px; }
+
+.paginate_of b {
+  /* required for demo page */
+  display: inline-block; }
+
+/* End pagination styling */
+/* Site switcher styling */
+.miq-siteswitcher-icon {
+  color: white; }
+
+.miq-siteswitcher-link {
+  color: black; }
+
+.miq-siteswitcher-entry {
+  display: inline-block;
+  padding: 10px;
+  text-align: center;
+  min-width: 90px; }
+
+.miq-siteswitcher-entry {
+  border-color: #fff;
+  border-style: solid;
+  border-width: 1px; }
+
+.miq-siteswitcher-entry:hover {
+  border-color: #bbb;
+  border-style: solid;
+  border-width: 1px; }
+  .miq-siteswitcher-entry:hover a {
+    color: #0088CE; }
+
+.miq-siteswitcher .dropdown-menu {
+  padding: 9px;
+  left: 8px;
+  margin-top: 11px;
+  min-width: 220px; }
+  .miq-siteswitcher .dropdown-menu.dropdown-menu-right {
+    left: auto;
+    right: -2px; }
+    .miq-siteswitcher .dropdown-menu.dropdown-menu-right:after, .miq-siteswitcher .dropdown-menu.dropdown-menu-right:before {
+      left: auto;
+      right: 6px; }
+  .miq-siteswitcher .dropdown-menu:after, .miq-siteswitcher .dropdown-menu:before {
+    border-bottom-color: #bbb;
+    border-bottom-style: solid;
+    border-bottom-width: 10px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    content: "";
+    display: inline-block;
+    left: 6px;
+    position: absolute;
+    top: -11px; }
+  .miq-siteswitcher .dropdown-menu:after {
+    border-bottom-color: #fff;
+    top: -10px; }
+
+.miq-siteswitcher.dropup .dropdown-menu {
+  margin-bottom: 11px;
+  margin-top: 0; }
+  .miq-siteswitcher.dropup .dropdown-menu:after, .miq-siteswitcher.dropup .dropdown-menu:before {
+    border-bottom: none;
+    border-top-color: #bbb;
+    border-top-style: solid;
+    border-top-width: 10px;
+    bottom: -11px;
+    top: auto; }
+  .miq-siteswitcher.dropup .dropdown-menu:after {
+    border-top-color: #fff;
+    bottom: -10px; }
+
+/* end switcher styling */
+/* Topology graph styling */
+miq-topology-graph > .miq-topology-graph canvas.topology-graph {
+  width: 100%;
+  height: auto; }
+
+miq-topology-graph > .miq-topology-graph .topology-tooltip {
+  position: fixed; }
+
+miq-topology-graph > .miq-topology-graph .topology-menu {
+  position: fixed; }
+  miq-topology-graph > .miq-topology-graph .topology-menu .no-hover a:hover, miq-topology-graph > .miq-topology-graph .topology-menu .no-hover a:focus, miq-topology-graph > .miq-topology-graph .topology-menu .no-hover a:active {
+    background-color: inherit;
+    color: inherit !important;
+    border-color: transparent;
+    outline: inherit;
+    cursor: default; }
+
+/* end topology styling */
+
 /*# sourceMappingURL=ui-components.css.map*/

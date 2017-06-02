@@ -46,7 +46,7 @@
     "copy-webpack-plugin": "4.0.1",
     "coveralls": "^2.11.15",
     "css-loader": "^0.26.0",
-    "d3": "^4.4.1",
+    "d3": "^4.9.1",
     "datatables": "^1.10.12",
     "datatables-colreorder": "^1.2.0",
     "drmonty-datatables-colvis": "^1.1.2",

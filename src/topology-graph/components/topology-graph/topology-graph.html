@@ -1,0 +1,20 @@
+<div class="miq-topology-graph">
+  <div class="miq-topology-filters btn-group">
+    <button type="button" ng-class="[!item.active && 'active', 'btn', 'btn-default']" ng-repeat="item in $ctrl.filters" ng-click="$ctrl.toggleFilter(item);">
+      <i class="{{ item.icon }}"></i>
+    </button>
+  </div>
+  <canvas class="topology-graph"></canvas>
+  <div class="topology-tooltip tooltip right in" ng-class="(!$ctrl.tooltip || $ctrl.menu) && 'hidden'" ng-style="$ctrl.tooltipStyle()">
+    <div class="tooltip-arrow"></div>
+    <div class="tooltip-inner">{{ $ctrl.tooltip.id }}</div>
+  </div>
+  <div class="topology-menu dropdown open" ng-class="!$ctrl.menu && 'hidden'" ng-style="$ctrl.menuStyle()">
+    <ul class="dropdown-menu">
+      <li class="no-hover"><a href ng-click="$event.stopPropagation();"><strong>Actions on {{ $ctrl.menu.id }}</strong></a></li>
+      <li role="separator" class="divider"></li>
+      <li><a href ng-click="$ctrl.summaryScreen();">Summary screen</a></li>
+    </ul>
+  </div>
+  <div class="hidden" ng-transclude></div>
+</div>

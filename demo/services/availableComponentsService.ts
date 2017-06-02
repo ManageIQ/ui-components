@@ -71,6 +71,12 @@ export default class AvailableComponentsService {
           'Site switcher',
           '/basic',
           require('./../views/site-switcher/basic.html'), 'demoSiteSwitcher as vm')
+      ]),
+      new AvailableGroup('topology-graph', 'Topology Graph Components', '/topology-graph', [
+        new AvailableComponent('basic',
+          'Topology Graph',
+          '/basic',
+          require('./../views/topology-graph/basic.html'), 'demoTopologyGraph as vm')
       ])
     ];
   }

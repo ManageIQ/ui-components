@@ -1,0 +1,18 @@
+{
+  "items": {
+    "Alpha": {
+      "kind": "test",
+      "miq_id": "1",
+      "status": "valid",
+      "display_kind": "test"
+    }
+  },
+  "kinds": ["test"],
+  "icons": {
+    "test": {
+      "type": "glyph",
+      "class": "fa fa-cog"
+    }
+  },
+  "relations": []
+}

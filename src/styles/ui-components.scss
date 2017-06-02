@@ -344,3 +344,33 @@ table.miq-table-with-footer { /* not currently used */
 }
 
 /* end switcher styling */
+
+
+
+/* Topology graph styling */
+
+miq-topology-graph > .miq-topology-graph {
+  canvas.topology-graph {
+    width: 100%;
+    height: auto;
+  }
+
+  .topology-tooltip {
+    position: fixed;
+  }
+
+  .topology-menu {
+    position: fixed;
+    .no-hover {
+      a:hover, a:focus, a:active {
+        background-color: inherit;
+        color: inherit !important;
+        border-color: transparent;
+        outline: inherit;
+        cursor: default;
+      }
+    }
+  }
+}
+
+/* end topology styling */

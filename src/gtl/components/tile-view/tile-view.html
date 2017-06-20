@@ -2,34 +2,13 @@
     <div ng-if="tileCtrl.settings.isLoading" class="spinner spinner-lg"></div>
     <div class="row miq-pagination"
          ng-if="tileCtrl.settings && tileCtrl.settings.sortBy && (tileCtrl.settings.isLoading || tileCtrl.rows.length !== 0)">
-      <div class="miq-select-all col-md-2 col-lg-2 col-xs-2"
-           ng-if="!tileCtrl.settings.hideSelect">
-        <label>{{tileCtrl.settings.selectAllTitle}}: </label>
-        <input type="checkbox" ng-model="isChecked" ng-click="tileCtrl.onCheckAllTiles(isChecked)" title="{{tileCtrl.settings.selectAllTitle}}" />
-      </div>
-      <miq-sort-items ng-if="tileCtrl.settings.sortBy"
-                      class="miq-sort-items col-md-2 col-lg-2 col-xs-2"
-                      sort-object="tileCtrl.settings.sortBy"
-                      headers="tileCtrl.columns"
-                      drop-down-class="tileCtrl.settings.dropDownClass"
-                      on-sort="tileCtrl.onSortClick(sortObject.colId, isAscending)"></miq-sort-items>
-      <div class="col-md-7 col-lg-7 col-xs-7">
-        <div class="miq-pager">
-          <div class="miq-per-page">
-            <miq-toolbar-list on-item-click="tileCtrl.perPageClick(item)"
-                              drop-down-class="tileCtrl.settings.dropDownClass"
-                              toolbar-list="tileCtrl.perPage"></miq-toolbar-list>
-          </div>
-          <div class="miq-paging" ng-if="tileCtrl.settings.current">
-            <miq-paging settings="tileCtrl.settings" on-change-page="tileCtrl.setPage(pageNumber)"></miq-paging>
-          </div>
-        </div>
-      </div>
-      <div ng-if="tileCtrl.settings.items" class="col-md-1 col-lg-1 col-xs-1 miq-page-counter">
-        <label>
-          {{tileCtrl.translateOf(tileCtrl.settings.startIndex, tileCtrl.settings.endIndex, tileCtrl.settings.items)}}
-        </label>
-      </div>
+      <miq-pagination settings="tileCtrl.settings"
+                      sort-by="tileCtrl.columns"
+                      per-page="tileCtrl.perPage"
+                      on-select-all="tileCtrl.onCheckAll(isSelected)"
+                      on-change-sort="tileCtrl.onSortClick(sortId, isAscending)"
+                      on-change-page="tileCtrl.setPage(pageNumber)"
+                      on-change-per-page="tileCtrl.perPageClick(item)"></miq-pagination>
     </div>
   <div pf-card-view
        config="tileCtrl.options"

@@ -58,7 +58,7 @@ class TabListController {
     this.tabList.push(
       {
         description: __('New tab ') + nextIndex,
-        displat: 'edit',
+        display: 'edit',
         label: __('New tab ') + nextIndex,
         position: nextIndex,
         active: true,

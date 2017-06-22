@@ -32,7 +32,7 @@ export default class DataTableController {
       this.settings = data.settings;
       let start = (this.settings.current - 1) * this.settings.perpage;
       this.settings.translateTotalOf = (start, end, total) => {
-        return `${start + 1} - ${end + 1} of ${total}`
+        return `${start + 1} - ${end + 1} of ${total}`;
       };
       this.onLoadNext(start, this.settings.perpage);
       this.onSort(2, true);

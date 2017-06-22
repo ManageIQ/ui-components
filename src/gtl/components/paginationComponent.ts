@@ -9,10 +9,6 @@ export class PaginationController {
   public onChangeSort: (args: {sortId: number, isAscending: boolean}) => void;
   public onChangePage: (args: {pageNumber: number}) => void;
   public onChangePerPage: (args: {item: number}) => void;
-
-  constructor() {
-    console.log(this);
-  }
 }
 
 /**
@@ -37,7 +33,6 @@ export class PaginationController {
  *    Function TODO.
  * @example
  * <miq-pagination settings="settings"
- *                 sort-by="columns"
  *                 per-page="perPage"
  *                 on-select-all="onCheckAll(isSelected)"
  *                 on-change-sort="onSortClick(sortId, isAscending)"

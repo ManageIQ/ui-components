@@ -10,7 +10,7 @@
   <miq-sort-items ng-if="paginationCtrl.settings.sortBy"
                   class="miq-sort-items col-md-2 col-lg-2 col-xs-2"
                   sort-object="paginationCtrl.settings.sortBy"
-                  headers="paginationCtrl.sortBy"
+                  headers="paginationCtrl.settings.columns"
                   drop-down-class="paginationCtrl.settings.dropDownClass"
                   on-sort="paginationCtrl.onChangeSort({sortId: sortObject.colId, isAscending: isAscending})">
   </miq-sort-items>

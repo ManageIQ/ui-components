@@ -9,6 +9,10 @@ export class PaginationController {
   public onChangeSort: (args: {sortId: number, isAscending: boolean}) => void;
   public onChangePage: (args: {pageNumber: number}) => void;
   public onChangePerPage: (args: {item: number}) => void;
+
+  constructor() {
+    console.log(this);
+  }
 }
 
 /**
@@ -48,7 +52,6 @@ export default class Pagination implements ng.IComponentOptions {
   public controllerAs = 'paginationCtrl';
   public bindings: any = {
     settings: '<',
-    sortBy: '<',
     perPage: '<',
     onSelectAll: '&',
     onChangeSort: '&',

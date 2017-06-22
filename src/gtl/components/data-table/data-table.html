@@ -3,7 +3,6 @@
   <div class="row miq-pagination"
        ng-if="tableCtrl.settings && tableCtrl.settings.sortBy && (tableCtrl.settings.isLoading || tableCtrl.rows.length !== 0)">
     <miq-pagination settings="tableCtrl.settings"
-                    sort-by="tableCtrl.columns"
                     per-page="tableCtrl.perPage"
                     on-select-all="tableCtrl.onCheckAll(isSelected)"
                     on-change-sort="tableCtrl.onSortClick(sortId, isAscending)"

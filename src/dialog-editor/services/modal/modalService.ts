@@ -93,11 +93,6 @@ class ModalController {
    * @function resolveCategories
    */
   public resolveCategories() {
-    let options = {
-      expand: 'resources',
-      attributes: ['description', 'single_value', 'children'],
-    };
-
     return this.API.get('/api/categories' +
                         '?expand=resources' +
                         '&attributes=description,single_value,children');

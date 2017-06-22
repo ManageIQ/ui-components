@@ -1,5 +1,6 @@
 import * as ng from 'angular';
 import * as _ from 'lodash';
+import {__} from '../../../common/translateFunction';
 
 /**
  * Controller for the Dialog Editor tab list component
@@ -38,7 +39,8 @@ class TabListController {
         let sortedTab = ng.element(ui.item).scope().$parent;
         let tabList = sortedTab.vm.tabList;
         this.DialogEditor.updatePositions(tabList);
-        this.DialogEditor.activeTab = _.find(tabList, {active: true}).position;
+        let activeTab: any = _.find(tabList, {active: true});
+        this.DialogEditor.activeTab = activeTab.position;
       },
     };
   }
@@ -91,7 +93,7 @@ class TabListController {
       }
     }
     // remove tab with matching id
-    _.remove(this.tabList, (tab) => tab.position === id);
+    _.remove(this.tabList, (tab: any) => tab.position === id);
     // update indexes of other tabs after removing
     if (this.tabList.length !== 0) {
       this.DialogEditor.updatePositions(this.tabList);
@@ -99,7 +101,7 @@ class TabListController {
       return;
     }
     // set activity in the service
-    let activeTabData = _.find(
+    let activeTabData: any = _.find(
       this.tabList,
       {active: true}
     );

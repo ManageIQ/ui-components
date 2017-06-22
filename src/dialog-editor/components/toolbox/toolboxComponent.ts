@@ -1,3 +1,4 @@
+import {__} from '../../../common/translateFunction';
 class DialogField {
   public icon: string;
   public label: string;
@@ -9,7 +10,7 @@ class DialogField {
               options: any = {}) {
     this.icon = icon;
     this.label = label;
-    this.placeholders = Object.assign({
+    this.placeholders = (<any>Object).assign({
       name: '',
       description: '',
       type: type,

@@ -16,7 +16,7 @@ class ModalController {
   /*@ngInject*/
   constructor(private dialogDetails: any,
               private $uibModalInstance: any,
-              private CollectionsApi: any,
+              private API: any,
               private DialogEditor: any) {
     ng.extend(this, {
       dialog: this.dialogDetails,
@@ -93,12 +93,9 @@ class ModalController {
    * @function resolveCategories
    */
   public resolveCategories() {
-    let options = {
-      expand: 'resources',
-      attributes: ['description', 'single_value', 'children'],
-    };
-
-    return this.CollectionsApi.query('categories', options);
+    return this.API.get('/api/categories' +
+                        '?expand=resources' +
+                        '&attributes=description,single_value,children');
   }
 
   /**

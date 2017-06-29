@@ -6,6 +6,7 @@ module miqStaticAssets {
     'miqStaticAssets.common',
     'miqStaticAssets.dialogEditor',
     'miqStaticAssets.gtl',
-    'miqStaticAssets.siteSwitcher'
+    'miqStaticAssets.siteSwitcher',
+    'miqStaticAssets.fonticonPicker'
   ]);
 }

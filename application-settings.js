@@ -11,7 +11,8 @@ module.exports = {
     common: '/common',
     dialogEditor: '/dialog-editor',
     gtl: '/gtl',
-    siteSwitcher: '/site-switcher'
+    siteSwitcher: '/site-switcher',
+    fonticonPicker: '/fonticon-picker'
   },
   nodePackages: 'node_modules/',
   get stylesheetPath() {

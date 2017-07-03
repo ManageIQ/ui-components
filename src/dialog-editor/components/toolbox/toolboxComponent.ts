@@ -10,7 +10,7 @@ class DialogField {
               options: any = {}) {
     this.icon = icon;
     this.label = label;
-    this.placeholders = (<any>Object).assign({
+    this.placeholders = Object.assign({
       name: '',
       description: '',
       type: type,

@@ -4,7 +4,8 @@
     "module": "commonjs",
     "removeComments": false,
     "sourceMap": true,
-    "typeRoots" : ["./node_modules/@types"]
+    "typeRoots" : ["./node_modules/@types"],
+    "lib": ["es2015", "DOM", "ScriptHost"]
   },
   "files": [
     "src/index.ts"

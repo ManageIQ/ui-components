@@ -1,0 +1,11 @@
+<div class="btn-group">
+  <button type="button" class="btn picked" ng-class="$ctrl.btnClass">
+    <i class="fa-lg" ng-class="$ctrl.selected" ng-if="$ctrl.selected"></i>
+    <span ng-if="!$ctrl.selected">&nbsp;</span>
+  </button>
+  <button type="button" class="btn" ng-class="$ctrl.btnClass" ng-click="$ctrl.openModal();">
+    <span class="caret"></span>
+  </button>
+</div>
+<div class="hidden" ng-transclude></div>
+<input type="hidden" name="{{ $ctrl.inputName }}" value="{{ $ctrl.selected }}">

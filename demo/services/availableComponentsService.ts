@@ -71,6 +71,12 @@ export default class AvailableComponentsService {
           'Site switcher',
           '/basic',
           require('./../views/site-switcher/basic.html'), 'demoSiteSwitcher as vm')
+      ]),
+      new AvailableGroup('fonticon-picker', 'Fonticon Picker Components', '/fonticon-picker', [
+        new AvailableComponent('basic',
+          'Fonticon picker',
+          '/basic',
+          require('./../views/fonticon-picker/basic.html'), 'demoFonticonPicker as vm')
       ])
     ];
   }

@@ -29,19 +29,19 @@ table .narrow {
 .miq-toolbar-group {
   padding-right: 15px;
 }
+.toolbar-pf-actions {
+  .form-group {
+    display: table-cell;
+    float: left;
+    border-right: 1px solid #d1d1d1;
 
-.form-group {
-  display: table-cell;
-  float: left;
-  border-right: 1px solid #d1d1d1;
-
-  .demo-checkbox {
-    position: absolute;margin-left: 10px;margin-top: 1px;
+    .demo-checkbox {
+      position: absolute;margin-left: 10px;margin-top: 1px;
+    }
   }
-}
-
-.form-horizontal .form-group:after {
-  clear: both;
+  .form-horizontal .form-group:after {
+    clear: both;
+  }
 }
 
 .miq-custom-html {
@@ -54,8 +54,7 @@ table .narrow {
     font-weight: normal;
     cursor: pointer;
   }
-
-  .form-group {
+   .form-group {
     display: table-cell;
     float: left;
     &:not(.has-clear) {
@@ -81,4 +80,24 @@ table .narrow {
   height: 30px;
   padding-left: 15px;
   padding-right: 15px;
+}
+.demo-dialog-container {
+  height: 550px;
+}
+.demo-dialog {
+  display:block;
+  width: 80%;
+  padding-bottom: 90px;
+}
+.demo-dialog-results {
+  padding-top: 10px;
+}
+.demo-dialog-submit-button {
+  margin-left: 147px;
+}
+.has-error{
+   color: red;
+   .form-control {
+     border-color: red;
+   }
 }

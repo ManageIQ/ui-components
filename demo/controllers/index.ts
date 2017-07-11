@@ -3,6 +3,7 @@ import ToolbarMenuController from './toolbarMenuController';
 import DataTableController from './dataTableController';
 import SiteSwitcherController from './siteSwitcherController';
 import FonticonPickerController from './fonticonPickerController';
+import DialogComponentController from './dialogComponentController';
 import * as ng from 'angular';
 
 export default (module: ng.IModule) => {
@@ -11,4 +12,5 @@ export default (module: ng.IModule) => {
   module.controller('demoDataTable', DataTableController);
   module.controller('demoSiteSwitcher', SiteSwitcherController);
   module.controller('demoFonticonPicker', FonticonPickerController);
+  module.controller('demoDialogs', DialogComponentController);
 };

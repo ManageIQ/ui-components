@@ -73,7 +73,8 @@ constructor(private DialogData: any){
         if (refreshable > -1) {
             this.refreshField({ field: this.dialogFields[dialogFieldName] }).then((data) => {
                 this.dialogFields[dialogFieldName] = this.updateDialogFieldData(dialogFieldName, data);
-                this.updateRefreshableFields(dialogFieldName);
+                const fieldsToRefresh = _.without(this.refreshableFields, dialogFieldName);
+                this.updateRefreshableFields(fieldsToRefresh);
             });
         }
         this.saveDialogData();
@@ -81,15 +82,17 @@ constructor(private DialogData: any){
 /**
  * This method is meant to handle auto updating of all dialog fields that are eligable to be refreshed after a field has just been refreshed
  *  @function updateRefreshableFields
- *  @param triggerFieldName {string} This is the dialog fields name that was triggered.  This is passed to ensure we don't attempt to refresh something that was just refreshed
+ *  @param refreshableFields {array} This is the dialog fields name that was triggered.  This is passed to ensure we don't attempt to refresh something that was just refreshed
  */
-    public updateRefreshableFields(triggerFieldName){
-       const fieldsToRefresh = _.without(this.refreshableFields, triggerFieldName);
-       fieldsToRefresh.forEach((field) => {
-            this.refreshField({ field: this.dialogFields[field] }).then((data) => {
+    public updateRefreshableFields(refreshableFields): void  {
+        const field = refreshableFields[0];
+        const fieldsLeftToRefresh = _.without(refreshableFields,field);
+         this.refreshField({ field: this.dialogFields[field] }).then((data) => {
                 this.dialogFields[field] = this.updateDialogFieldData(field, data);
-            });
-       });
+                if (fieldsLeftToRefresh.length > 0) {
+                    this.updateRefreshableFields(fieldsLeftToRefresh);
+                }
+        });
     }
 /**
  *  Deals with updating select properties on a dialog field after the field has been refreshed

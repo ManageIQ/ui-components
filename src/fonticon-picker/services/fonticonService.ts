@@ -31,6 +31,6 @@ export default class FonticonService {
     return {
       'class': `${family} ${value}`,
       'selector': `.${family}.${value}`
-    }
+    };
   }
 }

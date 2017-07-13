@@ -10,10 +10,11 @@ pids
 # Users Environment Variables
 .lock-wscript
 
-
-dist/data/
 dist/assets/
+dist/css
+dist/data/
 dist/docs/
+dist/js
 dist/**/demo-app.*
 .tmp/
 .bower/
@@ -38,6 +39,3 @@ vendor.css
 *.iml
 
 coverage
-
-!dist/js/ui-components.js.map
-!dist/css/ui-components.css.map

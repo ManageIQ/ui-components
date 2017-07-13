@@ -7,6 +7,7 @@ mv bower.json bower.json.tmp
 git remote add upstream https://github.com/ManageIQ/ui-components.git
 git fetch upstream
 git checkout bower-dev
+rm -rf dist
 mv -f tmp dist
 mv -f bower.json.tmp bower.json
 git add -f dist/css/ui-components.css dist/css/ui-components.css.map

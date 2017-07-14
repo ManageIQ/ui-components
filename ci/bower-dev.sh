@@ -17,5 +17,5 @@ git status
 git commit -m "Automated build from ${HASH}"
 git log -p -1
 set +x
-git push -f https://$GITHUB_AUTH@github.com/ManageIQ/ui-components.git bower-dev &> /dev/null
+git push https://$GITHUB_AUTH@github.com/ManageIQ/ui-components.git bower-dev &> /dev/null
 echo "git push origin HEAD:bower-dev"

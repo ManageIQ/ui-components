@@ -15,7 +15,9 @@ git add -f dist/js/ui-components.js dist/js/ui-components.js.map
 git add -f bower.json
 git status
 git commit -m "Automated build from ${HASH}"
-git log -p -1
+echo $?
+git log -1 --stat
 set +x
 git push https://$GITHUB_AUTH@github.com/ManageIQ/ui-components.git bower-dev &> /dev/null
+echo $?
 echo "git push origin HEAD:bower-dev"

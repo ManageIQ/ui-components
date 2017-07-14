@@ -1,3 +1,4 @@
+import {__} from '../../../common/translateFunction';
 class DialogField {
   public icon: string;
   public label: string;

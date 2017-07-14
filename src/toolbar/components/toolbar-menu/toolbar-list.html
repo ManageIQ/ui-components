@@ -1,7 +1,10 @@
 <div class="btn-group" ng-class="vm.dropDownClass" uib-dropdown ng-if="vm.isEmpty">
   <button type="button" uib-dropdown-toggle class="btn uib-dropdown-toggle btn-default"
           ng-class="{disabled: !vm.toolbarList.enabled}" title="{{vm.toolbarList.title}}">
-    <i class="{{vm.toolbarList.icon}}" style="margin-right: 5px;" ng-if="vm.toolbarList.icon"></i>
+    <i class="{{vm.toolbarList.icon}}"
+       style="margin-right: 5px;"
+       ng-if="vm.toolbarList.icon"
+       ng-style="{color: vm.toolbarList.color}"></i>
     {{vm.toolbarList.text}}
     <span class="caret"></span>
   </button>
@@ -25,8 +28,8 @@
          data-prompt="{{item.prompt}}"
          data-popup="{{item.popup}}"
          data-url="{{item.url}}">
-        <i ng-if="item.icon && item.text" class="{{item.icon}}" style="margin-right: 5px;"></i>
-        <i ng-if="item.icon && !item.text" class="{{item.icon}}"></i>
+        <i ng-if="item.icon && item.text" class="{{item.icon}}" ng-style="{color: item.color}" style="margin-right: 5px;"></i>
+        <i ng-if="item.icon && !item.text" class="{{item.icon}}" ng-style="{color: item.color}"></i>
         <img ng-if="item.img_url && !item.icon" ng-src="{{item.img_url}}"
              data-enabled="{{item.img_url}}"
              data-disabled="{{item.img_url}}">

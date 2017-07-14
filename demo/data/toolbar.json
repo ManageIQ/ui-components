@@ -4,6 +4,7 @@
       "id": "middleware_server_policy_choice",
       "type": "buttonSelect",
       "img": "middleware_server_policy_choice.png",
+      "color": "blue",
       "imgdis": "middleware_server_policy_choice.png",
       "icon": "fa fa-shield fa-lg",
       "name": "middleware_server_policy_choice",
@@ -20,6 +21,7 @@
           "id": "middleware_server_policy_choice__middleware_server_tag",
           "type": "button",
           "img": "middleware_server_tag.png",
+          "color": "#900000",
           "imgdis": "middleware_server_tag.png",
           "icon": "pficon pficon-edit fa-lg",
           "name": "middleware_server_policy_choice__middleware_server_tag",
@@ -39,6 +41,7 @@
       "id": "download_choice__download_csv",
       "type": "button",
       "img": "download_csv.png",
+      "color": "#009000",
       "imgdis": "download_csv.png",
       "icon": "fa fa-file-text-o fa-lg",
       "name": "download_choice__download_csv",
@@ -108,6 +111,22 @@
           "url_parms": "main_div"
         }
       ]
+    },
+    {
+      "id": "middleware_server_power_choice",
+      "type": "button",
+      "color": "#0000F0",
+      "img": "middleware_server_power_choice.png",
+      "imgdis": "middleware_server_power_choice.png",
+      "icon": "fa fa-power-off fa-lg",
+      "name": "middleware_server_power_choice",
+      "hidden": false,
+      "pressed": null,
+      "onwhen": "1+",
+      "data": null,
+      "enabled": true,
+      "title": "Power",
+      "text": "Power"
     }
   ],
   [

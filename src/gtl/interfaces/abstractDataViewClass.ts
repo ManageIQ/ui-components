@@ -101,6 +101,20 @@ export abstract class DataViewClass implements IDataTableBinding {
     }
   }
 
+  protected $onChanges(changesObj: any) {
+    if (changesObj.columns && this.settings) {
+      this.settings.columns = this.columns;
+    }
+
+    if (changesObj.perPage) {
+      this.perPage.text += ' ' + this.perPage.labelItems;
+      this.perPage.items = this.perPage.items.map(oneItem => {
+        oneItem.text += ' ' + this.perPage.labelItems;
+        return oneItem;
+      });
+    }
+  }
+
   /**
    * Helper static method for calculating start index based on pageNumber and number of visible items.
    * @memberof DataViewClass

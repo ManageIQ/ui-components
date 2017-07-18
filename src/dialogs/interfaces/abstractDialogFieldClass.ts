@@ -12,5 +12,6 @@ export abstract class DialogFieldClass {
   public inputDisabled: boolean;
     /*@ngInject*/
   constructor() {
+    return;
   }
 }

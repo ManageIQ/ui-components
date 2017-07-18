@@ -13,7 +13,7 @@ module.exports = {
     gtl: '/gtl',
     siteSwitcher: '/site-switcher',
     fonticonPicker: '/fonticon-picker',
-    dialogs:'/dialogs'
+    dialogs: '/dialogs'
   },
   nodePackages: 'node_modules/',
   get stylesheetPath() {

@@ -1,133 +1,133 @@
- <div ng-if="vm.dialogField.visible" class="form-group" ng-class="{'has-error': vm.dialogField.fieldValidation===false}">
-                  <label class="control-label col-md-2 col-lg-4 col-xl-2 col-sm-2">{{ ::vm.dialogField.label }}</label>
-                  <div class="col-sm-5 col-lg-5" ng-if="vm.dialogField.fieldValidation===false">{{ vm.dialogField.errorMessage }}</div>
-                  <div ng-switch on="vm.dialogField.type" class="col-sm-5 col-lg-5">
-                    <input
-                      ng-switch-when="DialogFieldTextBox"
-                      ng-model="vm.dialogField.default_value"
-                      ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
-                      ng-change="vm.changesHappened()"
-                      ng-blur="vm.validateField()"
-                      ng-model-options="{debounce: {'default': 500}}"
-                      class="form-control"
-                      type="{{ vm.dialogField.options.protected ? 'password' : 'text' }}"
-                      uib-tooltip="{{ ::inputTitle }}"
-                      value="{{ vm.dialogField.default_value }}">
-                    <textarea
-                      ng-switch-when="DialogFieldTextAreaBox"
-                      ng-model="vm.dialogField.default_value"
-                      ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
-                      ng-change="vm.changesHappened()"
-                      ng-model-options="{debounce: {'default': 500}}"
-                      class="form-control"
-                      uib-tooltip="{{ ::inputTitle }}"
-                      rows="4">{{ vm.dialogField.default_value }}
-                    </textarea>
-                    <input
-                      ng-switch-when="DialogFieldCheckBox"
-                      ng-model="vm.dialogField.default_value"
-                      ng-true-value="'t'"
-                      ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
-                      ng-change="vm.changesHappened()"
-                      class="form-control"
-                      type="checkbox"
-                      uib-tooltip="{{ ::inputTitle }}"
-                      ng-checked="vm.dialogField.default_value == 't'">
+<div ng-if="vm.dialogField.visible" class="form-group" ng-class="{'has-error': vm.dialogField.fieldValidation===false}">
+  <label class="control-label col-md-2 col-lg-4 col-xl-2 col-sm-2">{{ ::vm.dialogField.label }}</label>
+  <div class="col-sm-5 col-lg-5" ng-if="vm.dialogField.fieldValidation===false">{{ vm.dialogField.errorMessage }}</div>
+    <div ng-switch on="vm.dialogField.type" class="col-sm-5 col-lg-5">
+      <input
+        ng-switch-when="DialogFieldTextBox"
+        ng-model="vm.dialogField.default_value"
+        ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
+        ng-change="vm.changesHappened()"
+        ng-blur="vm.validateField()"
+        ng-model-options="{debounce: {'default': 500}}"
+        class="form-control"
+        type="{{ vm.dialogField.options.protected ? 'password' : 'text' }}"
+        uib-tooltip="{{ ::inputTitle }}"
+        value="{{ vm.dialogField.default_value }}">
+      <textarea
+        ng-switch-when="DialogFieldTextAreaBox"
+        ng-model="vm.dialogField.default_value"
+        ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
+        ng-change="vm.changesHappened()"
+        ng-model-options="{debounce: {'default': 500}}"
+        class="form-control"
+        uib-tooltip="{{ ::inputTitle }}"
+        rows="4">{{ vm.dialogField.default_value }}
+      </textarea>
+      <input
+        ng-switch-when="DialogFieldCheckBox"
+        ng-model="vm.dialogField.default_value"
+        ng-true-value="'t'"
+        ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
+        ng-change="vm.changesHappened()"
+        class="form-control"
+        type="checkbox"
+        uib-tooltip="{{ ::inputTitle }}"
+        ng-checked="vm.dialogField.default_value == 't'">
 
-                    <span ng-switch-when="DialogFieldDropDownList">
-                      <ui-select ng-model="vm.dialogField.selected" ng-blur="vm.validateField()"
-                                 ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
-                                 theme="bootstrap">
-                        <ui-select-match
-                          placeholder="{{vm.dialogField.description}}">{{$select.selected[1] }}</ui-select-match>
-                        <ui-select-choices
-                          repeat="fieldValue[0] as fieldValue in vm.dialogField.values | filter: $select.search">
-                          <span>{{fieldValue[1]}}</span>
-                        </ui-select-choices>
-                      </ui-select>
-                    </span>
+      <span ng-switch-when="DialogFieldDropDownList">
+        <ui-select ng-model="vm.dialogField.selected" ng-blur="vm.validateField()"
+                    ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
+                    theme="bootstrap">
+          <ui-select-match
+            placeholder="{{vm.dialogField.description}}">{{$select.selected[1] }}</ui-select-match>
+          <ui-select-choices
+            repeat="fieldValue[0] as fieldValue in vm.dialogField.values | filter: $select.search">
+            <span>{{fieldValue[1]}}</span>
+          </ui-select-choices>
+        </ui-select>
+      </span>
 
-                    <select ng-if="vm.dialogField.options.force_single_value"
-                            ng-switch-when="DialogFieldTagControl"
-                            ng-model="vm.dialogField.default_value"
-                            ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
-                            ng-change="vm.changesHappened()"
-                            class="form-control"
-                            ng-options="fieldValue.id as fieldValue.description for fieldValue in vm.dialogField.values">
-                    </select>
+      <select ng-if="vm.dialogField.options.force_single_value"
+              ng-switch-when="DialogFieldTagControl"
+              ng-model="vm.dialogField.default_value"
+              ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
+              ng-change="vm.changesHappened()"
+              class="form-control"
+              ng-options="fieldValue.id as fieldValue.description for fieldValue in vm.dialogField.values">
+      </select>
 
-                    <!-- Somewhat of a hack, but open angular issue using ng-att-multiple, so this is the workaround -->
-                    <select ng-if="!vm.dialogField.options.force_single_value"
-                            multiple
-                            ng-switch-when="DialogFieldTagControl"
-                            ng-model="vm.dialogField.default_value"
-                            ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
-                            ng-change="vm.changesHappened()"
-                            class="form-control"
-                            ng-options="fieldValue.id as fieldValue.description for fieldValue in vm.dialogField.values">
-                    </select>
+      <!-- Somewhat of a hack, but open angular issue using ng-att-multiple, so this is the workaround -->
+      <select ng-if="!vm.dialogField.options.force_single_value"
+              multiple
+              ng-switch-when="DialogFieldTagControl"
+              ng-model="vm.dialogField.default_value"
+              ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
+              ng-change="vm.changesHappened()"
+              class="form-control"
+              ng-options="fieldValue.id as fieldValue.description for fieldValue in vm.dialogField.values">
+      </select>
 
-                    <span
-                      ng-if="vm.dialogField.read_only || vm.inputDisabled"
-                      ng-switch-when="DialogFieldRadioButton"
-                      class="btn-group">
-                      <label>{{ vm.parsedOptions[vm.dialogField.name] }}</label>
-                    </span>
-                    <span ng-if="vm.dialogField.read_only === false || vm.inputDisabled === false"
-                          ng-switch-when="DialogFieldRadioButton"
-                          class="btn-group">
-                      <label
-                        class="btn btn-primary"
-                        ng-repeat="fieldValue in vm.dialogField.values">
-                        <input
-                          type="radio"
-                          ng-model="vm.dialogField.default_value"
-                          ng-change="vm.changesHappened()"
-                          ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
-                          name="{{ vm.dialogField.name }}"
-                          value="{{ ::fieldValue[0] }}"/>
-                        {{ ::fieldValue[1] }}
-                      </label>
-                    </span>
+      <span
+        ng-if="vm.dialogField.read_only || vm.inputDisabled"
+        ng-switch-when="DialogFieldRadioButton"
+        class="btn-group">
+        <label>{{ vm.parsedOptions[vm.dialogField.name] }}</label>
+      </span>
+      <span ng-if="vm.dialogField.read_only === false || vm.inputDisabled === false"
+            ng-switch-when="DialogFieldRadioButton"
+            class="btn-group">
+        <label
+          class="btn btn-primary"
+          ng-repeat="fieldValue in vm.dialogField.values">
+          <input
+            type="radio"
+            ng-model="vm.dialogField.default_value"
+            ng-change="vm.changesHappened()"
+            ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
+            name="{{ vm.dialogField.name }}"
+            value="{{ ::fieldValue[0] }}"/>
+          {{ ::fieldValue[1] }}
+        </label>
+      </span>
 
-                    <p ng-switch-when="DialogFieldDateControl" class="input-group">
-                      <input uib-datepicker-popup type="text" class="form-control"
-                             ng-model="vm.dialogField.default_value"
-                             ng-change="vm.changesHappened()"
-                             is-open="open"
-                             datepicker-options="vm.dateOptions" close-text="Close"/>
-                      <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="open = !open">
-                          <i class="fa fa-calendar"></i></button>
-                      </span>
-                    </p>
-                    <div ng-switch-when="DialogFieldDateTimeControl">
-                      <div class="col-sm-6 dateTimePadding">
-                        <p class="input-group">
-                          <input uib-datepicker-popup type="text" class="form-control"
-                                 ng-model="vm.dialogField.default_value"
-                                 ng-change="vm.changesHappened()"
-                                 is-open="open"
-                                 datepicker-options="vm.dateOptions" close-text="Close"/>
-                          <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="open = !open">
-                              <i class="fa fa-calendar"></i></button>
-                          </span>
-                        </p>
-                      </div>
-                      <div class="col-sm-6">
-                        <uib-timepicker ng-model="vm.dialogField.default_value"></uib-timepicker>
-                      </div>
-                    </div>
-                    <span ng-switch-default ng-hide="true"></span>
-                  </div>
-                  <div class="col-sm-1"
-                       ng-if="vm.dialogField.dynamic && vm.dialogField.show_refresh_button && vm.inputDisabled===false">
-                    <button type="button" class="btn" ng-click="vm.dialogField.changesHappened()" translate>
-                      Refresh
-                    </button>
-                  </div>
-                   <div class="col-sm-1" ng-show="vm.dialogField.fieldBeingRefreshed">
-                    <div class="spinner spinner-xs spinner-inline"></div>
-                  </div>
+      <p ng-switch-when="DialogFieldDateControl" class="input-group">
+        <input uib-datepicker-popup type="text" class="form-control"
+                ng-model="vm.dialogField.default_value"
+                ng-change="vm.changesHappened()"
+                is-open="open"
+                datepicker-options="vm.dateOptions" close-text="Close"/>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="open = !open">
+            <i class="fa fa-calendar"></i></button>
+        </span>
+      </p>
+      <div ng-switch-when="DialogFieldDateTimeControl">
+        <div class="col-sm-6 dateTimePadding">
+          <p class="input-group">
+            <input uib-datepicker-popup type="text" class="form-control"
+                    ng-model="vm.dialogField.default_value"
+                    ng-change="vm.changesHappened()"
+                    is-open="open"
+                    datepicker-options="vm.dateOptions" close-text="Close"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open = !open">
+                <i class="fa fa-calendar"></i></button>
+            </span>
+          </p>
+        </div>
+        <div class="col-sm-6">
+          <uib-timepicker ng-model="vm.dialogField.default_value"></uib-timepicker>
+        </div>
+      </div>
+      <span ng-switch-default ng-hide="true"></span>
+    </div>
+    <div class="col-sm-1"
+          ng-if="vm.dialogField.dynamic && vm.dialogField.show_refresh_button && vm.inputDisabled===false">
+      <button type="button" class="btn" ng-click="vm.dialogField.changesHappened()" translate>
+        Refresh
+      </button>
+    </div>
+      <div class="col-sm-1" ng-show="vm.dialogField.fieldBeingRefreshed">
+      <div class="spinner spinner-xs spinner-inline"></div>
+    </div>
  </div>

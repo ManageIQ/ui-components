@@ -13,5 +13,6 @@ export abstract class DialogClass implements IDialogs {
 
     /*@ngInject*/
   constructor() {
+    return;
   }
 }

@@ -11,16 +11,16 @@
             <uib-tab ng-repeat="tab in vm.dialog.dialog_tabs" heading="{{ ::tab.label }}">
                 <div ng-repeat="buttonGroup in tab.dialog_groups">
                     <form class="form-horizontal">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <strong>{{ ::buttonGroup.label }}</strong>
-                        </div>
-                        <div class="panel-body">
-                            <div ng-repeat="field in buttonGroup.dialog_fields">
-                                <dialog-field on-update="vm.updateDialogField(dialogFieldName, value)" field="vm.dialogFields[field.name]"></dialog-field>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <strong>{{ ::buttonGroup.label }}</strong>
+                            </div>
+                            <div class="panel-body">
+                                <div ng-repeat="field in buttonGroup.dialog_fields">
+                                    <dialog-field on-update="vm.updateDialogField(dialogFieldName, value)" field="vm.dialogFields[field.name]"></dialog-field>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </form>
                 </div>
                 </ui-tab>

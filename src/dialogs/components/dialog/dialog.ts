@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import {IDialogs} from '../../interfaces/dialog';
-import {DialogClass} from '../../interfaces/abstractDialogClass'
+import {DialogClass} from '../../interfaces/abstractDialogClass';
 /**
  * @extends miqStaticAssets.dialog.DialogClass
  * @memberof miqStaticAssets.dialog
@@ -23,18 +23,19 @@ export class DialogController extends DialogClass implements IDialogs {
    */
 
 /*@ngInject*/
-constructor(private DialogData: any){
+constructor(private DialogData: any) {
        super();
-       const vm = this
+       const vm = this;
        vm.dialogFields = {};
        vm.refreshableFields = [];
        vm.dialogValues = {};
        this.service = this.DialogData;
-       for (var dialogTabs of this.dialog.dialog_tabs){
-            for (var dialogGroup of dialogTabs.dialog_groups){
-                for (var dialogField of dialogGroup.dialog_fields) {
-                    dialogField.fieldValidation='';
-                    vm.dialogFields[dialogField.name] = dialogField; // at this point all dialog fields are stored in a object keyed by field name
+       for (const dialogTabs of this.dialog.dialog_tabs){
+            for (const dialogGroup of dialogTabs.dialog_groups){
+                for (const dialogField of dialogGroup.dialog_fields) {
+                    dialogField.fieldValidation = '';
+                    vm.dialogFields[dialogField.name] = dialogField;
+                    // at this point all dialog fields are stored in a object keyed by field name
                     vm.dialogValues[dialogField.name] = '';
 
                     if (dialogField.auto_refresh === true || dialogField.trigger_auto_refresh === true) {
@@ -60,7 +61,8 @@ constructor(private DialogData: any){
       this.onUpdate({data: outputData});
     }
     /**
-     * This method handles refreshing of a dialog field as well as determining wish other fields might need to be updated
+     * This method handles refreshing of a dialog field as well
+     * as determining wish other fields might need to be updated
      * @function updateDialogField
      * @param dialogFieldName {string} This is the field name for the particular dialog field
      * @param value {any} This is the updated value based on the selection the user made on a particular dialog field
@@ -80,9 +82,11 @@ constructor(private DialogData: any){
         this.saveDialogData();
     }
 /**
- * This method is meant to handle auto updating of all dialog fields that are eligable to be refreshed after a field has just been refreshed
+ * This method is meant to handle auto updating of all dialog fields
+ * that are eligable to be refreshed after a field has just been refreshed
  *  @function updateRefreshableFields
- *  @param refreshableFields {array} This is the dialog fields name that was triggered.  This is passed to ensure we don't attempt to refresh something that was just refreshed
+ *  @param refreshableFields {array} This is the dialog fields name that was triggered.
+ *  This is passed to ensure we don't attempt to refresh something that was just refreshed
  */
     public updateRefreshableFields(refreshableFields): void  {
         const field = refreshableFields[0];
@@ -98,7 +102,8 @@ constructor(private DialogData: any){
  *  Deals with updating select properties on a dialog field after the field has been refreshed
  *  @function updateDialogFieldData
  *  @param dialogName {string} This is the field name for the particular dialog field
- *  @param data {any} THis is the returned object after a dialog field has successfuly fetched refreshed data from the parent components refreshField function
+ *  @param data {any} THis is the returned object after a dialog field has successfuly fetched
+ *  refreshed data from the parent components refreshField function
  */
     private updateDialogFieldData(dialogName, data) {
         const dialogField = this.dialogFields[dialogName];
@@ -120,9 +125,11 @@ constructor(private DialogData: any){
  * @attr {Object} dialog
  *    This object contains a Dialog and all the groups, tabs, and fields associated with it
  * @attr {Object} refreshField
- *    This is a method that is passed in that intends to handle the REST method of refreshing a single dialog field when requested.  Method signature is refreshFieldMethod(fieldToBeRefreshedObject)
+ *    This is a method that is passed in that intends to handle the REST method of refreshing a single
+ *    dialog field when requested.  Method signature is refreshFieldMethod(fieldToBeRefreshedObject)
  * @attr {Object} onUpdate
- *    This is a method that is invoked whenever dialog fields have updated there data or the field was updated by the user.
+ *    This is a method that is invoked whenever dialog fields have updated
+ *    there data or the field was updated by the user.
  * @attr {Boolean} inputDisabled boolean that decides whether or not the dialog is editable or readonly
  *
  * @example
@@ -132,7 +139,7 @@ constructor(private DialogData: any){
  *         inputDisabled="false"
  * </dialog>
  */
-export default class dialog {
+export default class Dialog {
   public replace: boolean = true;
   public template = require('./dialog.html');
   public controller: any = DialogController;

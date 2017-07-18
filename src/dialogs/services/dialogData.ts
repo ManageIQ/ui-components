@@ -20,9 +20,9 @@ export default class DialogDataService {
     field.default_value = this.setDefaultValue(field);
 
     if (field.type === 'DialogFieldDropDownList') {
-      for (var option of field.values) {
+      for (let option of field.values) {
         if (option[0] === String(field.default_value)) {
-          field.selected = option
+          field.selected = option;
         }
       }
     }
@@ -40,10 +40,10 @@ export default class DialogDataService {
   private updateFieldSortOrder(data) {
     const values: any = data.values;
     let sortedValues = [];
-    var sortDirection = data.sort_order;
-    var sortByValue = 0; // These are constants that are used to refer to array positions
-    var sortByDescription = 1; // These are constants that are used to refer to array positions
-    var sortBy = (data.options.sort_by === 'value' ? sortByValue : sortByDescription);
+    const sortDirection = data.sort_order;
+    const sortByValue = 0; // These are constants that are used to refer to array positions
+    const sortByDescription = 1; // These are constants that are used to refer to array positions
+    const sortBy = (data.options.sort_by === 'value' ? sortByValue : sortByDescription);
     sortedValues = values.sort((option1, option2) => {
       let trueValue: number = -1;
       let falseValue: number = 1;
@@ -74,8 +74,7 @@ export default class DialogDataService {
       } else {
         defaultValue = data.values[0][0];
       }
-    }
-    else {
+    } else {
       if (data.type === 'DialogFieldDateControl' || data.type === 'DialogFieldDateTimeControl') {
         defaultValue = new Date(data.values);
       } else {

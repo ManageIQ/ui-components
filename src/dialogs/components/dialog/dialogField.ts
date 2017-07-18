@@ -1,4 +1,4 @@
-import {DialogFieldClass} from '../../interfaces/abstractDialogFieldClass'
+import {DialogFieldClass} from '../../interfaces/abstractDialogFieldClass';
 import * as _ from 'lodash';
 /**
  * This component deals with an individual dialog field
@@ -37,13 +37,14 @@ export class DialogFieldController extends DialogFieldClass {
    * @function $doCheck
    */
   public $doCheck() {
-    if (!_.isEqual(this.field, this.clonedDialogField)){
+    if (!_.isEqual(this.field, this.clonedDialogField)) {
       this.clonedDialogField = _.cloneDeep(this.field);
       this.dialogField = this.service.setupField(this.field);
     }
   }
   /**
-   * This method is meant to be called whenever values change on a field.  It facilitates reporting updates to the parent component
+   * This method is meant to be called whenever values change on a field.
+   * It facilitates reporting updates to the parent component
    * @memberof DialogFieldController
    * @function changesHappened
    */
@@ -64,13 +65,11 @@ export class DialogFieldController extends DialogFieldClass {
       return validation;
   }
 }
-
-
-export default class dialogField {
+export default class DialogField {
     /*@ngInject*/
 
   public replace: boolean = true;
-  public template = require('./dialogField.html')
+  public template = require('./dialogField.html');
   public controller: any = DialogFieldController;
   public controllerAs: string = 'vm';
   public bindings: any = {

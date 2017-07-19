@@ -2,6 +2,7 @@ import * as _ from 'lodash';
 import * as angular from 'angular';
 
 export default class DialogDataService {
+
   /**
    * Sets up and configures properties for a dialog field
    * @memberof DialogDataService
@@ -29,6 +30,7 @@ export default class DialogDataService {
 
     return field;
   }
+
   /**
    *
    * This method updates sort order of dialog options for a dialog field that is a drop down.
@@ -41,6 +43,7 @@ export default class DialogDataService {
     let values = _.sortBy(data.values, data.options.sort_by === 'value' ? 0 : 1);
     return data.sort_order === 'ascending' ? values : values.reverse();
   }
+
   /**
    *
    * This method sets default value for a dialog field
@@ -74,17 +77,7 @@ export default class DialogDataService {
 
     return defaultValue;
   }
-  /**
-   * Checks to see if passed in value is blank
-   * @memberof DialogDataService
-   * @function isBlank
-   * @param value {any} value to check to see if blank
-   */
-  private isBlank(value): any {
-    return angular.isUndefined(value)
-      || value === null
-      || value === '';
-  }
+
   /**
    *
    * Validates a dialog field to ensure that the values supplied meet required criteria

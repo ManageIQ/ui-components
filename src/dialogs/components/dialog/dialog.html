@@ -1,29 +1,29 @@
 <div>
-    <div ng-if=" !vm.dialog.label">
-        <h2 translate>No Provisioning Dialog Available.</h2>
+  <div ng-if=" !vm.dialog.label">
+    <h2 translate>No Provisioning Dialog Available.</h2>
+  </div>
+  <div ng-if="vm.dialog.label">
+    <div>
+      <h2 class="text-capitalize no-wrap">{{ ::vm.dialog.label }}</h2>
+      <p ng-if="vm.dialog.label != vm.dialog.description">{{ vm.dialog.description }}</p>
     </div>
-    <div ng-if="vm.dialog.label">
-        <div>
-            <h2 class="text-capitalize no-wrap">{{ ::vm.dialog.label }}</h2>
-            <p ng-if="vm.dialog.label != vm.dialog.description">{{ vm.dialog.description }}</p>
-        </div>
-        <uib-tabset>
-            <uib-tab ng-repeat="tab in vm.dialog.dialog_tabs" heading="{{ ::tab.label }}">
-                <div ng-repeat="buttonGroup in tab.dialog_groups">
-                    <form class="form-horizontal">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <strong>{{ ::buttonGroup.label }}</strong>
-                            </div>
-                            <div class="panel-body">
-                                <div ng-repeat="field in buttonGroup.dialog_fields">
-                                    <dialog-field on-update="vm.updateDialogField(dialogFieldName, value)" field="vm.dialogFields[field.name]"></dialog-field>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+    <uib-tabset>
+      <uib-tab ng-repeat="tab in vm.dialog.dialog_tabs" heading="{{ ::tab.label }}">
+        <div ng-repeat="buttonGroup in tab.dialog_groups">
+          <form class="form-horizontal">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <strong>{{ ::buttonGroup.label }}</strong>
+              </div>
+              <div class="panel-body">
+                <div ng-repeat="field in buttonGroup.dialog_fields">
+                  <dialog-field on-update="vm.updateDialogField(dialogFieldName, value)" field="vm.dialogFields[field.name]"></dialog-field>
                 </div>
-                </ui-tab>
-        </uib-tabset>
-    </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        </ui-tab>
+    </uib-tabset>
+  </div>
 </div>

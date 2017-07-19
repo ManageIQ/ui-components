@@ -38,24 +38,8 @@ export default class DialogDataService {
    *
    **/
   private updateFieldSortOrder(data) {
-    const values: any = data.values;
-    let sortedValues = [];
-    const sortDirection = data.sort_order;
-    const sortByValue = 0; // These are constants that are used to refer to array positions
-    const sortByDescription = 1; // These are constants that are used to refer to array positions
-    const sortBy = (data.options.sort_by === 'value' ? sortByValue : sortByDescription);
-    sortedValues = values.sort((option1, option2) => {
-      let trueValue: number = -1;
-      let falseValue: number = 1;
-      if (sortDirection !== 'ascending') {
-        trueValue = 1;
-        falseValue = -1;
-      }
-
-      return option2[sortBy] > option1[sortBy] ? trueValue : falseValue;
-    });
-
-    return sortedValues;
+    let values = _.sortBy(data.values, data.options.sort_by === 'value' ? 0 : 1);
+    return data.sort_order === 'ascending' ? values : values.reverse();
   }
   /**
    *
@@ -67,12 +51,13 @@ export default class DialogDataService {
    **/
   private setDefaultValue(data): any {
     let defaultValue: any = '';
-
+    const firstOption = 0; // these are meant to help make code more readable
+    const fieldValue = 0;
     if (_.isObject(data.values)) {
       if (angular.isDefined(data.default_value) && data.default_value !== null) {
         defaultValue = data.default_value;
       } else {
-        defaultValue = data.values[0][0];
+        defaultValue = data.values[firstOption][fieldValue];
       }
     } else {
       if (data.type === 'DialogFieldDateControl' || data.type === 'DialogFieldDateTimeControl') {
@@ -118,13 +103,13 @@ export default class DialogDataService {
     if (field.required) {
       if (fieldValue === '') {
         validation.isValid = false;
-        validation.message = 'This field is required';
+        validation.message = __('This field is required');
       }
       if (field.validator_type === 'regex') {
         const regex = new RegExp(`${field.validator_rule}`);
         const regexValidates = regex.test(fieldValue);
         validation.isValid = regexValidates;
-        validation.message = 'Entered text does not match required format.';
+        validation.message = __('Entered text does not match required format.');
       }
     }
 

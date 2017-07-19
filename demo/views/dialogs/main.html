@@ -1,19 +1,16 @@
 <div>
-    <div class="row demo-dialog-container ">
-    <dialog class="demo-dialog col"
-            dialog="vm.dialog"
-            refresh-field="vm.refreshField(field)"
-            on-update="vm.dialogData(data)">
+  <div class="row demo-dialog-container ">
+    <dialog class="demo-dialog col" dialog="vm.dialog" refresh-field="vm.refreshField(field)" on-update="vm.dialogData(data)">
     </dialog>
-    </div>
-    <div class="row demo-dialog-submit-button" style="width:80%">
-        <div class="col-lg-12">
-            <button ng-click="vm.showDialogDataResults()">Show Dialog values</button>
-            <div ng-show="vm.showDialogData" class="demo-dialog-results">
-                <pre>
+  </div>
+  <div class="row demo-dialog-submit-button" style="width:80%">
+    <div class="col-lg-12">
+      <button ng-click="vm.showDialogDataResults()">Show Dialog values</button>
+      <div ng-show="vm.showDialogData" class="demo-dialog-results">
+        <pre>
                     {{vm.dialogDataResults}}
                 </pre>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 </div>

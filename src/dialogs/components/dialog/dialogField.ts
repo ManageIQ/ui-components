@@ -19,6 +19,7 @@ export class DialogFieldController extends DialogFieldClass {
   constructor(private DialogData: any) {
       super();
   }
+
   /**
    * Sets up the dialog field with defaults
    * @memberof DialogFieldController
@@ -31,6 +32,7 @@ export class DialogFieldController extends DialogFieldClass {
 
     this.changesHappened(); // doing this so that the field value gets bubbled up to the dialog component
   }
+
   /**
    * Checks to see if the dialog field has changed and re runs field setup if the field has changed
    * @memberof DialogFieldController
@@ -42,6 +44,7 @@ export class DialogFieldController extends DialogFieldClass {
       this.dialogField = this.service.setupField(this.field);
     }
   }
+
   /**
    * This method is meant to be called whenever values change on a field.
    * It facilitates reporting updates to the parent component
@@ -51,6 +54,7 @@ export class DialogFieldController extends DialogFieldClass {
   public changesHappened() {
       this.onUpdate({dialogFieldName: this.field.name, value: this.dialogField.default_value});
   }
+
   /**
    * This method validates a dialog field to ensure its current values are valid
    * @memberof DialogFieldController
@@ -65,8 +69,8 @@ export class DialogFieldController extends DialogFieldClass {
       return validation;
   }
 }
+
 export default class DialogField {
-    /*@ngInject*/
 
   public replace: boolean = true;
   public template = require('./dialogField.html');

@@ -1,6 +1,7 @@
 import * as _ from 'lodash';
 import {IDialogs} from '../../interfaces/dialog';
 import {DialogClass} from '../../interfaces/abstractDialogClass';
+
 /**
  * @extends miqStaticAssets.dialog.DialogClass
  * @memberof miqStaticAssets.dialog
@@ -8,11 +9,11 @@ import {DialogClass} from '../../interfaces/abstractDialogClass';
  * @name DialogController
  */
 export class DialogController extends DialogClass implements IDialogs {
-    public dialogFields: any;
-    public refreshableFields: Array<string>;
-    public dialogValues: any;
-    public parsedOptions: any;
-    public service: any;
+  public dialogFields: any;
+  public refreshableFields: Array<string>;
+  public dialogValues: any;
+  public parsedOptions: any;
+  public service: any;
 
   /**
    * constructor
@@ -45,7 +46,8 @@ constructor(private DialogData: any) {
             }
        }
     }
-  /**
+
+   /**
    * This reports all values from the dialog up to the parent component
    * The onUpdate method signature from the parent component should be updateFunctionName(data)
    *
@@ -60,6 +62,7 @@ constructor(private DialogData: any) {
       };
       this.onUpdate({data: outputData});
     }
+
     /**
      * This method handles refreshing of a dialog field as well
      * as determining wish other fields might need to be updated
@@ -81,13 +84,14 @@ constructor(private DialogData: any) {
         }
         this.saveDialogData();
     }
-/**
- * This method is meant to handle auto updating of all dialog fields
- * that are eligable to be refreshed after a field has just been refreshed
- *  @function updateRefreshableFields
- *  @param refreshableFields {array} This is the dialog fields name that was triggered.
- *  This is passed to ensure we don't attempt to refresh something that was just refreshed
- */
+
+    /**
+     * This method is meant to handle auto updating of all dialog fields
+     * that are eligable to be refreshed after a field has just been refreshed
+     *  @function updateRefreshableFields
+     *  @param refreshableFields {array} This is the dialog fields name that was triggered.
+     *  This is passed to ensure we don't attempt to refresh something that was just refreshed
+     */
     public updateRefreshableFields(refreshableFields): void  {
         const field = refreshableFields[0];
         const fieldsLeftToRefresh = _.without(refreshableFields,field);
@@ -98,13 +102,14 @@ constructor(private DialogData: any) {
                 }
         });
     }
-/**
- *  Deals with updating select properties on a dialog field after the field has been refreshed
- *  @function updateDialogFieldData
- *  @param dialogName {string} This is the field name for the particular dialog field
- *  @param data {any} THis is the returned object after a dialog field has successfuly fetched
- *  refreshed data from the parent components refreshField function
- */
+
+    /**
+     *  Deals with updating select properties on a dialog field after the field has been refreshed
+     *  @function updateDialogFieldData
+     *  @param dialogName {string} This is the field name for the particular dialog field
+     *  @param data {any} THis is the returned object after a dialog field has successfuly fetched
+     *  refreshed data from the parent components refreshField function
+     */
     private updateDialogFieldData(dialogName, data) {
         const dialogField = this.dialogFields[dialogName];
         dialogField.data_type = data.data_type;
@@ -116,6 +121,7 @@ constructor(private DialogData: any) {
         return dialogField;
     }
 }
+
 /**
  * @description
  *    Component for dialogs

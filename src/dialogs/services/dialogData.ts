@@ -71,6 +71,9 @@ export default class DialogDataService {
         }
       }
     }
+    if (data.default_value) {
+      defaultValue = data.default_value;
+    }
     if (parseInt(data.default_value, 10)) {
       defaultValue = parseInt(data.default_value, 10);
     }

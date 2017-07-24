@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 import * as angular from 'angular';
+import {__} from '../../common/translateFunction';
 
 export default class DialogDataService {
 
@@ -87,14 +88,16 @@ export default class DialogDataService {
    * @memberof DialogDataService
    * @function validateField
    * @param field {any} This is a object that is all the information for a particular dialog field
-   *
+   * @param value {any} Field is optional.  Allows you to explicitly pass in the value to verify for a field
    **/
-  public validateField(field): any {
-    const fieldValue = field.default_value;
+  public validateField(field, value): any {
+    const fieldValue = (value ? value : field.default_value);
     const validation = {
       isValid: true,
+      field: '',
       message: ''
     };
+    validation.field = field.label;
 
     if (field.required) {
       if (fieldValue === '') {

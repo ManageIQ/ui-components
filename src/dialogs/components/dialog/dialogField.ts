@@ -1,4 +1,4 @@
-import {DialogFieldClass} from '../../interfaces/abstractDialogFieldClass';
+import { DialogFieldClass } from '../../interfaces/abstractDialogFieldClass';
 import * as _ from 'lodash';
 /**
  * This component deals with an individual dialog field
@@ -10,14 +10,14 @@ import * as _ from 'lodash';
  */
 
 export class DialogFieldController extends DialogFieldClass {
-     public service: any;
-     public dialogValue: any;
-     public dialogField: any;
-     public clonedDialogField: any;
+  public service: any;
+  public dialogValue: any;
+  public dialogField: any;
+  public clonedDialogField: any;
 
   /*@ngInject*/
   constructor(private DialogData: any) {
-      super();
+    super();
   }
 
   /**
@@ -52,7 +52,7 @@ export class DialogFieldController extends DialogFieldClass {
    * @function changesHappened
    */
   public changesHappened() {
-      this.onUpdate({dialogFieldName: this.field.name, value: this.dialogField.default_value});
+    this.onUpdate({ dialogFieldName: this.field.name, value: this.dialogField.default_value });
   }
 
   /**
@@ -62,11 +62,11 @@ export class DialogFieldController extends DialogFieldClass {
    *
    */
   public validateField() {
-      let validation = {isValid: true, message: ''};
-      validation = this.service.validateField(this.dialogField);
-      this.dialogField.fieldValidation = validation.isValid;
-      this.dialogField.errorMessage = validation.message;
-      return validation;
+    let validation = { isValid: true, message: '' };
+    validation = this.service.validateField(this.dialogField);
+    this.dialogField.fieldValidation = validation.isValid;
+    this.dialogField.errorMessage = validation.message;
+    return validation;
   }
 }
 

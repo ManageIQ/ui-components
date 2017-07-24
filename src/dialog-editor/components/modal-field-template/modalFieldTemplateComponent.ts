@@ -30,8 +30,8 @@ export default class ModalFieldTemplate {
   public bindings: any = {
     modalData: '=',
     categories: '=?',
-    addEntry: '&?',
-    removeEntry: '&?',
+    addEntry: '=?',
+    removeEntry: '=?',
     currentCategoryEntries: '&?',
     resolveCategories: '&?',
   };

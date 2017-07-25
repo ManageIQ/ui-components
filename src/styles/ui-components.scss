@@ -378,3 +378,15 @@ miq-fonticon-picker {
 }
 
 /* end fonticon picker styling */
+
+/* begin dialog control styling */
+.miq-dialog {
+  .has-error {
+    color: red;
+    
+    .form-control {
+      border-color: red;
+    }
+  }
+}
+/* end dialog control styling */

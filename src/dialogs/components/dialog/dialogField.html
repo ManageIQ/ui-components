@@ -2,19 +2,20 @@
      class="form-group"
      ng-class="{'has-error': vm.dialogField.fieldValidation===false}">
   <label class="control-label col-md-2 col-lg-4 col-xl-2 col-sm-2">{{ ::vm.dialogField.label }}</label>
-  <div class="col-sm-5 col-lg-5" ng-if="vm.dialogField.fieldValidation===false">{{ vm.dialogField.errorMessage }}</div>
     <div ng-switch on="vm.dialogField.type"
          class="col-sm-5 col-lg-5">
-      <input ng-switch-when="DialogFieldTextBox"
-             ng-model="vm.dialogField.default_value"
-             ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
-             ng-change="vm.changesHappened()"
-             ng-blur="vm.validateField()"
-             ng-model-options="{debounce: {'default': 500}}"
-             class="form-control"
-             type="{{ vm.dialogField.options.protected ? 'password' : 'text' }}"
-             uib-tooltip="{{ ::inputTitle }}"
-             value="{{ vm.dialogField.default_value }}">
+      <div ng-switch-when="DialogFieldTextBox">
+        <input ng-model="vm.dialogField.default_value"
+               ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
+               ng-change="vm.changesHappened()"
+               ng-blur="vm.validateField()"
+               ng-model-options="{debounce: {'default': 500}}"
+               class="form-control"
+               type="{{ vm.dialogField.options.protected ? 'password' : 'text' }}"
+               uib-tooltip="{{ ::inputTitle }}"
+               value="{{ vm.dialogField.default_value }}">
+        <div ng-if="vm.dialogField.fieldValidation===false">{{ vm.dialogField.errorMessage }}</div>
+      </div>
       <textarea ng-switch-when="DialogFieldTextAreaBox"
                 ng-model="vm.dialogField.default_value"
                 ng-disabled="vm.dialogField.read_only || vm.inputDisabled"

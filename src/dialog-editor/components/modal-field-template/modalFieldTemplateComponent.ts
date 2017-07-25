@@ -32,7 +32,7 @@ export default class ModalFieldTemplate {
     categories: '=?',
     addEntry: '=?',
     removeEntry: '=?',
-    currentCategoryEntries: '&?',
-    resolveCategories: '&?',
+    currentCategoryEntries: '=?',
+    resolveCategories: '=?',
   };
 }

@@ -52,7 +52,12 @@ export class DialogFieldController extends DialogFieldClass {
    * @function changesHappened
    */
   public changesHappened() {
-    this.onUpdate({ dialogFieldName: this.field.name, value: this.dialogField.default_value });
+    let fieldValue = this.dialogField.default_value;
+    if ((this.dialogField.type === "DialogFieldTagControl" || this.dialogField.type === "DialogFieldDropDownList")
+        && this.dialogField.default_value instanceof Array) {
+        fieldValue = this.dialogField.default_value.join();
+      }
+    this.onUpdate({ dialogFieldName: this.field.name, value: fieldValue });
   }
 
   /**

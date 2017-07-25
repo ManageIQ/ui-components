@@ -254,7 +254,7 @@ class ModalController {
       return _.find(
         this.categories.resources,
         'id',
-        Number(this.modalData.options.category_id)
+        this.modalData.options.category_id
       );
     }
   }

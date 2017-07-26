@@ -1,0 +1,14 @@
+<div>
+  <div class="row demo-dialog-container ">
+    <dialog class="demo-dialog col" dialog="vm.dialog" refresh-field="vm.refreshField(field)" on-update="vm.dialogData(data)">
+    </dialog>
+  </div>
+  <div class="row demo-dialog-submit-button" style="width:80%">
+    <div class="col-lg-12">
+      <button class="primary" ng-disabled="!vm.dialogDataResults.validations.isValid">Save</button> <button ng-click="vm.showDialogDataResults()">Show Dialog values</button>
+      <div ng-show="vm.showDialogData" class="demo-dialog-results">
+        <pre>{{vm.dialogDataResults}}</pre>
+      </div>
+    </div>
+  </div>
+</div>

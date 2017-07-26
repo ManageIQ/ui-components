@@ -12,7 +12,8 @@ module.exports = {
     dialogEditor: '/dialog-editor',
     gtl: '/gtl',
     siteSwitcher: '/site-switcher',
-    fonticonPicker: '/fonticon-picker'
+    fonticonPicker: '/fonticon-picker',
+    dialogs: '/dialogs'
   },
   nodePackages: 'node_modules/',
   get stylesheetPath() {

@@ -1,7 +1,16 @@
 <div ng-if="vm.dialogField.visible"
      class="form-group"
      ng-class="{'has-error': vm.dialogField.fieldValidation===false}">
-  <label class="control-label col-md-2 col-lg-4 col-xl-2 col-sm-2">{{ ::vm.dialogField.label }}</label>
+  <div class="col-md-2 col-lg-4 col-xl-2 col-sm-2 dialog-label">
+    <label class="control-label">{{ ::vm.dialogField.label }}</label>
+    <i class="fa fa-info-circle primary"
+         ng-if="vm.dialogField.description" 
+         tooltip-append-to-body="true"
+         uib-tooltip="{{ vm.dialogField.description }}" 
+         tooltip-placement="auto top"
+    >
+    </i>
+  </div>
     <div ng-switch on="vm.dialogField.type"
          class="col-sm-5 col-lg-5">
       <div ng-switch-when="DialogFieldTextBox">

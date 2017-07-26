@@ -1,7 +1,7 @@
 import {IDialogs} from './dialog';
 /**
  * This is abstract controller for implementing fields and methods used by Dialog components
- * @memberof miqStaticAssets.dialog
+ * @memberof miqStaticAssets.dialogUser
  * @ngdoc controller
  * @name DialogClass
  */

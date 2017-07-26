@@ -4,7 +4,7 @@ import * as _ from 'lodash';
  * This component deals with an individual dialog field
  *
  * @extends miqStaticAssets.dialog.DialogFieldClass
- * @memberof miqStaticAssets.dialog
+ * @memberof miqStaticAssets.dialogUser
  * @ngdoc controller
  * @name DialogFieldController
  */
@@ -53,7 +53,7 @@ export class DialogFieldController extends DialogFieldClass {
    */
   public changesHappened() {
     let fieldValue = this.dialogField.default_value;
-    if ((this.dialogField.type === "DialogFieldTagControl" || this.dialogField.type === "DialogFieldDropDownList")
+    if ((this.dialogField.type === 'DialogFieldTagControl' || this.dialogField.type === 'DialogFieldDropDownList')
         && this.dialogField.default_value instanceof Array) {
         fieldValue = this.dialogField.default_value.join();
       }

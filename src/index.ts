@@ -5,7 +5,7 @@ module miqStaticAssets {
     'miqStaticAssets.toolbar',
     'miqStaticAssets.common',
     'miqStaticAssets.dialogEditor',
-    'miqStaticAssets.dialogs',
+    'miqStaticAssets.dialogUser',
     'miqStaticAssets.gtl',
     'miqStaticAssets.siteSwitcher',
     'miqStaticAssets.fonticonPicker'

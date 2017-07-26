@@ -1,6 +1,6 @@
 /**
  * This is abstract controller for DialogField components
- * @memberof miqStaticAssets.dialog
+ * @memberof miqStaticAssets.dialogUser
  * @ngdoc controller
  * @name DialogFieldClass
  */

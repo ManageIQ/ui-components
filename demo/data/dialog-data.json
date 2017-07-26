@@ -47,6 +47,7 @@
                       "display": "edit",
                       "display_method_options": {},
                       "required": true,
+                      "description": "Name for a service",
                       "required_method_options": {},
                       "default_value": "",
                       "values_method_options": {},

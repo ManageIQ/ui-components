@@ -4,11 +4,11 @@ import { DialogClass } from '../../interfaces/abstractDialogClass';
 
 /**
  * @extends miqStaticAssets.dialog.DialogClass
- * @memberof miqStaticAssets.dialog
+ * @memberof miqStaticAssets.dialogUser
  * @ngdoc controller
  * @name DialogController
  */
-export class DialogController extends DialogClass implements IDialogs {
+export class DialogUserController extends DialogClass implements IDialogs {
   public dialogFields: any;
   public refreshableFields: Array<string>;
   public dialogValues: any;
@@ -159,10 +159,10 @@ export class DialogController extends DialogClass implements IDialogs {
  *         inputDisabled="false"
  * </dialog>
  */
-export default class Dialog {
+export default class DialogUser {
   public replace: boolean = true;
   public template = require('./dialog.html');
-  public controller: any = DialogController;
+  public controller: any = DialogUserController;
   public controllerAs: string = 'vm';
   public bindings: any = {
     dialog: '<',

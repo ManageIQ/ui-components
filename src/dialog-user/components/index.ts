@@ -1,6 +1,6 @@
-import dialog from './dialog';
+import dialogUser from './dialog-user';
 import * as ng from 'angular';
 
 export default (module: ng.IModule) => {
-  dialog(module);
+  dialogUser(module);
 };

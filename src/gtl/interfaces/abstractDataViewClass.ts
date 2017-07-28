@@ -107,9 +107,9 @@ export abstract class DataViewClass implements IDataTableBinding {
     }
 
     if (changesObj.perPage) {
-      this.perPage.text += ' ' + this.perPage.labelItems;
+      this.perPage.text += `${this.perPage.labelItems ? ' ' + this.perPage.labelItems : ''}`;
       this.perPage.items = this.perPage.items.map(oneItem => {
-        oneItem.text += ' ' + this.perPage.labelItems;
+        oneItem.text += `${this.perPage.labelItems ? ' ' + this.perPage.labelItems : ''}`;
         return oneItem;
       });
     }

@@ -176,8 +176,41 @@ table.miq-table-with-footer { /* not currently used */
 
 /* Begin paginator styling */
 
-.miq-select-all { /* styles "Select All" text and checkbox */
+.miq-per-page {
+  display: inline-block;
+}
 
+.miq-pager-section {
+  text-align: right;
+}
+
+.pagination {
+  .page-selector {
+    span {
+      &, &:hover, &:active, &:focus, &:active:focus, &:hover:active {
+        box-shadow: initial;
+        border: 0;
+        background: initial;
+        padding-top: 0;
+      }
+    }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      text-align: right;
+      width: 35px;
+      -moz-appearance: textfield;
+    }
+  }
+}
+
+
+.miq-select-all { /* styles "Select All" text and checkbox */
+  display: inline-block;
   padding-right: 0;
 
   input[type="checkbox"] {
@@ -216,13 +249,16 @@ table.miq-table-with-footer { /* not currently used */
 }
 
 .miq-pagination {
-  .miq-pager {
-    float: right;
+  .miq-item-counter {
+    vertical-align: top;
+    display: inline-block;
 
-    .miq-per-page {
-      display: inline-block;
-      vertical-align: top;
+    label {
+      padding-top: 3px;
     }
+  }
+  .miq-pager {
+    display: inline-block;
 
     .miq-paging {
       display: inline-block;
@@ -233,10 +269,6 @@ table.miq-table-with-footer { /* not currently used */
       }
     }
   }
-}
-
-.miq-page-counter {
-  padding-top: 3px;
 }
 
 .miq-data-table {
@@ -383,7 +415,7 @@ miq-fonticon-picker {
 .miq-dialog {
   .has-error {
     color: red;
-    
+
     .form-control {
       border-color: red;
     }

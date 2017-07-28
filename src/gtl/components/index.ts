@@ -1,9 +1,9 @@
 import dataTable from './data-table';
 import tiles from './tile-view';
-import Pagination from './paginationComponent';
+import pagination from './pagination';
 
 export default (module: ng.IModule) => {
   dataTable(module);
   tiles(module);
-  module.component('miqPagination', new Pagination);
+  pagination(module);
 };

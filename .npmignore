@@ -1,0 +1,39 @@
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Users Environment Variables
+.lock-wscript
+
+dist/assets/
+dist/data/
+dist/docs/
+dist/**/demo-app.*
+.tmp/
+.bower/
+libs/
+node_modules/
+bower_components/
+dist/index.html
+tsd/
+typings/
+vendor.js
+vendor.css
+*.css.map
+*.js.map
+
+._*
+.DS_Store
+
+# idea files
+.idea/
+*.ipr
+*.iws
+*.iml
+
+coverage

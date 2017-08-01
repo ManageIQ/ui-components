@@ -58,9 +58,10 @@
       <label ng-repeat="option in vm.fieldData.values"
              class="btn btn-primary">
         <input type="radio"
+               name="{{vm.fieldData.name}}"
                ng-model="vm.fieldData.default_value"
-               name="vm.fieldData.name"
-               value="option[0]">
+               ng-checked="vm.fieldData.default_value === option"
+               ng-value="option">
         {{ option[1] }}
       </label>
     </span>

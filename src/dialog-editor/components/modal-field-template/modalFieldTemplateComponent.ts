@@ -7,7 +7,6 @@ import * as _ from 'lodash';
  */
 class ModalFieldController {
   public modalData: any;
-
 }
 
 /**

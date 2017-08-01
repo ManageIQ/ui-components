@@ -28,7 +28,8 @@
          switch-off-text="{{'No'|translate}}">
 </div>
 <div pf-form-group pf-label="{{'Default value'|translate}}">
-  <select class="form-control" ng-model="vm.modalData.options.default_value"
+  <select class="form-control"
+          ng-model="vm.modalData.default_value"
           ng-options="entry as entry[0] for entry in vm.modalData.values">
     <option selected="selected" value="" translate>None</option>
   </select>

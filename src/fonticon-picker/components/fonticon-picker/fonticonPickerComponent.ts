@@ -6,7 +6,8 @@ export class FonticonPickerController {
   public btnClass = 'btn-default';
   public selected;
   public toSelect;
-  public inputName;
+  public inputName; // TODO: this can be deleted after the form is angularized
+  public iconChanged: (args: {selected: any}) => void; // TODO: this can be deleted after the form is angularized
   private modal;
 
   /*@ngInject*/
@@ -39,6 +40,7 @@ export class FonticonPickerController {
   public closeModal(save) {
     if (save) {
       this.selected = this.toSelect;
+      this.iconChanged({selected: this.selected}); // TODO: this can be deleted after the form is angularized
     }
     this.modal.close();
   }
@@ -55,6 +57,7 @@ export default class FonticonPicker implements ng.IComponentOptions {
   public bindings = {
     btnClass: '@?',
     selected: '@',
-    inputName: '@'
+    inputName: '@', // TODO: this can be deleted after the form is angularized
+    iconChanged: '&', // TODO: this can be deleted after the form is angularized
   };
 }

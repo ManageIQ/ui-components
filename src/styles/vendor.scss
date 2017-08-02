@@ -1,9 +1,10 @@
 //$fa-font-path: '~font-awesome/fonts';
 
+$ff-font-path: '~font-fabulous/assets/fonts/font-fabulous';
+@import '~font-fabulous/assets/stylesheets/font-fabulous';
 @import '~google-code-prettify/bin/prettify.min.css';
 @import '~datatables-colreorder/css/colReorder.dataTables';
 @import '~drmonty-datatables-colvis/css/dataTables.colVis';
 @import '~eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker';
-@import '~patternfly/dist/css/patternfly-additions.css';
 @import '~angular-patternfly/dist/styles/angular-patternfly.css';
 @import '~ui-select/dist/select.css';

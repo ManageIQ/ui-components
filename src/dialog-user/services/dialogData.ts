@@ -14,7 +14,7 @@ export default class DialogDataService {
   public setupField(data: any) {
     let field = _.cloneDeep(data);
     field.fieldValidation = null;
-    field.fieldBeingRefreshed = false;
+    field.fieldBeingRefreshed = (angular.isDefined(field.fieldBeingRefreshed) ? field.fieldBeingRefreshed : false);
     field.errorMessage = '';
     if (field.type === 'DialogFieldDropDownList') {
       field.values = this.updateFieldSortOrder(field);

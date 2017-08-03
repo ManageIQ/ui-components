@@ -28,9 +28,7 @@ export class DialogFieldController extends DialogFieldClass {
   public $onInit() {
     this.service = this.DialogData;
     this.clonedDialogField = _.cloneDeep(this.field);
-    this.dialogField = this.service.setupField(this.field);
-
-    this.changesHappened(); // doing this so that the field value gets bubbled up to the dialog component
+    this.dialogField = this.field;
   }
 
   /**

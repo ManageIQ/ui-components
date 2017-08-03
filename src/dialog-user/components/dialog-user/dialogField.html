@@ -3,7 +3,7 @@
      ng-class="{'has-error': vm.dialogField.fieldValidation===false}">
   <div class="col-md-2 col-lg-4 col-xl-2 col-sm-2 dialog-label">
     <label class="control-label">{{ ::vm.dialogField.label }}</label>
-    <i class="fa fa-info-circle primary"
+    <i class="fa fa-info-circle primary help-icon"
          ng-if="vm.dialogField.description" 
          tooltip-append-to-body="true"
          uib-tooltip="{{ vm.dialogField.description }}" 
@@ -47,6 +47,7 @@
       <span ng-switch-when="DialogFieldDropDownList">
         <ui-select ng-model="vm.dialogField.selected"
                    ng-blur="vm.validateField()"
+                   ng-change="vm.changesHappened()"
                    ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
                    theme="bootstrap">
           <ui-select-match placeholder="{{vm.dialogField.description}}">{{$select.selected[1] }}</ui-select-match>
@@ -147,6 +148,6 @@
       </button>
     </div>
       <div class="col-sm-1" ng-show="vm.dialogField.fieldBeingRefreshed">
-      <div class="spinner spinner-xs spinner-inline"></div>
+        <div class="spinner spinner-xs spinner-inline"></div>
     </div>
  </div>

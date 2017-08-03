@@ -10,7 +10,7 @@ export default class FonticonService {
 
   private static filterRules(family: string): any[] {
     return _.chain(document.styleSheets)
-      .map((oneSheet: any) => oneSheet.rules)
+      .map((oneSheet: any) => oneSheet.cssRules)
       .map((rule: any) => _.filter(rule, value => FonticonService.isFontIcon(value, family)))
       .filter((rules: any) => rules.length !== 0)
       .map((rules: any[]) => _.map(rules, (value: any) => FonticonService.clearRule(value.selectorText, family)))

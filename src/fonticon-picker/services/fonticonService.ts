@@ -24,8 +24,8 @@ export default class FonticonService {
   }
 
   private static clearRule(rule: string, family: string): string {
-    let splitRule = rule.split(family);
-    return family + splitRule[splitRule.length - 1].replace('::before', '').split(',')[0].replace('.', '');
+    let cleared = FonticonService.removeChars(rule.replace('::before', ''), '.');
+    return family + FonticonService.removeChars(cleared, family);
   }
 
   private static makeRuleObject(family, value): any {
@@ -33,5 +33,9 @@ export default class FonticonService {
       'class': `${family} ${value}`,
       'selector': `.${family}.${value}`
     };
+  }
+
+  private static removeChars(source, chars) {
+    return source.split(chars).join('');
   }
 }

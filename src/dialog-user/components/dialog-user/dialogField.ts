@@ -49,8 +49,9 @@ export class DialogFieldController extends DialogFieldClass {
    * @memberof DialogFieldController
    * @function changesHappened
    */
-  public changesHappened() {
-    let fieldValue = this.dialogField.default_value;
+  public changesHappened(value) {
+    const selectedValue = 0;
+    let fieldValue = (value ? value[selectedValue] : this.dialogField.default_value);
     if ((this.dialogField.type === 'DialogFieldTagControl' || this.dialogField.type === 'DialogFieldDropDownList')
         && this.dialogField.default_value instanceof Array) {
         fieldValue = this.dialogField.default_value.join();

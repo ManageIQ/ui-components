@@ -21,6 +21,9 @@ const dialogField = {
   'dynamic': false,
   'read_only': false,
   'visible': true,
+  'fieldValidation': null,
+  'fieldBeingRefreshed': false,
+  'errorMessage': '',
   'type': 'DialogFieldTextBox',
   'resource_action': {
     'resource_type': 'DialogField',
@@ -87,7 +90,7 @@ describe('Dialog field test', () => {
         dialogCtrl.$onInit();
       });
       dialogCtrl.changesHappened();
-      expect(dialogCtrl.onUpdate).toHaveBeenCalledTimes(2);
+      expect(dialogCtrl.onUpdate).toHaveBeenCalledTimes(1);
     });
   });
 });

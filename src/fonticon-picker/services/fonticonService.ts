@@ -10,7 +10,7 @@ export default class FonticonService {
 
   private static filterRules(family: string): any[] {
     return _.chain(document.styleSheets)
-      .map((oneSheet: any) => oneSheet.rules)
+      .map((oneSheet: any) => oneSheet.cssRules)
       .map((rule: any) => _.filter(rule, value => FonticonService.isFontIcon(value, family)))
       .filter((rules: any) => rules.length !== 0)
       .map((rules: any[]) => _.map(rules, (value: any) => FonticonService.clearRule(value.selectorText, family)))
@@ -24,8 +24,8 @@ export default class FonticonService {
   }
 
   private static clearRule(rule: string, family: string): string {
-    let splitRule = rule.split(family);
-    return family + splitRule[splitRule.length - 1].replace('::before', '').split(',')[0].replace('.', '');
+    let cleared = FonticonService.removeChars(rule.replace('::before', ''), '.');
+    return family + FonticonService.removeChars(cleared, family);
   }
 
   private static makeRuleObject(family, value): any {
@@ -33,5 +33,9 @@ export default class FonticonService {
       'class': `${family} ${value}`,
       'selector': `.${family}.${value}`
     };
+  }
+
+  private static removeChars(source, chars) {
+    return source.split(chars).join('');
   }
 }

@@ -52,19 +52,19 @@ export default class DataTableService implements IDataTableService {
   }
 
   /**
-   * Method which will do actual http get request using $http service.
+   * Method which will do actual http request using $http service.
    * @param config which contains config params.
    * @returns {IHttpPromise<any>} promise for later data filtering.
    */
   private fetchData(config: any): ng.IPromise<any> {
-    return this.$http.get(
+    return this.$http.post(
       this.MiQEndpointsService.rootPoint + this.MiQEndpointsService.endpoints.listDataTable,
       config
     );
   }
 
   /**
-   * Static function which will generate http get config from given variables.
+   * Static function which will generate http config from given variables.
    * @param modelName string with name of model.
    * @param activeTree string with active tree.
    * @param currId ID of current item.
@@ -79,13 +79,13 @@ export default class DataTableService implements IDataTableService {
                                isExplorer?: string,
                                settings?: any,
                                records?: any) {
-    let config = {params: {}};
-    _.assign(config.params, DataTableService.generateModelConfig(modelName));
-    _.assign(config.params, DataTableService.generateActiveTreeConfig(activeTree));
-    _.assign(config.params, DataTableService.generateModuleIdConfig(currId));
-    _.assign(config.params, DataTableService.generateExplorerConfig(isExplorer));
-    _.assign(config.params, DataTableService.generateParamsFromSettings(settings));
-    _.assign(config.params, DataTableService.generateRecords(records));
+    let config = {};
+    _.assign(config, DataTableService.generateModelConfig(modelName));
+    _.assign(config, DataTableService.generateActiveTreeConfig(activeTree));
+    _.assign(config, DataTableService.generateModuleIdConfig(currId));
+    _.assign(config, DataTableService.generateExplorerConfig(isExplorer));
+    _.assign(config, DataTableService.generateParamsFromSettings(settings));
+    _.assign(config, DataTableService.generateRecords(records));
     return config;
   }
 

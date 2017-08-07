@@ -28,18 +28,19 @@ describe('DataTableSettingsService test', () =>  {
     expect(
       angular.equals(
         DataTableSettingsService.generateConfig(modelName, tree, currId),
-        { params: {
-            model: modelName,
-            active_tree: tree,
-            model_id: currId
-        }}
+        {
+          model: modelName,
+          active_tree: tree,
+          model_id: currId
+        }
       )
     ).toBeTruthy();
   });
 
   it('should fetch data from server', (done) => {
-    httpBackend.expectGET(`/data/dataTable.json?active_tree=${tree}&model=${modelName}&model_id=${currId}`)
+    httpBackend.expectPOST(`/data/dataTable.json`, { active_tree: tree, model: modelName, model_id: currId })
       .respond(dataTableData);
+
     dataTableSettings.retrieveRowsAndColumnsFromUrl(modelName, tree, currId).then((responseData: IRowsColsResponse) => {
       expect(responseData.cols.length > 0).toBeTruthy();
       expect(responseData.rows.length > 0).toBeTruthy();

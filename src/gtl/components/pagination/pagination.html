@@ -1,42 +1,39 @@
-<div>
-  <div class="col-md-2 col-lg-2 col-xs-2"
-       ng-if="!paginationCtrl.settings.hideSelect">
-    <div class="miq-select-all">
-      <input type="checkbox"
-             ng-model="isChecked"
-             ng-click="paginationCtrl.onSelectAll({isSelected: isChecked})"
-             title="{{paginationCtrl.settings.selectAllTitle}}" />
-      <label>{{paginationCtrl.settings.selectAllTitle}}</label>
-    </div>
-    <div class="miq-per-page">
-      <miq-toolbar-list on-item-click="paginationCtrl.onChangePerPage({item: item})"
-                        drop-down-class="paginationCtrl.settings.dropDownClass"
-                        toolbar-list="paginationCtrl.perPage"></miq-toolbar-list>
-      <label>{{paginationCtrl.settings.perPageTitle}}</label>
-    </div>
-  </div>
-  <miq-sort-items ng-if="paginationCtrl.settings.sortBy"
-                  class="miq-sort-items col-md-2 col-lg-2 col-xs-2"
-                  sort-object="paginationCtrl.settings.sortBy"
-                  headers="paginationCtrl.settings.columns"
-                  drop-down-class="paginationCtrl.settings.dropDownClass"
-                  on-sort="paginationCtrl.onChangeSort({sortId: sortObject.colId, isAscending: isAscending})">
-  </miq-sort-items>
-  <div class="col-md-8 col-lg-8 col-xs-8 miq-pager-section">
-    <div class="miq-item-counter" ng-if="paginationCtrl.settings.items">
-      <label>
-        {{paginationCtrl.settings.translateTotalOf(paginationCtrl.settings.startIndex, paginationCtrl.settings.endIndex, paginationCtrl.settings.items)}}
-      </label>
-    </div>
-    <div class="miq-pager">
-      <div class="miq-paging" ng-if="paginationCtrl.settings.current">
-        <miq-paging settings="paginationCtrl.settings"
-                    on-change-page="paginationCtrl.onChangePage({pageNumber: pageNumber})">
-        </miq-paging>
-      </div>
-    </div>
-  </div>
-  <div ng-if="paginationCtrl.settings.items" class="col-md-2 col-lg-2 col-xs-2 miq-page-counter">
+<div class="pagination content-view-pf-pagination" ng-if="!paginationCtrl.settings.hideSelect">
 
+  <div class="form-group">
+    <span class="checkbox span-right-border" style="margin: 0 0 0 5px">
+      <label class="checkbox-inline">
+        <input type="checkbox"
+               ng-model="isChecked"
+               ng-click="paginationCtrl.onSelectAll({isSelected: isChecked})"
+               title="{{paginationCtrl.settings.selectAllTitle}}" />
+        {{paginationCtrl.settings.selectAllTitle}}
+      </label>
+    </span>
+    <span>
+      <miq-sort-items ng-if="paginationCtrl.settings.sortBy"
+                    sort-object="paginationCtrl.settings.sortBy"
+                    headers="paginationCtrl.settings.columns"
+                    drop-down-class="paginationCtrl.settings.dropDownClass"
+                    on-sort="paginationCtrl.onChangeSort({sortId: sortObject.colId, isAscending: isAscending})">
+      </miq-sort-items>
+    </span>
   </div>
+
+  <div class="form-group"> 
+     <miq-toolbar-list on-item-click="paginationCtrl.onChangePerPage({item: item})"
+                    drop-down-class="paginationCtrl.settings.dropDownClass"
+                    toolbar-list="paginationCtrl.perPage"></miq-toolbar-list>
+    <span class="per-page-label span-right-border">{{paginationCtrl.settings.perPageTitle}}</span>
+     <span ng-if="paginationCtrl.settings.items">
+      {{paginationCtrl.settings.translateTotalOf(paginationCtrl.settings.startIndex, paginationCtrl.settings.endIndex, paginationCtrl.settings.items)}}
+    </span>
+    <span ng-if="paginationCtrl.settings.current">
+      <miq-paging settings="paginationCtrl.settings"
+                  on-change-page="paginationCtrl.onChangePage({pageNumber: pageNumber})" >
+      </miq-paging>
+    </span>
+  </div>
+
+<!--   <div ng-if="paginationCtrl.settings.items" class="col-md-2 col-lg-2 col-xs-2 miq-page-counter"> -->
 </div>

@@ -35,9 +35,9 @@ export default class DataTableController {
       };
       this.onLoadNext(start, this.settings.perpage);
       this.onSort(2, true);
-      this.settings.selectAllTitle = 'Select All';
-      this.settings.sortedByTitle = 'Sorted By';
-      this.settings.perPageTitle = 'Per Page';
+      this.settings.selectAllTitle = 'select all';
+      this.settings.sortedByTitle = 'sorted by';
+      this.settings.perPageTitle = 'per page';
       this.settings.dropDownClass = ['someClass'];
     });
   }

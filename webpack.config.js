@@ -26,7 +26,16 @@ const webpack = require('webpack'),
     new BrowserSyncPlugin({
       host: 'localhost',
       port: 4000,
-      server: {baseDir: [__dirname + settings.distFolder]}
+      server: {baseDir: [__dirname + settings.distFolder]},
+      middleware: [
+        {
+          route: "/data",
+          handle: function (req, res, next) {
+            req.method = 'GET';
+            return next();
+          }
+        }
+      ]
     }, {
       use: spa({
         selector: '[ng-app]'

@@ -1,5 +1,7 @@
-import 'angular';
 import 'jquery';
+import 'jquery-ui-bundle';
+import 'bootstrap-switch';
+import 'angular';
 import 'angular-animate';
 import 'angular-sanitize';
 import 'ui-router';

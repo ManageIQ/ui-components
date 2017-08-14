@@ -147,18 +147,18 @@ export class DialogUserController extends DialogClass implements IDialogs {
  *    This object contains a Dialog and all the groups, tabs, and fields associated with it
  * @attr {Object} refreshField
  *    This is a method that is passed in that intends to handle the REST method of refreshing a single
- *    dialog field when requested.  Method signature is refreshFieldMethod(fieldToBeRefreshedObject)
+ *    dialog field when requested. Method signature is refreshFieldMethod(fieldToBeRefreshedObject)
  * @attr {Object} onUpdate
  *    This is a method that is invoked whenever dialog fields have updated
  *    there data or the field was updated by the user.
  * @attr {Boolean} inputDisabled boolean that decides whether or not the dialog is editable or readonly
  *
  * @example
- * <dialog dialog="myDialog"
+ * <dialog-user dialog="myDialog"
  *         refresh-field="refreshFieldFunction(dialogField)"
  *         on-update="onUpdateFunction(allDialogDataValues)"
- *         inputDisabled="false"
- * </dialog>
+ *         inputDisabled="false">
+ * </dialog-user>
  */
 export default class DialogUser {
   public replace: boolean = true;

@@ -78,6 +78,12 @@ export default class AvailableComponentsService {
           '/basic',
           require('./../views/fonticon-picker/basic.html'), 'demoFonticonPicker as vm')
       ]),
+      new AvailableGroup('dialog-editor', 'Dialog editor Components', '/dialog-editor', [
+        new AvailableComponent('basic',
+          'Dialog editor',
+          '/basic',
+          require('./../views/dialog-editor/basic.html'), 'dialogEditor as vm')
+      ]),
       new AvailableGroup('dialog-user', 'Dialog-User Component', '/dialog-user', [
         new AvailableComponent('dialog-user',
           'Dialog-user',

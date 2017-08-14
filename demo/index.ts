@@ -6,7 +6,7 @@ import APIService from './services/APIService';
 
 export const app = angular.module('demoApp', [
   'ui.sortable', 'ngDragDrop', 'frapontillo.bootstrap-switch', 'miqStaticAssets', 'ui.bootstrap', 'ui.router',
-  'patternfly.select', 'ui.bootstrap.tabs', 'patternfly.views', 'ngAnimate'
+  'patternfly.form', 'patternfly.select', 'ui.bootstrap.tabs', 'patternfly.views', 'ngAnimate'
 ]);
 controllers(app);
 views(app);

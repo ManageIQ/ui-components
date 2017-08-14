@@ -13,21 +13,26 @@ export default class DialogDataService {
    **/
   public setupField(data: any) {
     let field = _.cloneDeep(data);
+    const dropDownValues = [];
     field.fieldValidation = null;
     field.fieldBeingRefreshed = (angular.isDefined(field.fieldBeingRefreshed) ? field.fieldBeingRefreshed : false);
     field.errorMessage = '';
-    if (field.type === 'DialogFieldDropDownList') {
-      field.values = this.updateFieldSortOrder(field);
-    }
-    field.default_value = this.setDefaultValue(field);
 
     if (field.type === 'DialogFieldDropDownList') {
       for (let option of field.values) {
         if (option[0] === String(field.default_value)) {
           field.selected = option;
         }
+        if (field.data_type === 'integer') {
+          dropDownValues.push([parseInt(option[0], 10), option[1]]);
+        } else {
+          dropDownValues.push(option);
+        }
       }
+      field.values = dropDownValues;
+      field.values = this.updateFieldSortOrder(field);
     }
+    field.default_value = this.setDefaultValue(field);
 
     return field;
   }
@@ -75,7 +80,8 @@ export default class DialogDataService {
     if (data.default_value) {
       defaultValue = data.default_value;
     }
-    if (parseInt(data.default_value, 10)) {
+
+    if (data.data_type === 'integer') {
       defaultValue = parseInt(data.default_value, 10);
     }
 

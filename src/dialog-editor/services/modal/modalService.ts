@@ -12,6 +12,7 @@ class ModalController {
   public element: string;
   public categories: any;
   public dialog: any;
+  public showTreeView: boolean;
 
   /*@ngInject*/
   constructor(private dialogDetails: any,
@@ -28,7 +29,9 @@ class ModalController {
       modalTabSet: this.modalTabSet,
       modalTabIsSet: this.modalTabIsSet,
       currentCategoryEntries: this.currentCategoryEntries,
+      setResourceAction: this.setResourceAction,
     });
+     this.showTreeView = false;
 
     // recognize edited element type
     if (ng.isUndefined(this.dialog.fieldId)
@@ -258,6 +261,15 @@ class ModalController {
       );
     }
   }
+
+  public setResourceAction = (resource) => {
+    this.modalData.resource_action.ae_namespace = resource;
+  }
+
+  public openTreeView = (open = true) => {
+    this.showTreeView = open;
+  }
+
 }
 
 export default class ModalService {

@@ -91,7 +91,12 @@
         </dialog-editor-modal-field-template>
       </div>
       <div ng-if="vm.modalData.dynamic">
-        <dialog-editor-modal-field-template template="dynamic.html">
+        <dialog-editor-modal-field-template
+        modal-data="vm.modalData"
+        set-resource-action="vm.setResourceAction"
+        show-tree-view="vm.showTreeView"
+        open-tree-view="vm.openTreeView"
+        template="dynamic.html">
         </dialog-editor-modal-field-template>
       </div>
     </form>

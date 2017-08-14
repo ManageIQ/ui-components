@@ -1,7 +1,13 @@
 <!-- any dynamic element -->
 <div pf-form-group pf-label="{{'Entry Point'|translate}}">
   <!-- TODO: until treepicker and API for it are in the SSUI -->
-  <input ng-model="vm.modalData.resource_action.ae_namespace"/>
+  <input ng-focus="vm.openTreeView()" ng-model="vm.modalData.resource_action.ae_namespace"/>
+  <span ng-click="vm.openTreeView(false)" ng-show="vm.showTreeView" class="icon node-icon fa fa-close"></span>
+  <dialog-tree-wrapper
+    ng-show="vm.showTreeView"
+    resource-action="vm.modalData.resource_action"
+    handle-set-resource="vm.setResourceAction"
+  ></dialog-tree-wrapper>
 </div>
 <div pf-form-group pf-label="{{'Show Refresh Button'|translate}}">
   <input bs-switch

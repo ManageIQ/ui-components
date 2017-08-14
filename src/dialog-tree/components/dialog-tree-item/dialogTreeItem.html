@@ -1,0 +1,20 @@
+<li class="list-group-item node-automate_treebox no-cursor" ng-click="vm.handleItemClick($event)">
+
+  <span ng-if="vm.hasSubcategory()"
+    class="icon expand-icon fa fa-fw {{vm.showCategories ? 'fa-angle-down' : 'fa-angle-right'}}"></span>
+  <span class="icon node-icon {{vm.iconClass[vm.data.klass]}}"></span>
+
+  <span>{{vm.data.name}}</span>
+
+  <div class="{{vm.showCategories ? 'test' : 'node-hidden'}}">
+    <ul class="list-group" ng-if="vm.data.namespaces" ng-repeat="namespace in vm.data.namespaces">
+      <dialog-tree-item handle-select-resource="vm.handleSelectResource" data="namespace"></dialog-tree-item>
+    </ul>
+    <ul class="list-group" ng-if="vm.data.classes" ng-repeat="class in vm.data.classes">
+      <dialog-tree-item handle-select-resource="vm.handleSelectResource" data="class"></dialog-tree-item>
+    </ul>
+    <ul class="list-group" ng-if="vm.data.instances" ng-repeat="instace in vm.data.instances">
+      <dialog-tree-item handle-select-resource="vm.handleSelectResource" data="instace"></dialog-tree-item>
+    </ul>
+  </div>
+</li>

@@ -33,5 +33,8 @@ export default class ModalFieldTemplate {
     removeEntry: '=?',
     currentCategoryEntries: '=?',
     resolveCategories: '=?',
+    setResourceAction: '<',
+    showTreeView: '<',
+    openTreeView: '<',
   };
 }

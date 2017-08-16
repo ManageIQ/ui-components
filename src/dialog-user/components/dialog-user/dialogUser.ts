@@ -6,7 +6,7 @@ import { DialogClass } from '../../interfaces/abstractDialogClass';
  * @extends miqStaticAssets.dialog.DialogClass
  * @memberof miqStaticAssets.dialogUser
  * @ngdoc controller
- * @name DialogController
+ * @name DialogUserController
  */
 export class DialogUserController extends DialogClass implements IDialogs {
   public dialogFields: any;
@@ -18,7 +18,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
   /**
    * constructor
    ** DialogData - This is the data service that handles manipulating and organizing field data
-   * @memberof DialogController
+   * @memberof DialogUserController
    * @function constructor
    * @param {Object} DialogData factory.
    */
@@ -26,6 +26,13 @@ export class DialogUserController extends DialogClass implements IDialogs {
   /*@ngInject*/
   constructor(private DialogData: any) {
     super();
+  }
+  /**
+   * Runs when component is initialized
+   * @memberof DialogUserController
+   * @function $onInit
+   */
+  public $onInit() {
     const vm = this;
     vm.dialogFields = {};
     vm.refreshableFields = [];
@@ -46,13 +53,12 @@ export class DialogUserController extends DialogClass implements IDialogs {
       }
     }
   }
-
   /**
   * This reports all values from the dialog up to the parent component
   * The onUpdate method signature from the parent component should be updateFunctionName(data)
   *
   * saveDialogData
-  * @memberof DialogController
+  * @memberof DialogUserController
   * @function saveDialogData
   */
   public saveDialogData() {
@@ -80,6 +86,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
   /**
    * This method handles refreshing of a dialog field as well
    * as determining which other fields might need to be updated
+   * @memberof DialogUserController
    * @function updateDialogField
    * @param dialogFieldName {string} This is the field name for the particular dialog field
    * @param value {any} This is the updated value based on the selection the user made on a particular dialog field
@@ -99,6 +106,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
   /**
    * This method is meant to handle auto updating of all dialog fields
    * that are eligable to be refreshed after a field has just been refreshed
+   *  @memberof DialogUserController
    *  @function updateRefreshableFields
    *  @param refreshableFields {array} This is the dialog fields name that was triggered.
    *  This is passed to ensure we don't attempt to refresh something that was just refreshed
@@ -120,9 +128,10 @@ export class DialogUserController extends DialogClass implements IDialogs {
 
   /**
    *  Deals with updating select properties on a dialog field after the field has been refreshed
+   *  @memberof DialogUserController
    *  @function updateDialogFieldData
    *  @param dialogName {string} This is the field name for the particular dialog field
-   *  @param data {any} THis is the returned object after a dialog field has successfuly fetched
+   *  @param data {any} This is the returned object after a dialog field has successfuly fetched
    *  refreshed data from the parent components refreshField function
    */
   private updateDialogFieldData(dialogName, data) {
@@ -154,11 +163,11 @@ export class DialogUserController extends DialogClass implements IDialogs {
  * @attr {Boolean} inputDisabled boolean that decides whether or not the dialog is editable or readonly
  *
  * @example
- * <dialog dialog="myDialog"
+ * <dialog-user dialog="myDialog"
  *         refresh-field="refreshFieldFunction(dialogField)"
  *         on-update="onUpdateFunction(allDialogDataValues)"
  *         inputDisabled="false"
- * </dialog>
+ * </dialog-user>
  */
 export default class DialogUser {
   public replace: boolean = true;

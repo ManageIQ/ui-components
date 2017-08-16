@@ -17,6 +17,7 @@ describe('Dialog test', () =>  {
       angular.mock.module('miqStaticAssets.dialogUser');
       angular.mock.inject($componentController => {
         dialogCtrl = $componentController('dialogUser', null, bindings);
+        dialogCtrl.$onInit();
       });
     });
     it('should have some values set', () => {
@@ -56,6 +57,7 @@ describe('Dialog test', () =>  {
       angular.mock.module('miqStaticAssets.dialogUser');
       angular.mock.inject($componentController => {
         dialogCtrl = $componentController('dialogUser', null, bindings);
+        dialogCtrl.$onInit();
       });
     });
     it('should have 1 refreshable field', () => {

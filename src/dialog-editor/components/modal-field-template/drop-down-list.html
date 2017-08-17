@@ -34,8 +34,17 @@
          switch-on-text="{{'Yes'|translate}}"
          switch-off-text="{{'No'|translate}}">
 </div>
-<div pf-form-group pf-label="{{'Default value'|translate}}">
-  <select class="form-control"
+<div pf-form-group pf-label="{{'Default value'|translate}}"
+     ng-if="!vm.modalData.options.force_multi_value">
+  <select class="form-control" pf-select
+          ng-model="vm.modalData.default_value"
+          ng-options="entry as entry[0] for entry in vm.modalData.values">
+    <option selected="selected" value="" translate>None</option>
+  </select>
+</div>
+<div pf-form-group pf-label="{{'Default value'|translate}}"
+     ng-if="vm.modalData.options.force_multi_value">
+  <select class="form-control" multiple pf-select
           ng-model="vm.modalData.default_value"
           ng-options="entry as entry[0] for entry in vm.modalData.values">
     <option selected="selected" value="" translate>None</option>

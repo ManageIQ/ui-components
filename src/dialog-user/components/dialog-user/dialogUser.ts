@@ -52,6 +52,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
         }
       }
     }
+    vm.saveDialogData();
   }
   /**
   * This reports all values from the dialog up to the parent component

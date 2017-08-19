@@ -8,6 +8,7 @@ module miqStaticAssets {
     'miqStaticAssets.dialogUser',
     'miqStaticAssets.gtl',
     'miqStaticAssets.siteSwitcher',
-    'miqStaticAssets.fonticonPicker'
+    'miqStaticAssets.fonticonPicker',
+    'miqStaticAssets.treeView'
   ]);
 }

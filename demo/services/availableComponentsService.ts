@@ -88,7 +88,7 @@ export default class AvailableComponentsService {
         new AvailableComponent('dialog-user',
           'Dialog-user',
           '/dialog-user',
-          require('./../views/dialogs/main.html'), 'demoDialogs as vm')
+          require('./../views/dialogs/main.html'), 'demoDialogUser as vm')
       ])
     ];
   }

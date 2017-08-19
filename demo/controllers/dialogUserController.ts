@@ -1,5 +1,5 @@
 
-export default class DialogComponentController {
+export default class DialogUserController {
   public dialog: any;
   public showDialogData: boolean;
   public dialogDataResults: any;

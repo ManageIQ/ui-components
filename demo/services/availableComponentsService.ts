@@ -82,7 +82,7 @@ export default class AvailableComponentsService {
         new AvailableComponent('basic',
           'Dialog editor',
           '/basic',
-          require('./../views/dialog-editor/basic.html'), 'dialogEditor as vm')
+          require('./../views/dialog-editor/basic.html'), 'demoDialogEditor as vm')
       ]),
       new AvailableGroup('dialog-user', 'Dialog-User Component', '/dialog-user', [
         new AvailableComponent('dialog-user',

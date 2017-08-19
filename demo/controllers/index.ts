@@ -4,7 +4,7 @@ import DataTableController from './dataTableController';
 import SiteSwitcherController from './siteSwitcherController';
 import FonticonPickerController from './fonticonPickerController';
 import DialogUserController from './dialogUserController';
-import DialogEditorController from './dialogEditor';
+import DialogEditorController from './dialogEditorController';
 import * as ng from 'angular';
 
 export default (module: ng.IModule) => {
@@ -14,5 +14,5 @@ export default (module: ng.IModule) => {
   module.controller('demoSiteSwitcher', SiteSwitcherController);
   module.controller('demoFonticonPicker', FonticonPickerController);
   module.controller('demoDialogUser', DialogUserController);
-  module.controller('dialogEditor', DialogEditorController);
+  module.controller('demoDialogEditor', DialogEditorController);
 };

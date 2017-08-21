@@ -3,8 +3,8 @@ import ToolbarMenuController from './toolbarMenuController';
 import DataTableController from './dataTableController';
 import SiteSwitcherController from './siteSwitcherController';
 import FonticonPickerController from './fonticonPickerController';
-import DialogComponentController from './dialogComponentController';
-import DialogEditorController from './dialogEditor';
+import DialogUserController from './dialogUserController';
+import DialogEditorController from './dialogEditorController';
 import * as ng from 'angular';
 
 export default (module: ng.IModule) => {
@@ -13,6 +13,6 @@ export default (module: ng.IModule) => {
   module.controller('demoDataTable', DataTableController);
   module.controller('demoSiteSwitcher', SiteSwitcherController);
   module.controller('demoFonticonPicker', FonticonPickerController);
-  module.controller('demoDialogs', DialogComponentController);
-  module.controller('dialogEditor', DialogEditorController);
+  module.controller('demoDialogUser', DialogUserController);
+  module.controller('demoDialogEditor', DialogEditorController);
 };

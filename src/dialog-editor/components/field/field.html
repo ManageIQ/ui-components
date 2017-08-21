@@ -45,6 +45,7 @@
     <!-- drop down list -->
     <select ng-switch-when="DialogFieldDropDownList"
             ng-model="vm.fieldData.default_value"
+            pf-select
             class="form-control">
       <option ng-repeat="option in vm.fieldData.values"
               value="{{ option[0] }}">
@@ -68,6 +69,7 @@
 
     <!-- tag control -->
     <select ng-switch-when="DialogFieldTagControl"
+            pf-select
             class="form-control">
       <option ng-repeat="option in vm.fieldData.values"
               value="{{ option[0] }}">

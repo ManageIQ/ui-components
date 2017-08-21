@@ -51,20 +51,20 @@
   </select>
 </div>
 <div pf-form-group pf-label="{{'Value type'|translate}}">
-  <select class="form-control" ng-model="vm.modalData.data_type">
+  <select class="form-control" pf-select ng-model="vm.modalData.data_type">
     <option value="integer" translate>Integer</option>
     <option selected="selected" value="string" translate>String</option>
   </select>
 </div>
 <div pf-form-group pf-label="{{'Sort by'|translate}}">
-  <select class="form-control" ng-model="vm.modalData.options.sort_by">
+  <select class="form-control" pf-select ng-model="vm.modalData.options.sort_by">
     <option value="none" translate>None</option>
     <option value="description" translate>Description</option>
     <option value="value" translate>Value</option>
   </select>
 </div>
 <div pf-form-group pf-label="{{'Sort order'|translate}}">
-  <select class="form-control" ng-model="vm.modalData.options.sort_order">
+  <select class="form-control" pf-select ng-model="vm.modalData.options.sort_order">
     <option selected="selected" value="ascending" translate>Ascending</option>
     <option value="descending" translate>Descending</option>
   </select>

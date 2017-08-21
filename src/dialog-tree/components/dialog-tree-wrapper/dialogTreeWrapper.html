@@ -1,8 +1,10 @@
 <div>
-  <div class="treeview-pf-hover treeview-pf-select treeview" id="dialog-tree-wrapper">
-    <ul class="list-group" ng-repeat="domain in vm.data">
-      <dialog-tree-item handle-select-resource="vm.handleSetResource" data="domain"></dialog-tree-item>
-    </ul>
-  </div>
-  <div id="treeview"></div>
+  <miq-tree-view
+    ng-if="vm.data"
+    name="automation-tree"
+    reselect="false"
+    data="{{ vm.data }}"
+    lazy-load="vm.lazyLoad(node)"
+    on-select="vm.getSelected(node)">
+  </miq-tree-view>
 </div>

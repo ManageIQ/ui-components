@@ -93,6 +93,12 @@ export default class AvailableComponentsService {
           'TreeView',
           '/tree-view',
           require('./../views/tree-view/basic.html'), 'demoTreeView as vm')
+      ]),
+      new AvailableGroup('dialog-user', 'Dialog-User Component', '/dialog-user', [
+        new AvailableComponent('dialog-user',
+          'Dialog-user',
+          '/dialog-user',
+          require('./../views/dialog/user.html'), 'demoDialogs as vm')
       ])
     ];
   }

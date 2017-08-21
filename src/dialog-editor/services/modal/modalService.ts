@@ -266,7 +266,7 @@ class ModalController {
     this.modalData.resource_action.ae_namespace = resource;
   }
 
-  public openTreeView = (open = true) => {
+  public openTreeView = (open) => {
     this.showTreeView = open;
   }
 

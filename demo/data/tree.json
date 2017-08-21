@@ -1,0 +1,37 @@
+[
+  {
+    "key": "p-1",
+    "icon": "ff ff-diamond",
+    "text": "Parent",
+    "nodes": [
+      {
+        "key": "c-1",
+        "icon": "ff ff-diamond",
+        "text": "Child 1",
+        "nodes": [
+          {
+            "key": "gc-1",
+            "icon": "ff ff-diamond",
+            "text": "Grandchild 1"
+          },
+          {
+            "key": "gc-2",
+            "icon": "ff ff-diamond",
+            "text": "Grandchild 2"
+          }
+        ]
+      },
+      {
+        "key": "c-2",
+        "icon": "ff ff-diamond",
+        "text": "Child 2"
+      }
+    ]
+  },
+  {
+    "key": "lp-1",
+    "icon": "ff ff-diamond",
+    "text": "Lazy Parent",
+    "lazyLoad": true
+  }
+]

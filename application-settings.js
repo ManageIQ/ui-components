@@ -13,7 +13,8 @@ module.exports = {
     gtl: '/gtl',
     siteSwitcher: '/site-switcher',
     fonticonPicker: '/fonticon-picker',
-    dialogs: '/dialog-user'
+    dialogs: '/dialog-user',
+    treeView: '/tree-view'
   },
   nodePackages: 'node_modules/',
   get stylesheetPath() {

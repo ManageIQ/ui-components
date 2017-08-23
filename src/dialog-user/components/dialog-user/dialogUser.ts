@@ -14,7 +14,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
   public dialogValues: any;
   public parsedOptions: any;
   public service: any;
-  public isFieldsBeingRefreshed: boolean;
+  public areFieldsBeingRefreshed: boolean;
   /**
    * constructor
    ** DialogData - This is the data service that handles manipulating and organizing field data
@@ -24,7 +24,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
    */
 
   /*@ngInject*/
-  constructor(private DialogData: any) {
+  constructor(private DialogData: any,private $scope : ng.IScope) {
     super();
   }
   /**
@@ -37,7 +37,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
     vm.dialogFields = {};
     vm.refreshableFields = [];
     vm.dialogValues = {};
-    vm.isFieldsBeingRefreshed = false;
+    vm.areFieldsBeingRefreshed = false;
     this.service = this.DialogData;
     for (const dialogTabs of this.dialog.dialog_tabs) {
       for (const dialogGroup of dialogTabs.dialog_groups) {
@@ -96,12 +96,11 @@ export class DialogUserController extends DialogClass implements IDialogs {
     const refreshable = _.indexOf(this.refreshableFields, dialogFieldName);
     this.dialogFields[dialogFieldName].default_value = value;
     this.dialogValues[dialogFieldName] = value;
-
-    if (refreshable > -1  && !this.isFieldsBeingRefreshed) {
+    this.saveDialogData();
+    if (refreshable > -1  && !this.areFieldsBeingRefreshed) {
         const fieldsToRefresh = _.without(this.refreshableFields, dialogFieldName);
         this.updateRefreshableFields(fieldsToRefresh);
     }
-    this.saveDialogData();
   }
 
   /**
@@ -114,15 +113,18 @@ export class DialogUserController extends DialogClass implements IDialogs {
    */
   public updateRefreshableFields(refreshableFields): void {
     const field = refreshableFields[0];
+    this.areFieldsBeingRefreshed = true;
     this.dialogFields[field].fieldBeingRefreshed = true;
     const fieldsLeftToRefresh = _.without(refreshableFields, field);
     this.refreshField({ field: this.dialogFields[field] }).then((data) => {
       this.dialogFields[field] = this.updateDialogFieldData(field, data);
       this.dialogFields[field].fieldBeingRefreshed = false;
+      this.saveDialogData();
+      this.$scope.$apply();
       if (fieldsLeftToRefresh.length > 0) {
         this.updateRefreshableFields(fieldsLeftToRefresh);
       } else {
-        this.isFieldsBeingRefreshed = false;
+        this.areFieldsBeingRefreshed = false;
       }
     });
   }
@@ -142,6 +144,8 @@ export class DialogUserController extends DialogClass implements IDialogs {
     dialogField.read_only = data.read_only;
     dialogField.required = data.required;
     dialogField.visible = data.visible;
+    dialogField.values = data.values;
+    dialogField.default_value = data.default_value;
 
     return dialogField;
   }

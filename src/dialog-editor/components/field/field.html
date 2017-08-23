@@ -43,15 +43,20 @@
     </div>
 
     <!-- drop down list -->
-    <select ng-switch-when="DialogFieldDropDownList"
-            ng-model="vm.fieldData.default_value"
-            pf-select
-            class="form-control">
-      <option ng-repeat="option in vm.fieldData.values"
-              value="{{ option[0] }}">
-        {{ option[1] }}
-      </option>
-    </select>
+    <div ng-switch-when="DialogFieldDropDownList">
+      <div ng-if="!vm.modalData.options.force_multi_value">
+        <select class="form-control" pf-select
+                ng-model="vm.modalData.default_value"
+                ng-options="entry as entry[0] for entry in vm.modalData.values">
+        </select>
+      </div>
+      <div ng-if="vm.modalData.options.force_multi_value">
+        <select class="form-control" multiple pf-select
+                ng-model="vm.modalData.default_value"
+                ng-options="entry as entry[0] for entry in vm.modalData.values">
+        </select>
+      </div>
+    </div>
 
     <!-- radio button -->
     <span ng-switch-when="DialogFieldRadioButton"

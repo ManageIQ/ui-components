@@ -134,8 +134,8 @@ describe('Pagination test', () =>  {
       });
 
       it('per page items', () => {
-        expect(compiledElement[0].querySelectorAll('.miq-per-page miq-toolbar-list').length).toBe(1);
-        let perPageOptions = compiledElement[0].querySelectorAll('.miq-per-page miq-toolbar-list ul li');
+        expect(compiledElement[0].querySelectorAll('miq-toolbar-list').length).toBe(1);
+        let perPageOptions = compiledElement[0].querySelectorAll('miq-toolbar-list ul li');
         expect(perPageOptions.length).toBe(settings.columns.length - 1);
       });
 
@@ -155,7 +155,7 @@ describe('Pagination test', () =>  {
       });
 
       it('selectAll action changed', () => {
-        let perPageOptions = compiledElement[0].querySelectorAll('.miq-per-page miq-toolbar-list ul li a');
+        let perPageOptions = compiledElement[0].querySelectorAll('miq-toolbar-list ul li a');
         perPageOptions[0].click();
         expect(onChangePerPage).toHaveBeenCalledWith(perPage.items[0]);
         perPageOptions[1].click();

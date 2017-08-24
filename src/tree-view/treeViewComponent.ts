@@ -36,8 +36,8 @@ export class TreeViewController {
         showBorders:     false,
         onNodeExpanded:  this.setTreeState(true),
         onNodeCollapsed: this.setTreeState(false),
-        onNodeSelected:  (_event, node) => this.$timeout(() => {this.onSelect({node: node})}),
-        lazyLoad:        (node, render) => this.$timeout(() => {this.lazyLoad({node: node}).then(render)}),
+        onNodeSelected:  (_event, node) => this.$timeout(() => this.onSelect({node: node})),
+        lazyLoad:        (node, render) => this.$timeout(() => this.lazyLoad({node: node}).then(render)),
         onRendered:      () => this.$timeout(resolve)
       });
     });

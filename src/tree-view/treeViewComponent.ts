@@ -25,6 +25,7 @@ export class TreeViewController {
         }
 
         if (this.getTreeState(node) === !node.state.expanded) {
+          this.tree.revealNode(node, {silent: true});
           this.tree.toggleNodeExpanded(node);
         }
       });

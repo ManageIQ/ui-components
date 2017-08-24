@@ -71,8 +71,8 @@ export default class TreeView implements ng.IComponentOptions {
   public template = '<div class="treeview treeview-pf-select"></div>';
   public bindings: any = {
     name: '@',
-    data: '@',
-    reselect: '@',
+    data: '<',
+    reselect: '<',
     onSelect: '&',
     lazyLoad: '&'
   };

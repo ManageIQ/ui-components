@@ -1,4 +1,4 @@
-<miq-tree-view name="demo-tree" data="{{ vm.data }}" lazy-load="vm.lazyLoad(node)" on-select="vm.nodeSelect(node)"></miq-tree-view>
+<miq-tree-view name="demo-tree" data="vm.data" lazy-load="vm.lazyLoad(node)" on-select="vm.nodeSelect(node)"></miq-tree-view>
 <button ng-click="vm.resetState();">Reset state</button>
 <div ng-if="vm.node">
   <h3>Selected node:</h3>

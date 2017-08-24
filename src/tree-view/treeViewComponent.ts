@@ -18,6 +18,7 @@ export class TreeViewController {
       this.tree = ng.element(element).treeview(true);
 
       this.tree.getNodes().forEach((node) => {
+        this.tree.revealNode(node, {silent: true});
         if (this.getTreeState(node) === !node.state.expanded) {
           this.tree.toggleNodeExpanded(node);
         }

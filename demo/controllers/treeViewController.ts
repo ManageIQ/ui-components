@@ -1,5 +1,12 @@
 import * as ng from 'angular';
-
+import {ComponentDemo} from '../services/availableComponentBuilder';
+@ComponentDemo({
+  name: 'tree-view',
+  title: 'TreView',
+  template: require('./../views/tree-view/basic.html'),
+  group: 'tree-view',
+  controller: 'demoTreeView as vm'
+})
 export default class TreeViewController {
   public node;
   public data = require('../data/tree.json');

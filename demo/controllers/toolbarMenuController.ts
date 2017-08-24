@@ -1,3 +1,19 @@
+import {ComponentDemo} from '../services/availableComponentBuilder';
+@ComponentDemo({
+  name: 'basic',
+  title: 'Basic Toolbar Menu',
+  template: require('./../views/toolbar-menu/basic.html'),
+  group: 'toolbar-menu',
+  controller: 'demoToolbarMenu as vm'
+})
+@ComponentDemo({
+  name: 'custom_html',
+  title: 'Custom Html Toolbar Menu',
+  template: require('./../views/toolbar-menu/custom-html.html'),
+  location: '/custom',
+  group: 'toolbar-menu',
+  controller: 'demoToolbarMenu as vm'
+})
 export default class ToolbarMenuController {
   public toolbarMenu: any;
   public customToolbarItems: any;

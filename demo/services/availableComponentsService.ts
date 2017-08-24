@@ -27,77 +27,28 @@ export class AvailableComponent implements IAvailComponent {
     public template: string,
     public controller: string) { }
 }
+
 export default class AvailableComponentsService {
+  public static instance: AvailableComponentsService;
   public availableComponents: IAvailableGroup[];
 
   public constructor() {
+    if (AvailableComponentsService.instance) {
+      return AvailableComponentsService.instance;
+    }
     this.initComponents();
+    AvailableComponentsService.instance = this;
   }
 
-  private initComponents() {
+  public initComponents() {
     this.availableComponents = [
-      new AvailableGroup('toolbar-menu', 'Toolbar Menu Components', '/toolbar-menu', [
-        new AvailableComponent('basic', '' +
-          'Basic Toolbar Menu',
-          '/basic',
-          require('./../views/toolbar-menu/basic.html'),
-          'demoToolbarMenu as vm'),
-        new AvailableComponent('custom_html', '' +
-          'Custom Html Toolbar Menu',
-          '/custom',
-          require('./../views/toolbar-menu/custom-html.html'),
-          'demoToolbarMenu as vm')
-      ]),
-      new AvailableGroup('tile-menu', 'Tile Components', '/tile-view', [
-        new AvailableComponent('small',
-          'Small tile',
-          '/small',
-          require('./../views/tile-view/small.html'),
-          'demoDataTable as vm'),
-        new AvailableComponent('big',
-          'Big tile',
-          '/big',
-          require('./../views/tile-view/big.html'),
-          'demoDataTable as vm'),
-      ]),
-      new AvailableGroup('data-table', 'Data table Components', '/data-table', [
-        new AvailableComponent('basic',
-          'Basic data table',
-          '/basic',
-          require('./../views/data-table/basic.html'), 'demoDataTable as vm')
-      ]),
-      new AvailableGroup('site-switcher', 'Site Switcher Components', '/site-switcher', [
-        new AvailableComponent('basic',
-          'Site switcher',
-          '/basic',
-          require('./../views/site-switcher/basic.html'), 'demoSiteSwitcher as vm')
-      ]),
-      new AvailableGroup('fonticon-picker', 'Fonticon Picker Components', '/fonticon-picker', [
-        new AvailableComponent('basic',
-          'Fonticon picker',
-          '/basic',
-          require('./../views/fonticon-picker/basic.html'), 'demoFonticonPicker as vm')
-      ]),
-      new AvailableGroup('dialog', 'Dialog Components', '/dialog', [
-        new AvailableComponent('editor',
-          'Dialog editor',
-          '/editor',
-          require('./../views/dialog/editor.html'), 'demoDialogEditor as vm'),
-        new AvailableComponent('user',
-          'Dialog user',
-          '/user',
-          require('./../views/dialog/user.html'), 'demoDialogUser as vm')
-      ]),
-      new AvailableGroup('tree-view', 'Tree Components', '/tree', [
-        new AvailableComponent('tree-view',
-          'TreeView',
-          '/tree-view',
-          require('./../views/tree-view/basic.html'), 'demoTreeView as vm'),
-        new AvailableComponent('tree-selector',
-          'TreeSelector',
-          '/tree-selector',
-          require('./../views/tree-view/tree-selector.html'), 'demoTreeSelector as vm')
-      ])
+      new AvailableGroup('toolbar-menu', 'Toolbar Menu Components', '/toolbar-menu', []),
+      new AvailableGroup('tile-menu', 'Tile Components', '/tile-view', []),
+      new AvailableGroup('data-table', 'Data table Components', '/data-table', []),
+      new AvailableGroup('site-switcher', 'Site Switcher Components', '/site-switcher', []),
+      new AvailableGroup('fonticon-picker', 'Fonticon Picker Components', '/fonticon-picker', []),
+      new AvailableGroup('dialog', 'Dialog Components', '/dialog', []),
+      new AvailableGroup('tree-view', 'Tree Components', '/tree', [])
     ];
   }
 }

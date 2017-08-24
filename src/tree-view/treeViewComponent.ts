@@ -1,7 +1,8 @@
 import * as ng from 'angular';
 
 export class TreeViewController {
-  public tree;
+  private tree;
+
   public reselect;
   public data;
   public name : string;

@@ -14,7 +14,8 @@ module.exports = {
     siteSwitcher: '/site-switcher',
     fonticonPicker: '/fonticon-picker',
     dialogs: '/dialog-user',
-    treeView: '/tree-view'
+    treeView: '/tree-view',
+    treeSelector: '/tree-selector'
   },
   nodePackages: 'node_modules/',
   get stylesheetPath() {

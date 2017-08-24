@@ -1,0 +1,8 @@
+<miq-tree-view
+  ng-if="$ctrl.data"
+  name="vm.name"
+  reselect="false"
+  data="$ctrl.data"
+  lazy-load="$ctrl.handleLazyLoad({node: node})"
+  on-select="$ctrl.handleSelect({node: node})">
+</miq-tree-view>

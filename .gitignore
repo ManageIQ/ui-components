@@ -16,6 +16,11 @@ dist/data/
 dist/docs/
 dist/js
 dist/**/demo-app.*
+dist/*.ttf
+dist/*.eot
+dist/*.svg
+dist/*.woff
+dist/*.woff2
 .tmp/
 .bower/
 libs/

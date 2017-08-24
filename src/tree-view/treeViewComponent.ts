@@ -9,7 +9,7 @@ export class TreeViewController {
   public lazyLoad: (args: {node: any}) => Promise<any>;
 
   /*@ngInject*/
-  constructor(private $element : ng.IRootElementService) {}
+  constructor(private $element : ng.IRootElementService, private $timeout : ng.ITimeoutService) {}
 
   public $onInit() {
     let element = this.$element[0].querySelector('div.treeview');
@@ -36,9 +36,9 @@ export class TreeViewController {
         showBorders:     false,
         onNodeExpanded:  this.setTreeState(true),
         onNodeCollapsed: this.setTreeState(false),
-        onNodeSelected:  (_event, node) => this.onSelect({node: node}),
-        lazyLoad:        (node, render) => this.lazyLoad({node: node}).then(render),
-        onRendered:      () => resolve()
+        onNodeSelected:  (_event, node) => this.$timeout(() => {this.onSelect({node: node})}),
+        lazyLoad:        (node, render) => this.$timeout(() => {this.lazyLoad({node: node}).then(render)}),
+        onRendered:      () => this.$timeout(resolve)
       });
     });
   }

@@ -1,7 +1,8 @@
 import * as ng from 'angular';
 
 export class TreeViewController {
-  public tree;
+  private tree;
+
   public reselect;
   public data;
   public name : string;
@@ -36,8 +37,8 @@ export class TreeViewController {
         showBorders:     false,
         onNodeExpanded:  this.setTreeState(true),
         onNodeCollapsed: this.setTreeState(false),
-        onNodeSelected:  (_event, node) => this.$timeout(() => {this.onSelect({node: node})}),
-        lazyLoad:        (node, render) => this.$timeout(() => {this.lazyLoad({node: node}).then(render)}),
+        onNodeSelected:  (_event, node) => this.$timeout(() => this.onSelect({node: node})),
+        lazyLoad:        (node, render) => this.$timeout(() => this.lazyLoad({node: node}).then(render)),
         onRendered:      () => this.$timeout(resolve)
       });
     });
@@ -71,8 +72,8 @@ export default class TreeView implements ng.IComponentOptions {
   public template = '<div class="treeview treeview-pf-select"></div>';
   public bindings: any = {
     name: '@',
-    data: '@',
-    reselect: '@',
+    data: '<',
+    reselect: '<',
     onSelect: '&',
     lazyLoad: '&'
   };

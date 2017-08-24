@@ -153,12 +153,14 @@ table.miq-table-with-footer { /* not currently used */
     width: 130px;
     height: 131px;
 
+    .card-check-box {
+      left: 4px !important;
+      top: 12px !important;
+    }
+
     .card-content {
       .miq-quadicon {
         display: inline-block;
-      }
-      .miq-tile-head {
-        margin-left: 20px;
       }
       a {
         word-wrap: break-word;

@@ -72,9 +72,7 @@ export default class DialogDataService {
       if (data.type === 'DialogFieldDateControl' || data.type === 'DialogFieldDateTimeControl') {
         defaultValue = new Date(data.values);
       } else {
-        if (data.type === 'DialogFieldCheckBox') {
           defaultValue = data.values;
-        }
       }
     }
     if (data.default_value) {

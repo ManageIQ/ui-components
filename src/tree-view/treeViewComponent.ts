@@ -2,6 +2,7 @@ import * as ng from 'angular';
 
 export class TreeViewController {
   private tree;
+  private element;
 
   public name : string;
   public data;
@@ -14,9 +15,10 @@ export class TreeViewController {
   constructor(private $element : ng.IRootElementService, private $timeout : ng.ITimeoutService) {}
 
   public $onInit() {
-    let element = this.$element[0].querySelector('div.treeview');
-    this.renderTree(element).then(() => {
-      this.tree = ng.element(element).treeview(true);
+    this.element = ng.element(this.$element[0].querySelector('div.treeview'));
+
+    this.renderTree().then(() => {
+      this.tree = this.element.treeview(true);
 
       this.tree.getNodes().forEach((node) => {
         // Initial node selection right after rendering
@@ -42,9 +44,9 @@ export class TreeViewController {
     }
   }
 
-  private renderTree(element) {
+  private renderTree() {
     return new Promise((resolve) => {
-      ng.element(element).treeview({
+      this.element.treeview({
         data:            this.data,
         showImage:       true,
         expandIcon:      'fa fa-fw fa-angle-right',

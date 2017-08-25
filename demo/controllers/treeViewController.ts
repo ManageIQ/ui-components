@@ -3,12 +3,22 @@ import * as ng from 'angular';
 export default class TreeViewController {
   public node;
   public data = require('../data/tree.json');
+  public selectNode;
 
   /*@ngInject*/
   constructor(private $scope : ng.IScope, private $timeout : ng.ITimeoutService) {};
 
   public resetState(node) {
     sessionStorage.clear();
+  }
+
+  public selectRandom(node) {
+    let keys = JSON.stringify(this.data)
+      .match(/\"key\":\"[^\"]+\"/g)
+      .map((item) => item.replace(/\"key\":\"([^\"]+)\"/, '$1'));
+    let key = keys[Math.floor(Math.random() * keys.length)];
+
+    this.selectNode = { key: key };
   }
 
   public lazyLoad(node) {

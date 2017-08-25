@@ -3,9 +3,10 @@ import * as ng from 'angular';
 export class TreeViewController {
   private tree;
 
-  public reselect;
-  public data;
   public name : string;
+  public data;
+  public selected;
+  public reselect;
   public onSelect: (args: {node: any}) => void;
   public lazyLoad: (args: {node: any}) => Promise<any>;
 
@@ -18,11 +19,27 @@ export class TreeViewController {
       this.tree = ng.element(element).treeview(true);
 
       this.tree.getNodes().forEach((node) => {
+        // Initial node selection right after rendering
+        if (this.selected && this.matchNode(node, this.selected)) {
+          this.selectNode(node);
+        }
+
         if (this.getTreeState(node) === !node.state.expanded) {
+          this.tree.revealNode(node, {silent: true});
           this.tree.toggleNodeExpanded(node);
         }
       });
     });
+  }
+
+  public $onChanges(changes) {
+    // Prevent initial node selection before the tree is fully rendered
+    if (!changes.selected.isFirstChange() &&
+        changes.selected.previousValue !== undefined &&
+        changes.selected.currentValue !== undefined) {
+      let node = this.findNode(changes.selected.currentValue);
+      this.$timeout(() => this.selectNode(node));
+    }
   }
 
   private renderTree(element) {
@@ -42,6 +59,22 @@ export class TreeViewController {
         onRendered:      () => this.$timeout(resolve)
       });
     });
+  }
+
+  private findNode(params) {
+    return this.tree.getNodes().find(node => this.matchNode(node, params));
+  }
+
+  private matchNode(node, params) {
+    return Object.keys(params)
+      .map(param => node[param] === params[param])
+      .every(bool => bool);
+  }
+
+  private selectNode(node) {
+    this.tree.revealNode(node, {silent: true});
+    this.tree.selectNode(node, {silent: true});
+    this.tree.expandNode(node);
   }
 
   private setTreeState(state) {
@@ -73,6 +106,7 @@ export default class TreeView implements ng.IComponentOptions {
   public bindings: any = {
     name: '@',
     data: '<',
+    selected: '<',
     reselect: '<',
     onSelect: '&',
     lazyLoad: '&'

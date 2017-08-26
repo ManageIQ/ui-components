@@ -65,13 +65,10 @@ export class TreeViewController {
   }
 
   private findNode(params) {
-    return this.tree.getNodes().find(node => this.matchNode(node, params));
-  }
-
-  private matchNode(node, params) {
-    return Object.keys(params)
+    return this.tree.getNodes().find(node => Object.keys(params)
       .map(param => node[param] === params[param])
-      .every(bool => bool);
+      .every(bool => bool)
+    );
   }
 
   /*

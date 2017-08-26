@@ -3,6 +3,7 @@ import * as ng from 'angular';
 export class TreeViewController {
   private tree;
   private element;
+  private rendered : boolean = false;
 
   public name : string;
   public data;
@@ -31,14 +32,14 @@ export class TreeViewController {
           this.tree.toggleNodeExpanded(node);
         }
       });
+
+      this.rendered = true;
     });
   }
 
   public $onChanges(changes) {
     // Prevent initial node selection before the tree is fully rendered
-    if (!changes.selected.isFirstChange() &&
-        changes.selected.previousValue !== undefined &&
-        changes.selected.currentValue !== undefined) {
+    if (!changes.selected.isFirstChange() && this.rendered && changes.selected.currentValue !== undefined) {
       let node = this.findNode(changes.selected.currentValue);
       this.$timeout(() => this.selectNode(node));
     }

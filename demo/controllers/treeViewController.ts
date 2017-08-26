@@ -6,13 +6,15 @@ export default class TreeViewController {
   public selectNode;
 
   /*@ngInject*/
-  constructor(private $scope : ng.IScope, private $timeout : ng.ITimeoutService) {};
+  constructor(private $scope : ng.IScope, private $timeout : ng.ITimeoutService, private $window : ng.IWindowService) {
+  };
 
-  public resetState(node) {
+  public resetState() {
     sessionStorage.clear();
+    this.$window.location.reload();
   }
 
-  public selectRandom(node) {
+  public selectRandom() {
     let keys = JSON.stringify(this.data)
       .match(/\"key\":\"[^\"]+\"/g)
       .map((item) => item.replace(/\"key\":\"([^\"]+)\"/, '$1'));

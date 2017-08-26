@@ -21,12 +21,12 @@ export class TreeViewController {
     this.renderTree().then(() => {
       this.tree = this.element.treeview(true);
 
-      this.tree.getNodes().forEach((node) => {
-        // Initial node selection right after rendering
-        if (this.selected && this.matchNode(node, this.selected)) {
-          this.selectNode(node);
-        }
+      // Initial node selection right after rendering
+      if (this.selected) {
+        this.selectNode(this.selected);
+      }
 
+      this.tree.getNodes().forEach((node) => {
         if (this.getTreeState(node) === !node.state.expanded) {
           this.tree.revealNode(node, {silent: true});
           this.tree.toggleNodeExpanded(node);
@@ -40,8 +40,7 @@ export class TreeViewController {
   public $onChanges(changes) {
     // Prevent initial node selection before the tree is fully rendered
     if (!changes.selected.isFirstChange() && this.rendered && changes.selected.currentValue !== undefined) {
-      let node = this.findNode(changes.selected.currentValue);
-      this.$timeout(() => this.selectNode(node));
+      this.selectNode(changes.selected.currentValue);
     }
   }
 
@@ -75,7 +74,59 @@ export class TreeViewController {
       .every(bool => bool);
   }
 
-  private selectNode(node) {
+  /*
+   * @function selectNode
+   * @param [Object] or Object
+   *
+   * This function is able to select a node that is not loaded in the tree yet.
+   * Simply provide an array of matchers instead of a single one. The matchers
+   * should hierarchically follow the structure above the node to be selected.
+   *
+   * The matched nodes will be expanded and lazily loaded one by one until the
+   * loop reaches the last node that will be simply selected instead.
+   */
+
+  private selectNode(select) {
+    let head, tail;
+    [head, tail] = TreeViewController.splitObject(select);
+
+    // Iterate through the nodes to be lazily expanded
+    tail.reduce((sum, value) => sum.then(() => new Promise((resolve, reject) => {
+      let node = this.findNode(value);
+      if (!node) { // Node not found, break the loop
+        return reject();
+      }
+      // No need for this step if the tree isn't lazily loadable
+      if (!node.lazyLoad) {
+        return resolve();
+      }
+
+      // The event handler needs to be named for future deregistering
+      let handler = (_event, exp) => {
+        if (exp.nodeId === node.nodeId) {
+          // Unregister itself after success
+          this.element.unbind('nodeExpanded', handler);
+          resolve();
+        }
+      };
+
+      this.element.on('nodeExpanded', handler);
+      this.tree.toggleNodeExpanded(node);
+    })), new Promise(nope => nope())).then(() => this.expandFinalNode(head));
+  }
+
+  private static splitObject(obj) {
+    let head = obj;
+    if (Array.isArray(obj)) {
+      head = obj.pop();
+    } else {
+      obj = [];
+    }
+    return [head, obj];
+  }
+
+  private expandFinalNode(obj) {
+    let node = this.findNode(obj);
     this.tree.revealNode(node, {silent: true});
     this.tree.selectNode(node, {silent: true});
     this.tree.expandNode(node);

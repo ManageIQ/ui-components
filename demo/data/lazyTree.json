@@ -7,6 +7,13 @@
   {
     "key": "lc-2",
     "icon": "ff ff-diamond",
-    "text": "Lazy Child 2"
+    "text": "Lazy Child 2",
+    "nodes": [
+      {
+        "key": "lgc-1",
+        "icon": "ff ff-diamond",
+        "text": "Lazy grandchild 1"
+      }
+    ]
   }
 ]

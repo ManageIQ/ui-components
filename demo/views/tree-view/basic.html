@@ -1,5 +1,6 @@
 <button ng-click="vm.resetState();">Reset</button>
 <button ng-click="vm.selectRandom();">Select random</button>
+<button ng-click="vm.selectLazy();">Select lazy</button>
 <p>Note: programmatically selecting a node is not firing the onSelect event on purpose.</p>
 
 <miq-tree-view name="demo-tree" data="vm.data" lazy-load="vm.lazyLoad(node)" on-select="vm.nodeSelect(node)" selected="vm.selectNode"></miq-tree-view>

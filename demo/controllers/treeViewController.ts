@@ -23,6 +23,10 @@ export default class TreeViewController {
     this.selectNode = { key: key };
   }
 
+  public selectLazy() {
+    this.selectNode = [{key: 'lp-1'}, {key: 'lc-2'}, {key: 'lgc-1'}];
+  }
+
   public lazyLoad(node) {
     let data = require('../data/lazyTree.json');
     // Wait to simulate HTTP delay

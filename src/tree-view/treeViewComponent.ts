@@ -46,6 +46,7 @@ export class TreeViewController {
     return new Promise((resolve) => {
       ng.element(element).treeview({
         data:            this.data,
+        showImage:       true,
         expandIcon:      'fa fa-fw fa-angle-right',
         collapseIcon:    'fa fa-fw fa-angle-down',
         loadingIcon:     'fa fa-fw fa-spinner fa-pulse',

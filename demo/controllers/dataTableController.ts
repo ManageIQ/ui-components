@@ -10,7 +10,6 @@ export default class DataTableController {
   constructor(public MiQDataTableService: any, private MiQEndpointsService: any, private $filter: any) {
     this.settings = {};
     this.perPage = {
-      labelItems: 'Items',
       enabled: true,
       text: 20,
       value: 20,
@@ -36,15 +35,16 @@ export default class DataTableController {
       };
       this.onLoadNext(start, this.settings.perpage);
       this.onSort(2, true);
-      this.settings.selectAllTitle = 'Select All';
-      this.settings.sortedByTitle = 'Sorted By';
+      this.settings.selectAllTitle = 'select all';
+      this.settings.sortedByTitle = 'sorted by';
+      this.settings.perPageTitle = 'per page';
       this.settings.dropDownClass = ['someClass'];
     });
   }
 
   public onLoadNext(start, perPage) {
     this.perPage.value = perPage;
-    this.perPage.text = perPage + ' ' + this.perPage.labelItems;
+    this.perPage.text = `${perPage} ${this.perPage.labelItems ? this.perPage.labelItems : ''}`;
     this.settings.perpage = perPage;
     this.settings.startIndex = start;
     this.settings.current = ( start / perPage) + 1;

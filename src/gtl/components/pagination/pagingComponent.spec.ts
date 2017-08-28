@@ -19,15 +19,17 @@ describe('paging component test', () =>  {
       expect(pagingCtrl).toBeDefined();
     });
 
-    it('should create non limited array pages', () => {
-      expect(pagingCtrl.updatePages(2).length).toBe(2);
+    it('should limit to total pages if bigger number of current is given', () => {
+      pagingCtrl.settings.current = 10;
+      pagingCtrl.onPageChange();
+      expect(onChangePage).toHaveBeenCalledWith({ pageNumber: 2 });
     });
 
     it('should create limited number of pages', () => {
       pagingCtrl.settings.total = 10;
       pagingCtrl.settings.current = 9;
-      expect(pagingCtrl.updatePages(10).length).toBe(6);
-      expect(angular.equals(pagingCtrl.pages, [4, 5, 6, 7, 8, 9])).toBeTruthy();
+      pagingCtrl.onPageChange();
+      expect(onChangePage).toHaveBeenCalledWith({ pageNumber: 9 });
     });
   });
 
@@ -53,30 +55,11 @@ describe('paging component test', () =>  {
     it('should create paging', () => {
       let pagination = compiledElement[0].querySelector('.pagination');
       expect(pagination).toBeDefined();
-      expect(pagination.querySelectorAll('li').length).toBe(scope.settings.total + 4);
+      expect(pagination.querySelectorAll('li').length).toBe(scope.settings.total + 3);
       expect(pagination.querySelector('li.fa-angle-double-left')).toBeDefined();
       expect(pagination.querySelector('li.fa-angle-left')).toBeDefined();
       expect(pagination.querySelector('li.fa-angle-double-right')).toBeDefined();
       expect(pagination.querySelector('li.fa-angle-right')).toBeDefined();
-    });
-
-    it('should change disabled items after selecting different page', () => {
-      let pagination = compiledElement[0].querySelector('.pagination');
-      let firstItem = pagination.querySelectorAll('li')[2];
-      let secondItem = pagination.querySelectorAll('li')[3];
-      expect(firstItem.querySelector('a').classList.contains('disabled')).toBeTruthy();
-      expect(secondItem.querySelector('a').classList.contains('disabled')).toBeFalsy();
-      scope.settings.current = 2;
-      scope.$digest();
-      expect(firstItem.querySelector('a').classList.contains('disabled')).toBeFalsy();
-      expect(secondItem.querySelector('a').classList.contains('disabled')).toBeTruthy();
-    });
-
-    it('should call on change page after clicking on page', () => {
-      let pagination = compiledElement[0].querySelector('.pagination');
-      let secondItem = pagination.querySelectorAll('li')[3];
-      secondItem.querySelector('a').click();
-      expect(onChangePage).toHaveBeenCalledWith(2);
     });
   });
 });

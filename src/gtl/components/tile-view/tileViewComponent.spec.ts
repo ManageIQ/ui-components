@@ -180,13 +180,11 @@ describe('tile component test', () =>  {
     });
 
     it('should show per page picker', () => {
-      let perPage = compiledElement[0].querySelector('.miq-per-page');
-      expect(perPage).toBeDefined();
-      expect(perPage.querySelectorAll('miq-toolbar-list li').length).toBe(1);
+      expect(compiledElement[0].querySelectorAll('miq-toolbar-list li').length).toBe(1);
     });
 
     it('should show paging at top', () => {
-      let paging = compiledElement[0].querySelectorAll('.miq-paging');
+      let paging = compiledElement[0].querySelectorAll('miq-paging');
       expect(paging.length).toBe(1);
     });
 

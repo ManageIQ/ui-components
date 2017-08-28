@@ -86,19 +86,16 @@ table.miq-table-with-footer { /* not currently used */
 
 /* Begin Grid View (Quad Icon) & Tile View Styling */
 
+.card-view-pf {
+  padding-left: 20px;
+}
+
 .miq-tile-section {
 
   .card .card-content {
     padding-right: 5px;
   }
 
-  div.miq-paging {
-    text-align: center;
-
-    ul {
-      margin-top: 0;
-    }
-  }
 }
 
 .miq-tile-view .card-view-pf { /* Styling for Cards in Tile & Grid Views  */
@@ -156,12 +153,14 @@ table.miq-table-with-footer { /* not currently used */
     width: 130px;
     height: 131px;
 
+    .card-check-box {
+      left: 4px !important;
+      top: 12px !important;
+    }
+
     .card-content {
       .miq-quadicon {
         display: inline-block;
-      }
-      .miq-tile-head {
-        margin-left: 20px;
       }
       a {
         word-wrap: break-word;
@@ -171,92 +170,6 @@ table.miq-table-with-footer { /* not currently used */
 }
 
 /* End Grid View (Quad Icon) & Tile View Styling */
-
-
-
-/* Begin paginator styling */
-
-.miq-select-all { /* styles "Select All" text and checkbox */
-
-  padding-right: 0;
-
-  input[type="checkbox"] {
-    margin: 0 4px 0;
-    vertical-align: middle;
-    position: relative;
-    top: -1px;
-  }
-}
-
-.miq-sort-items { /* styles "Sort by" dropdown */
-  padding-right: 0;
-
-  .sort-pf {
-    .uib-dropdown-menu {
-      max-height: 400px;
-      overflow-y: auto;
-    }
-    .uib-dropdown button {
-      max-width: 150px;
-      overflow: hidden;
-    }
-  }
-}
-
-.miq-pagination .miq-pager .miq-paging {
-  .disabled {
-    pointer-events: none;
-    cursor: not-allowed;
-    background-color: #fafafa !important;
-    background-image: none !important;
-    border-color: #d1d1d1 !important;
-    color: #8b8d8f !important;
-    opacity: 1;
-  }
-}
-
-.miq-pagination {
-  .miq-pager {
-    float: right;
-
-    .miq-per-page {
-      display: inline-block;
-      vertical-align: top;
-    }
-
-    .miq-paging {
-      display: inline-block;
-
-
-      ul li a {
-        cursor: pointer;
-      }
-    }
-  }
-}
-
-.miq-page-counter {
-  padding-top: 3px;
-}
-
-.miq-data-table {
-  .miq-paging {
-    text-align: center;
-
-    ul.pagination{
-      margin-top: 0;
-      margin-bottom: 10px;
-    }
-  }
-}
-
-
-.paginate_of b { /* required for demo page */
-  display: inline-block;
-}
-
-/* End pagination styling */
-
 
 
 /* Site switcher styling */
@@ -383,7 +296,7 @@ miq-fonticon-picker {
 .miq-dialog {
   .has-error {
     color: red;
-    
+
     .form-control {
       border-color: red;
     }
@@ -393,3 +306,457 @@ miq-fonticon-picker {
   }
 }
 /* end dialog control styling */
+
+
+/* Begin paginator styling */
+
+
+.pagination {
+  .disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    background-color: #fafafa !important;
+    background-image: none !important;
+    border-color: #d1d1d1 !important;
+    color: #8b8d8f !important;
+    opacity: 1;
+  }
+}
+
+
+.span-right-border{
+  border-right: 1px solid #d1d1d1; 
+  padding-right: 10px; 
+  margin-right: 10px !important;
+}
+
+.content-view-pf-pagination .form-group {
+  align-items: center;
+}
+.content-view-pf-pagination .form-group .per-page-label {
+  padding-left: 10px;
+}
+
+.pagination {
+  .page-selector {
+    span {
+      &, &:hover, &:active, &:focus, &:active:focus, &:hover:active {
+        box-shadow: initial;
+        border: 0;
+        background: initial;
+        padding-top: 0;
+      }
+    }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      text-align: right;
+      width: 35px;
+      -moz-appearance: textfield;
+    }
+  }
+}
+
+
+/* End pagination styling */
+
+.content-view-pf-pagination .form-group {
+  align-items: center;
+}
+.content-view-pf-pagination .form-group .per-page-label {
+  padding-left: 10px;
+}
+
+
+/* new Patternfly pagination code */.pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 1px;
+}
+.pagination > li {
+  display: inline;
+}
+.pagination > li > a,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 2px 6px;
+  line-height: 1.66666667;
+  text-decoration: none;
+  color: #0088ce;
+  background-color: #f5f5f5;
+  border: 1px solid #bbb;
+  margin-left: -1px;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  margin-left: 0;
+  border-bottom-left-radius: 1px;
+  border-top-left-radius: 1px;
+}
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-bottom-right-radius: 1px;
+  border-top-right-radius: 1px;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  z-index: 2;
+  color: #00659c;
+  background-color: #ededed;
+  border-color: #ddd;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  z-index: 3;
+  color: #fff;
+  background-color: #39a5dc;
+  border-color: #39a5dc;
+  cursor: default;
+}
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  color: #9c9c9c;
+  background-color: #fff;
+  border-color: #ddd;
+  cursor: not-allowed;
+}
+.pagination-lg > li > a,
+.pagination-lg > li > span {
+  padding: 6px 10px;
+  font-size: 14px;
+  line-height: 1.3333333;
+}
+.pagination-lg > li:first-child > a,
+.pagination-lg > li:first-child > span {
+  border-bottom-left-radius: 1px;
+  border-top-left-radius: 1px;
+}
+.pagination-lg > li:last-child > a,
+.pagination-lg > li:last-child > span {
+  border-bottom-right-radius: 1px;
+  border-top-right-radius: 1px;
+}
+.pagination-sm > li > a,
+.pagination-sm > li > span {
+  padding: 2px 6px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span {
+  border-bottom-left-radius: 1px;
+  border-top-left-radius: 1px;
+}
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span {
+  border-bottom-right-radius: 1px;
+  border-top-right-radius: 1px;
+}
+.pager {
+  padding-left: 0;
+  margin: 20px 0;
+  list-style: none;
+  text-align: center;
+}
+.pager li {
+  display: inline;
+}
+.pager li > a,
+.pager li > span {
+  display: inline-block;
+  padding: 5px 14px;
+  background-color: #f5f5f5;
+  border: 1px solid #bbb;
+  border-radius: 0;
+}
+.pager li > a:hover,
+.pager li > a:focus {
+  text-decoration: none;
+  background-color: #ededed;
+}
+.pager .next > a,
+.pager .next > span {
+  float: right;
+}
+.pager .previous > a,
+.pager .previous > span {
+  float: left;
+}
+.pager .disabled > a,
+.pager .disabled > a:hover,
+.pager .disabled > a:focus,
+.pager .disabled > span {
+  color: #8b8d8f;
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.pager li > a > .i,
+.pager li > span > .i {
+  font-size: 18px;
+  vertical-align: top;
+  margin: 2px 0;
+}
+.pager li a:active {
+  background-image: none;
+  box-shadow: inset 0 3px 5px rgba(3, 3, 3, 0.125);
+  outline: 0;
+}
+.pager .disabled > a,
+.pager .disabled > a:hover,
+.pager .disabled > a:focus,
+.pager .disabled > a:active,
+.pager .disabled > span {
+  background: #f5f5f5;
+  box-shadow: none;
+  color: #8b8d8f;
+  cursor: default;
+}
+.pager .next > a > .i,
+.pager .next > span > .i {
+  margin-left: 5px;
+}
+.pager .previous > a > .i,
+.pager .previous > span > .i {
+  margin-right: 5px;
+}
+.pager-sm li > a,
+.pager-sm li > span {
+  font-weight: 400;
+  line-height: 16px;
+  padding: 1px 10px;
+}
+.pager-sm li > a > .i,
+.pager-sm li > span > .i {
+  font-size: 12px;
+}
+.pagination > li > a,
+.pagination > li > span {
+  background-color: #f1f1f1;
+  background-image: linear-gradient(to bottom, #fafafa 0%, #ededed 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffafafa', endColorstr='#ffededed', GradientType=0);
+  border-color: #bbb;
+  color: #4d5258;
+  cursor: default;
+  font-weight: 600;
+  padding: 2px 10px;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus,
+.pagination > li > a:active,
+.pagination > li > span:active,
+.pagination > li > a.active,
+.pagination > li > span.active,
+.open .dropdown-toggle.pagination > li > a,
+.open .dropdown-toggle.pagination > li > span {
+  background-color: #f1f1f1;
+  background-image: none;
+  border-color: #bbb;
+  color: #4d5258;
+}
+.pagination > li > a:active,
+.pagination > li > span:active,
+.pagination > li > a.active,
+.pagination > li > span.active,
+.open .dropdown-toggle.pagination > li > a,
+.open .dropdown-toggle.pagination > li > span {
+  background-image: none;
+}
+.pagination > li > a:active:hover,
+.pagination > li > span:active:hover,
+.pagination > li > a.active:hover,
+.pagination > li > span.active:hover,
+.open .dropdown-toggle.pagination > li > a:hover,
+.open .dropdown-toggle.pagination > li > span:hover,
+.pagination > li > a:active:focus,
+.pagination > li > span:active:focus,
+.pagination > li > a.active:focus,
+.pagination > li > span.active:focus,
+.open .dropdown-toggle.pagination > li > a:focus,
+.open .dropdown-toggle.pagination > li > span:focus,
+.pagination > li > a:active.focus,
+.pagination > li > span:active.focus,
+.pagination > li > a.active.focus,
+.pagination > li > span.active.focus,
+.open .dropdown-toggle.pagination > li > a.focus,
+.open .dropdown-toggle.pagination > li > span.focus {
+  background-color: #e5e5e5;
+  border-color: #a9a9a9;
+}
+.pagination > li > a.disabled,
+.pagination > li > span.disabled,
+.pagination > li > a[disabled],
+.pagination > li > span[disabled],
+fieldset[disabled] .pagination > li > a,
+fieldset[disabled] .pagination > li > span,
+.pagination > li > a.disabled:hover,
+.pagination > li > span.disabled:hover,
+.pagination > li > a[disabled]:hover,
+.pagination > li > span[disabled]:hover,
+fieldset[disabled] .pagination > li > a:hover,
+fieldset[disabled] .pagination > li > span:hover,
+.pagination > li > a.disabled:focus,
+.pagination > li > span.disabled:focus,
+.pagination > li > a[disabled]:focus,
+.pagination > li > span[disabled]:focus,
+fieldset[disabled] .pagination > li > a:focus,
+fieldset[disabled] .pagination > li > span:focus,
+.pagination > li > a.disabled:active,
+.pagination > li > span.disabled:active,
+.pagination > li > a[disabled]:active,
+.pagination > li > span[disabled]:active,
+fieldset[disabled] .pagination > li > a:active,
+fieldset[disabled] .pagination > li > span:active,
+.pagination > li > a.disabled.active,
+.pagination > li > span.disabled.active,
+.pagination > li > a[disabled].active,
+.pagination > li > span[disabled].active,
+fieldset[disabled] .pagination > li > a.active,
+fieldset[disabled] .pagination > li > span.active {
+  background-color: #f1f1f1;
+  border-color: #bbb;
+}
+.pagination > li > a > .i,
+.pagination > li > span > .i {
+  font-size: 15px;
+  vertical-align: top;
+  margin: 2px 0;
+}
+.pagination > li > a:active,
+.pagination > li > span:active {
+  box-shadow: inset 0 2px 8px rgba(3, 3, 3, 0.2);
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  background-color: #f1f1f1;
+  border-color: #bbb;
+  box-shadow: inset 0 2px 8px rgba(3, 3, 3, 0.2);
+  color: #4d5258;
+  background-image: linear-gradient(to bottom, #fafafa 0%, #ededed 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffafafa', endColorstr='#ffededed', GradientType=0);
+}
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  box-shadow: none;
+  cursor: default;
+  background-image: linear-gradient(to bottom, #fafafa 0%, #ededed 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffafafa', endColorstr='#ffededed', GradientType=0);
+}
+.pagination-sm > li > a,
+.pagination-sm > li > span {
+  padding: 2px 6px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span {
+  border-bottom-left-radius: 1px;
+  border-top-left-radius: 1px;
+}
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span {
+  border-bottom-right-radius: 1px;
+  border-top-right-radius: 1px;
+}
+.pagination-sm > li > a,
+.pagination-sm > li > span {
+  font-weight: 400;
+}
+.pagination-sm > li > a > .i,
+.pagination-sm > li > span > .i {
+  font-size: 12px;
+  margin-top: 2px;
+}
+.content-view-pf-pagination {
+  background-color: #f5f5f5;
+  border: 1px solid #d1d1d1;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+}
+.content-view-pf-pagination.table-view-pf-pagination {
+  border-top: none;
+}
+.content-view-pf-pagination .form-group {
+  -ms-flex-align: baseline;
+      align-items: baseline;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+  float: left;
+  margin: 5px;
+}
+@supports (display: flex) {
+  .content-view-pf-pagination .form-group {
+    float: none;
+  }
+}
+.content-view-pf-pagination .form-group:last-child {
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  float: right;
+}
+@supports (display: flex) {
+  .content-view-pf-pagination .form-group:last-child {
+    float: none;
+  }
+}
+.content-view-pf-pagination .form-group .pagination-pf-pagesize.bootstrap-select.btn-group {
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 5px;
+  width: auto;
+}
+.content-view-pf-pagination .pagination-pf-page {
+  margin-left: 10px;
+  margin-right: 5px;
+  padding: 0 2px 2px;
+  text-align: right;
+  width: 2.5em;
+}
+.content-view-pf-pagination .pagination {
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 0 0 10px;
+}
+.content-view-pf-pagination .pagination a {
+  float: none;
+}
+@supports (display: flex) {
+  .content-view-pf-pagination .pagination a {
+    display: block;
+  }
+}

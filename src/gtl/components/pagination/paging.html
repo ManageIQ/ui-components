@@ -13,12 +13,13 @@
       <span class="i fa fa-angle-left"></span>
     </a>
   </li>
-  <li ng-repeat="page in pagingCtrl.updatePages(pagingCtrl.settings.total) track by $index">
-    <a ng-class="{disabled: pagingCtrl.settings.current === (page + 1)}"
-       href="javascript:void(0)"
-       ng-click="pagingCtrl.onChangePage({pageNumber: page + 1})">
-      {{page + 1}}
-    </a>
+  <li class="page-selector">
+    <span> <input type="number"
+                  ng-disabled="pagingCtrl.settings.total <= 1"
+                  ng-model="pagingCtrl.settings.current"
+                  ng-model-options="{updateOn : 'change blur'}"
+                  ng-change="pagingCtrl.onPageChange()">
+    <label>of {{pagingCtrl.settings.total}}</label></span>
   </li>
   <li>
     <a ng-class="{disabled: (pagingCtrl.settings.current) === pagingCtrl.settings.total}"

@@ -1,6 +1,6 @@
 <div class="miq-data-table">
   <div ng-if="tableCtrl.settings.isLoading" class="spinner spinner-lg"></div>
-  <div class="row miq-pagination"
+  <div class="miq-pagination"
        ng-if="tableCtrl.settings && tableCtrl.settings.sortBy && (tableCtrl.settings.isLoading || tableCtrl.rows.length !== 0)">
     <miq-pagination settings="tableCtrl.settings"
                     per-page="tableCtrl.perPage"

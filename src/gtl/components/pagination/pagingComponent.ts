@@ -10,29 +10,10 @@ export class PagingController {
   public settings: any;
   public pages: any;
   public onChangePage: (args: {pageNumber: any}) => void;
-  private MAX_PAGES = 6;
 
-  /**
-   * Public method for updating current paging, it will limit number of visible pages to `MAX_PAGES`.
-   * @memberof PagingController
-   * @function updatePages
-   * @param total number of all item's pages.
-   * @returns {any} array with page numbers which will be visible.
-   */
-  public updatePages(total) {
-    if (total > this.MAX_PAGES) {
-      let currentPage =
-        (this.settings.current < (this.settings.total - this.MAX_PAGES + 1)) ?
-          this.settings.current :
-          (this.settings.total - this.MAX_PAGES + 1);
-      this.pages = _.times(this.MAX_PAGES, item => (currentPage + item) - 1);
-    } else {
-      this.pages = new Array(total);
-      _.each(this.pages, (item, key) => {
-        this.pages[key] = key;
-      });
-    }
-    return this.pages;
+  public onPageChange() {
+    this.settings.current = this.settings.current > this.settings.total ? this.settings.total : this.settings.current;
+    this.onChangePage({pageNumber: this.settings.current});
   }
 }
 

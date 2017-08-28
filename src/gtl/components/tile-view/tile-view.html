@@ -1,6 +1,6 @@
 <div class="miq-tile-section">
     <div ng-if="tileCtrl.settings.isLoading" class="spinner spinner-lg"></div>
-    <div class="row miq-pagination"
+    <div class="miq-pagination"
          ng-if="tileCtrl.settings && tileCtrl.settings.sortBy && (tileCtrl.settings.isLoading || tileCtrl.rows.length !== 0)">
       <miq-pagination settings="tileCtrl.settings"
                       per-page="tileCtrl.perPage"
@@ -10,6 +10,7 @@
                       on-change-per-page="tileCtrl.perPageClick(item)"></miq-pagination>
     </div>
   <div pf-card-view
+       class="miq-sand-paper"
        config="tileCtrl.options"
        items="tileCtrl.rows"
        class="miq-tile-view"

@@ -1,0 +1,47 @@
+<div class="pagination content-view-pf-pagination" ng-if="!paginationCtrl.settings.hideSelect">
+
+  <div class="form-group">
+    <!-- Select all start -->
+    <span class="checkbox span-right-border" style="margin: 0 0 0 5px">
+      <label class="checkbox-inline">
+        <input type="checkbox"
+               ng-model="isChecked"
+               ng-click="paginationCtrl.onSelectAll({isSelected: isChecked})"
+               title="{{paginationCtrl.settings.selectAllTitle}}" />
+        {{paginationCtrl.settings.selectAllTitle}}
+      </label>
+    </span>
+    <!-- Select all end -->
+    <span>
+      <!-- Sort items by start -->
+      <miq-sort-items ng-if="paginationCtrl.settings.sortBy"
+                    sort-object="paginationCtrl.settings.sortBy"
+                    headers="paginationCtrl.settings.columns"
+                    drop-down-class="paginationCtrl.settings.dropDownClass"
+                    on-sort="paginationCtrl.onChangeSort({sortId: sortObject.colId, isAscending: isAscending})">
+      </miq-sort-items>
+      <!-- Sort items by end -->
+    </span>
+  </div>
+
+  <div class="form-group">
+    <!-- Per page start -->
+     <miq-toolbar-list on-item-click="paginationCtrl.onChangePerPage({item: item})"
+                    drop-down-class="paginationCtrl.settings.dropDownClass"
+                    toolbar-list="paginationCtrl.perPage"></miq-toolbar-list>
+    <!-- Per page end -->
+    <!-- Number of records start -->
+    <span class="per-page-label span-right-border">{{paginationCtrl.settings.perPageTitle}}</span>
+     <span ng-if="paginationCtrl.settings.items">
+      {{paginationCtrl.settings.translateTotalOf(paginationCtrl.settings.startIndex, paginationCtrl.settings.endIndex, paginationCtrl.settings.items)}}
+    </span>
+    <!-- Number of records end -->
+    <!-- Page chooser start -->
+    <span ng-if="paginationCtrl.settings.current">
+      <miq-paging settings="paginationCtrl.settings"
+                  on-change-page="paginationCtrl.onChangePage({pageNumber: pageNumber})" >
+      </miq-paging>
+    </span>
+    <!-- Page chooser end -->
+  </div>
+</div>

@@ -2,6 +2,8 @@ import * as ng from 'angular';
 
 export class TreeViewController {
   private tree;
+  private element;
+  private rendered : boolean = false;
 
   public name : string;
   public data;
@@ -14,37 +16,37 @@ export class TreeViewController {
   constructor(private $element : ng.IRootElementService, private $timeout : ng.ITimeoutService) {}
 
   public $onInit() {
-    let element = this.$element[0].querySelector('div.treeview');
-    this.renderTree(element).then(() => {
-      this.tree = ng.element(element).treeview(true);
+    this.element = ng.element(this.$element[0].querySelector('div.treeview'));
+
+    this.renderTree().then(() => {
+      this.tree = this.element.treeview(true);
+
+      // Initial node selection right after rendering
+      if (this.selected) {
+        this.selectNode(this.selected);
+      }
 
       this.tree.getNodes().forEach((node) => {
-        // Initial node selection right after rendering
-        if (this.selected && this.matchNode(node, this.selected)) {
-          this.selectNode(node);
-        }
-
         if (this.getTreeState(node) === !node.state.expanded) {
           this.tree.revealNode(node, {silent: true});
           this.tree.toggleNodeExpanded(node);
         }
       });
+
+      this.rendered = true;
     });
   }
 
   public $onChanges(changes) {
     // Prevent initial node selection before the tree is fully rendered
-    if (!changes.selected.isFirstChange() &&
-        changes.selected.previousValue !== undefined &&
-        changes.selected.currentValue !== undefined) {
-      let node = this.findNode(changes.selected.currentValue);
-      this.$timeout(() => this.selectNode(node));
+    if (!changes.selected.isFirstChange() && this.rendered && changes.selected.currentValue !== undefined) {
+      this.selectNode(changes.selected.currentValue);
     }
   }
 
-  private renderTree(element) {
+  private renderTree() {
     return new Promise((resolve) => {
-      ng.element(element).treeview({
+      this.element.treeview({
         data:            this.data,
         showImage:       true,
         expandIcon:      'fa fa-fw fa-angle-right',
@@ -63,16 +65,65 @@ export class TreeViewController {
   }
 
   private findNode(params) {
-    return this.tree.getNodes().find(node => this.matchNode(node, params));
-  }
-
-  private matchNode(node, params) {
-    return Object.keys(params)
+    return this.tree.getNodes().find(node => Object.keys(params)
       .map(param => node[param] === params[param])
-      .every(bool => bool);
+      .every(bool => bool)
+    );
   }
 
-  private selectNode(node) {
+  /*
+   * @function selectNode
+   * @param [Object] or Object
+   *
+   * This function is able to select a node that is not loaded in the tree yet.
+   * Simply provide an array of matchers instead of a single one. The matchers
+   * should hierarchically follow the structure above the node to be selected.
+   *
+   * The matched nodes will be expanded and lazily loaded one by one until the
+   * loop reaches the last node that will be simply selected instead.
+   */
+
+  private selectNode(select) {
+    let head, tail;
+    [head, tail] = TreeViewController.splitObject(select);
+
+    // Iterate through the nodes to be lazily expanded
+    tail.reduce((sum, value) => sum.then(() => new Promise((resolve, reject) => {
+      let node = this.findNode(value);
+      if (!node) { // Node not found, break the loop
+        return reject();
+      }
+      // No need for this step if the tree isn't lazily loadable
+      if (!node.lazyLoad) {
+        return resolve();
+      }
+
+      // The event handler needs to be named for future deregistering
+      let handler = (_event, exp) => {
+        if (exp.nodeId === node.nodeId) {
+          // Unregister itself after success
+          this.element.unbind('nodeExpanded', handler);
+          resolve();
+        }
+      };
+
+      this.element.on('nodeExpanded', handler);
+      this.tree.toggleNodeExpanded(node);
+    })), new Promise(nope => nope())).then(() => this.expandFinalNode(head));
+  }
+
+  private static splitObject(obj) {
+    let head = obj;
+    if (Array.isArray(obj)) {
+      head = obj.pop();
+    } else {
+      obj = [];
+    }
+    return [head, obj];
+  }
+
+  private expandFinalNode(obj) {
+    let node = this.findNode(obj);
     this.tree.revealNode(node, {silent: true});
     this.tree.selectNode(node, {silent: true});
     this.tree.expandNode(node);

@@ -41,8 +41,8 @@ export class TreeViewController {
         allowReselect:   this.reselect,
         preventUnselect: true,
         showBorders:     false,
-        onNodeExpanded:  this.setTreeState(true),
-        onNodeCollapsed: this.setTreeState(undefined),
+        onNodeExpanded:  this.storeNodeState(true),
+        onNodeCollapsed: this.storeNodeState(undefined),
         onNodeSelected:  (_event, node) => this.$timeout(() => this.onSelect({node: node})),
         lazyLoad:        (node, render) => this.$timeout(() => this.lazyLoad({node: node}).then(render)),
         onRendered:      () => this.$timeout(resolve)
@@ -134,19 +134,28 @@ export class TreeViewController {
     this.tree.expandNode(node);
   }
 
-  private setTreeState(state) {
+  private storeNodeState(state) {
     return (_event, node) => {
       // Do not set the tree state if not necessary
       if (!this.persist) {
         return;
       }
 
-      let store = JSON.parse(sessionStorage.getItem(`treeView-${this.name}`));
-      // Initialize the session storage object
-      if (!store) {
-        store = {};
+      if (state) {
+        // Build the path to the expanded node
+        state = [];
+        let item = node;
+
+        do {
+          let obj = {};
+          obj[this.persist] = item[this.persist];
+          state.unshift(obj);
+          item = this.tree.getParents(item)[0];
+        } while (item);
       }
-      // Save the third argument as the new node state
+
+      let store = JSON.parse(sessionStorage.getItem(`treeView-${this.name}`)) || {};
+      // Save the new node in the session storage
       store[node[this.persist]] = state;
       sessionStorage.setItem(`treeView-${this.name}`, JSON.stringify(store));
     };
@@ -158,7 +167,7 @@ export class TreeViewController {
     if (!store) {
       store = {};
     }
-    return store[node[this.persist]];
+    return Array.isArray(store[node[this.persist]]);
   }
 }
 

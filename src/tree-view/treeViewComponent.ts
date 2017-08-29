@@ -109,7 +109,7 @@ export class TreeViewController {
 
       this.element.on('nodeExpanded', handler);
       this.tree.toggleNodeExpanded(node);
-    })), new Promise(nope => nope())).then(() => this.expandFinalNode(head));
+    })), new Promise(nope => nope())).then(() => this.selectFinalNode(head));
   }
 
   private static splitObject(obj) {
@@ -122,7 +122,7 @@ export class TreeViewController {
     return [head, obj];
   }
 
-  private expandFinalNode(obj) {
+  private selectFinalNode(obj) {
     let node = this.findNode(obj);
     this.tree.revealNode(node, {silent: true});
     this.tree.selectNode(node, {silent: true});

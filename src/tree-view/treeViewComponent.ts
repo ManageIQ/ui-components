@@ -7,6 +7,7 @@ export class TreeViewController {
 
   public name : string;
   public data;
+  public persist : string;
   public selected;
   public reselect;
   public onSelect: (args: {node: any}) => void;
@@ -54,12 +55,15 @@ export class TreeViewController {
         this.selectNode(this.selected);
       }
 
-      this.tree.getNodes().forEach((node) => {
-        if (this.getTreeState(node) === !node.state.expanded) {
-          this.tree.revealNode(node, {silent: true});
-          this.tree.toggleNodeExpanded(node);
-        }
-      });
+      // Restore the tree if tree persistence is enabled
+      if (this.persist) {
+        this.tree.getNodes().forEach((node) => {
+          if (this.getTreeState(node) === !node.state.expanded) {
+            this.tree.revealNode(node, {silent: true});
+            this.tree.toggleNodeExpanded(node);
+          }
+        });
+      }
 
       this.rendered = true;
     });
@@ -132,24 +136,29 @@ export class TreeViewController {
 
   private setTreeState(state) {
     return (_event, node) => {
-      let persist = JSON.parse(sessionStorage.getItem(`treeView-${this.name}`));
+      // Do not set the tree state if not necessary
+      if (!this.persist) {
+        return;
+      }
+
+      let store = JSON.parse(sessionStorage.getItem(`treeView-${this.name}`));
       // Initialize the session storage object
-      if (!persist) {
-        persist = {};
+      if (!store) {
+        store = {};
       }
       // Save the third argument as the new node state
-      persist[node.key] = state;
-      sessionStorage.setItem(`treeView-${this.name}`, JSON.stringify(persist));
+      store[node[this.persist]] = state;
+      sessionStorage.setItem(`treeView-${this.name}`, JSON.stringify(store));
     };
   }
 
   private getTreeState(node) {
-    let persist = JSON.parse(sessionStorage.getItem(`treeView-${this.name}`));
+    let store = JSON.parse(sessionStorage.getItem(`treeView-${this.name}`));
     // Initialize the session storage object
-    if (!persist) {
-      persist = {};
+    if (!store) {
+      store = {};
     }
-    return persist[node.key];
+    return store[node[this.persist]];
   }
 }
 
@@ -159,6 +168,7 @@ export default class TreeView implements ng.IComponentOptions {
   public bindings: any = {
     name: '@',
     data: '<',
+    persist: '@',
     selected: '<',
     reselect: '<',
     onSelect: '&',

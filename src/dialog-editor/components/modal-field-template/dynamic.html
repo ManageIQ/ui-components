@@ -1,34 +1,63 @@
 <!-- any dynamic element -->
-<div pf-form-group pf-label="{{'Entry Point'|translate}}">
-  <!-- TODO: until treepicker and API for it are in the SSUI -->
-  <input ng-model="vm.modalData.resource_action.ae_namespace"/>
-</div>
-<div pf-form-group pf-label="{{'Show Refresh Button'|translate}}">
-  <input bs-switch
-         ng-model="vm.modalData.show_refresh_button"
-         type="checkbox"
-         switch-on-text="{{'Yes'|translate}}"
-         switch-off-text="{{'No'|translate }}"/>
-</div>
-<div pf-form-group pf-label="{{'Load Values on Init'|translate}}">
-  <input bs-switch
-         ng-model="vm.modalData.load_values_on_init"
-         switch-active="{{vm.modalData.show_refresh_button}}"
-         type="checkbox"
-         switch-on-text="{{'Yes'|translate}}"
-         switch-off-text="{{'No'|translate}}"/>
-</div>
-<div pf-form-group pf-label="{{'Auto refresh'|translate}}">
-  <input bs-switch
-         ng-model="vm.modalData.auto_refresh"
-         type="checkbox"
-         switch-on-text="{{'Yes'|translate}}"
-         switch-off-text="{{'No'|translate}}"/>
-</div>
-<div pf-form-group pf-label="{{'Auto refresh on change'|translate}}">
-  <input bs-switch
-         ng-model="vm.modalData.trigger_auto_refresh"
-         type="checkbox"
-         switch-on-text="{{'Yes'|translate}}"
-         switch-off-text="{{'No'|translate}}"/>
+<div class="row">
+  <div class="col-sm-6">
+    <div pf-form-group pf-label="{{'Entry Point'|translate}}">
+      <div class="input-group">
+       <input
+         ng-model="vm.modalData.resource_action.ae_namespace"
+         type="text"
+         class="form-control"
+       />
+        <span class="input-group-btn">
+          <button
+            ng-click="vm.openTreeView(!vm.showTreeView)"
+            class="btn btn-default"
+            type="button"
+          >
+            <i class="ff ff-load-balancer"></i>
+          </button>
+        </span>
+     </div>
+    </div>
+    <div ng-click="vm.openTreeView(false)">
+      <div pf-form-group pf-label="{{'Show Refresh Button'|translate}}">
+        <input bs-switch
+               ng-model="vm.modalData.show_refresh_button"
+               type="checkbox"
+               switch-on-text="{{'Yes'|translate}}"
+               switch-off-text="{{'No'|translate }}"/>
+      </div>
+      <div pf-form-group pf-label="{{'Load Values on Init'|translate}}">
+        <input bs-switch
+               ng-model="vm.modalData.load_values_on_init"
+               switch-active="{{vm.modalData.show_refresh_button}}"
+               type="checkbox"
+               switch-on-text="{{'Yes'|translate}}"
+               switch-off-text="{{'No'|translate}}"/>
+      </div>
+      <div pf-form-group pf-label="{{'Auto refresh'|translate}}">
+        <input bs-switch
+               ng-model="vm.modalData.auto_refresh"
+               type="checkbox"
+               switch-on-text="{{'Yes'|translate}}"
+               switch-off-text="{{'No'|translate}}"/>
+      </div>
+      <div pf-form-group pf-label="{{'Auto refresh on change'|translate}}">
+        <input bs-switch
+               ng-model="vm.modalData.trigger_auto_refresh"
+               type="checkbox"
+               switch-on-text="{{'Yes'|translate}}"
+               switch-off-text="{{'No'|translate}}"/>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <dialog-tree-wrapper
+      ng-show="vm.showTreeView"
+      resource-action="vm.modalData.resource_action"
+      handle-set-resource="vm.setResourceAction"
+      open-tree-view="vm.openTreeView"
+    ></dialog-tree-wrapper>
+  </div>
+  <div class="clearfix"></div>
 </div>

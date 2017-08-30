@@ -1,0 +1,10 @@
+<div>
+  <miq-tree-view
+    ng-if="vm.data"
+    name="automation-tree"
+    reselect="false"
+    data="{{ vm.data }}"
+    lazy-load="vm.lazyLoad(node)"
+    on-select="vm.getSelected(node)">
+  </miq-tree-view>
+</div>

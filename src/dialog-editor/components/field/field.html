@@ -76,15 +76,25 @@
     </select>
 
   </div>
-  <div class="col-sm-5">
-    <button type="button" class="close"
+  <div class="col-sm-5 editor-field-actions">
+    <button type="button" class="close hide"
+            ng-click="vm.removeField(
+              vm.service.activeTab,
+              vm.boxPosition,
+              vm.fieldData.position
+            )">
+            <span aria-hidden="true">
+              <i class="fa fa-times"></i>
+            </span>
+    </button>
+    <button type="button" class="close hide"
             ng-click="vm.editDialogModal(
               vm.service.activeTab,
               vm.boxPosition,
               vm.fieldData.position
             )">
       <span aria-hidden="true">
-        <i class="pficon-edit"></i>
+        <i class="pf pficon-edit"></i>
       </span>
     </button>
   </div>

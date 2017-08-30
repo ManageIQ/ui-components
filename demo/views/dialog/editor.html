@@ -1,17 +1,32 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <h2>General</h2>
-    <label>Dialog's name</label>
-    <input title="Dialog editor name" pf-label="Name">
-    <dialog-editor-tabs></dialog-editor-tabs>
-    <dialog-editor-boxes></dialog-editor-boxes>
   </div>
-  <div class="col-md-6">
-    <label>Dialog's description</label>
-    <textarea ng-model="vm.dialog.content[0].description" title="Dialog editor description"></textarea>
-    <h2>Toolbox</h2>
-    <div class="draggable">
-      <dialog-editor-field-static></dialog-editor-field-static>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <form class="form-horizontal">
+      <div pf-form-group pf-label="Dialog's name">
+        <input title="Dialog editor name">
+      </div>
+      <div pf-form-group pf-label="Dialog's description">
+        <textarea ng-model="vm.dialog.content[0].description"
+                  title="Dialog editor description">
+        </textarea>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="dialog-designer-container">
+  <div class="toolbox-container">
+    <div class="static-field-container" id="toolbox">
+      <div class="draggable">
+        <dialog-editor-field-static></dialog-editor-field-static>
+      </div>
+    </div>
+    <div class="editable-fields-container">
+      <dialog-editor-tabs></dialog-editor-tabs>
+      <dialog-editor-boxes></dialog-editor-boxes>
     </div>
   </div>
 </div>

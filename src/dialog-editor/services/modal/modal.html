@@ -2,7 +2,7 @@
   <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">
     <span class="pficon pficon-close"></span>
   </button>
-  <h4 class="modal-title" id="myModalLabel" translate>Edit Dialog field</h4>
+  <h4 class="modal-title" id="myModalLabel" translate>{{vm.modalTitle}}</h4>
 </div>
 
 <div class="modal-body">
@@ -111,9 +111,6 @@
 </div>
 
 <div class="modal-footer">
-  <button class="btn btn-danger"
-          type="button"
-          ng-click="vm.deleteField()" translate>Delete</button>
   <button type="button" class="btn btn-default" ng-click="$dismiss()" translate>Cancel</button>
   <button type="button"
           class="btn btn-primary"

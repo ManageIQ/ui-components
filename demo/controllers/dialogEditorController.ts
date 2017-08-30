@@ -6,10 +6,10 @@ export default class DialogEditorController {
     this.init({
       'content': [{
         'dialog_tabs': [{
-          'label': 'New tab',
+          'label': 'New Tab',
           'position': 0,
           'dialog_groups': [{
-            'label': 'New box',
+            'label': 'New Section',
             'position': 0,
             'dialog_fields': []
           }],

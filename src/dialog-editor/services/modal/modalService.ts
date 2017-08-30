@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 import * as ng from 'angular';
+import {__} from '../../../common/translateFunction';
 
 /**
  * Controller for the Dialog Editor modal service
@@ -12,6 +13,7 @@ class ModalController {
   public element: string;
   public categories: any;
   public dialog: any;
+  public modalTitle: string;
 
   /*@ngInject*/
   constructor(private dialogDetails: any,
@@ -35,9 +37,11 @@ class ModalController {
      && ng.isUndefined(this.dialog.boxId)
      && ng.isDefined(this.dialog.tabId)) {
       this.element = 'tab';
+      this.modalTitle = __('Edit Tab Details');
     } else if (ng.isUndefined(this.dialog.fieldId)
             && ng.isDefined(this.dialog.boxId)
             && ng.isDefined(this.dialog.tabId)) {
+      this.modalTitle = __('Edit Section Details');
       this.element = 'box';
     } else if (ng.isDefined(this.dialog.fieldId)
             && ng.isDefined(this.dialog.boxId)
@@ -80,6 +84,40 @@ class ModalController {
               this.categories = categories;
             }
           );
+        }
+        // set modal title
+        if (!this.modalData.dynamic) {
+          var titleLabel;
+
+          switch (this.modalData.type) {
+            case 'DialogFieldTextBox':
+              titleLabel = __('Text Box');
+              break;
+            case 'DialogFieldTextAreaBox':
+              titleLabel = __('Text Area');
+              break;
+            case 'DialogFieldCheckBox':
+              titleLabel = __('Check Box');
+              break;
+            case 'DialogFieldDropDownList':
+              titleLabel = __('Dropdown');
+              break;
+            case 'DialogFieldRadioButton':
+              titleLabel = __('Radio Button');
+              break;
+            case 'DialogFieldDateControl':
+              titleLabel = __('Datepicker');
+              break;
+            case 'DialogFieldDateTimeControl':
+              titleLabel = __('Timepicker');
+              break;
+            case 'DialogFieldTagControl':
+              titleLabel = __('Tag Control');
+              break;
+          }
+          this.modalTitle =  __('Edit ') + titleLabel +  __(' Field');
+        } else {
+          this.modalTitle = this.modalTitle = __('Edit Field');
         }
         break;
       default:

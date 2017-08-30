@@ -78,7 +78,6 @@ export class TreeViewController {
 
   /*
    * @function selectNode
-   * @param [Object] or Object
    *
    * This function is able to select a node that is not loaded in the tree yet.
    * Simply provide an array of matchers instead of a single one. The matchers
@@ -87,26 +86,48 @@ export class TreeViewController {
    * The matched nodes will be expanded and lazily loaded one by one until the
    * loop reaches the last node that will be simply selected instead.
    */
+  private selectNode(tail) {
+    let head = tail;
+    if (Array.isArray(tail)) {
+      head = tail.pop();
+    } else {
+      tail = [];
+    }
 
-  private selectNode(select) {
-    let head, tail;
-    [head, tail] = TreeViewController.splitObject(select);
+    TreeViewController.lazyTraverse(
+      head,
+      this.selectSingleNode.bind(this),
+      tail,
+      this.lazyExpandNode.bind(this)
+    );
+  }
 
-    // Iterate through the nodes to be lazily expanded
-    tail.reduce((sum, value) => sum.then(() => new Promise((resolve, reject) => {
-      let node = this.findNode(value);
-      if (!node) { // Node not found, break the loop
+  /*
+   * function lazyExpandNode
+   *
+   * This function returns with a lambda that attempts to expand the node that
+   * matches the `obj` argument. This resulting lambda is intended for use as
+   * a body of an ES6 Promise as it expects the `resolve` and `reject` methods
+   * as its arguments. It makes sure that the children of the node are loaded
+   * before resolving the promise.
+   */
+  private lazyExpandNode(obj) {
+    return (resolve, reject) => {
+      let node = this.findNode(obj);
+
+      // Node not found
+      if (!node) {
         return reject();
       }
-      // No need for this step if the tree isn't lazily loadable
+      // No need to expand if the node has no children
       if (!node.lazyLoad) {
         return resolve();
       }
 
-      // The event handler needs to be named for future deregistering
+      // The event handler needs to be named for its future deregister
       let handler = (_event, exp) => {
         if (exp.nodeId === node.nodeId) {
-          // Unregister itself after success
+          // Deregister itself after success
           this.element.unbind('nodeExpanded', handler);
           resolve();
         }
@@ -114,20 +135,10 @@ export class TreeViewController {
 
       this.element.on('nodeExpanded', handler);
       this.tree.toggleNodeExpanded(node);
-    })), new Promise(nope => nope())).then(() => this.selectFinalNode(head));
+    };
   }
 
-  private static splitObject(obj) {
-    let head = obj;
-    if (Array.isArray(obj)) {
-      head = obj.pop();
-    } else {
-      obj = [];
-    }
-    return [head, obj];
-  }
-
-  private selectFinalNode(obj) {
+  private selectSingleNode(obj) {
     let node = this.findNode(obj);
     this.tree.revealNode(node, {silent: true});
     this.tree.selectNode(node, {silent: true});
@@ -168,6 +179,18 @@ export class TreeViewController {
       store = {};
     }
     return Array.isArray(store[node[this.persist]]);
+  }
+
+  /*
+   * @function lazyTraverse
+   *
+   * Reduces `tail` into a chain of promises with `tailF` as the body of the promise.
+   * An iteration step will always depend on the promise created in the previous one.
+   * Finally the `headF` function is called on `head` after resolving all promises.
+   */
+  private static lazyTraverse(head : any, headF : Function, tail : Array<any>, tailF : Function) {
+    const emptyPromise = new Promise(nope => nope());
+    tail.reduce((sum, value) => sum.then(() => new Promise(tailF(value))), emptyPromise).then(() => headF(head));
   }
 }
 

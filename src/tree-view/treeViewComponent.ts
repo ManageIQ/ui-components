@@ -1,4 +1,5 @@
 import * as ng from 'angular';
+import * as _ from 'lodash';
 
 export class TreeViewController {
   private tree;
@@ -57,12 +58,7 @@ export class TreeViewController {
 
       // Restore the tree if tree persistence is enabled
       if (this.persist) {
-        this.tree.getNodes().forEach((node) => {
-          if (this.getTreeState(node) === !node.state.expanded) {
-            this.tree.revealNode(node, {silent: true});
-            this.tree.toggleNodeExpanded(node);
-          }
-        });
+        this.loadTreeState();
       }
 
       this.rendered = true;
@@ -145,6 +141,12 @@ export class TreeViewController {
     this.tree.expandNode(node);
   }
 
+  private expandSingleNode(obj) {
+    let node = this.findNode(obj);
+    this.tree.revealNode(node, {silent: true});
+    this.tree.expandNode(node);
+  }
+
   private storeNodeState(state) {
     return (_event, node) => {
       // Do not set the tree state if not necessary
@@ -155,14 +157,13 @@ export class TreeViewController {
       if (state) {
         // Build the path to the expanded node
         state = [];
-        let item = node;
-
-        do {
+        let item = this.tree.getParents(node)[0];
+        while (item) {
           let obj = {};
           obj[this.persist] = item[this.persist];
           state.unshift(obj);
           item = this.tree.getParents(item)[0];
-        } while (item);
+        }
       }
 
       let store = JSON.parse(sessionStorage.getItem(`treeView-${this.name}`)) || {};
@@ -172,13 +173,30 @@ export class TreeViewController {
     };
   }
 
-  private getTreeState(node) {
-    let store = JSON.parse(sessionStorage.getItem(`treeView-${this.name}`));
-    // Initialize the session storage object
-    if (!store) {
-      store = {};
-    }
-    return Array.isArray(store[node[this.persist]]);
+  private loadTreeState() {
+    let store = JSON.parse(sessionStorage.getItem(`treeView-${this.name}`)) || {};
+    // Create a list of store keys that should be ignored
+    let blacklist = _.flatten(Object.keys(store)
+                      .map(key => store[key]))
+                      .map(obj => obj[this.persist]);
+
+    Object.keys(store).forEach(key => {
+        // Ignore the blacklisted items
+        if (_.includes(blacklist, key)) {
+          return;
+        }
+
+        let obj = {};
+        obj[this.persist] = key;
+
+        TreeViewController.lazyTraverse(
+          obj,
+          this.expandSingleNode.bind(this),
+          store[key],
+          this.lazyExpandNode.bind(this)
+        );
+      }
+    );
   }
 
   /*

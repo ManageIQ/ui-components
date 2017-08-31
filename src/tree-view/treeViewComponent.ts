@@ -115,8 +115,9 @@ export class TreeViewController {
       if (!node) {
         return reject();
       }
-      // No need to expand if the node has no children
+      // No need to wait if the node is not lazy
       if (!node.lazyLoad) {
+        this.tree.expandNode(node);
         return resolve();
       }
 

@@ -92,7 +92,11 @@ export default class AvailableComponentsService {
         new AvailableComponent('tree-view',
           'TreeView',
           '/tree-view',
-          require('./../views/tree-view/basic.html'), 'demoTreeView as vm')
+          require('./../views/tree-view/basic.html'), 'demoTreeView as vm'),
+        new AvailableComponent('tree-selector',
+          'TreeSelector',
+          '/tree-selector',
+          require('./../views/tree-view/tree-selector.html'), 'demoTreeSelector as vm')
       ])
     ];
   }

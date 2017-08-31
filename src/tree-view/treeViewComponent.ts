@@ -54,6 +54,7 @@ export class TreeViewController {
         loadingIcon:     'fa fa-fw fa-spinner fa-pulse',
         levels:          1,
         allowReselect:   this.reselect,
+        preventUnselect: true,
         showBorders:     false,
         onNodeExpanded:  this.setTreeState(true),
         onNodeCollapsed: this.setTreeState(false),

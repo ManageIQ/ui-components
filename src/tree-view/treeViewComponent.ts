@@ -15,37 +15,21 @@ export class TreeViewController {
   /*@ngInject*/
   constructor(private $element : ng.IRootElementService, private $timeout : ng.ITimeoutService) {}
 
-  public $onInit() {
-    this.element = ng.element(this.$element[0].querySelector('div.treeview'));
-
-    this.renderTree().then(() => {
-      this.tree = this.element.treeview(true);
-
-      // Initial node selection right after rendering
-      if (this.selected) {
-        this.selectNode(this.selected);
-      }
-
-      this.tree.getNodes().forEach((node) => {
-        if (this.getTreeState(node) === !node.state.expanded) {
-          this.tree.revealNode(node, {silent: true});
-          this.tree.toggleNodeExpanded(node);
-        }
-      });
-
-      this.rendered = true;
-    });
-  }
-
   public $onChanges(changes) {
+    // Render the tree after the data has been sent for the first time
+    if (changes.data && !this.rendered && changes.data.currentValue !== undefined) {
+      this.element = ng.element(this.$element[0].querySelector('div.treeview'));
+      this.renderTree();
+    }
+
     // Prevent initial node selection before the tree is fully rendered
-    if (!changes.selected.isFirstChange() && this.rendered && changes.selected.currentValue !== undefined) {
+    if (this.rendered && !changes.selected.isFirstChange() && changes.selected.currentValue !== undefined) {
       this.selectNode(changes.selected.currentValue);
     }
   }
 
   private renderTree() {
-    return new Promise((resolve) => {
+    new Promise((resolve) => {
       this.element.treeview({
         data:            this.data,
         showImage:       true,
@@ -62,6 +46,22 @@ export class TreeViewController {
         lazyLoad:        (node, render) => this.$timeout(() => this.lazyLoad({node: node}).then(render)),
         onRendered:      () => this.$timeout(resolve)
       });
+    }).then(() => {
+      this.tree = this.element.treeview(true);
+
+      // Initial node selection right after rendering
+      if (this.selected) {
+        this.selectNode(this.selected);
+      }
+
+      this.tree.getNodes().forEach((node) => {
+        if (this.getTreeState(node) === !node.state.expanded) {
+          this.tree.revealNode(node, {silent: true});
+          this.tree.toggleNodeExpanded(node);
+        }
+      });
+
+      this.rendered = true;
     });
   }
 

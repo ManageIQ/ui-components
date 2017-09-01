@@ -7,7 +7,7 @@ export default class DialogDataService {
   /**
    * Sets up and configures properties for a dialog field
    * @memberof DialogDataService
-   * @function setData
+   * @function setupField
    * @param data {any} This is a object that is all the information for a particular dialog field
    *
    **/

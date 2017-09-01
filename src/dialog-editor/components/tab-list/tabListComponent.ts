@@ -36,7 +36,7 @@ class TabListController {
       helper: 'clone',
       revert: 50,
       stop: (e: any, ui: any) => {
-        let sortedTab = ng.element(ui.item).scope().$parent;
+        let sortedTab: any = ng.element(ui.item).scope().$parent;
         let tabList = sortedTab.vm.tabList;
         this.DialogEditor.updatePositions(tabList);
         let activeTab: any = _.find(tabList, {active: true});

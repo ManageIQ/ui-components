@@ -5,7 +5,7 @@ export default class DialogValidationService {
   public invalid: any = {};
 
   /** @ngInject */
-  constructor(private DialogEditor: any) {
+  constructor() {
   }
 
   /**
@@ -13,7 +13,7 @@ export default class DialogValidationService {
    * @memberof DialogValidationService
    * @function dialogIsValid
    */
-  public dialogIsValid() {
+  public dialogIsValid(dialogData: any) {
     let validators = {
       dialog: [
         dialog => ({ status: ! _.isEmpty(dialog.label),
@@ -50,7 +50,7 @@ export default class DialogValidationService {
       return validation.status;
     };
 
-    return _.every(this.DialogEditor.data.content, dialog =>
+    return _.every(dialogData, dialog =>
       _.every(validators.dialog, f => validate(f, dialog)) &&
       _.every((<any>dialog).dialog_tabs, tab =>
         _.every(validators.tabs, f => validate(f, tab)) &&

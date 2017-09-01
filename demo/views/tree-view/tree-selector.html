@@ -1,6 +1,6 @@
 <h2>Selected node: <label>{{vm.selectedValue}}</label></h2>
 <button ng-click="vm.openTreeView(!vm.showTree)">Toggle tree</button>
-<tree-selector
+<miq-tree-selector
   ng-show="vm.showTree"
   name="tree-selector"
   data="vm.data"
@@ -9,4 +9,4 @@
   on-select="vm.handleSelected(node)"
   lazy-load="vm.getData"
   >
-</tree-selector>
+</miq-tree-selector>

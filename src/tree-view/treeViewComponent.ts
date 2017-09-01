@@ -17,24 +17,7 @@ export class TreeViewController {
 
   public $onInit() {
     this.element = ng.element(this.$element[0].querySelector('div.treeview'));
-
-    this.renderTree().then(() => {
-      this.tree = this.element.treeview(true);
-
-      // Initial node selection right after rendering
-      if (this.selected) {
-        this.selectNode(this.selected);
-      }
-
-      this.tree.getNodes().forEach((node) => {
-        if (this.getTreeState(node) === !node.state.expanded) {
-          this.tree.revealNode(node, {silent: true});
-          this.tree.toggleNodeExpanded(node);
-        }
-      });
-
-      this.rendered = true;
-    });
+    this.renderTree();
   }
 
   public $onChanges(changes) {
@@ -45,7 +28,7 @@ export class TreeViewController {
   }
 
   private renderTree() {
-    return new Promise((resolve) => {
+    new Promise((resolve) => {
       this.element.treeview({
         data:            this.data,
         showImage:       true,
@@ -62,6 +45,22 @@ export class TreeViewController {
         lazyLoad:        (node, render) => this.$timeout(() => this.lazyLoad({node: node}).then(render)),
         onRendered:      () => this.$timeout(resolve)
       });
+    }).then(() => {
+      this.tree = this.element.treeview(true);
+
+      // Initial node selection right after rendering
+      if (this.selected) {
+        this.selectNode(this.selected);
+      }
+
+      this.tree.getNodes().forEach((node) => {
+        if (this.getTreeState(node) === !node.state.expanded) {
+          this.tree.revealNode(node, {silent: true});
+          this.tree.toggleNodeExpanded(node);
+        }
+      });
+
+      this.rendered = true;
     });
   }
 

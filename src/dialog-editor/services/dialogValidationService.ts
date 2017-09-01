@@ -3,18 +3,11 @@ import * as _ from 'lodash';
 
 export default class DialogValidationService {
   public invalid: any = {};
+  private validators: any = {};
 
   /** @ngInject */
   constructor() {
-  }
-
-  /**
-   * Run validations across each dialog elements.
-   * @memberof DialogValidationService
-   * @function dialogIsValid
-   */
-  public dialogIsValid(dialogData: any) {
-    let validators = {
+    this.validators = {
       dialog: [
         dialog => ({ status: ! _.isEmpty(dialog.label),
                      errorMessage: __('Dialog needs to have a label') }),
@@ -41,6 +34,14 @@ export default class DialogValidationService {
       ]
     };
 
+  }
+
+  /**
+   * Run validations across each dialog elements.
+   * @memberof DialogValidationService
+   * @function dialogIsValid
+   */
+  public dialogIsValid(dialogData: any) {
     const self = this;
     let validate = (f, item) => {
       let validation = f(item);
@@ -51,13 +52,13 @@ export default class DialogValidationService {
     };
 
     return _.every(dialogData, dialog =>
-      _.every(validators.dialog, f => validate(f, dialog)) &&
+      _.every(this.validators.dialog, f => validate(f, dialog)) &&
       _.every((<any>dialog).dialog_tabs, tab =>
-        _.every(validators.tabs, f => validate(f, tab)) &&
+        _.every(this.validators.tabs, f => validate(f, tab)) &&
         _.every((<any>tab).dialog_groups, group =>
-          _.every(validators.groups, f => validate(f, group)) &&
+          _.every(this.validators.groups, f => validate(f, group)) &&
           _.every((<any>group).dialog_fields, field =>
-            _.every(validators.fields, f => validate(f, field))
+            _.every(this.validators.fields, f => validate(f, field))
           )
         )
       )

@@ -7,6 +7,18 @@ import * as _ from 'lodash';
  */
 class ModalFieldController {
   public modalData: any;
+
+  /*@ngInject*/
+  constructor(private $scope) {
+  }
+
+  public $onInit() {
+    this.$scope.$watch('vm.modalData.options.force_multi_value', () => {
+      if (this.modalData.options.force_multi_value) {
+        this.modalData.default_value = [];
+      }
+    });
+  }
 }
 
 /**
@@ -25,6 +37,7 @@ export default class ModalFieldTemplate {
   /*@ngInject*/
   public template = ($element: any, $attrs: any) => require(`./${$attrs.template}`);
   public scope: boolean = true;
+  public controller = ModalFieldController;
   public controllerAs: string = 'vm';
   public bindings: any = {
     modalData: '=',

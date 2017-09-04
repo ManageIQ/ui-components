@@ -1,4 +1,4 @@
-<!-- tag-contorl -->
+<!-- radio button -->
 <div pf-form-group pf-label="{{'Required'|translate}}">
   <input bs-switch
          ng-model="vm.modalData.required"
@@ -27,45 +27,55 @@
          switch-on-text="{{'Yes'|translate}}"
          switch-off-text="{{'No'|translate}}">
 </div>
-<div pf-form-group pf-label="{{'Category'|translate}}">
-  <select class="form-control" pf-select
-          ng-model="vm.modalData.options.category_id"
-          ng-options="category.id.toString() as category.description for category in vm.categories.resources">
-    <option selected="selected" value="" translate>None</option>
-  </select>
-</div>
-<div pf-form-group pf-label="{{'Single value'|translate}}">
+<div pf-form-group pf-label="{{'Multiselect'|translate}}">
   <input bs-switch
-         ng-model="vm.modalData.options.force_single_value"
+         ng-model="vm.modalData.options.force_multi_value"
          type="checkbox"
          switch-on-text="{{'Yes'|translate}}"
          switch-off-text="{{'No'|translate}}">
 </div>
-<div pf-form-group pf-label="{{'Value type'|translate}}">
+<div pf-form-group pf-label="{{'Default value'|translate}}"
+     ng-if="!vm.modalData.options.force_multi_value">
   <select class="form-control" pf-select
-          ng-model="vm.modalData.data_type">
+          ng-model="vm.modalData.default_value"
+          ng-options="entry as entry[0] for entry in vm.modalData.values">
+    <option selected="selected" value="" translate>None</option>
+  </select>
+</div>
+<div pf-form-group pf-label="{{'Default value'|translate}}"
+     ng-if="vm.modalData.options.force_multi_value">
+  <select class="form-control" multiple pf-select
+          ng-model="vm.modalData.default_value"
+          ng-options="entry as entry[0] for entry in vm.modalData.values">
+    <option selected="selected" value="" translate>None</option>
+  </select>
+</div>
+<div pf-form-group pf-label="{{'Value type'|translate}}">
+  <select class="form-control" pf-select ng-model="vm.modalData.data_type">
     <option value="integer" translate>Integer</option>
     <option selected="selected" value="string" translate>String</option>
   </select>
 </div>
 <div pf-form-group pf-label="{{'Sort by'|translate}}">
-  <select class="form-control" pf-select
-          ng-model="vm.modalData.options.sort_by">
+  <select class="form-control" pf-select ng-model="vm.modalData.options.sort_by">
     <option value="none" translate>None</option>
     <option value="description" translate>Description</option>
     <option value="value" translate>Value</option>
   </select>
 </div>
 <div pf-form-group pf-label="{{'Sort order'|translate}}">
-  <select class="form-control" pf-select
-          ng-model="vm.modalData.options.sort_order">
+  <select class="form-control" pf-select ng-model="vm.modalData.options.sort_order">
     <option selected="selected" value="ascending" translate>Ascending</option>
     <option value="descending" translate>Descending</option>
   </select>
 </div>
 <div pf-form-group class="form-inline" pf-label="{{'Entries'|translate}}" required>
-  <div ng-repeat="entry in vm.currentCategoryEntries().children">
+  <div ng-repeat="entry in vm.modalData.values">
     <input id="label" name="label"
-           ng-model="entry.description" type="text" placeholder="Key" readonly/>
+           ng-model="entry[0]" type="text" placeholder="Key" required/>
+    <input id="label" name="label"
+           ng-model="entry[1]" type="text" placeholder="Value" required/>
+    <a ng-click='vm.removeEntry(entry)'><i class='pficon-close'></i></a>
   </div>
+  <a ng-click='vm.addEntry()'><i class='pficon-add-circle-o'></i></a>
 </div>

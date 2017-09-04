@@ -5,7 +5,6 @@ export default class DialogValidationService {
   public invalid: any = {};
   private validators: any = {};
 
-  /** @ngInject */
   constructor() {
     this.validators = {
       dialog: [
@@ -31,9 +30,8 @@ export default class DialogValidationService {
                     errorMessage: __('Dialog element needs to have a name') }),
         field => ({ status: ! _.isEmpty(field.label),
                     errorMessage: __('Dialog element needs to have a label') })
-      ]
+      ],
     };
-
   }
 
   /**

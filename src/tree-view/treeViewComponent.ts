@@ -36,6 +36,7 @@ export class TreeViewController {
    */
   private renderTree() {
     this.element = ng.element(this.$element[0].querySelector('div.treeview'));
+    this.element.empty();
 
     new Promise((resolve) => {
       this.element.treeview({

@@ -1,4 +1,5 @@
 import * as ng from 'angular';
+import * as _ from 'lodash';
 
 export class TreeViewController {
   private tree;
@@ -7,6 +8,7 @@ export class TreeViewController {
 
   public name : string;
   public data;
+  public persist : string;
   public selected;
   public reselect;
   public onSelect: (args: {node: any}) => void;
@@ -40,8 +42,8 @@ export class TreeViewController {
         allowReselect:   this.reselect,
         preventUnselect: true,
         showBorders:     false,
-        onNodeExpanded:  this.setTreeState(true),
-        onNodeCollapsed: this.setTreeState(false),
+        onNodeExpanded:  this.storeNodeState(true),
+        onNodeCollapsed: this.storeNodeState(undefined),
         onNodeSelected:  (_event, node) => this.$timeout(() => this.onSelect({node: node})),
         lazyLoad:        (node, render) => this.$timeout(() => this.lazyLoad({node: node}).then(render)),
         onRendered:      () => this.$timeout(resolve)
@@ -54,12 +56,10 @@ export class TreeViewController {
         this.selectNode(this.selected);
       }
 
-      this.tree.getNodes().forEach((node) => {
-        if (this.getTreeState(node) === !node.state.expanded) {
-          this.tree.revealNode(node, {silent: true});
-          this.tree.toggleNodeExpanded(node);
-        }
-      });
+      // Restore the tree if tree persistence is enabled
+      if (this.persist) {
+        this.loadTreeState();
+      }
 
       this.rendered = true;
     });
@@ -74,7 +74,6 @@ export class TreeViewController {
 
   /*
    * @function selectNode
-   * @param [Object] or Object
    *
    * This function is able to select a node that is not loaded in the tree yet.
    * Simply provide an array of matchers instead of a single one. The matchers
@@ -83,26 +82,49 @@ export class TreeViewController {
    * The matched nodes will be expanded and lazily loaded one by one until the
    * loop reaches the last node that will be simply selected instead.
    */
+  private selectNode(tail) {
+    let head = tail;
+    if (Array.isArray(tail)) {
+      head = tail.pop();
+    } else {
+      tail = [];
+    }
 
-  private selectNode(select) {
-    let head, tail;
-    [head, tail] = TreeViewController.splitObject(select);
+    TreeViewController.lazyTraverse(
+      head,
+      this.selectSingleNode.bind(this),
+      tail,
+      this.lazyExpandNode.bind(this)
+    );
+  }
 
-    // Iterate through the nodes to be lazily expanded
-    tail.reduce((sum, value) => sum.then(() => new Promise((resolve, reject) => {
-      let node = this.findNode(value);
-      if (!node) { // Node not found, break the loop
+  /*
+   * function lazyExpandNode
+   *
+   * This function returns with a lambda that attempts to expand the node that
+   * matches the `obj` argument. This resulting lambda is intended for use as
+   * a body of an ES6 Promise as it expects the `resolve` and `reject` methods
+   * as its arguments. It makes sure that the children of the node are loaded
+   * before resolving the promise.
+   */
+  private lazyExpandNode(obj) {
+    return (resolve, reject) => {
+      let node = this.findNode(obj);
+
+      // Node not found
+      if (!node) {
         return reject();
       }
-      // No need for this step if the tree isn't lazily loadable
+      // No need to wait if the node is not lazy
       if (!node.lazyLoad) {
+        this.tree.expandNode(node);
         return resolve();
       }
 
-      // The event handler needs to be named for future deregistering
+      // The event handler needs to be named for its future deregister
       let handler = (_event, exp) => {
         if (exp.nodeId === node.nodeId) {
-          // Unregister itself after success
+          // Deregister itself after success
           this.element.unbind('nodeExpanded', handler);
           resolve();
         }
@@ -110,46 +132,84 @@ export class TreeViewController {
 
       this.element.on('nodeExpanded', handler);
       this.tree.toggleNodeExpanded(node);
-    })), new Promise(nope => nope())).then(() => this.selectFinalNode(head));
+    };
   }
 
-  private static splitObject(obj) {
-    let head = obj;
-    if (Array.isArray(obj)) {
-      head = obj.pop();
-    } else {
-      obj = [];
-    }
-    return [head, obj];
-  }
-
-  private selectFinalNode(obj) {
+  private selectSingleNode(obj) {
     let node = this.findNode(obj);
     this.tree.revealNode(node, {silent: true});
     this.tree.selectNode(node, {silent: true});
     this.tree.expandNode(node);
   }
 
-  private setTreeState(state) {
+  private expandSingleNode(obj) {
+    let node = this.findNode(obj);
+    this.tree.revealNode(node, {silent: true});
+    this.tree.expandNode(node);
+  }
+
+  private storeNodeState(state) {
     return (_event, node) => {
-      let persist = JSON.parse(sessionStorage.getItem(`treeView-${this.name}`));
-      // Initialize the session storage object
-      if (!persist) {
-        persist = {};
+      // Do not set the tree state if not necessary
+      if (!this.persist) {
+        return;
       }
-      // Save the third argument as the new node state
-      persist[node.key] = state;
-      sessionStorage.setItem(`treeView-${this.name}`, JSON.stringify(persist));
+
+      if (state) {
+        // Build the path to the expanded node
+        state = [];
+        let item = this.tree.getParents(node)[0];
+        while (item) {
+          let obj = {};
+          obj[this.persist] = item[this.persist];
+          state.unshift(obj);
+          item = this.tree.getParents(item)[0];
+        }
+      }
+
+      let store = JSON.parse(sessionStorage.getItem(`treeView-${this.name}`)) || {};
+      // Save the new node in the session storage
+      store[node[this.persist]] = state;
+      sessionStorage.setItem(`treeView-${this.name}`, JSON.stringify(store));
     };
   }
 
-  private getTreeState(node) {
-    let persist = JSON.parse(sessionStorage.getItem(`treeView-${this.name}`));
-    // Initialize the session storage object
-    if (!persist) {
-      persist = {};
-    }
-    return persist[node.key];
+  private loadTreeState() {
+    let store = JSON.parse(sessionStorage.getItem(`treeView-${this.name}`)) || {};
+    // Create a list of store keys that should be ignored
+    let blacklist = _.flatten(Object.keys(store)
+                      .map(key => store[key]))
+                      .map(obj => obj[this.persist]);
+
+    Object.keys(store).forEach(key => {
+        // Ignore the blacklisted items
+        if (_.includes(blacklist, key)) {
+          return;
+        }
+
+        let obj = {};
+        obj[this.persist] = key;
+
+        TreeViewController.lazyTraverse(
+          obj,
+          this.expandSingleNode.bind(this),
+          store[key],
+          this.lazyExpandNode.bind(this)
+        );
+      }
+    );
+  }
+
+  /*
+   * @function lazyTraverse
+   *
+   * Reduces `tail` into a chain of promises with `tailF` as the body of the promise.
+   * An iteration step will always depend on the promise created in the previous one.
+   * Finally the `headF` function is called on `head` after resolving all promises.
+   */
+  private static lazyTraverse(head : any, headF : Function, tail : Array<any>, tailF : Function) {
+    const emptyPromise = new Promise(nope => nope());
+    tail.reduce((sum, value) => sum.then(() => new Promise(tailF(value))), emptyPromise).then(() => headF(head));
   }
 }
 
@@ -159,6 +219,7 @@ export default class TreeView implements ng.IComponentOptions {
   public bindings: any = {
     name: '@',
     data: '<',
+    persist: '@',
     selected: '<',
     reselect: '<',
     onSelect: '&',

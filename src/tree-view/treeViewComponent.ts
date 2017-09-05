@@ -18,7 +18,6 @@ export class TreeViewController {
   public $onChanges(changes) {
     // Render the tree after the data has been sent for the first time
     if (changes.data && !this.rendered && changes.data.currentValue !== undefined) {
-      this.element = ng.element(this.$element[0].querySelector('div.treeview'));
       this.renderTree();
     }
 
@@ -28,7 +27,16 @@ export class TreeViewController {
     }
   }
 
+  /*
+   * @function renderTree
+   *
+   * This function searches for the `<div class='treeview'>` element in the
+   * template and renders the treeview into it with the `data` attribute of
+   * the component.
+   */
   private renderTree() {
+    this.element = ng.element(this.$element[0].querySelector('div.treeview'));
+
     new Promise((resolve) => {
       this.element.treeview({
         data:            this.data,

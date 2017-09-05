@@ -3,7 +3,7 @@ import * as ng from 'angular';
 export class TreeViewController {
   private tree;
   private element;
-  private rendered : boolean = false;
+  private rendered : boolean;
 
   public name : string;
   public data;
@@ -16,8 +16,9 @@ export class TreeViewController {
   constructor(private $element : ng.IRootElementService, private $timeout : ng.ITimeoutService) {}
 
   public $onChanges(changes) {
-    // Render the tree after the data has been sent for the first time
-    if (changes.data && !this.rendered && changes.data.currentValue !== undefined) {
+    // Render the tree after the data has attribute been altered
+    // WARNING: Do not use this for lazy-loading!
+    if (changes.data && changes.data.currentValue !== undefined) {
       this.renderTree();
     }
 
@@ -32,9 +33,11 @@ export class TreeViewController {
    *
    * This function searches for the `<div class='treeview'>` element in the
    * template and renders the treeview into it with the `data` attribute of
-   * the component.
+   * the component. The function clears any elements from the container div
+   * and so the function can be used for re-rendering the tree if necessary.
    */
   private renderTree() {
+    this.rendered = false;
     this.element = ng.element(this.$element[0].querySelector('div.treeview'));
     this.element.empty();
 

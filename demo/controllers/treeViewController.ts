@@ -33,6 +33,10 @@ export default class TreeViewController {
     return new Promise(resolve => this.$timeout(() => resolve(data), 1500));
   }
 
+  public reloadData() {
+    this.data = require('../data/lazyTree.json');
+  }
+
   public nodeSelect(node) {
     // Drop some attributes to keep the output short
     delete node.$el;

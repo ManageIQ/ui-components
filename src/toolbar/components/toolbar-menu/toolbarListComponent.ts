@@ -81,6 +81,6 @@ export default class ToolbarList {
   public bindings: any = {
     toolbarList: '<',
     onItemClick: '&',
-    dropDownClass: '<'
+    dropDownClass: '<?'
   };
 }

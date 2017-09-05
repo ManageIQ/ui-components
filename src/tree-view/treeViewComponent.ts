@@ -70,8 +70,8 @@ export class TreeViewController {
         showBorders:     false,
         onNodeExpanded:  this.storeNodeState(true),
         onNodeCollapsed: this.storeNodeState(undefined),
-        onNodeSelected:  (_event, node) => this.$timeout(() => this.onSelect({node: node})),
-        lazyLoad:        (node, render) => this.$timeout(() => this.lazyLoad({node: node}).then(render)),
+        onNodeSelected:  this.onSelect ? (_event, node) => this.$timeout(() => this.onSelect({node: node})) : () => null,
+        lazyLoad:        this.lazyLoad ? (node, render) => this.$timeout(() => this.lazyLoad({node: node}).then(render)) : () => null,
         onRendered:      () => this.$timeout(resolve)
       });
     }).then(() => {
@@ -253,10 +253,10 @@ export default class TreeView implements ng.IComponentOptions {
     name: '@',
     data: '<',
     persist: '@?',
-    selected: '<',
-    reselect: '<',
-    onSelect: '&',
-    lazyLoad: '&',
-    errorHandlers: '<?'
+    selected: '<?',
+    reselect: '<?',
+    onSelect: '&?',
+    lazyLoad: '&?',
+    errorHandlers: '<?',
   };
 }

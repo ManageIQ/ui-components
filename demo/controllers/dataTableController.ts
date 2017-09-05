@@ -38,7 +38,7 @@ export default class DataTableController {
       this.settings.selectAllTitle = 'select all';
       this.settings.sortedByTitle = 'sorted by';
       this.settings.perPageTitle = 'per page';
-      this.settings.dropDownClass = ['someClass'];
+      this.settings.dropdownClass = ['someClass'];
     });
   }
 

@@ -19,7 +19,7 @@ describe('Sort items test', () =>  {
         onSort: onSort,
         headers: headers,
         sortObject: sortObject,
-        dropDownClass: ['someClass']
+        dropdownClass: ['someClass']
       };
       angular.mock.module('miqStaticAssets.common');
       angular.mock.inject(($componentController) => {

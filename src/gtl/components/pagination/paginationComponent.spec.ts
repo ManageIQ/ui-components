@@ -31,7 +31,7 @@ describe('Pagination test', () =>  {
         },
         'selectAllTitle': 'Select All',
         'sortedByTitle': 'Sorted By',
-        'dropDownClass': ['someClass'],
+        'dropdownClass': ['someClass'],
         'columns': [{'is_narrow': true}, {'is_narrow': true}, {
           'text': 'Messaging Name',
           'sort': 'str',

@@ -10,7 +10,7 @@ export class SortItemsController {
   public headers: any;
   public options: any;
   public sortObject: any;
-  public dropDownClass: any[];
+  public dropdownClass: any[];
   public onSort: (args: {sortObject: any, isAscending: boolean}) => void;
 
   /* @ngInject */
@@ -31,7 +31,7 @@ export class SortItemsController {
         this.setSortItem();
       }
     }
-    if (changesObj.dropDownClass) {
+    if (changesObj.dropdownClass) {
       this.applyClass();
     }
   }
@@ -93,13 +93,13 @@ export class SortItemsController {
 
   /**
    * Method for applying additional class for dropdown.
-   * dropDownClass can be either string of classes, or array.
+   * dropdownClass can be either string of classes, or array.
    */
   private applyClass() {
-    if (this.dropDownClass) {
-      Array.isArray(this.dropDownClass) ?
-        this.$element.find('.uib-dropdown').addClass(...this.dropDownClass) :
-        this.$element.find('.uib-dropdown').addClass(this.dropDownClass);
+    if (this.dropdownClass) {
+      Array.isArray(this.dropdownClass) ?
+        this.$element.find('.uib-dropdown').addClass(...this.dropdownClass) :
+        this.$element.find('.uib-dropdown').addClass(this.dropdownClass);
     }
   }
 }
@@ -138,6 +138,6 @@ export default class SortItems implements ng.IComponentOptions {
     onSort: '&',
     headers: '<',
     sortObject: '<',
-    dropDownClass: '<'
+    dropdownClass: '<'
   };
 }

@@ -13,9 +13,12 @@ export class TreeViewController {
   public reselect;
   public onSelect: (args: {node: any}) => void;
   public lazyLoad: (args: {node: any}) => Promise<any>;
+  public errorHandlers: any;
 
   /*@ngInject*/
-  constructor(private $element : ng.IRootElementService, private $timeout : ng.ITimeoutService) {}
+  constructor(private $element : ng.IRootElementService, private $timeout : ng.ITimeoutService) {
+    this.errorHandlers = this.errorHandlers || {};
+  }
 
   public $onChanges(changes) {
     // Render the tree after the data has attribute been altered
@@ -106,7 +109,8 @@ export class TreeViewController {
       head,
       this.selectSingleNode.bind(this),
       tail,
-      this.lazyExpandNode.bind(this)
+      this.lazyExpandNode.bind(this),
+      this.errorHandlers.selected
     );
   }
 
@@ -218,10 +222,16 @@ export class TreeViewController {
    * Reduces `tail` into a chain of promises with `tailF` as the body of the promise.
    * An iteration step will always depend on the promise created in the previous one.
    * Finally the `headF` function is called on `head` after resolving all promises.
+   * If anything goes wrong during the traversal the fallback function is called.
    */
-  private static lazyTraverse(head : any, headF : Function, tail : Array<any>, tailF : Function) {
+  private static lazyTraverse(head : any,
+                              headF : Function,
+                              tail : Array<any>,
+                              tailF : Function,
+                              fallback : Function = () => null) {
     const emptyPromise = new Promise(nope => nope());
-    tail.reduce((sum, value) => sum.then(() => new Promise(tailF(value))), emptyPromise).then(() => headF(head));
+    tail.reduce((sum, value) => sum.then(() => new Promise(tailF(value))), emptyPromise)
+      .then(() => headF(head)).catch(fallback);
   }
 }
 
@@ -235,6 +245,7 @@ export default class TreeView implements ng.IComponentOptions {
     selected: '<',
     reselect: '<',
     onSelect: '&',
-    lazyLoad: '&'
+    lazyLoad: '&',
+    errorHandlers: '<?'
   };
 }

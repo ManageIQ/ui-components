@@ -17,7 +17,7 @@
       <miq-sort-items ng-if="paginationCtrl.settings.sortBy"
                     sort-object="paginationCtrl.settings.sortBy"
                     headers="paginationCtrl.settings.columns"
-                    drop-down-class="paginationCtrl.settings.dropDownClass"
+                    dropdown-class="paginationCtrl.settings.dropdownClass"
                     on-sort="paginationCtrl.onChangeSort({sortId: sortObject.colId, isAscending: isAscending})">
       </miq-sort-items>
       <!-- Sort items by end -->
@@ -27,7 +27,7 @@
   <div class="form-group">
     <!-- Per page start -->
      <miq-toolbar-list on-item-click="paginationCtrl.onChangePerPage({item: item})"
-                    drop-down-class="paginationCtrl.settings.dropDownClass"
+                    dropdown-class="paginationCtrl.settings.dropdownClass"
                     toolbar-list="paginationCtrl.perPage"></miq-toolbar-list>
     <!-- Per page end -->
     <!-- Number of records start -->

@@ -27,7 +27,7 @@ export interface ITableSettings {
   sortBy: ITableSortBy;
   paging: ITablePaging;
   columns?: any;
-  dropDownClass?: any[];
+  dropdownClass?: any[];
   startIndex?: number;
   endIndex?: number;
   hideSelect?: boolean;

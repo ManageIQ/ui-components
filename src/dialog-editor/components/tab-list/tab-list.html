@@ -4,13 +4,13 @@
     data-tabs='tabs'>
   <li ng-class='{active: tab.active}' ng-repeat='tab in vm.tabList'>
     <a class="select-tab" ng-click='vm.selectTab(tab.position)' data-toggle='tab'>
-      <i class="pficon-edit" ng-click='vm.editDialogModal(tab.position)'></i>
       {{ tab.label }}
-      <i class='delete-tab glyphicon glyphicon-remove' ng-click='vm.removeTab(tab.position)'></i>
+      <i class="pficon-edit tab-icon hide" ng-click='vm.editDialogModal(tab.position)'></i>
+      <i class='glyphicon glyphicon-remove tab-icon hide' ng-click='vm.removeTab(tab.position)'></i>
     </a>
   </li>
   <li class='nosort'>
-    <a ng-click='vm.addTab()'>
+    <a class="create-tab" ng-click='vm.addTab()'>
       <i class='pficon-add-circle-o'></i>
       &nbsp; {{ 'Create Tab' | translate }}
     </a>

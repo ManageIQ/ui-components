@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+
 /**
  * Controller for the Dialog Editor field component
  * @memberof miqStaticAssets
@@ -33,6 +35,25 @@ class FieldController {
    */
   public editDialogModal(tab: number, box: number, field: number) {
     this.DialogEditorModal.showModal(tab, box, field);
+  }
+
+  /**
+   * Remove Field
+   * @memberof FieldController
+   * @function remmoveField
+   * @param {number} tabId is an index of tab, where the box is placed
+   * @param {number} boxId is an index of box, where the field is placed
+   * @param {number} fieldId is an index of field
+   */
+  public removeField(tabId: number, boxId: number, fieldId: number) {
+    _.remove(
+      this.DialogEditor.getDialogTabs()[
+        tabId
+        ].dialog_groups[
+        boxId
+        ].dialog_fields,
+        (field: any) => field.position === fieldId
+    );
   }
 }
 

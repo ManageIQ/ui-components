@@ -68,7 +68,7 @@ export class ToolboxController {
       new DialogField(
         'DialogFieldDropDownList',
         'fa fa-caret-square-o-down',
-        __('Dropdown List'),
+        __('Dropdown'),
         {
           data_type: 'string',
           values: [],
@@ -82,7 +82,7 @@ export class ToolboxController {
         __('Radio Button'),
         {
           data_type: 'string',
-          values: [],
+          values: [[1, 'One'], [2, 'Two'], [3, 'Three']],
           options: {sort_by: 'description', sort_order: 'ascending'},
         }
       ),
@@ -90,13 +90,13 @@ export class ToolboxController {
       new DialogField(
         'DialogFieldDateControl',
         'fa fa-calendar',
-        __('Date Control')
+        __('Datepicker')
       ),
     dialogFieldDateTimeControl:
       new DialogField(
         'DialogFieldDateTimeControl',
         'fa fa-clock-o',
-        __('Date Time Control')
+        __('Timepicker')
       ),
     dialogFieldTagControl:
       new DialogField(

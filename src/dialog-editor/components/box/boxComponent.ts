@@ -65,7 +65,7 @@ class BoxController {
       .push(
         {
           description: __('Description'),
-          label: __('Label'),
+          label: __('New Section'),
           display: 'edit',
           position: 0,
           dialog_fields: [],

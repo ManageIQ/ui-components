@@ -1,3 +1,8 @@
+@import 'colors';
+@import 'dialog-editor';
+@import 'dialog-editor-toolbox';
+@import 'dialog-editor-boxes';
+
 .miq-sand-paper, .miq-sand-paper > div { /* emulates "cards-pf" background color */
   background: #f5f5f5;
   overflow: hidden;

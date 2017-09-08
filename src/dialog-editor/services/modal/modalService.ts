@@ -87,7 +87,7 @@ class ModalController {
         }
         // set modal title
         if (!this.modalData.dynamic) {
-          var titleLabel;
+          let titleLabel;
 
           switch (this.modalData.type) {
             case 'DialogFieldTextBox':

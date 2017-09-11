@@ -50,78 +50,43 @@ class ModalController {
     }
 
     // clone data from service
-    switch (this.element) {
-      case 'tab':
-        this.modalData = _.cloneDeep(
-          this.DialogEditor.getDialogTabs()[
-            this.dialog.tabId
-          ]
-        );
-        break;
-      case 'box':
-        this.modalData = _.cloneDeep(
-          this.DialogEditor.getDialogTabs()[
-            this.dialog.tabId
-          ].dialog_groups[
-            this.dialog.boxId
-          ]
-        );
-        break;
-      case 'field':
-        this.modalData = _.cloneDeep(
-          this.DialogEditor.getDialogTabs()[
-            this.dialog.tabId
-          ].dialog_groups[
-            this.dialog.boxId
-          ].dialog_fields[
-            this.dialog.fieldId
-          ]
-        );
-        // load categories from API, if the field is Tag Control
-        if (this.modalData.type === 'DialogFieldTagControl') {
-          this.resolveCategories().then(
-            (categories: any) => {
-              this.categories = categories;
-            }
-          );
-        }
-        // set modal title
-        if (!this.modalData.dynamic) {
-          let titleLabel;
+    let elements = {
+      tab: this.DialogEditor.getDialogTabs()[
+        this.dialog.tabId],
+      box: this.DialogEditor.getDialogTabs()[
+        this.dialog.tabId].dialog_groups[
+          this.dialog.boxId],
+      field: this.DialogEditor.getDialogTabs()[
+        this.dialog.tabId].dialog_groups[
+          this.dialog.boxId].dialog_fields[
+            this.dialog.fieldId]
+    };
+    this.modalData = this.element in elements &&
+      _.cloneDeep(elements[this.element]);
 
-          switch (this.modalData.type) {
-            case 'DialogFieldTextBox':
-              titleLabel = __('Text Box');
-              break;
-            case 'DialogFieldTextAreaBox':
-              titleLabel = __('Text Area');
-              break;
-            case 'DialogFieldCheckBox':
-              titleLabel = __('Check Box');
-              break;
-            case 'DialogFieldDropDownList':
-              titleLabel = __('Dropdown');
-              break;
-            case 'DialogFieldRadioButton':
-              titleLabel = __('Radio Button');
-              break;
-            case 'DialogFieldDateControl':
-              titleLabel = __('Datepicker');
-              break;
-            case 'DialogFieldDateTimeControl':
-              titleLabel = __('Timepicker');
-              break;
-            case 'DialogFieldTagControl':
-              titleLabel = __('Tag Control');
-              break;
-          }
-          this.modalTitle =  __('Edit ') + titleLabel +  __(' Field');
-        } else {
-          this.modalTitle = this.modalTitle = __('Edit Field');
-        }
-        break;
-      default:
-        break;
+    if (this.element === 'field') {
+      // load categories from API, if the field is Tag Control
+      if (this.modalData.type === 'DialogFieldTagControl') {
+        this.resolveCategories().then(
+          (categories: any) => { this.categories = categories; }
+        );
+      }
+      // set modal title
+      if (!this.modalData.dynamic) {
+        const titles = {
+          DialogFieldTextBox:         __('Text Box'),
+          DialogFieldTextAreaBox:     __('Text Area'),
+          DialogFieldCheckBox:        __('Check Box'),
+          DialogFieldDropDownList:    __('Dropdown'),
+          DialogFieldRadioButton:     __('Radio Button'),
+          DialogFieldDateControl:     __('Datepicker'),
+          DialogFieldDateTimeControl: __('Timepicker'),
+          DialogFieldTagControl:      __('Tag Control')
+        };
+        const titleLabel = this.modalData.type in titles &&
+          titles[this.modalData.type];
+        this.modalTitle =  __(`Edit ${titleLabel} Field`);
+      }
     }
   }
 
@@ -162,37 +127,19 @@ class ModalController {
    * @function modalUnchanged
    */
   public modalUnchanged() {
-    switch (this.element) {
-      case 'tab':
-        return _.isMatch(
-          this.DialogEditor.getDialogTabs()[
-            this.DialogEditor.activeTab
-          ],
-          this.modalData
-        );
-      case 'box':
-        return _.isMatch(
-          this.DialogEditor.getDialogTabs()[
-            this.DialogEditor.activeTab
-          ].dialog_groups[
-            this.dialog.boxId
-          ],
-          this.modalData
-        );
-      case 'field':
-        return _.isMatch(
-          this.DialogEditor.getDialogTabs()[
-            this.DialogEditor.activeTab
-          ].dialog_groups[
-            this.dialog.boxId
-          ].dialog_fields[
-            this.dialog.fieldId
-          ],
-          this.modalData
-        );
-      default:
-        break;
-    }
+    let elements = {
+      tab: this.DialogEditor.getDialogTabs()[
+        this.DialogEditor.activeTab],
+      box: this.DialogEditor.getDialogTabs()[
+        this.DialogEditor.activeTab].dialog_groups[
+          this.dialog.boxId],
+      field: this.DialogEditor.getDialogTabs()[
+        this.DialogEditor.activeTab].dialog_groups[
+          this.dialog.boxId].dialog_fields[
+            this.dialog.fieldId]
+    };
+    return this.element in elements &&
+      _.isMatch(elements[this.element], this.modalData);
   }
 
   /**
@@ -201,40 +148,29 @@ class ModalController {
    * @function saveDialogFieldDetails
    */
   public saveDialogFieldDetails() {
-    // TODO: add verification for required forms
-    // store data to service
     switch (this.element) {
       case 'tab':
-        this.DialogEditor.getDialogTabs()[
-          this.DialogEditor.activeTab
-        ].label = this.modalData.label;
-        // description
-        this.DialogEditor.getDialogTabs()[
-          this.DialogEditor.activeTab
-        ].description = this.modalData.description;
+        _.assignIn(
+          this.DialogEditor.getDialogTabs()[
+            this.DialogEditor.activeTab],
+          { label: this.modalData.label,
+            description: this.modalData.description }
+        );
         break;
       case 'box':
-        // label
-        this.DialogEditor.getDialogTabs()[
-          this.DialogEditor.activeTab
-        ].dialog_groups[
-          this.dialog.boxId
-        ].label = this.modalData.label;
-        // description
-        this.DialogEditor.getDialogTabs()[
-          this.DialogEditor.activeTab
-        ].dialog_groups[
-          this.dialog.boxId
-        ].description = this.modalData.description;
+        _.assignIn(
+          this.DialogEditor.getDialogTabs()[
+            this.DialogEditor.activeTab].dialog_groups[
+              this.dialog.boxId],
+          { label: this.modalData.label,
+            description: this.modalData.description }
+        );
         break;
       case 'field':
         this.DialogEditor.getDialogTabs()[
-          this.DialogEditor.activeTab
-        ].dialog_groups[
-          this.dialog.boxId
-        ].dialog_fields[
-          this.dialog.fieldId
-        ] = this.modalData;
+          this.DialogEditor.activeTab].dialog_groups[
+            this.dialog.boxId].dialog_fields[
+              this.dialog.fieldId] = this.modalData;
         break;
       default:
         break;

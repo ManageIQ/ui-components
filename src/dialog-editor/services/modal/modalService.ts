@@ -60,7 +60,7 @@ class ModalController {
         this.dialog.tabId].dialog_groups[
           this.dialog.boxId].dialog_fields[
             this.dialog.fieldId]
-    }
+    };
     this.modalData = this.element in elements &&
       _.cloneDeep(elements[this.element]);
 
@@ -82,7 +82,7 @@ class ModalController {
           DialogFieldDateControl:     __('Datepicker'),
           DialogFieldDateTimeControl: __('Timepicker'),
           DialogFieldTagControl:      __('Tag Control')
-        }
+        };
         const titleLabel = this.modalData.type in titles &&
           titles[this.modalData.type];
         this.modalTitle =  __(`Edit ${titleLabel} Field`);
@@ -137,7 +137,7 @@ class ModalController {
         this.DialogEditor.activeTab].dialog_groups[
           this.dialog.boxId].dialog_fields[
             this.dialog.fieldId]
-    }
+    };
     return this.element in elements &&
       _.isMatch(elements[this.element], this.modalData);
   }

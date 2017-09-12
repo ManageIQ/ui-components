@@ -80,7 +80,13 @@ module.exports = {
   devtool: !production && 'source-map',
   module: {
     rules: [
-      {enforce: 'pre', test: /\.ts?$/, loader: 'tslint-loader', exclude: /(node_modules|libs)/},
+      {
+        enforce: 'pre',
+        test: /\.ts?$/,
+        loader: 'tslint-loader',
+        exclude: /(node_modules|libs)/,
+        options: {emitErrors: true}
+      },
       {test: /\.ts$/, loaders: ['ts-loader'], exclude: /(node_modules|libs)/},
       {test: /\.html$/, loader: 'raw-loader', exclude: /(node_modules|libs|dist|tsd)/},
       // stylesheets

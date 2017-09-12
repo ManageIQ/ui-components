@@ -1,7 +1,7 @@
 //$fa-font-path: '~font-awesome/fonts';
 
-$ff-font-path: '~font-fabulous/assets/fonts/font-fabulous';
-@import '~font-fabulous/assets/stylesheets/font-fabulous';
+$ff-font-path: '~@manageiq/font-fabulous/assets/fonts/font-fabulous';
+@import '~@manageiq/font-fabulous/assets/stylesheets/font-fabulous';
 @import '~google-code-prettify/bin/prettify.min.css';
 @import '~datatables-colreorder/css/colReorder.dataTables';
 @import '~drmonty-datatables-colvis/css/dataTables.colVis';

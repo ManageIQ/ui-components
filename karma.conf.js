@@ -33,9 +33,9 @@ module.exports = function(config) {
     port: 9876,
 
     preprocessors: {
-      [fileGlob]: ['webpack', 'coverage'],
+      [fileGlob]: ['webpack'],
       [jsonGlob]: ['webpack'],
-      [applicationFile]: ['coverage']
+      [applicationFile]: ['webpack']
     },
     webpack: webpackConfig,
     webpackMiddleware: {noInfo: true},
@@ -66,7 +66,6 @@ module.exports = function(config) {
     mime: {
       'text/x-typescript': ['ts','tsx']
     },
-
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity

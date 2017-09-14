@@ -35,7 +35,7 @@ module.exports = function(config) {
     preprocessors: {
       [fileGlob]: ['webpack'],
       [jsonGlob]: ['webpack'],
-      [applicationFile]: ['webpack']
+      [applicationFile]: ['webpack', 'coverage']
     },
     webpack: webpackConfig,
     webpackMiddleware: {noInfo: true},

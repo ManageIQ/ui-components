@@ -53,12 +53,46 @@ describe('DataTableSettingsService test', () => {
     expect(configuredField.fieldBeingRefreshed).toBe(false);
     expect(configuredField.errorMessage).toBeDefined();
   });
-  it('should allow a default value to be set', () => {
-    const testField = dialogField;
-    testField.default_value = 'test';
-    const testDefault = dialogData.setDefaultValue(testField);
-    expect(testDefault).toBe('test');
+
+  describe('#setDefaultValue', () => {
+    it('should allow a default value to be set', () => {
+      let testField = dialogField;
+      testField.default_value = 'test';
+      let testDefault = dialogData.setDefaultValue(testField);
+      expect(testDefault).toBe('test');
+    });
+
+    describe('when the data type is a date control', () => {
+      let dateField = {'type': 'DialogFieldDateControl'}
+
+      describe('when the values are undefined', () => {
+        beforeEach(() => {
+          dateField['values'] = undefined;
+        });
+
+        it('returns a new date', () => {
+          let todaysDate = new Date();
+          let expectedDate = dialogData.setDefaultValue(dateField);
+          expect(expectedDate.getFullYear()).toEqual(todaysDate.getFullYear());
+          expect(expectedDate.getMonth()).toEqual(todaysDate.getMonth());
+          expect(expectedDate.getDate()).toEqual(todaysDate.getDate());
+          expect(expectedDate.getHours()).toEqual(todaysDate.getHours());
+          expect(expectedDate.getMinutes()).toEqual(todaysDate.getMinutes());
+        });
+      });
+
+      describe('when the values exist', () => {
+        beforeEach(() => {
+          dateField['values'] = '2017-09-18';
+        });
+
+        it('returns a new date based on the values', () => {
+          expect(dialogData.setDefaultValue(dateField)).toEqual(new Date('2017-09-18'));
+        });
+      });
+    });
   });
+
   it('should allow a select list to be sorted', () => {
     const testDropDown = {
       values: [

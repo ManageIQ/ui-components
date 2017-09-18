@@ -70,9 +70,13 @@ export default class DialogDataService {
       }
     } else {
       if (data.type === 'DialogFieldDateControl' || data.type === 'DialogFieldDateTimeControl') {
-        defaultValue = new Date(data.values);
+        if (data.values === undefined) {
+          defaultValue = new Date();
+        } else {
+          defaultValue = new Date(data.values);
+        }
       } else {
-          defaultValue = data.values;
+        defaultValue = data.values;
       }
     }
     if (data.default_value) {

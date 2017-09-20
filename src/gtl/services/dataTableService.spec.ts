@@ -30,15 +30,19 @@ describe('DataTableSettingsService test', () =>  {
         DataTableSettingsService.generateConfig(modelName, tree, currId),
         {
           model: modelName,
+          model_name: modelName,
           active_tree: tree,
-          model_id: currId
+          model_id: currId,
+          parent_id: currId
         }
       )
     ).toBeTruthy();
   });
 
   it('should fetch data from server', (done) => {
-    httpBackend.expectPOST(`/data/dataTable.json`, { active_tree: tree, model: modelName, model_id: currId })
+    httpBackend.expectPOST(`/data/dataTable.json`, {
+      active_tree: tree, model: modelName, model_name: modelName, model_id: currId, parent_id: currId
+    })
       .respond(dataTableData);
 
     dataTableSettings.retrieveRowsAndColumnsFromUrl(modelName, tree, currId).then((responseData: IRowsColsResponse) => {

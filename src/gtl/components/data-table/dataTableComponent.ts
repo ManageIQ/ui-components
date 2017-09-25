@@ -49,16 +49,27 @@ export class DataTableController extends DataViewClass implements IDataTableBind
   }
 
   /**
-   * Public method for checking if column of table is icon or image.
+   * Public method for checking if column of table has an icon.
    * @memberof DataTableController
-   * @function isIconOrImage
+   * @function hasIcon
    * @param row {object} whole row with data.
    * @param columnKey header column key.
-   * @returns {boolean} true | false, if column is image or icon.
+   * @returns {boolean} true | false, if column has icon or not.
    */
-  public isIconOrImage(row, columnKey): boolean {
-    return row && row.cells &&
-      (row.cells[columnKey].hasOwnProperty('icon') || row.cells[columnKey].hasOwnProperty('image'));
+  public hasIcon(row, columKey): boolean {
+    return row && row.cells && row.cells[columKey].hasOwnProperty('icon');
+  }
+
+  /**
+   * Public method for checking if column of table has an image.
+   * @memberof DataTableController
+   * @function hasImage
+   * @param row {object} whole row with data.
+   * @param columnKey header column key.
+   * @returns {boolean} true | false, if column has image or not.
+   */
+  public hasImage(row, columKey): boolean {
+    return row && row.cells && row.cells[columKey].hasOwnProperty('image');
   }
 
   /**

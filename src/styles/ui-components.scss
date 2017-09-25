@@ -770,3 +770,96 @@ fieldset[disabled] .pagination > li > span.active {
     display: block;
   }
 }
+
+miq-quadicon {
+  $quad-w: 72px;
+  $quad-h: 80px;
+  $in-border: 1px gray solid;
+  $radius: 15px;
+  $font-size: 20px;
+  $background: black;
+
+  // Clearfix across the component
+  display: flow-root;
+  // Hack for IE11
+  @supports not (display: flow-root) {
+    &::after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+  }
+
+  border-radius: $radius $radius $radius $radius;
+  background: $background;
+  width: $quad-w;
+  height: $quad-h;
+  color: white;
+  overflow: hidden;
+
+  .fileicon {
+    line-height: normal;
+    &> img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  & > div.quad-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+
+    font-size: $font-size;
+    line-height: #{$quad-h / 2 - 1};
+    text-align: center;
+    vertical-align: middle;
+
+    & > miq-quaditem {
+      flex: 0 0 50%;
+
+      &.top-left {
+        border-right: $in-border;
+        border-bottom: $in-border;
+      }
+
+      &.top-right {
+        border-left: $in-border;
+        border-bottom: $in-border;
+      }
+
+      &.bottom-left {
+        border-right: $in-border;
+        border-top: $in-border;
+      }
+
+      &.bottom-right {
+        border-top: $in-border;
+        border-left: $in-border;
+      }
+
+      &.middle {
+        position: absolute;
+        top: $quad-h / 3;
+        margin-left: $quad-w / 3;
+        margin-right: $quad-w / 3;
+        width: #{$quad-w / 3};
+        height: #{$quad-h / 3};
+        line-height: #{$quad-h / 3};
+      }
+    }
+  }
+
+  & > div.single-wrapper {
+    height: 100%;
+
+    font-size: #{$font-size * 2};
+    line-height: $quad-h - 1;
+    text-align: center;
+    vertical-align: middle;
+
+    & > miq-quaditem {
+      height: 100%;
+    }
+  }
+}
+

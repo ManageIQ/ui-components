@@ -1,0 +1,18 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="39.58" height="39.25" viewBox="0 0 39.58 39.25">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ef2929;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <title>miq-logo</title>
+  <g>
+    <path class="cls-1" d="M20.64.12A19.07,19.07,0,1,0,31,35.19l3.95,3.94,5.34-5.34L36.4,29.91A19.08,19.08,0,0,0,21.13.12Zm0,6.32A12.75,12.75,0,1,1,7.88,19.19,12.77,12.77,0,0,1,20.64,6.44Z" transform="translate(-0.69 -0.12)"/>
+    <path class="cls-2" d="M20.64,15.53a3.66,3.66,0,1,0,3.65,3.65A3.65,3.65,0,0,0,20.64,15.53Zm-7,5.55-.35.35L.69,34,6,39.38l13-13Z" transform="translate(-0.69 -0.12)"/>
+  </g>
+</svg>

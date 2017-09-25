@@ -1,0 +1,84 @@
+<svg id="Configuration" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="82.94" height="100.37" viewBox="0 0 82.94 100.37">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #976928;
+        stroke-width: 2px;
+      }
+
+      .cls-3 {
+        fill: #976928;
+        opacity: 0.42;
+      }
+
+      .cls-3, .cls-5 {
+        isolation: isolate;
+      }
+
+      .cls-4 {
+        opacity: 0.26;
+      }
+
+      .cls-5 {
+        fill: #fff;
+        opacity: 0.2;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="71.69" y1="-15.76" x2="157.8" y2="-47.22" gradientTransform="matrix(0.82, 0, 0, -0.81, -46.64, 26.34)" gradientUnits="userSpaceOnUse">
+      <stop offset="0.31" stop-color="#fac927"/>
+      <stop offset="0.6" stop-color="#c1912e"/>
+      <stop offset="0.87" stop-color="#edd586"/>
+      <stop offset="1" stop-color="#fcf8cd"/>
+    </linearGradient>
+  </defs>
+  <title>protected</title>
+  <g>
+    <path class="cls-1" d="M44.08,2.07C54,22.17,84.3,26.67,84.3,26.67s-7,62.49-40.22,72.47C13.35,89.83,3.61,26.77,3.61,26.77S34.14,22.17,44.08,2.07Z" transform="translate(-2.46 0.18)"/>
+    <path class="cls-2" d="M44.08,2.07C54,22.17,84.3,26.67,84.3,26.67s-7,62.49-40.22,72.47C13.35,89.83,3.61,26.77,3.61,26.77S34.14,22.17,44.08,2.07Z" transform="translate(-2.46 0.18)"/>
+  </g>
+  <g id="Layer_2" data-name="Layer 2">
+    <path id="rivit" class="cls-3" d="M21.61,68.07a1.16,1.16,0,1,1-1.16-1.17,1.15,1.15,0,0,1,1.16,1.17Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-2" class="cls-3" d="M28.13,69.6A1.17,1.17,0,1,1,27,68.43h0a1.16,1.16,0,0,1,1.16,1.17Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-3" class="cls-3" d="M34.86,70.8a1.18,1.18,0,0,1-1.21,1.12,1.16,1.16,0,1,1,1.21-1.16Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-4" class="cls-3" d="M41.52,71.49a1.17,1.17,0,1,1-1.18-1.16h0A1.16,1.16,0,0,1,41.52,71.49Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-5" class="cls-3" d="M41.52,62.1a1.17,1.17,0,1,1-1.17-1.17h0A1.17,1.17,0,0,1,41.52,62.1Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-6" class="cls-3" d="M41.52,55.87a1.17,1.17,0,1,1-1.18-1.16h0A1.16,1.16,0,0,1,41.52,55.87Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-7" class="cls-3" d="M41.52,39.88a1.17,1.17,0,1,1-1.18-1.17h0A1.17,1.17,0,0,1,41.52,39.88Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-8" class="cls-3" d="M41.52,32.77a1.17,1.17,0,1,1-2.34,0,1.16,1.16,0,0,1,1.16-1.18h0A1.16,1.16,0,0,1,41.52,32.77Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-9" class="cls-3" d="M41.52,89.64a1.17,1.17,0,1,1-1.17-1.2,1.17,1.17,0,0,1,1.17,1.2Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-10" class="cls-3" d="M41.52,83.43a1.17,1.17,0,1,1-1.17-1.18,1.17,1.17,0,0,1,1.17,1.18Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-11" class="cls-3" d="M41.52,77.21A1.17,1.17,0,1,1,40.35,76a1.17,1.17,0,0,1,1.17,1.17Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-12" class="cls-3" d="M48.63,71.53a1.17,1.17,0,1,1-1.18-1.16h0a1.16,1.16,0,0,1,1.16,1.16Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-13" class="cls-3" d="M55.74,71a1.17,1.17,0,1,1-1.17-1.18A1.17,1.17,0,0,1,55.74,71Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-14" class="cls-3" d="M63,69.3a1.17,1.17,0,1,1-1.17-1.16A1.18,1.18,0,0,1,63,69.3Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-15" class="cls-3" d="M16.2,43.84A1.17,1.17,0,1,1,15,42.67h0A1.17,1.17,0,0,1,16.2,43.84Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-16" class="cls-3" d="M22,45.92a1.18,1.18,0,1,1-1.17-1.18h0A1.18,1.18,0,0,1,22,45.92Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-17" class="cls-3" d="M27.75,47.39a1.17,1.17,0,1,1-1.16-1.16,1.16,1.16,0,0,1,1.16,1.16Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-18" class="cls-3" d="M34.86,48.43a1.17,1.17,0,1,1-1.17-1.16,1.16,1.16,0,0,1,1.17,1.16Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-19" class="cls-3" d="M41.52,49.13A1.17,1.17,0,1,1,40.34,48h0A1.16,1.16,0,0,1,41.52,49.13Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-20" class="cls-3" d="M48.63,49.17a1.17,1.17,0,1,1-2.34,0A1.17,1.17,0,0,1,47.45,48h0a1.16,1.16,0,0,1,1.16,1.16Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-21" class="cls-3" d="M55.74,48.58a1.17,1.17,0,1,1-1.18-1.17h0A1.17,1.17,0,0,1,55.74,48.58Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-22" class="cls-3" d="M63,46.94a1.17,1.17,0,1,1-1.17-1.16A1.18,1.18,0,0,1,63,46.94Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-23" class="cls-3" d="M31,22.49a1.18,1.18,0,1,1-1.19-1.18h0A1.18,1.18,0,0,1,31,22.49Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-24" class="cls-3" d="M41.6,25.13A1.19,1.19,0,1,1,40.4,24h0a1.19,1.19,0,0,1,1.19,1.16Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-25" class="cls-3" d="M48.43,24.82a1.18,1.18,0,1,1-1.18-1.18h0a1.17,1.17,0,0,1,1.17,1.17Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-26" class="cls-3" d="M36.24,24.48a1.18,1.18,0,1,1-1.18-1.19,1.19,1.19,0,0,1,1.18,1.19Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-27" class="cls-3" d="M60.14,21.71A1.19,1.19,0,1,1,59,20.53h0A1.18,1.18,0,0,1,60.14,21.71Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-28" class="cls-3" d="M64.43,19.63a1.19,1.19,0,1,1-1.19-1.17h0a1.17,1.17,0,0,1,1.18,1.16Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-29" class="cls-3" d="M25.78,20.52a1.19,1.19,0,1,1-1.19-1.17h0A1.18,1.18,0,0,1,25.78,20.52Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-30" class="cls-3" d="M54.65,23.63a1.17,1.17,0,1,1-1.2-1.14h0A1.18,1.18,0,0,1,54.65,23.63Z" transform="translate(-2.46 0.18)"/>
+    <path id="rivit-31" class="cls-3" d="M41.6,17a1.19,1.19,0,1,1-1.2-1.17h0A1.17,1.17,0,0,1,41.6,17Z" transform="translate(-2.46 0.18)"/>
+  </g>
+  <g class="cls-4">
+    <line class="cls-2" x1="41.33" y1="6.7" x2="41.33" y2="99.62"/>
+    <path class="cls-2" d="M82.36,29.41c0,9.28-16.93,16.22-37,16.22H42.58C21.8,45.63,5,38.12,5,28.88" transform="translate(-2.46 0.18)"/>
+    <path class="cls-2" d="M59,17.41C46.66,25,35.7,21.6,29.78,17.56" transform="translate(-2.46 0.18)"/>
+    <path class="cls-2" d="M78.22,51.51c0,9.29-14.77,16.81-33,16.81l-1.93-.14c-18.84,0-34.15-7.51-34.15-16.81" transform="translate(-2.46 0.18)"/>
+  </g>
+  <path class="cls-5" d="M14.18,51.13c1.51,5.11,10.67,24.3,10.67,24.3A110.12,110.12,0,0,0,47.36,54.29C57.43,41.46,62.8,25.06,62.8,25.06S47.85,16.82,44.59,10.65c0,0-9.33,9.14-16.75,13.23-7.2,4-19.16,6.91-19.16,6.91S12.7,46,14.18,51.13Z" transform="translate(-2.46 0.18)"/>
+</svg>

@@ -23,7 +23,7 @@ describe('Sort items test', () =>  {
       };
       angular.mock.module('miqStaticAssets.common');
       angular.mock.inject(($componentController) => {
-        sortItemsCtrl = $componentController('miqSortItems', {$element: angular.element()}, bindings);
+        sortItemsCtrl = $componentController('miqSortItems', {$element: angular.element('')}, bindings);
       });
     });
 

@@ -10,8 +10,8 @@ describe('Dialog test', () =>  {
     beforeEach(() => {
       bindings = {
       dialog: dialog,
-      refreshField: function(){},
-      onUpdate: function(){},
+      refreshField: () => true,
+      onUpdate: () => true,
       inputDisabled: false
       };
       angular.mock.module('miqStaticAssets.dialogUser');
@@ -50,8 +50,8 @@ describe('Dialog test', () =>  {
     beforeEach(() => {
       bindings = {
       dialog: dialogData,
-      refreshField: function() {},
-      onUpdate: function(){},
+      refreshField: () => true,
+      onUpdate: () => true,
       inputDisabled: false
       };
       angular.mock.module('miqStaticAssets.dialogUser');

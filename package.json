@@ -8,6 +8,7 @@
     "test": "karma start",
     "prepublish": "webpack || true",
     "build": "webpack --config webpack.vendor.config.js && webpack -p",
+    "build-dev": "webpack --config webpack.vendor.config.js && webpack",
     "install-vendor": "webpack --config webpack.vendor.config.js",
     "build-docs": "jsdoc -c jsdoc-conf.json"
   },

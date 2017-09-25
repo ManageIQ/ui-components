@@ -28,10 +28,10 @@ describe('DataTable test', () =>  {
   };
   let settings = {perpage: 5, current: 1, items: 2, total: 1, sortBy: {sortObject: {col_idx: 0}, isAscending: true}};
 
-  const onItemSelected = jasmine.createSpy('onItemSelected', (item: any, isSelected: boolean) => {}),
-        onRowClick = jasmine.createSpy('onRowClick', (item: any) => {}),
-        onSort = jasmine.createSpy('onSort', (headerId: any, isAscending: boolean) => {}),
-        loadMoreItems = jasmine.createSpy('loadMoreItems', (start: number, perPage: number) => {});
+  const onItemSelected = jasmine.createSpy('onItemSelected', (item: any, isSelected: boolean) => true),
+        onRowClick = jasmine.createSpy('onRowClick', (item: any) => true),
+        onSort = jasmine.createSpy('onSort', (headerId: any, isAscending: boolean) => true),
+        loadMoreItems = jasmine.createSpy('loadMoreItems', (start: number, perPage: number) => true);
 
   describe('controller', () => {
     let dataTableCtrl;

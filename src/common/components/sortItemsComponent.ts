@@ -80,7 +80,7 @@ export class SortItemsController {
    * @function fillFields
    */
   private fillFields() {
-    _.each(this.headers, (oneCol, key) => {
+    _.each(this.headers, (oneCol: any, key) => {
       if (!oneCol.hasOwnProperty('is_narrow') && oneCol.hasOwnProperty('text')) {
         this.options.fields.push({
           colId: key,

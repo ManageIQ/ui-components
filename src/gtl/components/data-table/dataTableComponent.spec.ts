@@ -88,9 +88,14 @@ describe('DataTable test', () =>  {
       ).toBeTruthy();
     });
 
-    it('should check if column is icon or image', () => {
-      expect(dataTableCtrl.isIconOrImage(rows[0], 1)).toBeTruthy();
-      expect(dataTableCtrl.isIconOrImage(rows[0], 2)).toBeFalsy();
+    it('should check if column has an icon', () => {
+      expect(dataTableCtrl.hasIcon(rows[0], 1)).toBeTruthy();
+      expect(dataTableCtrl.hasIcon(rows[0], 2)).toBeFalsy();
+    });
+
+    it('should check if column has an image', () => {
+      expect(dataTableCtrl.hasImage(rows[0], 1)).toBeTruthy();
+      expect(dataTableCtrl.hasImage(rows[0], 2)).toBeFalsy();
     });
 
     it('should check if filtered by column', () => {

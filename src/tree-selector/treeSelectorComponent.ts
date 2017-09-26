@@ -3,6 +3,7 @@ import * as ng from 'angular';
 export class TreeSelectorController {
   public name: string;
   public data: any;
+  public persist: string;
   public selected: any;
   public selectable: any;
   public onSelect: Function;
@@ -45,6 +46,7 @@ export default class TreeSelector implements ng.IComponentOptions {
   public bindings: any = {
     name: '@',
     data: '<',
+    persist: '@?',
     selected: '<',
     selectable: '<',
     onSelect: '&',

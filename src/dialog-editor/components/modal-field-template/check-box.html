@@ -1,23 +1,93 @@
-<!-- text check box -->
-<div pf-form-group pf-label="{{'Default value'|translate}}">
-  <input bs-switch
-         ng-model="vm.modalData.default_value"
-         ng-true-value="'t'"
-         type="checkbox"
-         switch-on-text="{{'Yes'|translate}}"
-         switch-off-text="{{'No'|translate }}">
+<div ng-if="vm.modalTabIsSet('options') && !vm.modalData.dynamic">
+  <form class="form-horizontal">
+    <div pf-form-group pf-label="{{'Default value'|translate}}">
+      <input bs-switch
+             ng-model="vm.modalData.default_value"
+             ng-true-value="'t'"
+             type="checkbox"
+             switch-on-text="{{'Yes'|translate}}"
+             switch-off-text="{{'No'|translate }}">
+    </div>
+    <div pf-form-group pf-label="{{'Required'|translate}}">
+      <input bs-switch
+             ng-model="vm.modalData.required"
+             type="checkbox"
+             switch-on-text="{{'Yes'|translate}}"
+             switch-off-text="{{'No'|translate}}">
+    </div>
+    <div pf-form-group pf-label="{{'Read only'|translate}}">
+      <input bs-switch
+             ng-model="vm.modalData.read_only"
+             type="checkbox"
+             switch-on-text="{{'Yes'|translate}}"
+             switch-off-text="{{'No'|translate}}">
+    </div>
+    <div pf-form-group pf-label="{{'Visible'|translate}}">
+      <input bs-switch
+             ng-model="vm.modalData.visible"
+             type="checkbox"
+             switch-on-text="{{'Yes'|translate}}"
+             switch-off-text="{{'No'|translate}}">
+    </div>
+    <div pf-form-group pf-label="{{'Fields to refresh'|translate}}">
+      <select class="form-control" ng-model="vm.modalData.dialog_field_responders"
+              ng-options="dynamicField.id as dynamicField.label for dynamicField in vm.modalData.dynamicFieldList"
+              multiple pf-select>
+      </select>
+    </div>
+  </form>
 </div>
-<div pf-form-group pf-label="{{'Required'|translate}}">
-  <input bs-switch
-         ng-model="vm.modalData.required"
-         type="checkbox"
-         switch-on-text="{{'Yes'|translate}}"
-         switch-off-text="{{'No'|translate}}">
+<div ng-if="vm.modalTabIsSet('options') && vm.modalData.dynamic">
+  <form class="form-horizontal">
+    <div pf-form-group pf-label="{{'Entry Point'|translate}}">
+      <!-- TODO: until treepicker and API for it are in the SSUI -->
+      <input ng-model="vm.modalData.resource_action.ae_namespace"/>
+    </div>
+    <div pf-form-group pf-label="{{'Show Refresh Button'|translate}}">
+      <input bs-switch
+             ng-model="vm.modalData.show_refresh_button"
+             type="checkbox"
+             switch-on-text="{{'Yes'|translate}}"
+             switch-off-text="{{'No'|translate }}"/>
+    </div>
+    <div pf-form-group pf-label="{{'Required'|translate}}">
+      <input bs-switch
+             ng-model="vm.modalData.required"
+             type="checkbox"
+             switch-on-text="{{'Yes'|translate}}"
+             switch-off-text="{{'No'|translate}}">
+    </div>
+    <div pf-form-group pf-label="{{'Fields to refresh'|translate}}">
+      <select class="form-control" ng-model="vm.modalData.dialog_field_responders"
+              ng-options="dynamicField.id as dynamicField.label for dynamicField in vm.modalData.dynamicFieldList"
+              multiple pf-select>
+      </select>
+    </div>
+  </form>
 </div>
-<div pf-form-group pf-label="{{'Read only'|translate}}">
-  <input bs-switch
-         ng-model="vm.modalData.read_only"
-         type="checkbox"
-         switch-on-text="{{'Yes'|translate}}"
-         switch-off-text="{{'No'|translate}}">
+<div ng-if="vm.modalTabIsSet('overridable') && vm.modalData.dynamic">
+  <form class="form-horizontal">
+    <div pf-form-group pf-label="{{'Read only'|translate}}">
+      <input bs-switch
+             ng-model="vm.modalData.read_only"
+             type="checkbox"
+             switch-on-text="{{'Yes'|translate}}"
+             switch-off-text="{{'No'|translate}}">
+    </div>
+    <div pf-form-group pf-label="{{'Visible'|translate}}">
+      <input bs-switch
+             ng-model="vm.modalData.visible"
+             type="checkbox"
+             switch-on-text="{{'Yes'|translate}}"
+             switch-off-text="{{'No'|translate}}">
+    </div>
+    <div pf-form-group pf-label="{{'Default value'|translate}}">
+      <input bs-switch
+             ng-model="vm.modalData.default_value"
+             ng-true-value="'t'"
+             type="checkbox"
+             switch-on-text="{{'Yes'|translate}}"
+             switch-off-text="{{'No'|translate }}">
+    </div>
+  </form>
 </div>

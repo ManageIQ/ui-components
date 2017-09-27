@@ -56,8 +56,8 @@ export class DataTableController extends DataViewClass implements IDataTableBind
    * @param columnKey header column key.
    * @returns {boolean} true | false, if column has icon or not.
    */
-  public hasIcon(row, columKey): boolean {
-    return row && row.cells && row.cells[columKey].hasOwnProperty('icon');
+  public hasIcon(row, columnKey): boolean {
+    return row && row.cells && row.cells[columnKey].hasOwnProperty('icon') && row.cells[columnKey].icon;
   }
 
   /**
@@ -68,8 +68,8 @@ export class DataTableController extends DataViewClass implements IDataTableBind
    * @param columnKey header column key.
    * @returns {boolean} true | false, if column has image or not.
    */
-  public hasImage(row, columKey): boolean {
-    return row && row.cells && row.cells[columKey].hasOwnProperty('image');
+  public hasImage(row, columnKey): boolean {
+    return row && row.cells && row.cells[columnKey].hasOwnProperty('image') && row.cells[columnKey].image;
   }
 
   /**

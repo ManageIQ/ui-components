@@ -1,6 +1,6 @@
 import {IToolbarItem} from '../../interfaces/toolbar';
 import {ToolbarType} from '../../interfaces/toolbarType';
-
+import * as _ from 'lodash';
 /**
  * @memberof miqStaticAssets
  * @ngdoc controller
@@ -18,6 +18,17 @@ export class ToolbarController {
   constructor(private $window: ng.IWindowService,
               private $location: ng.ILocationService,
               private $sce: ng.ISCEService) {
+  }
+
+  /**
+   * Method for finding custom toolbar item's per each toolbar group.
+   * @memberof ToolbarController
+   * @function toolbarHasCustom
+   * @param toolbarItem toolbar group item.
+   * @returns {any[]} array of custom items in toolbar.
+   */
+  public toolbarHasCustom(toolbarItem): any {
+    return _.find(toolbarItem, {name: 'custom'});
   }
 
   /**

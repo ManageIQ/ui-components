@@ -1,7 +1,8 @@
 <div class="toolbar-pf-actions miq-toolbar-actions">
-  <div class="form-group miq-toolbar-group"
+  <div class="miq-toolbar-group"
        ng-repeat="toolbarItem in vm.toolbarItems"
-       ng-if="vm.hasContent(toolbarItem)">
+       ng-if="vm.hasContent(toolbarItem)"
+       ng-class="{'form-group': !vm.toolbarHasCustom(toolbarItem)}">
     <ng-repeat ng-repeat="item in toolbarItem ">
       <miq-toolbar-button ng-if="item.type === vm.getButtonType()"
                           toolbar-button="item"

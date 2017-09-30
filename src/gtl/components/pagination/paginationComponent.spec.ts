@@ -1,24 +1,23 @@
 describe('Pagination test', () =>  {
   let bindings,
-      perPage =
-        {
-          'labelItems': 'Items',
-          'enabled': true,
-          'text': '20 Items',
-          'value': 20,
+      perPage = {
+        'labelItems': 'Items',
+        'enabled': true,
+        'text': '20 Items',
+        'value': 20,
+        'hidden': false,
+        'items': [{'text': '5 Items', 'value': 5, 'hidden': false, 'enabled': true}, {
+          'text': '10 Items',
+          'value': 10,
           'hidden': false,
-          'items': [{'text': '5 Items', 'value': 5, 'hidden': false, 'enabled': true}, {
-            'text': '10 Items',
-            'value': 10,
-            'hidden': false,
-            'enabled': true
-          }, {'text': '20 Items', 'value': 20, 'hidden': false, 'enabled': true}, {
-            'text': '50 Items',
-            'value': 50,
-            'hidden': false,
-            'enabled': true
-          }]
-        },
+          'enabled': true
+        }, {'text': '20 Items', 'value': 20, 'hidden': false, 'enabled': true}, {
+          'text': '50 Items',
+          'value': 50,
+          'hidden': false,
+          'enabled': true
+        }]
+      },
       settings = {
         'perpage': 20,
         'current': 1,

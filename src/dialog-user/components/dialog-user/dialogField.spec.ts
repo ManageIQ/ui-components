@@ -39,7 +39,7 @@ describe('Dialog field test', () => {
     beforeEach(() => {
       bindings = {
         field: dialogField,
-        onUpdate: function () { },
+        onUpdate: () => true,
         inputDisabled: false
       };
       angular.mock.module('miqStaticAssets.dialogUser');
@@ -81,7 +81,7 @@ describe('Dialog field test', () => {
     it('should report back information when a field gets updated', () => {
       bindings = {
         field: dialogField,
-        onUpdate: jasmine.createSpy('onUpdate', (dialogFieldName: any, value: any) => { }),
+        onUpdate: jasmine.createSpy('onUpdate', (dialogFieldName: any, value: any) => true),
         inputDisabled: false
       };
       angular.mock.module('miqStaticAssets.dialogUser');

@@ -32,11 +32,11 @@ export default class DataTableService implements IDataTableService {
    */
   public retrieveRowsAndColumnsFromUrl(modelName?: string,
                                        activeTree?: string,
-                                       currId?: string,
+                                       id?: string,
                                        isExplorer?: string,
                                        settings?: any,
                                        records?: any): ng.IPromise<IRowsColsResponse> {
-    return this.fetchData(DataTableService.generateConfig(modelName, activeTree, currId, isExplorer, settings, records))
+    return this.fetchData(DataTableService.generateConfig(modelName, activeTree, id, isExplorer, settings, records))
       .then(responseData => {
         this.columns = responseData.data.data.head;
         this.rows = responseData.data.data.rows;
@@ -65,9 +65,9 @@ export default class DataTableService implements IDataTableService {
 
   /**
    * Static function which will generate http config from given variables.
-   * @param modelName string with name of model.
+   * @param modelName string with name of model (either association or current model).
    * @param activeTree string with active tree.
-   * @param currId ID of current item.
+   * @param parentId ID of parent item.
    * @param isExplorer
    * @param settings
    * @param records
@@ -75,14 +75,14 @@ export default class DataTableService implements IDataTableService {
    */
   public static generateConfig(modelName?: string,
                                activeTree?: string,
-                               currId?: string,
+                               parentId?: string,
                                isExplorer?: string,
                                settings?: any,
                                records?: any) {
     let config = {};
-    _.assign(config, DataTableService.generateModelConfig(modelName));
+    _.assign(config, DataTableService.generateModelNameConfig(modelName));
     _.assign(config, DataTableService.generateActiveTreeConfig(activeTree));
-    _.assign(config, DataTableService.generateModuleIdConfig(currId));
+    _.assign(config, DataTableService.generateParentIdConfig(parentId));
     _.assign(config, DataTableService.generateExplorerConfig(isExplorer));
     _.assign(config, DataTableService.generateParamsFromSettings(settings));
     _.assign(config, DataTableService.generateRecords(records));
@@ -92,10 +92,10 @@ export default class DataTableService implements IDataTableService {
   /**
    * Static function for generating model object, this object will be assigned to `config.params`.
    * @param modelName name of currently selected model.
-   * @returns {any|{model: any}} object if any model is selected.
+   * @returns {any|{modelName: any, model: any}} object if any model is selected.
    */
-  private static generateModelConfig(modelName): any {
-    return modelName && {model: modelName};
+  private static generateModelNameConfig(modelName): any {
+    return modelName && {model_name: modelName, model: modelName};
   }
 
   /**
@@ -109,11 +109,11 @@ export default class DataTableService implements IDataTableService {
 
   /**
    * Static function for generating module id object, this object will be assigned to `config.params`.
-   * @param currId currently selected module's ID.
-   * @returns {any|{model_id: any}} object if any module ID is present.
+   * @param parentId currently selected module's ID.
+   * @returns {any|{parentId: any, model_id: any}} object if any module ID is present.
    */
-  private static generateModuleIdConfig(currId): any {
-    return currId && currId !== null && {model_id: currId};
+  private static generateParentIdConfig(parentId): any {
+    return parentId && parentId !== null && {parent_id: parentId, model_id: parentId};
   }
 
   /**
@@ -137,6 +137,6 @@ export default class DataTableService implements IDataTableService {
   }
 
   private static generateRecords(records) {
-    return records && records !== null && {'records[]': records};
+    return records && records !== null && {'records[]': records, records: records};
   }
 }

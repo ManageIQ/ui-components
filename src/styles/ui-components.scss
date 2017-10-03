@@ -100,11 +100,10 @@ table.miq-table-with-footer { /* not currently used */
 }
 
 .miq-tile-section {
-
   .card .card-content {
+    overflow: hidden;
     padding-right: 5px;
   }
-
 }
 
 .miq-tile-view .card-view-pf { /* Styling for Cards in Tile & Grid Views  */

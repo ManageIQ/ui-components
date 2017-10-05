@@ -88,6 +88,12 @@ export default class AvailableComponentsService {
           '/user',
           require('./../views/dialog/user.html'), 'demoDialogUser as vm')
       ]),
+      new AvailableGroup('quadicon', 'Quadicon Components', '/quadicon', [
+        new AvailableComponent('basic',
+          'Quadicon',
+          '/quadicon',
+          require('./../views/quadicon/basic.html'), 'demoQuadicon as vm')
+      ]),
       new AvailableGroup('tree-view', 'Tree Components', '/tree', [
         new AvailableComponent('tree-view',
           'TreeView',

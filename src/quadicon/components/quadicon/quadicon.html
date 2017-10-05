@@ -1,0 +1,12 @@
+<div class="quad-wrapper" ng-if="$ctrl.isQuad()">
+  <miq-quaditem
+    data="$ctrl.data[item]"
+    tooltip="{{ $ctrl.data[item].tooltip }}"
+    ng-repeat="item in $ctrl.quadSet"
+    ng-class="item | kebabCase"
+    ng-style="$ctrl.getBackground(item)"
+  />
+</div>
+<div class="single-wrapper" ng-if="!$ctrl.isQuad()">
+  <miq-quaditem data="$ctrl.data" tooltip="{{ $ctrl.data.tooltip }}" />
+</div>

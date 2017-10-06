@@ -83,7 +83,8 @@ export abstract class DataViewClass implements IDataTableBinding {
 
   public onItemButtonClick(item: any) {
     if (item.hasOwnProperty('onclick')) {
-      new Function(item.onclick)();
+      let onClickFunction = new Function(item.onclick);
+      onClickFunction.bind(item.bindTo)();
     }
   }
 

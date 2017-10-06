@@ -58,6 +58,7 @@
         </span>
         <button ng-if="row.cells[columnKey].is_button && row.cells[columnKey].onclick"
                 class="btn btn-primary"
+                ng-disabled="row.cells[columnKey].disabled"
                 title="{{row.cells[columnKey].title}}"
                 alt="{{row.cells[columnKey].title}}"
                 ng-click="tableCtrl.onItemButtonClick(row.cells[columnKey])">

@@ -241,7 +241,7 @@ export default class TreeView implements ng.IComponentOptions {
   public bindings: any = {
     name: '@',
     data: '<',
-    persist: '@',
+    persist: '@?',
     selected: '<',
     reselect: '<',
     onSelect: '&',

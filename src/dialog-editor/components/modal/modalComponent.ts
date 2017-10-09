@@ -12,10 +12,10 @@ class ModalController {
   public modalTab: string = 'element_information';
   public modalData: any;
   public dynamicFieldList: any;
-  public element: string;
   public categories: any;
   public dialog: any;
   public modalTitle: string;
+  public elementData: any;
 
   /*@ngInject*/
   constructor(private $uibModal: any,
@@ -33,23 +33,6 @@ class ModalController {
       currentCategoryEntries: this.currentCategoryEntries,
     });
 
-    // recognize edited element type
-    if (ng.isUndefined(this.dialog.fieldId)
-     && ng.isUndefined(this.dialog.boxId)
-     && ng.isDefined(this.dialog.tabId)) {
-      this.element = 'tab';
-      this.modalTitle = __('Edit Tab Details');
-    } else if (ng.isUndefined(this.dialog.fieldId)
-            && ng.isDefined(this.dialog.boxId)
-            && ng.isDefined(this.dialog.tabId)) {
-      this.modalTitle = __('Edit Section Details');
-      this.element = 'box';
-    } else if (ng.isDefined(this.dialog.fieldId)
-            && ng.isDefined(this.dialog.boxId)
-            && ng.isDefined(this.dialog.tabId)) {
-      this.element = 'field';
-    }
-
     // clone data from service
     let elements = {
       tab: this.DialogEditor.getDialogTabs()[
@@ -62,10 +45,10 @@ class ModalController {
           this.dialog.boxId].dialog_fields[
             this.dialog.fieldId]
     };
-    this.modalData = this.element in elements &&
-      _.cloneDeep(elements[this.element]);
+    this.modalData = this.elementData.type in elements &&
+      _.cloneDeep(elements[this.elementData.type]);
 
-    if (this.element === 'field') {
+    if (this.elementData.type === 'field') {
       this.modalData.dynamicFieldList = this.DialogEditor.getDynamicFields(this.modalData.id);
 
       const dialogFieldResponderIds = _.map(this.modalData.dynamicFieldList, (field) => {
@@ -149,8 +132,8 @@ class ModalController {
           this.dialog.boxId].dialog_fields[
             this.dialog.fieldId]
     };
-    return this.element in elements &&
-      _.isMatch(elements[this.element], this.modalData);
+    return this.elementData.type in elements &&
+      _.isMatch(elements[this.elementData.type], this.modalData);
   }
 
   /**
@@ -159,7 +142,7 @@ class ModalController {
    * @function saveDialogFieldDetails
    */
   public saveDialogFieldDetails() {
-    switch (this.element) {
+    switch (this.elementData.type) {
       case 'tab':
         _.assignIn(
           this.DialogEditor.getDialogTabs()[
@@ -268,6 +251,6 @@ export default class Modal {
   public bindings: any = {
     options: '<',
     visible: '<',
-    dialogData: '<',
+    elementData: '<',
   };
 }

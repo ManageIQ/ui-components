@@ -35,53 +35,55 @@ class ModalController {
       currentCategoryEntries: this.currentCategoryEntries,
     });
 
-    // clone data from service
-    let elements = {
-      tab: this.DialogEditor.getDialogTabs()[
-        this.elementData.tabId],
-      box: this.DialogEditor.getDialogTabs()[
-        this.elementData.tabId].dialog_groups[
-          this.elementData.boxId],
-      field: this.DialogEditor.getDialogTabs()[
-        this.elementData.tabId].dialog_groups[
-          this.elementData.boxId].dialog_fields[
-            this.elementData.fieldId]
-    };
-    this.modalData = this.elementData.type in elements &&
-      _.cloneDeep(elements[this.elementData.type]);
+    if (this.elementData !== undefined) {
+      // clone data from service
+      let elements = {
+        tab: this.DialogEditor.getDialogTabs()[
+          this.elementData.tabId],
+        box: this.DialogEditor.getDialogTabs()[
+          this.elementData.tabId].dialog_groups[
+            this.elementData.boxId],
+        field: this.DialogEditor.getDialogTabs()[
+          this.elementData.tabId].dialog_groups[
+            this.elementData.boxId].dialog_fields[
+              this.elementData.fieldId]
+      };
+      this.modalData = this.elementData.type in elements &&
+        _.cloneDeep(elements[this.elementData.type]);
 
-    if (this.elementData.type === 'field') {
-      this.modalData.dynamicFieldList = this.DialogEditor.getDynamicFields(this.modalData.id);
+      if (this.elementData.type === 'field') {
+        this.modalData.dynamicFieldList = this.DialogEditor.getDynamicFields(this.modalData.id);
 
-      const dialogFieldResponderIds = _.map(this.modalData.dynamicFieldList, (field) => {
-        if (_.includes(this.modalData.dialog_field_responders, field['name'])) {
-          return field['id'];
+        const dialogFieldResponderIds = _.map(this.modalData.dynamicFieldList, (field) => {
+          if (_.includes(this.modalData.dialog_field_responders, field['name'])) {
+            return field['id'];
+          }
+        });
+
+        this.modalData.dialog_field_responders = dialogFieldResponderIds;
+
+        // load categories from API, if the field is Tag Control
+        if (this.modalData.type === 'DialogFieldTagControl') {
+          this.resolveCategories().then(
+            (categories: any) => { this.categories = categories; }
+          );
         }
-      });
-
-      this.modalData.dialog_field_responders = dialogFieldResponderIds;
-
-      // load categories from API, if the field is Tag Control
-      if (this.modalData.type === 'DialogFieldTagControl') {
-        this.resolveCategories().then(
-          (categories: any) => { this.categories = categories; }
-        );
-      }
-      // set modal title
-      if (!this.modalData.dynamic) {
-        const titles = {
-          DialogFieldTextBox:         __('Text Box'),
-          DialogFieldTextAreaBox:     __('Text Area'),
-          DialogFieldCheckBox:        __('Check Box'),
-          DialogFieldDropDownList:    __('Dropdown'),
-          DialogFieldRadioButton:     __('Radio Button'),
-          DialogFieldDateControl:     __('Datepicker'),
-          DialogFieldDateTimeControl: __('Timepicker'),
-          DialogFieldTagControl:      __('Tag Control')
-        };
-        const titleLabel = this.modalData.type in titles &&
-          titles[this.modalData.type];
-        this.modalTitle =  __(`Edit ${titleLabel} Field`);
+        // set modal title
+        if (!this.modalData.dynamic) {
+          const titles = {
+            DialogFieldTextBox:         __('Text Box'),
+            DialogFieldTextAreaBox:     __('Text Area'),
+            DialogFieldCheckBox:        __('Check Box'),
+            DialogFieldDropDownList:    __('Dropdown'),
+            DialogFieldRadioButton:     __('Radio Button'),
+            DialogFieldDateControl:     __('Datepicker'),
+            DialogFieldDateTimeControl: __('Timepicker'),
+            DialogFieldTagControl:      __('Tag Control')
+          };
+          const titleLabel = this.modalData.type in titles &&
+            titles[this.modalData.type];
+          this.modalTitle =  __(`Edit ${titleLabel} Field`);
+        }
       }
     }
   }

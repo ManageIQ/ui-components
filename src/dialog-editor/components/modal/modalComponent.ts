@@ -18,13 +18,11 @@ class ModalController {
   public modalTitle: string;
 
   /*@ngInject*/
-  constructor(private dialogDetails: any,
-              private $uibModal: any,
+  constructor(private $uibModal: any,
               private $uibModalInstance: any,
               private API: any,
               private DialogEditor: any) {
     ng.extend(this, {
-      dialog: this.dialogDetails,
       saveDialogFieldDetails: this.saveDialogFieldDetails,
       addEntry: this.addEntry,
       removeEntry: this.removeEntry,

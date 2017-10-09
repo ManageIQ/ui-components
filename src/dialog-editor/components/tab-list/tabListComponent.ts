@@ -128,16 +128,6 @@ class TabListController {
     selectedTab.active = true;
     this.DialogEditor.activeTab = id;
   }
-
-  /**
-   * Show modal to edit label and description of the tab
-   * @memberof TabListController
-   * @function editDialogModal
-   * @param {number} tab is an index of tab
-   */
-  public editDialogModal(tab: number) {
-    this.DialogEditorModal.showModal(tab);
-  }
 }
 
 /**

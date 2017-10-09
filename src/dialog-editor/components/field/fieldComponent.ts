@@ -26,18 +26,6 @@ class FieldController {
   }
 
   /**
-   * Show modal to edit details of the component
-   * @memberof FieldController
-   * @function editDialogModal
-   * @param {number} tab is an index of tab, where the box is placed
-   * @param {number} box is an index of box, where the field is placed
-   * @param {number} field is an index of field
-   */
-  public editDialogModal(tab: number, box: number, field: number) {
-    this.DialogEditorModal.showModal(tab, box, field);
-  }
-
-  /**
    * Remove Field
    * @memberof FieldController
    * @function remmoveField

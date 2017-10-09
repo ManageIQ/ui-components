@@ -95,7 +95,11 @@
             </span>
     </button>
     <button type="button" class="close hide"
-            ng-click="">
+            ng-click="vm.setupModalOptions(
+            'field',
+            vm.service.activeTab,
+            vm.boxPosition,
+            vm.fieldData.position)">
       <span aria-hidden="true">
         <i class="pf pficon-edit"></i>
       </span>

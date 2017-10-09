@@ -14,6 +14,8 @@ class ModalController {
   public dynamicFieldList: any;
   public categories: any;
   public modalTitle: string;
+  public modalOptions: any;
+  public visible: boolean;
   public elementData: any;
 
   /*@ngInject*/
@@ -22,6 +24,7 @@ class ModalController {
               private API: any,
               private DialogEditor: any) {
     ng.extend(this, {
+      showModal: this.showModal,
       saveDialogFieldDetails: this.saveDialogFieldDetails,
       addEntry: this.addEntry,
       removeEntry: this.removeEntry,
@@ -226,8 +229,8 @@ class ModalController {
     }
   }
 
-  public showModal(modalOptions: any) {
-    let modal = this.$uibModal.open(modalOptions);
+  public showModal(options: any) {
+    let modal = this.$uibModal.open(options);
     return modal.result.catch(() => undefined);
   }
 }
@@ -248,8 +251,9 @@ export default class Modal {
   public transclude = true;
   public controller: any = ModalController;
   public bindings: any = {
-    options: '<',
+    modalOptions: '<',
     visible: '<',
     elementData: '<',
+    showModal: '&',
   };
 }

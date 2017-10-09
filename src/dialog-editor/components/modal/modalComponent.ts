@@ -13,7 +13,6 @@ class ModalController {
   public modalData: any;
   public dynamicFieldList: any;
   public categories: any;
-  public dialog: any;
   public modalTitle: string;
   public elementData: any;
 
@@ -36,14 +35,14 @@ class ModalController {
     // clone data from service
     let elements = {
       tab: this.DialogEditor.getDialogTabs()[
-        this.dialog.tabId],
+        this.elementData.tabId],
       box: this.DialogEditor.getDialogTabs()[
-        this.dialog.tabId].dialog_groups[
-          this.dialog.boxId],
+        this.elementData.tabId].dialog_groups[
+          this.elementData.boxId],
       field: this.DialogEditor.getDialogTabs()[
-        this.dialog.tabId].dialog_groups[
-          this.dialog.boxId].dialog_fields[
-            this.dialog.fieldId]
+        this.elementData.tabId].dialog_groups[
+          this.elementData.boxId].dialog_fields[
+            this.elementData.fieldId]
     };
     this.modalData = this.elementData.type in elements &&
       _.cloneDeep(elements[this.elementData.type]);
@@ -126,11 +125,11 @@ class ModalController {
         this.DialogEditor.activeTab],
       box: this.DialogEditor.getDialogTabs()[
         this.DialogEditor.activeTab].dialog_groups[
-          this.dialog.boxId],
+          this.elementData.boxId],
       field: this.DialogEditor.getDialogTabs()[
         this.DialogEditor.activeTab].dialog_groups[
-          this.dialog.boxId].dialog_fields[
-            this.dialog.fieldId]
+          this.elementData.boxId].dialog_fields[
+            this.elementData.fieldId]
     };
     return this.elementData.type in elements &&
       _.isMatch(elements[this.elementData.type], this.modalData);
@@ -155,7 +154,7 @@ class ModalController {
         _.assignIn(
           this.DialogEditor.getDialogTabs()[
             this.DialogEditor.activeTab].dialog_groups[
-              this.dialog.boxId],
+              this.elementData.boxId],
           { label: this.modalData.label,
             description: this.modalData.description }
         );
@@ -163,8 +162,8 @@ class ModalController {
       case 'field':
         this.DialogEditor.getDialogTabs()[
           this.DialogEditor.activeTab].dialog_groups[
-            this.dialog.boxId].dialog_fields[
-              this.dialog.fieldId] = this.modalData;
+            this.elementData.boxId].dialog_fields[
+              this.elementData.fieldId] = this.modalData;
         break;
       default:
         break;
@@ -184,9 +183,9 @@ class ModalController {
       this.DialogEditor.getDialogTabs()[
         this.DialogEditor.activeTab
       ].dialog_groups[
-        this.dialog.boxId
+        this.elementData.boxId
       ].dialog_fields,
-      (field: any) => field.position === this.dialog.fieldId
+      (field: any) => field.position === this.elementData.fieldId
     );
 
     // close modal

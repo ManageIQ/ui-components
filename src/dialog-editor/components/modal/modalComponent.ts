@@ -4,6 +4,7 @@ import {__} from '../../../common/translateFunction';
 
 /**
  * Controller for the Dialog Editor modal service
+ * @memberof miqStaticAssets
  * @ngdoc controller
  * @name ModalController
  */
@@ -18,6 +19,7 @@ class ModalController {
 
   /*@ngInject*/
   constructor(private dialogDetails: any,
+              private $uibModal: any,
               private $uibModalInstance: any,
               private API: any,
               private DialogEditor: any) {
@@ -243,35 +245,31 @@ class ModalController {
       );
     }
   }
-}
 
-export default class ModalService {
-  /** @ngInject */
-  constructor(private $uibModal: any) {
-  }
-
-  /**
-   * Show modal of the element.
-   * @memberof ModalService
-   * @function showModal
-   * @param {number} index of tab, where the box is placed
-   * @param {number} index of box, where the field is placed
-   * @param {number} index of field
-   */
-  public showModal(tab: number, box: number, field: number) {
-    let modalOptions = {
-      template: require('./modal.html'),
-      controller: ModalController,
-      controllerAs: 'vm',
-      size: 'lg',
-      resolve: {
-        dialogDetails: () => {
-          return {tabId: tab, boxId: box, fieldId: field};
-        },
-      },
-    };
+  public showModal(modalOptions: any) {
     let modal = this.$uibModal.open(modalOptions);
-
     return modal.result.catch(() => undefined);
   }
+}
+
+/**
+ * @memberof miqStaticAssets
+ * @ngdoc component
+ * @name dialogEditorModal
+ * @description
+ *    Component implementing behaviour for the boxes inside of
+ *    the dialogs tabs.
+ * @example
+ * <dialog-editor-modal>
+ * </dialog-editor-modal>
+ */
+export default class Modal {
+  public template = '';
+  public transclude = true;
+  public controller: any = ModalController;
+  public bindings: any = {
+    options: '<',
+    visible: '<',
+    dialogData: '<',
+  };
 }

@@ -35,8 +35,15 @@ export default class DataTableService implements IDataTableService {
                                        id?: string,
                                        isExplorer?: string,
                                        settings?: any,
-                                       records?: any): ng.IPromise<IRowsColsResponse> {
-    return this.fetchData(DataTableService.generateConfig(modelName, activeTree, id, isExplorer, settings, records))
+                                       records?: any,
+                                       additionalOptions?: any): ng.IPromise<IRowsColsResponse> {
+    return this.fetchData(DataTableService.generateConfig(modelName,
+                                                          activeTree,
+                                                          id,
+                                                          isExplorer,
+                                                          settings,
+                                                          records,
+                                                          additionalOptions))
       .then(responseData => {
         this.columns = responseData.data.data.head;
         this.rows = responseData.data.data.rows;
@@ -71,6 +78,7 @@ export default class DataTableService implements IDataTableService {
    * @param isExplorer
    * @param settings
    * @param records
+   * @param additionalOptions
    * @returns {{params: {}}} config object with params set.
    */
   public static generateConfig(modelName?: string,
@@ -78,7 +86,8 @@ export default class DataTableService implements IDataTableService {
                                parentId?: string,
                                isExplorer?: string,
                                settings?: any,
-                               records?: any) {
+                               records?: any,
+                               additionalOptions?: any) {
     let config = {};
     _.assign(config, DataTableService.generateModelNameConfig(modelName));
     _.assign(config, DataTableService.generateActiveTreeConfig(activeTree));
@@ -86,6 +95,7 @@ export default class DataTableService implements IDataTableService {
     _.assign(config, DataTableService.generateExplorerConfig(isExplorer));
     _.assign(config, DataTableService.generateParamsFromSettings(settings));
     _.assign(config, DataTableService.generateRecords(records));
+    _.assign(config, DataTableService.generateAdditionalOptions(additionalOptions));
     return config;
   }
 
@@ -138,5 +148,9 @@ export default class DataTableService implements IDataTableService {
 
   private static generateRecords(records) {
     return records && records !== null && {'records[]': records, records: records};
+  }
+
+  private static generateAdditionalOptions(additionalOptions) {
+    return additionalOptions && additionalOptions !== null && {'additional_options': additionalOptions};
   }
 }

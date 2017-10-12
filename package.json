@@ -58,7 +58,7 @@
     "@manageiq/font-fabulous": "^1.0.0",
     "google-code-prettify": "^1.0.5",
     "html-webpack-plugin": "^2.24.1",
-    "jasmine": "2.5.2",
+    "jasmine": "2.8.0",
     "jquery-match-height": "^0.7.0",
     "jquery-ui-bundle": "^1.12.1",
     "jsdoc": "^3.4.3",

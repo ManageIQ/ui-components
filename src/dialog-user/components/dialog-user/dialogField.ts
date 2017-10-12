@@ -1,5 +1,6 @@
 import { DialogFieldClass } from '../../interfaces/abstractDialogFieldClass';
 import * as _ from 'lodash';
+import * as angular from 'angular';
 /**
  * This component deals with an individual dialog field
  *
@@ -13,6 +14,7 @@ export class DialogFieldController extends DialogFieldClass {
   public service: any;
   public dialogValue: any;
   public dialogField: any;
+  public validation: any;
   public clonedDialogField: any;
 
   /*@ngInject*/
@@ -29,6 +31,7 @@ export class DialogFieldController extends DialogFieldClass {
     this.service = this.DialogData;
     this.clonedDialogField = _.cloneDeep(this.field);
     this.dialogField = this.field;
+    this.validation = null;
   }
 
   /**
@@ -39,6 +42,10 @@ export class DialogFieldController extends DialogFieldClass {
   public $doCheck() {
     if (!_.isEqual(this.field, this.clonedDialogField)) {
       this.clonedDialogField = _.cloneDeep(this.field);
+      if (angular.isDefined(this.validation)) {
+        this.field.fieldValidation = this.validation.isValid;
+        this.field.errorMessage = this.validation.message;
+      }
       this.dialogField = this.service.setupField(this.field);
     }
   }
@@ -51,6 +58,7 @@ export class DialogFieldController extends DialogFieldClass {
    */
   public changesHappened(value) {
     const selectedValue = 0;
+    this.validation = this.validateField();
     let fieldValue = (value ? value[selectedValue] : this.dialogField.default_value);
     if ((this.dialogField.type === 'DialogFieldTagControl' || this.dialogField.type === 'DialogFieldDropDownList')
         && this.dialogField.default_value instanceof Array) {

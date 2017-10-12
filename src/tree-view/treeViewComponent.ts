@@ -20,7 +20,18 @@ export class TreeViewController {
     this.errorHandlers = this.errorHandlers || {};
   }
 
+  public $postLink() {
+    // It's necessary to wait for the template to be ready as the treeview requires an element ID
+    this.$timeout(() => {
+      this.renderTree();
+    });
+  }
+
   public $onChanges(changes) {
+    // For the first time render the tree with $postLink
+    if (!this.rendered) {
+      return;
+    }
     // Render the tree after the data has attribute been altered
     // WARNING: Do not use this for lazy-loading!
     if (changes.data && changes.data.currentValue !== undefined) {
@@ -237,7 +248,7 @@ export class TreeViewController {
 
 export default class TreeView implements ng.IComponentOptions {
   public controller = TreeViewController;
-  public template = '<div class="treeview treeview-pf-select"></div>';
+  public template = '<div class="treeview treeview-pf-select" ng-attr-id="treeview-{{ $ctrl.name }}"></div></div>';
   public bindings: any = {
     name: '@',
     data: '<',

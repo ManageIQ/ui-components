@@ -34,16 +34,19 @@
                 uib-tooltip="{{ ::inputTitle }}"
                 rows="4">{{ vm.dialogField.default_value }}
       </textarea>
-      <input ng-switch-when="DialogFieldCheckBox"
-             ng-model="vm.dialogField.default_value"
-             ng-true-value="'t'"
-             ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
-             ng-change="vm.changesHappened()"
-             class="form-control"
-             type="checkbox"
-             uib-tooltip="{{ ::inputTitle }}"
-             ng-checked="vm.dialogField.default_value == 't'">
-
+      <div ng-switch-when="DialogFieldCheckBox">
+        <input
+              ng-model="vm.dialogField.default_value"
+              ng-true-value="'t'"
+              ng-false-value="'f'"
+              ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
+              ng-change="vm.changesHappened()"
+              class="form-control"
+              type="checkbox"
+              uib-tooltip="{{ ::inputTitle }}"
+              ng-checked="vm.dialogField.default_value == 't'">
+        <div ng-if="vm.dialogField.fieldValidation===false">{{vm.dialogField.errorMessage}}</div>
+      </div>
       <span ng-switch-when="DialogFieldDropDownList">
         <ui-select ng-model="vm.dialogField.selected"
                    ng-blur="vm.validateField()"

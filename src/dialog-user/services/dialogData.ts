@@ -14,10 +14,11 @@ export default class DialogDataService {
   public setupField(data: any) {
     let field = _.cloneDeep(data);
     const dropDownValues = [];
-    field.fieldValidation = null;
     field.fieldBeingRefreshed = (angular.isDefined(field.fieldBeingRefreshed) ? field.fieldBeingRefreshed : false);
-    field.errorMessage = '';
-
+    if (angular.isUndefined(field.fieldValidation)) {
+      field.fieldValidation = '';
+      field.errorMessage = '';
+    }
     if (field.type === 'DialogFieldDropDownList') {
       for (let option of field.values) {
         if (option[0] === String(field.default_value)) {
@@ -108,12 +109,20 @@ export default class DialogDataService {
     validation.field = field.label;
 
     if (field.required) {
-      if (fieldValue === '') {
+      if (field.type === 'DialogFieldCheckBox' && fieldValue === 'f') {
+        validation.isValid = false;
+        validation.message = __('This field is required');
+      } else if (fieldValue === '') {
         validation.isValid = false;
         validation.message = __('This field is required');
       }
-      if (field.validator_type === 'regex') {
-        const regex = new RegExp(`${field.validator_rule}`);
+    }
+    // Run check if someone has specified a regex.  Make sure if its required it is not blank
+    if (field.validator_type === 'regex' && validation.isValid === true) {
+      if (angular.isDefined(fieldValue) && fieldValue !== '') {
+        // This use case ensures that an optional field doesnt check a regex if field is blank
+        const regexPattern = field.validator_rule.replace(/\\A/i, '^').replace(/\\Z/i,'$');
+        const regex = new RegExp(regexPattern);
         const regexValidates = regex.test(fieldValue);
         validation.isValid = regexValidates;
         validation.message = __('Entered text does not match required format.');

@@ -42,7 +42,6 @@ export class DialogUserController extends DialogClass implements IDialogs {
     for (const dialogTabs of this.dialog.dialog_tabs) {
       for (const dialogGroup of dialogTabs.dialog_groups) {
         for (const dialogField of dialogGroup.dialog_fields) {
-          dialogField.fieldValidation = '';
           vm.dialogFields[dialogField.name] = this.service.setupField(dialogField);
           // at this point all dialog fields are stored in a object keyed by field name
           vm.dialogValues[dialogField.name] = vm.dialogFields[dialogField.name].default_value;
@@ -75,7 +74,8 @@ export class DialogUserController extends DialogClass implements IDialogs {
       messages: []
     };
     _.forIn(this.dialogFields, (field, fieldName) => {
-      let validation = this.service.validateField(field, this.dialogValues[fieldName]);
+      const dialogValue = this.dialogValues[fieldName];
+      let validation = this.service.validateField(field, dialogValue);
       if (!validation.isValid) {
         validations.isValid = false;
         validations.messages.push(validation);

@@ -23,6 +23,7 @@
     "npm": ">= 3.8.1"
   },
   "devDependencies": {
+    "@manageiq/font-fabulous": "^1.0.0",
     "@types/angular-mocks": "^1.5.7",
     "@types/angular-ui-router": "^1.1.35",
     "@types/jasmine": "^2.5.38",
@@ -55,7 +56,6 @@
     "expose-loader": "^0.7.1",
     "extract-text-webpack-plugin": "^2.0.0-beta.5",
     "file-loader": "^0.9.0",
-    "@manageiq/font-fabulous": "^1.0.0",
     "google-code-prettify": "^1.0.5",
     "html-webpack-plugin": "^2.24.1",
     "jasmine": "2.5.2",
@@ -95,7 +95,7 @@
     "angular-dragdrop": "^1.0.13",
     "angular-ui-sortable": "^0.16.1",
     "babel-eslint": "^7.2.3",
+    "es6-shim": "^0.35.3",
     "eslint": "~3.9.1"
-
   }
 }

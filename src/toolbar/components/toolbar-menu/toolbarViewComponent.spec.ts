@@ -52,6 +52,7 @@ describe('ToolbarButton test', () =>  {
         expect(btnElem.attr('id')).toBe(scope.toolbarViews[key].id);
         expect(btnElem.attr('data-url')).toBe(scope.toolbarViews[key].url);
         expect(btnElem.attr('data-url_parms')).toBe(scope.toolbarViews[key].url_parms);
+        expect(btnElem.attr('data-send_checked')).toBe(scope.toolbarViews[key].send_checked ? 'true' : '');
         expect(btnElem.attr('name')).toBe(scope.toolbarViews[key].name);
       });
     });

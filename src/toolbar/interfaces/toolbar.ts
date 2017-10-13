@@ -29,6 +29,7 @@ export interface IToolbarItem {
   enabled?: boolean;
   hidden?: boolean;
   url_parms?: string;
+  send_checked?: boolean;
   url?: string;
   img?: string;
   icon?: string;

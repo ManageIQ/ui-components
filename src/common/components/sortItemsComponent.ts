@@ -26,6 +26,7 @@ export class SortItemsController {
    */
   public $onChanges(changesObj: any) {
     if (changesObj.headers) {
+      this.options.fields = [];
       this.fillFields();
       if (this.sortObject) {
         this.setSortItem();

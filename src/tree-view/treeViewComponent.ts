@@ -78,7 +78,7 @@ export class TreeViewController {
       this.tree = this.element.treeview(true);
 
       // Initial node selection right after rendering
-      if (this.selected) {
+      if (this.selected && this.tree.getSelected().length === 0) {
         this.selectNode(this.selected);
       }
 

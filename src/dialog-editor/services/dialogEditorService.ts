@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+
 export default class DialogEditorService {
   public data: any = {};
   public activeTab: number = 0;
@@ -46,6 +48,21 @@ export default class DialogEditorService {
    */
   public getDialogTabs() {
     return this.data.content[0].dialog_tabs;
+  }
+
+  public getDynamicFields(idToExclude) {
+    let dynamicFields = [];
+    _.forEach(this.data.content[0].dialog_tabs, (tab: any) => {
+      _.forEach(tab.dialog_groups, (group: any) => {
+        _.forEach(group.dialog_fields, (field: any) => {
+          if (field.dynamic === true && field.id !== idToExclude) {
+            dynamicFields.push(field);
+          }
+        });
+      });
+    });
+
+    return dynamicFields;
   }
 
   /**

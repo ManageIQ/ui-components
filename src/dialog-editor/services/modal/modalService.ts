@@ -10,6 +10,7 @@ import {__} from '../../../common/translateFunction';
 class ModalController {
   public modalTab: string = 'element_information';
   public modalData: any;
+  public dynamicFieldList: any;
   public element: string;
   public categories: any;
   public dialog: any;
@@ -65,6 +66,16 @@ class ModalController {
       _.cloneDeep(elements[this.element]);
 
     if (this.element === 'field') {
+      this.modalData.dynamicFieldList = this.DialogEditor.getDynamicFields(this.modalData.id);
+
+      const dialogFieldResponderIds = _.map(this.modalData.dynamicFieldList, (field) => {
+        if (_.includes(this.modalData.dialog_field_responders, field['name'])) {
+          return field['id'];
+        }
+      });
+
+      this.modalData.dialog_field_responders = dialogFieldResponderIds;
+
       // load categories from API, if the field is Tag Control
       if (this.modalData.type === 'DialogFieldTagControl') {
         this.resolveCategories().then(

@@ -72,7 +72,11 @@ export class ToolboxController {
         {
           data_type: 'string',
           values: [],
-          options: {sort_by: 'description', sort_order: 'ascending'},
+          options: {
+            sort_by: 'description',
+            sort_order: 'ascending',
+            force_multi_value: false,
+          },
         }
       ),
     dialogFieldRadioButton:
@@ -90,13 +94,19 @@ export class ToolboxController {
       new DialogField(
         'DialogFieldDateControl',
         'fa fa-calendar',
-        __('Datepicker')
+        __('Datepicker'),
+        {
+          options: { show_past_dates: false, }
+        }
       ),
     dialogFieldDateTimeControl:
       new DialogField(
         'DialogFieldDateTimeControl',
         'fa fa-clock-o',
-        __('Timepicker')
+        __('Timepicker'),
+        {
+          options: { show_past_dates: false, }
+        }
       ),
     dialogFieldTagControl:
       new DialogField(

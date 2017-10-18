@@ -46,5 +46,7 @@ export default class ModalFieldTemplate {
     removeEntry: '=?',
     currentCategoryEntries: '=?',
     resolveCategories: '=?',
+    modalTabIsSet: '<',
+    modalTab: '=',
   };
 }

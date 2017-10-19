@@ -10,11 +10,14 @@
     <li ng-class="{active:vm.modalTabIsSet('element_information')}">
       <a ng-click="vm.modalTabSet('element_information')" translate>Element Information</a>
     </li>
-    <li ng-if="vm.element === 'field'" ng-class="{active:vm.modalTabIsSet('options')}">
+    <li ng-class="{active:vm.modalTabIsSet('options')}">
       <a ng-click="vm.modalTabSet('options')" translate>Options</a>
     </li>
-    <li ng-if="vm.element === 'field'" ng-class="{active:vm.modalTabIsSet('advanced')}">
+    <li ng-class="{active:vm.modalTabIsSet('advanced')}">
       <a ng-click="vm.modalTabSet('advanced')" translate>Advanced</a>
+    </li>
+    <li ng-if="vm.modalData.dynamic" ng-class="{active:vm.modalTabIsSet('overridable')}">
+      <a ng-click="vm.modalTabSet('overridable')" translate>Overridable Options</a>
     </li>
   </ul>
   <!-- general details same for each component - element information -->
@@ -47,54 +50,62 @@
     </form>
   </div>
   <!-- field specific details -->
-  <div ng-show="vm.modalTabIsSet('options')">
-    <form class="form-horizontal">
-      <div ng-if="!vm.modalData.dynamic" ng-switch on="vm.modalData.type">
-        <dialog-editor-modal-field-template ng-switch-when="DialogFieldTextBox"
-                                            template="text-box.html"
-                                            modal-data="vm.modalData">
-        </dialog-editor-modal-field-template>
-        <dialog-editor-modal-field-template ng-switch-when="DialogFieldTextAreaBox"
-                                            template="text-area-box.html"
-                                            modal-data="vm.modalData">
-        </dialog-editor-modal-field-template>
-        <dialog-editor-modal-field-template ng-switch-when="DialogFieldCheckBox"
-                                            template="check-box.html"
-                                            modal-data="vm.modalData">
-        </dialog-editor-modal-field-template>
-        <dialog-editor-modal-field-template ng-switch-when="DialogFieldDateControl"
-                                            template="date-time-control.html"
-                                            modal-data="vm.modalData">
-        </dialog-editor-modal-field-template>
-        <dialog-editor-modal-field-template ng-switch-when="DialogFieldDateTimeControl"
-                                            template="date-time-control.html"
-                                            modal-data="vm.modalData">
-        </dialog-editor-modal-field-template>
-        <dialog-editor-modal-field-template ng-switch-when="DialogFieldRadioButton"
-                                            template="radio-button.html"
-                                            add-entry="vm.addEntry"
-                                            remove-entry="vm.removeEntry"
-                                            modal-data="vm.modalData">
-        </dialog-editor-modal-field-template>
-        <dialog-editor-modal-field-template ng-switch-when="DialogFieldDropDownList"
-                                            template="drop-down-list.html"
-                                            add-entry="vm.addEntry"
-                                            remove-entry="vm.removeEntry"
-                                            modal-data="vm.modalData">
-        </dialog-editor-modal-field-template>
-        <dialog-editor-modal-field-template ng-switch-when="DialogFieldTagControl"
-                                            template="tag-control.html"
-                                            current-category-entries="vm.currentCategoryEntries"
-                                            categories="vm.categories"
-                                            resolve-categories="vm.resolveCategories"
-                                            modal-data="vm.modalData">
-        </dialog-editor-modal-field-template>
-      </div>
-      <div ng-if="vm.modalData.dynamic">
-        <dialog-editor-modal-field-template template="dynamic.html" modal-data="vm.modalData">
-        </dialog-editor-modal-field-template>
-      </div>
-    </form>
+  <div ng-switch on="vm.modalData.type">
+    <dialog-editor-modal-field-template ng-switch-when="DialogFieldTextBox"
+                                        template="text-box.html"
+                                        modal-tab-is-set="vm.modalTabIsSet"
+                                        modal-tab="vm.modalTab"
+                                        modal-data="vm.modalData">
+    </dialog-editor-modal-field-template>
+    <dialog-editor-modal-field-template ng-switch-when="DialogFieldTextAreaBox"
+                                        template="text-area-box.html"
+                                        modal-tab-is-set="vm.modalTabIsSet"
+                                        modal-tab="vm.modalTab"
+                                        modal-data="vm.modalData">
+    </dialog-editor-modal-field-template>
+    <dialog-editor-modal-field-template ng-switch-when="DialogFieldCheckBox"
+                                        template="check-box.html"
+                                        modal-tab-is-set="vm.modalTabIsSet"
+                                        modal-tab="vm.modalTab"
+                                        modal-data="vm.modalData">
+    </dialog-editor-modal-field-template>
+    <dialog-editor-modal-field-template ng-switch-when="DialogFieldDateControl"
+                                        template="date-time-control.html"
+                                        modal-tab-is-set="vm.modalTabIsSet"
+                                        modal-tab="vm.modalTab"
+                                        modal-data="vm.modalData">
+    </dialog-editor-modal-field-template>
+    <dialog-editor-modal-field-template ng-switch-when="DialogFieldDateTimeControl"
+                                        template="date-time-control.html"
+                                        modal-tab-is-set="vm.modalTabIsSet"
+                                        modal-tab="vm.modalTab"
+                                        modal-data="vm.modalData">
+    </dialog-editor-modal-field-template>
+    <dialog-editor-modal-field-template ng-switch-when="DialogFieldRadioButton"
+                                        template="radio-button.html"
+                                        modal-tab-is-set="vm.modalTabIsSet"
+                                        modal-tab="vm.modalTab"
+                                        add-entry="vm.addEntry"
+                                        remove-entry="vm.removeEntry"
+                                        modal-data="vm.modalData">
+    </dialog-editor-modal-field-template>
+    <dialog-editor-modal-field-template ng-switch-when="DialogFieldDropDownList"
+                                        template="drop-down-list.html"
+                                        modal-tab-is-set="vm.modalTabIsSet"
+                                        modal-tab="vm.modalTab"
+                                        add-entry="vm.addEntry"
+                                        remove-entry="vm.removeEntry"
+                                        modal-data="vm.modalData">
+    </dialog-editor-modal-field-template>
+    <dialog-editor-modal-field-template ng-switch-when="DialogFieldTagControl"
+                                        template="tag-control.html"
+                                        modal-tab-is-set="vm.modalTabIsSet"
+                                        modal-tab="vm.modalTab"
+                                        current-category-entries="vm.currentCategoryEntries"
+                                        categories="vm.categories"
+                                        resolve-categories="vm.resolveCategories"
+                                        modal-data="vm.modalData">
+    </dialog-editor-modal-field-template>
   </div>
   <!-- general details same for each field - advanced -->
   <div ng-show="vm.modalTabIsSet('advanced')">

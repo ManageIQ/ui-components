@@ -17,14 +17,13 @@ class ModalController {
   public modalOptions: any;
   public visible: boolean;
   public elementData: any;
+  private uibModalInstance;
 
   /*@ngInject*/
   constructor(private $uibModal: any,
-              private $uibModalInstance: any,
               private API: any,
               private DialogEditor: any) {
     ng.extend(this, {
-      showModal: this.showModal,
       saveDialogFieldDetails: this.saveDialogFieldDetails,
       addEntry: this.addEntry,
       removeEntry: this.removeEntry,
@@ -109,6 +108,12 @@ class ModalController {
     this.modalTab = tab;
   }
 
+  public $onChanges(changesObj: any) {
+    if (changesObj.modalOptions && this.modalOptions) {
+      this.showModal(this.modalOptions);
+    }
+  }
+
   /**
    * Returns true/false according to which tab is currently
    * selected in the modal.
@@ -175,7 +180,7 @@ class ModalController {
     }
 
     // close modal
-    this.$uibModalInstance.close();
+    this.uibModalInstance.close();
   }
 
   /**
@@ -194,7 +199,7 @@ class ModalController {
     );
 
     // close modal
-    this.$uibModalInstance.close();
+    this.uibModalInstance.close();
   }
 
   /**
@@ -232,8 +237,9 @@ class ModalController {
   }
 
   public showModal(options: any) {
-    let modal = this.$uibModal.open(options);
-    return modal.result.catch(() => undefined);
+    console.log(this, options);
+    this.uibModalInstance = this.$uibModal.open(options);
+    return this.uibModalInstance.result.catch(() => undefined);
   }
 }
 
@@ -255,7 +261,6 @@ export default class Modal {
   public bindings: any = {
     modalOptions: '<',
     visible: '<',
-    elementData: '<',
-    showModal: '&',
+    elementData: '<'
   };
 }

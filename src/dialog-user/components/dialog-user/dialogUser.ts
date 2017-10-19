@@ -38,6 +38,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
     vm.refreshableFields = [];
     vm.dialogValues = {};
     vm.areFieldsBeingRefreshed = false;
+    vm.inputDisabled = vm.inputDisabled || false;
     this.service = this.DialogData;
     for (const dialogTabs of this.dialog.dialog_tabs) {
       for (const dialogGroup of dialogTabs.dialog_groups) {

@@ -60,8 +60,9 @@ describe('Dialog test', () =>  {
         dialogCtrl.$onInit();
       });
     });
-    it('should have 1 refreshable field', () => {
-        expect(dialogCtrl.refreshableFields.length).toBe(1);
+
+    it('sets up the field associations', () => {
+        expect(dialogCtrl.fieldAssociations["option_1_vm_name"]).toEqual(["tag_1_function"]);
     });
   });
 });

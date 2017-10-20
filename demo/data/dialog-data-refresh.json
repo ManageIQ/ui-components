@@ -130,6 +130,7 @@
                       "name": "option_1_vm_name",
                       "display": "edit",
                       "display_method_options": {},
+                      "dialog_field_responders": ["tag_1_function"],
                       "required": true,
                       "required_method_options": {},
                       "default_value": "",
@@ -261,7 +262,6 @@
                       "display": "edit",
                       "display_method_options": {},
                       "required": true,
-                      "auto_refresh": true,
                       "required_method_options": {},
                       "values": [
                         [

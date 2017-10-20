@@ -31,6 +31,12 @@
       <input id="validator_rule" name="validator_rule"
              ng-model="vm.modalData.validator_rule"/>
     </div>
+    <div pf-form-group pf-label="{{'Fields to refresh'|translate}}">
+      <select class="form-control" ng-model="vm.modalData.dialog_field_responders"
+              ng-options="dynamicField.id as dynamicField.label for dynamicField in vm.modalData.dynamicFieldList"
+              multiple pf-select>
+      </select>
+    </div>
   </form>
 </div>
 <div ng-if="vm.modalTabIsSet('options') && vm.modalData.dynamic">

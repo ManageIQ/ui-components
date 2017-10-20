@@ -66,6 +66,7 @@ describe('ToolbarButton test', () =>  {
         expect(linkItem.attr('data-click')).toBe(currItem.id);
         expect(linkItem.attr('data-url') ? linkItem.attr('data-url') : undefined).toBe(currItem.url);
         expect(linkItem.attr('data-url_parms')).toBe(currItem.url_parms);
+        expect(linkItem.attr('data-send_checked')).toBe(currItem.send_checked ? 'true' : '');
         expect(linkItem.attr('name')).toBe(currItem.name);
         expect(linkItem.attr('id')).toBe(currItem.id);
       });

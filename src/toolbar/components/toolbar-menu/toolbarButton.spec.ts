@@ -31,7 +31,7 @@ describe('ToolbarButton test', () =>  {
       scope.$digest();
     });
 
-    it('creates button and checks for {name, confirm-tb, explorer, title, url, click, url_parms}', () => {
+    it('creates button and checks for {name, confirm-tb, explorer, title, url, click, url_parms, send_checked}', () => {
       expect(compiledElement.attr('name')).toBe(scope.toolbarButtonData.name);
       expect(compiledElement.attr('data-confirm-tb')).toBe(scope.toolbarButtonData.confirm);
       expect(JSON.parse(compiledElement.attr('data-explorer'))).toBe(scope.toolbarButtonData.explorer);
@@ -39,6 +39,7 @@ describe('ToolbarButton test', () =>  {
       expect(compiledElement.attr('data-url')).toBe(scope.toolbarButtonData.url);
       expect(compiledElement.attr('data-click')).toBe(scope.toolbarButtonData.name);
       expect(compiledElement.attr('data-url_parms')).toBe(scope.toolbarButtonData.url_parms);
+      expect(compiledElement.attr('data-send_checked')).toBe(scope.toolbarButtonData.send_checked ? 'true' : '');
       expect(compiledElement.attr('data-prompt')).toBe(scope.toolbarButtonData.prompt);
     });
 

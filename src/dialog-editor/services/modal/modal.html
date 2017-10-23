@@ -99,6 +99,8 @@
     </dialog-editor-modal-field-template>
     <dialog-editor-modal-field-template ng-switch-when="DialogFieldTagControl"
                                         template="tag-control.html"
+                                        modal-tab-is-set="vm.modalTabIsSet"
+                                        modal-tab="vm.modalTab"
                                         current-category-entries="vm.currentCategoryEntries"
                                         categories="vm.categories"
                                         resolve-categories="vm.resolveCategories"

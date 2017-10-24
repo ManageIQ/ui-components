@@ -11,6 +11,7 @@ import {__} from '../../../common/translateFunction';
 class TabListController {
   public tabList: any;
   public sortableOptions: any;
+  public setupModalOptions: any;
 
   /*@ngInject*/
   constructor(private DialogEditor: any) {
@@ -145,4 +146,7 @@ export default class TabList {
   public template = require('./tab-list.html');
   public controller: any = TabListController;
   public controllerAs: string = 'vm';
+  public bindings = {
+    setupModalOptions: '&'
+  };
 }

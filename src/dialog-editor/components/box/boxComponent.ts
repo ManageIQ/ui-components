@@ -13,9 +13,14 @@ class BoxController {
   public sortableOptionsFields: any;
   public service: any;
   public dialogTabs: any;
+  public setupModalOptions: any;
 
   /*@ngInject*/
   constructor(private DialogEditor: any) {
+  }
+
+  public onFieldEdit(type, tab, box, field) {
+    this.setupModalOptions({type, tab, box, field});
   }
 
   /**
@@ -125,4 +130,7 @@ export default class Box {
   public template = require('./box.html');
   public controller: any = BoxController;
   public controllerAs: string = 'vm';
+  public bindings = {
+    setupModalOptions: '&'
+  };
 }

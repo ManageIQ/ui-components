@@ -20,7 +20,7 @@
             </span>
           </button>
           <i class="pf header-pf pficon-edit close hide show-on-hover"
-             ng-click="vm.setupModalOptions('box', vm.service.activeTab, box.position)"></i>
+             ng-click="vm.setupModalOptions({type: 'box', tab: vm.service.activeTab, box: box.position})"></i>
         </div>
         <div class="panel-body">
           <div ui-sortable='vm.sortableOptionsFields'
@@ -32,7 +32,9 @@
             </div>
             <div ng-repeat='field in box.dialog_fields' class="draggable-field">
               <form class="form-horizontal">
-                <dialog-editor-field box-position="box.position" field-data='field'></dialog-editor-field>
+                <dialog-editor-field box-position="box.position"
+                                     field-data='field'
+                                     setup-modal-options="vm.onFieldEdit(type, tab, box, field)"></dialog-editor-field>
               </form>
             </div>
           </div>

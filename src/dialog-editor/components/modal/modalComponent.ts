@@ -34,6 +34,9 @@ class ModalController {
       currentCategoryEntries: this.currentCategoryEntries,
     });
 
+  }
+
+  public loadModalData() {
     if (this.elementInfo !== undefined) {
       // clone data from service
       let elements = {
@@ -237,6 +240,7 @@ class ModalController {
   }
 
   public showModal(options: any) {
+    this.loadModalData();
     console.log(this, options);
     this.uibModalInstance = this.$uibModal.open(options);
     return this.uibModalInstance.result.catch(() => undefined);

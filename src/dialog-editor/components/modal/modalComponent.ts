@@ -86,21 +86,21 @@ class ModalController {
   }
 
   public loadModalTabData(tab: number) {
-    let tabContent = this.DialogEditor.getDialogTabs();
-    return tabContent[tab];
+    let tabList = this.DialogEditor.getDialogTabs();
+    return tabList[tab];
   }
 
   public loadModalBoxData(tab: number, box: number) {
-    let tabContent = this.DialogEditor.getDialogTabs();
-    let boxContent = tabContent[tab];
-    return boxContent.dialog_groups[box];
+    let tabList = this.DialogEditor.getDialogTabs();
+    let boxList = tabList[tab];
+    return boxList.dialog_groups[box];
   }
 
   public loadModalFieldData(tab: number, box: number, field: number) {
-    let tabContent = this.DialogEditor.getDialogTabs();
-    let boxContent = tabContent[tab];
-    let fieldContent = boxContent[box];
-    return fieldContent.dialog_fields[field];
+    let tabList = this.DialogEditor.getDialogTabs();
+    let boxList = tabList[tab];
+    let fieldList = boxList.dialog_groups[box];
+    return fieldList.dialog_fields[field];
   }
 
   /**
@@ -254,7 +254,6 @@ class ModalController {
 
   public showModal(options: any) {
     this.loadModalData(this.elementInfo);
-    console.log(this, options);
     this.uibModalInstance = this.$uibModal.open(options);
     return this.uibModalInstance.result.catch(() => undefined);
   }

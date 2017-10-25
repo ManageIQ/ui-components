@@ -40,15 +40,15 @@ class ModalController {
     if (this.elementInfo !== undefined) {
       // clone data from service
       let elements = {
-        tab: this.DialogEditor.getDialogTabs()[
-          this.elementInfo.tabId],
-        box: this.DialogEditor.getDialogTabs()[
-          this.elementInfo.tabId].dialog_groups[
-            this.elementInfo.boxId],
-        field: this.DialogEditor.getDialogTabs()[
-          this.elementInfo.tabId].dialog_groups[
-            this.elementInfo.boxId].dialog_fields[
-              this.elementInfo.fieldId]
+        tab: this.loadModalTabData(
+          this.elementInfo.tabId),
+        box: this.loadModalBoxData(
+          this.elementInfo.tabId,
+          this.elementInfo.boxId),
+        field: this.loadModalFieldData(
+          this.elementInfo.tabId,
+          this.elementInfo.boxId,
+          this.elementInfo.fieldId)
       };
       this.modalData = this.elementInfo.type in elements &&
         _.cloneDeep(elements[this.elementInfo.type]);
@@ -88,6 +88,24 @@ class ModalController {
         }
       }
     }
+  }
+
+  public loadModalTabData(tab: number) {
+    let tabContent = this.DialogEditor.getDialogTabs();
+    return tabContent[tab];
+  }
+
+  public loadModalBoxData(tab: number, box: number) {
+    let tabContent = this.DialogEditor.getDialogTabs();
+    let boxContent = tabContent[tab];
+    return boxContent.dialog_groups[box];
+  }
+
+  public loadModalFieldData(tab: number, box: number, field: number) {
+    let tabContent = this.DialogEditor.getDialogTabs();
+    let boxContent = tabContent[tab];
+    let fieldContent = boxContent[box];
+    return fieldContent.dialog_fields[field];
   }
 
   /**

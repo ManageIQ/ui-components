@@ -12,6 +12,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
   public dialogFields: any;
   public refreshableFields: Array<string>;
   public dialogValues: any;
+  public fieldAssociations: any;
   public parsedOptions: any;
   public service: any;
   public areFieldsBeingRefreshed: boolean;
@@ -36,6 +37,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
     const vm = this;
     vm.dialogFields = {};
     vm.refreshableFields = [];
+    vm.fieldAssociations = {};
     vm.dialogValues = {};
     vm.areFieldsBeingRefreshed = false;
     vm.inputDisabled = vm.inputDisabled || false;
@@ -46,8 +48,12 @@ export class DialogUserController extends DialogClass implements IDialogs {
           vm.dialogFields[dialogField.name] = this.service.setupField(dialogField);
           // at this point all dialog fields are stored in a object keyed by field name
           vm.dialogValues[dialogField.name] = vm.dialogFields[dialogField.name].default_value;
-          if (dialogField.auto_refresh === true || dialogField.trigger_auto_refresh === true) {
-            vm.refreshableFields.push(dialogField.name);
+          if (dialogField.dialog_field_responders !== undefined) {
+            vm.fieldAssociations[dialogField.name] = dialogField.dialog_field_responders;
+          } else {
+            if (dialogField.auto_refresh === true || dialogField.trigger_auto_refresh === true) {
+              vm.refreshableFields.push(dialogField.name);
+            }
           }
         }
       }
@@ -94,13 +100,19 @@ export class DialogUserController extends DialogClass implements IDialogs {
    * @param value {any} This is the updated value based on the selection the user made on a particular dialog field
    */
   public updateDialogField(dialogFieldName, value) {
-    const refreshable = _.indexOf(this.refreshableFields, dialogFieldName);
     this.dialogFields[dialogFieldName].default_value = value;
     this.dialogValues[dialogFieldName] = value;
     this.saveDialogData();
-    if (refreshable > -1  && !this.areFieldsBeingRefreshed) {
+    if (this.fieldAssociations !== {}) {
+      if (this.fieldAssociations[dialogFieldName] !== []) {
+        this.updateTargetedFieldsFrom(dialogFieldName);
+      }
+    } else {
+      const refreshable = _.indexOf(this.refreshableFields, dialogFieldName);
+      if (refreshable > -1  && !this.areFieldsBeingRefreshed) {
         const fieldsToRefresh = _.without(this.refreshableFields, dialogFieldName);
         this.updateRefreshableFields(fieldsToRefresh);
+      }
     }
   }
 
@@ -127,6 +139,36 @@ export class DialogUserController extends DialogClass implements IDialogs {
       } else {
         this.areFieldsBeingRefreshed = false;
       }
+    });
+  }
+
+  /**
+   * This method handles the updating of all dialogs fields that
+   * are set to trigger after another field has just been refreshed
+   * @memberof DialogUserController
+   * @function updateTargetedFieldsFrom
+   * @param dialogFieldName {string} This is the dialog field name that just refreshed.
+   * This is used to determine which fields are targeted from that field
+   */
+  public updateTargetedFieldsFrom(dialogFieldName): void {
+    this.areFieldsBeingRefreshed = true;
+
+    _.forEach(this.fieldAssociations[dialogFieldName], (field: any) => {
+      this.dialogFields[field].fieldBeingRefreshed = true;
+      this.refreshField({ field: this.dialogFields[field] }).then((data) => {
+        this.dialogFields[field] = this.updateDialogFieldData(field, data);
+        this.dialogValues[field] = data.values;
+        this.dialogFields[field].fieldBeingRefreshed = false;
+
+        this.saveDialogData();
+        this.$scope.$apply();
+
+        if (this.fieldAssociations[field] !== []) {
+          this.updateTargetedFieldsFrom(field);
+        }
+
+        this.areFieldsBeingRefreshed = false;
+      });
     });
   }
 

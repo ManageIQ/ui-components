@@ -36,24 +36,19 @@ class ModalController {
 
   }
 
-  public loadModalData() {
-    if (this.elementInfo !== undefined) {
+  public loadModalData(elem: any) {
+    if (elem !== undefined) {
       // clone data from service
       let elements = {
-        tab: this.loadModalTabData(
-          this.elementInfo.tabId),
-        box: this.loadModalBoxData(
-          this.elementInfo.tabId,
-          this.elementInfo.boxId),
-        field: this.loadModalFieldData(
-          this.elementInfo.tabId,
-          this.elementInfo.boxId,
-          this.elementInfo.fieldId)
+        tab: this.loadModalTabData(elem.tabId),
+        box: this.loadModalBoxData(elem.tabId, elem.boxId),
+        field: this.loadModalFieldData(elem.tabId, elem.boxId, elem.fieldId)
       };
-      this.modalData = this.elementInfo.type in elements &&
-        _.cloneDeep(elements[this.elementInfo.type]);
 
-      if (this.elementInfo.type === 'field') {
+      this.modalData = elem.type in elements &&
+        _.cloneDeep(elements[elem.type]);
+
+      if (elem.type === 'field') {
         this.modalData.dynamicFieldList = this.DialogEditor.getDynamicFields(this.modalData.id);
 
         const dialogFieldResponderIds = _.map(this.modalData.dynamicFieldList, (field) => {
@@ -258,7 +253,7 @@ class ModalController {
   }
 
   public showModal(options: any) {
-    this.loadModalData();
+    this.loadModalData(this.elementInfo);
     console.log(this, options);
     this.uibModalInstance = this.$uibModal.open(options);
     return this.uibModalInstance.result.catch(() => undefined);

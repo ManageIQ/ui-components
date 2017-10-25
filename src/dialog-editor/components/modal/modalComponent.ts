@@ -16,7 +16,7 @@ class ModalController {
   public modalTitle: string;
   public modalOptions: any;
   public visible: boolean;
-  public elementData: any;
+  public elementInfo: any;
   private uibModalInstance;
 
   /*@ngInject*/
@@ -34,23 +34,23 @@ class ModalController {
       currentCategoryEntries: this.currentCategoryEntries,
     });
 
-    if (this.elementData !== undefined) {
+    if (this.elementInfo !== undefined) {
       // clone data from service
       let elements = {
         tab: this.DialogEditor.getDialogTabs()[
-          this.elementData.tabId],
+          this.elementInfo.tabId],
         box: this.DialogEditor.getDialogTabs()[
-          this.elementData.tabId].dialog_groups[
-            this.elementData.boxId],
+          this.elementInfo.tabId].dialog_groups[
+            this.elementInfo.boxId],
         field: this.DialogEditor.getDialogTabs()[
-          this.elementData.tabId].dialog_groups[
-            this.elementData.boxId].dialog_fields[
-              this.elementData.fieldId]
+          this.elementInfo.tabId].dialog_groups[
+            this.elementInfo.boxId].dialog_fields[
+              this.elementInfo.fieldId]
       };
-      this.modalData = this.elementData.type in elements &&
-        _.cloneDeep(elements[this.elementData.type]);
+      this.modalData = this.elementInfo.type in elements &&
+        _.cloneDeep(elements[this.elementInfo.type]);
 
-      if (this.elementData.type === 'field') {
+      if (this.elementInfo.type === 'field') {
         this.modalData.dynamicFieldList = this.DialogEditor.getDynamicFields(this.modalData.id);
 
         const dialogFieldResponderIds = _.map(this.modalData.dynamicFieldList, (field) => {
@@ -135,14 +135,14 @@ class ModalController {
         this.DialogEditor.activeTab],
       box: this.DialogEditor.getDialogTabs()[
         this.DialogEditor.activeTab].dialog_groups[
-          this.elementData.boxId],
+          this.elementInfo.boxId],
       field: this.DialogEditor.getDialogTabs()[
         this.DialogEditor.activeTab].dialog_groups[
-          this.elementData.boxId].dialog_fields[
-            this.elementData.fieldId]
+          this.elementInfo.boxId].dialog_fields[
+            this.elementInfo.fieldId]
     };
-    return this.elementData.type in elements &&
-      _.isMatch(elements[this.elementData.type], this.modalData);
+    return this.elementInfo.type in elements &&
+      _.isMatch(elements[this.elementInfo.type], this.modalData);
   }
 
   /**
@@ -151,7 +151,7 @@ class ModalController {
    * @function saveDialogFieldDetails
    */
   public saveDialogFieldDetails() {
-    switch (this.elementData.type) {
+    switch (this.elementInfo.type) {
       case 'tab':
         _.assignIn(
           this.DialogEditor.getDialogTabs()[
@@ -164,7 +164,7 @@ class ModalController {
         _.assignIn(
           this.DialogEditor.getDialogTabs()[
             this.DialogEditor.activeTab].dialog_groups[
-              this.elementData.boxId],
+              this.elementInfo.boxId],
           { label: this.modalData.label,
             description: this.modalData.description }
         );
@@ -172,8 +172,8 @@ class ModalController {
       case 'field':
         this.DialogEditor.getDialogTabs()[
           this.DialogEditor.activeTab].dialog_groups[
-            this.elementData.boxId].dialog_fields[
-              this.elementData.fieldId] = this.modalData;
+            this.elementInfo.boxId].dialog_fields[
+              this.elementInfo.fieldId] = this.modalData;
         break;
       default:
         break;
@@ -193,9 +193,9 @@ class ModalController {
       this.DialogEditor.getDialogTabs()[
         this.DialogEditor.activeTab
       ].dialog_groups[
-        this.elementData.boxId
+        this.elementInfo.boxId
       ].dialog_fields,
-      (field: any) => field.position === this.elementData.fieldId
+      (field: any) => field.position === this.elementInfo.fieldId
     );
 
     // close modal
@@ -261,6 +261,6 @@ export default class Modal {
   public bindings: any = {
     modalOptions: '<',
     visible: '<',
-    elementData: '<'
+    elementInfo: '<'
   };
 }

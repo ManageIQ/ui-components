@@ -39,14 +39,6 @@ class ModalController {
       if (elem.type === 'field') {
         this.modalData.dynamicFieldList = this.DialogEditor.getDynamicFields(this.modalData.id);
 
-        const dialogFieldResponderIds = _.map(this.modalData.dynamicFieldList, (field) => {
-          if (_.includes(this.modalData.dialog_field_responders, field['name'])) {
-            return field['id'];
-          }
-        });
-
-        this.modalData.dialog_field_responders = dialogFieldResponderIds;
-
         // load categories from API, if the field is Tag Control
         if (this.modalData.type === 'DialogFieldTagControl') {
           this.resolveCategories().then(

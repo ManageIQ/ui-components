@@ -1,3 +1,5 @@
+import AbstractModal from '../abstractModal';
+
 /**
  * @memberof miqStaticAssets
  * @ngdoc component
@@ -8,6 +10,6 @@
  * @example
  * <dialog-editor-modal-tab></dialog-editor-modal-tab>
  */
-export default class ModalTabTemplate {
+export default class ModalTabTemplate extends AbstractModal {
   public template = require('./tab.html');
 }

@@ -1,3 +1,5 @@
+import AbstractModal from '../abstractModal';
+
 /**
  * @memberof miqStaticAssets
  * @ngdoc component
@@ -8,6 +10,6 @@
  * @example
  * <dialog-editor-modal-box></dialog-editor-modal-box>
  */
-export default class ModalBoxTemplate {
+export default class ModalBoxTemplate extends AbstractModal {
   public template = require('./box.html');
 }

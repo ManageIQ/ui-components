@@ -1,3 +1,9 @@
+import AbstractModal from '../abstractModal';
+
+class ModalFieldController {
+  public modalData: any;
+}
+
 /**
  * @memberof miqStaticAssets
  * @ngdoc component
@@ -8,6 +14,6 @@
  * @example
  * <dialog-editor-modal-field></dialog-editor-modal-field>
  */
-export default class ModalFieldTemplate {
+export default class ModalFieldTemplate extends AbstractModal {
   public template = require('./field.html');
 }

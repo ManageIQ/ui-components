@@ -44,7 +44,6 @@ class ModalController {
         box: this.loadModalBoxData(elem.tabId, elem.boxId),
         field: this.loadModalFieldData(elem.tabId, elem.boxId, elem.fieldId)
       };
-
       this.modalData = elem.type in elements &&
         _.cloneDeep(elements[elem.type]);
 

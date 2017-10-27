@@ -261,14 +261,19 @@ class ModalController {
     };
     options.controllerAs = 'modalCtrl';
     options.template = `<${options.component}
-      uib-modal-instance="modalCtrl.parent.uibModalInstance"
-      element-info="modalCtrl.parent.elementInfo"
-      save-modal="modalCtrl.parent.saveDialogFieldDetails"
       modal-data="modalCtrl.parent.modalData"
-      modal-tab="modalCtrl.parent.modalTab"
+      element-info="modalCtrl.parent.elementInfo"
+      categories="modalCtrl.parent.categories"
+      add-entry="modalCtrl.parent.addEntry"
+      remove-entry="modalCtrl.parent.removeEntry"
+      current-category-entries="modalCtrl.parent.currentCategoryEntries"
+      resolve-categories="modalCtrl.parent.resolveCategories"
+      modal-tab-is-set="modalCtrl.parent.modalTabIsSet"
       modal-tab-set="modalCtrl.parent.modalTabSet"
-      modal-tab-is-set="modalCtrl.parent.modalTabIsSet">
-      </${options.component}>`;
+      modal-tab="modalCtrl.parent.modalTab"
+      save-modal="modalCtrl.parent.saveDialogFieldDetails"
+      uib-modal-instance="modalCtrl.parent.uibModalInstance"
+      ></${options.component}>`;
     this.modalTab = 'element_information';
     this.loadModalData(this.elementInfo);
     this.uibModalInstance = this.$uibModal.open(options);

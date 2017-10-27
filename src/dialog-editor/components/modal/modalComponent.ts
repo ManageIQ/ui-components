@@ -272,6 +272,7 @@ class ModalController {
       modal-tab-set="modalCtrl.parent.modalTabSet"
       modal-tab-is-set="modalCtrl.parent.modalTabIsSet">
       </${options.component}>`;
+    this.modalTab = 'element_information';
     this.loadModalData(this.elementInfo);
     this.uibModalInstance = this.$uibModal.open(options);
     return this.uibModalInstance.result.catch(() => undefined);

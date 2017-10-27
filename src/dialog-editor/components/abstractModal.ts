@@ -1,6 +1,12 @@
+import * as _ from 'lodash';
+
 class ModalController {
   private uibModalInstance: any;
   private saveModal: any;
+
+  /*@ngInject*/
+  constructor(private DialogEditor: any) {
+  }
 
   public closeModal(save: boolean) {
     if (save) {

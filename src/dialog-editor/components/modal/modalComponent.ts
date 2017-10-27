@@ -86,21 +86,30 @@ class ModalController {
   }
 
   public loadModalTabData(tab: number) {
-    let tabList = this.DialogEditor.getDialogTabs();
-    return tabList[tab];
+    if (typeof tab !== 'undefined') {
+      let tabList = this.DialogEditor.getDialogTabs();
+      return tabList[tab];
+    }
   }
 
   public loadModalBoxData(tab: number, box: number) {
-    let tabList = this.DialogEditor.getDialogTabs();
-    let boxList = tabList[tab];
-    return boxList.dialog_groups[box];
+    if (typeof tab !== 'undefined' &&
+        typeof box !== 'undefined') {
+      let tabList = this.DialogEditor.getDialogTabs();
+      let boxList = tabList[tab];
+      return boxList.dialog_groups[box];
+    }
   }
 
   public loadModalFieldData(tab: number, box: number, field: number) {
-    let tabList = this.DialogEditor.getDialogTabs();
-    let boxList = tabList[tab];
-    let fieldList = boxList.dialog_groups[box];
-    return fieldList.dialog_fields[field];
+    if (typeof tab !== 'undefined' &&
+        typeof box !== 'undefined' &&
+        typeof field !== 'undefined') {
+      let tabList = this.DialogEditor.getDialogTabs();
+      let boxList = tabList[tab];
+      let fieldList = boxList.dialog_groups[box];
+      return fieldList.dialog_fields[field];
+    }
   }
 
   /**

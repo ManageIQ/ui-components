@@ -202,9 +202,6 @@ class ModalController {
       default:
         break;
     }
-
-    // close modal
-    this.uibModalInstance.close();
   }
 
   /**
@@ -221,9 +218,6 @@ class ModalController {
       ].dialog_fields,
       (field: any) => field.position === this.elementInfo.fieldId
     );
-
-    // close modal
-    this.uibModalInstance.close();
   }
 
   /**
@@ -267,6 +261,9 @@ class ModalController {
     };
     options.controllerAs = 'modalCtrl';
     options.template = `<${options.component}
+      uib-modal-instance="modalCtrl.parent.uibModalInstance"
+      element-info="modalCtrl.parent.elementInfo"
+      save-modal="modalCtrl.parent.saveDialogFieldDetails"
       modal-data="modalCtrl.parent.modalData"
       modal-tab="modalCtrl.parent.modalTab"
       modal-tab-set="modalCtrl.parent.modalTabSet"

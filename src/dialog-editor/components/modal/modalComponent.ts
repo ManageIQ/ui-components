@@ -262,6 +262,17 @@ class ModalController {
   }
 
   public showModal(options: any) {
+    options.controller = ['parent', function(parent) { this.parent = parent; }];
+    options.resolve = {
+      parent: () => this
+    };
+    options.controllerAs = 'modalCtrl';
+    options.template = `<${options.component}
+      modal-data="modalCtrl.parent.modalData"
+      modal-tab="modalCtrl.parent.modalTab"
+      modal-tab-set="modalCtrl.parent.modalTabSet"
+      modal-tab-is-set="modalCtrl.parent.modalTabIsSet">
+      </${options.component}>`;
     this.loadModalData(this.elementInfo);
     this.uibModalInstance = this.$uibModal.open(options);
     return this.uibModalInstance.result.catch(() => undefined);

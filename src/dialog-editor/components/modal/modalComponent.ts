@@ -177,7 +177,7 @@ class ModalController {
   public saveDialogFieldDetails() {
     switch (this.elementInfo.type) {
       case 'tab':
-        _.assignIn(
+        _.extend(
           this.DialogEditor.getDialogTabs()[
             this.DialogEditor.activeTab],
           { label: this.modalData.label,
@@ -185,7 +185,7 @@ class ModalController {
         );
         break;
       case 'box':
-        _.assignIn(
+        _.extend(
           this.DialogEditor.getDialogTabs()[
             this.DialogEditor.activeTab].dialog_groups[
               this.elementInfo.boxId],

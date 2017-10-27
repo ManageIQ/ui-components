@@ -38,7 +38,7 @@
           {{ vm.modalData.description }}
         </textarea>
       </div>
-      <div ng-if="vm.element === 'field' && vm.modalData.type !== 'DialogFieldTagControl'"
+      <div ng-if="vm.modalData.type !== 'DialogFieldTagControl'"
            pf-form-group
            pf-label="{{'Dynamic'|translate}}">
         <input bs-switch

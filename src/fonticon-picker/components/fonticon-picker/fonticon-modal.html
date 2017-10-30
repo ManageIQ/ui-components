@@ -15,6 +15,6 @@
   </uib-tabset>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary" ng-click="$ctrl.parent.closeModal(true);" translate>Apply</button>
+  <button class="btn btn-primary" ng-click="$ctrl.parent.closeModal(true);" ng-disabled="$ctrl.parent.isDisabled();" translate>Apply</button>
   <button class="btn btn-default" ng-click="$ctrl.parent.closeModal(false);" translate>Close</button>
 </div>

@@ -121,6 +121,12 @@ class ModalController {
     this.modalTab = tab;
   }
 
+  /**
+   * Watches attribute 'modalOptions', and if it changes,
+   * calls method to display the modal.
+   * @memberof ModalController
+   * @function $onChanges
+   */
   public $onChanges(changesObj: any) {
     if (changesObj.modalOptions && this.modalOptions) {
       this.showModal(this.modalOptions);
@@ -243,6 +249,13 @@ class ModalController {
     }
   }
 
+  /**
+   * Receives specification of which modal should be created and it's
+   * parameters, sets default tab, loads the data of the element edited in modal
+   * and displays the modal.
+   * @memberof ModalController
+   * @function showModal
+   */
   public showModal(options: any) {
     options.controller = ['parent', function(parent) { this.parent = parent; }];
     options.resolve = {

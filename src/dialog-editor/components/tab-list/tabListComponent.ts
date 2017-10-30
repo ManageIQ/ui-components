@@ -11,9 +11,10 @@ import {__} from '../../../common/translateFunction';
 class TabListController {
   public tabList: any;
   public sortableOptions: any;
+  public setupModalOptions: any;
 
   /*@ngInject*/
-  constructor(private DialogEditor: any, private DialogEditorModal: any) {
+  constructor(private DialogEditor: any) {
   }
 
   /**
@@ -128,16 +129,6 @@ class TabListController {
     selectedTab.active = true;
     this.DialogEditor.activeTab = id;
   }
-
-  /**
-   * Show modal to edit label and description of the tab
-   * @memberof TabListController
-   * @function editDialogModal
-   * @param {number} tab is an index of tab
-   */
-  public editDialogModal(tab: number) {
-    this.DialogEditorModal.showModal(tab);
-  }
 }
 
 /**
@@ -155,4 +146,7 @@ export default class TabList {
   public template = require('./tab-list.html');
   public controller: any = TabListController;
   public controllerAs: string = 'vm';
+  public bindings = {
+    setupModalOptions: '&'
+  };
 }

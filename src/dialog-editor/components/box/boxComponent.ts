@@ -13,9 +13,14 @@ class BoxController {
   public sortableOptionsFields: any;
   public service: any;
   public dialogTabs: any;
+  public setupModalOptions: any;
 
   /*@ngInject*/
-  constructor(private DialogEditor: any, private DialogEditorModal: any) {
+  constructor(private DialogEditor: any) {
+  }
+
+  public onFieldEdit(type, tab, box, field) {
+    this.setupModalOptions({type, tab, box, field});
   }
 
   /**
@@ -108,17 +113,6 @@ class BoxController {
       droppedItem.box.dialog_fields
     );
   }
-
-  /**
-   * Show modal to edit label and description of the box.
-   * @memberof BoxController
-   * @function editDialogModal
-   * @param {number} tab is an index of tab, where the box is placed
-   * @param {number} box is an index of box
-   */
-  public editDialogModal(tab: number, box: number) {
-    this.DialogEditorModal.showModal(tab, box);
-  }
 }
 
 /**
@@ -136,4 +130,7 @@ export default class Box {
   public template = require('./box.html');
   public controller: any = BoxController;
   public controllerAs: string = 'vm';
+  public bindings = {
+    setupModalOptions: '&'
+  };
 }

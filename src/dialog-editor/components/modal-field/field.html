@@ -1,8 +1,8 @@
 <div class="modal-header">
-  <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">
+  <button type="button" class="close" ng-click="vm.closeModal()" aria-hidden="true">
     <span class="pficon pficon-close"></span>
   </button>
-  <h4 class="modal-title" id="myModalLabel" translate>{{vm.modalTitle}}</h4>
+  <h4 class="modal-title" id="myModalLabel" translate>Edit Field Details</h4>
 </div>
 
 <div class="modal-body">
@@ -10,14 +10,14 @@
     <li ng-class="{active:vm.modalTabIsSet('element_information')}">
       <a ng-click="vm.modalTabSet('element_information')" translate>Element Information</a>
     </li>
-    <li ng-if="vm.element === 'field'" ng-class="{active:vm.modalTabIsSet('options')}">
+    <li ng-class="{active:vm.modalTabIsSet('options')}">
       <a ng-click="vm.modalTabSet('options')" translate>Options</a>
     </li>
-    <li ng-if="vm.element === 'field' && vm.modalData.dynamic" ng-class="{active:vm.modalTabIsSet('overridable')}">
-      <a ng-click="vm.modalTabSet('overridable')" translate>Overridable Options</a>
-    </li>
-    <li ng-if="vm.element === 'field'" ng-class="{active:vm.modalTabIsSet('advanced')}">
+    <li ng-class="{active:vm.modalTabIsSet('advanced')}">
       <a ng-click="vm.modalTabSet('advanced')" translate>Advanced</a>
+    </li>
+    <li ng-if="vm.modalData.dynamic" ng-class="{active:vm.modalTabIsSet('overridable')}">
+      <a ng-click="vm.modalTabSet('overridable')" translate>Overridable Options</a>
     </li>
   </ul>
   <!-- general details same for each component - element information -->
@@ -33,12 +33,12 @@
         <input id="name" name="name"
                ng-model="vm.modalData.name" type="text" required/>
       </div>
-      <div pf-form-group pf-input-class="col-sm-9" pf-label="{{'Description'|translate}}">
+      <div pf-form-group pf-input-class="col-sm-9" pf-label="{{'Help'|translate}}">
         <textarea id="description" name="description" ng-model="vm.modalData.description">
           {{ vm.modalData.description }}
         </textarea>
       </div>
-      <div ng-if="vm.element === 'field' && vm.modalData.type !== 'DialogFieldTagControl'"
+      <div ng-if="vm.modalData.type !== 'DialogFieldTagControl'"
            pf-form-group
            pf-label="{{'Dynamic'|translate}}">
         <input bs-switch
@@ -122,10 +122,10 @@
 </div>
 
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" ng-click="$dismiss()" translate>Cancel</button>
+  <button type="button" class="btn btn-default" ng-click="vm.closeModal()" translate>Cancel</button>
   <button type="button"
           class="btn btn-primary"
-          ng-click="vm.saveDialogFieldDetails()"
+          ng-click="vm.closeModal(true)"
           ng-disabled="vm.modalUnchanged()" translate>Save
   </button>
 </div>

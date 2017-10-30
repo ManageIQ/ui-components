@@ -48,6 +48,10 @@ export class FonticonPickerController {
   public markToSelect(icon) {
     this.toSelect = icon;
   }
+
+  public isDisabled(): boolean {
+    return !this.toSelect || this.toSelect === this.selected;
+  }
 }
 
 export default class FonticonPicker implements ng.IComponentOptions {

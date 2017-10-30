@@ -260,7 +260,8 @@ class ModalController {
       parent: () => this
     };
     options.controllerAs = 'modalCtrl';
-    options.template = `<${options.component}
+    options.template = `
+    <${options.component}
       modal-data="modalCtrl.parent.modalData"
       element-info="modalCtrl.parent.elementInfo"
       categories="modalCtrl.parent.categories"
@@ -273,7 +274,8 @@ class ModalController {
       modal-tab="modalCtrl.parent.modalTab"
       save-modal="modalCtrl.parent.saveDialogFieldDetails"
       uib-modal-instance="modalCtrl.parent.uibModalInstance"
-      ></${options.component}>`;
+    ></${options.component}>
+    `;
     this.modalTab = 'element_information';
     this.loadModalData(this.elementInfo);
     this.uibModalInstance = this.$uibModal.open(options);

@@ -249,8 +249,22 @@ class ModalController {
       parent: () => this
     };
     options.controllerAs = 'modalCtrl';
-    options.template = `
-    <${options.component}
+    options.template = ModalController.buildTemplate(options.component);
+    this.modalTab = 'element_information';
+    this.loadModalData(this.elementInfo);
+    this.uibModalInstance = this.$uibModal.open(options);
+    return this.uibModalInstance.result.catch(() => undefined);
+  }
+
+  /**
+   * Building of component template.
+   * New component automatically has access to any of these bindings
+   * and if a new one is needed, it should be added here to be available.
+   * @memberof ModalController
+   * @function buildTemplate
+   */
+  private static buildTemplate(component: string) {
+    return `<${component}
       modal-data="modalCtrl.parent.modalData"
       element-info="modalCtrl.parent.elementInfo"
       categories="modalCtrl.parent.categories"
@@ -263,12 +277,7 @@ class ModalController {
       modal-tab="modalCtrl.parent.modalTab"
       save-modal="modalCtrl.parent.saveDialogFieldDetails"
       uib-modal-instance="modalCtrl.parent.uibModalInstance"
-    ></${options.component}>
-    `;
-    this.modalTab = 'element_information';
-    this.loadModalData(this.elementInfo);
-    this.uibModalInstance = this.$uibModal.open(options);
-    return this.uibModalInstance.result.catch(() => undefined);
+      ></${component}>`;
   }
 }
 

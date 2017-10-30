@@ -23,17 +23,6 @@ class ModalController {
   constructor(private $uibModal: any,
               private API: any,
               private DialogEditor: any) {
-    ng.extend(this, {
-      saveDialogFieldDetails: this.saveDialogFieldDetails,
-      addEntry: this.addEntry,
-      removeEntry: this.removeEntry,
-      deleteField: this.deleteField,
-      modalUnchanged: this.modalUnchanged,
-      modalTabSet: this.modalTabSet,
-      modalTabIsSet: this.modalTabIsSet,
-      currentCategoryEntries: this.currentCategoryEntries,
-    });
-
   }
 
   public loadModalData(elem: any) {

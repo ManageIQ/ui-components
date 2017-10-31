@@ -41,7 +41,7 @@
           },
           {
             "title": "View this item",
-            "image": "100/middleware_messaging.png",
+            "image": "assets/100/vendor-hawkular.png",
             "icon": "fa fa-exchange"
           },
           {
@@ -63,8 +63,7 @@
           },
           {
             "title": "View this item",
-            "image": "100/middleware_messaging.png",
-            "icon": "fa fa-exchange"
+            "image": "assets/100/vendor-hawkular.png"
           },
           {
             "text": "JMS Queue [DLQ]"
@@ -85,7 +84,7 @@
           },
           {
             "title": "View this item",
-            "image": "100/middleware_messaging.png",
+            "picture": "assets/100/vendor-hawkular.png",
             "icon": "fa fa-exchange"
           },
           {
@@ -107,7 +106,7 @@
           },
           {
             "title": "View this item",
-            "image": "100/middleware_messaging.png",
+            "image": "assets/100/vendor-hawkular.png",
             "icon": "fa fa-exchange"
           },
           {
@@ -129,7 +128,7 @@
           },
           {
             "title": "View this item",
-            "image": "100/middleware_messaging.png",
+            "image": "assets/100/vendor-hawkular.png",
             "icon": "fa fa-exchange"
           },
           {
@@ -151,7 +150,7 @@
           },
           {
             "title": "View this item",
-            "image": "100/middleware_messaging.png",
+            "image": "assets/100/vendor-hawkular.png",
             "icon": "fa fa-exchange"
           },
           {

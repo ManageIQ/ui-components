@@ -49,12 +49,24 @@ export class DataTableController extends DataViewClass implements IDataTableBind
   }
 
   /**
+   * Public method for retrieving what icon type should be displayed
+   * @memberof DataTableController
+   * @function getNodeIconType
+   * @param row {object} whole row with data.
+   * @param columnKey header column key.
+   * @returns {string} picture | icon | image
+   */
+  public getNodeIconType(row, columnKey) {
+    const allowedGraphics = ['picture', 'icon', 'image'];
+    if (row && row.cells) {
+      return allowedGraphics.find(item => row.cells[columnKey].hasOwnProperty(item) && !!row.cells[columnKey][item]);
+    }
+  }
+
+  /**
    * Public method for checking if column of table has an icon.
    * @memberof DataTableController
    * @function hasIcon
-   * @param row {object} whole row with data.
-   * @param columnKey header column key.
-   * @returns {boolean} true | false, if column has icon or not.
    */
   public hasIcon(row, columnKey): boolean {
     return row && row.cells && row.cells[columnKey].hasOwnProperty('icon') && row.cells[columnKey].icon;

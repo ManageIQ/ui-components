@@ -44,13 +44,13 @@
                value="{{row.id}}"
                ng-checked="row.checked"
                class="list-grid-checkbox">
-        <i ng-if="tableCtrl.hasIcon(row, columnKey)"
+        <i ng-if="tableCtrl.getNodeIconType(row, columnKey) === 'icon'"
            class="{{row.cells[columnKey].icon}}"
            title="{{row.cells[columnKey].title}}">
           <i ng-if="row.cells[columnKey].icon2" ng-class="row.cells[columnKey].icon2"></i>
         </i>
-        <img ng-if="!tableCtrl.hasIcon(row, columnKey) && tableCtrl.hasImage(row, columnKey)"
-             ng-src="{{row.img_url}}"
+        <img ng-if="['picture', 'image'].includes(tableCtrl.getNodeIconType(row, columnKey))"
+             ng-src="{{row.cells[columnKey].picture || row.cells[columnKey].image}}"
              alt="{{row.cells[columnKey].title}}"
              title="{{row.cells[columnKey].title}}" />
         <span ng-if="row.cells[columnKey].text && !row.cells[columnKey].is_button">

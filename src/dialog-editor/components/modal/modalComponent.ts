@@ -318,10 +318,10 @@ export default class Modal {
   public bindings: any = {
     lazyLoad: '<',
     onSelect: '<',
-    treeSelectorData: '=',
+    treeSelectorData: '<',
     treeSelectorToggle: '<',
-    treeSelectorShow: '=',
-    treeSelectorIncludeDomain: '=',
+    treeSelectorShow: '<',
+    treeSelectorIncludeDomain: '<',
     modalOptions: '<',
     visible: '<',
     elementInfo: '<'

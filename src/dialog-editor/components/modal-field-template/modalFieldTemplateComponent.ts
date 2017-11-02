@@ -50,9 +50,9 @@ export default class ModalFieldTemplate {
     modalTab: '=',
     lazyLoad: '<',
     onSelect: '<',
-    treeSelectorData: '=',
+    treeSelectorData: '<',
     treeSelectorToggle: '<',
-    treeSelectorShow: '=',
-    treeSelectorIncludeDomain: '=',
+    treeSelectorShow: '<',
+    treeSelectorIncludeDomain: '<',
   };
 }

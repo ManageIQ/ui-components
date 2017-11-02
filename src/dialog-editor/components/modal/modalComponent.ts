@@ -290,6 +290,12 @@ class ModalController {
       modal-tab="modalCtrl.parent.modalTab"
       save-modal="modalCtrl.parent.saveDialogFieldDetails"
       uib-modal-instance="modalCtrl.parent.uibModalInstance"
+      lazy-load="modalCtrl.parent.lazyLoad"
+      tree-selector-data="modalCtrl.parent.treeSelectorData"
+      tree-selector-toggle="modalCtrl.parent.treeSelectorToggle"
+      tree-selector-show="modalCtrl.parent.treeSelectorShow"
+      tree-selector-include-domain="modalCtrl.parent.treeSelectorIncludeDomain"
+      on-select="modalCtrl.parent.onSelect"
       ></${component}>`;
   }
 }
@@ -310,6 +316,12 @@ export default class Modal {
   public transclude = true;
   public controller: any = ModalController;
   public bindings: any = {
+    lazyLoad: '<',
+    onSelect: '<',
+    treeSelectorData: '=',
+    treeSelectorToggle: '<',
+    treeSelectorShow: '=',
+    treeSelectorIncludeDomain: '=',
     modalOptions: '<',
     visible: '<',
     elementInfo: '<'

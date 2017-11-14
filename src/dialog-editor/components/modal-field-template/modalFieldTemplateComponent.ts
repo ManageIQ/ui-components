@@ -49,6 +49,7 @@ export default class ModalFieldTemplate {
     modalTabIsSet: '<',
     modalTab: '=',
     lazyLoad: '<',
+    showFullyQualifiedName: '<',
     onSelect: '<',
     treeSelectorData: '<',
     treeSelectorToggle: '<',

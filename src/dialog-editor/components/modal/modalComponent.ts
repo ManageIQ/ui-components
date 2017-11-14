@@ -283,6 +283,7 @@ class ModalController {
       save-modal="modalCtrl.parent.saveDialogFieldDetails"
       uib-modal-instance="modalCtrl.parent.uibModalInstance"
       lazy-load="modalCtrl.parent.lazyLoad"
+      show-fully-qualified-name="modalCtrl.parent.showFullyQualifiedName"
       tree-selector-data="modalCtrl.parent.treeSelectorData"
       tree-selector-toggle="modalCtrl.parent.treeSelectorToggle"
       tree-selector-show="modalCtrl.parent.treeSelectorShow"
@@ -309,6 +310,7 @@ export default class Modal {
   public controller: any = ModalController;
   public bindings: any = {
     lazyLoad: '<',
+    showFullyQualifiedName: '<',
     onSelect: '<',
     treeSelectorData: '<',
     treeSelectorToggle: '<',

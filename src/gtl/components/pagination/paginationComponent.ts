@@ -5,10 +5,19 @@
  * @name PaginationController
  */
 export class PaginationController {
+  public isChecked: boolean = false;
+  public settings: any;
+
   public onSelectAll: (args: {isSelected: boolean}) => void;
   public onChangeSort: (args: {sortId: number, isAscending: boolean}) => void;
   public onChangePage: (args: {pageNumber: number}) => void;
   public onChangePerPage: (args: {item: number}) => void;
+
+  public $onChanges(changesObj) {
+    if (changesObj.settings && this.settings) {
+      this.isChecked = false;
+    }
+  }
 }
 
 /**

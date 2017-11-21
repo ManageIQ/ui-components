@@ -5,8 +5,8 @@
     <span class="checkbox span-right-border" style="margin: 0 0 0 5px">
       <label class="checkbox-inline">
         <input type="checkbox"
-               ng-model="isChecked"
-               ng-click="paginationCtrl.onSelectAll({isSelected: isChecked})"
+               ng-model="paginationCtrl.isChecked"
+               ng-click="paginationCtrl.onSelectAll({isSelected: paginationCtrl.isChecked})"
                title="{{paginationCtrl.settings.selectAllTitle}}" />
         {{paginationCtrl.settings.selectAllTitle}}
       </label>

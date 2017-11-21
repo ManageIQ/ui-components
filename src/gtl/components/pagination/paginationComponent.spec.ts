@@ -160,6 +160,16 @@ describe('Pagination test', () =>  {
         perPageOptions[1].click();
         expect(onChangePerPage).toHaveBeenCalledWith(perPage.items[1]);
       });
+
+      it('changing settings to uncheck all items', () => {
+        let selectAll = compiledElement[0].querySelectorAll('input[type="checkbox"][title="Select All"]');
+        selectAll[0].click();
+        expect(selectAll[0].checked).toBeTruthy();
+        settings.current = 2;
+        scope.settings = {...settings};
+        scope.$digest();
+        expect(selectAll[0].checked).toBeFalsy();
+      });
     });
   });
 });

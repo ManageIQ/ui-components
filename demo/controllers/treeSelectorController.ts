@@ -1,5 +1,13 @@
 import * as ng from 'angular';
+import {ComponentDemo} from '../services/availableComponentBuilder';
 
+@ComponentDemo({
+  name: 'tree-selector',
+  title: 'TreeSelector',
+  template: require('./../views/tree-view/tree-selector.html'),
+  group: 'tree-view',
+  controller: 'demoTreeSelector as vm'
+})
 export default class TreeSelectorController {
   public display = false;
   public node;

@@ -1,5 +1,27 @@
 import * as _ from 'lodash';
+import {ComponentDemo} from '../services/availableComponentBuilder';
 
+@ComponentDemo({
+  name: 'small',
+  title: 'Small tile',
+  template: require('./../views/tile-view/small.html'),
+  group: 'tile-menu',
+  controller: 'demoDataTable as vm'
+})
+@ComponentDemo({
+  name: 'big',
+  title: 'Big tile',
+  template: require('./../views/tile-view/big.html'),
+  group: 'tile-menu',
+  controller: 'demoDataTable as vm'
+})
+@ComponentDemo({
+  name: 'basic',
+  title: 'Basic data table',
+  template: require('./../views/data-table/basic.html'),
+  group: 'data-table',
+  controller: 'demoDataTable as vm'
+})
 export default class DataTableController {
   public rows;
   public cols;

@@ -1,3 +1,11 @@
+import {ComponentDemo} from '../services/availableComponentBuilder';
+@ComponentDemo({
+  name: 'basic',
+  title: 'Site switcher',
+  template: require('./../views/site-switcher/basic.html'),
+  group: 'site-switcher',
+  controller: 'demoSiteSwitcher as vm'
+})
 export default class SiteSwitcherController {
   public sites: any;
   constructor() {

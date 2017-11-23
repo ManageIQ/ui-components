@@ -1,4 +1,11 @@
-
+import {ComponentDemo} from '../services/availableComponentBuilder';
+@ComponentDemo({
+  name: 'user',
+  title: 'Dialog user',
+  template: require('./../views/dialog/user.html'),
+  group: 'dialog',
+  controller: 'demoDialogUser as vm'
+})
 export default class DialogUserController {
   public dialog: any;
   public showDialogData: boolean;

@@ -1,4 +1,12 @@
 import DialogEditorService from '../../src/dialog-editor/services/dialogEditorService';
+import {ComponentDemo} from '../services/availableComponentBuilder';
+@ComponentDemo({
+  name: 'editor',
+  title: 'Dialog editor',
+  template: require('./../views/dialog/editor.html'),
+  group: 'dialog',
+  controller: 'demoDialogEditor as vm'
+})
 export default class DialogEditorController {
   public dialog: any;
   /* @ngInject */

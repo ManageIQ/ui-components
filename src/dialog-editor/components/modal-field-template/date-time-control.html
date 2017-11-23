@@ -34,7 +34,7 @@
     <div ng-show="!vm.treeSelectorShow">
       <div pf-form-group pf-label="{{'Entry Point'|translate}}">
         <div class="input-group">
-          <input type="text" class="form-control" ng-value="vm.modalData.resource_action.ae_namespace">
+          <input type="text" class="form-control" ng-value="vm.showFullyQualifiedName(vm.modalData.resource_action)" disabled>
           <span class="input-group-btn">
             <button class="btn btn-default" ng-click="vm.treeSelectorToggle();"><i class="ff ff-load-balancer"></i></button>
           </span>

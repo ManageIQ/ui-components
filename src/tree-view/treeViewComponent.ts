@@ -1,3 +1,4 @@
+/* tslint:disable:max-line-length */
 import * as ng from 'angular';
 import * as _ from 'lodash';
 

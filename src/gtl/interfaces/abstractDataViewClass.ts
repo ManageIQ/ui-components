@@ -81,7 +81,8 @@ export abstract class DataViewClass implements IDataTableBinding {
       `${start} - ${end} of ${total}`;
   }
 
-  public onItemButtonClick(item: any) {
+  public onItemButtonClick(item: any, $event: any) {
+    $event.stopPropagation();
     if (item.hasOwnProperty('onclick')) {
       let onClickFunction = new Function(item.onclick);
       onClickFunction.bind(item.bindTo)();

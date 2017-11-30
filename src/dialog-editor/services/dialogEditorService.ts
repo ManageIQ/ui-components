@@ -74,4 +74,26 @@ export default class DialogEditorService {
   public updatePositions(elements: any[]) {
     elements.forEach((value, key) => value.position = key);
   }
+
+  /**
+   * Goes through the set of data and generates a new name for the
+   * added element to be unique
+   * @memberof DialogEditorService
+   * @function newFieldName
+   */
+  public newFieldName(fieldType: string) {
+    let dialogFieldNamesList = [];
+    let newIndex = 1;
+    _.forEach(this.data.content[0].dialog_tabs, (tab: any) => {
+      _.forEach(tab.dialog_groups, (group: any) => {
+        _.forEach(group.dialog_fields, (field: any) => {
+          dialogFieldNamesList = dialogFieldNamesList.concat(field.name);
+        });
+      });
+    });
+    while (dialogFieldNamesList.includes(fieldType + '_' + newIndex)) {
+      newIndex++;
+    }
+    return fieldType + '_' + newIndex;
+  }
 }

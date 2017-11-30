@@ -33,7 +33,7 @@ export class TileViewController extends DataViewClass implements IDataTableBindi
       onClick: (item, event) => this.onTileClick(item),
       onCheckBoxChange: (item) => this.onTileSelect(item),
       onItemClick: (item: any, $event: any) => this.onRowClick({item: item, event: $event}),
-      onButtonItemClick: (item: any) => this.onItemButtonClick(item),
+      onButtonItemClick: (item: any, $event: any) => this.onItemButtonClick(item, $event),
       fetchTileName: (item) => this.fetchTileName(item),
       trustAsHtmlQuadicon: (item) => this.trustAsHtmlQuadicon(item),
       type: this.type

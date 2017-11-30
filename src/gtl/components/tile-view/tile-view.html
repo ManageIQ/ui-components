@@ -46,7 +46,7 @@
                       title="{{item.cells[columnKey].title}}"
                       alt="{{item.cells[columnKey].title}}"
                       ng-disabled="item.cells[columnKey].disabled"
-                      ng-click="config.onButtonItemClick(item.cells[columnKey])">
+                      ng-click="config.onButtonItemClick(item.cells[columnKey], $event)">
                 {{item.cells[columnKey].text}}
               </button>
             </div>

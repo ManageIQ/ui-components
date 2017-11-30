@@ -8,8 +8,11 @@ describe('DataTable test', () =>  {
     {
       id: 2,
       cells: [
-        {is_checkbox: true}, {image: 'some_url.jpg', icon: 'fa fa-icon'}, {text: 'first name'}, {text: 'value'}
-      ]
+        {is_checkbox: true},
+        {image: 'some_url.jpg', icon: 'fa fa-icon'},
+        {text: 'first name'},
+        {is_button: true, onclick: 'window'}
+      ],
     },
     {
       id: 3,
@@ -176,6 +179,18 @@ describe('DataTable test', () =>  {
       let filteredByIndex = columns.map((column: any) => column.col_idx).indexOf(settings.sortBy.sortObject.col_idx);
       expect(header.querySelectorAll('th')[filteredByIndex].innerHTML).toContain('Name');
       expect(header.querySelectorAll('th i.fa')).toBeDefined();
+    });
+
+    it('clicking on button should not call onRowClick', () => {
+      let button = compiledElement.find('tbody tr td button');
+      button.click();
+      expect(scope.onRowClick).not.toHaveBeenCalled();
+    });
+
+    it('clicking on cell should call onRowClick', () => {
+      let cell = compiledElement.find('tbody tr td');
+      cell.click();
+      expect(scope.onRowClick).toHaveBeenCalled();
     });
 
     xit('creates tbody', () => {

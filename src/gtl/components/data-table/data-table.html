@@ -61,7 +61,7 @@
                 ng-disabled="row.cells[columnKey].disabled"
                 title="{{row.cells[columnKey].title}}"
                 alt="{{row.cells[columnKey].title}}"
-                ng-click="tableCtrl.onItemButtonClick(row.cells[columnKey])">
+                ng-click="tableCtrl.onItemButtonClick(row.cells[columnKey], $event)">
           {{row.cells[columnKey].text}}
         </button>
       </td>

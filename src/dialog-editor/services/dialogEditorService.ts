@@ -52,16 +52,11 @@ export default class DialogEditorService {
 
   public getDynamicFields(idToExclude) {
     let dynamicFields = [];
-    _.forEach(this.data.content[0].dialog_tabs, (tab: any) => {
-      _.forEach(tab.dialog_groups, (group: any) => {
-        _.forEach(group.dialog_fields, (field: any) => {
-          if (field.dynamic === true && field.id !== idToExclude) {
-            dynamicFields.push(field);
-          }
-        });
-      });
+    this.forEachDialogField((field) => {
+      if (field.dynamic === true && field.id !== idToExclude) {
+        dynamicFields.push(field);
+      }
     });
-
     return dynamicFields;
   }
 
@@ -76,24 +71,37 @@ export default class DialogEditorService {
   }
 
   /**
-   * Goes through the set of data and generates a new name for the
-   * added element to be unique
+   * Iterates through the list of dialog field names and creates a new
+   * unique name for the added element
    * @memberof DialogEditorService
    * @function newFieldName
    */
   public newFieldName(fieldType: string) {
-    let dialogFieldNamesList = [];
-    let newIndex = 1;
+    let dialogFieldNames = [];
+    let newOrdinalNumber = 1;
+    this.forEachDialogField((field) => {
+      dialogFieldNames.push(field.name);
+    });
+    while (dialogFieldNames.includes(fieldType + '_' + newOrdinalNumber)) {
+      newOrdinalNumber++;
+    }
+    return fieldType + '_' + newOrdinalNumber;
+  }
+
+  /**
+   * Iterates through all the dialog fields and calls callback method
+   * sent through parameter
+   * @memberof DialogEditorService
+   * @function forEachDialogField
+   */
+  private forEachDialogField(callback) {
     _.forEach(this.data.content[0].dialog_tabs, (tab: any) => {
       _.forEach(tab.dialog_groups, (group: any) => {
         _.forEach(group.dialog_fields, (field: any) => {
-          dialogFieldNamesList = dialogFieldNamesList.concat(field.name);
+          callback(field);
         });
       });
     });
-    while (dialogFieldNamesList.includes(fieldType + '_' + newIndex)) {
-      newIndex++;
-    }
-    return fieldType + '_' + newIndex;
   }
+
 }

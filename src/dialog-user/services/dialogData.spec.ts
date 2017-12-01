@@ -63,7 +63,7 @@ describe('DataTableSettingsService test', () => {
     });
 
     describe('when the data type is a date control', () => {
-      let dateField = {'type': 'DialogFieldDateControl'}
+      let dateField = {'type': 'DialogFieldDateControl'};
 
       describe('when the values are undefined', () => {
         beforeEach(() => {

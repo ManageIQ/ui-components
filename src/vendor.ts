@@ -1,4 +1,5 @@
 import 'es6-shim';
+import 'es7-shim';
 import 'jquery';
 import 'jquery-ui-bundle';
 import 'bootstrap-switch';

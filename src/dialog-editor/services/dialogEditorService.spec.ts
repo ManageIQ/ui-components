@@ -109,4 +109,44 @@ describe('DialogEditor test', () => {
       });
     });
   });
+
+  describe('#newFieldName', () => {
+    let field1 = {
+      name: 'textarea_box_1'
+    };
+
+    let field2 = {
+      name: 'textarea_box_2'
+    };
+
+    let field3 = {
+      name: 'radio_button_3'
+    };
+
+    let data = {
+      content: [{
+        dialog_tabs: [{
+          dialog_groups: [{
+            dialog_fields: [field1, field2, field3]
+          }]
+        }]
+      }]
+    };
+
+    beforeEach(() => {
+      dialogEditor.setData(data);
+    });
+
+    describe('when the list contains two elements starting by 1', () => {
+      it('returns the new name with number 3', () => {
+        expect(dialogEditor.newFieldName('textarea_box')).toEqual('textarea_box_3');
+      });
+    });
+
+    describe('when the list contains an element not starting by 1', () => {
+      it('returns the new name with number 1', () => {
+        expect(dialogEditor.newFieldName('radio_button')).toEqual('radio_button_1');
+      });
+    });
+  });
 });

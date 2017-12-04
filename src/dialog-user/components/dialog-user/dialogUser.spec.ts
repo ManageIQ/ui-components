@@ -62,7 +62,7 @@ describe('Dialog test', () =>  {
     });
 
     it('sets up the field associations', () => {
-        expect(dialogCtrl.fieldAssociations["option_1_vm_name"]).toEqual(["tag_1_function"]);
+        expect(dialogCtrl.fieldAssociations['option_1_vm_name']).toEqual(['tag_1_function']);
     });
   });
 });

@@ -80,7 +80,8 @@ yarn start
 
 To run tests:
 ```
-yarn run tests
+yarn run build-dev
+yarn run test
 ```
 
 Before submitting code, run the following command to format the code according to the tslint rules:

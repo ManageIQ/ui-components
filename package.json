@@ -96,6 +96,7 @@
     "angular-ui-sortable": "^0.16.1",
     "babel-eslint": "^7.2.3",
     "es6-shim": "^0.35.3",
+    "es7-shim": "^6.0.0",
     "eslint": "~3.9.1"
   }
 }

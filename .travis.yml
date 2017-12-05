@@ -17,7 +17,9 @@ before_install:
 
 script: ./scripts/.build.sh
 
-after_success: ./scripts/.coverage.sh
+after_success: 
+  - ./scripts/.coverage.sh
+  - npm run semantic-release
 
 notifications:
   webhooks:

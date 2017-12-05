@@ -112,7 +112,7 @@ export default class DialogDataService {
       if (field.type === 'DialogFieldCheckBox' && fieldValue === 'f') {
         validation.isValid = false;
         validation.message = __('This field is required');
-      } else if (fieldValue === '') {
+      } else if (_.isEmpty(fieldValue)) {
         validation.isValid = false;
         validation.message = __('This field is required');
       }

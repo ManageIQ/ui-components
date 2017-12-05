@@ -61,7 +61,26 @@ describe('DataTableSettingsService test', () => {
       let testDefault = dialogData.setDefaultValue(testField);
       expect(testDefault).toBe('test');
     });
+    it('should prevent a form from being valid if drop down no option is selected', () => {
+      const testDropDown = {
+        required: true,
+        type: 'DialogFieldDropDownList',
+        label: 'Test Field',
+        values: [
+          ['', 'Test'],
+          ['5', 'Test2'],
+          ['2', 'Test5']
+        ]
+      };
 
+      const validateFailure = {
+        isValid: false,
+        field: 'Test Field',
+        message: 'This field is required'
+      };
+      const validation = dialogData.validateField(testDropDown, '');
+      expect(validation).toEqual(validateFailure);
+    });
     describe('when the data type is a date control', () => {
       let dateField = {'type': 'DialogFieldDateControl'};
 

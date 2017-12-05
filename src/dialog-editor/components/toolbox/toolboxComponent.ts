@@ -7,11 +7,13 @@ class DialogField {
   constructor(type: string,
               icon: string,
               label: string,
-              options: any = {}) {
+              name: string,
+              options: any = {}
+             ) {
     this.icon = icon;
     this.label = label;
     this.placeholders = Object.assign({
-      name: '',
+      name: name,
       description: '',
       type: type,
       display: 'edit',
@@ -50,25 +52,29 @@ export class ToolboxController {
       new DialogField(
         'DialogFieldTextBox',
         'fa fa-font',
-        __('Text Box')
+        __('Text Box'),
+        'text_box'
       ),
     dialogFieldTextAreaBox:
       new DialogField(
         'DialogFieldTextAreaBox',
         'fa fa-file-text-o',
-        __('Text Area')
+        __('Text Area'),
+        'textarea_box'
       ),
     dialogFieldCheckBox:
       new DialogField(
         'DialogFieldCheckBox',
         'fa fa-check-square-o',
-        __('Check Box')
+        __('Check Box'),
+        'check_box'
       ),
     dialogFieldDropDownList:
       new DialogField(
         'DialogFieldDropDownList',
         'fa fa-caret-square-o-down',
         __('Dropdown'),
+        'dropdown_list',
         {
           data_type: 'string',
           values: [],
@@ -84,6 +90,7 @@ export class ToolboxController {
         'DialogFieldRadioButton',
         'fa fa-circle-o',
         __('Radio Button'),
+        'radio_button',
         {
           data_type: 'string',
           values: [[1, 'One'], [2, 'Two'], [3, 'Three']],
@@ -95,6 +102,7 @@ export class ToolboxController {
         'DialogFieldDateControl',
         'fa fa-calendar',
         __('Datepicker'),
+        'date_control',
         {
           options: { show_past_dates: false, }
         }
@@ -104,6 +112,7 @@ export class ToolboxController {
         'DialogFieldDateTimeControl',
         'fa fa-clock-o',
         __('Timepicker'),
+        'date_time_control',
         {
           options: { show_past_dates: false, }
         }
@@ -113,6 +122,7 @@ export class ToolboxController {
         'DialogFieldTagControl',
         'fa fa-tags',
         __('Tag Control'),
+        'tag_control',
         {
           data_type: 'string',
           values: [],

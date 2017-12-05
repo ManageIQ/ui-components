@@ -19,7 +19,8 @@ export default class DialogDataService {
       field.fieldValidation = '';
       field.errorMessage = '';
     }
-    if (field.type === 'DialogFieldDropDownList') {
+    const sortableFieldTypes = ['DialogFieldDropDownList', 'DialogFieldRadioButton'];
+    if (sortableFieldTypes.indexOf(field.type)) {
       for (let option of field.values) {
         if (option[0] === String(field.default_value)) {
           field.selected = option;
@@ -48,7 +49,7 @@ export default class DialogDataService {
    **/
   private updateFieldSortOrder(data) {
     let values = _.sortBy(data.values, data.options.sort_by === 'value' ? 0 : 1);
-    return data.sort_order === 'ascending' ? values : values.reverse();
+    return data.options.sort_order === 'ascending' ? values : values.reverse();
   }
 
   /**

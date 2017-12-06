@@ -20,7 +20,7 @@ export default class DialogDataService {
       field.errorMessage = '';
     }
     const sortableFieldTypes = ['DialogFieldDropDownList', 'DialogFieldRadioButton'];
-    if (sortableFieldTypes.indexOf(field.type)) {
+    if (sortableFieldTypes.indexOf(field.type) > -1) {
       for (let option of field.values) {
         if (option[0] === String(field.default_value)) {
           field.selected = option;

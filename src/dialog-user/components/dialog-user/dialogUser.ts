@@ -103,10 +103,8 @@ export class DialogUserController extends DialogClass implements IDialogs {
     this.dialogFields[dialogFieldName].default_value = value;
     this.dialogValues[dialogFieldName] = value;
     this.saveDialogData();
-    if (this.fieldAssociations !== {}) {
-      if (this.fieldAssociations[dialogFieldName] !== []) {
-        this.updateTargetedFieldsFrom(dialogFieldName);
-      }
+    if (!_.isEmpty(this.fieldAssociations) && this.fieldAssociations[dialogFieldName].length > 0) {
+      this.updateTargetedFieldsFrom(dialogFieldName);
     } else {
       const refreshable = _.indexOf(this.refreshableFields, dialogFieldName);
       if (refreshable > -1  && !this.areFieldsBeingRefreshed) {
@@ -169,6 +167,25 @@ export class DialogUserController extends DialogClass implements IDialogs {
 
         this.areFieldsBeingRefreshed = false;
       });
+    });
+  }
+
+  public refreshSingleField(field): void {
+    this.areFieldsBeingRefreshed = true;
+
+    this.refreshField({ field: this.dialogFields[field] }).then((data) => {
+      this.dialogFields[field] = this.updateDialogFieldData(field, data);
+      this.dialogValues[field] = data.values;
+      this.dialogFields[field].fieldBeingRefreshed = false;
+
+      this.saveDialogData();
+      this.$scope.$apply();
+
+      if (! _.isEmpty(this.fieldAssociations[field])) {
+        this.updateTargetedFieldsFrom(field);
+      }
+
+      this.areFieldsBeingRefreshed = false;
     });
   }
 

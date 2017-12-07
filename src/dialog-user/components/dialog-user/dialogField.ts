@@ -80,6 +80,11 @@ export class DialogFieldController extends DialogFieldClass {
     this.dialogField.errorMessage = validation.message;
     return validation;
   }
+
+  public refreshSingleField() {
+    this.field.fieldBeingRefreshed = true;
+    this.singleRefresh({ dialogFieldName: this.field.name });
+  }
 }
 
 export default class DialogField {
@@ -91,6 +96,7 @@ export default class DialogField {
   public bindings: any = {
     field: '<',
     onUpdate: '&',
+    singleRefresh: '&',
     options: '=?',
     inputDisabled: '=?'
   };

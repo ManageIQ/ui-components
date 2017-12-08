@@ -82,8 +82,7 @@ export class DialogFieldController extends DialogFieldClass {
   }
 
   public refreshSingleField() {
-    this.field.fieldBeingRefreshed = true;
-    this.singleRefresh({ dialogFieldName: this.field.name });
+    this.singleRefresh({ field: this.field.name });
   }
 }
 

@@ -33,14 +33,21 @@ class FieldController {
    * @param {number} fieldId is an index of field
    */
   public removeField(tabId: number, boxId: number, fieldId: number) {
-    _.remove(
-      this.DialogEditor.getDialogTabs()[
-        tabId
-        ].dialog_groups[
-        boxId
-        ].dialog_fields,
-        (field: any) => field.position === fieldId
-    );
+    _.remove(this.getFields(tabId, boxId), (field: any) => field.position === fieldId);
+    this.DialogEditor.updatePositions(this.getFields(tabId, boxId));
+  }
+
+  /**
+   * Find fields at tabId and boxId.
+   * @memberof FieldController
+   * @function getFields
+   * @param {number} tabId is an index of tab, where the box is placed
+   * @param {number} boxId is an index of box, where the field is placed
+   * @returns {Array} of fields.
+   */
+  private getFields(tabId: number, boxId: number) {
+    const tabs = this.DialogEditor.getDialogTabs();
+    return tabs[tabId].dialog_groups[boxId].dialog_fields;
   }
 }
 

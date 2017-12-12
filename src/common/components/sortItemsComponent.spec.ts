@@ -64,7 +64,7 @@ describe('Sort items test', () =>  {
     });
 
     it('should compile component', () => {
-      expect(compiledElement.html()).toContain('pf-sort');
+      expect(compiledElement.html()).toContain('miq-pf-sort');
       expect(compiledElement.html()).toContain('config="vm.options"');
     });
   });

@@ -50,18 +50,10 @@ export default function miqPfSort() {
       $scope.getSortIconClass = function () {
         var iconClass;
 
-        if ($scope.config.currentField.sortType === 'numeric') {
-          if ($scope.config.isAscending) {
-            iconClass = 'fa fa-sort-numeric-asc';
-          } else {
-            iconClass = 'fa fa-sort-numeric-desc';
-          }
+        if ($scope.config.isAscending) {
+          iconClass = 'fa fa-sort-amount-asc';
         } else {
-          if ($scope.config.isAscending) {
-            iconClass = 'fa fa-sort-alpha-asc';
-          } else {
-            iconClass = 'fa fa-sort-alpha-desc';
-          }
+          iconClass = 'fa fa-sort-amount-desc';
         }
 
         return iconClass;

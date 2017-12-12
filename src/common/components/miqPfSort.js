@@ -5,7 +5,7 @@ export default function miqPfSort() {
     scope: {
       config: '='
     },
-    templateUrl: 'sort/sort.html',
+    template: require('./miqPfSort.html'),
     controller: function ($scope) {
 
       $scope.setupConfig = function () {

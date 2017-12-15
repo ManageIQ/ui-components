@@ -24,9 +24,9 @@
     <div pf-form-group pf-label="{{'Default value'|translate}}"
          ng-if="!vm.modalData.options.force_multi_value">
       <select class="form-control" pf-select
-              ng-model="vm.modalData.default_value"
-              ng-options="entry as entry[0] for entry in vm.modalData.values">
-        <option selected="selected" value="" translate>None</option>
+              ng-model="vm.modalData.default_value">
+        <option value="">None</option>
+        <option ng-repeat="value in vm.modalData.values" value="{{value[1]}}">{{value[0]}}</option>
       </select>
     </div>
     <div pf-form-group pf-label="{{'Default value'|translate}}"

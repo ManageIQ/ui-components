@@ -9,15 +9,17 @@ class ModalFieldController {
   public modalData: any;
 
   /*@ngInject*/
-  constructor(private $scope) {
+  constructor(private $scope, private $element: any) {
   }
 
-  public $onInit() {
-    this.$scope.$watch('vm.modalData.options.force_multi_value', () => {
-      if (this.modalData.options.force_multi_value) {
-        this.modalData.default_value = [];
-      }
-    });
+  public $onChanges(changesObj) {
+    if (changesObj.modalData && changesObj.modalData.default_value === []) {
+      this.modalData.default_value = '';
+    }
+  }
+
+  public entriesChange() {
+    setTimeout(() => this.$element.find('select').selectpicker('refresh'));
   }
 }
 

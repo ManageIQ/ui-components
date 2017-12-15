@@ -65,11 +65,21 @@
     </div>
     <div pf-form-group class="form-inline" pf-label="{{'Entries'|translate}}" required>
       <div ng-repeat="entry in vm.modalData.values">
-        <input id="label" name="label"
-               ng-model="entry[0]" type="text" placeholder="Key" required/>
-        <input id="label" name="label"
-               ng-model="entry[1]" type="text" placeholder="Value" required/>
-        <a ng-click='vm.removeEntry(entry)'><i class='pficon-close'></i></a>
+        <input id="label"
+               ng-blur="vm.entriesChange()"
+               name="label"
+               ng-model="entry[0]"
+               type="text"
+               placeholder="Key"
+               required/>
+        <input id="label"
+               ng-blur="vm.entriesChange()"
+               name="label"
+               ng-model="entry[1]"
+               type="text"
+               placeholder="Value"
+               required/>
+        <a ng-click='vm.removeEntry(entry); vm.entriesChange()'><i class='pficon-close'></i></a>
       </div>
       <a ng-click='vm.addEntry()'><i class='pficon-add-circle-o'></i></a>
     </div>

@@ -103,5 +103,4 @@ export default class DialogEditorService {
       });
     });
   }
-
 }

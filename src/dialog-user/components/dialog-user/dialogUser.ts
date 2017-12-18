@@ -213,7 +213,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
 
         if (! _.isEmpty(this.fieldAssociations[field])) {
           this.updateTargetedFieldsFrom(field);
-        } else {
+        } else if (this.refreshRequestCount === 0) {
           this.areFieldsBeingRefreshed = false;
         }
 

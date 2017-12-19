@@ -6,7 +6,7 @@ export default function miqPfSort() {
       config: '='
     },
     template: require('./miqPfSort.html'),
-    controller: function ($scope) {
+    controller: ['$scope', function ($scope) {
 
       $scope.setupConfig = function () {
         var updated = false;
@@ -60,7 +60,7 @@ export default function miqPfSort() {
       };
 
       $scope.setupConfig();
-    },
+    }],
 
     link: function (scope, element, attrs) {
       scope.$watch('config', function () {

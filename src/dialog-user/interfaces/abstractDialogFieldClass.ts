@@ -8,6 +8,7 @@ export abstract class DialogFieldClass {
 
   public field: any;
   public onUpdate: any;
+  public singleRefresh: any;
   public options: any;
   public inputDisabled: boolean;
     /*@ngInject*/

@@ -15,7 +15,9 @@ export class DialogUserController extends DialogClass implements IDialogs {
   public fieldAssociations: any;
   public parsedOptions: any;
   public service: any;
+  public refreshRequestCount: number;
   public areFieldsBeingRefreshed: boolean;
+  public hasFieldsToUpdate: boolean;
   /**
    * constructor
    ** DialogData - This is the data service that handles manipulating and organizing field data
@@ -39,6 +41,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
     vm.refreshableFields = [];
     vm.fieldAssociations = {};
     vm.dialogValues = {};
+    vm.refreshRequestCount = 0;
     vm.areFieldsBeingRefreshed = false;
     vm.inputDisabled = vm.inputDisabled || false;
     this.service = this.DialogData;
@@ -80,14 +83,19 @@ export class DialogUserController extends DialogClass implements IDialogs {
       isValid: true,
       messages: []
     };
-    _.forIn(this.dialogFields, (field, fieldName) => {
-      const dialogValue = this.dialogValues[fieldName];
-      let validation = this.service.validateField(field, dialogValue);
-      if (!validation.isValid) {
-        validations.isValid = false;
-        validations.messages.push(validation);
-      }
-    });
+    if (this.areFieldsBeingRefreshed) {
+      validations.isValid = false;
+      validations.messages.push('Fields are being refreshed');
+    } else {
+      _.forIn(this.dialogFields, (field, fieldName) => {
+        const dialogValue = this.dialogValues[fieldName];
+        let validation = this.service.validateField(field, dialogValue);
+        if (!validation.isValid) {
+          validations.isValid = false;
+          validations.messages.push(validation);
+        }
+      });
+    }
 
     return validations;
   }
@@ -100,13 +108,19 @@ export class DialogUserController extends DialogClass implements IDialogs {
    * @param value {any} This is the updated value based on the selection the user made on a particular dialog field
    */
   public updateDialogField(dialogFieldName, value) {
+    this.hasFieldsToUpdate = false;
+    if (!_.isEmpty(this.fieldAssociations) && this.fieldAssociations[dialogFieldName].length > 0) {
+      this.hasFieldsToUpdate = true;
+    }
     this.dialogFields[dialogFieldName].default_value = value;
     this.dialogValues[dialogFieldName] = value;
+    if (this.hasFieldsToUpdate) {
+      this.determineRefreshRequestCount(dialogFieldName);
+      this.areFieldsBeingRefreshed = true;
+    }
     this.saveDialogData();
-    if (this.fieldAssociations !== {}) {
-      if (this.fieldAssociations[dialogFieldName] !== []) {
-        this.updateTargetedFieldsFrom(dialogFieldName);
-      }
+    if (this.hasFieldsToUpdate) {
+      this.updateTargetedFieldsFrom(dialogFieldName);
     } else {
       const refreshable = _.indexOf(this.refreshableFields, dialogFieldName);
       if (refreshable > -1  && !this.areFieldsBeingRefreshed) {
@@ -142,6 +156,15 @@ export class DialogUserController extends DialogClass implements IDialogs {
     });
   }
 
+  public determineRefreshRequestCount(fieldName): void {
+    _.forEach(this.fieldAssociations[fieldName], (field: any) => {
+      this.refreshRequestCount++;
+      if (! _.isEmpty(this.fieldAssociations[field])) {
+        this.determineRefreshRequestCount(field);
+      }
+    });
+  }
+
   /**
    * This method handles the updating of all dialogs fields that
    * are set to trigger after another field has just been refreshed
@@ -151,10 +174,35 @@ export class DialogUserController extends DialogClass implements IDialogs {
    * This is used to determine which fields are targeted from that field
    */
   public updateTargetedFieldsFrom(dialogFieldName): void {
-    this.areFieldsBeingRefreshed = true;
+    if (! this.areFieldsBeingRefreshed) {
+      this.determineRefreshRequestCount(dialogFieldName);
+    }
 
+    let promiseList = [];
     _.forEach(this.fieldAssociations[dialogFieldName], (field: any) => {
-      this.dialogFields[field].fieldBeingRefreshed = true;
+      promiseList.push(this.refreshSingleField(field));
+    });
+
+    Promise.all(promiseList).then((_data) => {
+      this.refreshRequestCount -= promiseList.length;
+      if (this.refreshRequestCount === 0) {
+        this.areFieldsBeingRefreshed = false;
+      }
+      this.saveDialogData();
+      this.$scope.$apply();
+    });
+  }
+
+  public refreshSingleField(field) {
+    if (! this.areFieldsBeingRefreshed) {
+      this.determineRefreshRequestCount(field);
+      this.areFieldsBeingRefreshed = true;
+      this.saveDialogData();
+    }
+
+    this.dialogFields[field].fieldBeingRefreshed = true;
+
+    return new Promise((resolve, reject) => {
       this.refreshField({ field: this.dialogFields[field] }).then((data) => {
         this.dialogFields[field] = this.updateDialogFieldData(field, data);
         this.dialogValues[field] = data.values;
@@ -163,11 +211,13 @@ export class DialogUserController extends DialogClass implements IDialogs {
         this.saveDialogData();
         this.$scope.$apply();
 
-        if (this.fieldAssociations[field] !== []) {
+        if (! _.isEmpty(this.fieldAssociations[field])) {
           this.updateTargetedFieldsFrom(field);
+        } else if (this.refreshRequestCount === 0) {
+          this.areFieldsBeingRefreshed = false;
         }
 
-        this.areFieldsBeingRefreshed = false;
+        resolve(data);
       });
     });
   }

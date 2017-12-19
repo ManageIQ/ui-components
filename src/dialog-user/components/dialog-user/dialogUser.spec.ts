@@ -1,4 +1,3 @@
-
 describe('Dialog test', () =>  {
   let bindings;
   const dialogFile = require('../../../../demo/data/dialog-data.json');
@@ -63,6 +62,43 @@ describe('Dialog test', () =>  {
 
     it('sets up the field associations', () => {
         expect(dialogCtrl.fieldAssociations['option_1_vm_name']).toEqual(['tag_1_function']);
+    });
+  });
+
+  describe('#refreshSingleField', () => {
+    let dialogCtrl;
+    let refreshField;
+    const dialogRefreshFile = require('../../../../demo/data/dialog-data-refresh.json');
+    const dialogData = dialogRefreshFile.resources[0].content[0];
+
+    beforeEach(() => {
+      refreshField = {
+        callback: function(value) { }
+      };
+      spyOn(refreshField, 'callback');
+      let bindings = {
+        dialog: dialogData,
+        refreshField: refreshField,
+        onUpdate: () => true,
+        inputDisabled: false
+      };
+      angular.mock.module('miqStaticAssets.dialogUser');
+      angular.mock.inject($componentController =>  {
+        dialogCtrl = $componentController('dialogUser', null, bindings);
+        dialogCtrl.$onInit();
+      });
+    });
+
+    it('returns a promise', () => {
+      let testPromise = new Promise((resolve, reject) => {});
+      expect(dialogCtrl.refreshSingleField('service_name')).toEqual(testPromise);
+    });
+
+    it('makes the callback to refreshField', () => {
+      let promise = dialogCtrl.refreshSingleField('service_name');
+      promise.then(() => {
+        expect(refreshField.callback).toHaveBeenCalledWith({field: dialogData['service_name']});
+      });
     });
   });
 });

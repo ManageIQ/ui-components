@@ -83,7 +83,9 @@ export default class DialogDataService {
     if (data.default_value) {
       defaultValue = data.default_value;
     }
-
+    if(data.type === 'DialogFieldCheckBox' && data.values !== data.default_value) {
+      defaultValue = data.values;
+    }
     if (data.data_type === 'integer') {
       defaultValue = parseInt(data.default_value, 10);
     }

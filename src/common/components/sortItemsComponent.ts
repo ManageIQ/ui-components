@@ -132,7 +132,7 @@ export class SortItemsController {
  */
 export default class SortItems implements ng.IComponentOptions {
   public replace: boolean = true;
-  public template = `<div pf-sort config="vm.options"></div>`;
+  public template = `<div miq-pf-sort config="vm.options"></div>`;
   public controller = SortItemsController;
   public controllerAs = 'vm';
   public bindings: any = {

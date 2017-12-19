@@ -7,7 +7,8 @@
     "noEmitOnError": true,
     "sourceMap": true,
     "typeRoots" : ["./node_modules/@types"],
-    "lib": ["es2017", "DOM", "ScriptHost"]
+    "lib": ["es2017", "DOM", "ScriptHost"],
+    "allowJs": true
   },
   "files": [
     "src/index.ts"

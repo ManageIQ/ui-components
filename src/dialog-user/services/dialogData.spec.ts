@@ -61,6 +61,16 @@ describe('DataTableSettingsService test', () => {
       let testDefault = dialogData.setDefaultValue(testField);
       expect(testDefault).toBe('test');
     });
+    it('should ensure a checkbox uses value that is set', () => {
+      let testField = {
+        default_value: 'f',
+        values: 't',
+        name: 'test',
+        type: 'DialogFieldCheckBox'
+      };
+      let testDefault = dialogData.setDefaultValue(testField);
+      expect(testDefault).toBe('t');
+    });
     it('should prevent a form from being valid if drop down no option is selected', () => {
       const testDropDown = {
         required: true,

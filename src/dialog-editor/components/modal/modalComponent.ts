@@ -315,7 +315,7 @@ export default class Modal {
     treeSelectorData: '<',
     treeSelectorToggle: '<',
     treeSelectorShow: '<',
-    treeSelectorIncludeDomain: '<',
+    treeSelectorIncludeDomain: '=',
     modalOptions: '<',
     visible: '<',
     elementInfo: '<'

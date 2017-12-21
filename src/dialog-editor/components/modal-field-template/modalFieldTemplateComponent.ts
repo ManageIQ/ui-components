@@ -54,6 +54,6 @@ export default class ModalFieldTemplate {
     treeSelectorData: '<',
     treeSelectorToggle: '<',
     treeSelectorShow: '<',
-    treeSelectorIncludeDomain: '<',
+    treeSelectorIncludeDomain: '=',
   };
 }

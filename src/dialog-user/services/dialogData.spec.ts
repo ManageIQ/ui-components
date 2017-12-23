@@ -30,10 +30,8 @@ const dialogField = {
   }
 };
 
-describe('DataTableSettingsService test', () => {
+describe('DialogDataService test', () => {
   let dialogData;
-
-  let modelName = 'modelName', tree = 'someTree', currId = 'currId';
 
   beforeEach(() => {
     angular.mock.module('miqStaticAssets.dialogUser');
@@ -124,5 +122,16 @@ describe('DataTableSettingsService test', () => {
     const testSorted = dialogData.updateFieldSortOrder(testDropDown);
     const expectedResult = [[5, 'Test2'], [2, 'Test5'], [0, 'Test']];
     expect(testSorted).toEqual(expectedResult);
+    const testDropDownDescription = {
+      values: [
+        [0, 'B'],
+        [5, 'C'],
+        [2, 'A']
+      ],
+      options: { sort_by: 'description', sort_order: 'descending' }
+    };
+    const testSortedDescription = dialogData.updateFieldSortOrder(testDropDownDescription);
+    const expectedSortedResult = [[5, 'C'], [0, 'B'], [2, 'A']];
+    expect(testSortedDescription).toEqual(expectedSortedResult);
   });
 });

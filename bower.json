@@ -18,6 +18,7 @@
     "!dist/*",
     "!dist/js/*",
     "!dist/css/*",
+    "!dist/*.svg",
     "!LICENSE",
     "!README.md"
   ],

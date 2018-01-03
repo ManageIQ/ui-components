@@ -1,0 +1,4 @@
+// Helper functions for loading images from the src/images folder
+@function uic-image-url($path) {
+  @return url('./../images/#{$path}')
+}

@@ -102,7 +102,8 @@ module.exports = {
           loader: 'css-loader!sass-loader'
         }
       )},
-      {test: /\.(png|jpg|gif|svg|woff|ttf|eot)/, loader:  'url-loader?limit=20480'},
+      {test: /images.*\.svg/, loader:  'file-loader', options: {name: './[hash].[ext]'}},
+      {test: /\.(png|jpg|gif|woff|ttf|eot)/, loader: 'url-loader?limit=20480'},
       {test: /\.json$/,  loader: 'json-loader'}
     ]
   },

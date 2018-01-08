@@ -57,12 +57,9 @@
       </div>
       <a ng-click='vm.addEntry()'><i class='pficon-add-circle-o'></i></a>
     </div>
-    <div pf-form-group pf-label="{{'Fields to refresh'|translate}}">
-      <select class="form-control" ng-model="vm.modalData.dialog_field_responders"
-              ng-options="dynamicField.id as dynamicField.label for dynamicField in vm.modalData.dynamicFieldList"
-              multiple pf-select>
-      </select>
-    </div>
+    <dialog-editor-modal-field-template template="fields-to-refresh.html"
+                                        modal-data="vm.modalData">
+    </dialog-editor-modal-field-template>
   </form>
 </div>
 <div ng-if="vm.modalTabIsSet('options') && vm.modalData.dynamic">
@@ -96,12 +93,9 @@
           <option selected="selected" value="string" translate>String</option>
         </select>
       </div>
-      <div pf-form-group pf-label="{{'Fields to refresh'|translate}}">
-        <select class="form-control" ng-model="vm.modalData.dialog_field_responders"
-                ng-options="dynamicField.id as dynamicField.label for dynamicField in vm.modalData.dynamicFieldList"
-                multiple pf-select>
-        </select>
-      </div>
+      <dialog-editor-modal-field-template template="fields-to-refresh.html"
+                                          modal-data="vm.modalData">
+      </dialog-editor-modal-field-template>
     </div>
     <div ng-show="vm.treeSelectorShow">
       <div class="pull-right">

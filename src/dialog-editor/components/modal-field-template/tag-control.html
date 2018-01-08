@@ -63,11 +63,8 @@
                ng-model="entry.description" type="text" placeholder="Key" readonly/>
       </div>
     </div>
-    <div pf-form-group pf-label="{{'Fields to refresh'|translate}}">
-      <select class="form-control" ng-model="vm.modalData.dialog_field_responders"
-              ng-options="dynamicField.id as dynamicField.label for dynamicField in vm.modalData.dynamicFieldList"
-              multiple pf-select>
-      </select>
-    </div>
+    <dialog-editor-modal-field-template template="fields-to-refresh.html"
+                                        modal-data="vm.modalData">
+    </dialog-editor-modal-field-template>
   </form>
 </div>

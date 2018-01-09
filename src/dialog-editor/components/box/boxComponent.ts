@@ -110,7 +110,9 @@ class BoxController {
     let droppedItem: any = ng.element(e.target).scope().dndDragItem;
     let droppedPlace: any = ng.element(e.target).scope().box;
     // update name for the dropped field
-    this.updateFieldName(droppedItem);
+    if (!_.isEmpty(droppedItem)) {
+      this.updateFieldName(droppedItem);
+    }
     // update indexes of other boxes after changing their order
     this.DialogEditor.updatePositions(
       droppedPlace.dialog_fields

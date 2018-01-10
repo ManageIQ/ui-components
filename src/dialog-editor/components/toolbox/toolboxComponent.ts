@@ -77,7 +77,7 @@ export class ToolboxController {
         'dropdown_list',
         {
           data_type: 'string',
-          values: [],
+          values: [[1, 'One'], [2, 'Two'], [3, 'Three']],
           options: {
             sort_by: 'description',
             sort_order: 'ascending',

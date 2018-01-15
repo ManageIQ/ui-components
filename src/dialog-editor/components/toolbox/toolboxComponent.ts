@@ -127,6 +127,7 @@ export class ToolboxController {
           data_type: 'string',
           values: [],
           options: {
+            category_id: '',
             force_single_value: false,
             sort_by: 'description',
             sort_order: 'ascending',

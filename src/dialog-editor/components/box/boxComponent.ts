@@ -107,10 +107,13 @@ class BoxController {
    * @param {number} ui jQuery object
    */
   public droppableOptions(e: any, ui: any) {
-    let droppedItem: any = ng.element(e.target).scope().dndDragItem;
-    let droppedPlace: any = ng.element(e.target).scope().box;
+    const elementScope: any = ng.element(e.target).scope();
+    let droppedItem: any = elementScope.dndDragItem;
+    let droppedPlace: any = elementScope.box;
     // update name for the dropped field
-    this.updateFieldName(droppedItem);
+    if (!_.isEmpty(droppedItem)) {
+      this.updateFieldName(droppedItem);
+    }
     // update indexes of other boxes after changing their order
     this.DialogEditor.updatePositions(
       droppedPlace.dialog_fields

@@ -34,6 +34,9 @@ export default class DialogValidationService {
                               field.type === 'DialogFieldRadioButton')
                              && ! _.isEmpty(field.values)),
                     errorMessage: __('Dropdown needs to have entries') }),
+        field => ({ status: ! (field.type === 'DialogFieldTagControl'
+                               && field.category_id === ''),
+                    errorMessage: __('Category needs to be set for TagControl field') }),
       ],
     };
   }

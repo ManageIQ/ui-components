@@ -48,7 +48,7 @@
                       "display_method_options": {},
                       "required": true,
                       "required_method_options": {},
-                      "default_value": "",
+                      "default_value": "service_default",
                       "values_method_options": {},
                       "options": {
                         "protected": false

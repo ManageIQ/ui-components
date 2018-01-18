@@ -30,9 +30,9 @@ export default class DialogValidationService {
                     errorMessage: __('Dialog element needs to have a name') }),
         field => ({ status: ! _.isEmpty(field.label),
                     errorMessage: __('Dialog element needs to have a label') }),
-        field => ({ status: ((field.type === 'DialogFieldDropDownList' ||
+        field => ({ status: ! ((field.type === 'DialogFieldDropDownList' ||
                               field.type === 'DialogFieldRadioButton')
-                             && ! _.isEmpty(field.values)),
+                             && _.isEmpty(field.values)),
                     errorMessage: __('Dropdown needs to have entries') }),
         field => ({ status: ! (field.type === 'DialogFieldTagControl'
                                && field.category_id === ''),

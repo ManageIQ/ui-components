@@ -112,7 +112,6 @@ export class DialogUserController extends DialogClass implements IDialogs {
     if (!_.isEmpty(this.fieldAssociations) && this.fieldAssociations[dialogFieldName].length > 0) {
       this.hasFieldsToUpdate = true;
     }
-    this.dialogFields[dialogFieldName].default_value = value;
     this.dialogValues[dialogFieldName] = value;
     if (this.hasFieldsToUpdate) {
       this.determineRefreshRequestCount(dialogFieldName);

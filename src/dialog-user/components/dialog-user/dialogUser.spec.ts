@@ -29,6 +29,11 @@ describe('Dialog test', () =>  {
         dialogCtrl.updateDialogField('service_name', 'Test');
         expect(dialogCtrl.dialogValues['service_name']).toBe('Test');
     });
+    it('does not attempt to alter the default value of a stored dialog field', () => {
+        expect(dialogCtrl.dialogFields['service_name'].default_value).toBe('service_default');
+        dialogCtrl.updateDialogField('service_name', 'Test');
+        expect(dialogCtrl.dialogFields['service_name'].default_value).toBe('service_default');
+    });
     it('should allow properties on a dialog field to be updated', () => {
         const testChanges = {
             data_type: 'string',

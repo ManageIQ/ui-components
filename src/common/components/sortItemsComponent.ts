@@ -53,7 +53,7 @@ export class SortItemsController {
       this.options.currentField = {
         colId: _.findIndex(this.headers, this.sortObject.sortObject),
         id: this.sortObject.sortObject.text.toLowerCase(),
-        title: this.sortObject.sortObject.text
+        title: this.sortObject.sortObject.header_text
       };
       this.options.isAscending = this.sortObject.isAscending;
     }
@@ -86,7 +86,7 @@ export class SortItemsController {
         this.options.fields.push({
           colId: key,
           id: oneCol.text.toLowerCase(),
-          title: oneCol.text
+          title: oneCol.header_text
         });
       }
     });

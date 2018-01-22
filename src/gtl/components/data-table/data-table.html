@@ -20,7 +20,7 @@
           ng-repeat="column in tableCtrl.columns track by $index"
           ng-click="tableCtrl.onSortClick($index, !!tableCtrl.settings.sortBy && !tableCtrl.settings.sortBy.isAscending)"
           ng-class="tableCtrl.getColumnClass(column)">
-        {{column.text}}
+        {{column.header_text}}
         <div class="pull-right" ng-if="tableCtrl.isFilteredBy(column)" >
           <i class="fa" ng-class="tableCtrl.getSortClass()"></i>
         </div>

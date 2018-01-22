@@ -36,8 +36,8 @@
           </div>
           <div class="col-md-9 col-lg-9 col-xs-9 miq-info-section">
             <dl class="dl-horizontal tile">
-              <dt ng-repeat-start="(key, header) in config.columns | limitTo: 7 track by $index" ng-if="header.text && header.text.indexOf('Name') === -1" title="{{header.text}}">{{header.text}}:</dt>
-              <dd ng-repeat-end ng-if="header.text && header.text.indexOf('Name') === -1" title="{{item.cells[key].text}}">{{item.cells[key].text | limitToSuffix : 25 : 25}}</dd>
+              <dt ng-repeat-start="(key, header) in config.columns | limitTo: 7 track by $index" ng-if="header.header_text && header.header_text.indexOf('Name') === -1" title="{{header.header_text}}">{{header.header_text}}:</dt>
+              <dd ng-repeat-end ng-if="header.header_text && header.header_text.indexOf('Name') === -1" title="{{item.cells[key].text}}">{{item.cells[key].text | limitToSuffix : 25 : 25}}</dd>
             </dl>
             <div ng-repeat="(columnKey, column) in config.columns"
                  ng-if="item.cells[columnKey].is_button && item.cells[columnKey].onclick"

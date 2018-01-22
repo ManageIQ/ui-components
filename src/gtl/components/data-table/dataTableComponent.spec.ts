@@ -3,7 +3,7 @@
 describe('DataTable test', () =>  {
   let bindings;
 
-  let columns = [{is_narrow: true}, {is_narrow: true}, {text: 'Name', col_idx: 0}, {text: 'First value', col_idx: 1}];
+  let columns = [{is_narrow: true}, {is_narrow: true}, {text: 'Name', header_text: 'Name', col_idx: 0}, {text: 'First value', col_idx: 1}];
   let rows = [
     {
       id: 2,

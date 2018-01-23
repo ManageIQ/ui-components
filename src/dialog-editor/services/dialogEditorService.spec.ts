@@ -118,16 +118,19 @@ describe('DialogEditor test', () => {
   describe('#getDynamicFields', () => {
     let field1 = {
       id: 1,
+      name: 'field_1',
       dynamic: true
     };
 
     let field2 = {
       id: 2,
+      name: 'field_2',
       dynamic: true
     };
 
     let field3 = {
       id: 3,
+      name: 'field_3',
       dynamic: false
     };
 
@@ -147,13 +150,13 @@ describe('DialogEditor test', () => {
 
     describe('when the list of dynamic field contains the given field id', () => {
       it('returns the dynamic fields without the given field', () => {
-        expect(dialogEditor.getDynamicFields(2)).toEqual([field1]);
+        expect(dialogEditor.getDynamicFields('field_2')).toEqual([field1]);
       });
     });
 
     describe('when the list of dynamic field does not contain the given field id', () => {
       it('returns the full list of dynamic fields', () => {
-        expect(dialogEditor.getDynamicFields(4)).toEqual([field1, field2]);
+        expect(dialogEditor.getDynamicFields('field_4')).toEqual([field1, field2]);
       });
     });
   });

@@ -55,10 +55,10 @@ export default class DialogEditorService {
     return this.data.content[0].dialog_tabs;
   }
 
-  public getDynamicFields(idToExclude) {
+  public getDynamicFields(nameToExclude) {
     let dynamicFields = [];
     this.forEachDialogField((field) => {
-      if (idToExclude && (field.id === idToExclude)) {
+      if (nameToExclude && (field.name === nameToExclude)) {
         return;
       }
 

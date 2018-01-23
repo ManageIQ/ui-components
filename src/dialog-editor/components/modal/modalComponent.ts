@@ -37,7 +37,7 @@ class ModalController {
         _.cloneDeep(elements[elem.type]);
 
       if (elem.type === 'field') {
-        this.modalData.dynamicFieldList = this.DialogEditor.getDynamicFields(this.modalData.id);
+        this.modalData.dynamicFieldList = this.DialogEditor.getDynamicFields(this.modalData.name);
 
         // load categories from API, if the field is Tag Control
         if (this.modalData.type === 'DialogFieldTagControl') {

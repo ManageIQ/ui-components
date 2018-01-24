@@ -80,6 +80,7 @@ yarn start
 
 To run tests:
 ```
+yarn
 yarn run build-dev
 yarn run test
 ```

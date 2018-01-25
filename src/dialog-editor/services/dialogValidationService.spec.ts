@@ -68,5 +68,42 @@ describe('DialogValidation test', () => {
       });
     });
   });
+  describe('#dialogIsValid validations for group', () => {
+    describe('when a group has no label', () => {
+      it('returns `false` and sets an error message', () => {
+        dialogData = [{
+          label: 'this is a testing dialog and shouldn\'t be taken seriously',
+          name: 'Larry\'s dialog',
+          dialog_tabs: [{
+            label: 'New tab',
+            dialog_groups: [{
+              dialog_fields: [{
+                label: 'Field'
+              }]
+            }]
+          }]
+        }];
+        expect(dialogValidation.dialogIsValid(dialogData)).toEqual(false);
+        expect(dialogValidation.invalid.message).toEqual('Dialog group needs to have a label');
+      });
+    });
+    describe('when a group has no fields', () => {
+      it('returns `false` and sets an error message', () => {
+        dialogData = [{
+          label: 'this is a testing dialog and shouldn\'t be taken seriously',
+          name: 'Larry\'s dialog',
+          dialog_tabs: [{
+            label: 'New tab',
+            dialog_groups: [{
+              label: 'Group 1',
+              dialog_fields: []
+            }]
+          }]
+        }];
+        expect(dialogValidation.dialogIsValid(dialogData)).toEqual(false);
+        expect(dialogValidation.invalid.message).toEqual('Dialog group needs to have at least one element');
+      });
+    });
+  });
 });
 

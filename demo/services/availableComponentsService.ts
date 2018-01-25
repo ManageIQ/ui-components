@@ -48,7 +48,8 @@ export default class AvailableComponentsService {
       new AvailableGroup('site-switcher', 'Site Switcher Components', '/site-switcher', []),
       new AvailableGroup('fonticon-picker', 'Fonticon Picker Components', '/fonticon-picker', []),
       new AvailableGroup('dialog', 'Dialog Components', '/dialog', []),
-      new AvailableGroup('tree-view', 'Tree Components', '/tree', [])
+      new AvailableGroup('tree-view', 'Tree Components', '/tree', []),
+      new AvailableGroup('quadicon', 'Quadicon Components', '/quadicon', [])
     ];
   }
 }

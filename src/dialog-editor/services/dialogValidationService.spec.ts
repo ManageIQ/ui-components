@@ -38,5 +38,35 @@ describe('DialogValidation test', () => {
       });
     });
   });
+  describe('#dialogIsValid validations for tab', () => {
+    describe('when a tab has no label', () => {
+      it('returns `false` and sets an error message', () => {
+        dialogData = [{
+          label: 'this is a testing dialog and shouldn\'t be taken seriously',
+          name: 'Larry\'s dialog',
+          dialog_tabs: [{
+            dialog_groups: [{
+            }]
+          }]
+        }];
+        expect(dialogValidation.dialogIsValid(dialogData)).toEqual(false);
+        expect(dialogValidation.invalid.message).toEqual('Dialog tab needs to have a label');
+      });
+    });
+    describe('when a tab has no box', () => {
+      it('returns `false` and sets an error message', () => {
+        dialogData = [{
+          label: 'this is a testing dialog and shouldn\'t be taken seriously',
+          name: 'Larry\'s dialog',
+          dialog_tabs: [{
+            label: 'New tab',
+            dialog_groups: []
+          }]
+        }];
+        expect(dialogValidation.dialogIsValid(dialogData)).toEqual(false);
+        expect(dialogValidation.invalid.message).toEqual('Dialog tab needs to have at least one box');
+      });
+    });
+  });
 });
 

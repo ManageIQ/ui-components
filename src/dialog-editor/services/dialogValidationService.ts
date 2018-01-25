@@ -23,13 +23,13 @@ export default class DialogValidationService {
         group => ({ status: ! _.isEmpty(group.label),
                     errorMessage: __('Dialog group needs to have a label') }),
         group => ({ status: group.dialog_fields.length > 0,
-                    errorMessage: __('Dialog group needs to have at least one element') })
+                    errorMessage: __('Dialog group needs to have at least one field') })
       ],
       fields: [
         field => ({ status: ! _.isEmpty(field.name),
-                    errorMessage: __('Dialog element needs to have a name') }),
+                    errorMessage: __('Dialog field needs to have a name') }),
         field => ({ status: ! _.isEmpty(field.label),
-                    errorMessage: __('Dialog element needs to have a label') }),
+                    errorMessage: __('Dialog field needs to have a label') }),
         field => ({ status: ! ((field.type === 'DialogFieldDropDownList' ||
                               field.type === 'DialogFieldRadioButton')
                              && (!field.dynamic && _.isEmpty(field.values))),

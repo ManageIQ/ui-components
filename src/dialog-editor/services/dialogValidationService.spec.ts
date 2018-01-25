@@ -101,7 +101,7 @@ describe('DialogValidation test', () => {
           }]
         }];
         expect(dialogValidation.dialogIsValid(dialogData)).toEqual(false);
-        expect(dialogValidation.invalid.message).toEqual('Dialog group needs to have at least one element');
+        expect(dialogValidation.invalid.message).toEqual('Dialog group needs to have at least one field');
       });
     });
   });

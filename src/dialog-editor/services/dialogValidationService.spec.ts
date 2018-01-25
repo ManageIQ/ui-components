@@ -53,7 +53,7 @@ describe('DialogValidation test', () => {
         expect(dialogValidation.invalid.message).toEqual('Dialog tab needs to have a label');
       });
     });
-    describe('when a tab has no box', () => {
+    describe('when a tab has no group', () => {
       it('returns `false` and sets an error message', () => {
         dialogData = [{
           label: 'this is a testing dialog and shouldn\'t be taken seriously',
@@ -64,7 +64,7 @@ describe('DialogValidation test', () => {
           }]
         }];
         expect(dialogValidation.dialogIsValid(dialogData)).toEqual(false);
-        expect(dialogValidation.invalid.message).toEqual('Dialog tab needs to have at least one box');
+        expect(dialogValidation.invalid.message).toEqual('Dialog tab needs to have at least one group');
       });
     });
   });

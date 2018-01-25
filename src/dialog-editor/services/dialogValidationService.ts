@@ -15,13 +15,13 @@ export default class DialogValidationService {
       ],
       tabs: [
         tab => ({ status: ! _.isEmpty(tab.label),
-                  errorMessage: __('Dialog tab needs to have a name') }),
+                  errorMessage: __('Dialog tab needs to have a label') }),
         tab => ({ status: tab.dialog_groups.length > 0,
                   errorMessage: __('Dialog tab needs to have at least one box') })
       ],
       groups: [
         group => ({ status: ! _.isEmpty(group.label),
-                    errorMessage: __('Dialog box needs to have a name') }),
+                    errorMessage: __('Dialog box needs to have a label') }),
         group => ({ status: group.dialog_fields.length > 0,
                     errorMessage: __('Dialog box needs to have at least one element') })
       ],

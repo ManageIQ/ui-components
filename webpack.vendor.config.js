@@ -10,6 +10,7 @@ var webpack = require('webpack'),
         jQuery: "jquery",
         "window.jQuery": "jquery",
         "angular": "angular",
+        "numeral": "numeral",
         "_": "lodash"
       }),
       new ExtractTextPlugin(settings.stylesheetPath)

@@ -110,6 +110,7 @@ module.exports = {
   externals: {
     'angular': 'angular',
     'lodash': '_',
+    'numeral': 'numeral',
     '__': '__'
   }
 };

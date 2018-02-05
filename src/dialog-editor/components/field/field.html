@@ -66,8 +66,7 @@
         <input type="radio"
                name="{{vm.fieldData.name}}"
                ng-model="vm.fieldData.default_value"
-               ng-checked="vm.fieldData.default_value === option"
-               ng-value="option">
+               ng-value="option[0]">
         {{ option[1] }}
       </label>
     </span>

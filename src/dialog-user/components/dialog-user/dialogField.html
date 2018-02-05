@@ -45,7 +45,6 @@
               ng-change="vm.changesHappened()"
               type="checkbox"
               uib-tooltip="{{ ::inputTitle }}"
-              ng-checked="vm.dialogField.default_value == 't'"
               id="{{ vm.dialogField.name }}">
         <div ng-if="vm.dialogField.fieldValidation===false">{{vm.dialogField.errorMessage}}</div>
       </div>

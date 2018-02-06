@@ -214,6 +214,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
           this.updateTargetedFieldsFrom(field);
         } else if (this.refreshRequestCount === 0) {
           this.areFieldsBeingRefreshed = false;
+          this.saveDialogData();
         }
 
         resolve(data);

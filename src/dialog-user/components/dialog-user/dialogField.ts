@@ -16,9 +16,9 @@ export class DialogFieldController extends DialogFieldClass {
   public dialogField: any;
   public validation: any;
   public clonedDialogField: any;
-
+  public patternflyVersion: number;
   /*@ngInject*/
-  constructor(private DialogData: any) {
+  constructor(private DialogData: any, private $window: any) {
     super();
   }
 
@@ -32,6 +32,7 @@ export class DialogFieldController extends DialogFieldClass {
     this.clonedDialogField = _.cloneDeep(this.field);
     this.dialogField = this.field;
     this.validation = null;
+    this.patternflyVersion = this.$window.patternflyVersion || 3;
   }
 
   /**

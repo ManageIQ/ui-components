@@ -81,7 +81,7 @@
           <option ng-repeat="value in vm.dialogField.values" value="{{value[1]}}">{{value[0]}}</option>
         </select>
       </span>
-      
+
       <select ng-if="vm.dialogField.options.force_single_value"
               ng-switch-when="DialogFieldTagControl"
               ng-model="vm.dialogField.default_value"

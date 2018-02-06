@@ -59,7 +59,7 @@ describe('DialogDataService test', () => {
       let testDefault = dialogData.setDefaultValue(testField);
       expect(testDefault).toBe('test');
     });
-    it('should ensure a checkbox uses value that is set', () => {
+    it('should ensure a checkbox uses default value that is set', () => {
       let testField = {
         default_value: 'f',
         values: 't',
@@ -67,7 +67,7 @@ describe('DialogDataService test', () => {
         type: 'DialogFieldCheckBox'
       };
       let testDefault = dialogData.setDefaultValue(testField);
-      expect(testDefault).toBe('t');
+      expect(testDefault).toBe('f');
     });
     it('should prevent a form from being valid if drop down no option is selected', () => {
       const testDropDown = {

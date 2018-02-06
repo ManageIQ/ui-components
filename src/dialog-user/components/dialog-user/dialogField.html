@@ -45,7 +45,6 @@
               ng-change="vm.changesHappened()"
               type="checkbox"
               uib-tooltip="{{ ::inputTitle }}"
-              ng-checked="vm.dialogField.default_value == 't'"
               id="{{ vm.dialogField.name }}">
         <div ng-if="vm.dialogField.fieldValidation===false">{{vm.dialogField.errorMessage}}</div>
       </div>
@@ -144,7 +143,7 @@
           </p>
         </div>
         <div class="col-sm-6">
-          <uib-timepicker ng-model="vm.dialogField.default_value"></uib-timepicker>
+          <div uib-timepicker ng-model="vm.dialogField.default_value"></div>
         </div>
       </div>
       <span ng-switch-default ng-hide="true"></span>

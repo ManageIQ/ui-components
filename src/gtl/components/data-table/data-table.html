@@ -33,7 +33,8 @@
         ng-click="tableCtrl.onRowClick({item: row, event: $event})">
       <td ng-repeat="(columnKey, column) in tableCtrl.columns"
           ng-class="{
-            narrow: row.cells[columnKey].is_checkbox || row.cells[columnKey].icon || row.cells[columnKey].is_button
+            narrow: row.cells[columnKey].is_checkbox || row.cells[columnKey].icon || row.cells[columnKey].is_button,
+            'is-checkbox-cell': row.cells[columnKey].is_checkbox,
           }">
         <input ng-if="row.cells[columnKey].is_checkbox && !tableCtrl.settings.hideSelect"
                ng-click="tableCtrl.onItemSelected({item: row, isSelected: isSelected})"

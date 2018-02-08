@@ -1,4 +1,5 @@
 import * as _ from 'lodash';
+import * as angular from 'angular';
 
 /**
  * Controller for the Dialog Editor field component
@@ -35,6 +36,15 @@ class FieldController {
   public removeField(tabId: number, boxId: number, fieldId: number) {
     _.remove(this.getFields(tabId, boxId), (field: any) => field.position === fieldId);
     this.DialogEditor.updatePositions(this.getFields(tabId, boxId));
+  }
+
+  /**
+   * Convert default value for multiple select fields to an array
+   * @memberof FieldController
+   * @function convertValuesToArray
+   */
+  public convertValuesToArray() {
+    this.fieldData.default_value = angular.fromJson(this.fieldData.default_value);
   }
 
   /**

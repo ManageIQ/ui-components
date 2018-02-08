@@ -47,13 +47,13 @@
         <select class="form-control" pf-select
                 ng-model="vm.fieldData.default_value">
           <option value="">None</option>
-          <option ng-repeat="value in vm.fieldData.values" value="{{value[1]}}">{{value[0]}}</option>
+          <option ng-repeat="value in vm.fieldData.values" value="{{value[0]}}">{{value[1]}}</option>
         </select>
       </div>
       <div ng-if="vm.fieldData.options.force_multi_value">
         <select class="form-control" multiple pf-select
                 ng-model="vm.fieldData.default_value">
-          <option ng-repeat="value in vm.fieldData.values" value="{{value[1]}}">{{value[0]}}</option>
+          <option ng-repeat="value in vm.fieldData.values" value="{{value[0]}}">{{value[1]}}</option>
         </select>
       </div>
     </div>

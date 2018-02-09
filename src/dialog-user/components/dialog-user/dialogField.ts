@@ -69,6 +69,16 @@ export class DialogFieldController extends DialogFieldClass {
   }
 
   /**
+   * This will convert the values stored in dialogField.default_value to an array
+   * for use with a multiple-select field because by default it comes in as a string
+   * @memberof DialogFieldController
+   * @function convertValuesToArray
+   */
+  public convertValuesToArray() {
+    this.dialogField.default_value = angular.fromJson(this.dialogField.default_value);
+  }
+
+  /**
    * This method validates a dialog field to ensure its current values are valid
    * @memberof DialogFieldController
    * @function validateField

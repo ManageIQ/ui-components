@@ -74,6 +74,14 @@ describe('Dialog field test', () => {
       dialogCtrl.$doCheck();
       expect(dialogCtrl.clonedDialogField.default_value).toBe('Testing');
     });
+
+    describe('#convertValuesToArray', () => {
+      it('converts a string of default values to an array', () => {
+        dialogCtrl.dialogField.default_value = '["one", "two"]'
+        dialogCtrl.convertValuesToArray();
+        expect(dialogCtrl.dialogField.default_value).toEqual(['one', 'two'])
+      });
+    });
   });
   describe('updates should be reported up to function that is passed into component', () => {
     let bindings;

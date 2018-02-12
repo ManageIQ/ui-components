@@ -1,6 +1,6 @@
 {
   "name": "@manageiq/ui-components",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "UI components for ManageIQ project",
   "main": "index.js",
   "scripts": {

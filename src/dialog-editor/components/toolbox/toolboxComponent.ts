@@ -77,7 +77,7 @@ export class ToolboxController {
         'dropdown_list',
         {
           data_type: 'string',
-          values: [[1, 'One'], [2, 'Two'], [3, 'Three']],
+          values: [['1', 'One'], ['2', 'Two'], ['3', 'Three']],
           options: {
             sort_by: 'description',
             sort_order: 'ascending',
@@ -93,7 +93,7 @@ export class ToolboxController {
         'radio_button',
         {
           data_type: 'string',
-          values: [[1, 'One'], [2, 'Two'], [3, 'Three']],
+          values: [['1', 'One'], ['2', 'Two'], ['3', 'Three']],
           options: {sort_by: 'description', sort_order: 'ascending'},
         }
       ),

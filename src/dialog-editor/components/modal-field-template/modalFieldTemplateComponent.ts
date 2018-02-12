@@ -47,6 +47,7 @@ export default class ModalFieldTemplate {
     addEntry: '=?',
     removeEntry: '=?',
     currentCategoryEntries: '=?',
+    setupCategoryOptions: '=?',
     resolveCategories: '=?',
     modalTabIsSet: '<',
     modalTab: '=',

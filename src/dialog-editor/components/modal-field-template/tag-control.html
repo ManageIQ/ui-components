@@ -23,6 +23,7 @@
     </div>
     <div pf-form-group pf-label="{{'Category'|translate}}">
       <select class="form-control" pf-select
+              ng-change="vm.setupCategoryOptions()"
               ng-model="vm.modalData.options.category_id"
               ng-options="category.id.toString() as category.description for category in vm.categories.resources">
         <option selected="selected" value="" translate>None</option>

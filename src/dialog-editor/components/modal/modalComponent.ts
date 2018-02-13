@@ -242,6 +242,22 @@ class ModalController {
   }
 
   /**
+   * Finds entries for the selected TagControl and sets them.
+   * @memberof ModalController
+   * @function setupCategoryOptions
+   */
+  public setupCategoryOptions() {
+    let vm = this;
+    let item = this.modalData.options.category_id;
+    _.forEach(this.categories.resources, function (name) {
+      if(name['id'] === item) {
+        vm.modalData.options.category_description = name['description'];
+        vm.modalData.options.category_name = _.snakeCase(name['description']);
+      }
+    });
+  }
+
+  /**
    * Receives specification of which modal should be created and it's
    * parameters, sets default tab, loads the data of the element edited in modal
    * and displays the modal.
@@ -289,6 +305,7 @@ class ModalController {
       tree-selector-show="modalCtrl.parent.treeSelectorShow"
       tree-selector-include-domain="modalCtrl.parent.treeSelectorIncludeDomain"
       on-select="modalCtrl.parent.onSelect"
+      setup-category-options="modalCtrl.parent.setupCategoryOptions"
       ></${component}>`;
   }
 }

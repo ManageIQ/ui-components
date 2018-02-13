@@ -1,6 +1,7 @@
 #!/bin/bash
 set -x
 HASH=$(git rev-parse HEAD)
+yarn install
 yarn run build
 mv -f dist tmp
 mv bower.json bower.json.tmp

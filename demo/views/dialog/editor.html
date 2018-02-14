@@ -18,6 +18,18 @@
   </div>
 </div>
 <div class="dialog-designer-container">
+  <dialog-editor-modal
+    modal-options='vm.modalOptions'
+    element-info = 'vm.elementInfo'
+    lazy-load='vm.lazyLoad'
+    on-select='vm.onSelect'
+    show-fully-qualified-name="vm.showFullyQualifiedName"
+    tree-selector-data="vm.treeSelectorData"
+    tree-selector-include-domain="vm.treeSelectorIncludeDomain"
+    tree-selector-show="vm.treeSelectorShow"
+    tree-selector-toggle="vm.treeSelectorToggle"
+    visible="vm.modalVisible"
+  ></dialog-editor-modal>
   <div class="toolbox-container">
     <div class="static-field-container" id="toolbox">
       <div class="draggable">
@@ -25,8 +37,8 @@
       </div>
     </div>
     <div class="editable-fields-container">
-      <dialog-editor-tabs></dialog-editor-tabs>
-      <dialog-editor-boxes></dialog-editor-boxes>
+      <dialog-editor-tabs setup-modal-options="vm.setupModalOptions(type, tab, box, field)"></dialog-editor-tabs>
+      <dialog-editor-boxes setup-modal-options="vm.setupModalOptions(type, tab, box, field)"></dialog-editor-boxes>
       <pre>{{ vm.DialogEditor.data.content[0] | json }}</pre>
     </div>
   </div>

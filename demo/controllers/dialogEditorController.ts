@@ -9,6 +9,10 @@ import {ComponentDemo} from '../services/availableComponentBuilder';
 })
 export default class DialogEditorController {
   public dialog: any;
+  public modalOptions: any;
+  public elementInfo: any;
+  public visible: any;
+
   /* @ngInject */
   constructor(private DialogEditor: DialogEditorService) {
     this.init({
@@ -29,5 +33,19 @@ export default class DialogEditorController {
   public init(dialog) {
     this.DialogEditor.setData(dialog);
     this.dialog = dialog;
+  }
+
+  public setupModalOptions(type, tab, box, field) {
+    const components = {
+      tab: 'dialog-editor-modal-tab',
+      box: 'dialog-editor-modal-box',
+      field: 'dialog-editor-modal-field'
+    };
+    this.modalOptions = {
+      component: components[type],
+      size: 'lg',
+    };
+    this.elementInfo = { type: type, tabId: tab, boxId: box, fieldId: field };
+    this.visible = true;
   }
 }

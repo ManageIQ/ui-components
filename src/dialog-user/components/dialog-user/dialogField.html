@@ -52,10 +52,10 @@
       <span ng-switch-when="DialogFieldDropDownList">
         <!-- Dropdown field where a single value is expected -->
         <select pf-select
-                ng-if="! vm.dialogField.options.force_multi_value"
+                ng-if="!vm.dialogField.options.force_multi_value"
                 ng-model="vm.dialogField.default_value"
                 ng-blur="vm.validateField()"
-                on-select="vm.changesHappened()"
+                ng-change="vm.changesHappened()"
                 ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
                 class="form-control"
                 id="{{ vm.dialogField.name }}">

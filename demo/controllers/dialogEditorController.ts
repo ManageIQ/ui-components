@@ -11,7 +11,6 @@ export default class DialogEditorController {
   public dialog: any;
   public modalOptions: any;
   public elementInfo: any;
-  public visible: any;
 
   /* @ngInject */
   constructor(private DialogEditor: DialogEditorService) {
@@ -46,6 +45,5 @@ export default class DialogEditorController {
       size: 'lg',
     };
     this.elementInfo = { type: type, tabId: tab, boxId: box, fieldId: field };
-    this.visible = true;
   }
 }

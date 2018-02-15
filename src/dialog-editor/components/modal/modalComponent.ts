@@ -15,7 +15,6 @@ class ModalController {
   public categories: any;
   public modalTitle: string;
   public modalOptions: any;
-  public visible: boolean;
   public elementInfo: any;
   private uibModalInstance;
 
@@ -334,7 +333,6 @@ export default class Modal {
     treeSelectorShow: '<',
     treeSelectorIncludeDomain: '=',
     modalOptions: '<',
-    visible: '<',
     elementInfo: '<'
   };
 }

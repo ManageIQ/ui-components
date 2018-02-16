@@ -6,9 +6,9 @@ import {__} from '../../../common/translateFunction';
  * Controller for the Dialog Editor box component
  * @memberof miqStaticAssets
  * @ngdoc controller
- * @name BoxController
+ * @name BoxesController
  */
-class BoxController {
+class BoxesController {
   public sortableOptionsBox: any;
   public sortableOptionsFields: any;
   public service: any;
@@ -138,9 +138,9 @@ class BoxController {
  * <dialog-editor-boxes>
  * </dialog-editor-boxes>
  */
-export default class Box {
-  public template = require('./box.html');
-  public controller: any = BoxController;
+export default class Boxes implements ng.IComponentOptions {
+  public template = require('./boxes.html');
+  public controller: any = BoxesController;
   public controllerAs: string = 'vm';
   public bindings = {
     setupModalOptions: '&'

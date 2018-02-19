@@ -13,3 +13,5 @@ import 'angular-dragdrop';
 import 'angular-bootstrap-switch';
 import 'ui-select';
 import 'patternfly-bootstrap-treeview';
+import * as numeral from 'numeral';
+window['numeral'] = numeral;

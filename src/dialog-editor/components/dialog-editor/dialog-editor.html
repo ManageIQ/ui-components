@@ -1,0 +1,24 @@
+<div class="dialog-designer-container">
+  <dialog-editor-modal
+    modal-options='$ctrl.modalOptions'
+    element-info = '$ctrl.elementInfo'
+    lazy-load='$ctrl.treeSelectorLazyLoad'
+    on-select='$ctrl.treeSelectorSelect'
+    show-fully-qualified-name="$ctrl.showFullyQualifiedName"
+    tree-selector-data="$ctrl.treeSelectorData"
+    tree-selector-include-domain="$ctrl.treeSelectorIncludeDomain"
+    tree-selector-show="$ctrl.treeSelectorShow"
+    tree-selector-toggle="$ctrl.treeSelectorToggle"
+  ></dialog-editor-modal>
+  <div class="toolbox-container">
+    <div class="static-field-container" id="toolbox">
+      <div class="draggable">
+        <dialog-editor-field-static></dialog-editor-field-static>
+      </div>
+    </div>
+    <div class="editable-fields-container">
+      <dialog-editor-tabs setup-modal-options="$ctrl.setupModalOptions(type, tab, box, field)"></dialog-editor-tabs>
+      <dialog-editor-boxes setup-modal-options="$ctrl.setupModalOptions(type, tab, box, field)"></dialog-editor-boxes>
+    </div>
+  </div>
+</div>

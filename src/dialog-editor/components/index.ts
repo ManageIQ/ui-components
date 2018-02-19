@@ -7,6 +7,7 @@ import modalTab from './modal-tab';
 import modalBox from './modal-box';
 import modalField from './modal-field';
 import modalFieldTemplate from './modal-field-template';
+import dialogEditor from './dialog-editor';
 
 export default (module: ng.IModule) => {
   tabList(module);
@@ -18,4 +19,5 @@ export default (module: ng.IModule) => {
   modalBox(module);
   modalField(module);
   modalFieldTemplate(module);
+  dialogEditor(module);
 };

@@ -33,17 +33,4 @@ export default class DialogEditorController {
     this.DialogEditor.setData(dialog);
     this.dialog = dialog;
   }
-
-  public setupModalOptions(type, tab, box, field) {
-    const components = {
-      tab: 'dialog-editor-modal-tab',
-      box: 'dialog-editor-modal-box',
-      field: 'dialog-editor-modal-field'
-    };
-    this.modalOptions = {
-      component: components[type],
-      size: 'lg',
-    };
-    this.elementInfo = { type: type, tabId: tab, boxId: box, fieldId: field };
-  }
 }

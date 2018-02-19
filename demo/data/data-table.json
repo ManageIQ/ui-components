@@ -53,7 +53,26 @@
           {
             "text": "server-one"
           }
-        ]
+        ],
+        "quad": {
+          "topLeft": {
+            "fileicon": "/assets/vendor-centos.svg",
+            "tooltip": "Hello, I am a very useful tooltip in the first quadrant!"
+          },
+          "topRight": {
+            "text": "T",
+            "background": "#336699",
+            "tooltip": "Hello, I am a very useful tooltip in the second quadrant!"
+          },
+          "bottomLeft": {
+            "fileicon": "/assets/vendor-vmware.svg",
+            "tooltip": "Hello, I am a very useful tooltip in the third quadrant!"
+          },
+          "bottomRight": {
+            "text": "0",
+            "tooltip": "Hello, I am a very useful tooltip in the fourth quadrant!"
+          }
+        }
       },
       {
         "id": "14",
@@ -74,7 +93,12 @@
           {
             "text": "Local"
           }
-        ]
+        ],
+        "quad": {
+          "fonticon": "pficon pficon-server",
+          "color": "#0099cc",
+          "tooltip": "Hello, I am a very useful tooltip!"
+        }
       },
       {
         "id": "10",

@@ -22,7 +22,8 @@
         </div>
         <div class="miq-quadicon">
           <a href="javascript:void(0)" ng-click="config.onItemClick(item, $event)">
-            <div ng-bind-html="config.trustAsHtmlQuadicon(item)"></div>
+            <div ng-if="!item.quad" ng-bind-html="config.trustAsHtmlQuadicon(item)"></div>
+            <miq-quadicon ng-if="item.quad" data="item.quad"></miq-quadicon>
           </a>
         </div>
       </ng-switch-when>
@@ -31,7 +32,8 @@
         <div class="row miq-row-margin-only-top ">
           <div class="col-md-3 col-lg-3 col-xs-3 miq-icon-section">
             <a href="javascript:void(0)" ng-click="config.onItemClick(item, $event)">
-              <div ng-bind-html="config.trustAsHtmlQuadicon(item)"></div>
+              <div ng-if="!item.quad" ng-bind-html="config.trustAsHtmlQuadicon(item)"></div>
+              <miq-quadicon ng-if="item.quad" data="item.quad"></miq-quadicon>
             </a>
           </div>
           <div class="col-md-9 col-lg-9 col-xs-9 miq-info-section">

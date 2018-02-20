@@ -25,11 +25,9 @@ export default class DialogDataService {
         if (option[0] === String(field.default_value)) {
           field.selected = option;
         }
-        if (field.data_type === 'integer') {
-          dropDownValues.push([parseInt(option[0], 10), option[1]]);
-        } else {
-          dropDownValues.push(option);
-        }
+        const value = (field.data_type === 'integer' ? parseInt(option[0], 10) : option[0]);
+        const description = (parseInt(option[1], 10) ? parseInt(option[1], 10) : option[1]);
+        dropDownValues.push([value, description]);
       }
       field.values = dropDownValues;
       field.values = this.updateFieldSortOrder(field);
@@ -48,8 +46,26 @@ export default class DialogDataService {
    *
    **/
   private updateFieldSortOrder(data) {
-    let values = _.sortBy(data.values, data.options.sort_by === 'value' ? 0 : 1);
-    return data.options.sort_order === 'ascending' ? values : values.reverse();
+    const SORT_DESCRIPTION = 1;
+    const SORT_VALUE = 0;
+    const FIRST_OPTION = 0;
+    const VALUE = 0;
+    const sortBy = (data.options.sort_by === 'value' ? SORT_VALUE : SORT_DESCRIPTION);
+    let tempValues = data.values;
+    let defaultDropdownField = [];
+    // The following if deals with a empty default option if it exists
+    if (data.data_type === 'integer' && _.isNaN(tempValues[FIRST_OPTION][VALUE])) {
+      defaultDropdownField = tempValues.shift();
+    } else if(_.isNull(tempValues[FIRST_OPTION][VALUE])) {
+      defaultDropdownField = tempValues.shift();
+    }
+    let values = _.sortBy(tempValues, sortBy);
+    const sortedValues = data.options.sort_order === 'ascending' ? values : values.reverse();
+    if (defaultDropdownField.length) {
+      sortedValues.unshift(defaultDropdownField);
+    }
+
+    return sortedValues;
   }
 
   /**

@@ -12,6 +12,12 @@ export default class DialogEditorService {
    */
   public setData(data: any) {
     this.data = data;
+    // FIXME: Compensation of default values until it is been resolved in the API
+    this.forEachDialogField((field: any) => {
+      if (field.hasOwnProperty('values') && _.isArray(field.values)) {
+        field.values = field.values.filter(value => value[0] && value[1]);
+      }
+    });
   }
 
   /**
@@ -47,11 +53,6 @@ export default class DialogEditorService {
    * @function getDialogTabs
    */
   public getDialogTabs() {
-    this.forEachDialogField((field: any) => {
-      if (field.hasOwnProperty('values') && _.isArray(field.values)) {
-        field.values = field.values.filter(value => value[0] && value[1]);
-      }
-    });
     return this.data.content[0].dialog_tabs;
   }
 

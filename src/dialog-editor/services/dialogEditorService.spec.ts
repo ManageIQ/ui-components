@@ -13,9 +13,55 @@ describe('DialogEditor test', () => {
   });
 
   describe('#setData', () => {
+    let dialogData = {
+      content: [{
+        dialog_tabs: []
+      }]
+    };
+
     it('sets data to the data property', () => {
-      dialogEditor.setData('test');
-      expect(dialogEditor.data).toEqual('test');
+      dialogEditor.setData(dialogData);
+      expect(dialogEditor.data).toEqual(dialogData);
+    });
+
+    describe('when the values on a field are a string', () => {
+      let dialogData = {
+        content: [{
+          dialog_tabs: [{
+            dialog_groups: [{
+              dialog_fields: [{
+                values: 'nofailure'
+              }]
+            }]
+          }]
+        }]
+      };
+
+      it('sets all of the field values correctly', () => {
+        dialogEditor.setData(dialogData);
+        let fieldValues = dialogEditor.data.content[0].dialog_tabs[0].dialog_groups[0].dialog_fields[0].values;
+        expect(fieldValues).toEqual('nofailure');
+      });
+    });
+
+    describe('when the values on a field are an object', () => {
+      let dialogData = {
+        content: [{
+          dialog_tabs: [{
+            dialog_groups: [{
+              dialog_fields: [{
+                values: ['0', 'zero']
+              }]
+            }]
+          }]
+        }]
+      };
+
+      it('sets all of the field values based on a filter', () => {
+        dialogEditor.setData(dialogData);
+        let fieldValues = dialogEditor.data.content[0].dialog_tabs[0].dialog_groups[0].dialog_fields[0].values;
+        expect(fieldValues).toEqual(['zero']);
+      });
     });
   });
 
@@ -60,54 +106,6 @@ describe('DialogEditor test', () => {
 
     beforeEach(() => {
       dialogEditor.setData(dialogData);
-    });
-
-    describe('when the values on a field are a string', () => {
-      let dialogData = {
-        content: [{
-          dialog_tabs: [{
-            dialog_groups: [{
-              dialog_fields: [{
-                values: 'nofailure'
-              }]
-            }]
-          }]
-        }]
-      };
-
-      beforeEach(() => {
-        dialogEditor.setData(dialogData);
-      });
-
-      it('sets all of the field values correctly', () => {
-        dialogEditor.getDialogTabs();
-        let fieldValues = dialogEditor.data.content[0].dialog_tabs[0].dialog_groups[0].dialog_fields[0].values;
-        expect(fieldValues).toEqual('nofailure');
-      });
-    });
-
-    describe('when the values on a field are an object', () => {
-      let dialogData = {
-        content: [{
-          dialog_tabs: [{
-            dialog_groups: [{
-              dialog_fields: [{
-                values: ['0', 'zero']
-              }]
-            }]
-          }]
-        }]
-      };
-
-      beforeEach(() => {
-        dialogEditor.setData(dialogData);
-      });
-
-      it('sets all of the field values based on a filter', () => {
-        dialogEditor.getDialogTabs();
-        let fieldValues = dialogEditor.data.content[0].dialog_tabs[0].dialog_groups[0].dialog_fields[0].values;
-        expect(fieldValues).toEqual(['zero']);
-      });
     });
 
     it('returns the dialog_tabs of the dialog', () => {

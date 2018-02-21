@@ -147,14 +147,14 @@ describe('DialogDataService test', () => {
   it('should allow a numeric Description field to be sorted in a dropdown', () => {
     const testDropDownDescription = {
       values: [
-        [0, '0'],
-        [5, '5'],
-        [2, '2']
+        ['zero', '0'],
+        ['five', '5'],
+        ['two', '2']
       ],
       options: { sort_by: 'description', sort_order: 'descending' }
     };
     const testSortedDescription = dialogData.updateFieldSortOrder(testDropDownDescription);
-    const expectedSortedResult = [[5, '5'], [2, '2'], [0, '0']];
+    const expectedSortedResult = [['five', '5'], ['two', '2'], ['zero', '0']];
     expect(testSortedDescription).toEqual(expectedSortedResult);
   });
 });

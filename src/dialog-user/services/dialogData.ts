@@ -26,7 +26,7 @@ export default class DialogDataService {
           field.selected = option;
         }
         const value = (field.data_type === 'integer' ? parseInt(option[0], 10) : option[0]);
-        const description = (parseInt(option[1], 10) ? parseInt(option[1], 10) : option[1]);
+        const description = (isNaN(option[1]) ? option[1] : parseInt(option[1], 10));
         dropDownValues.push([value, description]);
       }
       field.values = dropDownValues;

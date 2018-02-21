@@ -51,12 +51,11 @@ export default class DialogDataService {
     const FIRST_OPTION = 0;
     const VALUE = 0;
     const sortBy = (data.options.sort_by === 'value' ? SORT_VALUE : SORT_DESCRIPTION);
-    let tempValues = data.values;
+    let tempValues = [...data.values];
     let defaultDropdownField = [];
     // The following if deals with a empty default option if it exists
-    if (data.data_type === 'integer' && _.isNaN(tempValues[FIRST_OPTION][VALUE])) {
-      defaultDropdownField = tempValues.shift();
-    } else if(_.isNull(tempValues[FIRST_OPTION][VALUE])) {
+    if (data.data_type === 'integer' && _.isNaN(tempValues[FIRST_OPTION][VALUE]) ||
+      _.isNull(tempValues[FIRST_OPTION][VALUE])) {
       defaultDropdownField = tempValues.shift();
     }
     let values = _.sortBy(tempValues, sortBy);

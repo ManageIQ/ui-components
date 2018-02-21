@@ -127,7 +127,7 @@ describe('DialogDataService test', () => {
         [5, 'Test2'],
         [2, 'Test5']
       ],
-      options: { sort_by: 'value', sort_order: 'descending' }
+      options: { sort_by: 'value', sort_order: 'descending', data_type: 'integer' }
     };
     const testSorted = dialogData.updateFieldSortOrder(testDropDown);
     const expectedResult = [[5, 'Test2'], [2, 'Test5'], [0, 'Test']];

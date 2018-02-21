@@ -21,7 +21,7 @@ class ModalController {
 
   /*@ngInject*/
   constructor(private $uibModal: any,
-              private API: any,
+              private DialogEditorHttp: any,
               private DialogEditor: any) {
   }
 
@@ -98,9 +98,7 @@ class ModalController {
    * @function resolveCategories
    */
   public resolveCategories() {
-    return this.API.get('/api/categories' +
-                        '?expand=resources' +
-                        '&attributes=description,single_value,children');
+    return this.DialogEditorHttp.loadCategories();
   }
 
   /**

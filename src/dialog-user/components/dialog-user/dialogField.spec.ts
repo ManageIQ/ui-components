@@ -77,9 +77,9 @@ describe('Dialog field test', () => {
 
     describe('#convertValuesToArray', () => {
       it('converts a string of default values to an array', () => {
-        dialogCtrl.dialogField.default_value = '["one", "two"]'
+        dialogCtrl.dialogField.default_value = '["one", "two"]';
         dialogCtrl.convertValuesToArray();
-        expect(dialogCtrl.dialogField.default_value).toEqual(['one', 'two'])
+        expect(dialogCtrl.dialogField.default_value).toEqual(['one', 'two']);
       });
     });
   });

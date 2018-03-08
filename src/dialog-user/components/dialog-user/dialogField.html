@@ -50,20 +50,43 @@
       </div>
 
       <span ng-switch-when="DialogFieldDropDownList">
-        <!-- Dropdown field where a single value is expected -->
+        <!-- Dropdown field where a single value is expected - PF 3 compatible-->
         <select pf-select
-                ng-if="!vm.dialogField.options.force_multi_value"
+                data-live-search="true"
+                ng-if="!vm.dialogField.options.force_multi_value && vm.patternflyVersion === 3"
                 ng-model="vm.dialogField.default_value"
                 ng-blur="vm.validateField()"
                 ng-change="vm.changesHappened()"
                 ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
                 class="form-control"
                 id="{{ vm.dialogField.name }}">
-          <option ng-repeat="value in vm.dialogField.values" value="{{value[0]}}">{{value[1]}}</option>
+          <option ng-repeat="value in vm.dialogField.values"
+                  data-tokens="{{value[0]}} {{value[1]}}"
+                  value="{{value[0]}}">
+            {{value[1]}}
+          </option>
+        </select>
+
+        <!-- Dropdown field where a single value is expected - PF 4 compatible-->
+        <select pf-bootstrap-select
+                data-live-search="true"
+                ng-if="!vm.dialogField.options.force_multi_value && vm.patternflyVersion === 4"
+                ng-model="vm.dialogField.default_value"
+                ng-blur="vm.validateField()"
+                ng-change="vm.changesHappened()"
+                ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
+                class="form-control"
+                id="{{ vm.dialogField.name }}">
+          <option ng-repeat="value in vm.dialogField.values"
+                  data-tokens="{{value[0]}} {{value[1]}}"
+                  value="{{value[0]}}">
+            {{value[1]}}
+          </option>
         </select>
 
         <!-- PF 3 compatible multiselect -->
         <select pf-select multiple
+                data-live-search="true"
                 ng-if="vm.dialogField.options.force_multi_value && vm.patternflyVersion === 3"
                 ng-init="vm.convertValuesToArray()"
                 ng-model="vm.dialogField.default_value"
@@ -71,11 +94,16 @@
                 ng-blur="vm.validateField()"
                 ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
                 input-id="{{ vm.dialogField.name }}">
-          <option ng-repeat="value in vm.dialogField.values" value="{{value[0]}}">{{value[1]}}</option>
+          <option ng-repeat="value in vm.dialogField.values"
+                  data-tokens="{{value[0]}} {{value[1]}}"
+                  value="{{value[0]}}">
+            {{value[1]}}
+          </option>
         </select>
 
         <!-- PF 4 compatible multiselect -->
         <select pf-bootstrap-select multiple
+                data-live-search="true"
                 ng-if="vm.dialogField.options.force_multi_value && vm.patternflyVersion === 4"
                 ng-init="vm.convertValuesToArray()"
                 ng-model="vm.dialogField.default_value"
@@ -83,7 +111,11 @@
                 ng-blur="vm.validateField()"
                 ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
                 input-id="{{ vm.dialogField.name }}">
-          <option ng-repeat="value in vm.dialogField.values" value="{{value[0]}}">{{value[1]}}</option>
+          <option ng-repeat="value in vm.dialogField.values"
+                  data-tokens="{{value[0]}} {{value[1]}}"
+                  value="{{value[0]}}">
+            {{value[1]}}
+          </option>
         </select>
       </span>
 

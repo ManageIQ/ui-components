@@ -140,6 +140,26 @@ describe('tile component test', () =>  {
       tileController.rows[0].checked = true;
       expect(angular.equals([rows[0]],tileController.filterSelected())).toBeTruthy();
     });
+
+    it('should count checkboxes', () => {
+      expect(tileController.countCheckboxes()).toBe(2);
+
+      tileController.rows = tileController.rows.map(oneRow => {
+        oneRow.cells[0].is_checkbox = false;
+        return oneRow;
+      });
+
+      expect(tileController.countCheckboxes()).toBe(0);
+    });
+
+    it('should count checkboxes for rows with cells', () => {
+      tileController.rows = tileController.rows.map(oneRow => {
+        oneRow.cells = undefined;
+        return oneRow;
+      });
+
+      expect(tileController.countCheckboxes()).toBe(0);
+    });
   });
 
   describe('component', () => {

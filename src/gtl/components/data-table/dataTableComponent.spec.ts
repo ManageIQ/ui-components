@@ -136,6 +136,26 @@ describe('DataTable test', () =>  {
       dataTableCtrl.setTablePage('d');
       expect(dataTableCtrl.settings.current).toBe(1);
     });
+
+    it('should count checkboxes', () => {
+      expect(dataTableCtrl.countCheckboxes()).toBe(3);
+
+      dataTableCtrl.rows = dataTableCtrl.rows.map(oneRow => {
+        oneRow.cells[0].is_checkbox = false;
+        return oneRow;
+      });
+
+      expect(dataTableCtrl.countCheckboxes()).toBe(0);
+    });
+
+    it('should count checkboxes for rows with cells', () => {
+      dataTableCtrl.rows = dataTableCtrl.rows.map(oneRow => {
+        oneRow.cells = undefined;
+        return oneRow;
+      });
+
+      expect(dataTableCtrl.countCheckboxes()).toBe(0);
+    });
   });
 
   describe('component', () => {

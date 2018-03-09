@@ -4,6 +4,7 @@
          ng-if="tileCtrl.settings && tileCtrl.settings.sortBy && (tileCtrl.settings.isLoading || tileCtrl.rows.length !== 0)">
       <miq-pagination settings="tileCtrl.settings"
                       per-page="tileCtrl.perPage"
+                      has-checkboxes="tileCtrl.countCheckboxes() > 0"
                       on-select-all="tileCtrl.onCheckAll(isSelected)"
                       on-change-sort="tileCtrl.onSortClick(sortId, isAscending)"
                       on-change-page="tileCtrl.setPage(pageNumber)"

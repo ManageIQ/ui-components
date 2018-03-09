@@ -5,6 +5,7 @@
     <miq-pagination settings="tableCtrl.settings"
                     per-page="tableCtrl.perPage"
                     on-select-all="tableCtrl.onCheckAll(isSelected)"
+                    has-checkboxes="tableCtrl.countCheckboxes() > 0"
                     on-change-sort="tableCtrl.onSortClick(sortId, isAscending)"
                     on-change-page="tableCtrl.setPage(pageNumber)"
                     on-change-per-page="tableCtrl.perPageClick(item)"></miq-pagination>

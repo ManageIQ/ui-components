@@ -81,6 +81,22 @@ export abstract class DataViewClass implements IDataTableBinding {
       `${start} - ${end} of ${total}`;
   }
 
+  /**
+   * Helper method to count all checkboxes in rows data.
+   * Checkboxes are stored under each row's cells.
+   */
+  public countCheckboxes() {
+    return this.rows.reduce(
+      (curr: number, next) => {
+        if (next.cells) {
+          curr += next.cells.filter(oneCell => oneCell && oneCell.is_checkbox).length;
+        }
+        return curr;
+      },
+      0
+    );
+  }
+
   public onItemButtonClick(item: any, $event: any) {
     $event.stopPropagation();
     if (item.hasOwnProperty('onclick')) {

@@ -7,6 +7,7 @@
 export class PaginationController {
   public isChecked: boolean = false;
   public settings: any;
+  public hasCheckboxes: boolean;
 
   public onSelectAll: (args: {isSelected: boolean}) => void;
   public onChangeSort: (args: {sortId: number, isAscending: boolean}) => void;
@@ -57,6 +58,7 @@ export default class Pagination implements ng.IComponentOptions {
   public bindings: any = {
     settings: '<',
     perPage: '<',
+    hasCheckboxes: '<',
     onSelectAll: '&',
     onChangeSort: '&',
     onChangePage: '&',

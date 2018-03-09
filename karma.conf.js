@@ -37,7 +37,7 @@ module.exports = function(config) {
       [jsonGlob]: ['webpack'],
       [applicationFile]: ['webpack', 'coverage']
     },
-    webpack: webpackConfig,
+    webpack: webpackConfig({test: true}),
     webpackMiddleware: {noInfo: true},
 
     // enable / disable colors in the output (reporters addnd logs)

@@ -1,8 +1,8 @@
 "use strict";
+let production, test = false;
 const settings = require('./application-settings.js');
 const webpack = require('webpack'),
   path = require('path'),
-  production = process.env.NODE_ENV === 'production',
   NgAnnotatePlugin = require('ng-annotate-webpack-plugin'),
   BrowserSyncPlugin = require('browser-sync-webpack-plugin'),
   CopyWebpackPlugin = require('copy-webpack-plugin'),
@@ -22,24 +22,6 @@ const webpack = require('webpack'),
     !production ? undefined : new webpack.optimize.CommonsChunkPlugin({
       name: settings.appName,
       filename: settings.javascriptFolder + '/' + settings.appName + settings.isMinified(production)
-    }),
-    new BrowserSyncPlugin({
-      host: 'localhost',
-      port: 4000,
-      server: {baseDir: [__dirname + settings.distFolder]},
-      middleware: [
-        {
-          route: "/data",
-          handle: function (req, res, next) {
-            req.method = 'GET';
-            return next();
-          }
-        }
-      ]
-    }, {
-      use: spa({
-        selector: '[ng-app]'
-      })
     }),
     new webpack.ProvidePlugin({
       Rx: "rxjs"
@@ -62,23 +44,26 @@ appEntry['demo-app'] = [
   './demo/styles/demo-app.scss'
 ];
 
-module.exports = {
-  context: __dirname,
-  entry: appEntry,
-  output: {
+module.exports = env => {
+  production = env && env.NODE_ENV === 'production';
+  test = env && env.test;
+  return {
+    context: __dirname,
+      entry: appEntry,
+    output: {
     path: settings.outputFolder,
-    publicPath: '.',
-    filename: settings.javascriptFolder + "/[name]" + settings.isMinified(production)
+      publicPath: '.',
+      filename: settings.javascriptFolder + "/[name]" + settings.isMinified(production)
   },
-  resolve: {
-    extensions: ['.ts', '.js']
-  },
-  stats: {
-    colors: true,
-    reasons: true
-  },
-  devtool: !production && 'source-map',
-  module: {
+    resolve: {
+      extensions: ['.ts', '.js']
+    },
+    stats: {
+      colors: true,
+        reasons: true
+    },
+    devtool: !production && 'source-map',
+      module: {
     rules: [
       {
         enforce: 'pre',
@@ -106,11 +91,31 @@ module.exports = {
       {test: /\.json$/,  loader: 'json-loader'}
     ]
   },
-  plugins: plugins,
-  externals: {
+    plugins: [...plugins,
+      new BrowserSyncPlugin({
+        host: 'localhost',
+        port: 4000,
+        server: {baseDir: [__dirname + settings.distFolder]},
+        open: !test,
+        middleware: [
+          {
+            route: "/data",
+            handle: function (req, res, next) {
+              req.method = 'GET';
+              return next();
+            }
+          }
+        ]
+      }, {
+        use: spa({
+          selector: '[ng-app]'
+        })
+      })],
+      externals: {
     'angular': 'angular',
-    'lodash': '_',
-    'numeral': 'numeral',
-    '__': '__'
+      'lodash': '_',
+      'numeral': 'numeral',
+      '__': '__'
+  }
   }
 };

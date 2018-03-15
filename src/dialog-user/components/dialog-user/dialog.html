@@ -3,10 +3,6 @@
     <h2 translate>No Provisioning Dialog Available.</h2>
   </div>
   <div ng-if="vm.dialog.label">
-    <div>
-      <h2 class="text-capitalize no-wrap">{{ ::vm.dialog.label }}</h2>
-      <p ng-if="vm.dialog.label != vm.dialog.description">{{ vm.dialog.description }}</p>
-    </div>
     <uib-tabset>
       <uib-tab ng-repeat="tab in vm.dialog.dialog_tabs" heading="{{ ::tab.label }}">
         <div ng-repeat="buttonGroup in tab.dialog_groups">

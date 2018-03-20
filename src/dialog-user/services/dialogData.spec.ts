@@ -52,6 +52,26 @@ describe('DialogDataService test', () => {
     expect(configuredField.errorMessage).toBeDefined();
   });
 
+  describe('#setupField', () => {
+    describe('when the field is a drop down list', () => {
+      describe('when the field is an integer type', () => {
+        describe('when the field has no default value', () => {
+          it('stores the values without forcing null into a NaN', () => {
+            let testField = {
+              'data_type': 'integer',
+              'default_value': null,
+              'values': [[null, '<None>'], ['1', 'One'], ['2', 'Two']],
+              'type': 'DialogFieldDropDownList',
+              'options': {'sort_by': 'description', 'sort_order': 'ascending'}
+            };
+            let newField = dialogData.setupField(testField);
+            expect(newField.values[0]).toEqual([null, '<None>']);
+          });
+        });
+      });
+    });
+  });
+
   describe('#setDefaultValue', () => {
     it('should allow a default value to be set', () => {
       let testField = dialogField;

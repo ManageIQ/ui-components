@@ -99,9 +99,6 @@ export default class DialogDataService {
     if (data.default_value) {
       defaultValue = data.default_value;
     }
-    if (data.data_type === 'integer') {
-      defaultValue = parseInt(data.default_value, 10);
-    }
 
     return defaultValue;
   }

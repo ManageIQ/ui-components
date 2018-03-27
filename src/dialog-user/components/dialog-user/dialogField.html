@@ -1,18 +1,17 @@
 <div ng-show="vm.dialogField.visible"
      class="form-group"
      ng-class="{'has-error': vm.dialogField.fieldValidation===false}">
-  <div class="col-md-2 col-lg-4 col-xl-2 col-sm-2 dialog-label">
-    <label class="control-label">{{ ::vm.dialogField.label }}</label>
+
+  <label class=" col-sm-3 control-label">{{ ::vm.dialogField.label }}
     <i class="fa fa-info-circle primary help-icon"
          ng-if="vm.dialogField.description" 
          tooltip-append-to-body="true"
          uib-tooltip="{{ vm.dialogField.description }}" 
-         tooltip-placement="auto top"
-    >
+         tooltip-placement="auto top">
     </i>
-  </div>
-    <div ng-switch on="vm.dialogField.type"
-         class="col-sm-5 col-lg-5">
+  </label>
+  <div ng-switch on="vm.dialogField.type">
+    <div class="col-sm-4">
       <div ng-switch-when="DialogFieldTextBox">
         <input ng-model="vm.dialogField.default_value"
                ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
@@ -26,6 +25,8 @@
                id="{{ vm.dialogField.name }}">
         <div ng-if="vm.dialogField.fieldValidation===false">{{ vm.dialogField.errorMessage }}</div>
       </div>
+    </div>
+    <div class="col-sm-8">
       <textarea ng-switch-when="DialogFieldTextAreaBox"
                 ng-model="vm.dialogField.default_value"
                 ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
@@ -36,7 +37,9 @@
                 rows="4"
                 id="{{ vm.dialogField.name }}">{{ vm.dialogField.default_value }}
       </textarea>
-      <div ng-switch-when="DialogFieldCheckBox">
+    </div>
+    <div ng-switch-when="DialogFieldCheckBox">
+      <div class="col-sm-4">
         <input
               ng-model="vm.dialogField.default_value"
               ng-true-value="'t'"
@@ -48,8 +51,10 @@
               id="{{ vm.dialogField.name }}">
         <div ng-if="vm.dialogField.fieldValidation===false">{{vm.dialogField.errorMessage}}</div>
       </div>
+    </div>
 
-      <span ng-switch-when="DialogFieldDropDownList">
+    <span ng-switch-when="DialogFieldDropDownList">
+      <div class="col-sm-4">
         <!-- Dropdown field where a single value is expected - PF 3 compatible-->
         <select pf-select
                 data-live-search="true"
@@ -117,8 +122,10 @@
             {{value[1]}}
           </option>
         </select>
-      </span>
+      </div>
+    </span>
 
+    <div class="col-sm-6">
       <select ng-if="vm.dialogField.options.force_single_value"
               ng-switch-when="DialogFieldTagControl"
               ng-model="vm.dialogField.default_value"
@@ -161,7 +168,9 @@
           {{ ::fieldValue[1] }}
         </label>
       </span>
+    </div>
 
+    <div class="col-sm-4">
       <p ng-switch-when="DialogFieldDateControl" class="input-group">
         <input uib-datepicker-popup
                type="text"
@@ -179,8 +188,10 @@
           </button>
         </span>
       </p>
+    </div>
+    <div class="col-sm-4">
       <div ng-switch-when="DialogFieldDateTimeControl">
-        <div class="col-sm-6 dateTimePadding">
+        <div class="col-sm-2 dateTimePadding">
           <p class="input-group">
             <input uib-datepicker-popup type="text"
                    class="form-control"
@@ -198,7 +209,7 @@
             </span>
           </p>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-2">
           <div uib-timepicker ng-model="vm.dialogField.default_value"></div>
         </div>
       </div>

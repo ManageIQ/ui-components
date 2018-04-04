@@ -33,6 +33,9 @@ export class DialogFieldController extends DialogFieldClass {
     this.dialogField = this.field;
     this.validation = null;
     this.patternflyVersion = this.$window.patternflyVersion || 3;
+    if (this.dialogField.type === 'DialogFieldTagControl') {
+      this.setDefaultValue();
+    }
   }
 
   /**
@@ -94,6 +97,21 @@ export class DialogFieldController extends DialogFieldClass {
 
   public refreshSingleField() {
     this.singleRefresh({ field: this.field.name });
+  }
+
+  /**
+   * This method is setting the default_value for a tag control's select box.
+   * In case the default_value is not set for the ng-model of the component,
+   * an empty value option is displayed
+   * @memberof DialogFieldController
+   * @function setDefaultValue
+   */
+  private setDefaultValue() {
+    let defaultOption = _.find(this.dialogField.values, { id: null })
+    if (defaultOption) {
+      defaultOption.id = 0;
+      this.dialogField.default_value = defaultOption.id
+    }
   }
 }
 

@@ -104,6 +104,7 @@ describe('Pagination test', () =>  {
 
       scope.settings = settings;
       scope.perPage = perPage;
+      scope.hasCheckboxes = true;
       scope.onSelectAll = onSelectAll;
       scope.onChangeSort = onChangeSort;
       scope.onChangePage = onChangePage;
@@ -113,6 +114,7 @@ describe('Pagination test', () =>  {
         angular.element(
           `<miq-pagination  settings="settings"
                             per-page="perPage"
+                            has-checkboxes="hasCheckboxes"
                             on-select-all="onSelectAll(isSelected)"
                             on-change-sort="onChangeSort(sortId, isAscending)"
                             on-change-page="onChangePage(pageNumber)"
@@ -141,6 +143,12 @@ describe('Pagination test', () =>  {
       it('pager', () => {
         expect(compiledElement[0].querySelectorAll('miq-paging').length).toBe(1);
         expect(compiledElement[0].querySelectorAll('miq-paging ul li').length).toBe(5);
+      });
+
+      it('should not render check all', () => {
+        scope.hasCheckboxes = false;
+        scope.$apply();
+        expect(compiledElement[0].querySelectorAll('.checkbox-inline').length).toBe(0)
       });
     });
 

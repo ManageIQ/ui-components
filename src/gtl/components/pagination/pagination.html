@@ -2,8 +2,9 @@
 
   <div class="form-group">
     <!-- Select all start -->
-    <span class="checkbox span-right-border" style="margin: 0 0 0 5px">
-      <label class="checkbox-inline">
+    <span class="checkbox span-right-border"
+          style="margin: 0 0 0 5px">
+      <label ng-if="paginationCtrl.hasCheckboxes" class="checkbox-inline">
         <input type="checkbox"
                ng-model="paginationCtrl.isChecked"
                ng-click="paginationCtrl.onSelectAll({isSelected: paginationCtrl.isChecked})"

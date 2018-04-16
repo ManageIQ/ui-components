@@ -72,6 +72,142 @@ describe('DialogDataService test', () => {
     });
   });
 
+  describe('#validateField', () => {
+    describe('when the field is required', () => {
+      describe('when the field is a tag control', () => {
+        describe('when the field forces a single value', () => {
+          describe('when the field value is 0 (the "choose" option)', () => {
+            let testField;
+
+            beforeEach(() => {
+              testField = {
+                'type': 'DialogFieldTagControl',
+                'default_value': 0,
+                'required': true,
+                'options': {
+                  'force_single_value': true
+                }
+              };
+            });
+
+            it('does not pass validation', () => {
+              let validation = dialogData.validateField(testField);
+              expect(validation.isValid).toEqual(false);
+              expect(validation.message).toEqual('This field is required');
+            });
+          });
+
+          describe('when the field value is null', () => {
+            let testField;
+
+            beforeEach(() => {
+              testField = {
+                'type': 'DialogFieldTagControl',
+                'default_value': null,
+                'required': true,
+                'options': {
+                  'force_single_value': true
+                }
+              };
+            });
+
+            it('does not pass validation', () => {
+              let validation = dialogData.validateField(testField);
+              expect(validation.isValid).toEqual(false);
+              expect(validation.message).toEqual('This field is required');
+            });
+          });
+
+          describe('when the field value is any other number', () => {
+            let testField;
+
+            beforeEach(() => {
+              testField = {
+                'type': 'DialogFieldTagControl',
+                'default_value': 1234,
+                'required': true,
+                'options': {
+                  'force_single_value': true
+                }
+              };
+            });
+
+            it('passes validation', () => {
+              let validation = dialogData.validateField(testField);
+              expect(validation.isValid).toEqual(true);
+              expect(validation.message).toEqual('');
+            });
+          });
+        });
+
+        describe('when the field does not force a single value', () => {
+          describe('when the field value is empty', () => {
+            let testField;
+
+            beforeEach(() => {
+              testField = {
+                'type': 'DialogFieldTagControl',
+                'default_value': [],
+                'required': true,
+                'options': {
+                  'force_single_value': false
+                }
+              };
+            });
+
+            it('does not pass validation', () => {
+              let validation = dialogData.validateField(testField);
+              expect(validation.isValid).toEqual(false);
+              expect(validation.message).toEqual('This field is required');
+            });
+          });
+
+          describe('when the field value is null', () => {
+            let testField;
+
+            beforeEach(() => {
+              testField = {
+                'type': 'DialogFieldTagControl',
+                'default_value': null,
+                'required': true,
+                'options': {
+                  'force_single_value': false
+                }
+              };
+            });
+
+            it('does not pass validation', () => {
+              let validation = dialogData.validateField(testField);
+              expect(validation.isValid).toEqual(false);
+              expect(validation.message).toEqual('This field is required');
+            });
+          });
+
+          describe('when the field value has selected values', () => {
+            let testField;
+
+            beforeEach(() => {
+              testField = {
+                'type': 'DialogFieldTagControl',
+                'default_value': [1234],
+                'required': true,
+                'options': {
+                  'force_single_value': false
+                }
+              };
+            });
+
+            it('passes validation', () => {
+              let validation = dialogData.validateField(testField);
+              expect(validation.isValid).toEqual(true);
+              expect(validation.message).toEqual('');
+            });
+          });
+        });
+      });
+    });
+  });
+
   describe('#setDefaultValue', () => {
     it('should allow a default value to be set', () => {
       let testField = dialogField;

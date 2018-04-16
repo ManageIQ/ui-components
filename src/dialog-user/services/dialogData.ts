@@ -124,6 +124,11 @@ export default class DialogDataService {
       if (field.type === 'DialogFieldCheckBox' && fieldValue === 'f') {
         validation.isValid = false;
         validation.message = __('This field is required');
+      } else if (field.type === 'DialogFieldTagControl') {
+        if (this.isInvalidTagControl(field.options.force_single_value, fieldValue)) {
+          validation.isValid = false;
+          validation.message = __('This field is required');
+        }
       } else if (_.isEmpty(fieldValue)) {
         validation.isValid = false;
         validation.message = __('This field is required');
@@ -142,5 +147,32 @@ export default class DialogDataService {
     }
 
     return validation;
+  }
+
+  /**
+   * Determines if a value is a tag control and whether or not that value is valid
+   * @memberof DialogDataService
+   * @function isInvalidTagControl
+   * @param forceSingleValue {boolean} Whether or not the field allows multiple selections
+   * @param fieldValue {any} This is the value of the field in question to be validated
+   **/
+  private isInvalidTagControl(forceSingleValue, fieldValue) {
+    let invalid = false;
+
+    if (forceSingleValue) {
+      if (_.isNumber(fieldValue)) {
+        if (fieldValue === 0) {
+          invalid = true;
+        }
+      } else if (_.isEmpty(fieldValue)) {
+        invalid = true;
+      }
+    } else {
+      if (_.isEmpty(fieldValue)) {
+        invalid = true;
+      }
+    }
+
+    return invalid;
   }
 }

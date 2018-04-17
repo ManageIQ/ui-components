@@ -203,23 +203,34 @@ export class DialogUserController extends DialogClass implements IDialogs {
 
     return new Promise((resolve, reject) => {
       this.refreshField({ field: this.dialogFields[field] }).then((data) => {
-        this.dialogFields[field] = this.updateDialogFieldData(field, data);
-        this.dialogValues[field] = data.values;
-        this.dialogFields[field].fieldBeingRefreshed = false;
-
-        this.saveDialogData();
-        this.$scope.$apply();
-
-        if (! _.isEmpty(this.fieldAssociations[field])) {
-          this.updateTargetedFieldsFrom(field);
-        } else if (this.refreshRequestCount === 0) {
-          this.areFieldsBeingRefreshed = false;
-          this.saveDialogData();
-        }
-
+        this.refreshFieldCallback(field, data);
         resolve(data);
       });
     });
+  }
+
+  /**
+   *  Handles all of the necessary functions after a field has been refreshed
+   *  @memberof DialogUserController
+   *  @function refreshFieldCallback
+   *  @param field {any} This is the field to update and read associations from
+   *  @param data {any} This is the data being returned from refreshField
+   */
+
+  private refreshFieldCallback(field, data) {
+    this.dialogFields[field] = this.updateDialogFieldData(field, data);
+    this.dialogValues[field] = data.default_value;
+    this.dialogFields[field].fieldBeingRefreshed = false;
+
+    this.saveDialogData();
+    this.$scope.$apply();
+
+    if (! _.isEmpty(this.fieldAssociations[field])) {
+      this.updateTargetedFieldsFrom(field);
+    } else if (this.refreshRequestCount === 0) {
+      this.areFieldsBeingRefreshed = false;
+      this.saveDialogData();
+    }
   }
 
   /**

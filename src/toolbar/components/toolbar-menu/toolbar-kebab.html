@@ -1,0 +1,28 @@
+<div uib-dropdown class="dropdown-kebab-pf">
+  <button uib-dropdown-toggle class="btn btn-link" type="button">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul uib-dropdown-menu aria-labelledby="dropdownKebab">
+    <li ng-repeat="kebabItem in vm.kebabItem.items"
+        role="{{kebabItem.isSeparator ? 'separator' : 'menuitem'}}"
+        ng-class="{
+          'divider': kebabItem.isSeparator,
+          'disabled': kebabItem.isDisabled,
+          'dropdown-submenu': kebabItem.type === 'buttonSelect'
+        }">
+      <miq-toolbar-click ng-if="kebabItem.type !== 'separator'"
+                         item="kebabItem">
+      </miq-toolbar-click>
+
+      <ul ng-if="kebabItem.type === 'buttonSelect'"
+          uib-dropdown-menu>
+        <li ng-repeat="nestedItem in kebabItem.items">
+          <miq-toolbar-click ng-if="nestedItem.type !== 'separator'"
+                             item="nestedItem"
+                             on-item-click="vm.onItemClick({item: item, $event: $event})">
+          </miq-toolbar-click>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

@@ -1,6 +1,9 @@
 import {IToolbarItem} from '../../interfaces/toolbar';
 import {ToolbarType} from '../../interfaces/toolbarType';
 import * as _ from 'lodash';
+
+const CUSTOM_ID = 'custom_';
+
 /**
  * @memberof miqStaticAssets
  * @ngdoc controller
@@ -105,6 +108,10 @@ export class ToolbarController {
     return ToolbarType.BUTTON;
   }
 
+  public getToolbarKebabType(): string {
+    return ToolbarType.KEBAB;
+  }
+
   /**
    * Helper method for getting string value of {@link ToolbarType.CUSTOM}
    * @memberof ToolbarController
@@ -117,6 +124,25 @@ export class ToolbarController {
 
   public getButtonTwoState() {
     return ToolbarType.BUTTON_TWO_STATE;
+  }
+
+  public collapseButtons() {
+    let customButtonsIndex;
+    if (this.toolbarItems) {
+      if (this.toolbarViews.length > 0) {
+        customButtonsIndex = this.toolbarItems.length - 2;
+      } else {
+        customButtonsIndex = this.toolbarItems.length - 1;
+      }
+        this.toolbarItems[customButtonsIndex] =
+          ToolbarController.createKebabFromItems(this.toolbarItems[customButtonsIndex]);
+    }
+  }
+
+  private $onChanges(changesObj) {
+    if (changesObj.toolbarItems) {
+      this.collapseButtons();
+    }
   }
 
   /**
@@ -157,6 +183,7 @@ export class ToolbarController {
         (ToolbarController.isButtonSelect(item) && item.items && item.items.length !== 0)
         || ToolbarController.isButton(item)
         || ToolbarController.isButtonTwoState(item)
+        || ToolbarController.isKebabMenu(item)
       );
   }
 
@@ -175,6 +202,10 @@ export class ToolbarController {
     return item.type === ToolbarType.BUTTON_SELECT;
   }
 
+  private static isKebabMenu(item: IToolbarItem): boolean {
+    return item.type === ToolbarType.KEBAB;
+  }
+
   /**
    * Private static function for checking if toolbar item type is button.
    * @memberof ToolbarController
@@ -184,6 +215,16 @@ export class ToolbarController {
    */
   private static isButton(item): boolean {
     return item.type === ToolbarType.BUTTON;
+  }
+
+  private static createKebabFromItems(itemsGroup: any[]) {
+    if (itemsGroup.length > 3) {
+      return itemsGroup.reduce((acc, curr) => {
+        curr.id.includes(CUSTOM_ID) ? acc[0].items.push(curr) : acc.push(curr);
+        return acc;
+      }, [{type: ToolbarType.KEBAB, items: []}]);
+    }
+    return itemsGroup;
   }
 }
 

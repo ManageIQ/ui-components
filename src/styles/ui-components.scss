@@ -173,6 +173,9 @@ table.miq-table-with-footer { /* not currently used */
       }
       a {
         word-wrap: break-word;
+        &:hover {
+          text-decoration: none;
+        }
       }
     }
   }

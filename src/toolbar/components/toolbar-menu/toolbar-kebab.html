@@ -11,6 +11,7 @@
           'dropdown-submenu': kebabItem.type === 'buttonSelect'
         }">
       <miq-toolbar-click ng-if="kebabItem.type !== 'separator'"
+                         on-item-click="kebabItem.type !== 'buttonSelect' && vm.onItemClick({item: item, $event: $event})"
                          item="kebabItem">
       </miq-toolbar-click>
 

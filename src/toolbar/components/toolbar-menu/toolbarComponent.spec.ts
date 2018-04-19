@@ -76,7 +76,7 @@ describe('Toolbar test', () =>  {
       compile,
       compiledElement;
 
-    const toolbarData = require('../../../../demo/data/toolbar.json');
+    let toolbarData = require('../../../../demo/data/toolbar.json');
 
     beforeEach(() => {
       angular.mock.module('miqStaticAssets.toolbar');
@@ -85,10 +85,10 @@ describe('Toolbar test', () =>  {
         compile = $compile;
       });
 
-      scope.toolbar = toolbarData;
+      scope.toolbarData = toolbarData;
       compiledElement = compile(
         angular.element(
-          `<miq-toolbar-menu toolbar-items="toolbar"></miq-toolbar-menu>`
+          `<miq-toolbar-menu toolbar-items="toolbarData"></miq-toolbar-menu>`
         ))(scope);
       scope.$digest();
     });

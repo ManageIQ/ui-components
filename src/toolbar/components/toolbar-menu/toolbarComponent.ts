@@ -127,15 +127,15 @@ export class ToolbarController {
   }
 
   public collapseButtons() {
-    let customButtonsIndex;
+    let buttonsIndex;
     if (this.toolbarItems) {
-      if (this.toolbarViews.length > 0) {
-        customButtonsIndex = this.toolbarItems.length - 2;
-      } else {
-        customButtonsIndex = this.toolbarItems.length - 1;
+      buttonsIndex = _.findLastIndex(
+        this.toolbarItems,
+        (itemGroup: any) => itemGroup.filter(item => item.id.includes(CUSTOM_ID) !== false).length !== 0
+      );
+      if(buttonsIndex !== -1) {
+        this.toolbarItems[buttonsIndex] = ToolbarController.createKebabFromItems(this.toolbarItems[buttonsIndex]);
       }
-        this.toolbarItems[customButtonsIndex] =
-          ToolbarController.createKebabFromItems(this.toolbarItems[customButtonsIndex]);
     }
   }
 

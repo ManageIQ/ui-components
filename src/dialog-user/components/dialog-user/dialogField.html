@@ -59,6 +59,7 @@
                 ng-change="vm.changesHappened()"
                 ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
                 class="form-control"
+                data-container="body"
                 id="{{ vm.dialogField.name }}">
           <option ng-repeat="value in vm.dialogField.values"
                   data-tokens="{{value[0]}} {{value[1]}}"
@@ -76,6 +77,7 @@
                 ng-change="vm.changesHappened()"
                 ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
                 class="form-control"
+                data-container="body"
                 id="{{ vm.dialogField.name }}">
           <option ng-repeat="value in vm.dialogField.values track by $index"
                   data-tokens="{{value[0]}} {{value[1]}}"
@@ -87,6 +89,7 @@
         <!-- PF 3 compatible multiselect -->
         <select pf-select multiple
                 data-live-search="true"
+                data-container="body"
                 ng-if="vm.dialogField.options.force_multi_value && vm.patternflyVersion === 3"
                 ng-init="vm.convertValuesToArray()"
                 ng-model="vm.dialogField.default_value"
@@ -104,6 +107,7 @@
         <!-- PF 4 compatible multiselect -->
         <select pf-bootstrap-select multiple
                 data-live-search="true"
+                data-container="body"
                 ng-if="vm.dialogField.options.force_multi_value && vm.patternflyVersion === 4"
                 ng-init="vm.convertValuesToArray()"
                 ng-model="vm.dialogField.default_value"

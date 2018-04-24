@@ -13,5 +13,5 @@ describe('Filter: abbrNumber', function() {
   it('returns with the same text', function() {
     expect(filter('text')).toBe('text');
     expect(filter('123text')).toBe('123text');
-  })
+  });
 });

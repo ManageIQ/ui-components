@@ -11,6 +11,6 @@
           data-popup="{{item.popup}}"
           ng-click="vm.onItemClick({item: item, $event: $event})"
           name="{{item.name}}">
-    <i class="{{item.icon}}" style="" ng-style="{color: item.color}"></i>
+    <i class="{{item.icon}}" style="" ng-style="{color: (item.color | adjustColor : item.enabled)}"></i>
   </button>
 </div>

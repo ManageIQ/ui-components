@@ -28,8 +28,8 @@
          data-prompt="{{item.prompt}}"
          data-popup="{{item.popup}}"
          data-url="{{item.url}}">
-        <i ng-if="item.icon && item.text" class="{{item.icon}}" ng-style="{color: item.color}" style="margin-right: 5px;"></i>
-        <i ng-if="item.icon && !item.text" class="{{item.icon}}" ng-style="{color: item.color}"></i>
+        <i ng-if="item.icon && item.text" class="{{item.icon}}" ng-style="{color: (item.color | adjustColor : item.enabled)}" style="margin-right: 5px;"></i>
+        <i ng-if="item.icon && !item.text" class="{{item.icon}}" ng-style="{color: (item.color | adjustColor : item.enabled)}"></i>
         <img ng-if="item.img_url && !item.icon" ng-src="{{item.img_url}}"
              data-enabled="{{item.img_url}}"
              data-disabled="{{item.img_url}}">

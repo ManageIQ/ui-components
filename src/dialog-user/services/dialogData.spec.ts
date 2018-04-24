@@ -215,16 +215,7 @@ describe('DialogDataService test', () => {
       let testDefault = dialogData.setDefaultValue(testField);
       expect(testDefault).toBe('test');
     });
-    it('should ensure a checkbox uses default value that is set', () => {
-      let testField = {
-        default_value: 'f',
-        values: 't',
-        name: 'test',
-        type: 'DialogFieldCheckBox'
-      };
-      let testDefault = dialogData.setDefaultValue(testField);
-      expect(testDefault).toBe('f');
-    });
+
     it('should prevent a form from being valid if drop down no option is selected', () => {
       const testDropDown = {
         required: true,
@@ -245,6 +236,38 @@ describe('DialogDataService test', () => {
       const validation = dialogData.validateField(testDropDown, '');
       expect(validation).toEqual(validateFailure);
     });
+
+    describe('when the data type is a check box', () => {
+      let testField = {
+        default_value: 'f',
+        values: 't',
+        name: 'test',
+        type: 'DialogFieldCheckBox'
+      }
+
+      describe('when the field is dynamic', () => {
+        beforeEach(() => {
+          testField['dynamic'] = true;
+        });
+
+        it('ensures the checkbox uses the values that are set', () => {
+          let testDefault = dialogData.setDefaultValue(testField);
+          expect(testDefault).toBe('t');
+        });
+      });
+
+      describe('when the field is not dynamic', () => {
+        beforeEach(() => {
+          testField['dynamic'] = false;
+        });
+
+        it('ensures the checkbox uses the default value that is set', () => {
+          let testDefault = dialogData.setDefaultValue(testField);
+          expect(testDefault).toBe('f');
+        });
+      });
+    });
+
     describe('when the data type is a date control', () => {
       let dateField = {'type': 'DialogFieldDateControl'};
 

@@ -96,11 +96,20 @@ export default class DialogDataService {
         defaultValue = data.values;
       }
     }
+
     if (data.default_value) {
       defaultValue = data.default_value;
     }
 
+    if (this.checkboxNeedsNewDefaultValue(data)) {
+      defaultValue = data.values;
+    }
+
     return defaultValue;
+  }
+
+  private checkboxNeedsNewDefaultValue(data): boolean {
+    return (data.type === 'DialogFieldCheckBox' && data.dynamic && data.values !== data.default_value);
   }
 
   /**

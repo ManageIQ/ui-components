@@ -1,7 +1,6 @@
 import {IToolbarItem, IToolbarSettings, IRequestData} from '../interfaces/toolbar';
 import {ToolbarType} from '../interfaces/toolbarType';
-import * as _ from 'lodash';
-import * as ng from 'angular';
+const _ = window['_'];
 
 export default class ToolbarSettingsService {
   private countSelected: number = 0;
@@ -68,7 +67,7 @@ export default class ToolbarSettingsService {
    * @returns {ng.IPromise<IToolbarSettings>}
    * @param getData
    */
-  public getSettings(getData?: IRequestData): ng.IPromise<IToolbarSettings> {
+  public getSettings(getData?: IRequestData) {
     return this.httpGet(
       this.MiQEndpointsService.rootPoint + this.MiQEndpointsService.endpoints.toolbarSettings,
       getData
@@ -112,7 +111,7 @@ export default class ToolbarSettingsService {
    * @param dataObject
    * @returns {ng.IPromise<Array<Array<IToolbarItem>>>}
    */
-  private httpGet(url: string, dataObject: any): ng.IPromise<Array<Array<IToolbarItem>>> {
+  private httpGet(url: string, dataObject: any) {
     return this.$http.get(url, {params: dataObject})
       .then(dataResponse => dataResponse.data);
   }

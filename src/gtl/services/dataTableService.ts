@@ -141,7 +141,7 @@ export default class DataTableService implements IDataTableService {
       _.assign(params, settings.current && {page: settings.current});
       _.assign(params, settings.perpage && {ppsetting: settings.perpage});
       _.assign(params, settings.sortBy && settings.sortBy.sortObject && {sort_choice: settings.sortBy.sortObject.text});
-      _.assign(params, settings.sortBy && settings.sortBy.isAscending && {is_ascending: settings.sortBy.isAscending});
+      _.assign(params, settings.sortBy && {is_ascending: !!settings.sortBy.isAscending});
     }
     return params;
   }

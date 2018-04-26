@@ -219,7 +219,11 @@ export class DialogUserController extends DialogClass implements IDialogs {
 
   private refreshFieldCallback(field, data) {
     this.dialogFields[field] = this.updateDialogFieldData(field, data);
-    this.dialogValues[field] = data.default_value;
+    if (this.isASortedItemDialogField(data.type)) {
+      this.dialogValues[field] = data.default_value;
+    } else {
+      this.dialogValues[field] = data.values;
+    }
     this.dialogFields[field].fieldBeingRefreshed = false;
 
     this.saveDialogData();
@@ -231,6 +235,18 @@ export class DialogUserController extends DialogClass implements IDialogs {
       this.areFieldsBeingRefreshed = false;
       this.saveDialogData();
     }
+  }
+
+  /**
+   * Determines if the given field type is a subclass of DialogFieldSortedItem
+   * @memberof DialogUserController
+   * @function isASortedItemDialogField
+   * @param fieldType {string} This is the field type that should be used for comparison
+   */
+  private isASortedItemDialogField(fieldType) {
+    return fieldType === 'DialogFieldDropDownList' ||
+           fieldType === 'DialogFieldRadioButton' ||
+           fieldType === 'DialogFieldTagControl';
   }
 
   /**

@@ -59,7 +59,7 @@ export default class DialogDataService {
       defaultDropdownField = tempValues.shift();
     }
     let values = _.sortBy(tempValues, sortBy);
-    const sortedValues = data.options.sort_order === 'ascending' ? values : values.reverse();
+    const sortedValues : any = data.options.sort_order === 'ascending' ? values : values.reverse();
     if (defaultDropdownField.length) {
       sortedValues.unshift(defaultDropdownField);
     }

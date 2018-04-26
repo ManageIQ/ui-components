@@ -72,7 +72,7 @@ module.exports = env => {
         exclude: /(node_modules|libs)/,
         options: {emitErrors: true}
       },
-      {test: /\.ts$/, loaders: ['ts-loader'], exclude: /(node_modules|libs)/},
+      {test: /\.ts$/, loaders: ['awesome-typescript-loader'], exclude: /(node_modules|libs)/},
       {test: /\.html$/, loader: 'raw-loader', exclude: /(node_modules|libs|dist|tsd)/},
       // stylesheets
       {test: /\.scss/, exclude: /(node_modules|lib)/, loader: ExtractTextPlugin.extract(

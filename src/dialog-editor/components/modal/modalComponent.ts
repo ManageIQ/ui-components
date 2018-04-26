@@ -249,7 +249,7 @@ class ModalController {
     _.forEach(this.categories.resources, function (name) {
       if(name['id'] === item) {
         vm.modalData.options.category_description = name['description'];
-        vm.modalData.options.category_name = _.snakeCase(name['description']);
+        vm.modalData.options.category_name = name['name'];
       }
     });
   }

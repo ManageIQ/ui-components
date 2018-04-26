@@ -16,9 +16,10 @@ describe('modalComponentSpec', () => {
 
     describe('#setupCategoryOptions', () => {
       it('sets the id, name and description entries for the selected tag control', () => {
-        modalComponent.categories = { resources : [{'id': '10', 'description': 'CategoryName'}] };
+        modalComponent.categories = { resources : [{'id': '10', 'description': 'CategoryName', 'name': 'cc'}] };
         modalComponent.setupCategoryOptions();
-        expect(modalComponent.modalData.options.category_name).toEqual('category_name');
+        expect(modalComponent.modalData.options.category_id).toEqual('10');
+        expect(modalComponent.modalData.options.category_name).toEqual('cc');
         expect(modalComponent.modalData.options.category_description).toEqual('CategoryName');
       });
     });

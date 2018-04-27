@@ -113,45 +113,149 @@ describe('Dialog test', () =>  {
     const dialogRefreshFile = require('../../../../demo/data/dialog-data-refresh.json');
     const oldDialogData = dialogRefreshFile.resources[0].content[0];
 
-    const newDialogData = {
-      data_type: 'new data_type',
-      options: 'new options',
-      read_only: 'new read_only',
-      required: true,
-      visible: false,
-      values: 'new values',
-      default_value: 'new default_value'
-    };
-
-    beforeEach(() => {
-      bindings = {
-        dialog: oldDialogData,
-        refreshField: () => true,
-        onUpdate: () => true,
-        inputDisabled: false
+    describe('when the dialog data is for a drop down list', () => {
+      const newDialogData = {
+        data_type: 'new data_type',
+        options: 'new options',
+        read_only: 'new read_only',
+        required: true,
+        visible: false,
+        values: 'new values',
+        default_value: 'new default_value',
+        type: 'DialogFieldDropDownList'
       };
 
-      angular.mock.module('miqStaticAssets.dialogUser');
-      angular.mock.inject($componentController =>  {
-        dialogCtrl = $componentController('dialogUser', null, bindings);
-        dialogCtrl.$onInit();
+      beforeEach(() => {
+        bindings = {
+          dialog: oldDialogData,
+          refreshField: () => true,
+          onUpdate: () => true,
+          inputDisabled: false
+        };
+
+        angular.mock.module('miqStaticAssets.dialogUser');
+        angular.mock.inject($componentController =>  {
+          dialogCtrl = $componentController('dialogUser', null, bindings);
+          dialogCtrl.$onInit();
+        });
+
+        dialogCtrl.refreshFieldCallback('service_name', newDialogData);
       });
 
-      dialogCtrl.refreshFieldCallback('service_name', newDialogData);
+      it('updates the field value', () => {
+        expect(dialogCtrl.dialogValues['service_name']).toBe('new default_value');
+      });
     });
 
-    it('updates the field value', () => {
-      expect(dialogCtrl.dialogValues['service_name']).toBe('new default_value');
+    describe('when the dialog data is for a radio button', () => {
+      const newDialogData = {
+        data_type: 'new data_type',
+        options: 'new options',
+        read_only: 'new read_only',
+        required: true,
+        visible: false,
+        values: 'new values',
+        default_value: 'new default_value',
+        type: 'DialogFieldRadioButton'
+      };
+
+      beforeEach(() => {
+        bindings = {
+          dialog: oldDialogData,
+          refreshField: () => true,
+          onUpdate: () => true,
+          inputDisabled: false
+        };
+
+        angular.mock.module('miqStaticAssets.dialogUser');
+        angular.mock.inject($componentController =>  {
+          dialogCtrl = $componentController('dialogUser', null, bindings);
+          dialogCtrl.$onInit();
+        });
+
+        dialogCtrl.refreshFieldCallback('service_name', newDialogData);
+      });
+
+      it('updates the field value', () => {
+        expect(dialogCtrl.dialogValues['service_name']).toBe('new default_value');
+      });
     });
 
-    it('updates properties of the field', () => {
-      expect(dialogCtrl.dialogFields['service_name'].data_type).toBe('new data_type');
-      expect(dialogCtrl.dialogFields['service_name'].options).toBe('new options');
-      expect(dialogCtrl.dialogFields['service_name'].read_only).toBe('new read_only');
-      expect(dialogCtrl.dialogFields['service_name'].required).toBe(true);
-      expect(dialogCtrl.dialogFields['service_name'].visible).toBe(false);
-      expect(dialogCtrl.dialogFields['service_name'].values).toBe('new values');
-      expect(dialogCtrl.dialogFields['service_name'].default_value).toBe('new default_value');
+    describe('when the dialog data is for a tag control', () => {
+      const newDialogData = {
+        data_type: 'new data_type',
+        options: 'new options',
+        read_only: 'new read_only',
+        required: true,
+        visible: false,
+        values: 'new values',
+        default_value: 'new default_value',
+        type: 'DialogFieldTagControl'
+      };
+
+      beforeEach(() => {
+        bindings = {
+          dialog: oldDialogData,
+          refreshField: () => true,
+          onUpdate: () => true,
+          inputDisabled: false
+        };
+
+        angular.mock.module('miqStaticAssets.dialogUser');
+        angular.mock.inject($componentController =>  {
+          dialogCtrl = $componentController('dialogUser', null, bindings);
+          dialogCtrl.$onInit();
+        });
+
+        dialogCtrl.refreshFieldCallback('service_name', newDialogData);
+      });
+
+      it('updates the field value', () => {
+        expect(dialogCtrl.dialogValues['service_name']).toBe('new default_value');
+      });
+    });
+
+    describe('when the dialog data field type is not a sorted item type', () => {
+      const newDialogData = {
+        data_type: 'new data_type',
+        options: 'new options',
+        read_only: 'new read_only',
+        required: true,
+        visible: false,
+        values: 'new values',
+        default_value: 'new default_value'
+      };
+
+      beforeEach(() => {
+        bindings = {
+          dialog: oldDialogData,
+          refreshField: () => true,
+          onUpdate: () => true,
+          inputDisabled: false
+        };
+
+        angular.mock.module('miqStaticAssets.dialogUser');
+        angular.mock.inject($componentController =>  {
+          dialogCtrl = $componentController('dialogUser', null, bindings);
+          dialogCtrl.$onInit();
+        });
+
+        dialogCtrl.refreshFieldCallback('service_name', newDialogData);
+      });
+
+      it('updates the field value', () => {
+        expect(dialogCtrl.dialogValues['service_name']).toBe('new values');
+      });
+
+      it('updates properties of the field', () => {
+        expect(dialogCtrl.dialogFields['service_name'].data_type).toBe('new data_type');
+        expect(dialogCtrl.dialogFields['service_name'].options).toBe('new options');
+        expect(dialogCtrl.dialogFields['service_name'].read_only).toBe('new read_only');
+        expect(dialogCtrl.dialogFields['service_name'].required).toBe(true);
+        expect(dialogCtrl.dialogFields['service_name'].visible).toBe(false);
+        expect(dialogCtrl.dialogFields['service_name'].values).toBe('new values');
+        expect(dialogCtrl.dialogFields['service_name'].default_value).toBe('new default_value');
+      });
     });
   });
 });

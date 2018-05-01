@@ -1,6 +1,6 @@
 {
   "name": "manageiq-ui-components",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "UI components for ManageIQ project",
   "main": [
     "dist/css/ui-components.css",

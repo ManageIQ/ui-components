@@ -30,5 +30,11 @@ export const ToolbarType  = {
    * Separator type: `separator`
    * @type {string}
    */
-  SEPARATOR: 'separator'
+  SEPARATOR: 'separator',
+
+  /**
+   * Kebab type: `kebab`
+   * @type {string}
+   */
+  KEBAB: 'kebab'
 };

@@ -1,0 +1,26 @@
+<a title="{{item.title}}"
+   ng-hide="item.hidden"
+   href=""
+   data-explorer="{{item.explorer}}"
+   data-confirm-tb="{{item.confirm}}"
+   data-function="{{item.data.function}}"
+   data-function-data="{{item.data['function-data']}}"
+   data-target="{{item.data.target}}"
+   data-toggle="{{item.data.toggle}}"
+   data-click="{{item.id}}"
+   name="{{item.id}}"
+   id="{{item.id}}"
+   data-url_parms="{{item.url_parms}}"
+   data-send_checked="{{item.send_checked ? 'true' : ''}}"
+   data-prompt="{{item.prompt}}"
+   data-popup="{{item.popup}}"
+   data-url="{{item.url}}"
+   ng-click="onItemClick({item: item, $event: $event})">
+  <i ng-if="item.icon && item.text" class="{{item.icon}}" ng-style="{color: (item.color | adjustColor : item.enabled)}" style="margin-right: 5px;"></i>
+  <i ng-if="item.icon && !item.text" class="{{item.icon}}" ng-style="{color: (item.color | adjustColor : item.enabled)}"></i>
+  <img ng-if="item.img_url && !item.icon"
+       ng-src="{{item.img_url}}"
+       data-enabled="{{item.img_url}}"
+       data-disabled="{{item.img_url}}">
+  <span>{{item.text}}</span>
+</a>

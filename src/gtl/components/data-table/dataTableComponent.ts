@@ -14,7 +14,7 @@ export class DataTableController extends DataViewClass implements IDataTableBind
   public currentPageView: number;
 
   /**
-   * This method will check if user wants to go to non existent page and will validate it.
+   * This method will check if user wants to go to non-existent page and will validate it.
    * @memberof DataTableController
    * @function setTablePage
    * @param pageNumber {Number} desired page.

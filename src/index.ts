@@ -11,6 +11,7 @@ module miqStaticAssets {
     'miqStaticAssets.fonticonPicker',
     'miqStaticAssets.quadicon',
     'miqStaticAssets.treeView',
-    'miqStaticAssets.treeSelector'
+    'miqStaticAssets.treeSelector',
+    'miqStaticAssets.miqSelect'
   ]);
 }

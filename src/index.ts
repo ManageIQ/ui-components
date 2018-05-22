@@ -10,6 +10,7 @@ module miqStaticAssets {
     'miqStaticAssets.siteSwitcher',
     'miqStaticAssets.fonticonPicker',
     'miqStaticAssets.treeView',
-    'miqStaticAssets.treeSelector'
+    'miqStaticAssets.treeSelector',
+    'miqStaticAssets.miqSelect'
   ]);
 }

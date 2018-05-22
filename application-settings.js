@@ -15,7 +15,8 @@ module.exports = {
     fonticonPicker: '/fonticon-picker',
     dialogs: '/dialog-user',
     treeView: '/tree-view',
-    treeSelector: '/tree-selector'
+    treeSelector: '/tree-selector',
+    miqSelect: '/miq-select',
   },
   nodePackages: 'node_modules/',
   get stylesheetPath() {

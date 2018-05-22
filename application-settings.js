@@ -17,6 +17,7 @@ module.exports = {
     quadicon: '/quadicon',
     treeView: '/tree-view',
     treeSelector: '/tree-selector',
+    miqSelect: '/miq-select',
   },
   nodePackages: 'node_modules/',
   get stylesheetPath() {

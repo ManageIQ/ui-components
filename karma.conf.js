@@ -1,6 +1,6 @@
 
 const webpackConfig = require('./webpack.config');
-const fileGlob = 'src/**/*.spec.ts';
+const fileGlob = 'src/**/*.spec.[jt]s';
 const vendor = 'dist/js/vendor.js';
 const applicationFile = 'dist/js/ui-components.js';
 const jsonGlob = {pattern: 'src/**/*.json', watched: true, served: true, included: false};

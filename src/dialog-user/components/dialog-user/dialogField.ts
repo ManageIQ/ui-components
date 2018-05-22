@@ -107,10 +107,10 @@ export class DialogFieldController extends DialogFieldClass {
    * @function setDefaultValue
    */
   private setDefaultValue() {
-    let defaultOption = _.find(this.dialogField.values, { id: null })
+    let defaultOption: any = _.find(this.dialogField.values, { id: null });
     if (defaultOption) {
       defaultOption.id = 0;
-      this.dialogField.default_value = defaultOption.id
+      this.dialogField.default_value = defaultOption.id;
     }
   }
 }

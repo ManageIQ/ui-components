@@ -428,6 +428,8 @@ miq-quadicon {
   $radius: 6px;
   $font-size: $quad-w /3;
   $quad-bg: linear-gradient(180deg, rgb(144, 142, 143) 0%, rgb(87, 87, 87) 62%, rgb(64, 64, 65) 100%);
+  $piechart-small: 30px;
+  $piechart-large: 60px;
 
   // Clearfix across the component
   display: block;
@@ -463,6 +465,11 @@ miq-quadicon {
 
       position: relative;
       height: $quad-h / 2;
+
+      .piechart {
+        width: $piechart-small;
+        height: $piechart-small;
+      }
 
       .fileicon img{
         height: $quad-h / 3 + ($quad-h / 14);
@@ -529,6 +536,12 @@ miq-quadicon {
           height: $quad-h / 2 + ($quad-h / 4);
           width: $quad-w / 2 + ($quad-w / 4);
         }
+
+        .piechart {
+          width: $piechart-large;
+          height: $piechart-large;
+        }
+
         .fonticon, .text {
           font-size: $font-size * 2;
         }

@@ -122,7 +122,7 @@ export default class QuadiconController {
         fonticon: 'fa fa-shield',
         color: '#ffcc33',
       }
-    },
+    }
   ];
 
   public numbers = ((function() {
@@ -148,6 +148,21 @@ export default class QuadiconController {
       bottomRight: item
     })));
   })());
+
+  public piecharts = (function() {
+    let examples : any = [];
+
+    for (let i = 0; i < 5; i++) {
+      examples.push(i);
+    }
+
+    return [{piechart: 0}, {piechart: 10}, {piechart: 20}].concat(examples.map(item => ({
+      topLeft: { piechart: item * 4  },
+      topRight: { piechart: item * 4 + 1 },
+      bottomLeft: { piechart: item * 4 + 2 },
+      bottomRight: { piechart: item * 4 + 3 },
+    })));
+  })();
 
   public hosts = [
     {

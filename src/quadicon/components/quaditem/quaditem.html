@@ -7,3 +7,4 @@
 <div class="text" ng-if="$ctrl.data.text" ng-class="$ctrl.fontSize()">
   {{ $ctrl.data.text | abbrNumber }}
 </div>
+<div class="piechart fill-{{ $ctrl.data.piechart }}" ng-if="$ctrl.data.piechart || $ctrl.data.piechart === 0"></div>

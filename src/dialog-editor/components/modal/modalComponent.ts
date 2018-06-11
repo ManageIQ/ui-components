@@ -211,6 +211,9 @@ class ModalController {
    * @function addEntry
    */
   public addEntry() {
+    if (this.modalData.values == null) {
+      this.modalData.values = [];
+    }
     this.modalData.values.push(['', '']);
   }
 

@@ -31,6 +31,7 @@ export interface ITableSettings {
   startIndex?: number;
   endIndex?: number;
   hideSelect?: boolean;
+  isLoading?: boolean;
   translateTotalOf?: (start: number, end: number, total: number) => string;
 }
 

@@ -1,7 +1,7 @@
 <div class="miq-tile-section">
     <div ng-if="tileCtrl.settings.isLoading" class="spinner spinner-lg"></div>
     <div class="miq-pagination"
-         ng-if="tileCtrl.settings && tileCtrl.settings.sortBy && (tileCtrl.settings.isLoading || tileCtrl.rows.length !== 0)">
+         ng-if="tileCtrl.isVisible()">
       <miq-pagination settings="tileCtrl.settings"
                       per-page="tileCtrl.perPage"
                       has-checkboxes="tileCtrl.countCheckboxes() > 0"
@@ -15,6 +15,7 @@
        config="tileCtrl.options"
        items="tileCtrl.rows"
        class="miq-tile-view"
+       ng-if="tileCtrl.isVisible()"
        ng-class="tileCtrl.tileClass()">
     <div ng-switch="config.type">
       <ng-switch-when ng-switch-when="small">

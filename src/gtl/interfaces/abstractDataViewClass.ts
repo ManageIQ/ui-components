@@ -46,6 +46,10 @@ export abstract class DataViewClass implements IDataTableBinding {
     this.onSort({headerId: sortId, isAscending: isAscending});
   }
 
+  public isVisible(): boolean {
+    return this.settings && this.settings.sortBy && (this.settings.isLoading || this.rows.length !== 0);
+  }
+
   /**
    * Helper method for calculating loading more items after selecting how many items per page should be visible.
    * @memberof DataViewClass

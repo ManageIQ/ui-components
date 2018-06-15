@@ -59,20 +59,9 @@
           </span>
         </div>
       </div>
-      <div pf-form-group pf-label="{{'Show Refresh Button'|translate}}">
-        <input bs-switch
-               ng-model="vm.modalData.show_refresh_button"
-               type="checkbox"
-               switch-on-text="{{'Yes'|translate}}"
-               switch-off-text="{{'No'|translate }}"/>
-      </div>
-      <div ng-if="vm.modalData.show_refresh_button" pf-form-group pf-label="{{'Load values on init'|translate}}">
-        <input bs-switch
-               ng-model="vm.modalData.load_values_on_init"
-               type="checkbox"
-               switch-on-text="{{'Yes'|translate}}"
-               switch-off-text="{{'No'|translate }}"/>
-      </div>
+      <dialog-editor-modal-field-template template="dynamic-values.html"
+                                          modal-data="vm.modalData">
+      </dialog-editor-modal-field-template>
       <div pf-form-group pf-label="{{'Required'|translate}}">
         <input bs-switch
                ng-model="vm.modalData.required"

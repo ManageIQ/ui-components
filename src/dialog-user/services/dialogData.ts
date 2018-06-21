@@ -30,7 +30,9 @@ export default class DialogDataService {
         dropDownValues.push([value, description]);
       }
       field.values = dropDownValues;
-      field.values = this.updateFieldSortOrder(field);
+      if (data.options.sort_by !== 'none') {
+        field.values = this.updateFieldSortOrder(field);
+      }
     }
     field.default_value = this.setDefaultValue(field);
 

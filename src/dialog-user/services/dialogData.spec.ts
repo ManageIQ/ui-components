@@ -69,6 +69,20 @@ describe('DialogDataService test', () => {
           });
         });
       });
+
+      describe('when the field sort_by is none', () => {
+        it('does not attempt to sort the values', () => {
+          let testField = {
+            'data_type': 'string',
+            'default_value': null,
+            'values': [['2', 'Two'], ['1', 'One'], ['3', 'Three']],
+            'type': 'DialogFieldDropDownList',
+            'options': {'sort_by': 'none', 'sort_order': 'ascending'}
+          };
+          let newField = dialogData.setupField(testField);
+          expect(newField.values).toEqual([['2', 'Two'], ['1', 'One'], ['3', 'Three']]);
+        });
+      });
     });
   });
 

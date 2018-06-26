@@ -7,9 +7,19 @@ import * as _ from 'lodash';
  */
 class ModalFieldController {
   public modalData: any;
+  public sortableOptionsValues: any;
 
   /*@ngInject*/
   constructor(private $scope, private $element: any) {
+    // Rules for Drag&Drop sorting of values in a Dropdown element
+    this.sortableOptionsValues = {
+      axis: 'y',
+      cancel: 'input',
+      delay: 100,
+      cursor: 'move',
+      opacity: 0.5,
+      revert: 50,
+    };
   }
 
   public $onChanges(changesObj) {

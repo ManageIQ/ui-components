@@ -63,22 +63,46 @@
              switch-off-text="{{'No'|translate}}">
     </div>
     <div pf-form-group class="form-inline" pf-label="{{'Entries'|translate}}" required>
-      <div ng-repeat="entry in vm.modalData.values">
-        <input id="label"
-               ng-blur="vm.entriesChange()"
-               name="label"
-               ng-model="entry[0]"
-               type="text"
-               placeholder="Key"
-               required/>
-        <input id="label"
-               ng-blur="vm.entriesChange()"
-               name="label"
-               ng-model="entry[1]"
-               type="text"
-               placeholder="Value"
-               required/>
-        <a ng-click='vm.removeEntry(entry); vm.entriesChange()'><i class='pficon-close'></i></a>
+      <div ng-if='vm.modalData.options.sort_by !== "none"'>
+        <div ng-repeat="entry in vm.modalData.values">
+          <input id="label"
+                 ng-blur="vm.entriesChange()"
+                 name="label"
+                 ng-model="entry[0]"
+                 type="text"
+                 placeholder="Description"
+                 required/>
+          <input id="label"
+                 ng-blur="vm.entriesChange()"
+                 name="label"
+                 ng-model="entry[1]"
+                 type="text"
+                 placeholder="Value"
+                 required/>
+          <a ng-click='vm.removeEntry(entry); vm.entriesChange()'><i class='pficon-close'></i></a>
+        </div>
+      </div>
+      <div ng-if='vm.modalData.options.sort_by === "none"'>
+        <div ui-sortable='vm.sortableOptionsValues'
+             ng-model='vm.modalData.values'>
+          <div class="draggable-field" ng-repeat="entry in vm.modalData.values">
+            <input id="label"
+                   ng-blur="vm.entriesChange()"
+                   name="label"
+                   ng-model="entry[0]"
+                   type="text"
+                   placeholder="Description"
+                   required/>
+            <input id="label"
+                   ng-blur="vm.entriesChange()"
+                   name="label"
+                   ng-model="entry[1]"
+                   type="text"
+                   placeholder="Value"
+                   required/>
+            <a ng-click='vm.removeEntry(entry); vm.entriesChange()'><i class='pficon-close'></i></a>
+          </div>
+        </div>
       </div>
       <a ng-click='vm.addEntry()'><i class='pficon-add-circle-o'></i></a>
     </div>

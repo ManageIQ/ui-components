@@ -65,16 +65,16 @@
     <div pf-form-group class="form-inline" pf-label="{{'Entries'|translate}}" required>
       <div ng-if='vm.modalData.options.sort_by !== "none"'>
         <div ng-repeat="entry in vm.modalData.values">
-          <input id="label"
+          <input id="description-{{$index}}"
                  ng-blur="vm.entriesChange()"
-                 name="label"
+                 name="description"
                  ng-model="entry[0]"
                  type="text"
                  placeholder="Description"
                  required/>
-          <input id="label"
+          <input id="value-{{$index}}"
                  ng-blur="vm.entriesChange()"
-                 name="label"
+                 name="value"
                  ng-model="entry[1]"
                  type="text"
                  placeholder="Value"
@@ -86,16 +86,16 @@
         <div ui-sortable='vm.sortableOptionsValues'
              ng-model='vm.modalData.values'>
           <div class="draggable-field" ng-repeat="entry in vm.modalData.values">
-            <input id="label"
+            <input id="description-{{$index}}"
                    ng-blur="vm.entriesChange()"
-                   name="label"
+                   name="description"
                    ng-model="entry[0]"
                    type="text"
                    placeholder="Description"
                    required/>
-            <input id="label"
+            <input id="value-{{$index}}"
                    ng-blur="vm.entriesChange()"
-                   name="label"
+                   name="value"
                    ng-model="entry[1]"
                    type="text"
                    placeholder="Value"

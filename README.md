@@ -99,3 +99,5 @@ If you want to see documentation for each component, controller, filter, etc. ru
 yarn run-script build-docs
 ```
 This will generate docs from JS docs and after running `yarn start` this documentation will be available on `localhost:4000/docs`
+
+If you want to release ui-components look at documentation in Wiki of this repository.

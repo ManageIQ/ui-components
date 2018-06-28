@@ -54,10 +54,10 @@ export class DataTableController extends DataViewClass implements IDataTableBind
    * @function getNodeIconType
    * @param row {object} whole row with data.
    * @param columnKey header column key.
-   * @returns {string} picture | icon | image
+   * @returns {string} image | icon
    */
   public getNodeIconType(row, columnKey) {
-    const allowedGraphics = ['picture', 'icon', 'image'];
+    const allowedGraphics = ['image', 'icon'];
     if (row && row.cells) {
       return allowedGraphics.find(item => row.cells[columnKey].hasOwnProperty(item) && !!row.cells[columnKey][item]);
     }

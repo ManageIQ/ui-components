@@ -23,7 +23,7 @@ describe('DataTable test', () =>  {
     {
       id: 4,
       cells: [
-        {is_checkbox: true}, {picture: 'some_url.jpg', icon: 'fa fa-icon'}, {text: 'second name'}, {text: 'value 2'}
+        {is_checkbox: true}, {icon: 'fa fa-icon'}, {text: 'second name'}, {text: 'value 2'}
       ]
     }
   ];
@@ -97,16 +97,16 @@ describe('DataTable test', () =>  {
       ).toBeTruthy();
     });
 
-    it('should check if column renders an icon', () => {
-      expect(dataTableCtrl.getNodeIconType(rows[0], 1)).toEqual('icon');
+    it('should check if column renders an image when both icon and image are defined', () => {
+      expect(dataTableCtrl.getNodeIconType(rows[0], 1)).toEqual('image');
     });
 
     it('should check if column renders an image', () => {
       expect(dataTableCtrl.getNodeIconType(rows[1], 1)).toEqual('image');
     });
 
-    it('should check if column renders a picture', () => {
-      expect(dataTableCtrl.getNodeIconType(rows[2], 1)).toEqual('picture');
+    it('should check if column renders an icon', () => {
+      expect(dataTableCtrl.getNodeIconType(rows[2], 1)).toEqual('icon');
     });
 
     it('should check if filtered by column', () => {

@@ -51,7 +51,7 @@
            title="{{row.cells[columnKey].title}}">
           <i ng-if="row.cells[columnKey].icon2" ng-class="row.cells[columnKey].icon2"></i>
         </i>
-        <img ng-if="['picture', 'image'].includes(tableCtrl.getNodeIconType(row, columnKey))"
+        <img ng-if="tableCtrl.getNodeIconType(row, columnKey) === 'image'"
              ng-src="{{row.cells[columnKey].picture || row.cells[columnKey].image}}"
              alt="{{row.cells[columnKey].title}}"
              title="{{row.cells[columnKey].title}}" />

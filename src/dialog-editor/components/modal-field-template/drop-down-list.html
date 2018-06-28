@@ -64,7 +64,7 @@
     </div>
     <div pf-form-group pf-input-class="col-sm-6" class="form-inline" pf-label="{{'Entries'|translate}}" required>
       <div ng-if='vm.modalData.options.sort_by !== "none"'>
-        <div ng-repeat="entry in vm.modalData.values">
+        <div ng-attr-class="static-field" ng-repeat="entry in vm.modalData.values">
           <input ng-attr-id="description-{{$index}}"
                  ng-blur="vm.entriesChange()"
                  name="description"
@@ -85,7 +85,7 @@
       <div ng-if='vm.modalData.options.sort_by === "none"'>
         <div ui-sortable='vm.sortableOptionsValues'
              ng-model='vm.modalData.values'>
-          <div class="draggable-field" ng-repeat="entry in vm.modalData.values">
+          <div ng-attr-class="draggable-field" ng-repeat="entry in vm.modalData.values">
             <input ng-attr-id="description-{{$index}}"
                    ng-blur="vm.entriesChange()"
                    name="description"

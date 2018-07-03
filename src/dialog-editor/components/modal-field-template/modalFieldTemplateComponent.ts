@@ -8,8 +8,6 @@ import * as _ from 'lodash';
 class ModalFieldController {
   public modalData: any;
   public sortableOptionsValues: any;
-  public readonly DROPDOWN_ENTRY_VALUE: number = 0;
-  public readonly DROPDOWN_ENTRY_DESCRIPTION: number = 1;
 
   /*@ngInject*/
   constructor(private $scope, private $element: any) {
@@ -21,9 +19,6 @@ class ModalFieldController {
       cursor: 'move',
       opacity: 0.5,
       revert: 50,
-      stop: (e: any, ui: any) => {
-        this.$element.find('select').selectpicker('refresh');
-      },
     };
   }
 

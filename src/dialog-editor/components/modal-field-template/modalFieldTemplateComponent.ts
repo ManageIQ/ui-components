@@ -8,6 +8,8 @@ import * as _ from 'lodash';
 class ModalFieldController {
   public modalData: any;
   public sortableOptionsValues: any;
+  public readonly DROPDOWN_ENTRY_VALUE: number = 0;
+  public readonly DROPDOWN_ENTRY_DESCRIPTION: number = 1;
 
   /*@ngInject*/
   constructor(private $scope, private $element: any) {

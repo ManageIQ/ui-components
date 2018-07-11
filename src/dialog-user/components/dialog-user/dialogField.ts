@@ -73,6 +73,29 @@ export class DialogFieldController extends DialogFieldClass {
   }
 
   /**
+   * This method is a 'changesHappened' method specific to dateTime fields.
+   * It joins the two date and time models to then delegate to changesHappened.
+   * @memberof DialogFieldController
+   * @function dateTimeFieldChanged
+   */
+  public dateTimeFieldChanged() {
+    let dateField = this.dialogField.dateField;
+    let fullYear = dateField.getFullYear();
+    let month = dateField.getMonth();
+    let date = dateField.getDate();
+
+    if (this.dialogField.timeField === undefined) {
+      this.dialogField.timeField = new Date();
+    }
+
+    let hours = this.dialogField.timeField.getHours();
+    let minutes = this.dialogField.timeField.getMinutes();
+
+    let fullDate = new Date(fullYear, month, date, hours, minutes);
+    this.changesHappened([fullDate]);
+  }
+
+  /**
    * This will convert the values stored in dialogField.default_value to an array
    * for use with a multiple-select field because by default it comes in as a string
    * @memberof DialogFieldController

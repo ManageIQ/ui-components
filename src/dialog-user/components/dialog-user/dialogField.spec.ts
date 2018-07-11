@@ -101,4 +101,33 @@ describe('Dialog field test', () => {
       expect(dialogCtrl.onUpdate).toHaveBeenCalledTimes(1);
     });
   });
+
+  describe('#dateTimeFieldChanged', () => {
+    let bindings;
+    let dialogCtrl;
+    let testDate = new Date(2018, 6, 11, 7, 30);
+    const dateTimeDialogField = {
+      'name': 'dateTest',
+      'type': 'DialogFieldDateTimeControl',
+      'dateField': testDate,
+      'timeField': testDate,
+    };
+
+    it('calls onUpdate with the correct full date', () => {
+      bindings = {
+        field: dateTimeDialogField,
+        onUpdate: jasmine.createSpy('onUpdate', (dialogFieldName: any, value: any) => true),
+        inputDisabled: false
+      };
+      angular.mock.module('miqStaticAssets.dialogUser');
+      angular.mock.inject($componentController => {
+        dialogCtrl = $componentController('dialogField', null, bindings);
+        dialogCtrl.$onInit();
+      });
+
+      dialogCtrl.dateTimeFieldChanged();
+      expect(dialogCtrl.onUpdate.calls.mostRecent().args[0].dialogFieldName).toEqual('dateTest');
+      expect(dialogCtrl.onUpdate.calls.mostRecent().args[0].value).toEqual(testDate);
+    });
+  });
 });

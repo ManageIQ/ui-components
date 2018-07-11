@@ -160,8 +160,8 @@
         <p class="input-group">
           <input uib-datepicker-popup type="text"
                  class="form-control"
-                 ng-model="vm.dialogField.default_value"
-                 ng-change="vm.changesHappened()"
+                 ng-model="vm.dialogField.dateField"
+                 ng-change="vm.dateTimeFieldChanged()"
                  is-open="open"
                  datepicker-options="vm.dateOptions"
                  close-text="Close"
@@ -174,7 +174,7 @@
           </span>
         </p>
       </div>
-      <div uib-timepicker ng-model="vm.dialogField.default_value"></div>
+      <div uib-timepicker ng-model="vm.dialogField.timeField" ng-change="vm.dateTimeFieldChanged()"></div>
     </div>
     <span ng-switch-default ng-hide="true"></span>
   </div>

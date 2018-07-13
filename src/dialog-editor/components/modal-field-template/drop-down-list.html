@@ -62,23 +62,47 @@
              switch-on-text="{{'Yes'|translate}}"
              switch-off-text="{{'No'|translate}}">
     </div>
-    <div pf-form-group class="form-inline" pf-label="{{'Entries'|translate}}" required>
-      <div ng-repeat="entry in vm.modalData.values">
-        <input id="label"
-               ng-blur="vm.entriesChange()"
-               name="label"
-               ng-model="entry[0]"
-               type="text"
-               placeholder="Key"
-               required/>
-        <input id="label"
-               ng-blur="vm.entriesChange()"
-               name="label"
-               ng-model="entry[1]"
-               type="text"
-               placeholder="Value"
-               required/>
-        <a ng-click='vm.removeEntry(entry); vm.entriesChange()'><i class='pficon-close'></i></a>
+    <div pf-form-group pf-input-class="col-sm-6" class="form-inline" pf-label="{{'Entries'|translate}}" required>
+      <div ng-if='vm.modalData.options.sort_by !== "none"'>
+        <div ng-attr-class="static-field" ng-repeat="entry in vm.modalData.values">
+          <input ng-attr-id="description-{{$index}}"
+                 ng-blur="vm.entriesChange()"
+                 name="description"
+                 ng-model="entry[vm.DROPDOWN_ENTRY_DESCRIPTION]"
+                 type="text"
+                 placeholder="Description"
+                 required/>
+          <input ng-attr-id="value-{{$index}}"
+                 ng-blur="vm.entriesChange()"
+                 name="value"
+                 ng-model="entry[vm.DROPDOWN_ENTRY_VALUE]"
+                 type="text"
+                 placeholder="Value"
+                 required/>
+          <a ng-click='vm.removeEntry(entry); vm.entriesChange()'><i class='pficon-close'></i></a>
+        </div>
+      </div>
+      <div ng-if='vm.modalData.options.sort_by === "none"'>
+        <div ui-sortable='vm.sortableOptionsValues'
+             ng-model='vm.modalData.values'>
+          <div ng-attr-class="draggable-field" ng-repeat="entry in vm.modalData.values">
+            <input ng-attr-id="description-{{$index}}"
+                   ng-blur="vm.entriesChange()"
+                   name="description"
+                   ng-model="entry[vm.DROPDOWN_ENTRY_DESCRIPTION]"
+                   type="text"
+                   placeholder="Description"
+                   required/>
+            <input ng-attr-id="value-{{$index}}"
+                   ng-blur="vm.entriesChange()"
+                   name="value"
+                   ng-model="entry[vm.DROPDOWN_ENTRY_VALUE]"
+                   type="text"
+                   placeholder="Value"
+                   required/>
+            <a ng-click='vm.removeEntry(entry); vm.entriesChange()'><i class='pficon-close'></i></a>
+          </div>
+        </div>
       </div>
       <a ng-click='vm.addEntry()'><i class='pficon-add-circle-o'></i></a>
     </div>

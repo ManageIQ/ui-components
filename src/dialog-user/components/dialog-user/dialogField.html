@@ -31,12 +31,13 @@
                 ng-change="vm.changesHappened()"
                 ng-model-options="{debounce: {'default': 500}}"
                 class="form-control"
+                style="resize: vertical"
                 uib-tooltip="{{ ::inputTitle }}"
                 rows="4"
                 id="{{ vm.dialogField.name }}">{{ vm.dialogField.default_value }}
       </textarea>
     </div>
-    <div class="col-sm-4" ng-switch-when="DialogFieldCheckBox">
+    <div class="col-sm-1" ng-switch-when="DialogFieldCheckBox">
       <input  ng-model="vm.dialogField.default_value"
               ng-true-value="'t'"
               ng-false-value="'f'"
@@ -144,7 +145,7 @@
                ng-change="vm.changesHappened()"
                is-open="open"
                datepicker-options="vm.dateOptions"
-               close-text="Close"/>
+               close-text="{{'Close'|translate}}"/>
         <span class="input-group-btn">
           <button type="button"
                   class="btn btn-default"
@@ -164,7 +165,7 @@
                  ng-change="vm.dateTimeFieldChanged()"
                  is-open="open"
                  datepicker-options="vm.dateOptions"
-                 close-text="Close"
+                 close-text="{{'Close'|translate}}"
                  id="{{ vm.dialogField.name }}"/>
           <span class="input-group-btn">
             <button type="button"
@@ -181,12 +182,13 @@
   <div class="col-sm-1"
         ng-if="vm.dialogField.dynamic && vm.dialogField.show_refresh_button && vm.inputDisabled===false">
     <button type="button"
-            class="btn"
+            class="btn btn-default"
             ng-click="vm.refreshSingleField()" translate>
-      Refresh
+      <i class="fa fa-refresh" uib-Tooltip="Refresh field"></i>
     </button>
   </div>
   <div class="col-sm-1" ng-show="vm.dialogField.fieldBeingRefreshed">
     <div class="spinner spinner-xs spinner-inline"></div>
   </div>
 </div>
+

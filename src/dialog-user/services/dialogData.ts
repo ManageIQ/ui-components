@@ -34,6 +34,15 @@ export default class DialogDataService {
         field.values = this.updateFieldSortOrder(field);
       }
     }
+
+    if (field.type === 'DialogFieldDateTimeControl') {
+      if (_.isNull(field.values) || _.isUndefined(field.values)) {
+        field.dateField = field.timeField = new Date();
+      } else {
+        field.dateField = field.timeField = new Date(data.values);
+      }
+    }
+
     field.default_value = this.setDefaultValue(field);
 
     return field;
@@ -154,6 +163,13 @@ export default class DialogDataService {
         const regexValidates = regex.test(fieldValue);
         validation.isValid = regexValidates;
         validation.message = __('Entered text does not match required format.');
+      }
+    }
+
+    if (field.type === 'DialogFieldDateTimeControl') {
+      if (field.dateField === undefined) {
+        validation.isValid = false;
+        validation.message = __('Select a valid date');
       }
     }
 

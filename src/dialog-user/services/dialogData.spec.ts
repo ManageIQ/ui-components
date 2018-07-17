@@ -83,6 +83,41 @@ describe('DialogDataService test', () => {
           expect(newField.values).toEqual([['2', 'Two'], ['1', 'One'], ['3', 'Three']]);
         });
       });
+
+      describe('when the field is a date time control', () => {
+        describe('when the field has values', () => {
+          it('assigns the date and time fields to the given date', () => {
+            let testField = {
+              'values': 'Wed Jul 11 2018 07:30:00',
+              'type': 'DialogFieldDateTimeControl',
+            };
+
+            let newField = dialogData.setupField(testField);
+            expect(newField.dateField.getMonth()).toEqual(6);
+            expect(newField.dateField.getDate()).toEqual(11);
+            expect(newField.dateField.getFullYear()).toEqual(2018);
+            expect(newField.timeField.getHours()).toEqual(7);
+            expect(newField.timeField.getMinutes()).toEqual(30);
+          });
+        });
+
+        describe('when the field does not have values', () => {
+          it('assigns the date and time fields to a new date', () => {
+            let testField = {
+              'values': null,
+              'type': 'DialogFieldDateTimeControl',
+            };
+            let comparisonDate = new Date();
+
+            let newField = dialogData.setupField(testField);
+            expect(newField.dateField.getMonth()).toEqual(comparisonDate.getMonth());
+            expect(newField.dateField.getDate()).toEqual(comparisonDate.getDate());
+            expect(newField.dateField.getFullYear()).toEqual(comparisonDate.getFullYear());
+            expect(newField.timeField.getHours()).toEqual(comparisonDate.getHours());
+            expect(newField.timeField.getMinutes()).toEqual(comparisonDate.getMinutes());
+          });
+        });
+      });
     });
   });
 
@@ -216,6 +251,26 @@ describe('DialogDataService test', () => {
               expect(validation.isValid).toEqual(true);
               expect(validation.message).toEqual('');
             });
+          });
+        });
+      });
+    });
+
+    describe('when the field is not required', () => {
+      describe('when the field is a date time control', () => {
+        describe('when the field does not have a date filled out', () => {
+          let testField;
+
+          beforeEach(() => {
+            testField = {
+              'type': 'DialogFieldDateTimeControl',
+            };
+          });
+
+          it('fails validation', () => {
+            let validation = dialogData.validateField(testField);
+            expect(validation.isValid).toEqual(false);
+            expect(validation.message).toEqual('Select a valid date');
           });
         });
       });

@@ -17,3 +17,4 @@ import 'ui-select';
 import 'patternfly-bootstrap-treeview';
 import * as numeral from 'numeral';
 window['numeral'] = numeral;
+window['sprintf'] = require('sprintf-js').sprintf;

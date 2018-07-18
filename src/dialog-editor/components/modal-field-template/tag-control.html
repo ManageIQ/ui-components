@@ -61,7 +61,7 @@
     <div pf-form-group class="form-inline" pf-label="{{'Entries'|translate}}" required>
       <div ng-repeat="entry in vm.currentCategoryEntries().children">
         <input id="label" name="label"
-               ng-model="entry.description" type="text" placeholder="Key" readonly/>
+               ng-model="entry.description" type="text" placeholder="{{'Key'|translate}}" readonly/>
       </div>
     </div>
     <dialog-editor-modal-field-template template="fields-to-refresh.html"

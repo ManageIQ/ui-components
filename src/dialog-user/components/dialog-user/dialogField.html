@@ -144,7 +144,7 @@
                ng-change="vm.changesHappened()"
                is-open="open"
                datepicker-options="vm.dateOptions"
-               close-text="Close"/>
+               close-text="{{'Close'|translate}}"/>
         <span class="input-group-btn">
           <button type="button"
                   class="btn btn-default"
@@ -164,7 +164,7 @@
                  ng-change="vm.dateTimeFieldChanged()"
                  is-open="open"
                  datepicker-options="vm.dateOptions"
-                 close-text="Close"
+                 close-text="{{'Close'|translate}}"
                  id="{{ vm.dialogField.name }}"/>
           <span class="input-group-btn">
             <button type="button"

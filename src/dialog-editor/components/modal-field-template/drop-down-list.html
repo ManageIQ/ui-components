@@ -68,14 +68,14 @@
           <input id="description-{{$index}}"
                  ng-blur="vm.entriesChange()"
                  name="description"
-                 ng-model="entry[0]"
+                 ng-model="entry[vm.DROPDOWN_ENTRY_DESCRIPTION]"
                  type="text"
                  placeholder="Description"
                  required/>
           <input id="value-{{$index}}"
                  ng-blur="vm.entriesChange()"
                  name="value"
-                 ng-model="entry[1]"
+                 ng-model="entry[vm.DROPDOWN_ENTRY_VALUE]"
                  type="text"
                  placeholder="Value"
                  required/>
@@ -89,14 +89,14 @@
             <input id="description-{{$index}}"
                    ng-blur="vm.entriesChange()"
                    name="description"
-                   ng-model="entry[0]"
+                   ng-model="entry[vm.DROPDOWN_ENTRY_DESCRIPTION]"
                    type="text"
                    placeholder="Description"
                    required/>
             <input id="value-{{$index}}"
                    ng-blur="vm.entriesChange()"
                    name="value"
-                   ng-model="entry[1]"
+                   ng-model="entry[vm.DROPDOWN_ENTRY_VALUE]"
                    type="text"
                    placeholder="Value"
                    required/>

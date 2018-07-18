@@ -15,3 +15,4 @@ import 'angular-bootstrap-switch';
 import 'bootstrap-select';
 import 'ui-select';
 import 'patternfly-bootstrap-treeview';
+window['sprintf'] = require('sprintf-js').sprintf;

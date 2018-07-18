@@ -85,7 +85,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
     };
     if (this.areFieldsBeingRefreshed) {
       validations.isValid = false;
-      validations.messages.push('Fields are being refreshed');
+      validations.messages.push(__('Fields are being refreshed'));
     } else {
       _.forIn(this.dialogFields, (field, fieldName) => {
         const dialogValue = this.dialogValues[fieldName];

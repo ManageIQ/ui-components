@@ -100,6 +100,7 @@
     "babel-eslint": "^7.2.3",
     "es6-shim": "^0.35.3",
     "es7-shim": "^6.0.0",
-    "eslint": "~3.9.1"
+    "eslint": "~3.9.1",
+    "sprintf-js": "^1.1.1"
   }
 }

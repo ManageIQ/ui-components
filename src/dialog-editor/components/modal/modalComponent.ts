@@ -58,7 +58,7 @@ class ModalController {
           };
           const titleLabel = this.modalData.type in titles &&
             titles[this.modalData.type];
-          this.modalTitle =  __(`Edit ${titleLabel} Field`);
+          this.modalTitle =  sprintf(__("Edit %s Field"), titleLabel);
         }
       }
     }

@@ -42,6 +42,8 @@ msgstr ""
 msgid "Check Box"
 msgstr ""
 
+#: ./src/dialog-user/components/dialog-user/dialogField.html:147
+#: ./src/dialog-user/components/dialog-user/dialogField.html:167
 #: ./src/fonticon-picker/components/fonticon-picker/fonticon-modal.html:19
 msgid "Close"
 msgstr ""
@@ -78,6 +80,8 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-box/box.html:21
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:194
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:48
+#: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:73
+#: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:94
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:138
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:40
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:50
@@ -134,7 +138,7 @@ msgid "Dynamic"
 msgstr ""
 
 #: ./dist/js/ui-components.js:1
-msgid "Edit  Field"
+msgid "Edit %s Field"
 msgstr ""
 
 #: ./src/dialog-editor/components/modal-field/field.html:5
@@ -172,6 +176,10 @@ msgstr ""
 msgid "Field Information"
 msgstr ""
 
+#: ./dist/js/ui-components.js:1
+msgid "Fields are being refreshed"
+msgstr ""
+
 #: ./src/dialog-editor/components/modal-field-template/fields-to-refresh.html:1
 msgid "Fields to refresh"
 msgstr ""
@@ -197,6 +205,11 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:38
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:81
 msgid "Integer"
+msgstr ""
+
+#: ./src/dialog-editor/components/modal-field-template/radio-button.html:53
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:64
+msgid "Key"
 msgstr ""
 
 #: ./src/dialog-editor/components/modal-box/box.html:17
@@ -283,7 +296,9 @@ msgstr ""
 msgid "No Provisioning Dialog Available."
 msgstr ""
 
+#: ./src/dialog-editor/components/field/field.html:49
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:193
+#: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:28
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:47
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:137
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:27
@@ -291,6 +306,10 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:29
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:49
 msgid "None"
+msgstr ""
+
+#: ./dist/js/ui-components.js:1
+msgid "One"
 msgstr ""
 
 #: ./src/dialog-editor/components/modal-field/field.html:14
@@ -356,6 +375,10 @@ msgstr ""
 
 #: ./src/dialog-editor/components/modal-box/box.html:11
 msgid "Section Information"
+msgstr ""
+
+#: ./dist/js/ui-components.js:1
+msgid "Select a valid date"
 msgstr ""
 
 #: ./src/fonticon-picker/components/fonticon-picker/fonticon-modal.html:2
@@ -427,7 +450,15 @@ msgid "This field is required"
 msgstr ""
 
 #: ./dist/js/ui-components.js:1
+msgid "Three"
+msgstr ""
+
+#: ./dist/js/ui-components.js:1
 msgid "Timepicker"
+msgstr ""
+
+#: ./dist/js/ui-components.js:1
+msgid "Two"
 msgstr ""
 
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:30
@@ -437,10 +468,13 @@ msgstr ""
 msgid "Validation"
 msgstr ""
 
+#: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:101
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:195
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:49
+#: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:80
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:139
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:41
+#: ./src/dialog-editor/components/modal-field-template/radio-button.html:55
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:51
 msgid "Value"
 msgstr ""

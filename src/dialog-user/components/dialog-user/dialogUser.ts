@@ -1,6 +1,7 @@
 import * as _ from 'lodash';
 import { IDialogs } from '../../interfaces/dialog';
 import { DialogClass } from '../../interfaces/abstractDialogClass';
+import {__} from '../../../common/translateFunction';
 
 /**
  * @extends miqStaticAssets.dialog.DialogClass

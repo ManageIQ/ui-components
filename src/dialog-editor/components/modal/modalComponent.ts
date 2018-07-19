@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 import * as ng from 'angular';
+import {sprintf} from 'sprintf-js';
 import {__} from '../../../common/translateFunction';
 
 /**
@@ -58,7 +59,7 @@ class ModalController {
           };
           const titleLabel = this.modalData.type in titles &&
             titles[this.modalData.type];
-          this.modalTitle =  sprintf(__("Edit %s Field"), titleLabel);
+          this.modalTitle =  sprintf(__('Edit %s Field'), titleLabel);
         }
       }
     }

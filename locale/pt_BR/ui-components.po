@@ -1,8 +1,16 @@
+# 
 msgid ""
 msgstr ""
+"Project-Id-Version: \n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Project-Id-Version: \n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Portuguese (Brazil)\n"
+"Language: pt_BR\n"
+"X-Generator: Zanata 4.5.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: ./src/dialog-editor/components/box/box.html:54
 msgid "Add Section"
@@ -122,7 +130,9 @@ msgid "Dialog tab needs to have at least one group"
 msgstr ""
 
 #: ./src/dialog-editor/components/box/box.html:31
-msgid "Drag items here to add to the dialog. At least one item is required before saving"
+msgid ""
+"Drag items here to add to the dialog. At least one item is required before "
+"saving"
 msgstr ""
 
 #: ./dist/js/ui-components.js:1
@@ -575,3 +585,4 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field/field.html:46
 msgid "Yes"
 msgstr ""
+

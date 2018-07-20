@@ -76,7 +76,11 @@
       <div class="col-sm-4">
         <div class="form-group pull-right">
           <label class="control-label" translate>Include domain prefix in the path:</label>
-          <input bs-switch type="checkbox" ng-model="vm.treeSelectorIncludeDomain"/>
+          <input bs-switch
+                 type="checkbox"
+                 ng-model="vm.treeSelectorIncludeDomain"
+                 switch-on-text="{{'Yes'|translate}}"
+                 switch-off-text="{{'No'|translate}}"/>
         </div>
       </div>
     </div>

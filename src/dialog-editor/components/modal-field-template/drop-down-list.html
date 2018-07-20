@@ -23,7 +23,7 @@
     </div>
     <div pf-form-group pf-label="{{'Default value'|translate}}"
          ng-if="!vm.modalData.options.force_multi_value">
-      <select class="form-control" pf-select
+      <select class="form-control" pf-select ng-attr-title="{{'Nothing Selected'|translate}}"
               ng-model="vm.modalData.default_value">
         <option value="" translate>None</option>
         <option ng-repeat="value in vm.modalData.values" value="{{value[0]}}">{{value[1]}}</option>
@@ -166,7 +166,11 @@
       <div class="col-sm-4">
         <div class="form-group pull-right">
           <label class="control-label" translate>Include domain prefix in the path:</label>
-          <input bs-switch type="checkbox" ng-model="vm.treeSelectorIncludeDomain"/>
+          <input bs-switch
+                 type="checkbox"
+                 ng-model="vm.treeSelectorIncludeDomain"
+                 switch-on-text="{{'Yes'|translate}}"
+                 switch-off-text="{{'No'|translate}}"/>
         </div>
       </div>
     </div>

@@ -19,7 +19,7 @@
                   ng-model="pagingCtrl.settings.current"
                   ng-model-options="{updateOn : 'change blur'}"
                   ng-change="pagingCtrl.onPageChange()">
-    <label>of {{pagingCtrl.settings.total}}</label></span>
+    <label translate>of {{pagingCtrl.settings.total}}</label></span>
   </li>
   <li>
     <a ng-class="{disabled: (pagingCtrl.settings.current) === pagingCtrl.settings.total}"

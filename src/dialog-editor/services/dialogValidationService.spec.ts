@@ -201,7 +201,10 @@ describe('DialogValidation test', () => {
                 label: 'Field A',
                 type: 'DialogFieldDropDownList',
                 values: [],
-                dynamic: true
+                dynamic: true,
+                resource_action: {
+                  ae_class: "Generic_Dynamic_Dialogs",
+                },
               }]
             }]
           }]

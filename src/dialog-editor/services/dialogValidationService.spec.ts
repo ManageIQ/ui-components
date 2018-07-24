@@ -167,7 +167,7 @@ describe('DialogValidation test', () => {
       });
     });
     describe('when a non-dynamic dropdown has entries', () => {
-      it('returns `false` and sets an error message', () => {
+      it('returns `true`', () => {
         dialogData = [{
           label: 'this is a testing dialog and shouldn\'t be taken seriously',
           name: 'Larry\'s dialog',
@@ -187,8 +187,8 @@ describe('DialogValidation test', () => {
         expect(dialogValidation.dialogIsValid(dialogData)).toEqual(true);
       });
     });
-    describe('when a non-dynamic dropdown has no entries', () => {
-      it('returns `false` and sets an error message', () => {
+    describe('when a dynamic dropdown has no entries', () => {
+      it('returns `true`', () => {
         dialogData = [{
           label: 'this is a testing dialog and shouldn\'t be taken seriously',
           name: 'Larry\'s dialog',
@@ -201,7 +201,10 @@ describe('DialogValidation test', () => {
                 label: 'Field A',
                 type: 'DialogFieldDropDownList',
                 values: [],
-                dynamic: true
+                dynamic: true,
+                resource_action: {
+                  ae_class: "Generic_Dynamic_Dialogs",
+                },
               }]
             }]
           }]

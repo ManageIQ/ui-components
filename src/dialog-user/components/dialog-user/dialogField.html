@@ -113,16 +113,14 @@
     </div>
 
     <div class="col-sm-6" ng-switch-when="DialogFieldRadioButton">
-      <span ng-if="vm.dialogField.read_only || vm.inputDisabled"
-            class="btn-group">
-        <label>{{ vm.parsedOptions[vm.dialogField.name] }}</label>
+      <span ng-if="vm.dialogField.read_only || vm.inputDisabled">
+        <label class="radio-inline">{{ vm.parsedOptions[vm.dialogField.name] }}</label>
       </span>
     </div>
 
     <div class="col-sm-6" ng-switch-when="DialogFieldRadioButton">
-      <span ng-if="vm.dialogField.read_only === false || vm.inputDisabled === false"
-            class="btn-group">
-        <label class="btn btn-primary"
+      <span ng-if="vm.dialogField.read_only === false || vm.inputDisabled === false">
+        <label class="radio-inline"
                ng-repeat="fieldValue in vm.dialogField.values">
           <input type="radio"
                  ng-model="vm.dialogField.default_value"

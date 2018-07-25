@@ -183,8 +183,8 @@
         ng-if="vm.dialogField.dynamic && vm.dialogField.show_refresh_button && vm.inputDisabled===false">
     <button type="button"
             class="btn btn-default"
-            ng-click="vm.refreshSingleField()" translate>
-      <i class="fa fa-refresh" uib-Tooltip="Refresh field"></i>
+            ng-click="vm.refreshSingleField()">
+      <i class="fa fa-refresh" uib-Tooltip="{{'Refresh field'|translate}}"></i>
     </button>
   </div>
   <div class="col-sm-1" ng-show="vm.dialogField.fieldBeingRefreshed">

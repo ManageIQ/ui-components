@@ -42,8 +42,8 @@ msgstr ""
 msgid "Check Box"
 msgstr ""
 
-#: ./src/dialog-user/components/dialog-user/dialogField.html:147
-#: ./src/dialog-user/components/dialog-user/dialogField.html:167
+#: ./src/dialog-user/components/dialog-user/dialogField.html:148
+#: ./src/dialog-user/components/dialog-user/dialogField.html:168
 #: ./src/fonticon-picker/components/fonticon-picker/fonticon-modal.html:19
 msgid "Close"
 msgstr ""
@@ -373,8 +373,8 @@ msgstr ""
 msgid "Reconfigurable"
 msgstr ""
 
-#: ./src/dialog-user/components/dialog-user/dialogField.html:183
-msgid "Refresh"
+#: ./src/dialog-user/components/dialog-user/dialogField.html:187
+msgid "Refresh field"
 msgstr ""
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:11
@@ -598,4 +598,8 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field/field.html:166
 #: ./src/dialog-editor/components/modal-field/field.html:46
 msgid "Yes"
+msgstr ""
+
+#: ./src/gtl/components/pagination/paging.html:22
+msgid "of {{pagingCtrl.settings.total}}"
 msgstr ""

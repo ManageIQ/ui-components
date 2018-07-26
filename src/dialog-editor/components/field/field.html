@@ -60,10 +60,9 @@
     </div>
 
     <!-- radio button -->
-    <span ng-switch-when="DialogFieldRadioButton"
-          class="btn-group">
+    <span ng-switch-when="DialogFieldRadioButton">
       <label ng-repeat="option in vm.fieldData.values"
-             class="btn btn-primary">
+             class="radio-inline">
         <input type="radio"
                name="{{vm.fieldData.name}}"
                ng-model="vm.fieldData.default_value"

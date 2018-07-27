@@ -116,6 +116,23 @@ export default class DialogEditorService {
   }
 
   /**
+   * Function iterates through all the groups in the dialog editor
+   * and returns true if any dialog fields are present
+   * @memberof DialogEditorService
+   * @function anyDialogFields
+   */
+  private anyDialogFields() {
+    _.forEach(this.data.content[0].dialog_tabs, (tab: any) => {
+      _.forEach(tab.dialog_groups, (group: any) => {
+        if (!_.isEmpty(group.dialog_fields)) {
+          return true;
+        }
+      });
+    });
+    return false;
+  }
+
+  /**
    * Function is used to replace undefined values in dialogs
    * with boolean, so the bootstrap switch is not initialized with
    * undefined state
@@ -123,6 +140,10 @@ export default class DialogEditorService {
    * @function undefinedAttrsToBoolean
    */
   private undefinedAttrsToBoolean() {
+    if (!this.anyDialogFields()) {
+      return;
+    }
+
     let attributes = [
       'required', 'visible', 'read_only', 'show_refresh_button',
       'load_values_on_init', 'reconfigurable',

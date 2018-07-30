@@ -12,6 +12,7 @@ export default class DialogEditorService {
    */
   public setData(data: any) {
     this.data = data;
+    this.undefinedAttrsToBoolean();
     // FIXME: Compensation of default values until it is been resolved in the API
     this.forEachDialogField((field: any) => {
       if (field.hasOwnProperty('values') && _.isArray(field.values)) {
@@ -110,6 +111,56 @@ export default class DialogEditorService {
         _.forEach(group.dialog_fields, (field: any) => {
           callback(field);
         });
+      });
+    });
+  }
+
+  /**
+   * Function iterates through all the groups in the dialog editor
+   * and returns true if any dialog fields are present
+   * @memberof DialogEditorService
+   * @function anyDialogFields
+   */
+  private anyDialogFields() {
+    _.forEach(this.data.content[0].dialog_tabs, (tab: any) => {
+      _.forEach(tab.dialog_groups, (group: any) => {
+        if (!_.isEmpty(group.dialog_fields)) {
+          return true;
+        }
+      });
+    });
+    return false;
+  }
+
+  /**
+   * Function is used to replace undefined values in dialogs
+   * with boolean, so the bootstrap switch is not initialized with
+   * undefined state
+   * @memberof DialogEditorService
+   * @function undefinedAttrsToBoolean
+   */
+  private undefinedAttrsToBoolean() {
+    if (!this.anyDialogFields()) {
+      return;
+    }
+
+    let attributes = [
+      'required', 'visible', 'read_only', 'show_refresh_button',
+      'load_values_on_init', 'reconfigurable',
+    ];
+    let optionalAttributes = [
+      'show_past_days', 'protected', 'force_multi_value'
+    ];
+    this.forEachDialogField((field) => {
+      attributes.forEach(function(attr) {
+        if (field[attr] == null) {
+          field[attr] = false;
+        }
+      });
+      optionalAttributes.forEach(function(attr) {
+        if (field['options'][attr] == null) {
+          field['options'][attr] = false;
+        }
       });
     });
   }

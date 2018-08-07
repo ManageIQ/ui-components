@@ -8,9 +8,15 @@ export default class AbbrNumber {
       if (!num.value() || num.value().toString() !== value.toString()) {
         return value;
       }
+
       let abbr = num.format('0.0a');
-      // Drop the .0 as we want to save the space
-      return (abbr.match(/\d\.0[a-z]?$/) ? num.format('0a') : abbr).toUpperCase();
+
+      if (abbr.match(/\d\.0[a-z]?$/) || abbr.length > 5) {
+        // Drop the .0 as we want to save the space
+        abbr = num.format('0a');
+      }
+
+      return abbr.toUpperCase();
     };
   }
 }

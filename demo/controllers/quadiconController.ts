@@ -133,6 +133,7 @@ export default class QuadiconController {
       420,
       4200,
       42000,
+      112081, // this is an edge case
       420000,
       4200000,
       42000000,

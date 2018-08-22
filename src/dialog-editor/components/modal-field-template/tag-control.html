@@ -29,7 +29,8 @@
         <option selected="selected" value="" translate>None</option>
       </select>
     </div>
-    <div pf-form-group pf-label="{{'Single value'|translate}}">
+    <div ng-if="!vm.modalData.options.category_single_value"
+         pf-form-group pf-label="{{'Single value'|translate}}">
       <input bs-switch
              ng-model="vm.modalData.options.force_single_value"
              type="checkbox"

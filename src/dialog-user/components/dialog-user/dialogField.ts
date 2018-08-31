@@ -36,6 +36,10 @@ export class DialogFieldController extends DialogFieldClass {
     if (this.dialogField.type === 'DialogFieldTagControl') {
       this.setDefaultValue();
     }
+
+    if (this.dialogField.type === 'DialogFieldDateTimeControl') {
+      this.dateTimeFieldChanged();
+    }
   }
 
   /**

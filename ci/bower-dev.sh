@@ -1,5 +1,7 @@
 #!/bin/bash
 set -x
+set -e
+git checkout locale/	# undo changes made by gettext:extract
 HASH=$(git rev-parse HEAD)
 yarn install
 yarn run build

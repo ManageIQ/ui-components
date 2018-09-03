@@ -127,16 +127,19 @@ export class ToolbarController {
   }
 
   public collapseButtons() {
-    let buttonsIndex;
-    if (this.toolbarItems) {
-      buttonsIndex = _.findLastIndex(
-        this.toolbarItems,
-        (itemGroup: any) => itemGroup.filter(item => item.id.includes(CUSTOM_ID) !== false).length !== 0
-      );
-      if(buttonsIndex !== -1) {
-        this.toolbarItems[buttonsIndex] = ToolbarController.createKebabFromItems(this.toolbarItems[buttonsIndex]);
-      }
+    if (! this.toolbarItems) {
+      return;
     }
+
+    const isCustomButton = (item) => item && item.id && item.id.includes(CUSTOM_ID);
+    const hasCustomButtons = (itemGroup) => _.some(itemGroup, isCustomButton);
+
+    let buttonsIndex = _.findLastIndex(this.toolbarItems, hasCustomButtons);
+    if (buttonsIndex === -1) {
+      return;
+    }
+
+    this.toolbarItems[buttonsIndex] = ToolbarController.createKebabFromItems(this.toolbarItems[buttonsIndex]);
   }
 
   private $onChanges(changesObj) {

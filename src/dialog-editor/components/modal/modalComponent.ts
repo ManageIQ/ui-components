@@ -254,6 +254,7 @@ class ModalController {
       if(name['id'] === item) {
         vm.modalData.options.category_description = name['description'];
         vm.modalData.options.category_name = name['name'];
+        vm.modalData.options.category_single_value = name['single_value'];
       }
     });
   }

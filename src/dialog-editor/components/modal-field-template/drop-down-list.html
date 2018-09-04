@@ -23,7 +23,7 @@
     </div>
     <div pf-form-group pf-label="{{'Default value'|translate}}"
          ng-if="!vm.modalData.options.force_multi_value">
-      <select class="form-control" pf-select ng-attr-title="{{'Nothing Selected'|translate}}"
+      <select class="form-control" miq-select ng-attr-title="{{'Nothing Selected'|translate}}"
               ng-model="vm.modalData.default_value">
         <option value="" translate>None</option>
         <option ng-repeat="value in vm.modalData.values" value="{{value[0]}}">{{value[1]}}</option>
@@ -31,26 +31,26 @@
     </div>
     <div pf-form-group pf-label="{{'Default value'|translate}}"
          ng-if="vm.modalData.options.force_multi_value">
-      <select class="form-control" multiple pf-select
+      <select class="form-control" multiple miq-select
               ng-model="vm.modalData.default_value">
         <option ng-repeat="value in vm.modalData.values" value="{{value[0]}}">{{value[1]}}</option>
       </select>
     </div>
     <div pf-form-group pf-label="{{'Value type'|translate}}">
-      <select class="form-control" pf-select ng-model="vm.modalData.data_type">
+      <select class="form-control" miq-select ng-model="vm.modalData.data_type">
         <option value="integer" translate>Integer</option>
         <option selected="selected" value="string" translate>String</option>
       </select>
     </div>
     <div pf-form-group pf-label="{{'Sort by'|translate}}">
-      <select class="form-control" pf-select ng-model="vm.modalData.options.sort_by">
+      <select class="form-control" miq-select ng-model="vm.modalData.options.sort_by">
         <option value="none" translate>None</option>
         <option value="description" translate>Description</option>
         <option value="value" translate>Value</option>
       </select>
     </div>
     <div pf-form-group pf-label="{{'Sort order'|translate}}">
-      <select class="form-control" pf-select ng-model="vm.modalData.options.sort_order">
+      <select class="form-control" miq-select ng-model="vm.modalData.options.sort_order">
         <option selected="selected" value="ascending" translate>Ascending</option>
         <option value="descending" translate>Descending</option>
       </select>
@@ -133,7 +133,7 @@
                switch-off-text="{{'No'|translate}}">
       </div>
       <div pf-form-group pf-label="{{'Value type'|translate}}">
-        <select class="form-control" pf-select ng-model="vm.modalData.data_type">
+        <select class="form-control" miq-select ng-model="vm.modalData.data_type">
           <option value="integer" translate>Integer</option>
           <option selected="selected" value="string" translate>String</option>
         </select>
@@ -193,14 +193,14 @@
              switch-off-text="{{'No'|translate}}">
     </div>
     <div pf-form-group pf-label="{{'Sort by'|translate}}">
-      <select class="form-control" pf-select ng-model="vm.modalData.options.sort_by">
+      <select class="form-control" miq-select ng-model="vm.modalData.options.sort_by">
         <option value="none" translate>None</option>
         <option value="description" translate>Description</option>
         <option value="value" translate>Value</option>
       </select>
     </div>
     <div pf-form-group pf-label="{{'Sort order'|translate}}">
-      <select class="form-control" pf-select ng-model="vm.modalData.options.sort_order">
+      <select class="form-control" miq-select ng-model="vm.modalData.options.sort_order">
         <option selected="selected" value="ascending" translate>Ascending</option>
         <option value="descending" translate>Descending</option>
       </select>

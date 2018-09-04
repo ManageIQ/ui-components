@@ -44,14 +44,14 @@
     <!-- drop down list -->
     <div ng-switch-when="DialogFieldDropDownList">
       <div ng-if="!vm.fieldData.options.force_multi_value">
-        <select class="form-control" pf-select
+        <select class="form-control" miq-select
                 ng-model="vm.fieldData.default_value">
           <option value="" translate>None</option>
           <option ng-repeat="value in vm.fieldData.values" value="{{value[0]}}">{{value[1]}}</option>
         </select>
       </div>
       <div ng-if="vm.fieldData.options.force_multi_value">
-        <select class="form-control" multiple pf-select
+        <select class="form-control" multiple miq-select
                 ng-init="vm.convertValuesToArray()"
                 ng-model="vm.fieldData.default_value">
           <option ng-repeat="value in vm.fieldData.values" value="{{value[0]}}">{{value[1]}}</option>
@@ -73,7 +73,7 @@
 
     <!-- tag control -->
     <select ng-switch-when="DialogFieldTagControl"
-            pf-select
+            miq-select
             class="form-control">
       <option ng-repeat="option in vm.fieldData.values"
               value="{{ option[0] }}">

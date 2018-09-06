@@ -6,7 +6,8 @@ module dialogEditor {
   export const app = angular.module('miqStaticAssets.dialogEditor', [
     'ui.sortable',
     'ngDragDrop',
-    'frapontillo.bootstrap-switch'
+    'frapontillo.bootstrap-switch',
+    'miqStaticAssets.miqSelect'
   ]);
   services(app);
   components(app);

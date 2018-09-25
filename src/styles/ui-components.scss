@@ -78,17 +78,13 @@
   }
 }
 
-table.miq-table-with-footer { /* not currently used */
+table.miq-table-with-footer {
   margin-bottom: 0px;
 }
 
 .miq-table thead th{
   color: #0099d3;
   cursor: pointer;
-}
-
-.dataTables_footer span {
-  margin-left: 10px;
 }
 
 /* End Patternfly Table View overrides */

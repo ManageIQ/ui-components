@@ -243,6 +243,21 @@ class ModalController {
   }
 
   /**
+   * Updates fields associated with dynamic fields after
+   * changing the dynamic field to static
+   * @memberof ModalController
+   * @function updateDialogFieldResponders
+   */
+  public updateDialogFieldResponders(changedFieldName) {
+    this.DialogEditor.forEachDialogField((field) => {
+      if (field.dialog_field_responders.includes(changedFieldName)) {
+        let index = field.dialog_field_responders.indexOf(changedFieldName);
+        field.dialog_field_responders.splice(index, 1);
+      }
+    });
+  }
+
+  /**
    * Finds entries for the selected TagControl and sets them.
    * @memberof ModalController
    * @function setupCategoryOptions
@@ -307,6 +322,7 @@ class ModalController {
       tree-selector-show="modalCtrl.parent.treeSelectorShow"
       tree-selector-include-domain="modalCtrl.parent.treeSelectorIncludeDomain"
       on-select="modalCtrl.parent.onSelect"
+      update-dialog-field-responders="modalCtrl.parent.updateDialogFieldResponders"
       setup-category-options="modalCtrl.parent.setupCategoryOptions"
       ></${component}>`;
   }

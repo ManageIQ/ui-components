@@ -27,6 +27,7 @@ export default class AbstractModal {
     removeEntry: '=?',
     currentCategoryEntries: '=?',
     setupCategoryOptions: '=?',
+    updateDialogFieldResponders: '=?',
     resolveCategories: '=?',
     modalTabIsSet: '<',
     modalTabSet: '<',

@@ -24,8 +24,6 @@ tsd/
 typings/
 vendor.js
 vendor.css
-*.css.map
-*.js.map
 
 ._*
 .DS_Store

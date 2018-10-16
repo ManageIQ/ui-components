@@ -53,14 +53,20 @@ export class ToolboxController {
         'DialogFieldTextBox',
         'fa fa-font',
         __('Text Box'),
-        'text_box'
+        'text_box',
+        {
+          validator_type: false,
+        }
       ),
     dialogFieldTextAreaBox:
       new DialogField(
         'DialogFieldTextAreaBox',
         'fa fa-file-text-o',
         __('Text Area'),
-        'textarea_box'
+        'textarea_box',
+        {
+          validator_type: false,
+        }
       ),
     dialogFieldCheckBox:
       new DialogField(

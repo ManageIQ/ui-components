@@ -26,10 +26,3 @@ notifications:
     on_success: change
     on_failure: always
     on_start: never
-
-deploy:
-  - provider: script
-    script: ci/bower-dev.sh
-    skip_cleanup: true
-    on:
-      branch: master

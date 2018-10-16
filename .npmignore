@@ -15,10 +15,8 @@ dist/data/
 dist/docs/
 dist/**/demo-app.*
 .tmp/
-.bower/
 libs/
 node_modules/
-bower_components/
 dist/index.html
 tsd/
 typings/

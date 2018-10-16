@@ -22,10 +22,8 @@ dist/*.svg
 dist/*.woff
 dist/*.woff2
 .tmp/
-.bower/
 libs/
 node_modules/
-bower_components/
 dist/index.html
 tsd/
 typings/

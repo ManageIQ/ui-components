@@ -23,9 +23,6 @@ const webpack = require('webpack'),
       name: settings.appName,
       filename: settings.javascriptFolder + '/' + settings.appName + settings.isMinified(production)
     }),
-    new webpack.ProvidePlugin({
-      Rx: "rxjs"
-    }),
     new ExtractTextPlugin(settings.stylesheetPath),
     new NgAnnotatePlugin({add: true})
   ].filter(p => !!p);

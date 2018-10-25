@@ -142,6 +142,7 @@
                ng-model="vm.dialogField.default_value"
                ng-change="vm.changesHappened()"
                is-open="open"
+               min-date="vm.minDate"
                datepicker-options="vm.dateOptions"
                close-text="{{'Close'|translate}}"/>
         <span class="input-group-btn">
@@ -162,6 +163,7 @@
                  ng-model="vm.dialogField.dateField"
                  ng-change="vm.dateTimeFieldChanged()"
                  is-open="open"
+                 min-date="vm.minDate"
                  datepicker-options="vm.dateOptions"
                  close-text="{{'Close'|translate}}"
                  id="{{ vm.dialogField.name }}"/>

@@ -52,6 +52,12 @@ export class ToolbarListController implements IToolbarListBindings {
       this.toolbarList.items &&
       this.toolbarList.items.filter((item: IToolbarItem) => !item.hidden).length > 0;
   }
+
+  private isToolbarEnabled(): boolean {
+    return this.toolbarList &&
+      this.toolbarList.items &&
+      this.toolbarList.items.filter((item: IToolbarItem) => item.enabled).length > 0;
+  }
 }
 
 /**

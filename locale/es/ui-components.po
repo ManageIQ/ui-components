@@ -1,68 +1,68 @@
-# 
+# Reviwer <ed.rh02@oceantranslations.com>, 2018. #zanata
+# Translator <tr.rh02@oceantranslations.com>, 2018. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
+"PO-Revision-Date: 2018-10-23 03:39+0000\n"
+"Last-Translator: Reviwer <ed.rh02@oceantranslations.com>\n"
+"Language-Team: Spanish\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: Spanish\n"
 "Language: es\n"
-"X-Generator: Zanata 4.5.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Zanata 4.6.2\n"
 
-#: ./src/dialog-editor/components/box/box.html:54
+#: ./src/dialog-editor/components/box/box.html:55
 msgid "Add Section"
-msgstr ""
+msgstr "Agregar sección"
 
 #: ./src/dialog-editor/components/modal-field/field.html:17
 msgid "Advanced"
-msgstr ""
+msgstr "Avanzada"
 
 #: ./src/fonticon-picker/components/fonticon-picker/fonticon-modal.html:18
 msgid "Apply"
-msgstr ""
+msgstr "Aplicar"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:204
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:54
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:148
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:46
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:57
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:58
 msgid "Ascending"
-msgstr ""
+msgstr "Acendente"
 
 #: ./src/dialog-editor/components/modal-box/box.html:31
-#: ./src/dialog-editor/components/modal-field/field.html:174
+#: ./src/dialog-editor/components/modal-field/field.html:175
 #: ./src/dialog-editor/components/modal-tab/tab.html:31
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:24
 msgid "Category"
-msgstr ""
+msgstr "Categoría"
 
 #: ./dist/js/ui-components.js:1
 msgid "Category needs to be set for TagControl field"
-msgstr ""
+msgstr "Debe establecerse la categoría para el campo TagControl"
 
 #: ./dist/js/ui-components.js:1
 msgid "Check Box"
-msgstr ""
+msgstr "Casilla de verificación"
 
-#: ./src/dialog-user/components/dialog-user/dialogField.html:147
-#: ./src/dialog-user/components/dialog-user/dialogField.html:167
+#: ./src/dialog-user/components/dialog-user/dialogField.html:146
+#: ./src/dialog-user/components/dialog-user/dialogField.html:166
 #: ./src/fonticon-picker/components/fonticon-picker/fonticon-modal.html:19
 msgid "Close"
-msgstr ""
+msgstr "Cerrar"
 
 #: ./src/dialog-editor/components/tab-list/tab-list.html:15
 msgid "Create Tab"
-msgstr ""
+msgstr "Crear ficha"
 
 #: ./dist/js/ui-components.js:1
 msgid "Datepicker"
-msgstr ""
+msgstr "Selector de fechas"
 
 #: ./src/dialog-editor/components/field/field.html:10
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:3
@@ -74,15 +74,15 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:136
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:3
 msgid "Default value"
-msgstr ""
+msgstr "Valor predeterminado"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:205
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:55
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:149
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:47
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:58
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:59
 msgid "Descending"
-msgstr ""
+msgstr "Descendente"
 
 #: ./dist/js/ui-components.js:1
 #: ./src/dialog-editor/components/modal-box/box.html:21
@@ -92,86 +92,88 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:94
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:142
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:40
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:50
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:51
 #: ./src/dialog-editor/components/modal-tab/tab.html:21
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 #: ./dist/js/ui-components.js:1
 msgid "Dialog field needs to have a label"
-msgstr ""
+msgstr "El campo de cuadro de diálogo debe tener una etiqueta"
 
 #: ./dist/js/ui-components.js:1
 msgid "Dialog field needs to have a name"
-msgstr ""
+msgstr "El campo de cuadro de diálogo debe tener un nombre"
 
 #: ./dist/js/ui-components.js:1
 msgid "Dialog group needs to have a label"
-msgstr ""
+msgstr "El grupo de cuadro de diálogo debe tener una etiqueta"
 
 #: ./dist/js/ui-components.js:1
 msgid "Dialog group needs to have at least one field"
-msgstr ""
+msgstr "El grupo de cuadro de diálogo debe tener al menos un campo"
 
 #: ./dist/js/ui-components.js:1
 msgid "Dialog needs to have a label"
-msgstr ""
+msgstr "El cuadro de diálogo debe tener una etiqueta"
 
 #: ./dist/js/ui-components.js:1
 msgid "Dialog needs to have at least one tab"
-msgstr ""
+msgstr "El cuadro de diálogo debe tener al menos una ficha"
 
 #: ./dist/js/ui-components.js:1
 msgid "Dialog tab needs to have a label"
-msgstr ""
+msgstr "La pestaña de cuadro de diálogo debe tener una etiqueta"
 
 #: ./dist/js/ui-components.js:1
 msgid "Dialog tab needs to have at least one group"
-msgstr ""
+msgstr "La pestaña de cuadro de diálogo debe tener al menos un grupo"
 
 #: ./src/dialog-editor/components/box/box.html:31
 msgid ""
 "Drag items here to add to the dialog. At least one item is required before "
 "saving"
 msgstr ""
+"Arrastre los elementos aquí para agregarlos al cuadro de diálogo. Se "
+"requiere al menos un elemento antes de guardar"
 
 #: ./dist/js/ui-components.js:1
 msgid "Dropdown"
-msgstr ""
+msgstr "Desplegable"
 
 #: ./dist/js/ui-components.js:1
 msgid "Dropdown needs to have entries"
-msgstr ""
+msgstr "El elemento desplegable debe tener entradas"
 
 #: ./src/dialog-editor/components/modal-field/field.html:42
 msgid "Dynamic"
-msgstr ""
+msgstr "Dinámico"
 
 #: ./dist/js/ui-components.js:1
 msgid "Edit %s Field"
-msgstr ""
+msgstr "Editar campo %s"
 
 #: ./src/dialog-editor/components/modal-field/field.html:5
 msgid "Edit Field Details"
-msgstr ""
+msgstr "Editar detalles del campo"
 
 #: ./src/dialog-editor/components/modal-box/box.html:5
 msgid "Edit Section Details"
-msgstr ""
+msgstr "Editar detalles de la sección"
 
 #: ./src/dialog-editor/components/modal-tab/tab.html:5
 msgid "Edit Tab Details"
-msgstr ""
+msgstr "Editar detalles de la ficha"
 
 #: ./dist/js/ui-components.js:1
 msgid "Entered text does not match required format."
-msgstr ""
+msgstr "El texto ingresado no coincide con el formato requerido."
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:65
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:50
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:61
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:62
 msgid "Entries"
-msgstr ""
+msgstr "Entradas"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:40
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html:32
@@ -180,23 +182,27 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:42
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:54
 msgid "Entry Point"
-msgstr ""
+msgstr "Punto de entrada"
+
+#: ./dist/js/ui-components.js:1
+msgid "Entry Point needs to be set for Dynamic elements"
+msgstr "Se debe establecer un punto de entrada para elementos dinámicos"
 
 #: ./src/dialog-editor/components/modal-field/field.html:11
 msgid "Field Information"
-msgstr ""
+msgstr "Información del campo"
 
 #: ./dist/js/ui-components.js:1
 msgid "Fields are being refreshed"
-msgstr ""
+msgstr "Los campos se están actualizando"
 
 #: ./src/dialog-editor/components/modal-field-template/fields-to-refresh.html:1
 msgid "Fields to refresh"
-msgstr ""
+msgstr "Campos para actualizar"
 
 #: ./src/dialog-editor/components/modal-field/field.html:35
 msgid "Help"
-msgstr ""
+msgstr "Ayuda"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:78
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html:74
@@ -205,49 +211,49 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:84
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:109
 msgid "Include domain prefix in the path:"
-msgstr ""
+msgstr "Incluya el prefijo del dominio en la ruta:"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:137
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:41
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:33
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:88
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:42
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:43
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:38
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:81
 msgid "Integer"
-msgstr ""
+msgstr "Entero"
 
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:53
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:64
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:65
 msgid "Key"
-msgstr ""
+msgstr "Clave"
 
 #: ./src/dialog-editor/components/modal-box/box.html:17
 #: ./src/dialog-editor/components/modal-field/field.html:26
 #: ./src/dialog-editor/components/modal-tab/tab.html:17
 msgid "Label"
-msgstr ""
+msgstr "Etiqueta"
 
 #: ./src/dialog-editor/components/modal-field-template/dynamic-values.html:8
 msgid "Load values on init"
-msgstr ""
+msgstr "Cargar valores en el inicio"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:141
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:58
 msgid "Multiselect"
-msgstr ""
+msgstr "Selección múltiple"
 
 #: ./src/dialog-editor/components/modal-field/field.html:31
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #: ./dist/js/ui-components.js:1
 msgid "New Section"
-msgstr ""
+msgstr "Nueva sección"
 
 #: ./dist/js/ui-components.js:1
 msgid "New tab"
-msgstr ""
+msgstr "Nueva ficha"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:103
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:16
@@ -285,7 +291,7 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:84
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:15
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:22
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:37
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:38
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:8
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:102
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:109
@@ -303,14 +309,14 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:34
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:70
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:77
-#: ./src/dialog-editor/components/modal-field/field.html:167
-#: ./src/dialog-editor/components/modal-field/field.html:47
+#: ./src/dialog-editor/components/modal-field/field.html:168
+#: ./src/dialog-editor/components/modal-field/field.html:48
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: ./src/dialog-user/components/dialog-user/dialog.html:3
 msgid "No Provisioning Dialog Available."
-msgstr ""
+msgstr "No hay cuadro de diálogo de aprovisionamiento disponible."
 
 #: ./src/dialog-editor/components/field/field.html:49
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:197
@@ -320,36 +326,36 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:27
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:39
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:29
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:49
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:50
 msgid "None"
-msgstr ""
+msgstr "Ninguno"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:26
 #: ./src/dialog-editor/components/modal-field-template/fields-to-refresh.html:6
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:25
 msgid "Nothing Selected"
-msgstr ""
+msgstr "No se seleccionó ningún elemento"
 
 #: ./dist/js/ui-components.js:1
 msgid "One"
-msgstr ""
+msgstr "Uno"
 
 #: ./src/dialog-editor/components/modal-field/field.html:14
 msgid "Options"
-msgstr ""
+msgstr "Opciones"
 
 #: ./src/dialog-editor/components/modal-field/field.html:20
 msgid "Overridable Options"
-msgstr ""
+msgstr "Opciones reemplazables"
 
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:72
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:8
 msgid "Protected"
-msgstr ""
+msgstr "Protegido"
 
 #: ./dist/js/ui-components.js:1
 msgid "Radio Button"
-msgstr ""
+msgstr "Botón de opción"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:18
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:91
@@ -365,15 +371,15 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:122
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:22
 msgid "Read only"
-msgstr ""
+msgstr "Solo lectura"
 
-#: ./src/dialog-editor/components/modal-field/field.html:162
+#: ./src/dialog-editor/components/modal-field/field.html:163
 msgid "Reconfigurable"
-msgstr ""
+msgstr "Reconfigurable"
 
-#: ./src/dialog-user/components/dialog-user/dialogField.html:183
-msgid "Refresh"
-msgstr ""
+#: ./src/dialog-user/components/dialog-user/dialogField.html:185
+msgid "Refresh field"
+msgstr "Actualizar campo"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:11
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:51
@@ -387,108 +393,108 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:15
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:65
 msgid "Required"
-msgstr ""
+msgstr "Obligatorio"
 
 #: ./src/dialog-editor/components/modal-box/box.html:32
-#: ./src/dialog-editor/components/modal-field/field.html:175
+#: ./src/dialog-editor/components/modal-field/field.html:176
 #: ./src/dialog-editor/components/modal-tab/tab.html:32
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
 
 #: ./src/dialog-editor/components/modal-box/box.html:11
 msgid "Section Information"
-msgstr ""
+msgstr "Información de la sección"
 
 #: ./dist/js/ui-components.js:1
 msgid "Select a valid date"
-msgstr ""
+msgstr "Seleccione una fecha válida"
 
 #: ./src/fonticon-picker/components/fonticon-picker/fonticon-modal.html:2
 msgid "Select an icon"
-msgstr ""
+msgstr "Seleccione un icono"
 
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html:17
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html:47
 msgid "Show Past Dates"
-msgstr ""
+msgstr "Mostrar fechas pasadas"
 
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html:40
 #: ./src/dialog-editor/components/modal-field-template/dynamic-values.html:1
 msgid "Show Refresh Button"
-msgstr ""
+msgstr "Mostrar botón de actualizar"
 
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:32
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:33
 msgid "Single value"
-msgstr ""
+msgstr "Valor único"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:195
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:45
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:139
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:37
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:46
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:47
 msgid "Sort by"
-msgstr ""
+msgstr "Ordenar por"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:202
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:52
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:146
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:44
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:54
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:55
 msgid "Sort order"
-msgstr ""
+msgstr "Forma de ordenación"
 
-#: ./src/dialog-editor/components/box/box.html:50
+#: ./src/dialog-editor/components/box/box.html:51
 msgid "Start with adding a section"
-msgstr ""
+msgstr "Comience agregando una sección"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:138
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:42
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:34
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:89
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:43
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:44
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:39
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:82
 msgid "String"
-msgstr ""
+msgstr "Cadena"
 
 #: ./src/dialog-editor/components/modal-tab/tab.html:11
 msgid "Tab Information"
-msgstr ""
+msgstr "Información de la ficha"
 
 #: ./dist/js/ui-components.js:1
 msgid "Tag Control"
-msgstr ""
+msgstr "Control de etiquetas"
 
 #: ./dist/js/ui-components.js:1
 msgid "Text Area"
-msgstr ""
+msgstr "Área de texto"
 
 #: ./dist/js/ui-components.js:1
 msgid "Text Box"
-msgstr ""
+msgstr "Cuadro de texto"
 
 #: ./dist/js/ui-components.js:1
 msgid "This field is required"
-msgstr ""
+msgstr "Este campo es obligatorio"
 
 #: ./dist/js/ui-components.js:1
 msgid "Three"
-msgstr ""
+msgstr "Tres"
 
 #: ./dist/js/ui-components.js:1
 msgid "Timepicker"
-msgstr ""
+msgstr "Selector de hora"
 
 #: ./dist/js/ui-components.js:1
 msgid "Two"
-msgstr ""
+msgstr "Dos"
 
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:30
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:60
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:42
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:85
 msgid "Validation"
-msgstr ""
+msgstr "Validación"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:101
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:199
@@ -497,19 +503,19 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:143
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:41
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:55
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:51
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:52
 msgid "Value"
-msgstr ""
+msgstr "Valor"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:135
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:39
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:31
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:86
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:39
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:40
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:36
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:79
 msgid "Value type"
-msgstr ""
+msgstr "Tipo del valor"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:25
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:98
@@ -525,7 +531,7 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:129
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:29
 msgid "Visible"
-msgstr ""
+msgstr "Visible"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:102
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:15
@@ -563,7 +569,7 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:83
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:14
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:21
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:36
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:37
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:7
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:101
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:108
@@ -581,8 +587,11 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:33
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:69
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:76
-#: ./src/dialog-editor/components/modal-field/field.html:166
-#: ./src/dialog-editor/components/modal-field/field.html:46
+#: ./src/dialog-editor/components/modal-field/field.html:167
+#: ./src/dialog-editor/components/modal-field/field.html:47
 msgid "Yes"
-msgstr ""
+msgstr "Sí"
 
+#: ./src/gtl/components/pagination/paging.html:22
+msgid "of {{pagingCtrl.settings.total}}"
+msgstr "de {{pagingCtrl.settings.total}}"

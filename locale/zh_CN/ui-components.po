@@ -1,68 +1,78 @@
-# 
+# pugercat <marrisa.zhong.sh@linguitronics.com>, 2018. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: \n"
+"PO-Revision-Date: 2018-10-22 11:53+0000\n"
 "Last-Translator: \n"
 "Language-Team: Chinese (Simplified, China)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Language: zh_Hans_CN\n"
-"X-Generator: Zanata 4.5.0\n"
 "Plural-Forms: nplurals=1; plural=0\n"
+"X-Generator: Zanata 4.6.2\n"
 
-#: ./src/dialog-editor/components/box/box.html:54
+#: ./src/dialog-editor/components/box/box.html:55
+#, fuzzy
 msgid "Add Section"
-msgstr ""
+msgstr "添加部分"
 
 #: ./src/dialog-editor/components/modal-field/field.html:17
+#, fuzzy
 msgid "Advanced"
-msgstr ""
+msgstr "高级的"
 
 #: ./src/fonticon-picker/components/fonticon-picker/fonticon-modal.html:18
+#, fuzzy
 msgid "Apply"
-msgstr ""
+msgstr "应用"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:204
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:54
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:148
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:46
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:57
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:58
+#, fuzzy
 msgid "Ascending"
-msgstr ""
+msgstr "升序"
 
 #: ./src/dialog-editor/components/modal-box/box.html:31
-#: ./src/dialog-editor/components/modal-field/field.html:174
+#: ./src/dialog-editor/components/modal-field/field.html:175
 #: ./src/dialog-editor/components/modal-tab/tab.html:31
+#, fuzzy
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:24
+#, fuzzy
 msgid "Category"
-msgstr ""
+msgstr "类别"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Category needs to be set for TagControl field"
-msgstr ""
+msgstr "需要为 TagControl 字段设置类别"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Check Box"
-msgstr ""
+msgstr "选择框"
 
-#: ./src/dialog-user/components/dialog-user/dialogField.html:147
-#: ./src/dialog-user/components/dialog-user/dialogField.html:167
+#: ./src/dialog-user/components/dialog-user/dialogField.html:146
+#: ./src/dialog-user/components/dialog-user/dialogField.html:166
 #: ./src/fonticon-picker/components/fonticon-picker/fonticon-modal.html:19
+#, fuzzy
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #: ./src/dialog-editor/components/tab-list/tab-list.html:15
+#, fuzzy
 msgid "Create Tab"
-msgstr ""
+msgstr "创建标签页"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Datepicker"
-msgstr ""
+msgstr "日期选择程序"
 
 #: ./src/dialog-editor/components/field/field.html:10
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:3
@@ -73,16 +83,18 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:3
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:136
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:3
+#, fuzzy
 msgid "Default value"
-msgstr ""
+msgstr "默认值"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:205
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:55
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:149
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:47
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:58
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:59
+#, fuzzy
 msgid "Descending"
-msgstr ""
+msgstr "降序"
 
 #: ./dist/js/ui-components.js:1
 #: ./src/dialog-editor/components/modal-box/box.html:21
@@ -92,86 +104,105 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:94
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:142
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:40
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:50
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:51
 #: ./src/dialog-editor/components/modal-tab/tab.html:21
+#, fuzzy
 msgid "Description"
-msgstr ""
+msgstr "描述"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Dialog field needs to have a label"
-msgstr ""
+msgstr "对话框字段需要有一个标签"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Dialog field needs to have a name"
-msgstr ""
+msgstr "对话框字段需要有一个名称"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Dialog group needs to have a label"
-msgstr ""
+msgstr "对话框组需要有一个标签"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Dialog group needs to have at least one field"
-msgstr ""
+msgstr "对话框组至少需要有一个字段"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Dialog needs to have a label"
-msgstr ""
+msgstr "对话需要有一个标签"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Dialog needs to have at least one tab"
-msgstr ""
+msgstr "对话至少需要有一个标签页"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Dialog tab needs to have a label"
-msgstr ""
+msgstr "对话框标签页需要有一个标签"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Dialog tab needs to have at least one group"
-msgstr ""
+msgstr " 对话标签页至少需要有一个组"
 
 #: ./src/dialog-editor/components/box/box.html:31
+#, fuzzy
 msgid ""
 "Drag items here to add to the dialog. At least one item is required before "
 "saving"
-msgstr ""
+msgstr "将项目拖拽至此处，以添加至对话。保存之前，至少需要一个项目"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Dropdown"
-msgstr ""
+msgstr "下拉列表"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Dropdown needs to have entries"
-msgstr ""
+msgstr "下拉列表中需要含有条目"
 
 #: ./src/dialog-editor/components/modal-field/field.html:42
+#, fuzzy
 msgid "Dynamic"
-msgstr ""
+msgstr "动态的"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Edit %s Field"
-msgstr ""
+msgstr "编辑 %s 字段"
 
 #: ./src/dialog-editor/components/modal-field/field.html:5
+#, fuzzy
 msgid "Edit Field Details"
-msgstr ""
+msgstr "编辑字段详情"
 
 #: ./src/dialog-editor/components/modal-box/box.html:5
+#, fuzzy
 msgid "Edit Section Details"
-msgstr ""
+msgstr "编辑部分详情"
 
 #: ./src/dialog-editor/components/modal-tab/tab.html:5
+#, fuzzy
 msgid "Edit Tab Details"
-msgstr ""
+msgstr "编辑标签页详情"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Entered text does not match required format."
-msgstr ""
+msgstr "输入的文本和所需的格式不匹配。"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:65
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:50
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:61
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:62
+#, fuzzy
 msgid "Entries"
-msgstr ""
+msgstr "条目"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:40
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html:32
@@ -179,24 +210,34 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:68
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:42
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:54
+#, fuzzy
 msgid "Entry Point"
-msgstr ""
-
-#: ./src/dialog-editor/components/modal-field/field.html:11
-msgid "Field Information"
-msgstr ""
+msgstr "入口点"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
+msgid "Entry Point needs to be set for Dynamic elements"
+msgstr "必须为动态元素设置入口点"
+
+#: ./src/dialog-editor/components/modal-field/field.html:11
+#, fuzzy
+msgid "Field Information"
+msgstr "字段信息"
+
+#: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Fields are being refreshed"
-msgstr ""
+msgstr "字段正在刷新"
 
 #: ./src/dialog-editor/components/modal-field-template/fields-to-refresh.html:1
+#, fuzzy
 msgid "Fields to refresh"
-msgstr ""
+msgstr "要刷新的字段"
 
 #: ./src/dialog-editor/components/modal-field/field.html:35
+#, fuzzy
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:78
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html:74
@@ -204,50 +245,59 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:112
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:84
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:109
+#, fuzzy
 msgid "Include domain prefix in the path:"
-msgstr ""
+msgstr "路径里包含域前缀："
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:137
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:41
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:33
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:88
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:42
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:43
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:38
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:81
+#, fuzzy
 msgid "Integer"
-msgstr ""
+msgstr "整数"
 
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:53
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:64
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:65
+#, fuzzy
 msgid "Key"
-msgstr ""
+msgstr "密钥 "
 
 #: ./src/dialog-editor/components/modal-box/box.html:17
 #: ./src/dialog-editor/components/modal-field/field.html:26
 #: ./src/dialog-editor/components/modal-tab/tab.html:17
+#, fuzzy
 msgid "Label"
-msgstr ""
+msgstr "标签"
 
 #: ./src/dialog-editor/components/modal-field-template/dynamic-values.html:8
+#, fuzzy
 msgid "Load values on init"
-msgstr ""
+msgstr "在 Init 时加载值"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:141
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:58
+#, fuzzy
 msgid "Multiselect"
-msgstr ""
+msgstr "多选"
 
 #: ./src/dialog-editor/components/modal-field/field.html:31
+#, fuzzy
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "New Section"
-msgstr ""
+msgstr "新部分"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "New tab"
-msgstr ""
+msgstr "新选项卡"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:103
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:16
@@ -285,7 +335,7 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:84
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:15
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:22
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:37
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:38
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:8
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:102
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:109
@@ -303,14 +353,16 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:34
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:70
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:77
-#: ./src/dialog-editor/components/modal-field/field.html:167
-#: ./src/dialog-editor/components/modal-field/field.html:47
+#: ./src/dialog-editor/components/modal-field/field.html:168
+#: ./src/dialog-editor/components/modal-field/field.html:48
+#, fuzzy
 msgid "No"
-msgstr ""
+msgstr "否"
 
 #: ./src/dialog-user/components/dialog-user/dialog.html:3
+#, fuzzy
 msgid "No Provisioning Dialog Available."
-msgstr ""
+msgstr "无可用的置备对话框。"
 
 #: ./src/dialog-editor/components/field/field.html:49
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:197
@@ -320,36 +372,43 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:27
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:39
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:29
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:49
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:50
+#, fuzzy
 msgid "None"
-msgstr ""
+msgstr "无"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:26
 #: ./src/dialog-editor/components/modal-field-template/fields-to-refresh.html:6
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:25
+#, fuzzy
 msgid "Nothing Selected"
-msgstr ""
+msgstr "未做选择"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "One"
-msgstr ""
+msgstr "一个"
 
 #: ./src/dialog-editor/components/modal-field/field.html:14
+#, fuzzy
 msgid "Options"
-msgstr ""
+msgstr "选项"
 
 #: ./src/dialog-editor/components/modal-field/field.html:20
+#, fuzzy
 msgid "Overridable Options"
-msgstr ""
+msgstr "可覆盖的选项"
 
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:72
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:8
+#, fuzzy
 msgid "Protected"
-msgstr ""
+msgstr "受保护的"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Radio Button"
-msgstr ""
+msgstr "单选按钮"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:18
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:91
@@ -364,16 +423,19 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:97
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:122
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:22
+#, fuzzy
 msgid "Read only"
-msgstr ""
+msgstr "只读"
 
-#: ./src/dialog-editor/components/modal-field/field.html:162
+#: ./src/dialog-editor/components/modal-field/field.html:163
+#, fuzzy
 msgid "Reconfigurable"
-msgstr ""
+msgstr "可重新配置的"
 
-#: ./src/dialog-user/components/dialog-user/dialogField.html:183
-msgid "Refresh"
-msgstr ""
+#: ./src/dialog-user/components/dialog-user/dialogField.html:185
+#, fuzzy
+msgid "Refresh field"
+msgstr "刷新字段"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:11
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:51
@@ -386,109 +448,130 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:9
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:15
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:65
+#, fuzzy
 msgid "Required"
-msgstr ""
+msgstr "必填"
 
 #: ./src/dialog-editor/components/modal-box/box.html:32
-#: ./src/dialog-editor/components/modal-field/field.html:175
+#: ./src/dialog-editor/components/modal-field/field.html:176
 #: ./src/dialog-editor/components/modal-tab/tab.html:32
+#, fuzzy
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: ./src/dialog-editor/components/modal-box/box.html:11
+#, fuzzy
 msgid "Section Information"
-msgstr ""
+msgstr "部分信息"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Select a valid date"
-msgstr ""
+msgstr "选择一个有效日期"
 
 #: ./src/fonticon-picker/components/fonticon-picker/fonticon-modal.html:2
+#, fuzzy
 msgid "Select an icon"
-msgstr ""
+msgstr "选择一个图标"
 
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html:17
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html:47
+#, fuzzy
 msgid "Show Past Dates"
-msgstr ""
+msgstr "显示过去的日期"
 
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html:40
 #: ./src/dialog-editor/components/modal-field-template/dynamic-values.html:1
+#, fuzzy
 msgid "Show Refresh Button"
-msgstr ""
+msgstr "显示刷新按钮"
 
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:32
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:33
+#, fuzzy
 msgid "Single value"
-msgstr ""
+msgstr "单个值"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:195
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:45
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:139
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:37
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:46
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:47
+#, fuzzy
 msgid "Sort by"
-msgstr ""
+msgstr "排序方式"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:202
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:52
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:146
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:44
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:54
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:55
+#, fuzzy
 msgid "Sort order"
-msgstr ""
+msgstr "排序顺序"
 
-#: ./src/dialog-editor/components/box/box.html:50
+#: ./src/dialog-editor/components/box/box.html:51
+#, fuzzy
 msgid "Start with adding a section"
-msgstr ""
+msgstr "以添加部分作为开始"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:138
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:42
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:34
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:89
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:43
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:44
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:39
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:82
+#, fuzzy
 msgid "String"
-msgstr ""
+msgstr "字符串"
 
 #: ./src/dialog-editor/components/modal-tab/tab.html:11
+#, fuzzy
 msgid "Tab Information"
-msgstr ""
+msgstr "标签页信息"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Tag Control"
-msgstr ""
+msgstr "标签控件"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Text Area"
-msgstr ""
+msgstr "文本区域"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Text Box"
-msgstr ""
+msgstr "文本框"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "This field is required"
-msgstr ""
+msgstr "此字段为必填项"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Three"
-msgstr ""
+msgstr "三个"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Timepicker"
-msgstr ""
+msgstr "时间选择程序"
 
 #: ./dist/js/ui-components.js:1
+#, fuzzy
 msgid "Two"
-msgstr ""
+msgstr "两个"
 
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:30
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:60
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:42
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:85
+#, fuzzy
 msgid "Validation"
-msgstr ""
+msgstr "验证"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:101
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:199
@@ -497,19 +580,21 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:143
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:41
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:55
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:51
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:52
+#, fuzzy
 msgid "Value"
-msgstr ""
+msgstr "值"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:135
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:39
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:31
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:86
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:39
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:40
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:36
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:79
+#, fuzzy
 msgid "Value type"
-msgstr ""
+msgstr "值类型"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:25
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:98
@@ -524,8 +609,9 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:23
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:129
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:29
+#, fuzzy
 msgid "Visible"
-msgstr ""
+msgstr "可见"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:102
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:15
@@ -563,7 +649,7 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:83
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:14
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:21
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:36
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:37
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:7
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:101
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:108
@@ -581,8 +667,13 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:33
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:69
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:76
-#: ./src/dialog-editor/components/modal-field/field.html:166
-#: ./src/dialog-editor/components/modal-field/field.html:46
+#: ./src/dialog-editor/components/modal-field/field.html:167
+#: ./src/dialog-editor/components/modal-field/field.html:47
+#, fuzzy
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
+#: ./src/gtl/components/pagination/paging.html:22
+#, fuzzy
+msgid "of {{pagingCtrl.settings.total}}"
+msgstr "{{pagingCtrl.settings.total}} 的"

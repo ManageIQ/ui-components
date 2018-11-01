@@ -1,68 +1,67 @@
-# 
+# kmoriguc <kmoriguc@redhat.com>, 2018. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
+"PO-Revision-Date: 2018-10-22 05:13+0000\n"
+"Last-Translator: kmoriguc <kmoriguc@redhat.com>\n"
+"Language-Team: Japanese\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: Japanese\n"
 "Language: ja\n"
-"X-Generator: Zanata 4.5.0\n"
 "Plural-Forms: nplurals=1; plural=0\n"
+"X-Generator: Zanata 4.6.2\n"
 
-#: ./src/dialog-editor/components/box/box.html:54
+#: ./src/dialog-editor/components/box/box.html:55
 msgid "Add Section"
-msgstr ""
+msgstr "セクションを追加"
 
 #: ./src/dialog-editor/components/modal-field/field.html:17
 msgid "Advanced"
-msgstr ""
+msgstr "詳細"
 
 #: ./src/fonticon-picker/components/fonticon-picker/fonticon-modal.html:18
 msgid "Apply"
-msgstr ""
+msgstr "適用"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:204
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:54
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:148
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:46
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:57
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:58
 msgid "Ascending"
-msgstr ""
+msgstr "昇順"
 
 #: ./src/dialog-editor/components/modal-box/box.html:31
-#: ./src/dialog-editor/components/modal-field/field.html:174
+#: ./src/dialog-editor/components/modal-field/field.html:175
 #: ./src/dialog-editor/components/modal-tab/tab.html:31
 msgid "Cancel"
-msgstr ""
+msgstr "キャンセル"
 
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:24
 msgid "Category"
-msgstr ""
+msgstr "カテゴリー"
 
 #: ./dist/js/ui-components.js:1
 msgid "Category needs to be set for TagControl field"
-msgstr ""
+msgstr "TagControl フィールドにカテゴリーを設定する必要があります"
 
 #: ./dist/js/ui-components.js:1
 msgid "Check Box"
-msgstr ""
+msgstr "チェックボックス"
 
-#: ./src/dialog-user/components/dialog-user/dialogField.html:147
-#: ./src/dialog-user/components/dialog-user/dialogField.html:167
+#: ./src/dialog-user/components/dialog-user/dialogField.html:146
+#: ./src/dialog-user/components/dialog-user/dialogField.html:166
 #: ./src/fonticon-picker/components/fonticon-picker/fonticon-modal.html:19
 msgid "Close"
-msgstr ""
+msgstr "閉じる"
 
 #: ./src/dialog-editor/components/tab-list/tab-list.html:15
 msgid "Create Tab"
-msgstr ""
+msgstr "タブを作成"
 
 #: ./dist/js/ui-components.js:1
 msgid "Datepicker"
-msgstr ""
+msgstr "Datepicker"
 
 #: ./src/dialog-editor/components/field/field.html:10
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:3
@@ -74,15 +73,15 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:136
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:3
 msgid "Default value"
-msgstr ""
+msgstr "デフォルト値"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:205
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:55
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:149
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:47
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:58
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:59
 msgid "Descending"
-msgstr ""
+msgstr "降順"
 
 #: ./dist/js/ui-components.js:1
 #: ./src/dialog-editor/components/modal-box/box.html:21
@@ -92,86 +91,86 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:94
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:142
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:40
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:50
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:51
 #: ./src/dialog-editor/components/modal-tab/tab.html:21
 msgid "Description"
-msgstr ""
+msgstr "説明"
 
 #: ./dist/js/ui-components.js:1
 msgid "Dialog field needs to have a label"
-msgstr ""
+msgstr "ダイアログフィールドにはラベルが必要です"
 
 #: ./dist/js/ui-components.js:1
 msgid "Dialog field needs to have a name"
-msgstr ""
+msgstr "ダイアログフィールドには名前が必要です"
 
 #: ./dist/js/ui-components.js:1
 msgid "Dialog group needs to have a label"
-msgstr ""
+msgstr "ダイアロググループにはラベルが必要です"
 
 #: ./dist/js/ui-components.js:1
 msgid "Dialog group needs to have at least one field"
-msgstr ""
+msgstr "ダイアロググループには 1 つ以上のフィールドが必要です"
 
 #: ./dist/js/ui-components.js:1
 msgid "Dialog needs to have a label"
-msgstr ""
+msgstr "ダイアログにはラベルが必要です"
 
 #: ./dist/js/ui-components.js:1
 msgid "Dialog needs to have at least one tab"
-msgstr ""
+msgstr "ダイアログには 1 つ以上のタブが必要です"
 
 #: ./dist/js/ui-components.js:1
 msgid "Dialog tab needs to have a label"
-msgstr ""
+msgstr "ダイアログタブにはラベルが必要です"
 
 #: ./dist/js/ui-components.js:1
 msgid "Dialog tab needs to have at least one group"
-msgstr ""
+msgstr "ダイアログタブには 1 つ以上のグループが必要です"
 
 #: ./src/dialog-editor/components/box/box.html:31
 msgid ""
 "Drag items here to add to the dialog. At least one item is required before "
 "saving"
-msgstr ""
+msgstr "アイテムをここにドラッグしてダイアログに追加します。保存するには 1 つ以上のアイテムが必要です"
 
 #: ./dist/js/ui-components.js:1
 msgid "Dropdown"
-msgstr ""
+msgstr "ドロップダウン"
 
 #: ./dist/js/ui-components.js:1
 msgid "Dropdown needs to have entries"
-msgstr ""
+msgstr "ドロップダウンにはエントリーが必要です"
 
 #: ./src/dialog-editor/components/modal-field/field.html:42
 msgid "Dynamic"
-msgstr ""
+msgstr "ダイナミック"
 
 #: ./dist/js/ui-components.js:1
 msgid "Edit %s Field"
-msgstr ""
+msgstr "%s フィールドを編集"
 
 #: ./src/dialog-editor/components/modal-field/field.html:5
 msgid "Edit Field Details"
-msgstr ""
+msgstr "フィールドの詳細を編集"
 
 #: ./src/dialog-editor/components/modal-box/box.html:5
 msgid "Edit Section Details"
-msgstr ""
+msgstr "セクションの詳細を編集"
 
 #: ./src/dialog-editor/components/modal-tab/tab.html:5
 msgid "Edit Tab Details"
-msgstr ""
+msgstr "タブの詳細を編集"
 
 #: ./dist/js/ui-components.js:1
 msgid "Entered text does not match required format."
-msgstr ""
+msgstr "入力されたテキストが必要な形式と一致しません。"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:65
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:50
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:61
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:62
 msgid "Entries"
-msgstr ""
+msgstr "エントリー"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:40
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html:32
@@ -180,23 +179,27 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:42
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:54
 msgid "Entry Point"
-msgstr ""
+msgstr "エントリーポイント"
+
+#: ./dist/js/ui-components.js:1
+msgid "Entry Point needs to be set for Dynamic elements"
+msgstr "エントリーポイントを動的要素に設定する必要があります。"
 
 #: ./src/dialog-editor/components/modal-field/field.html:11
 msgid "Field Information"
-msgstr ""
+msgstr "フィールド情報"
 
 #: ./dist/js/ui-components.js:1
 msgid "Fields are being refreshed"
-msgstr ""
+msgstr "フィールドがリフレッシュされています"
 
 #: ./src/dialog-editor/components/modal-field-template/fields-to-refresh.html:1
 msgid "Fields to refresh"
-msgstr ""
+msgstr "リフレッシュするフィールド"
 
 #: ./src/dialog-editor/components/modal-field/field.html:35
 msgid "Help"
-msgstr ""
+msgstr "ヘルプ"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:78
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html:74
@@ -205,49 +208,49 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:84
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:109
 msgid "Include domain prefix in the path:"
-msgstr ""
+msgstr "ドメインプレフィックスをパスに組み込む:"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:137
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:41
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:33
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:88
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:42
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:43
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:38
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:81
 msgid "Integer"
-msgstr ""
+msgstr "整数"
 
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:53
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:64
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:65
 msgid "Key"
-msgstr ""
+msgstr "キー"
 
 #: ./src/dialog-editor/components/modal-box/box.html:17
 #: ./src/dialog-editor/components/modal-field/field.html:26
 #: ./src/dialog-editor/components/modal-tab/tab.html:17
 msgid "Label"
-msgstr ""
+msgstr "ラベル"
 
 #: ./src/dialog-editor/components/modal-field-template/dynamic-values.html:8
 msgid "Load values on init"
-msgstr ""
+msgstr "Init で値をロード"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:141
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:58
 msgid "Multiselect"
-msgstr ""
+msgstr "複数選択"
 
 #: ./src/dialog-editor/components/modal-field/field.html:31
 msgid "Name"
-msgstr ""
+msgstr "名前"
 
 #: ./dist/js/ui-components.js:1
 msgid "New Section"
-msgstr ""
+msgstr "新規セクション"
 
 #: ./dist/js/ui-components.js:1
 msgid "New tab"
-msgstr ""
+msgstr "新しいタブ"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:103
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:16
@@ -285,7 +288,7 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:84
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:15
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:22
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:37
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:38
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:8
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:102
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:109
@@ -303,14 +306,14 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:34
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:70
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:77
-#: ./src/dialog-editor/components/modal-field/field.html:167
-#: ./src/dialog-editor/components/modal-field/field.html:47
+#: ./src/dialog-editor/components/modal-field/field.html:168
+#: ./src/dialog-editor/components/modal-field/field.html:48
 msgid "No"
-msgstr ""
+msgstr "いいえ"
 
 #: ./src/dialog-user/components/dialog-user/dialog.html:3
 msgid "No Provisioning Dialog Available."
-msgstr ""
+msgstr "利用可能なプロビジョニングダイアログがありません。"
 
 #: ./src/dialog-editor/components/field/field.html:49
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:197
@@ -320,36 +323,36 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:27
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:39
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:29
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:49
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:50
 msgid "None"
-msgstr ""
+msgstr "なし"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:26
 #: ./src/dialog-editor/components/modal-field-template/fields-to-refresh.html:6
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:25
 msgid "Nothing Selected"
-msgstr ""
+msgstr "何も選択されていません"
 
 #: ./dist/js/ui-components.js:1
 msgid "One"
-msgstr ""
+msgstr "1"
 
 #: ./src/dialog-editor/components/modal-field/field.html:14
 msgid "Options"
-msgstr ""
+msgstr "オプション"
 
 #: ./src/dialog-editor/components/modal-field/field.html:20
 msgid "Overridable Options"
-msgstr ""
+msgstr "オーバライド可能なオプション"
 
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:72
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:8
 msgid "Protected"
-msgstr ""
+msgstr "保護"
 
 #: ./dist/js/ui-components.js:1
 msgid "Radio Button"
-msgstr ""
+msgstr "ラジオボタン"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:18
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:91
@@ -365,15 +368,15 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:122
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:22
 msgid "Read only"
-msgstr ""
+msgstr "読み取り専用"
 
-#: ./src/dialog-editor/components/modal-field/field.html:162
+#: ./src/dialog-editor/components/modal-field/field.html:163
 msgid "Reconfigurable"
-msgstr ""
+msgstr "再設定可能"
 
-#: ./src/dialog-user/components/dialog-user/dialogField.html:183
-msgid "Refresh"
-msgstr ""
+#: ./src/dialog-user/components/dialog-user/dialogField.html:185
+msgid "Refresh field"
+msgstr "フィールドをリフレッシュ"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:11
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:51
@@ -387,108 +390,108 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:15
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:65
 msgid "Required"
-msgstr ""
+msgstr "必須"
 
 #: ./src/dialog-editor/components/modal-box/box.html:32
-#: ./src/dialog-editor/components/modal-field/field.html:175
+#: ./src/dialog-editor/components/modal-field/field.html:176
 #: ./src/dialog-editor/components/modal-tab/tab.html:32
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: ./src/dialog-editor/components/modal-box/box.html:11
 msgid "Section Information"
-msgstr ""
+msgstr "セクション情報"
 
 #: ./dist/js/ui-components.js:1
 msgid "Select a valid date"
-msgstr ""
+msgstr "有効な日付を選択してください"
 
 #: ./src/fonticon-picker/components/fonticon-picker/fonticon-modal.html:2
 msgid "Select an icon"
-msgstr ""
+msgstr "アイコンを選択"
 
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html:17
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html:47
 msgid "Show Past Dates"
-msgstr ""
+msgstr "過去の日付を表示"
 
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html:40
 #: ./src/dialog-editor/components/modal-field-template/dynamic-values.html:1
 msgid "Show Refresh Button"
-msgstr ""
+msgstr "リフレッシュボタンを表示"
 
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:32
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:33
 msgid "Single value"
-msgstr ""
+msgstr "単一値"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:195
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:45
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:139
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:37
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:46
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:47
 msgid "Sort by"
-msgstr ""
+msgstr "並び順"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:202
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:52
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:146
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:44
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:54
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:55
 msgid "Sort order"
-msgstr ""
+msgstr "並べ替え順序"
 
-#: ./src/dialog-editor/components/box/box.html:50
+#: ./src/dialog-editor/components/box/box.html:51
 msgid "Start with adding a section"
-msgstr ""
+msgstr "セクション追加を開始"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:138
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:42
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:34
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:89
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:43
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:44
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:39
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:82
 msgid "String"
-msgstr ""
+msgstr "文字列"
 
 #: ./src/dialog-editor/components/modal-tab/tab.html:11
 msgid "Tab Information"
-msgstr ""
+msgstr "タブ情報"
 
 #: ./dist/js/ui-components.js:1
 msgid "Tag Control"
-msgstr ""
+msgstr "タグのコントロール"
 
 #: ./dist/js/ui-components.js:1
 msgid "Text Area"
-msgstr ""
+msgstr "テキスト領域"
 
 #: ./dist/js/ui-components.js:1
 msgid "Text Box"
-msgstr ""
+msgstr "テキストボックス"
 
 #: ./dist/js/ui-components.js:1
 msgid "This field is required"
-msgstr ""
+msgstr "このフィールドは必須です"
 
 #: ./dist/js/ui-components.js:1
 msgid "Three"
-msgstr ""
+msgstr "3"
 
 #: ./dist/js/ui-components.js:1
 msgid "Timepicker"
-msgstr ""
+msgstr "Timepicker"
 
 #: ./dist/js/ui-components.js:1
 msgid "Two"
-msgstr ""
+msgstr "2"
 
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:30
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:60
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:42
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:85
 msgid "Validation"
-msgstr ""
+msgstr "検証"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:101
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:199
@@ -497,19 +500,19 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:143
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:41
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:55
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:51
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:52
 msgid "Value"
-msgstr ""
+msgstr "値"
 
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:135
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html:39
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:31
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:86
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:39
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:40
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:36
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:79
 msgid "Value type"
-msgstr ""
+msgstr "値のタイプ"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:25
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:98
@@ -525,7 +528,7 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:129
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:29
 msgid "Visible"
-msgstr ""
+msgstr "表示"
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:102
 #: ./src/dialog-editor/components/modal-field-template/check-box.html:15
@@ -563,7 +566,7 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html:83
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:14
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:21
-#: ./src/dialog-editor/components/modal-field-template/tag-control.html:36
+#: ./src/dialog-editor/components/modal-field-template/tag-control.html:37
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html:7
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:101
 #: ./src/dialog-editor/components/modal-field-template/text-area-box.html:108
@@ -581,8 +584,11 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:33
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:69
 #: ./src/dialog-editor/components/modal-field-template/text-box.html:76
-#: ./src/dialog-editor/components/modal-field/field.html:166
-#: ./src/dialog-editor/components/modal-field/field.html:46
+#: ./src/dialog-editor/components/modal-field/field.html:167
+#: ./src/dialog-editor/components/modal-field/field.html:47
 msgid "Yes"
-msgstr ""
+msgstr "はい"
 
+#: ./src/gtl/components/pagination/paging.html:22
+msgid "of {{pagingCtrl.settings.total}}"
+msgstr "{{pagingCtrl.settings.total}} の"

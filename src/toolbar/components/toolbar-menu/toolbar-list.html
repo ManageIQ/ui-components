@@ -1,6 +1,6 @@
 <div class="btn-group" ng-class="vm.dropdownClass" uib-dropdown ng-if="vm.isEmpty">
   <button type="button" uib-dropdown-toggle class="btn uib-dropdown-toggle btn-default"
-          ng-class="{disabled: !vm.toolbarList.enabled || !vm.isToolbarEnabled()}" title="{{vm.toolbarList.title}}">
+          ng-class="{disabled: !vm.isToolbarEnabled()}" title="{{vm.toolbarList.title}}">
     <i class="{{vm.toolbarList.icon}}"
        ng-if="vm.toolbarList.icon"
        ng-style="{color: vm.toolbarList.color}"></i>

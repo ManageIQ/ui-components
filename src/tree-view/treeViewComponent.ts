@@ -76,7 +76,9 @@ export class TreeViewController {
         onRendered:      () => this.$timeout(resolve)
       });
     }).then(() => {
+      // include the tree
       this.tree = this.element.treeview(true);
+      // expand path
 
       // Initial node selection right after rendering
       if (this.selected && this.tree.getSelected().length === 0) {
@@ -236,6 +238,7 @@ export class TreeViewController {
    * Finally the `headF` function is called on `head` after resolving all promises.
    * If anything goes wrong during the traversal the fallback function is called.
    */
+  // tu
   private static lazyTraverse(head : any,
                               headF : Function,
                               tail : Array<any>,

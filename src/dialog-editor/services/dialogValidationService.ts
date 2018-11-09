@@ -31,14 +31,21 @@ export default class DialogValidationService {
         field => ({ status: ! _.isEmpty(field.label),
                     errorMessage: __('Dialog field needs to have a label') }),
         field => ({ status: ! ((field.type === 'DialogFieldDropDownList' ||
-                              field.type === 'DialogFieldRadioButton')
-                             && (!field.dynamic && _.isEmpty(field.values))),
+                                field.type === 'DialogFieldRadioButton')
+                               && (!field.dynamic && _.isEmpty(field.values))),
                     errorMessage: __('Dropdown needs to have entries') }),
         field => ({ status: ! (field.type === 'DialogFieldTagControl'
                                && field.category_id === ''),
                     errorMessage: __('Category needs to be set for TagControl field') }),
         field => ({ status: ! (field.dynamic && _.isEmpty(field.resource_action.ae_class)),
                     errorMessage: __('Entry Point needs to be set for Dynamic elements') }),
+        field => ({ status: ! ((field.type === 'DialogFieldDropDownList' ||
+                                field.type === 'DialogFieldRadioButton')
+                               && (field.data_type === 'integer')
+                               && (!_.chain(field.values)
+                                   .map(dialog_entries => _.toNumber(dialog_entries[0]))
+                                   .every(value => !_.isNaN(value)).value())),
+                    errorMessage: __('Value type is set as Integer, but the value entered is not a number')}),
       ],
     };
   }

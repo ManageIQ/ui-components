@@ -38,7 +38,7 @@ export class DialogFieldController extends DialogFieldClass {
 
     if ((this.dialogField.type === 'DialogFieldDateTimeControl') ||
         (this.dialogField.type === 'DialogFieldDateControl')) {
-      this.allowPastDays();
+      this.setMinDate();
     }
 
     if (this.dialogField.type === 'DialogFieldDateTimeControl') {
@@ -107,9 +107,9 @@ export class DialogFieldController extends DialogFieldClass {
    * This method disables past days selection in the date control component
    * unless 'show_past_dates' is enabled
    * @memberof DialogFieldController
-   * @function allowPastDays
+   * @function setMinDate
    */
-  public allowPastDays() {
+  public setMinDate() {
     this.minDate = this.dialogField.options.show_past_dates ? null : new Date();
   }
 

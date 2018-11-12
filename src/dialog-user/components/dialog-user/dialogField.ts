@@ -15,6 +15,7 @@ export class DialogFieldController extends DialogFieldClass {
   public dialogValue: any;
   public dialogField: any;
   public validation: any;
+  public minDate: any;
   public clonedDialogField: any;
   /*@ngInject*/
   constructor(private DialogData: any, private $window: any) {
@@ -33,6 +34,11 @@ export class DialogFieldController extends DialogFieldClass {
     this.validation = null;
     if (this.dialogField.type === 'DialogFieldTagControl') {
       this.setDefaultValue();
+    }
+
+    if ((this.dialogField.type === 'DialogFieldDateTimeControl') ||
+        (this.dialogField.type === 'DialogFieldDateControl')) {
+      this.setMinDate();
     }
 
     if (this.dialogField.type === 'DialogFieldDateTimeControl') {
@@ -95,6 +101,16 @@ export class DialogFieldController extends DialogFieldClass {
 
     let fullDate = new Date(fullYear, month, date, hours, minutes);
     this.changesHappened([fullDate]);
+  }
+
+  /**
+   * This method disables past days selection in the date control component
+   * unless 'show_past_dates' is enabled
+   * @memberof DialogFieldController
+   * @function setMinDate
+   */
+  public setMinDate() {
+    this.minDate = this.dialogField.options.show_past_dates ? null : new Date();
   }
 
   /**

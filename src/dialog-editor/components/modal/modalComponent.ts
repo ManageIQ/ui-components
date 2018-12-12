@@ -236,8 +236,9 @@ class ModalController {
     if (ng.isDefined(this.categories)) {
       return _.find(
         this.categories.resources,
-        'id',
-        this.modalData.options.category_id
+        {
+          'id': this.modalData.options.category_id
+        }
       );
     }
   }

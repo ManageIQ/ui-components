@@ -122,14 +122,15 @@ export default class DialogEditorService {
    * @function anyDialogFields
    */
   private anyDialogFields() {
+    let ret = false;
     _.forEach(this.data.content[0].dialog_tabs, (tab: any) => {
       _.forEach(tab.dialog_groups, (group: any) => {
         if (!_.isEmpty(group.dialog_fields)) {
-          return true;
+          ret = true;
         }
       });
     });
-    return false;
+    return ret;
   }
 
   /**

@@ -4,7 +4,7 @@
   "description": "UI components for ManageIQ project",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --watch",
+    "start": "webpack --config webpack.vendor.config.js && webpack --watch",
     "test": "karma start",
     "prepublish": "webpack || true",
     "build": "webpack --config webpack.vendor.config.js && webpack -p",

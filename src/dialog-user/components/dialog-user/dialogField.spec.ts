@@ -111,6 +111,7 @@ describe('Dialog field test', () => {
       'type': 'DialogFieldDateTimeControl',
       'dateField': testDate,
       'timeField': testDate,
+      'options': {},
     };
 
     it('calls onUpdate with the correct full date', () => {

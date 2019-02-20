@@ -32,9 +32,6 @@ export class DialogFieldController extends DialogFieldClass {
     this.clonedDialogField = _.cloneDeep(this.field);
     this.dialogField = this.field;
     this.validation = null;
-    if (this.dialogField.type === 'DialogFieldTagControl') {
-      this.setDefaultValue();
-    }
 
     if ((this.dialogField.type === 'DialogFieldDateTimeControl') ||
         (this.dialogField.type === 'DialogFieldDateControl')) {
@@ -114,16 +111,6 @@ export class DialogFieldController extends DialogFieldClass {
   }
 
   /**
-   * This will convert the values stored in dialogField.default_value to an array
-   * for use with a multiple-select field because by default it comes in as a string
-   * @memberof DialogFieldController
-   * @function convertValuesToArray
-   */
-  public convertValuesToArray() {
-    this.dialogField.default_value = angular.fromJson(this.dialogField.default_value);
-  }
-
-  /**
    * This method validates a dialog field to ensure its current values are valid
    * @memberof DialogFieldController
    * @function validateField
@@ -140,25 +127,9 @@ export class DialogFieldController extends DialogFieldClass {
   public refreshSingleField() {
     this.singleRefresh({ field: this.field.name });
   }
-
-  /**
-   * This method is setting the default_value for a tag control's select box.
-   * In case the default_value is not set for the ng-model of the component,
-   * an empty value option is displayed
-   * @memberof DialogFieldController
-   * @function setDefaultValue
-   */
-  private setDefaultValue() {
-    let defaultOption = _.find(this.dialogField.values, { id: null });
-    if (defaultOption) {
-      defaultOption.id = 0;
-      this.dialogField.default_value = defaultOption.id;
-    }
-  }
 }
 
 export default class DialogField {
-
   public replace: boolean = true;
   public template = require('./dialogField.html');
   public controller: any = DialogFieldController;

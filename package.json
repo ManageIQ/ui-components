@@ -4,12 +4,12 @@
   "description": "UI components for ManageIQ project",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --config webpack.vendor.config.js && webpack --watch",
-    "test": "webpack --config webpack.vendor.config.js && karma start",
+    "start": "yarn run install-vendor && webpack --watch",
+    "test": "yarn run install-vendor && karma start",
     "prepublish": "webpack || true",
-    "build": "webpack --config webpack.vendor.config.js && webpack -p",
-    "build-dev": "webpack --config webpack.vendor.config.js && webpack",
-    "gettext:extract": "yarn run build && angular-gettext-cli --files './+(src|dist)/**/+(*.html|ui-components.js)' --dest './locale/ui-components.pot' --marker-names '__,N_' && yarn gettext:validate",
+    "build": "yarn run install-vendor && webpack -p",
+    "build-dev": "yarn run install-vendor && webpack",
+    "gettext:extract": "yarn run build && angular-gettext-cli --files './+(src|dist)/**/+(*.html|ui-components.js)' --dest './locale/ui-components.pot' --marker-names '__,N_' && yarn run gettext:validate",
     "gettext:validate": "node scripts/validate-gettext-catalog.js",
     "install-vendor": "webpack --config webpack.vendor.config.js",
     "build-docs": "jsdoc -c jsdoc-conf.json"

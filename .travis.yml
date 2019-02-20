@@ -15,7 +15,7 @@ cache:
 before_install:
   - 'yarn global add typings webpack karma@3.1.1 typescript'
 
-script: ./scripts/.build.sh
+script: ./scripts/travis.sh
 
 after_success: ./scripts/.coverage.sh
 

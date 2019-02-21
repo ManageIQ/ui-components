@@ -158,11 +158,13 @@ export default class DialogEditorService {
           field[attr] = false;
         }
       });
-      optionalAttributes.forEach(function(attr) {
-        if (field['options'][attr] == null) {
-          field['options'][attr] = false;
-        }
-      });
+      if (field['options']) {
+        optionalAttributes.forEach(function(attr) {
+          if (field['options'][attr] == null) {
+            field['options'][attr] = false;
+          }
+        });
+      }
     });
   }
 }

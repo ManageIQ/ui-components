@@ -121,7 +121,7 @@
       </dialog-editor-modal-field-template>
     </div>
 
-    <dialog-editor-tree-selector ng-show="vm.treeSelectorShow"
+    <dialog-editor-tree-selector ng-if="vm.treeSelectorShow"
                                  data="vm.treeSelectorData"
                                  include-domain="vm.treeSelectorIncludeDomain"
                                  lazy-load="vm.lazyLoad(node)"

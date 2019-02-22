@@ -120,31 +120,14 @@
                                           modal-data="vm.modalData">
       </dialog-editor-modal-field-template>
     </div>
-    <div ng-show="vm.treeSelectorShow">
-      <div class="pull-right">
-        <button type="button" class="close" ng-click="vm.treeSelectorToggle()" aria-hidden="true">
-          <span class="pficon pficon-close"></span>
-        </button>
-      </div>
-      <miq-tree-selector
-        name="tree-selector"
-        data="vm.treeSelectorData"
-        selectable="{key: '^aei-'}"
-        on-select="vm.onSelect(node, vm.modalData)"
-        lazy-load="vm.lazyLoad(node)"
-        >
-      </miq-tree-selector>
-      <div class="col-sm-4">
-        <div class="form-group pull-right">
-          <label class="control-label" translate>Include domain prefix in the path:</label>
-          <input bs-switch
-                 type="checkbox"
-                 ng-model="vm.treeSelectorIncludeDomain"
-                 switch-on-text="{{'Yes'|translate}}"
-                 switch-off-text="{{'No'|translate}}"/>
-        </div>
-      </div>
-    </div>
+
+    <dialog-editor-tree-selector ng-show="vm.treeSelectorShow"
+                                 data="vm.treeSelectorData"
+                                 include-domain="vm.treeSelectorIncludeDomain"
+                                 lazy-load="vm.lazyLoad(node)"
+                                 on-select="vm.onSelect(node, vm.modalData)"
+                                 toggle="vm.treeSelectorToggle()">
+    </dialog-editor-tree-selector>
   </form>
 </div>
 <div ng-if="vm.modalTabIsSet('overridable') && vm.modalData.dynamic">

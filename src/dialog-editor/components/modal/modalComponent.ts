@@ -251,10 +251,13 @@ class ModalController {
    */
   public updateDialogFieldResponders(changedFieldName) {
     this.DialogEditor.forEachDialogField((field) => {
-      if (field.dialog_field_responders.includes(changedFieldName)) {
-        let index = field.dialog_field_responders.indexOf(changedFieldName);
-        field.dialog_field_responders.splice(index, 1);
+      if (!field.dialog_field_responders ||
+          !field.dialog_field_responders.includes(changedFieldName)) {
+        return;
       }
+
+      let index = field.dialog_field_responders.indexOf(changedFieldName);
+      field.dialog_field_responders.splice(index, 1);
     });
   }
 

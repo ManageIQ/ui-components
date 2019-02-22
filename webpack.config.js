@@ -136,5 +136,8 @@ module.exports = (env) => {
       'numeral': 'numeral',
       '__': '__',
     },
+    watchOptions: {
+      ignored: ['**/.*.sw[po]'],
+    },
   };
 };

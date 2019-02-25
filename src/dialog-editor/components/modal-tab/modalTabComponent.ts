@@ -1,4 +1,4 @@
-import AbstractModal from '../abstractModal';
+import { AbstractModal } from '../abstractModal';
 
 /**
  * @memberof miqStaticAssets

@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 
-class ModalController {
+export class ModalController {
   private uibModalInstance: any;
   private saveModal: any;
 
@@ -16,7 +16,7 @@ class ModalController {
   }
 }
 
-export default class AbstractModal {
+export class AbstractModal {
   public controller = ModalController;
   public controllerAs: string = 'vm';
   public bindings: any = {

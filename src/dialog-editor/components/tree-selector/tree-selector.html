@@ -4,14 +4,16 @@
   </button>
 </div>
 
-<miq-tree-selector
-  name="tree-selector"
-  data="$ctrl.treeOptions.data"
-  selectable="{key: '^aei-'}"
-  on-select="$ctrl.treeOptions.onSelect(node, $ctrl.modalData)"
-  lazy-load="$ctrl.treeOptions.lazyLoad(node)"
-  >
-</miq-tree-selector>
+<div ng-if="!$ctrl.treeOptions.data" class="spinner spinner-lg"></div>
+<div ng-if="$ctrl.treeOptions.data">
+  <miq-tree-selector
+    name="tree-selector"
+    data="$ctrl.treeOptions.data"
+    selectable="{key: '^aei-'}"
+    on-select="$ctrl.treeOptions.onSelect(node, $ctrl.modalData)"
+    lazy-load="$ctrl.treeOptions.lazyLoad(node)"
+  ></miq-tree-selector>
+</div>
 
 <div class="col-sm-4">
   <div class="form-group pull-right">

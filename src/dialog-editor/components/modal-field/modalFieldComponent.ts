@@ -28,6 +28,12 @@ class ModalFieldController extends ModalController {
 
       toggle: () => {
         this.treeOptions.show = ! this.treeOptions.show;
+
+        if (this.treeOptions.show) {
+          this.treeOptions.load().then((data) => {
+            this.treeOptions.data = data;
+          });
+        }
       },
 
       onSelect: (node, modalData) => {

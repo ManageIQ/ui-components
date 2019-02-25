@@ -3,8 +3,6 @@ import * as ng from 'angular';
 export class DialogEditorController {
   public modalOptions: any;
   public elementInfo: any;
-  public treeSelectorShow: boolean = false;
-  public treeSelectorIncludeDomain: boolean = false;
   public treeOptions: any;
 
   public setupModalOptions(type, tab, box, field) {
@@ -18,24 +16,6 @@ export class DialogEditorController {
       size: 'lg',
     };
     this.elementInfo = { type: type, tabId: tab, boxId: box, fieldId: field };
-  }
-
-  public treeSelectorToggle() {
-    this.treeSelectorShow = ! this.treeSelectorShow;
-  }
-
-  public treeSelectorSelect(node, elementData) {
-    const fqname = node.fqname.split('/');
-    if (this.treeSelectorIncludeDomain === false) {
-      fqname.splice(1, 1);
-    }
-    elementData.resource_action = {
-      ...elementData.resource_action,
-      ae_instance: fqname.pop(),
-      ae_class: fqname.pop(),
-      ae_namespace: fqname.filter(String).join('/')
-    };
-    this.treeSelectorShow = false;
   }
 
   public showFullyQualifiedName(resourceAction) {

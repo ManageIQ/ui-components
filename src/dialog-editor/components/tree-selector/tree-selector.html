@@ -1,15 +1,15 @@
 <div class="pull-right">
-  <button type="button" class="close" ng-click="$ctrl.toggle()" aria-hidden="true">
+  <button type="button" class="close" ng-click="$ctrl.treeOptions.toggle()" aria-hidden="true">
     <span class="pficon pficon-close"></span>
   </button>
 </div>
 
 <miq-tree-selector
   name="tree-selector"
-  data="$ctrl.data"
+  data="$ctrl.treeOptions.data"
   selectable="{key: '^aei-'}"
-  on-select="$ctrl.onSelect({node: node})"
-  lazy-load="$ctrl.lazyLoad({node: node})"
+  on-select="$ctrl.treeOptions.onSelect(node, $ctrl.modalData)"
+  lazy-load="$ctrl.treeOptions.lazyLoad(node)"
   >
 </miq-tree-selector>
 
@@ -18,7 +18,7 @@
     <label class="control-label" translate>Include domain prefix in the path:</label>
     <input bs-switch
            type="checkbox"
-           ng-model="$ctrl.includeDomain"
+           ng-model="$ctrl.treeOptions.includeDomain"
            switch-on-text="{{'Yes'|translate}}"
            switch-off-text="{{'No'|translate}}"/>
   </div>

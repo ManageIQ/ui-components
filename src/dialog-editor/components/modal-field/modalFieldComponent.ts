@@ -12,4 +12,44 @@ import { AbstractModal, ModalController } from '../abstractModal';
  */
 export default class ModalField extends AbstractModal {
   public template = require('./field.html');
+  public controller = ModalFieldController;
+}
+
+class ModalFieldController extends ModalController {
+  public treeOptions: any;
+
+  public $onInit() {
+    this.treeOptions = {
+      ...this.treeOptions,
+
+      show: false,
+      includeDomain: false,
+      data: null,
+
+      toggle: () => {
+        this.treeOptions.show = ! this.treeOptions.show;
+      },
+
+      onSelect: (node, modalData) => {
+        this.treeSelectorSelect(node, modalData);
+      }
+    };
+  }
+
+  public treeSelectorSelect(node, elementData) {
+    const fqname = node.fqname.split('/');
+
+    if (this.treeOptions.includeDomain === false) {
+      fqname.splice(1, 1);
+    }
+
+    elementData.resource_action = {
+      ...elementData.resource_action,
+      ae_instance: fqname.pop(),
+      ae_class: fqname.pop(),
+      ae_namespace: fqname.filter(String).join('/'),
+    };
+
+    this.treeOptions.show = false;
+  }
 }

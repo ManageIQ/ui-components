@@ -34,12 +34,7 @@ export default class AbstractModal {
     modalTab: '=',
     saveModal: '<',
     uibModalInstance: '<',
-    lazyLoad: '<',
-    onSelect: '<',
     showFullyQualifiedName: '<',
-    treeSelectorData: '=',
-    treeSelectorToggle: '<',
-    treeSelectorShow: '=',
-    treeSelectorIncludeDomain: '=',
+    treeOptions: '<',
   };
 }

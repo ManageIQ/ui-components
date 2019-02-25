@@ -5,6 +5,7 @@ export class DialogEditorController {
   public elementInfo: any;
   public treeSelectorShow: boolean = false;
   public treeSelectorIncludeDomain: boolean = false;
+  public treeOptions: any;
 
   public setupModalOptions(type, tab, box, field) {
     const components = {
@@ -61,7 +62,6 @@ export default class DialogEditor implements ng.IComponentOptions {
   public controller = DialogEditorController;
   public template = require('./dialog-editor.html');
   public bindings = {
-    treeSelectorData: '<',
-    treeSelectorLazyLoad: '<'
+    treeOptions: '<',
   };
 }

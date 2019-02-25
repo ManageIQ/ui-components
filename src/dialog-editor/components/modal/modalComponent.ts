@@ -319,7 +319,6 @@ class ModalController {
       modal-tab="modalCtrl.parent.modalTab"
       save-modal="modalCtrl.parent.saveDialogFieldDetails"
       uib-modal-instance="modalCtrl.parent.uibModalInstance"
-      show-fully-qualified-name="modalCtrl.parent.showFullyQualifiedName"
       tree-options="modalCtrl.parent.treeOptions"
       update-dialog-field-responders="modalCtrl.parent.updateDialogFieldResponders"
       setup-category-options="modalCtrl.parent.setupCategoryOptions"
@@ -343,7 +342,6 @@ export default class Modal {
   public transclude = true;
   public controller: any = ModalController;
   public bindings: any = {
-    showFullyQualifiedName: '<',
     modalOptions: '<',
     elementInfo: '<',
     treeOptions: '<',

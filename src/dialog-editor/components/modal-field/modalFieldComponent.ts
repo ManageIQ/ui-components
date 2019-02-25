@@ -42,6 +42,14 @@ class ModalFieldController extends ModalController {
     };
   }
 
+  public showFullyQualifiedName(resourceAction) {
+    if (resourceAction.ae_namespace && resourceAction.ae_class && resourceAction.ae_instance) {
+      return `${resourceAction.ae_namespace}/${resourceAction.ae_class}/${resourceAction.ae_instance}`;
+    } else {
+      return '';
+    }
+  }
+
   public treeSelectorSelect(node, elementData) {
     const fqname = node.fqname.split('/');
 

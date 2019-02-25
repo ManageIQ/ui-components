@@ -34,7 +34,6 @@ export class AbstractModal {
     modalTab: '=',
     saveModal: '<',
     uibModalInstance: '<',
-    showFullyQualifiedName: '<',
     treeOptions: '<',
   };
 }

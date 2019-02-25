@@ -17,6 +17,7 @@ export default class ModalField extends AbstractModal {
 
 class ModalFieldController extends ModalController {
   public treeOptions: any;
+  public modalData: any;
 
   public $onInit() {
     this.treeOptions = {
@@ -36,8 +37,8 @@ class ModalFieldController extends ModalController {
         }
       },
 
-      onSelect: (node, modalData) => {
-        this.treeSelectorSelect(node, modalData);
+      onSelect: (node) => {
+        this.treeSelectorSelect(node, this.modalData);
       }
     };
   }

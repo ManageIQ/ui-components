@@ -8,6 +8,7 @@ import modalBox from './modal-box';
 import modalField from './modal-field';
 import modalFieldTemplate from './modal-field-template';
 import dialogEditor from './dialog-editor';
+import treeSelector from './tree-selector';
 
 export default (module: ng.IModule) => {
   tabList(module);
@@ -20,4 +21,5 @@ export default (module: ng.IModule) => {
   modalField(module);
   modalFieldTemplate(module);
   dialogEditor(module);
+  treeSelector(module);
 };

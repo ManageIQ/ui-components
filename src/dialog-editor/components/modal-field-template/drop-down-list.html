@@ -113,12 +113,12 @@
 </div>
 <div ng-if="vm.modalTabIsSet('options') && vm.modalData.dynamic">
   <form class="form-horizontal">
-    <div ng-show="!vm.treeSelectorShow">
+    <div ng-show="!vm.treeOptions.show">
       <div pf-form-group pf-label="{{'Entry Point'|translate}}">
         <div class="input-group">
           <input type="text" class="form-control" ng-value="vm.showFullyQualifiedName(vm.modalData.resource_action)" disabled>
           <span class="input-group-btn">
-            <button class="btn btn-default" ng-click="vm.treeSelectorToggle();"><i class="ff ff-load-balancer"></i></button>
+            <button class="btn btn-default" ng-click="vm.treeOptions.toggle();"><i class="ff ff-load-balancer"></i></button>
           </span>
         </div>
       </div>
@@ -149,31 +149,10 @@
                                           modal-data="vm.modalData">
       </dialog-editor-modal-field-template>
     </div>
-    <div ng-show="vm.treeSelectorShow">
-      <div class="pull-right">
-        <button type="button" class="close" ng-click="vm.treeSelectorToggle()" aria-hidden="true">
-          <span class="pficon pficon-close"></span>
-        </button>
-      </div>
-      <miq-tree-selector
-        name="tree-selector"
-        data="vm.treeSelectorData"
-        selectable="{key: '^aei-'}"
-        on-select="vm.onSelect(node, vm.modalData)"
-        lazy-load="vm.lazyLoad(node)"
-        >
-      </miq-tree-selector>
-      <div class="col-sm-4">
-        <div class="form-group pull-right">
-          <label class="control-label" translate>Include domain prefix in the path:</label>
-          <input bs-switch
-                 type="checkbox"
-                 ng-model="vm.treeSelectorIncludeDomain"
-                 switch-on-text="{{'Yes'|translate}}"
-                 switch-off-text="{{'No'|translate}}"/>
-        </div>
-      </div>
-    </div>
+
+    <dialog-editor-tree-selector ng-if="vm.treeOptions.show"
+                                 tree-options="vm.treeOptions">
+    </dialog-editor-tree-selector>
   </form>
 </div>
 <div ng-if="vm.modalTabIsSet('overridable') && vm.modalData.dynamic">

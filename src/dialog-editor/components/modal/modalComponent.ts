@@ -251,10 +251,13 @@ class ModalController {
    */
   public updateDialogFieldResponders(changedFieldName) {
     this.DialogEditor.forEachDialogField((field) => {
-      if (field.dialog_field_responders.includes(changedFieldName)) {
-        let index = field.dialog_field_responders.indexOf(changedFieldName);
-        field.dialog_field_responders.splice(index, 1);
+      if (!field.dialog_field_responders ||
+          !field.dialog_field_responders.includes(changedFieldName)) {
+        return;
       }
+
+      let index = field.dialog_field_responders.indexOf(changedFieldName);
+      field.dialog_field_responders.splice(index, 1);
     });
   }
 
@@ -316,13 +319,7 @@ class ModalController {
       modal-tab="modalCtrl.parent.modalTab"
       save-modal="modalCtrl.parent.saveDialogFieldDetails"
       uib-modal-instance="modalCtrl.parent.uibModalInstance"
-      lazy-load="modalCtrl.parent.lazyLoad"
-      show-fully-qualified-name="modalCtrl.parent.showFullyQualifiedName"
-      tree-selector-data="modalCtrl.parent.treeSelectorData"
-      tree-selector-toggle="modalCtrl.parent.treeSelectorToggle"
-      tree-selector-show="modalCtrl.parent.treeSelectorShow"
-      tree-selector-include-domain="modalCtrl.parent.treeSelectorIncludeDomain"
-      on-select="modalCtrl.parent.onSelect"
+      tree-options="modalCtrl.parent.treeOptions"
       update-dialog-field-responders="modalCtrl.parent.updateDialogFieldResponders"
       setup-category-options="modalCtrl.parent.setupCategoryOptions"
       ></${component}>`;
@@ -345,14 +342,8 @@ export default class Modal {
   public transclude = true;
   public controller: any = ModalController;
   public bindings: any = {
-    lazyLoad: '<',
-    showFullyQualifiedName: '<',
-    onSelect: '<',
-    treeSelectorData: '<',
-    treeSelectorToggle: '<',
-    treeSelectorShow: '<',
-    treeSelectorIncludeDomain: '=',
     modalOptions: '<',
-    elementInfo: '<'
+    elementInfo: '<',
+    treeOptions: '<',
   };
 }

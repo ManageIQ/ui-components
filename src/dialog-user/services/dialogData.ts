@@ -90,26 +90,31 @@ export default class DialogDataService {
     let defaultValue: any = '';
     const firstOption = 0; // these are meant to help make code more readable
     const fieldValue = 0;
+
     if (_.isObject(data.values)) {
-      if (angular.isDefined(data.default_value) && data.default_value !== null) {
-        defaultValue = data.default_value;
-      } else {
-        defaultValue = data.values[firstOption][fieldValue];
-      }
-    } else {
-      if (data.type === 'DialogFieldDateControl' || data.type === 'DialogFieldDateTimeControl') {
-        if (data.values === undefined) {
-          defaultValue = new Date();
-        } else {
-          defaultValue = new Date(data.values);
-        }
-      } else {
-        defaultValue = data.values;
-      }
+      defaultValue = data.values[firstOption][fieldValue];
+    }
+
+    if (data.type === 'DialogFieldDateControl' || data.type === 'DialogFieldDateTimeControl') {
+      defaultValue = data.values ? new Date(data.values) : new Date();
     }
 
     if (data.default_value) {
       defaultValue = data.default_value;
+    }
+
+    if (data.type === 'DialogFieldDropDownList' && data.options.force_multi_value && data.default_value) {
+      defaultValue = JSON.parse(data.default_value);
+    }
+
+    if (data.type === 'DialogFieldTagControl') {
+      // setting the default_value for a tag control's select box
+      // In case the default_value is not set for the ng-model of the component, an empty value option is displayed
+      let defaultOption = _.find(data.values, { id: null });
+      if (defaultOption) {
+        defaultOption.id = 0;
+        defaultValue = defaultOption.id;
+      }
     }
 
     if (this.checkboxNeedsNewDefaultValue(data)) {

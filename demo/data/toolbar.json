@@ -127,6 +127,38 @@
       "enabled": true,
       "title": "Power",
       "text": "Power"
+    },
+    {
+      "id": "sep_2",
+      "type": "separator"
+    },
+    {
+      "id": "kebab_example",
+      "type": "kebab",
+      "items": [
+        {
+          "child_id": "middleware_server_reload",
+          "id": "middleware_server_power_choice__middleware_server_reload",
+          "type": "button",
+          "img": "middleware_server_reload.png",
+          "imgdis": "middleware_server_reload.png",
+          "icon": "pficon pficon-restart fa-lg",
+          "name": "middleware_server_power_choice__middleware_server_reload",
+          "hidden": false,
+          "pressed": null,
+          "onwhen": "1+",
+          "data": null,
+          "enabled": true,
+          "title": "Reload these Middleware Servers",
+          "text": "Reload Server",
+          "confirm": "Do you want to reload selected servers?",
+          "url_parms": "main_div"
+        }
+      ]
+    },
+    {
+      "id": "sep_2",
+      "type": "separator"
     }
   ],
   [

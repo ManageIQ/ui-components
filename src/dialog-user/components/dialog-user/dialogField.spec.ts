@@ -33,12 +33,13 @@ const dialogField = {
 
 describe('Dialog field test', () => {
   let bindings;
+
   describe('controller', () => {
     let dialogCtrl;
 
     beforeEach(() => {
       bindings = {
-        field: dialogField,
+        field: {...dialogField},
         onUpdate: () => true,
         inputDisabled: false
       };
@@ -68,24 +69,33 @@ describe('Dialog field test', () => {
     });
 
     it('should check and update a field when the parent component field has changed', () => {
-      let testDialogUpdate = dialogField;
-      testDialogUpdate.default_value = 'Testing';
-      dialogCtrl.field = testDialogUpdate;
+      dialogCtrl.field.default_value = 'Testing';
       dialogCtrl.$doCheck();
       expect(dialogCtrl.clonedDialogField.default_value).toBe('Testing');
     });
 
-    describe('#convertValuesToArray', () => {
-      it('converts a string of default values to an array', () => {
-        dialogCtrl.dialogField.default_value = '["one", "two"]';
-        dialogCtrl.convertValuesToArray();
-        expect(dialogCtrl.dialogField.default_value).toEqual(['one', 'two']);
-      });
+    it('converts a string of default values to an array', () => {
+      dialogCtrl.field = {
+        ...dialogField,
+        type: 'DialogFieldDropDownList',
+        default_value: '["one", "two"]',
+        values: [
+          ['val', 'label'],
+        ],
+        options: {
+          ...dialogField.options,
+          force_multi_value: true,
+        },
+      };
+      dialogCtrl.$doCheck();
+      expect(dialogCtrl.dialogField.default_value).toEqual(['one', 'two']);
     });
   });
+
   describe('updates should be reported up to function that is passed into component', () => {
     let bindings;
     let dialogCtrl;
+
     it('should report back information when a field gets updated', () => {
       bindings = {
         field: dialogField,

@@ -10,6 +10,8 @@ const CUSTOM_ID = 'custom_';
  * @name ToolbarController
  * @param $window {ng.IWindowService} window service for redirecting to non angular pages.
  * @param $location {ng.ILocationService} location service to handle redirect to different angular pages.
+ * @param $timeout {ng.ITimeoutService} timeout service.
+ * @param $element {ng.IRootElementService} access to the element.
  * @param $sce {ng.ISCEService} service for enabling html strings to be html objects injected to page as html and not as
  * string.
  */
@@ -20,6 +22,8 @@ export class ToolbarController {
   /*@ngInject*/
   constructor(private $window: ng.IWindowService,
               private $location: ng.ILocationService,
+              private $timeout: ng.ITimeoutService,
+              private $element: ng.IRootElementService,
               private $sce: ng.ISCEService) {
   }
 
@@ -126,7 +130,7 @@ export class ToolbarController {
     return ToolbarType.BUTTON_TWO_STATE;
   }
 
-  public collapseButtons() {
+  public collapseButton() {
     if (! this.toolbarItems) {
       return;
     }
@@ -139,13 +143,44 @@ export class ToolbarController {
       return;
     }
 
-    this.toolbarItems[buttonsIndex] = ToolbarController.createKebabFromItems(this.toolbarItems[buttonsIndex]);
+    let kebabIndex = buttonsIndex + 1;
+    // Check if the kebab already exists or create it
+    if (this.toolbarItems.length < kebabIndex ||
+        !this.toolbarItems[kebabIndex][0] ||
+        this.toolbarItems[kebabIndex][0].type !== ToolbarType.KEBAB) {
+      this.toolbarItems.splice(kebabIndex, 0, [{type: ToolbarType.KEBAB, items: []}]);
+    }
+
+    // Move the last element from the custom buttons to the kebab
+    let item = this.toolbarItems[buttonsIndex].pop();
+    if (item) { // if the array was empty, pop returns undefined that we don't want to push
+      this.toolbarItems[kebabIndex][0].items.push(item);
+    }
   }
 
   private $onChanges(changesObj) {
     if (changesObj.toolbarItems) {
-      this.collapseButtons();
+      this.$timeout(function() {
+        // If the toolbar has 2 lines of buttons, start moving custom buttons to a kebab
+        if (this.toolbarTooHigh()) {
+          this.collapseButton();
+        }
+      }.bind(this));
+
     }
+  }
+
+  /**
+   * Private static function to determine if the toolbar is too high
+   * @memberof ToolbarController
+   * @function toolbarTooHigh
+   * @returns {boolean}
+   */
+  private toolbarTooHigh() {
+    let container = this.$element.children()[0];
+    let firstButton = container.querySelector('.miq-toolbar-group');
+
+    return container.clientHeight > firstButton.clientHeight * 2;
   }
 
   /**
@@ -218,16 +253,6 @@ export class ToolbarController {
    */
   private static isButton(item): boolean {
     return item.type === ToolbarType.BUTTON;
-  }
-
-  private static createKebabFromItems(itemsGroup: any[]) {
-    if (itemsGroup.length > 3) {
-      return itemsGroup.reduce((acc, curr) => {
-        curr.id.includes(CUSTOM_ID) ? acc[0].items.push(curr) : acc.push(curr);
-        return acc;
-      }, [{type: ToolbarType.KEBAB, items: []}]);
-    }
-    return itemsGroup;
   }
 }
 

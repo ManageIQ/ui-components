@@ -2,7 +2,7 @@
   <button uib-dropdown-toggle class="btn btn-link" type="button">
     <span class="fa fa-ellipsis-v"></span>
   </button>
-  <ul uib-dropdown-menu aria-labelledby="dropdownKebab">
+  <ul uib-dropdown-menu aria-labelledby="dropdownKebab" class="dropdown-menu-right">
     <li ng-repeat="kebabItem in vm.kebabItem.items"
         role="{{kebabItem.isSeparator ? 'separator' : 'menuitem'}}"
         ng-class="{

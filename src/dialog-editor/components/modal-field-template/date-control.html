@@ -1,20 +1,10 @@
 <div ng-if="vm.modalTabIsSet('options') && !vm.modalData.dynamic">
   <form class="form-horizontal">
-    <div pf-form-group pf-label="{{'Required'|translate}}">
-      <input bs-switch
-             ng-model="vm.modalData.required"
-             type="checkbox"
-             switch-on-text="{{'Yes'|translate}}"
-             switch-off-text="{{'No'|translate}}">
-    </div>
     <div pf-form-group pf-label="{{'Default value'|translate}}">
       <div class="dateTimePadding">
         <input ng-model="vm.modalData.default_value"
                pf-datepicker
                date="vm.modalData.default_value">
-      </div>
-      <div >
-        <uib-timepicker ng-model="vm.modalData.default_value"></uib-timepicker>
       </div>
     </div>
     <div pf-form-group pf-label="{{'Read only'|translate}}">
@@ -71,14 +61,6 @@
       <dialog-editor-modal-field-template template="fields-to-refresh.html"
                                           modal-data="vm.modalData">
       </dialog-editor-modal-field-template>
-    </div>
-
-    <div pf-form-group pf-label="{{'Required'|translate}}">
-      <input bs-switch
-             ng-model="vm.modalData.required"
-             type="checkbox"
-             switch-on-text="{{'Yes'|translate}}"
-             switch-off-text="{{'No'|translate}}">
     </div>
 
     <dialog-editor-tree-selector ng-if="vm.treeOptions.show"

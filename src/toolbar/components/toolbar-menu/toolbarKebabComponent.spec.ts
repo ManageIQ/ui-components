@@ -57,7 +57,10 @@ describe('Kebab test', () =>  {
       scope.onItemClick = onItemClick;
       compiledElement = compile(
         angular.element(
-          `<miq-toolbar-kebab kebab-item="kebabItem" on-item-click="onItemClick({item: item, $event: $event})"></miq-toolbar-kebab>`
+          `<miq-toolbar-kebab
+            kebab-item="kebabItem"
+            on-item-click="onItemClick({item: item, $event: $event})">
+           </miq-toolbar-kebab>`
         ))(scope);
       scope.$digest();
     });

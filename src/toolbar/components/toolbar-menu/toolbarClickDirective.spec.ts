@@ -37,7 +37,10 @@ describe('Action click test', () =>  {
       scope.onItemClick = onItemClick;
       compiledElement = compile(
         angular.element(
-          `<miq-toolbar-click item="item" on-item-click="onItemClick({item: item, $event: $event})"></miq-toolbar-click>`
+          `<miq-toolbar-click
+            item="item"
+            on-item-click="onItemClick({item: item, $event: $event})">
+           </miq-toolbar-click>`
         ))(scope);
       scope.$digest();
     });

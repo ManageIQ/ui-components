@@ -56,9 +56,11 @@ describe('DialogEditor test', () => {
                 show_refresh_button: null,
                 load_values_on_init: null,
                 reconfigurable: null,
-                show_past_days: null,
-                protected: null,
-                force_multi_value: null,
+                options: {
+                  show_past_days: null,
+                  protected: null,
+                  force_multi_value: null,
+                },
               }]
             }]
           }]
@@ -75,9 +77,11 @@ describe('DialogEditor test', () => {
           show_refresh_button: false,
           load_values_on_init: false,
           reconfigurable: false,
-          show_past_days: false,
-          protected: false,
-          force_multi_value: false,
+          options: {
+              show_past_days: false,
+              protected: false,
+              force_multi_value: false,
+          },
         };
         expect(fieldValues).toEqual(falseValues);
       });

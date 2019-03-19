@@ -44,6 +44,49 @@ describe('DialogEditor test', () => {
       });
     });
 
+    describe('when the values on a field are null', () => {
+      let dialogData = {
+        content: [{
+          dialog_tabs: [{
+            dialog_groups: [{
+              dialog_fields: [{
+                required: null,
+                visible: null,
+                read_only: null,
+                show_refresh_button: null,
+                load_values_on_init: null,
+                reconfigurable: null,
+                options: {
+                  show_past_days: null,
+                  protected: null,
+                  force_multi_value: null,
+                },
+              }]
+            }]
+          }]
+        }]
+      };
+
+      it('sets all fields with null value  to false', () => {
+        dialogEditor.setData(dialogData);
+        let fieldValues = dialogEditor.data.content[0].dialog_tabs[0].dialog_groups[0].dialog_fields[0];
+        let falseValues = {
+          required: false,
+          visible: false,
+          read_only: false,
+          show_refresh_button: false,
+          load_values_on_init: false,
+          reconfigurable: false,
+          options: {
+              show_past_days: false,
+              protected: false,
+              force_multi_value: false,
+          },
+        };
+        expect(fieldValues).toEqual(falseValues);
+      });
+    });
+
     describe('when the values on a field are an object', () => {
       let dialogData = {
         content: [{

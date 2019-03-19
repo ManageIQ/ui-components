@@ -122,14 +122,15 @@ export default class DialogEditorService {
    * @function anyDialogFields
    */
   private anyDialogFields() {
+    let ret = false;
     _.forEach(this.data.content[0].dialog_tabs, (tab: any) => {
       _.forEach(tab.dialog_groups, (group: any) => {
         if (!_.isEmpty(group.dialog_fields)) {
-          return true;
+          ret = true;
         }
       });
     });
-    return false;
+    return ret;
   }
 
   /**
@@ -157,11 +158,13 @@ export default class DialogEditorService {
           field[attr] = false;
         }
       });
-      optionalAttributes.forEach(function(attr) {
-        if (field['options'][attr] == null) {
-          field['options'][attr] = false;
-        }
-      });
+      if (field['options']) {
+        optionalAttributes.forEach(function(attr) {
+          if (field['options'][attr] == null) {
+            field['options'][attr] = false;
+          }
+        });
+      }
     });
   }
 }

@@ -203,7 +203,7 @@ describe('DialogValidation test', () => {
                 values: [],
                 dynamic: true,
                 resource_action: {
-                  ae_class: "Generic_Dynamic_Dialogs",
+                  ae_class: 'Generic_Dynamic_Dialogs',
                 },
               }]
             }]
@@ -236,4 +236,3 @@ describe('DialogValidation test', () => {
     });
   });
 });
-

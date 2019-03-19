@@ -148,7 +148,7 @@ describe('Pagination test', () =>  {
       it('should not render check all', () => {
         scope.hasCheckboxes = false;
         scope.$apply();
-        expect(compiledElement[0].querySelectorAll('.checkbox-inline').length).toBe(0)
+        expect(compiledElement[0].querySelectorAll('.checkbox-inline').length).toBe(0);
       });
     });
 

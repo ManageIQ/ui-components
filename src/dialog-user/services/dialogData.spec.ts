@@ -312,7 +312,7 @@ describe('DialogDataService test', () => {
         values: 't',
         name: 'test',
         type: 'DialogFieldCheckBox'
-      }
+      };
 
       describe('when the field is dynamic', () => {
         beforeEach(() => {

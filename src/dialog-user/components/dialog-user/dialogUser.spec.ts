@@ -78,7 +78,7 @@ describe('Dialog test', () =>  {
 
     beforeEach(() => {
       refreshField = {
-        callback: function(value) { }
+        callback: value => undefined
       };
       spyOn(refreshField, 'callback');
       let bindings = {
@@ -95,7 +95,7 @@ describe('Dialog test', () =>  {
     });
 
     it('returns a promise', () => {
-      let testPromise = new Promise((resolve, reject) => {});
+      let testPromise = new Promise((resolve, reject) => undefined);
       expect(dialogCtrl.refreshSingleField('service_name')).toEqual(testPromise);
     });
 

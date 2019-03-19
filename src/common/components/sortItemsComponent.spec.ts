@@ -2,7 +2,11 @@ import SortItems from './sortItemsComponent';
 import * as angular from 'angular';
 
 describe('Sort items test', () =>  {
-  let headers = [{is_narrow: true}, {col_id: 2, text: 'something', header_text: 'something'}, {col_id: 3, text: 'something2', header_text: 'something2'}];
+  let headers = [
+    {is_narrow: true},
+    {col_id: 2, text: 'something', header_text: 'something'},
+    {col_id: 3, text: 'something2', header_text: 'something2'}
+  ];
   let sortObject = {sortObject: {col_id: 3, text: 'something2'}, isAscending: true};
 
   it('should create component', () => {
@@ -35,7 +39,14 @@ describe('Sort items test', () =>  {
 
     it('should set sort item', () => {
       sortItemsCtrl.headers = headers;
-      sortItemsCtrl.sortObject = {sortObject: {col_id: 3, text: 'something2', header_text: 'something2'}, isAscending: true};
+      sortItemsCtrl.sortObject = {
+        sortObject: {
+          col_id: 3,
+          text: 'something2',
+          header_text: 'something2'
+        },
+        isAscending: true
+      };
       sortItemsCtrl.setSortItem();
       expect(sortItemsCtrl.options.currentField.colId).toBe(2);
       expect(sortItemsCtrl.options.currentField.id).toBe(sortItemsCtrl.sortObject.sortObject.text);

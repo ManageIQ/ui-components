@@ -59,6 +59,21 @@ export class ToolbarListController implements IToolbarListBindings {
       this.toolbarList.items &&
       this.toolbarList.items.some((item: IToolbarItem) => item.enabled);
   }
+
+  private toolbarTitle(): string {
+    let squashedTitle = [this.toolbarList.title];
+
+    // If the toolbar item has child elements and all of them are disabled
+    if (this.toolbarList &&
+        this.toolbarList.items &&
+        this.toolbarList.items.every((item: IToolbarItem) => !item.enabled)) {
+      // Collect the titles (reasons why they are disabled) of all the disabled children
+      let items = this.toolbarList.items.filter((item : IToolbarItem) => item.title !== undefined);
+      squashedTitle.push(...items.map((item: IToolbarItem) => `⚬ ${item.text} - ${item.title}`));
+    }
+
+    return squashedTitle.join('\n');
+  }
 }
 
 /**

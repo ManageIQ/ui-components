@@ -51,7 +51,7 @@ export class DialogFieldController extends DialogFieldClass {
   public $doCheck() {
     if (!_.isEqual(this.field, this.clonedDialogField)) {
       this.clonedDialogField = _.cloneDeep(this.field);
-      if (_.isObject(this.validation)) {
+      if (this.validation) {
         this.field.fieldValidation = this.validation.isValid;
         this.field.errorMessage = this.validation.message;
       }

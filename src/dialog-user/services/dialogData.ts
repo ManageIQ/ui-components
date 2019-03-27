@@ -161,7 +161,7 @@ export default class DialogDataService {
     }
     // Run check if someone has specified a regex.  Make sure if its required it is not blank
     if (field.validator_rule && validation.isValid === true) {
-      if (angular.isDefined(fieldValue) && fieldValue !== '') {
+      if (angular.isDefined(fieldValue) && !_.isEmpty(fieldValue)) {
         // This use case ensures that an optional field doesnt check a regex if field is blank
         const regexPattern = field.validator_rule.replace(/\\A/i, '^').replace(/\\Z/i,'$');
         const regex = new RegExp(regexPattern);

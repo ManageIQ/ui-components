@@ -88,11 +88,10 @@ export default class DialogDataService {
    **/
   private setDefaultValue(data): any {
     let defaultValue: any = '';
-    const firstOption = 0; // these are meant to help make code more readable
-    const fieldValue = 0;
 
     if (_.isObject(data.values)) {
-      defaultValue = data.values[firstOption][fieldValue];
+      // default to the value of the first option
+      defaultValue = data.values[0][0];
     }
 
     if (data.type === 'DialogFieldDateControl' || data.type === 'DialogFieldDateTimeControl') {
@@ -103,7 +102,9 @@ export default class DialogDataService {
       defaultValue = data.default_value;
     }
 
-    if (data.type === 'DialogFieldDropDownList' && data.options.force_multi_value && data.default_value) {
+    // FIXME maybe better make sure it's never not string (must come from double call)
+    if (data.type === 'DialogFieldDropDownList' && data.options.force_multi_value &&
+        data.default_value && _.isString(data.default_value)) {
       defaultValue = JSON.parse(data.default_value);
     }
 

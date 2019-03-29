@@ -318,6 +318,7 @@ class ModalController {
       categories="modalCtrl.parent.categories"
       add-entry="modalCtrl.parent.addEntry"
       remove-entry="modalCtrl.parent.removeEntry"
+      clear-default-value="modalCtrl.parent.clearDefaultValue"
       current-category-entries="modalCtrl.parent.currentCategoryEntries"
       resolve-categories="modalCtrl.parent.resolveCategories"
       modal-tab-is-set="modalCtrl.parent.modalTabIsSet"

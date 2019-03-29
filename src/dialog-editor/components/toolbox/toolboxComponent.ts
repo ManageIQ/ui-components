@@ -27,7 +27,7 @@ class DialogField {
       position: 0,
       dynamic: false,
       show_refresh_button: false,
-      load_values_on_init: false,
+      load_values_on_init: true,
       auto_refresh: false,
       trigger_auto_refresh: false,
       reconfigurable: false,

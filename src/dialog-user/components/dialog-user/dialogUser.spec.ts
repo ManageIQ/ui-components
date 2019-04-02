@@ -35,15 +35,17 @@ describe('Dialog test', () =>  {
         expect(dialogCtrl.dialogFields['service_name'].default_value).toBe('service_default');
     });
     it('should allow properties on a dialog field to be updated', () => {
-        const testChanges = {
-            data_type: 'string',
-            read_only: true,
-            required: true,
-            visible: true
-        };
-        const dialogName = 'service_name';
-        dialogCtrl.updateDialogFieldData(dialogName, testChanges);
-        expect(dialogCtrl.dialogFields[dialogName].read_only).toBe(true);
+      const testChanges = {
+        data_type: 'string',
+        read_only: true,
+        required: true,
+        visible: true,
+        validator_rule: '^1234',
+      };
+      const dialogName = 'service_name';
+      dialogCtrl.updateDialogFieldData(dialogName, testChanges);
+      expect(dialogCtrl.dialogFields[dialogName].read_only).toBe(true);
+      expect(dialogCtrl.dialogFields[dialogName].validator_rule).toBe('^1234');
     });
   });
   describe('controller with refreshable fields', () => {

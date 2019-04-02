@@ -62,7 +62,7 @@ describe('Dialog field test', () => {
       const expectedValue = {
         isValid: false,
         field: 'Service Name',
-        message: 'Entered text does not match required format.'
+        message: 'Entered text should match the format: [0-9]'
       };
 
       expect(fieldValid).toEqual(expectedValue);

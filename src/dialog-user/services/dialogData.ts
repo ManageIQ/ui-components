@@ -167,7 +167,7 @@ export default class DialogDataService {
         const regex = new RegExp(regexPattern);
         const regexValidates = regex.test(fieldValue);
         validation.isValid = regexValidates;
-        validation.message = __('Entered text does not match required format.');
+        validation.message = __('Entered text should match the format:') + ' ' + regexPattern;
       }
     }
 

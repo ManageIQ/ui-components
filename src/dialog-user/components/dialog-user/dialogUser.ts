@@ -267,6 +267,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
     dialogField.visible = data.visible;
     dialogField.values = data.values;
     dialogField.default_value = data.default_value;
+    dialogField.validator_rule = data.validator_rule;
 
     return dialogField;
   }

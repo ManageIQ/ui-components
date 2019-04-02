@@ -13,14 +13,17 @@ export default class DialogDataService {
    **/
   public setupField(data: any) {
     let field = _.cloneDeep(data);
-    const dropDownValues = [];
-    field.fieldBeingRefreshed = (angular.isDefined(field.fieldBeingRefreshed) ? field.fieldBeingRefreshed : false);
+
+    field.fieldBeingRefreshed = field.fieldBeingRefreshed || false;
+
     if (angular.isUndefined(field.fieldValidation)) {
       field.fieldValidation = '';
       field.errorMessage = '';
     }
+
     const sortableFieldTypes = ['DialogFieldDropDownList', 'DialogFieldRadioButton'];
-    if (_.includes(sortableFieldTypes,field.type)) {
+    if (_.includes(sortableFieldTypes, field.type)) {
+      const dropDownValues = [];
       for (let option of field.values) {
         if (option[0] === String(field.default_value)) {
           field.selected = option;

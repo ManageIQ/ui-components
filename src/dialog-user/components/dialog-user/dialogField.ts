@@ -66,14 +66,8 @@ export class DialogFieldController extends DialogFieldClass {
    * @function changesHappened
    */
   public changesHappened(value) {
-    const selectedValue = 0;
     this.validation = this.validateField();
-    let fieldValue = (value ? value[selectedValue] : this.dialogField.default_value);
-    if ((this.dialogField.type === 'DialogFieldTagControl' ||
-         this.dialogField.type === 'DialogFieldDropDownList') &&
-        this.dialogField.default_value instanceof Array) {
-        fieldValue = this.dialogField.default_value.join();
-      }
+    let fieldValue = value || this.dialogField.default_value;
     this.onUpdate({ dialogFieldName: this.field.name, value: fieldValue });
   }
 
@@ -97,7 +91,7 @@ export class DialogFieldController extends DialogFieldClass {
     let minutes = this.dialogField.timeField.getMinutes();
 
     let fullDate = new Date(fullYear, month, date, hours, minutes);
-    this.changesHappened([fullDate]);
+    this.changesHappened(fullDate);
   }
 
   /**

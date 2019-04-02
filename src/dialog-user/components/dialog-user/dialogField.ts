@@ -121,6 +121,10 @@ export class DialogFieldController extends DialogFieldClass {
   public refreshSingleField() {
     this.singleRefresh({ field: this.field.name });
   }
+
+  public fieldTokens(element) {
+    return element.innerText + ' ' + element.value.split(/:/)[1];
+  }
 }
 
 export default class DialogField {

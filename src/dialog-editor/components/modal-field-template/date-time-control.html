@@ -1,5 +1,12 @@
 <div ng-if="vm.modalTabIsSet('options') && !vm.modalData.dynamic">
   <form class="form-horizontal">
+    <div pf-form-group pf-label="{{'Required'|translate}}">
+      <input bs-switch
+             ng-model="vm.modalData.required"
+             type="checkbox"
+             switch-on-text="{{'Yes'|translate}}"
+             switch-off-text="{{'No'|translate}}">
+    </div>
     <div pf-form-group pf-label="{{'Read only'|translate}}">
       <input bs-switch
              ng-model="vm.modalData.read_only"
@@ -78,6 +85,14 @@
                  switch-off-text="{{'No'|translate}}"/>
         </div>
       </div>
+    </div>
+
+    <div pf-form-group pf-label="{{'Required'|translate}}">
+      <input bs-switch
+             ng-model="vm.modalData.required"
+             type="checkbox"
+             switch-on-text="{{'Yes'|translate}}"
+             switch-off-text="{{'No'|translate}}">
     </div>
   </form>
 </div>

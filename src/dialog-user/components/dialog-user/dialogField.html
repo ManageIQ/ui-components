@@ -13,7 +13,7 @@
 
   <div ng-switch on="vm.dialogField.type">
     <div class="col-sm-4" ng-switch-when="DialogFieldTextBox">
-      <input ng-model="vm.dialogField.default_value"
+      <input ng-model="vm.dialogField.values"
              ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
              ng-change="vm.changesHappened()"
              ng-blur="vm.validateField()"
@@ -21,7 +21,7 @@
              class="form-control"
              type="{{ vm.dialogField.options.protected ? 'password' : 'text' }}"
              uib-tooltip="{{ ::inputTitle }}"
-             value="{{ vm.dialogField.default_value }}"
+             value="{{ vm.dialogField.values }}"
              id="{{ vm.dialogField.name }}">
       <div ng-if="vm.dialogField.fieldValidation===false">{{ vm.dialogField.errorMessage }}</div>
     </div>

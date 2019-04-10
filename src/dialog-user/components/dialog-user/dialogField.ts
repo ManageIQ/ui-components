@@ -68,10 +68,12 @@ export class DialogFieldController extends DialogFieldClass {
   public changesHappened(value) {
     const selectedValue = 0;
     this.validation = this.validateField();
-    let fieldValue = (value ? value[selectedValue] : this.dialogField.default_value);
+    let fieldValue = (value ? value[selectedValue] : this.dialogField.values);
     if ((this.dialogField.type === 'DialogFieldTagControl' ||
-         this.dialogField.type === 'DialogFieldDropDownList') &&
+         this.dialogField.type === 'DialogFieldDropDownList' ||
+         this.dialogField.type === 'DialogFieldRadioButton') &&
         this.dialogField.default_value instanceof Array) {
+        // using `default_value` if field.type is a subclass of DialogFieldSortedItem
         fieldValue = this.dialogField.default_value.join();
       }
     this.onUpdate({ dialogFieldName: this.field.name, value: fieldValue });

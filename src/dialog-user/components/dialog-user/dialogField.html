@@ -13,7 +13,7 @@
 
   <div ng-switch on="vm.dialogField.type">
     <div class="col-sm-4" ng-switch-when="DialogFieldTextBox">
-      <input ng-model="vm.dialogField.default_value"
+      <input ng-model="vm.dialogField.values"
              ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
              ng-change="vm.changesHappened()"
              ng-blur="vm.validateField()"
@@ -21,12 +21,12 @@
              class="form-control"
              type="{{ vm.dialogField.options.protected ? 'password' : 'text' }}"
              uib-tooltip="{{ ::inputTitle }}"
-             value="{{ vm.dialogField.default_value }}"
+             value="{{ vm.dialogField.values }}"
              id="{{ vm.dialogField.name }}">
       <div ng-if="vm.dialogField.fieldValidation===false">{{ vm.dialogField.errorMessage }}</div>
     </div>
     <div class="col-sm-8" ng-switch-when="DialogFieldTextAreaBox">
-      <textarea ng-model="vm.dialogField.default_value"
+      <textarea ng-model="vm.dialogField.values"
                 ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
                 ng-change="vm.changesHappened()"
                 ng-model-options="{debounce: {'default': 500}}"
@@ -38,7 +38,7 @@
       </textarea>
     </div>
     <div class="col-sm-1" ng-switch-when="DialogFieldCheckBox">
-      <input  ng-model="vm.dialogField.default_value"
+      <input  ng-model="vm.dialogField.values"
               ng-true-value="'t'"
               ng-false-value="'f'"
               ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
@@ -138,7 +138,7 @@
         <input uib-datepicker-popup
                type="text"
                class="form-control"
-               ng-model="vm.dialogField.default_value"
+               ng-model="vm.dialogField.values"
                ng-change="vm.changesHappened()"
                is-open="open"
                min-date="vm.minDate"

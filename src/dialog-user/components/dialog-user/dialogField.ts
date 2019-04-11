@@ -68,7 +68,7 @@ export class DialogFieldController extends DialogFieldClass {
   public changesHappened(value) {
     const selectedValue = 0;
     this.validation = this.validateField();
-    let fieldValue = (value ? value[selectedValue] : this.dialogField.values);
+    let fieldValue = (value ? value[selectedValue] : this.dialogField.default_value);
     if ((this.dialogField.type === 'DialogFieldTagControl' ||
          this.dialogField.type === 'DialogFieldDropDownList' ||
          this.dialogField.type === 'DialogFieldRadioButton') &&

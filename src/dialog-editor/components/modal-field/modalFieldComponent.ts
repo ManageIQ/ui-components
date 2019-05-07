@@ -31,9 +31,9 @@ class ModalFieldController extends ModalController {
         this.treeOptions.show = ! this.treeOptions.show;
 
         if (this.treeOptions.show) {
-          const fqdn = this.showFullyQualifiedName(this.modalData.resource_action) || null;
+          const fqname = this.showFullyQualifiedName(this.modalData.resource_action) || null;
 
-          this.treeOptions.load(fqdn).then((data) => {
+          this.treeOptions.load(fqname).then((data) => {
             this.treeOptions.data = data;
           });
         }

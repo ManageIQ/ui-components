@@ -224,7 +224,6 @@ describe('Dialog test', () =>  {
         read_only: 'new read_only',
         required: true,
         visible: false,
-        values: 'new values',
         default_value: 'new default_value'
       };
 
@@ -246,7 +245,7 @@ describe('Dialog test', () =>  {
       });
 
       it('updates the field value', () => {
-        expect(dialogCtrl.dialogValues['service_name']).toBe('new values');
+        expect(dialogCtrl.dialogValues['service_name']).toBe('new default_value');
       });
 
       it('updates properties of the field', () => {
@@ -255,7 +254,6 @@ describe('Dialog test', () =>  {
         expect(dialogCtrl.dialogFields['service_name'].read_only).toBe('new read_only');
         expect(dialogCtrl.dialogFields['service_name'].required).toBe(true);
         expect(dialogCtrl.dialogFields['service_name'].visible).toBe(false);
-        expect(dialogCtrl.dialogFields['service_name'].values).toBe('new values');
         expect(dialogCtrl.dialogFields['service_name'].default_value).toBe('new default_value');
       });
     });

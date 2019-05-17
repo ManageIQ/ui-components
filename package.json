@@ -2,7 +2,7 @@
   "name": "@manageiq/ui-components",
   "version": "1.2.4",
   "description": "UI components for ManageIQ project",
-  "main": "index.js",
+  "main": "dist/js/ui-components.js",
   "scripts": {
     "start": "yarn run install-vendor && webpack --watch",
     "test": "yarn run install-vendor && karma start",

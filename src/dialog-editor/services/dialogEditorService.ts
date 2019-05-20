@@ -27,7 +27,7 @@ export default class DialogEditorService {
    * @function getDialogId
    */
   public getDialogId() {
-    return this.data.content[0].id;
+    return String(this.data.content[0].id || 'new');
   }
 
   /**
@@ -79,6 +79,7 @@ export default class DialogEditorService {
    */
   public updatePositions(elements: any[]) {
     elements.forEach((value, key) => value.position = key);
+    this.backupSessionStorage(this.getDialogId(), this.data);
   }
 
   /**
@@ -97,6 +98,18 @@ export default class DialogEditorService {
       newOrdinalNumber++;
     }
     return fieldType + '_' + newOrdinalNumber;
+  }
+
+  public clearSessionStorage(id: string) {
+    sessionStorage.removeItem(this.sessionStorageKey(id));
+  }
+
+  public backupSessionStorage(id: string, dialog: any) {
+    sessionStorage.setItem(this.sessionStorageKey(id), JSON.stringify(dialog));
+  }
+
+  public restoreSessionStorage(id: string) {
+    return JSON.parse(sessionStorage.getItem(this.sessionStorageKey(id)));
   }
 
   /**
@@ -166,5 +179,9 @@ export default class DialogEditorService {
         });
       }
     });
+  }
+
+  private sessionStorageKey(id: string) {
+    return 'service_dialog-' + id;
   }
 }

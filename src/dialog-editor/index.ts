@@ -7,8 +7,9 @@ module dialogEditor {
     'ui.sortable',
     'ngDragDrop',
     'frapontillo.bootstrap-switch',
-    'miqStaticAssets.miqSelect'
+    'miqStaticAssets.miqSelect',
   ]);
+
   services(app);
   components(app);
 }

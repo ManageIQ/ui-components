@@ -1,25 +1,27 @@
-import tabList from './tab-list';
 import box from './box';
+import dialogEditor from './dialog-editor';
 import field from './field';
-import toolbox from './toolbox';
 import modal from './modal';
-import modalTab from './modal-tab';
 import modalBox from './modal-box';
 import modalField from './modal-field';
 import modalFieldTemplate from './modal-field-template';
-import dialogEditor from './dialog-editor';
+import modalTab from './modal-tab';
+import tabList from './tab-list';
+import toolbox from './toolbox';
 import treeSelector from './tree-selector';
+import validation from './validation';
 
 export default (module: ng.IModule) => {
-  tabList(module);
   box(module);
+  dialogEditor(module);
   field(module);
-  toolbox(module);
   modal(module);
-  modalTab(module);
   modalBox(module);
   modalField(module);
   modalFieldTemplate(module);
-  dialogEditor(module);
+  modalTab(module);
+  tabList(module);
+  toolbox(module);
   treeSelector(module);
+  validation(module);
 };

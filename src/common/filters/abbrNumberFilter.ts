@@ -1,4 +1,4 @@
-import * as numeral from 'numeral';
+let numeral = require('numeral');
 
 export default class AbbrNumber {
   public static filter() {

@@ -133,7 +133,6 @@ module.exports = (env) => {
     externals: {
       'angular': 'angular',
       'lodash': '_',
-      'numeral': 'numeral',
       '__': '__',
     },
     watchOptions: {

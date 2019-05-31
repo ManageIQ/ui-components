@@ -84,7 +84,6 @@
     "tslint-loader": "3.2.0",
     "typescript": "~2.8.3",
     "ui-router": "^1.0.0-alpha0",
-    "ui-select": "0.19.8",
     "url-loader": "^0.5.7",
     "webpack": "2.2.0"
   },

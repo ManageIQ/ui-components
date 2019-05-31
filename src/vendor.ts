@@ -13,5 +13,4 @@ import 'angular-ui-sortable';
 import 'angular-dragdrop';
 import 'angular-bootstrap-switch';
 import 'bootstrap-select';
-import 'ui-select';
 import 'patternfly-bootstrap-treeview';

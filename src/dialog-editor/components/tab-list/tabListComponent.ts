@@ -95,6 +95,9 @@ class TabListController {
     }
     // remove tab with matching id
     _.remove(this.tabList, (tab: any) => tab.position === id);
+    this.DialogEditor.backupSessionStorage(
+      this.DialogEditor.getDialogId(),
+      this.DialogEditor.data);
     // update indexes of other tabs after removing
     if (this.tabList.length !== 0) {
       this.DialogEditor.updatePositions(this.tabList);

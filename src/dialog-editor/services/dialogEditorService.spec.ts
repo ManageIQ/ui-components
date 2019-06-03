@@ -116,7 +116,32 @@ describe('DialogEditor test', () => {
     });
 
     it('returns the id of the dialog', () => {
-      expect(dialogEditor.getDialogId()).toEqual(123);
+      expect(dialogEditor.getDialogId()).toEqual('123');
+    });
+
+  });
+
+  describe('#getDialogId', () => {
+    let dialogData = {
+      'content': [{
+        'dialog_tabs': [{
+          'label': 'New tab',
+          'position': 0,
+          'dialog_groups': [{
+            'label': 'New section',
+            'position': 0,
+            'dialog_fields': [],
+          }],
+        }],
+      }],
+    };
+
+    beforeEach(() => {
+      dialogEditor.setData(dialogData);
+    });
+
+    it('returns the "new" as an id of the dialog', () => {
+      expect(dialogEditor.getDialogId()).toEqual('new');
     });
   });
 

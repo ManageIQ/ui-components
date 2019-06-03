@@ -187,6 +187,9 @@ class ModalController {
       default:
         break;
     }
+    this.DialogEditor.backupSessionStorage(
+      this.DialogEditor.getDialogId(),
+      this.DialogEditor.data);
   }
 
   /**
@@ -203,6 +206,9 @@ class ModalController {
       ].dialog_fields,
       (field: any) => field.position === this.elementInfo.fieldId
     );
+    this.DialogEditor.backupSessionStorage(
+      this.DialogEditor.getDialogId(),
+      this.DialogEditor.data);
   }
 
   /**

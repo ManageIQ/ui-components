@@ -146,7 +146,7 @@ export default class DialogDataService {
           validation.isValid = false;
           validation.message = __('This field is required');
         }
-      } else if (_.isEmpty(fieldValue)) {
+      } else if (_.isEmpty(fieldValue) && !_.isDate(fieldValue)) {
         validation.isValid = false;
         validation.message = __('This field is required');
       }
@@ -161,6 +161,12 @@ export default class DialogDataService {
         validation.isValid = regexValidates;
         validation.message = __('Entered text should match the format:') + ' ' + regexPattern;
       }
+    }
+
+    if (field.type === 'DialogFieldDateControl' &&
+        !(fieldValue instanceof Date)) {
+      validation.isValid = false;
+      validation.message = __('Select a valid date');
     }
 
     if (field.type === 'DialogFieldDateTimeControl') {

@@ -331,7 +331,6 @@ describe('DialogDataService test', () => {
     describe('when the data type is a check box', () => {
       let testField = {
         default_value: 'f',
-        values: 't',
         name: 'test',
         type: 'DialogFieldCheckBox'
       }
@@ -341,9 +340,9 @@ describe('DialogDataService test', () => {
           testField['dynamic'] = true;
         });
 
-        it('ensures the checkbox uses the values that are set', () => {
+        it('ensures the field\'s default value stays set', () => {
           let testDefault = dialogData.setDefaultValue(testField);
-          expect(testDefault).toBe('t');
+          expect(testDefault).toBe('f');
         });
       });
 

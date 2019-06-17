@@ -43,6 +43,14 @@ export default class DialogDataService {
       }
     }
 
+    if (field.type === 'DialogFieldDateControl') {
+      if (_.isNull(field.default_value) || _.isUndefined(field.default_value)) {
+        field.dateField = field.timeField = new Date();
+      } else {
+        field.dateField = field.timeField = new Date(data.default_value);
+      }
+    }
+
     field.default_value = this.setDefaultValue(field);
 
     return field;
@@ -95,12 +103,12 @@ export default class DialogDataService {
       defaultValue = data.values[firstOption][fieldValue];
     }
 
-    if (data.type === 'DialogFieldDateControl' || data.type === 'DialogFieldDateTimeControl') {
-      defaultValue = data.values ? new Date(data.values) : new Date();
-    }
-
     if (data.default_value) {
       defaultValue = data.default_value;
+    }
+
+    if (data.type === 'DialogFieldDateControl' || data.type === 'DialogFieldDateTimeControl') {
+      defaultValue = data.dateField ? new Date(data.dateField) : new Date();
     }
 
     if (data.type === 'DialogFieldDropDownList' && data.options.force_multi_value && data.default_value) {

@@ -61,13 +61,10 @@
               ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
               class="form-control"
               data-container="body"
-              id="{{ vm.dialogField.name }}">
-        <option ng-repeat="value in vm.dialogField.values track by $index"
-                data-tokens="{{value[0]}} {{value[1]}}"
-                value="{{value[0]}}">
-          {{value[1]}}
-        </option>
-      </select>
+              id="{{ vm.dialogField.name }}"
+              ng-options="value[0] as value[1] for value in vm.dialogField.values"
+              miq-options="{ 'data-tokens': value[0] + ' ' + value[1] }"
+      ></select>
 
       <select miq-select multiple
               data-live-search="true"
@@ -78,13 +75,10 @@
               ng-change="vm.changesHappened(item)"
               ng-blur="vm.validateField()"
               ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
-              input-id="{{ vm.dialogField.name }}">
-        <option ng-repeat="value in vm.dialogField.values track by $index"
-                data-tokens="{{value[0]}} {{value[1]}}"
-                value="{{value[0]}}">
-          {{value[1]}}
-        </option>
-      </select>
+              input-id="{{ vm.dialogField.name }}"
+              ng-options="value[0] as value[1] for value in vm.dialogField.values"
+              miq-options="{ 'data-tokens': value[0] + ' ' + value[1] }"
+      ></select>
     </div>
 
     <div class="col-sm-6" ng-switch-when="DialogFieldTagControl">

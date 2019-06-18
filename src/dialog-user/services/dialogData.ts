@@ -145,6 +145,9 @@ export default class DialogDataService {
     };
     validation.field = field.label;
 
+    let dateControlField = (field.type === 'DialogFieldDateControl');
+    let validDateField = (dateControlField && _.isDate(field.dateField));
+
     if (field.required) {
       if (field.type === 'DialogFieldCheckBox' && fieldValue === 'f') {
         validation.isValid = false;
@@ -154,7 +157,7 @@ export default class DialogDataService {
           validation.isValid = false;
           validation.message = __('This field is required');
         }
-      } else if (_.isEmpty(fieldValue) && !_.isDate(fieldValue)) {
+      } else if (_.isEmpty(fieldValue) && !validDateField) {
         validation.isValid = false;
         validation.message = __('This field is required');
       }
@@ -171,8 +174,7 @@ export default class DialogDataService {
       }
     }
 
-    if (field.type === 'DialogFieldDateControl' &&
-        !(fieldValue instanceof Date)) {
+    if (dateControlField && !validDateField) {
       validation.isValid = false;
       validation.message = __('Select a valid date');
     }

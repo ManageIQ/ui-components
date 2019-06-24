@@ -70,7 +70,7 @@ export class TreeViewController {
         preventUnselect: true,
         showBorders:     false,
         onNodeExpanded:  this.storeNodeState(true),
-        onNodeCollapsed: this.storeNodeState(undefined),
+        onNodeCollapsed: this.storeNodeState(false),
         onNodeSelected:  this.onSelect ? (_event, node) => this.$timeout(() => this.onSelect({node: node})) : () => null,
         lazyLoad:        this.lazyLoad ? (node, render) => this.$timeout(() => this.lazyLoad({node: node}).then(render)) : () => null,
         onRendered:      () => this.$timeout(resolve)
@@ -178,6 +178,13 @@ export class TreeViewController {
     this.tree.expandNode(node);
   }
 
+  private collapseSingleNode(obj) {
+    let node = this.findNode(obj);
+    if (node.state.expanded) { // somehow the tree.collapseNode is broken
+      this.tree.toggleNodeExpanded(node, {silent: true, ignoreChildren: false});
+    }
+  }
+
   private storeNodeState(state) {
     return (_event, node) => {
       // Do not set the tree state if not necessary
@@ -212,13 +219,15 @@ export class TreeViewController {
                       .map(obj => obj[this.persist]);
 
     Object.keys(store).forEach(key => {
+      // Construct an object for finding a node in the tree
+      let obj = {};
+      obj[this.persist] = key;
+
+      if (store[key] !== false) { // If the node is not set to collapsed
         // Ignore the blacklisted items
         if (_.includes(blacklist, key)) {
           return;
         }
-
-        let obj = {};
-        obj[this.persist] = key;
 
         TreeViewController.lazyTraverse(
           obj,
@@ -226,8 +235,10 @@ export class TreeViewController {
           store[key],
           this.lazyExpandNode.bind(this)
         );
+      } else { // Collapse the node if the value is false
+        this.collapseSingleNode(obj);
       }
-    );
+    });
   }
 
   /*
@@ -238,7 +249,6 @@ export class TreeViewController {
    * Finally the `headF` function is called on `head` after resolving all promises.
    * If anything goes wrong during the traversal the fallback function is called.
    */
-  // tu
   private static lazyTraverse(head : any,
                               headF : Function,
                               tail : Array<any>,

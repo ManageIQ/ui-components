@@ -45,9 +45,9 @@ export default class DialogDataService {
 
     if (field.type === 'DialogFieldDateControl') {
       if (_.isNull(field.default_value) || _.isUndefined(field.default_value)) {
-        field.dateField = field.timeField = new Date();
+        field.dateField = new Date();
       } else {
-        field.dateField = field.timeField = new Date(data.default_value);
+        field.dateField = new Date(data.default_value);
       }
     }
 

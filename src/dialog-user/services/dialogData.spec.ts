@@ -275,6 +275,26 @@ describe('DialogDataService test', () => {
             expect(validation.message).toEqual('Entered text should match the format: ^1234');
           });
         });
+
+        describe('when the validator rule is present but the type is not regex', () => {
+          let testField;
+
+          beforeEach(() => {
+            testField = {
+              'type': 'DialogFieldTextBox',
+              'default_value': '123',
+              'required': true,
+              'validator_type': 'f',
+              'validator_rule': '^1234'
+            }
+          });
+
+          it('passes validation', () => {
+            let validation = dialogData.validateField(testField);
+            expect(validation.isValid).toEqual(true);
+            expect(validation.message).toEqual('');
+          });
+        });
       });
     });
 

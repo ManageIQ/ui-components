@@ -379,11 +379,12 @@ describe('DialogDataService test', () => {
     });
 
     describe('when the data type is a date control', () => {
-      let dateField = {'type': 'DialogFieldDateControl'};
+      let dateField = {'type': 'DialogFieldDateControl',
+                       'dateField': ''};
 
       describe('when the values are undefined', () => {
         beforeEach(() => {
-          dateField['values'] = undefined;
+          dateField.dateField = undefined;
         });
 
         it('returns a new date', () => {
@@ -399,7 +400,7 @@ describe('DialogDataService test', () => {
 
       describe('when the values exist', () => {
         beforeEach(() => {
-          dateField['values'] = '2017-09-18';
+          dateField.dateField = '2017-09-18';
         });
 
         it('returns a new date based on the values', () => {

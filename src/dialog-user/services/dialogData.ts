@@ -43,6 +43,14 @@ export default class DialogDataService {
       }
     }
 
+    if (field.type === 'DialogFieldDateControl') {
+      if (_.isNull(field.default_value) || _.isUndefined(field.default_value)) {
+        field.dateField = new Date();
+      } else {
+        field.dateField = new Date(data.default_value);
+      }
+    }
+
     field.default_value = this.setDefaultValue(field);
 
     return field;
@@ -95,12 +103,12 @@ export default class DialogDataService {
       defaultValue = data.values[firstOption][fieldValue];
     }
 
-    if (data.type === 'DialogFieldDateControl' || data.type === 'DialogFieldDateTimeControl') {
-      defaultValue = data.values ? new Date(data.values) : new Date();
-    }
-
     if (data.default_value) {
       defaultValue = data.default_value;
+    }
+
+    if (data.type === 'DialogFieldDateControl' || data.type === 'DialogFieldDateTimeControl') {
+      defaultValue = data.dateField ? new Date(data.dateField) : new Date();
     }
 
     if (data.type === 'DialogFieldDropDownList' && data.options.force_multi_value && data.default_value) {
@@ -137,6 +145,9 @@ export default class DialogDataService {
     };
     validation.field = field.label;
 
+    let dateControlField = (field.type === 'DialogFieldDateControl');
+    let validDateField = (dateControlField && _.isDate(field.dateField));
+
     if (field.required) {
       if (field.type === 'DialogFieldCheckBox' && fieldValue === 'f') {
         validation.isValid = false;
@@ -146,7 +157,7 @@ export default class DialogDataService {
           validation.isValid = false;
           validation.message = __('This field is required');
         }
-      } else if (_.isEmpty(fieldValue)) {
+      } else if (_.isEmpty(fieldValue) && !validDateField) {
         validation.isValid = false;
         validation.message = __('This field is required');
       }
@@ -161,6 +172,11 @@ export default class DialogDataService {
         validation.isValid = regexValidates;
         validation.message = __('Entered text should match the format:') + ' ' + regexPattern;
       }
+    }
+
+    if (dateControlField && !validDateField) {
+      validation.isValid = false;
+      validation.message = __('Select a valid date');
     }
 
     if (field.type === 'DialogFieldDateTimeControl') {

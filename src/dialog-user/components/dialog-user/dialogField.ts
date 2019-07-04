@@ -40,8 +40,12 @@ export class DialogFieldController {
     }
 
     if (this.dialogField.type === 'DialogFieldDateTimeControl') {
-      this.dateTimeFieldChanged();
+      // dateTimeFieldChanged handles merging back to default_value
+      this.dialogField.dateField = new Date(this.dialogField.default_value);
+      this.dialogField.timeField = new Date(this.dialogField.default_value);
     }
+
+    this.validateField();
   }
 
   /**
@@ -55,6 +59,12 @@ export class DialogFieldController {
     }
   }
 
+  // validate field, set validation
+  private validateField() {
+    const field = this.dialogField;
+    this.validation = this.service.validateField(field, field.default_value);
+  }
+
   /**
    * This method is meant to be called whenever values change on a field.
    * It facilitates reporting updates to the parent component
@@ -62,9 +72,9 @@ export class DialogFieldController {
    * @function changesHappened
    */
   public changesHappened() {
-    const field = this.dialogField;
-    this.validation = this.service.validateField(field, field.default_value);
+    this.validateField();
 
+    const field = this.dialogField;
     this.onUpdate({
       dialogFieldName: field.name,
       value: field.default_value,
@@ -78,10 +88,6 @@ export class DialogFieldController {
    * @function dateTimeFieldChanged
    */
   public dateTimeFieldChanged() {
-    if (this.dialogField.timeField === undefined) {
-      this.dialogField.timeField = new Date();
-    }
-
     let dateField = this.dialogField.dateField;
     let timeField = this.dialogField.timeField;
 

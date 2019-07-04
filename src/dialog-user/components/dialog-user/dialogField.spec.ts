@@ -119,8 +119,7 @@ describe('Dialog field test', () => {
     const dateTimeDialogField = {
       'name': 'dateTest',
       'type': 'DialogFieldDateTimeControl',
-      'dateField': testDate,
-      'timeField': testDate,
+      'default_value': testDate,
       'options': {},
     };
 

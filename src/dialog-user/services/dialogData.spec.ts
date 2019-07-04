@@ -86,16 +86,16 @@ describe('DialogDataService test', () => {
         describe('when the field has values', () => {
           it('assigns the date and time fields to the given date', () => {
             let testField = {
-              'values': 'Wed Jul 11 2018 07:30:00',
+              'default_value': 'Wed Jul 11 2018 07:30:00',
               'type': 'DialogFieldDateTimeControl',
             };
 
             let newField = dialogData.setupField(testField);
-            expect(newField.dateField.getMonth()).toEqual(6);
-            expect(newField.dateField.getDate()).toEqual(11);
-            expect(newField.dateField.getFullYear()).toEqual(2018);
-            expect(newField.timeField.getHours()).toEqual(7);
-            expect(newField.timeField.getMinutes()).toEqual(30);
+            expect(newField.default_value.getFullYear()).toEqual(2018);
+            expect(newField.default_value.getMonth()).toEqual(6);
+            expect(newField.default_value.getDate()).toEqual(11);
+            expect(newField.default_value.getHours()).toEqual(7);
+            expect(newField.default_value.getMinutes()).toEqual(30);
           });
         });
 
@@ -108,11 +108,11 @@ describe('DialogDataService test', () => {
             let comparisonDate = new Date();
 
             let newField = dialogData.setupField(testField);
-            expect(newField.dateField.getMonth()).toEqual(comparisonDate.getMonth());
-            expect(newField.dateField.getDate()).toEqual(comparisonDate.getDate());
-            expect(newField.dateField.getFullYear()).toEqual(comparisonDate.getFullYear());
-            expect(newField.timeField.getHours()).toEqual(comparisonDate.getHours());
-            expect(newField.timeField.getMinutes()).toEqual(comparisonDate.getMinutes());
+            expect(newField.default_value.getMonth()).toEqual(comparisonDate.getMonth());
+            expect(newField.default_value.getDate()).toEqual(comparisonDate.getDate());
+            expect(newField.default_value.getFullYear()).toEqual(comparisonDate.getFullYear());
+            expect(newField.default_value.getHours()).toEqual(comparisonDate.getHours());
+            expect(newField.default_value.getMinutes()).toEqual(comparisonDate.getMinutes());
           });
         });
       });
@@ -378,11 +378,11 @@ describe('DialogDataService test', () => {
 
     describe('when the data type is a date control', () => {
       let dateField = {'type': 'DialogFieldDateControl',
-                       'dateField': ''};
+                       'default_value': ''};
 
       describe('when the values are undefined', () => {
         beforeEach(() => {
-          dateField.dateField = undefined;
+          dateField.default_value = undefined;
         });
 
         it('returns a new date', () => {
@@ -398,7 +398,7 @@ describe('DialogDataService test', () => {
 
       describe('when the values exist', () => {
         beforeEach(() => {
-          dateField.dateField = '2017-09-18';
+          dateField.default_value = '2017-09-18';
         });
 
         it('returns a new date based on the values', () => {

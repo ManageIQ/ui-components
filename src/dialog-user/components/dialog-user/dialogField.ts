@@ -15,14 +15,14 @@ export class DialogFieldController {
   public inputDisabled: boolean;
 
   public service: any;
-  public dialogValue: any;
   public dialogField: any;
   public validation: any;
   public minDate: any;
   public clonedDialogField: any;
 
   /* @ngInject */
-  constructor(private DialogData: any, private $window: any) {
+  constructor(DialogData: any) {
+    this.service = DialogData;
   }
 
   /**
@@ -31,7 +31,6 @@ export class DialogFieldController {
    * @function $onInit
    */
   public $onInit() {
-    this.service = this.DialogData;
     this.clonedDialogField = _.cloneDeep(this.field);
     this.dialogField = this.field;
     this.validation = null;

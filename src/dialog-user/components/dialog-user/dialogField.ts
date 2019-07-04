@@ -61,18 +61,14 @@ export class DialogFieldController extends DialogFieldClass {
    * @memberof DialogFieldController
    * @function changesHappened
    */
-  public changesHappened(value) {
-    const selectedValue = 0;
-    this.validation = this.service.validateField(this.dialogField);
-    let fieldValue = (value ? value[selectedValue] : this.dialogField.default_value);
-    if ((this.dialogField.type === 'DialogFieldTagControl' ||
-         this.dialogField.type === 'DialogFieldDropDownList' ||
-         this.dialogField.type === 'DialogFieldRadioButton') &&
-        this.dialogField.default_value instanceof Array) {
-        // using `default_value` if field.type is a subclass of DialogFieldSortedItem
-        fieldValue = this.dialogField.default_value.join();
-      }
-    this.onUpdate({ dialogFieldName: this.field.name, value: fieldValue });
+  public changesHappened() {
+    const field = this.dialogField;
+    this.validation = this.service.validateField(field, field.default_value);
+
+    this.onUpdate({
+      dialogFieldName: field.name,
+      value: field.default_value,
+    });
   }
 
   /**
@@ -82,20 +78,22 @@ export class DialogFieldController extends DialogFieldClass {
    * @function dateTimeFieldChanged
    */
   public dateTimeFieldChanged() {
-    let dateField = this.dialogField.dateField;
-    let fullYear = dateField.getFullYear();
-    let month = dateField.getMonth();
-    let date = dateField.getDate();
-
     if (this.dialogField.timeField === undefined) {
       this.dialogField.timeField = new Date();
     }
 
-    let hours = this.dialogField.timeField.getHours();
-    let minutes = this.dialogField.timeField.getMinutes();
+    let dateField = this.dialogField.dateField;
+    let timeField = this.dialogField.timeField;
 
-    let fullDate = new Date(fullYear, month, date, hours, minutes);
-    this.changesHappened([fullDate]);
+    let fullYear = dateField.getFullYear();
+    let month = dateField.getMonth();
+    let date = dateField.getDate();
+
+    let hours = timeField.getHours();
+    let minutes = timeField.getMinutes();
+
+    this.dialogField.default_value = new Date(fullYear, month, date, hours, minutes);
+    return this.changesHappened();
   }
 
   /**

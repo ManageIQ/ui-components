@@ -76,10 +76,11 @@ export default class DialogDataService {
    **/
   private setDefaultValue(data): any {
     let defaultValue: any = '';
-    const firstOption = 0; // these are meant to help make code more readable
-    const fieldValue = 0;
 
     if (_.isObject(data.values)) {
+      const firstOption = 0; // these are meant to help make code more readable
+      const fieldValue = 0;
+
       defaultValue = data.values[firstOption][fieldValue];
     }
 

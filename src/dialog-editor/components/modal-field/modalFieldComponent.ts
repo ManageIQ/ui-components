@@ -35,6 +35,7 @@ class ModalFieldController extends ModalController {
 
           this.treeOptions.load(fqname).then((data) => {
             this.treeOptions.data = data;
+            this.treeOptions.selected = {fqname: '/' + fqname};
           });
         }
       },

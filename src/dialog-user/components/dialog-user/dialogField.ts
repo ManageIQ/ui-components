@@ -32,8 +32,7 @@ export class DialogFieldController {
    */
   public $onInit() {
     this.clonedDialogField = _.cloneDeep(this.field);
-    this.dialogField = this.field;
-    this.validation = null;
+    this.dialogField = this.service.setupField(this.field);
 
     if ((this.dialogField.type === 'DialogFieldDateTimeControl') ||
         (this.dialogField.type === 'DialogFieldDateControl')) {
@@ -52,8 +51,7 @@ export class DialogFieldController {
    */
   public $doCheck() {
     if (!_.isEqual(this.field, this.clonedDialogField)) {
-      this.clonedDialogField = _.cloneDeep(this.field);
-      this.dialogField = this.service.setupField(this.field);
+      this.$onInit();
     }
   }
 

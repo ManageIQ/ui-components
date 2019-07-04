@@ -117,7 +117,6 @@ export default class DialogDataService {
    * @param value {any} Value is optional.  Allows you to explicitly pass in the value to verify for a field
    **/
   public validateField(field, value): any {
-    const fieldValue = (value ? value : field.default_value);
     const validation = {
       isValid: true,
       field: '',
@@ -126,15 +125,15 @@ export default class DialogDataService {
     validation.field = field.label;
 
     if (field.required) {
-      if (field.type === 'DialogFieldCheckBox' && fieldValue === 'f') {
+      if (field.type === 'DialogFieldCheckBox' && value === 'f') {
         validation.isValid = false;
         validation.message = __('This field is required');
       } else if (field.type === 'DialogFieldTagControl') {
-        if (this.isInvalidTagControl(field.options.force_single_value, fieldValue)) {
+        if (this.isInvalidTagControl(field.options.force_single_value, value)) {
           validation.isValid = false;
           validation.message = __('This field is required');
         }
-      } else if (_.isEmpty(fieldValue)) {
+      } else if (_.isEmpty(value)) {
         validation.isValid = false;
         validation.message = __('This field is required');
       }
@@ -142,17 +141,17 @@ export default class DialogDataService {
 
     // Run check if someone has specified a regex.  Make sure if its required it is not blank
     if (field.validator_rule && field.validator_type === 'regex' && validation.isValid === true) {
-      if (angular.isDefined(fieldValue) && !_.isEmpty(fieldValue)) {
+      if (angular.isDefined(value) && !_.isEmpty(value)) {
         // This use case ensures that an optional field doesnt check a regex if field is blank
         const regexPattern = field.validator_rule.replace(/\\A/i, '^').replace(/\\Z/i,'$');
         const regex = new RegExp(regexPattern);
-        const regexValidates = regex.test(fieldValue);
+        const regexValidates = regex.test(value);
         validation.isValid = regexValidates;
         validation.message = __('Entered text should match the format:') + ' ' + regexPattern;
       }
     }
 
-    if (['DialogFieldDateControl', 'DialogFieldDateTimeControl'].includes(field.type) && ! _.isDate(fieldValue)) {
+    if (['DialogFieldDateControl', 'DialogFieldDateTimeControl'].includes(field.type) && ! _.isDate(value)) {
       validation.isValid = false;
       validation.message = __('Select a valid date');
     }

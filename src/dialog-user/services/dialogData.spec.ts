@@ -138,7 +138,7 @@ describe('DialogDataService test', () => {
             });
 
             it('does not pass validation', () => {
-              let validation = dialogData.validateField(testField);
+              let validation = dialogData.validateField(testField, testField.default_value);
               expect(validation.isValid).toEqual(false);
               expect(validation.message).toEqual('This field is required');
             });
@@ -159,7 +159,7 @@ describe('DialogDataService test', () => {
             });
 
             it('does not pass validation', () => {
-              let validation = dialogData.validateField(testField);
+              let validation = dialogData.validateField(testField, testField.default_value);
               expect(validation.isValid).toEqual(false);
               expect(validation.message).toEqual('This field is required');
             });
@@ -180,7 +180,7 @@ describe('DialogDataService test', () => {
             });
 
             it('passes validation', () => {
-              let validation = dialogData.validateField(testField);
+              let validation = dialogData.validateField(testField, testField.default_value);
               expect(validation.isValid).toEqual(true);
               expect(validation.message).toEqual('');
             });
@@ -203,7 +203,7 @@ describe('DialogDataService test', () => {
             });
 
             it('does not pass validation', () => {
-              let validation = dialogData.validateField(testField);
+              let validation = dialogData.validateField(testField, testField.default_value);
               expect(validation.isValid).toEqual(false);
               expect(validation.message).toEqual('This field is required');
             });
@@ -224,7 +224,7 @@ describe('DialogDataService test', () => {
             });
 
             it('does not pass validation', () => {
-              let validation = dialogData.validateField(testField);
+              let validation = dialogData.validateField(testField, testField.default_value);
               expect(validation.isValid).toEqual(false);
               expect(validation.message).toEqual('This field is required');
             });
@@ -245,7 +245,7 @@ describe('DialogDataService test', () => {
             });
 
             it('passes validation', () => {
-              let validation = dialogData.validateField(testField);
+              let validation = dialogData.validateField(testField, testField.default_value);
               expect(validation.isValid).toEqual(true);
               expect(validation.message).toEqual('');
             });
@@ -263,12 +263,12 @@ describe('DialogDataService test', () => {
               'default_value': '123',
               'required': true,
               'validator_type': 'regex',
-              'validator_rule': '^1234'
-            }
+              'validator_rule': '^1234',
+            };
           });
 
           it('fails validation', () => {
-            let validation = dialogData.validateField(testField);
+            let validation = dialogData.validateField(testField, testField.default_value);
             expect(validation.isValid).toEqual(false);
             expect(validation.message).toEqual('Entered text should match the format: ^1234');
           });
@@ -283,12 +283,12 @@ describe('DialogDataService test', () => {
               'default_value': '123',
               'required': true,
               'validator_type': 'f',
-              'validator_rule': '^1234'
-            }
+              'validator_rule': '^1234',
+            };
           });
 
           it('passes validation', () => {
-            let validation = dialogData.validateField(testField);
+            let validation = dialogData.validateField(testField, testField.default_value);
             expect(validation.isValid).toEqual(true);
             expect(validation.message).toEqual('');
           });
@@ -308,7 +308,7 @@ describe('DialogDataService test', () => {
           });
 
           it('fails validation', () => {
-            let validation = dialogData.validateField(testField);
+            let validation = dialogData.validateField(testField, testField.default_value);
             expect(validation.isValid).toEqual(false);
             expect(validation.message).toEqual('Select a valid date');
           });

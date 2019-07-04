@@ -56,7 +56,9 @@ describe('Dialog field test', () => {
 
     it('should allow a field to be validated', () => {
       dialogCtrl.dialogField.default_value = 'Test';
-      const fieldValid = dialogCtrl.validateField();
+      dialogCtrl.validateField();
+
+      const fieldValid = dialogCtrl.validation;
       const expectedValue = {
         isValid: false,
         field: 'Service Name',

@@ -15,10 +15,6 @@ export default class DialogDataService {
     let field = _.cloneDeep(data);
     const dropDownValues = [];
     field.fieldBeingRefreshed = (angular.isDefined(field.fieldBeingRefreshed) ? field.fieldBeingRefreshed : false);
-    if (angular.isUndefined(field.fieldValidation)) {
-      field.fieldValidation = '';
-      field.errorMessage = '';
-    }
     const sortableFieldTypes = ['DialogFieldDropDownList', 'DialogFieldRadioButton'];
     if (_.includes(sortableFieldTypes,field.type)) {
       for (let option of field.values) {
@@ -129,12 +125,11 @@ export default class DialogDataService {
   }
 
   /**
-   *
    * Validates a dialog field to ensure that the values supplied meet required criteria
    * @memberof DialogDataService
    * @function validateField
    * @param field {any} This is a object that is all the information for a particular dialog field
-   * @param value {any} Field is optional.  Allows you to explicitly pass in the value to verify for a field
+   * @param value {any} Value is optional.  Allows you to explicitly pass in the value to verify for a field
    **/
   public validateField(field, value): any {
     const fieldValue = (value ? value : field.default_value);

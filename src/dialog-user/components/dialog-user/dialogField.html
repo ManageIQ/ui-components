@@ -1,6 +1,6 @@
 <div ng-show="vm.dialogField.visible"
      class="form-group"
-     ng-class="{'has-error': vm.dialogField.fieldValidation===false}">
+     ng-class="{'has-error': vm.validation.isValid === false}">
 
   <label class=" col-sm-3 control-label">{{ ::vm.dialogField.label }}
     <i class="fa fa-info-circle primary help-icon"
@@ -23,7 +23,7 @@
              uib-tooltip="{{ ::inputTitle }}"
              value="{{ vm.dialogField.values }}"
              id="{{ vm.dialogField.name }}">
-      <div ng-if="vm.dialogField.fieldValidation===false">{{ vm.dialogField.errorMessage }}</div>
+      <div ng-if="vm.validation.isValid === false">{{ vm.validation.message }}</div>
     </div>
     <div class="col-sm-8" ng-switch-when="DialogFieldTextAreaBox">
       <textarea ng-model="vm.dialogField.default_value"
@@ -46,7 +46,7 @@
               type="checkbox"
               uib-tooltip="{{ ::inputTitle }}"
               id="{{ vm.dialogField.name }}">
-      <div ng-if="vm.dialogField.fieldValidation===false">{{vm.dialogField.errorMessage}}</div>
+      <div ng-if="vm.validation.isValid === false">{{ vm.validation.message }}</div>
     </div>
 
     <div class="col-sm-4" ng-switch-when="DialogFieldDropDownList">

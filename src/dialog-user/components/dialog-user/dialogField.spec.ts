@@ -21,9 +21,7 @@ const dialogField = {
   'dynamic': false,
   'read_only': false,
   'visible': true,
-  'fieldValidation': null,
   'fieldBeingRefreshed': false,
-  'errorMessage': '',
   'type': 'DialogFieldTextBox',
   'resource_action': {
     'resource_type': 'DialogField',
@@ -51,9 +49,9 @@ describe('Dialog field test', () => {
     });
 
     it('should have some default properties set', () => {
-      expect(dialogCtrl.dialogField.fieldValidation).toBeDefined();
+      expect(dialogCtrl.validation.isValid).toBeDefined();
       expect(dialogCtrl.dialogField.fieldBeingRefreshed).toBe(false);
-      expect(dialogCtrl.dialogField.errorMessage).toBeDefined();
+      expect(dialogCtrl.validation.message).toBeDefined();
     });
 
     it('should allow a field to be validated', () => {

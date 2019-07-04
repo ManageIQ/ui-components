@@ -51,10 +51,6 @@ export class DialogFieldController extends DialogFieldClass {
   public $doCheck() {
     if (!_.isEqual(this.field, this.clonedDialogField)) {
       this.clonedDialogField = _.cloneDeep(this.field);
-      if (this.validation) {
-        this.field.fieldValidation = this.validation.isValid;
-        this.field.errorMessage = this.validation.message;
-      }
       this.dialogField = this.service.setupField(this.field);
     }
   }
@@ -67,7 +63,7 @@ export class DialogFieldController extends DialogFieldClass {
    */
   public changesHappened(value) {
     const selectedValue = 0;
-    this.validation = this.validateField();
+    this.validation = this.service.validateField(this.dialogField);
     let fieldValue = (value ? value[selectedValue] : this.dialogField.default_value);
     if ((this.dialogField.type === 'DialogFieldTagControl' ||
          this.dialogField.type === 'DialogFieldDropDownList' ||
@@ -110,20 +106,6 @@ export class DialogFieldController extends DialogFieldClass {
    */
   public setMinDate() {
     this.minDate = this.dialogField.options.show_past_dates ? null : new Date();
-  }
-
-  /**
-   * This method validates a dialog field to ensure its current values are valid
-   * @memberof DialogFieldController
-   * @function validateField
-   *
-   */
-  public validateField() {
-    let validation = { isValid: true, message: '' };
-    validation = this.service.validateField(this.dialogField);
-    this.dialogField.fieldValidation = validation.isValid;
-    this.dialogField.errorMessage = validation.message;
-    return validation;
   }
 
   public refreshSingleField() {

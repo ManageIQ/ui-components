@@ -47,9 +47,7 @@ describe('DialogDataService test', () => {
 
   it('should set some default field properties', () => {
     const configuredField = dialogData.setupField(dialogField);
-    expect(configuredField.fieldValidation).toBeDefined();
     expect(configuredField.fieldBeingRefreshed).toBe(false);
-    expect(configuredField.errorMessage).toBeDefined();
   });
 
   describe('#setupField', () => {

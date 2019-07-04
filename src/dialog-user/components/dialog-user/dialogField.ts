@@ -1,25 +1,28 @@
-import { DialogFieldClass } from '../../interfaces/abstractDialogFieldClass';
 import * as _ from 'lodash';
 import * as angular from 'angular';
+
 /**
  * This component deals with an individual dialog field
- *
- * @extends miqStaticAssets.dialog.DialogFieldClass
  * @memberof miqStaticAssets.dialogUser
  * @ngdoc controller
  * @name DialogFieldController
  */
+export class DialogFieldController {
+  public field: any;
+  public onUpdate: any;
+  public singleRefresh: any;
+  public options: any;
+  public inputDisabled: boolean;
 
-export class DialogFieldController extends DialogFieldClass {
   public service: any;
   public dialogValue: any;
   public dialogField: any;
   public validation: any;
   public minDate: any;
   public clonedDialogField: any;
-  /*@ngInject*/
+
+  /* @ngInject */
   constructor(private DialogData: any, private $window: any) {
-    super();
   }
 
   /**

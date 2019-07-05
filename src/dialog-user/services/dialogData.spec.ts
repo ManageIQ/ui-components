@@ -339,11 +339,11 @@ describe('DialogDataService test', () => {
 
       const validateFailure = {
         isValid: false,
-        field: 'Test Field',
+        label: 'Test Field',
         message: 'This field is required'
       };
       const validation = dialogData.validateField(testDropDown, '');
-      expect(validation).toEqual(validateFailure);
+      expect(validation).toEqual(jasmine.objectContaining(validateFailure));
     });
 
     describe('when the data type is a check box', () => {

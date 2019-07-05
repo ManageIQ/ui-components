@@ -79,19 +79,24 @@ export class DialogUserController extends DialogClass implements IDialogs {
     };
     this.onUpdate({ data: outputData });
   }
+
   public validateFields() {
     const validations = {
       isValid: true,
-      messages: []
+      messages: [], // currently unused, should be?
     };
+
     if (this.areFieldsBeingRefreshed) {
       validations.isValid = false;
-      validations.messages.push(__('Fields are being refreshed'));
+      validations.messages.push({
+        message: __('Fields are being refreshed'),
+      });
     } else {
       _.forIn(this.dialogFields, (field, fieldName) => {
         const dialogValue = this.dialogValues[fieldName];
         let validation = this.service.validateField(field, dialogValue);
-        if (!validation.isValid) {
+
+        if (! validation.isValid) {
           validations.isValid = false;
           validations.messages.push(validation);
         }
@@ -100,6 +105,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
 
     return validations;
   }
+
   /**
    * This method handles refreshing of a dialog field as well
    * as determining which other fields might need to be updated

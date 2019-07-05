@@ -118,11 +118,14 @@ export default class DialogDataService {
    **/
   public validateField(field, value): any {
     const validation = {
+      ...{  // unused, nice for debugging
+        label: field.label,
+        name: field.name,
+        value,
+      },
       isValid: true,
-      field: '',
-      message: ''
+      message: '',
     };
-    validation.field = field.label;
 
     if (field.required) {
       if (field.type === 'DialogFieldCheckBox' && value === 'f') {

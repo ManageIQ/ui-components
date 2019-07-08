@@ -218,11 +218,9 @@ export class DialogUserController extends DialogClass implements IDialogs {
    */
 
   private refreshFieldCallback(field, data) {
-    this.initField(data);
+    this.updateDialogFieldData(field, data);
+    this.initField(this.dialogFields[field]);
 
-    this.dialogFields[field] = this.updateDialogFieldData(field, data);
-
-    this.dialogValues[field] = data.default_value;
     this.dialogFields[field].fieldBeingRefreshed = false;
 
     this.saveDialogData();

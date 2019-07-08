@@ -31,6 +31,22 @@ export class DialogFieldController {
    * @function $onInit
    */
   public $onInit() {
+    this.setup();
+  }
+
+  /**
+   * Checks to see if the dialog field has changed and re runs field setup if the field has changed
+   * @memberof DialogFieldController
+   * @function $doCheck
+   */
+  public $doCheck() {
+    if (!_.isEqual(this.field, this.clonedDialogField)) {
+      this.setup();
+    }
+  }
+
+  // run field setup on field init or change
+  public setup() {
     this.clonedDialogField = _.cloneDeep(this.field);
     this.dialogField = this.service.setupField(this.field);
 
@@ -46,17 +62,6 @@ export class DialogFieldController {
     }
 
     this.validateField();
-  }
-
-  /**
-   * Checks to see if the dialog field has changed and re runs field setup if the field has changed
-   * @memberof DialogFieldController
-   * @function $doCheck
-   */
-  public $doCheck() {
-    if (!_.isEqual(this.field, this.clonedDialogField)) {
-      this.$onInit();
-    }
   }
 
   // validate field, set validation

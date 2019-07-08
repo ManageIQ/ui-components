@@ -1,6 +1,6 @@
 <div ng-show="vm.dialogField.visible"
      class="form-group"
-     ng-class="{'has-error': vm.dialogField.fieldValidation===false}">
+     ng-class="{'has-error': vm.validation.isValid === false}">
 
   <label class=" col-sm-3 control-label">{{ ::vm.dialogField.label }}
     <i class="fa fa-info-circle primary help-icon"
@@ -16,14 +16,13 @@
       <input ng-model="vm.dialogField.default_value"
              ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
              ng-change="vm.changesHappened()"
-             ng-blur="vm.validateField()"
              ng-model-options="{debounce: {'default': 500}}"
              class="form-control"
              type="{{ vm.dialogField.options.protected ? 'password' : 'text' }}"
              uib-tooltip="{{ ::inputTitle }}"
              value="{{ vm.dialogField.values }}"
              id="{{ vm.dialogField.name }}">
-      <div ng-if="vm.dialogField.fieldValidation===false">{{ vm.dialogField.errorMessage }}</div>
+      <div ng-if="vm.validation.isValid === false">{{ vm.validation.message }}</div>
     </div>
     <div class="col-sm-8" ng-switch-when="DialogFieldTextAreaBox">
       <textarea ng-model="vm.dialogField.default_value"
@@ -46,7 +45,7 @@
               type="checkbox"
               uib-tooltip="{{ ::inputTitle }}"
               id="{{ vm.dialogField.name }}">
-      <div ng-if="vm.dialogField.fieldValidation===false">{{vm.dialogField.errorMessage}}</div>
+      <div ng-if="vm.validation.isValid === false">{{ vm.validation.message }}</div>
     </div>
 
     <div class="col-sm-4" ng-switch-when="DialogFieldDropDownList">
@@ -56,7 +55,6 @@
               ng-if="!vm.dialogField.options.force_multi_value"
               ng-model="vm.dialogField.default_value"
               watch-model="vm.dialogField.values"
-              ng-blur="vm.validateField()"
               ng-change="vm.changesHappened()"
               ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
               class="form-control"
@@ -72,8 +70,7 @@
               ng-if="vm.dialogField.options.force_multi_value"
               ng-model="vm.dialogField.default_value"
               watch-model="vm.dialogField.values"
-              ng-change="vm.changesHappened(item)"
-              ng-blur="vm.validateField()"
+              ng-change="vm.changesHappened()"
               ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
               input-id="{{ vm.dialogField.name }}"
               ng-options="value[0] as value[1] for value in vm.dialogField.values"

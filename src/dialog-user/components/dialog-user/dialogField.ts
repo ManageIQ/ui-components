@@ -1,25 +1,28 @@
-import { DialogFieldClass } from '../../interfaces/abstractDialogFieldClass';
 import * as _ from 'lodash';
 import * as angular from 'angular';
+
 /**
  * This component deals with an individual dialog field
- *
- * @extends miqStaticAssets.dialog.DialogFieldClass
  * @memberof miqStaticAssets.dialogUser
  * @ngdoc controller
  * @name DialogFieldController
  */
+export class DialogFieldController {
+  public field: any;
+  public onUpdate: any;
+  public singleRefresh: any;
+  public options: any;
+  public inputDisabled: boolean;
 
-export class DialogFieldController extends DialogFieldClass {
   public service: any;
-  public dialogValue: any;
   public dialogField: any;
   public validation: any;
   public minDate: any;
   public clonedDialogField: any;
-  /*@ngInject*/
-  constructor(private DialogData: any, private $window: any) {
-    super();
+
+  /* @ngInject */
+  constructor(DialogData: any) {
+    this.service = DialogData;
   }
 
   /**
@@ -28,19 +31,7 @@ export class DialogFieldController extends DialogFieldClass {
    * @function $onInit
    */
   public $onInit() {
-    this.service = this.DialogData;
-    this.clonedDialogField = _.cloneDeep(this.field);
-    this.dialogField = this.field;
-    this.validation = null;
-
-    if ((this.dialogField.type === 'DialogFieldDateTimeControl') ||
-        (this.dialogField.type === 'DialogFieldDateControl')) {
-      this.setMinDate();
-    }
-
-    if (this.dialogField.type === 'DialogFieldDateTimeControl') {
-      this.dateTimeFieldChanged();
-    }
+    this.setup();
   }
 
   /**
@@ -50,13 +41,33 @@ export class DialogFieldController extends DialogFieldClass {
    */
   public $doCheck() {
     if (!_.isEqual(this.field, this.clonedDialogField)) {
-      this.clonedDialogField = _.cloneDeep(this.field);
-      if (this.validation) {
-        this.field.fieldValidation = this.validation.isValid;
-        this.field.errorMessage = this.validation.message;
-      }
-      this.dialogField = this.service.setupField(this.field);
+      this.setup();
     }
+  }
+
+  // run field setup on field init or change
+  public setup() {
+    this.clonedDialogField = _.cloneDeep(this.field);
+    this.dialogField = this.service.setupField(this.field);
+
+    if ((this.dialogField.type === 'DialogFieldDateTimeControl') ||
+        (this.dialogField.type === 'DialogFieldDateControl')) {
+      this.setMinDate();
+    }
+
+    if (this.dialogField.type === 'DialogFieldDateTimeControl') {
+      // dateTimeFieldChanged handles merging back to default_value
+      this.dialogField.dateField = new Date(this.dialogField.default_value);
+      this.dialogField.timeField = new Date(this.dialogField.default_value);
+    }
+
+    this.validateField();
+  }
+
+  // validate field, set validation
+  private validateField() {
+    const field = this.dialogField;
+    this.validation = this.service.validateField(field, field.default_value);
   }
 
   /**
@@ -65,18 +76,14 @@ export class DialogFieldController extends DialogFieldClass {
    * @memberof DialogFieldController
    * @function changesHappened
    */
-  public changesHappened(value) {
-    const selectedValue = 0;
-    this.validation = this.validateField();
-    let fieldValue = (value ? value[selectedValue] : this.dialogField.default_value);
-    if ((this.dialogField.type === 'DialogFieldTagControl' ||
-         this.dialogField.type === 'DialogFieldDropDownList' ||
-         this.dialogField.type === 'DialogFieldRadioButton') &&
-        this.dialogField.default_value instanceof Array) {
-        // using `default_value` if field.type is a subclass of DialogFieldSortedItem
-        fieldValue = this.dialogField.default_value.join();
-      }
-    this.onUpdate({ dialogFieldName: this.field.name, value: fieldValue });
+  public changesHappened() {
+    this.validateField();
+
+    const field = this.dialogField;
+    this.onUpdate({
+      dialogFieldName: field.name,
+      value: field.default_value,
+    });
   }
 
   /**
@@ -87,19 +94,17 @@ export class DialogFieldController extends DialogFieldClass {
    */
   public dateTimeFieldChanged() {
     let dateField = this.dialogField.dateField;
+    let timeField = this.dialogField.timeField;
+
     let fullYear = dateField.getFullYear();
     let month = dateField.getMonth();
     let date = dateField.getDate();
 
-    if (this.dialogField.timeField === undefined) {
-      this.dialogField.timeField = new Date();
-    }
+    let hours = timeField.getHours();
+    let minutes = timeField.getMinutes();
 
-    let hours = this.dialogField.timeField.getHours();
-    let minutes = this.dialogField.timeField.getMinutes();
-
-    let fullDate = new Date(fullYear, month, date, hours, minutes);
-    this.changesHappened([fullDate]);
+    this.dialogField.default_value = new Date(fullYear, month, date, hours, minutes);
+    return this.changesHappened();
   }
 
   /**
@@ -110,20 +115,6 @@ export class DialogFieldController extends DialogFieldClass {
    */
   public setMinDate() {
     this.minDate = this.dialogField.options.show_past_dates ? null : new Date();
-  }
-
-  /**
-   * This method validates a dialog field to ensure its current values are valid
-   * @memberof DialogFieldController
-   * @function validateField
-   *
-   */
-  public validateField() {
-    let validation = { isValid: true, message: '' };
-    validation = this.service.validateField(this.dialogField);
-    this.dialogField.fieldValidation = validation.isValid;
-    this.dialogField.errorMessage = validation.message;
-    return validation;
   }
 
   public refreshSingleField() {

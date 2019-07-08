@@ -13,14 +13,11 @@ export default class DialogDataService {
    **/
   public setupField(data: any) {
     let field = _.cloneDeep(data);
-    const dropDownValues = [];
-    field.fieldBeingRefreshed = (angular.isDefined(field.fieldBeingRefreshed) ? field.fieldBeingRefreshed : false);
-    if (angular.isUndefined(field.fieldValidation)) {
-      field.fieldValidation = '';
-      field.errorMessage = '';
-    }
+    field.fieldBeingRefreshed = field.fieldBeingRefreshed || false;
+
     const sortableFieldTypes = ['DialogFieldDropDownList', 'DialogFieldRadioButton'];
-    if (_.includes(sortableFieldTypes,field.type)) {
+    if (_.includes(sortableFieldTypes, field.type)) {
+      const dropDownValues = [];
       for (let option of field.values) {
         if (option[0] === String(field.default_value)) {
           field.selected = option;
@@ -32,22 +29,6 @@ export default class DialogDataService {
       field.values = dropDownValues;
       if (data.options.sort_by !== 'none') {
         field.values = this.updateFieldSortOrder(field);
-      }
-    }
-
-    if (field.type === 'DialogFieldDateTimeControl') {
-      if (_.isNull(field.values) || _.isUndefined(field.values)) {
-        field.dateField = field.timeField = new Date();
-      } else {
-        field.dateField = field.timeField = new Date(data.values);
-      }
-    }
-
-    if (field.type === 'DialogFieldDateControl') {
-      if (_.isNull(field.default_value) || _.isUndefined(field.default_value)) {
-        field.dateField = new Date();
-      } else {
-        field.dateField = new Date(data.default_value);
       }
     }
 
@@ -96,10 +77,11 @@ export default class DialogDataService {
    **/
   private setDefaultValue(data): any {
     let defaultValue: any = '';
-    const firstOption = 0; // these are meant to help make code more readable
-    const fieldValue = 0;
 
     if (_.isObject(data.values)) {
+      const firstOption = 0; // these are meant to help make code more readable
+      const fieldValue = 0;
+
       defaultValue = data.values[firstOption][fieldValue];
     }
 
@@ -108,10 +90,12 @@ export default class DialogDataService {
     }
 
     if (data.type === 'DialogFieldDateControl' || data.type === 'DialogFieldDateTimeControl') {
-      defaultValue = data.dateField ? new Date(data.dateField) : new Date();
+      defaultValue = data.default_value ? new Date(data.default_value) : new Date();
     }
 
-    if (data.type === 'DialogFieldDropDownList' && data.options.force_multi_value && data.default_value) {
+    // FIXME maybe better make sure it's never not string (must come from double call)
+    if (data.type === 'DialogFieldDropDownList' && data.options.force_multi_value
+      && data.default_value && _.isString(data.default_value)) {
       defaultValue = JSON.parse(data.default_value);
     }
 
@@ -129,35 +113,33 @@ export default class DialogDataService {
   }
 
   /**
-   *
    * Validates a dialog field to ensure that the values supplied meet required criteria
    * @memberof DialogDataService
    * @function validateField
    * @param field {any} This is a object that is all the information for a particular dialog field
-   * @param value {any} Field is optional.  Allows you to explicitly pass in the value to verify for a field
+   * @param value {any} Value is optional.  Allows you to explicitly pass in the value to verify for a field
    **/
   public validateField(field, value): any {
-    const fieldValue = (value ? value : field.default_value);
     const validation = {
+      ...{  // unused, nice for debugging
+        label: field.label,
+        name: field.name,
+        value,
+      },
       isValid: true,
-      field: '',
-      message: ''
+      message: '',
     };
-    validation.field = field.label;
-
-    let dateControlField = (field.type === 'DialogFieldDateControl');
-    let validDateField = (dateControlField && _.isDate(field.dateField));
 
     if (field.required) {
-      if (field.type === 'DialogFieldCheckBox' && fieldValue === 'f') {
+      if (field.type === 'DialogFieldCheckBox' && value === 'f') {
         validation.isValid = false;
         validation.message = __('This field is required');
       } else if (field.type === 'DialogFieldTagControl') {
-        if (this.isInvalidTagControl(field.options.force_single_value, fieldValue)) {
+        if (this.isInvalidTagControl(field.options.force_single_value, value)) {
           validation.isValid = false;
           validation.message = __('This field is required');
         }
-      } else if (_.isEmpty(fieldValue) && !validDateField) {
+      } else if (_.isEmpty(value)) {
         validation.isValid = false;
         validation.message = __('This field is required');
       }
@@ -165,26 +147,19 @@ export default class DialogDataService {
 
     // Run check if someone has specified a regex.  Make sure if its required it is not blank
     if (field.validator_rule && field.validator_type === 'regex' && validation.isValid === true) {
-      if (angular.isDefined(fieldValue) && !_.isEmpty(fieldValue)) {
+      if (angular.isDefined(value) && !_.isEmpty(value)) {
         // This use case ensures that an optional field doesnt check a regex if field is blank
         const regexPattern = field.validator_rule.replace(/\\A/i, '^').replace(/\\Z/i,'$');
         const regex = new RegExp(regexPattern);
-        const regexValidates = regex.test(fieldValue);
+        const regexValidates = regex.test(value);
         validation.isValid = regexValidates;
         validation.message = __('Entered text should match the format:') + ' ' + regexPattern;
       }
     }
 
-    if (dateControlField && !validDateField) {
+    if (['DialogFieldDateControl', 'DialogFieldDateTimeControl'].includes(field.type) && ! _.isDate(value)) {
       validation.isValid = false;
       validation.message = __('Select a valid date');
-    }
-
-    if (field.type === 'DialogFieldDateTimeControl') {
-      if (field.dateField === undefined) {
-        validation.isValid = false;
-        validation.message = __('Select a valid date');
-      }
     }
 
     return validation;

@@ -80,12 +80,13 @@ describe('Dialog test', () =>  {
 
     beforeEach(() => {
       refreshField = {
-        callback: function(value) { }
+        callback: (value) => Promise.resolve({}),
       };
-      spyOn(refreshField, 'callback');
+      spyOn(refreshField, 'callback').and.callThrough();
+
       let bindings = {
         dialog: dialogData,
-        refreshField: refreshField,
+        refreshField: refreshField.callback,
         onUpdate: () => true,
         inputDisabled: false
       };
@@ -97,14 +98,22 @@ describe('Dialog test', () =>  {
     });
 
     it('returns a promise', () => {
-      let testPromise = new Promise((resolve, reject) => {});
-      expect(dialogCtrl.refreshSingleField('service_name')).toEqual(testPromise);
+      expect(dialogCtrl.refreshSingleField('service_name').then).toBeDefined();
     });
 
-    it('makes the callback to refreshField', () => {
-      let promise = dialogCtrl.refreshSingleField('service_name');
-      promise.then(() => {
-        expect(refreshField.callback).toHaveBeenCalledWith({field: dialogData['service_name']});
+    it('makes the callback to refreshField', (done) => {
+      let expectedField =  _.pick(dialogCtrl.dialogFields['service_name'], [
+        'created_at',
+        'href',
+        'name',
+      ]);
+
+      dialogCtrl.refreshSingleField('service_name').then(() => {
+        expect(refreshField.callback).toHaveBeenCalledWith({
+          field: jasmine.objectContaining(expectedField),
+        });
+
+        done();
       });
     });
   });

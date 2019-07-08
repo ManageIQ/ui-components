@@ -21,9 +21,7 @@ const dialogField = {
   'dynamic': false,
   'read_only': false,
   'visible': true,
-  'fieldValidation': null,
   'fieldBeingRefreshed': false,
-  'errorMessage': '',
   'type': 'DialogFieldTextBox',
   'resource_action': {
     'resource_type': 'DialogField',
@@ -51,21 +49,23 @@ describe('Dialog field test', () => {
     });
 
     it('should have some default properties set', () => {
-      expect(dialogCtrl.dialogField.fieldValidation).toBeDefined();
+      expect(dialogCtrl.validation.isValid).toBeDefined();
       expect(dialogCtrl.dialogField.fieldBeingRefreshed).toBe(false);
-      expect(dialogCtrl.dialogField.errorMessage).toBeDefined();
+      expect(dialogCtrl.validation.message).toBeDefined();
     });
 
     it('should allow a field to be validated', () => {
       dialogCtrl.dialogField.default_value = 'Test';
-      const fieldValid = dialogCtrl.validateField();
+      dialogCtrl.validateField();
+
+      const fieldValid = dialogCtrl.validation;
       const expectedValue = {
         isValid: false,
-        field: 'Service Name',
+        label: 'Service Name',
         message: 'Entered text should match the format: [0-9]'
       };
 
-      expect(fieldValid).toEqual(expectedValue);
+      expect(fieldValid).toEqual(jasmine.objectContaining(expectedValue));
     });
 
     it('should check and update a field when the parent component field has changed', () => {
@@ -119,8 +119,7 @@ describe('Dialog field test', () => {
     const dateTimeDialogField = {
       'name': 'dateTest',
       'type': 'DialogFieldDateTimeControl',
-      'dateField': testDate,
-      'timeField': testDate,
+      'default_value': testDate,
       'options': {},
     };
 

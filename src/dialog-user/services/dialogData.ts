@@ -93,7 +93,9 @@ export default class DialogDataService {
       defaultValue = data.default_value ? new Date(data.default_value) : new Date();
     }
 
-    if (data.type === 'DialogFieldDropDownList' && data.options.force_multi_value && data.default_value) {
+    // FIXME maybe better make sure it's never not string (must come from double call)
+    if (data.type === 'DialogFieldDropDownList' && data.options.force_multi_value
+      && data.default_value && _.isString(data.default_value)) {
       defaultValue = JSON.parse(data.default_value);
     }
 

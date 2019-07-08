@@ -18,7 +18,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
   public service: any;
   public refreshRequestCount: number;
   public areFieldsBeingRefreshed: boolean;
-  public hasFieldsToUpdate: boolean;
+
   /**
    * constructor
    ** DialogData - This is the data service that handles manipulating and organizing field data
@@ -64,6 +64,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
     }
     vm.saveDialogData();
   }
+
   /**
   * This reports all values from the dialog up to the parent component
   * The onUpdate method signature from the parent component should be updateFunctionName(data)
@@ -115,17 +116,18 @@ export class DialogUserController extends DialogClass implements IDialogs {
    * @param value {any} This is the updated value based on the selection the user made on a particular dialog field
    */
   public updateDialogField(dialogFieldName, value) {
-    this.hasFieldsToUpdate = false;
-    if (!_.isEmpty(this.fieldAssociations) && this.fieldAssociations[dialogFieldName].length > 0) {
-      this.hasFieldsToUpdate = true;
-    }
+    let hasFieldsToUpdate = this.fieldAssociations && this.fieldAssociations[dialogFieldName]
+      && this.fieldAssociations[dialogFieldName].length;
+
     this.dialogValues[dialogFieldName] = value;
-    if (this.hasFieldsToUpdate) {
+    if (hasFieldsToUpdate) {
       this.determineRefreshRequestCount(dialogFieldName);
       this.areFieldsBeingRefreshed = true;
     }
+
     this.saveDialogData();
-    if (this.hasFieldsToUpdate) {
+
+    if (hasFieldsToUpdate) {
       this.updateTargetedFieldsFrom(dialogFieldName);
     } else {
       const refreshable = _.indexOf(this.refreshableFields, dialogFieldName);

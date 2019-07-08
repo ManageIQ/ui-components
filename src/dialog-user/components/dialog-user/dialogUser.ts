@@ -154,17 +154,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
     this.areFieldsBeingRefreshed = true;
     this.dialogFields[field].fieldBeingRefreshed = true;
     const fieldsLeftToRefresh = _.without(refreshableFields, field);
-    this.refreshField({ field: this.dialogFields[field] }).then((data) => {
-      this.dialogFields[field] = this.updateDialogFieldData(field, data);
-      this.dialogFields[field].fieldBeingRefreshed = false;
-      this.saveDialogData();
-      this.$scope.$apply();
-      if (fieldsLeftToRefresh.length > 0) {
-        this.updateRefreshableFields(fieldsLeftToRefresh);
-      } else {
-        this.areFieldsBeingRefreshed = false;
-      }
-    });
+    this.refreshField({ field: this.dialogFields[field] }).then((data) => this.refreshFieldCallback(field, data));
   }
 
   public determineRefreshRequestCount(fieldName): void {
@@ -213,11 +203,9 @@ export class DialogUserController extends DialogClass implements IDialogs {
 
     this.dialogFields[field].fieldBeingRefreshed = true;
 
-    return new Promise((resolve, reject) => {
-      this.refreshField({ field: this.dialogFields[field] }).then((data) => {
-        this.refreshFieldCallback(field, data);
-        resolve(data);
-      });
+    return this.refreshField({ field: this.dialogFields[field] }).then((data) => {
+      this.refreshFieldCallback(field, data);
+      return data;
     });
   }
 

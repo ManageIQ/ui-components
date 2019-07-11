@@ -59,6 +59,12 @@ export class DialogFieldController {
       // dateTimeFieldChanged handles merging back to default_value
       this.dialogField.dateField = new Date(this.dialogField.default_value);
       this.dialogField.timeField = new Date(this.dialogField.default_value);
+
+      if (! this.dialogField.default_value) {
+        // clearing the date nulls the date field, so we're using that to represent null
+        // timeField can't be null otherwise changing just date field to non-null would reset back to null
+        this.dialogField.dateField = null;
+      }
     }
 
     this.validateField();
@@ -95,6 +101,14 @@ export class DialogFieldController {
   public dateTimeFieldChanged() {
     let dateField = this.dialogField.dateField;
     let timeField = this.dialogField.timeField;
+
+    if (! dateField) {
+      // cleared
+      // timeField can't be null, see setup()
+      this.dialogField.dateField = null;
+      this.dialogField.default_value = null;
+      return this.changesHappened();
+    }
 
     let fullYear = dateField.getFullYear();
     let month = dateField.getMonth();

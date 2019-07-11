@@ -93,10 +93,15 @@ export default class DialogDataService {
       defaultValue = data.default_value ? new Date(data.default_value) : new Date();
     }
 
-    // FIXME maybe better make sure it's never not string (must come from double call)
-    if (data.type === 'DialogFieldDropDownList' && data.options.force_multi_value
-      && data.default_value && _.isString(data.default_value)) {
-      defaultValue = JSON.parse(data.default_value);
+    // don't convert twice, FIXME: later refactor so that this doesn't get called twice for the same data
+    if (data.type === 'DialogFieldDropDownList' && data.default_value && _.isString(data.default_value)) {
+      if (data.options.force_multi_value) {
+        // multi-select - convert value from JSON, assume right type
+        defaultValue = JSON.parse(data.default_value);
+      } else if (data.data_type === 'integer') {
+        // single-select - convert value to the chosen default_type, API always returns string
+        defaultValue = parseInt(data.default_value, 10) || 0;
+      }
     }
 
     if (data.type === 'DialogFieldTagControl') {

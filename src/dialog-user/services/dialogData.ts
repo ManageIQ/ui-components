@@ -28,21 +28,18 @@ export default class DialogDataService {
   // converts values to the right data_type, and order
   public setupSortableValues({
     data_type,
-    default_value,
     options,
     values,
   }) {
-    let dropDownValues = [];
-
-    for (let option of values) {
-      const value = ((data_type === 'integer' && option[0] !== null) ? parseInt(option[0], 10) : option[0]);
+    let dropDownValues = values.map((option) => {
+      const value = this.convertDropdownValue(option[0], data_type);
       const description = (!Number.isInteger(option[1]) ? option[1] : parseInt(option[1], 10));
-      dropDownValues.push([value, description]);
-    }
+
+      return [value, description];
+    });
 
     if (options.sort_by !== 'none') {
       return this.updateFieldSortOrder({
-        data_type,
         options,
         values: dropDownValues,
       });
@@ -60,16 +57,15 @@ export default class DialogDataService {
    *
    **/
   private updateFieldSortOrder({
-    data_type,
     options,
     values,
   }) {
-    const firstValue = values[0][0];
     let tempValues = [...values];
-    let defaultDropdownField = [];
 
-    // The following if deals with a empty default option if it exists
-    if (data_type === 'integer' && _.isNaN(firstValue) || _.isNull(firstValue)) {
+    // The following deals with an empty default option if it exists
+    const firstValue = values[0][0];
+    let defaultDropdownField = [];
+    if (! firstValue) {
       defaultDropdownField = tempValues.shift();
     }
 
@@ -79,6 +75,7 @@ export default class DialogDataService {
       sortedValues = sortedValues.reverse();
     }
 
+    // reinsert default option first
     if (defaultDropdownField.length) {
       sortedValues.unshift(defaultDropdownField);
     }
@@ -119,7 +116,7 @@ export default class DialogDataService {
         defaultValue = JSON.parse(data.default_value);
       } else if (data.data_type === 'integer') {
         // single-select - convert value to the chosen default_type, API always returns string
-        defaultValue = parseInt(data.default_value, 10) || 0;
+        defaultValue = this.convertDropdownValue(data.default_value, data.data_type);
       }
     }
 
@@ -134,6 +131,20 @@ export default class DialogDataService {
     }
 
     return defaultValue;
+  }
+
+  public convertDropdownValue(value, type: 'string' | 'integer') {
+    // nil is always null, no type conversion applied
+    if (value === undefined || value === null) {
+      return null;
+    }
+
+    switch (type) {
+      case 'string':
+        return value.toString();
+      case 'integer':
+        return parseInt(value, 10) || 0;
+    }
   }
 
   /**

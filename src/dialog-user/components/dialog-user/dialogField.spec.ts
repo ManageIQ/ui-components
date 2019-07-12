@@ -86,6 +86,7 @@ describe('Dialog field test', () => {
           ...dialogField.options,
           force_multi_value: true,
         },
+        data_type: 'string',
       };
       dialogCtrl.$doCheck();
       expect(dialogCtrl.dialogField.default_value).toEqual(['one', 'two']);

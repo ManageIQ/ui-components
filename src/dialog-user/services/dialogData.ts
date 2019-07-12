@@ -17,21 +17,38 @@ export default class DialogDataService {
 
     const sortableFieldTypes = ['DialogFieldDropDownList', 'DialogFieldRadioButton'];
     if (_.includes(sortableFieldTypes, field.type)) {
-      const dropDownValues = [];
-      for (let option of field.values) {
-        const value = ((field.data_type === 'integer' && option[0] !== null) ? parseInt(option[0], 10) : option[0]);
-        const description = (!Number.isInteger(option[1]) ? option[1] : parseInt(option[1], 10));
-        dropDownValues.push([value, description]);
-      }
-      field.values = dropDownValues;
-      if (data.options.sort_by !== 'none') {
-        field.values = this.updateFieldSortOrder(field);
-      }
+      field.values = this.setupSortableValues(field);
     }
 
     field.default_value = this.setDefaultValue(field);
 
     return field;
+  }
+
+  // converts values to the right data_type, and order
+  public setupSortableValues({
+    data_type,
+    default_value,
+    options,
+    values,
+  }) {
+    let dropDownValues = [];
+
+    for (let option of values) {
+      const value = ((data_type === 'integer' && option[0] !== null) ? parseInt(option[0], 10) : option[0]);
+      const description = (!Number.isInteger(option[1]) ? option[1] : parseInt(option[1], 10));
+      dropDownValues.push([value, description]);
+    }
+
+    if (options.sort_by !== 'none') {
+      return this.updateFieldSortOrder({
+        data_type,
+        options,
+        values: dropDownValues,
+      });
+    }
+
+    return dropDownValues;
   }
 
   /**
@@ -42,21 +59,26 @@ export default class DialogDataService {
    * @param data {any} This is a object that is all the information for a particular dialog field
    *
    **/
-  private updateFieldSortOrder(data) {
-    const SORT_DESCRIPTION = 1;
-    const SORT_VALUE = 0;
-    const FIRST_OPTION = 0;
-    const VALUE = 0;
-    const sortBy = (data.options.sort_by === 'value' ? SORT_VALUE : SORT_DESCRIPTION);
-    let tempValues = [...data.values];
+  private updateFieldSortOrder({
+    data_type,
+    options,
+    values,
+  }) {
+    const firstValue = values[0][0];
+    let tempValues = [...values];
     let defaultDropdownField = [];
+
     // The following if deals with a empty default option if it exists
-    if (data.data_type === 'integer' && _.isNaN(tempValues[FIRST_OPTION][VALUE]) ||
-      _.isNull(tempValues[FIRST_OPTION][VALUE])) {
+    if (data_type === 'integer' && _.isNaN(firstValue) || _.isNull(firstValue)) {
       defaultDropdownField = tempValues.shift();
     }
-    let values = _.sortBy(tempValues, sortBy);
-    const sortedValues : any = data.options.sort_order === 'ascending' ? values : values.reverse();
+
+    const sortBy = (options.sort_by === 'value' ? 0 : 1);
+    let sortedValues = _.sortBy(tempValues, sortBy);
+    if (options.sort_order !== 'ascending') {
+      sortedValues = sortedValues.reverse();
+    }
+
     if (defaultDropdownField.length) {
       sortedValues.unshift(defaultDropdownField);
     }

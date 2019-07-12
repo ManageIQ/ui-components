@@ -113,7 +113,7 @@ export default class DialogDataService {
     if (data.type === 'DialogFieldDropDownList' && data.default_value && _.isString(data.default_value)) {
       if (data.options.force_multi_value) {
         // multi-select - convert value from JSON, assume right type
-        defaultValue = JSON.parse(data.default_value);
+        defaultValue = JSON.parse(data.default_value).map((value) => this.convertDropdownValue(value, data.data_type));
       } else if (data.data_type === 'integer') {
         // single-select - convert value to the chosen default_type, API always returns string
         defaultValue = this.convertDropdownValue(data.default_value, data.data_type);

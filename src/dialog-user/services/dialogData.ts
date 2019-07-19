@@ -165,18 +165,33 @@ export default class DialogDataService {
       message: '',
     };
 
+    const fail = (message = __('This field is required')) => {
+      validation.isValid = false;
+      validation.message = message;
+    };
+
     if (field.required) {
-      if (field.type === 'DialogFieldCheckBox' && value === 'f') {
-        validation.isValid = false;
-        validation.message = __('This field is required');
-      } else if (field.type === 'DialogFieldTagControl') {
-        if (this.isInvalidTagControl(field.options.force_single_value, value)) {
-          validation.isValid = false;
-          validation.message = __('This field is required');
-        }
-      } else if (_.isEmpty(value)) {
-        validation.isValid = false;
-        validation.message = __('This field is required');
+      switch (field.type) {
+        case 'DialogFieldCheckBox':
+          if (_.isEmpty(value) || value === 'f') {
+            fail();
+          }
+          break;
+        case 'DialogFieldTagControl':
+          if (this.isInvalidTagControl(field.options.force_single_value, value)) {
+            fail();
+          }
+          break;
+        case 'DialogFieldDateControl':
+        case 'DialogFieldDateTimeControl':
+          if (! _.isDate(value)) {
+            fail(__('Select a valid date'));
+          }
+          break;
+        default:
+          if (_.isEmpty(value)) {
+            fail();
+          }
       }
     }
 
@@ -187,14 +202,11 @@ export default class DialogDataService {
         const regexPattern = field.validator_rule.replace(/\\A/i, '^').replace(/\\Z/i,'$');
         const regex = new RegExp(regexPattern);
         const regexValidates = regex.test(value);
-        validation.isValid = regexValidates;
-        validation.message = __('Entered text should match the format:') + ' ' + regexPattern;
-      }
-    }
 
-    if (['DialogFieldDateControl', 'DialogFieldDateTimeControl'].includes(field.type) && ! _.isDate(value)) {
-      validation.isValid = false;
-      validation.message = __('Select a valid date');
+        if (! regexValidates) {
+          fail(__('Entered text should match the format:') + ' ' + regexPattern);
+        }
+      }
     }
 
     return validation;

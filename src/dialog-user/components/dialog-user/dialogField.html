@@ -2,12 +2,13 @@
      class="form-group"
      ng-class="{'has-error': vm.validation.isValid === false}">
 
-  <label class=" col-sm-3 control-label">{{ ::vm.dialogField.label }}
+  <label class="col-sm-3 control-label">
+    {{ ::vm.dialogField.label }}
     <i class="fa fa-info-circle primary help-icon"
-         ng-if="vm.dialogField.description" 
-         tooltip-append-to-body="true"
-         uib-tooltip="{{ vm.dialogField.description }}" 
-         tooltip-placement="auto top">
+       ng-if="vm.dialogField.description"
+       tooltip-append-to-body="true"
+       uib-tooltip="{{ vm.dialogField.description }}"
+       tooltip-placement="auto top">
     </i>
   </label>
 
@@ -22,8 +23,10 @@
              uib-tooltip="{{ ::inputTitle }}"
              value="{{ vm.dialogField.values }}"
              id="{{ vm.dialogField.name }}">
+
       <div ng-if="vm.validation.isValid === false">{{ vm.validation.message }}</div>
     </div>
+
     <div class="col-sm-8" ng-switch-when="DialogFieldTextAreaBox">
       <textarea ng-model="vm.dialogField.default_value"
                 ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
@@ -35,21 +38,24 @@
                 rows="4"
                 id="{{ vm.dialogField.name }}">{{ vm.dialogField.default_value }}
       </textarea>
+
+      <div ng-if="vm.validation.isValid === false">{{ vm.validation.message }}</div>
     </div>
+
     <div class="col-sm-1" ng-switch-when="DialogFieldCheckBox">
-      <input  ng-model="vm.dialogField.default_value"
-              ng-true-value="'t'"
-              ng-false-value="'f'"
-              ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
-              ng-change="vm.changesHappened()"
-              type="checkbox"
-              uib-tooltip="{{ ::inputTitle }}"
-              id="{{ vm.dialogField.name }}">
+      <input ng-model="vm.dialogField.default_value"
+             ng-true-value="'t'"
+             ng-false-value="'f'"
+             ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
+             ng-change="vm.changesHappened()"
+             type="checkbox"
+             uib-tooltip="{{ ::inputTitle }}"
+             id="{{ vm.dialogField.name }}">
+
       <div ng-if="vm.validation.isValid === false">{{ vm.validation.message }}</div>
     </div>
 
     <div class="col-sm-4" ng-switch-when="DialogFieldDropDownList">
-      <!-- Dropdown field where a single value is expected - PF 3 compatible-->
       <select miq-select
               data-live-search="true"
               ng-if="!vm.dialogField.options.force_multi_value"
@@ -76,6 +82,8 @@
               ng-options="value[0] as value[1] for value in vm.dialogField.values"
               miq-options="{ 'data-tokens': value[0] + ' ' + value[1] }"
       ></select>
+
+      <div ng-if="vm.validation.isValid === false">{{ vm.validation.message }}</div>
     </div>
 
     <div class="col-sm-6" ng-switch-when="DialogFieldTagControl">
@@ -87,10 +95,7 @@
               ng-options="fieldValue.id as fieldValue.description for fieldValue in vm.dialogField.values"
               id="{{ vm.dialogField.name }}">
       </select>
-    </div>
 
-    <!-- Somewhat of a hack, but open angular issue using ng-att-multiple, so this is the workaround -->
-    <div class="col-sm-6" ng-switch-when="DialogFieldTagControl">
       <select ng-if="!vm.dialogField.options.force_single_value"
               multiple
               ng-model="vm.dialogField.default_value"
@@ -100,15 +105,15 @@
               ng-options="fieldValue.id as fieldValue.description for fieldValue in vm.dialogField.values"
               id="{{ vm.dialogField.name }}">
       </select>
+
+      <div ng-if="vm.validation.isValid === false">{{ vm.validation.message }}</div>
     </div>
 
     <div class="col-sm-6" ng-switch-when="DialogFieldRadioButton">
       <span ng-if="vm.dialogField.read_only || vm.inputDisabled">
         <label class="radio-inline">{{ vm.parsedOptions[vm.dialogField.name] }}</label>
       </span>
-    </div>
 
-    <div class="col-sm-6" ng-switch-when="DialogFieldRadioButton">
       <span ng-if="vm.dialogField.read_only === false || vm.inputDisabled === false">
         <label class="radio-inline"
                ng-repeat="fieldValue in vm.dialogField.values">
@@ -122,6 +127,8 @@
           {{ ::fieldValue[1] }}
         </label>
       </span>
+
+      <div ng-if="vm.validation.isValid === false">{{ vm.validation.message }}</div>
     </div>
 
     <div class="col-sm-4" ng-switch-when="DialogFieldDateControl">
@@ -143,12 +150,15 @@
           </button>
         </span>
       </p>
+
+      <div ng-if="vm.validation.isValid === false">{{ vm.validation.message }}</div>
     </div>
 
     <div class="col-sm-4" ng-switch-when="DialogFieldDateTimeControl">
       <div class="dateTimePadding">
         <p class="input-group">
-          <input uib-datepicker-popup type="text"
+          <input uib-datepicker-popup
+                 type="text"
                  class="form-control"
                  ng-model="vm.dialogField.dateField"
                  ng-change="vm.dateTimeFieldChanged()"
@@ -165,10 +175,15 @@
           </span>
         </p>
       </div>
-      <div uib-timepicker ng-model="vm.dialogField.timeField" ng-change="vm.dateTimeFieldChanged()"></div>
+      <div uib-timepicker
+           ng-model="vm.dialogField.timeField"
+           ng-change="vm.dateTimeFieldChanged()">
+      </div>
+
+      <div ng-if="vm.validation.isValid === false">{{ vm.validation.message }}</div>
     </div>
-    <span ng-switch-default ng-hide="true"></span>
   </div>
+
   <div class="col-sm-1"
         ng-if="vm.dialogField.dynamic && vm.dialogField.show_refresh_button && vm.inputDisabled===false">
     <button type="button"
@@ -177,6 +192,7 @@
       <i class="fa fa-refresh" uib-Tooltip="{{'Refresh field'|translate}}"></i>
     </button>
   </div>
+
   <div class="col-sm-1" ng-show="vm.dialogField.fieldBeingRefreshed">
     <div class="spinner spinner-xs spinner-inline"></div>
   </div>

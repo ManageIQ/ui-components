@@ -294,16 +294,15 @@ describe('DialogDataService test', () => {
           });
         });
       });
-    });
 
-    describe('when the field is not required', () => {
       describe('when the field is a date time control', () => {
         describe('when the field does not have a date filled out', () => {
           let testField;
 
           beforeEach(() => {
             testField = {
-              'type': 'DialogFieldDateTimeControl',
+              type: 'DialogFieldDateTimeControl',
+              required: true,
             };
           });
 

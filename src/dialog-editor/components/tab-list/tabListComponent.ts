@@ -65,7 +65,11 @@ class TabListController {
         label: __('New tab ') + nextIndex,
         position: nextIndex,
         active: true,
-        dialog_groups: [],
+        dialog_groups: [{
+          'label': __('New section'),
+          'position': 0,
+          'dialog_fields': [],
+        }],
       }
     );
     this.DialogEditor.activeTab = nextIndex;

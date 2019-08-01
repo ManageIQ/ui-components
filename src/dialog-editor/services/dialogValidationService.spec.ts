@@ -64,7 +64,7 @@ describe('DialogValidation test', () => {
           }]
         }];
         expect(dialogValidation.dialogIsValid(dialogData)).toEqual(false);
-        expect(dialogValidation.invalid.message).toEqual('Dialog tab needs to have at least one group');
+        expect(dialogValidation.invalid.message).toEqual('Dialog tab needs to have at least one section');
       });
     });
   });
@@ -84,7 +84,7 @@ describe('DialogValidation test', () => {
           }]
         }];
         expect(dialogValidation.dialogIsValid(dialogData)).toEqual(false);
-        expect(dialogValidation.invalid.message).toEqual('Dialog group needs to have a label');
+        expect(dialogValidation.invalid.message).toEqual('Dialog section needs to have a label');
       });
     });
     describe('when a group has no fields', () => {
@@ -101,7 +101,7 @@ describe('DialogValidation test', () => {
           }]
         }];
         expect(dialogValidation.dialogIsValid(dialogData)).toEqual(false);
-        expect(dialogValidation.invalid.message).toEqual('Dialog group needs to have at least one field');
+        expect(dialogValidation.invalid.message).toEqual('Dialog section needs to have at least one field');
       });
     });
   });

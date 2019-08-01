@@ -57,11 +57,12 @@ export default class DialogValidationService {
    * @function dialogIsValid
    */
   public dialogIsValid(dialogData: any) {
-    const self = this;
+    this.invalid.message = null;
+
     let validate = (f, item) => {
       let validation = f(item);
       if (! validation.status) {
-        self.invalid = { element: item, message: validation.errorMessage };
+        this.invalid = { element: item, message: validation.errorMessage };
       }
       return validation.status;
     };

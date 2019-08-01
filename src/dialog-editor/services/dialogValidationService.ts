@@ -1,6 +1,8 @@
 import {__} from '../../common/translateFunction';
 import * as _ from 'lodash';
 
+const tagHasCategory = (field) => field.options && field.options.category_id;
+
 export default class DialogValidationService {
   public invalid: any = {};
   private validators: any = {};
@@ -34,8 +36,7 @@ export default class DialogValidationService {
                                 field.type === 'DialogFieldRadioButton')
                                && (!field.dynamic && _.isEmpty(field.values))),
                     errorMessage: __('Dropdown needs to have entries') }),
-        field => ({ status: ! (field.type === 'DialogFieldTagControl'
-                               && field.category_id === ''),
+        field => ({ status: (field.type !== 'DialogFieldTagControl') || tagHasCategory(field),
                     errorMessage: __('Category needs to be set for TagControl field') }),
         field => ({ status: ! (field.dynamic && _.isEmpty(field.resource_action.ae_class)),
                     errorMessage: __('Entry Point needs to be set for Dynamic elements') }),

@@ -4,10 +4,6 @@
 @import 'dialog-editor-boxes';
 @import 'toolbar';
 
-.miq-sand-paper, .miq-sand-paper > div { /* emulates "cards-pf" background color */
-  background: #f5f5f5;
-  overflow: hidden;
-}
 
 /* Begin Patternfly Toolbar overrides */
 
@@ -116,6 +112,10 @@ table.miq-table-with-footer {
       left: 0 !important;
       top: 12px !important;
     }
+  }
+  .card:not(.active) {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 1px 1px 0px !important;
+    border-top: 1px solid #ededed !important;
   }
 }
 

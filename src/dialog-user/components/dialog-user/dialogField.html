@@ -133,7 +133,7 @@
 
     <div class="col-sm-4" ng-switch-when="DialogFieldDateControl">
       <p class="input-group">
-        <input uib-datepicker-popup
+        <input uib-datepicker-popup="MM/dd/yyyy"
                type="text"
                class="form-control"
                ng-model="vm.dialogField.default_value"
@@ -157,7 +157,7 @@
     <div class="col-sm-4" ng-switch-when="DialogFieldDateTimeControl">
       <div class="dateTimePadding">
         <p class="input-group">
-          <input uib-datepicker-popup
+          <input uib-datepicker-popup="MM/dd/yyyy"
                  type="text"
                  class="form-control"
                  ng-model="vm.dialogField.dateField"

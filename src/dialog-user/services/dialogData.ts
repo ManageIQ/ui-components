@@ -189,8 +189,14 @@ export default class DialogDataService {
           }
           break;
         default:
-          if (_.isEmpty(value)) {
-            fail();
+          if (field.data_type === 'integer') {
+            if (_.isNull(value) || _.isUndefined(value) || _.isNaN(value)) {
+              fail();
+            }
+          } else {
+            if (_.isEmpty(value)) {
+              fail();
+            }
           }
       }
     }

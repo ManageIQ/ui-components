@@ -120,12 +120,12 @@ describe('DialogDataService test', () => {
   });
 
   describe('#validateField', () => {
+    let testField;
+
     describe('when the field is required', () => {
       describe('when the field is a tag control', () => {
         describe('when the field forces a single value', () => {
           describe('when the field value is 0 (the "choose" option)', () => {
-            let testField;
-
             beforeEach(() => {
               testField = {
                 'type': 'DialogFieldTagControl',
@@ -145,8 +145,6 @@ describe('DialogDataService test', () => {
           });
 
           describe('when the field value is null', () => {
-            let testField;
-
             beforeEach(() => {
               testField = {
                 'type': 'DialogFieldTagControl',
@@ -166,8 +164,6 @@ describe('DialogDataService test', () => {
           });
 
           describe('when the field value is any other number', () => {
-            let testField;
-
             beforeEach(() => {
               testField = {
                 'type': 'DialogFieldTagControl',
@@ -189,8 +185,6 @@ describe('DialogDataService test', () => {
 
         describe('when the field does not force a single value', () => {
           describe('when the field value is empty', () => {
-            let testField;
-
             beforeEach(() => {
               testField = {
                 'type': 'DialogFieldTagControl',
@@ -210,8 +204,6 @@ describe('DialogDataService test', () => {
           });
 
           describe('when the field value is null', () => {
-            let testField;
-
             beforeEach(() => {
               testField = {
                 'type': 'DialogFieldTagControl',
@@ -231,8 +223,6 @@ describe('DialogDataService test', () => {
           });
 
           describe('when the field value has selected values', () => {
-            let testField;
-
             beforeEach(() => {
               testField = {
                 'type': 'DialogFieldTagControl',
@@ -254,9 +244,60 @@ describe('DialogDataService test', () => {
       });
 
       describe('when the field is a text box', () => {
-        describe('when the validator rule does not match the text', () => {
-          let testField;
+        describe('when the data type is an integer', () => {
+          describe('when the field has an integer value', () => {
+            beforeEach(() => {
+              testField = {
+                type: 'DialogFieldTextBox',
+                required: true,
+                data_type: 'integer',
+                default_value: 3
+              };
+            });
 
+            it('passes validation', () => {
+              let validation = dialogData.validateField(testField, testField.default_value);
+              expect(validation.isValid).toEqual(true);
+              expect(validation.message).toEqual('');
+            });
+          });
+
+          describe('when the field has a null value', () => {
+            beforeEach(() => {
+              testField = {
+                type: 'DialogFieldTextBox',
+                required: true,
+                data_type: 'integer',
+                default_value: null
+              };
+            });
+
+            it('fails validation', () => {
+              let validation = dialogData.validateField(testField, testField.default_value);
+              expect(validation.isValid).toEqual(false);
+              expect(validation.message).toEqual('This field is required');
+            });
+          });
+
+          describe('when the field has an undefined value', () => {
+            beforeEach(() => {
+              testField = {
+                type: 'DialogFieldTextBox',
+                required: true,
+                data_type: 'integer',
+                default_value: undefined
+              };
+            });
+
+            it('fails validation', () => {
+              let validation = dialogData.validateField(testField, testField.default_value);
+              expect(validation.isValid).toEqual(false);
+              expect(validation.message).toEqual('This field is required');
+            });
+          });
+        });
+
+        describe('when the validator rule does not match the text', () => {
           beforeEach(() => {
             testField = {
               'type': 'DialogFieldTextBox',
@@ -275,8 +316,6 @@ describe('DialogDataService test', () => {
         });
 
         describe('when the validator rule is present but the type is not regex', () => {
-          let testField;
-
           beforeEach(() => {
             testField = {
               'type': 'DialogFieldTextBox',
@@ -297,8 +336,6 @@ describe('DialogDataService test', () => {
 
       describe('when the field is a date time control', () => {
         describe('when the field does not have a date filled out', () => {
-          let testField;
-
           beforeEach(() => {
             testField = {
               type: 'DialogFieldDateTimeControl',
@@ -310,6 +347,27 @@ describe('DialogDataService test', () => {
             let validation = dialogData.validateField(testField, testField.default_value);
             expect(validation.isValid).toEqual(false);
             expect(validation.message).toEqual('Select a valid date');
+          });
+        });
+      });
+
+      describe('when the field is a drop down list', () => {
+        describe('when the data type is an integer', () => {
+          describe('when the field has an integer value', () => {
+            beforeEach(() => {
+              testField = {
+                type: 'DialogFieldDropDownList',
+                required: true,
+                data_type: 'integer',
+                default_value: 3
+              };
+            });
+
+            it('passes validation', () => {
+              let validation = dialogData.validateField(testField, testField.default_value);
+              expect(validation.isValid).toEqual(true);
+              expect(validation.message).toEqual('');
+            });
           });
         });
       });

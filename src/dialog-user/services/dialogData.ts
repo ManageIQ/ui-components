@@ -128,6 +128,11 @@ export default class DialogDataService {
         defaultOption.id = 0;
         defaultValue = defaultOption.id;
       }
+
+      // if not set already, setting the default_value on <None>
+      if (defaultValue === undefined) {
+        defaultValue = 0;
+      }
     }
 
     return defaultValue;

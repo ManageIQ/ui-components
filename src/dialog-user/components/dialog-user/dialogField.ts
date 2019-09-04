@@ -50,13 +50,6 @@ export class DialogFieldController {
     this.clonedDialogField = _.cloneDeep(this.field);
     this.dialogField = this.service.setupField(this.field);
 
-    if (this.dialogField.type === 'DialogFieldTagControl') {
-      // if not set already, setting the default_value on <None>
-      if (typeof this.dialogField.default_value === 'undefined') {
-        this.dialogField.default_value = 0;
-      }
-    }
-
     if ((this.dialogField.type === 'DialogFieldDateTimeControl') ||
         (this.dialogField.type === 'DialogFieldDateControl')) {
       this.setMinDate();

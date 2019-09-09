@@ -24,17 +24,38 @@
            type="checkbox">
 
     <!-- date control -->
-    <input ng-switch-when="DialogFieldDateControl"
-           pf-datepicker options="vm.fieldData.options"
-           ng-disabled="true"
-           date="vm.fieldData.default_value">
-
+    <p class="input-group" ng-switch-when="DialogFieldDateControl">
+      <input uib-datepicker-popup="MM/dd/yyyy"
+             type="text"
+             class="form-control"
+             ng-model="vm.fieldData.default_value"
+             is-open="open"
+             close-text="{{'Close'|translate}}"/>
+      <span class="input-group-btn">
+        <button type="button"
+                class="btn btn-default"
+                ng-click="open = !open">
+          <i class="fa fa-calendar"></i>
+        </button>
+      </span>
+    </p>
     <!-- date time control -->
     <div ng-switch-when="DialogFieldDateTimeControl">
       <div class="col-sm-6 dateTimePadding">
-        <input ng-model="vm.fieldData.default_value"
-               pf-datepicker options="vm.fieldData.dateOptions"
-               date="vm.fieldData.default_value">
+        <p class="input-group">
+          <input uib-datepicker-popup="MM/dd/yyyy"
+                 type="text"
+                 class="form-control"
+                 ng-model="vm.fieldData.default_value"
+                 is-open="open"
+                 close-text="{{'Close'|translate}}"/>
+          <span class="input-group-btn">
+            <button type="button"
+                    class="btn btn-default"
+                    ng-click="open = !open">
+              <i class="fa fa-calendar"></i></button>
+          </span>
+        </p>
       </div>
       <div class="col-sm-6">
         <uib-timepicker ng-model="vm.fieldData.default_value"></uib-timepicker>

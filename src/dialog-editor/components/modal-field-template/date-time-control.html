@@ -9,14 +9,26 @@
     </div>
     <div pf-form-group pf-label="{{'Default value'|translate}}">
       <div class="dateTimePadding">
-        <input ng-model="vm.modalData.default_value"
-               pf-datepicker
-               date="vm.modalData.default_value">
+        <p class="input-group">
+          <input uib-datepicker-popup="MM/dd/yyyy"
+                 type="text"
+                 class="form-control"
+                 ng-model="vm.modalData.default_value"
+                 is-open="open"
+                 min-date="vm.minDate"
+                 close-text="{{'Close'|translate}}"
+                 id="{{ vm.dialogField.name }}"/>
+          <span class="input-group-btn">
+            <button type="button"
+                    class="btn btn-default"
+                    ng-click="open = !open">
+              <i class="fa fa-calendar"></i></button>
+          </span>
+        </p>
       </div>
       <div >
         <uib-timepicker ng-model="vm.modalData.default_value"></uib-timepicker>
       </div>
-      <button class="btn btn-default" ng-click="vm.clearDefaultValue()" translate>Clear</button>
     </div>
     <div pf-form-group pf-label="{{'Read only'|translate}}">
       <input bs-switch

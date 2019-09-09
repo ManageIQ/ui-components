@@ -13,7 +13,6 @@ class ModalFieldController {
 
   /*@ngInject*/
   constructor(private $scope,
-              private $timeout: ng.ITimeoutService,
               private $element: any) {
     // Rules for Drag&Drop sorting of values in a Dropdown element
     this.sortableOptionsValues = {
@@ -38,17 +37,6 @@ class ModalFieldController {
   public entriesChange() {
     setTimeout(() => this.$element.find('select').selectpicker('refresh'));
   }
-
-  /**
-   * Removes default value by setting `default_value` as
-   * `null`
-   * @memberof ModalFieldController
-   * @function clearDefaultValue
-   */
-  public clearDefaultValue() {
-    this.$timeout(() => this.modalData.default_value = null, 0);
-  }
-
 }
 
 /**
@@ -82,5 +70,4 @@ export default class ModalFieldTemplate {
     showFullyQualifiedName: '<',
     treeOptions: '<',
   };
-
 }

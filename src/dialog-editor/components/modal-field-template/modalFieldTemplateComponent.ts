@@ -12,7 +12,8 @@ class ModalFieldController {
   public readonly DROPDOWN_ENTRY_DESCRIPTION: number = 1;
 
   /*@ngInject*/
-  constructor(private $scope, private $element: any) {
+  constructor(private $scope,
+              private $element: any) {
     // Rules for Drag&Drop sorting of values in a Dropdown element
     this.sortableOptionsValues = {
       axis: 'y',

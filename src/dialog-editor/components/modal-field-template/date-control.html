@@ -15,19 +15,15 @@
                  class="form-control"
                  ng-model="vm.modalData.default_value"
                  is-open="open"
-                 min-date="vm.minDate"
-                 close-text="{{'Close'|translate}}"
-                 id="{{ vm.dialogField.name }}"/>
+                 close-text="{{'Close'|translate}}"/>
           <span class="input-group-btn">
             <button type="button"
                     class="btn btn-default"
                     ng-click="open = !open">
-              <i class="fa fa-calendar"></i></button>
+              <i class="fa fa-calendar"></i>
+            </button>
           </span>
         </p>
-      </div>
-      <div >
-        <uib-timepicker ng-model="vm.modalData.default_value"></uib-timepicker>
       </div>
     </div>
     <div pf-form-group pf-label="{{'Read only'|translate}}">

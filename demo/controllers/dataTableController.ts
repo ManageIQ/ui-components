@@ -95,7 +95,7 @@ export default class DataTableController {
       let indexOfColumn = this.cols.indexOf(this.settings.sortBy.sortObject);
       return row.cells[indexOfColumn]['text'];
     });
-    this.filteredRows = this.settings.sortBy.isAscending ? this.filteredRows : this.filteredRows.reverse();
+    filteredRows = this.settings.sortBy.isAscending ? filteredRows : filteredRows.reverse();
     return filteredRows;
   }
 

@@ -14,19 +14,19 @@
         "is_narrow": true
       },
       {
-        "text": "Messaging Name",
+        "header_text": "Messaging Name",
         "sort": "str",
         "col_idx": 0,
         "align": "left"
       },
       {
-        "text": "Messaging Type",
+        "header_text": "Messaging Type",
         "sort": "str",
         "col_idx": 1,
         "align": "left"
       },
       {
-        "text": "Server",
+        "header_text": "Server",
         "sort": "str",
         "col_idx": 2,
         "align": "left"

@@ -119,18 +119,7 @@ export default class DialogDataService {
     }
 
     if (data.type === 'DialogFieldTagControl') {
-      // setting the default_value for a tag control's select box
-      // In case the default_value is not set for the ng-model of the component, an empty value option is displayed
-      let defaultOption = _.find(data.values, { id: null });
-      if (defaultOption) {
-        defaultOption.id = 0;
-        defaultValue = defaultOption.id;
-      }
-
-      // if not set already, setting the default_value on <None>
-      if (defaultValue === undefined) {
-        defaultValue = 0;
-      }
+      defaultValue = 0;
     }
 
     return defaultValue;

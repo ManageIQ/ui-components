@@ -193,6 +193,14 @@ export default class DialogDataService {
             }
           }
       }
+    } else {
+      if (field.type === 'DialogFieldDateControl' ||
+          field.type === 'DialogFieldDateTimeControl') {
+        if (!(_.isDate(value) || value === null)) {
+          // if value === undefined, a sting has been entered
+          fail(__('Select a valid date'));
+        }
+      }
     }
 
     // Run check if someone has specified a regex.  Make sure if its required it is not blank

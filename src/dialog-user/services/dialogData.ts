@@ -246,4 +246,10 @@ export default class DialogDataService {
 
     return invalid;
   }
+
+  // converts the internal representation into the representation parsed by the API
+  // currently, this means we convert Date instances in to strings
+  public outputConversion(dialogData) {
+    return {...dialogData};
+  }
 }

@@ -465,6 +465,45 @@ describe('DialogDataService test', () => {
     });
   });
 
+  describe('#outputConversion', () => {
+    beforeEach(() => {
+      const configuredField = dialogData.setupField({
+        name: 'date_1',
+        type: 'DialogFieldDateControl',
+        default_value: '2019-10-15',
+      });
+
+      dialogData.data = {
+        fields: {
+          [configuredField.name]: configuredField,
+        },
+        values: {
+          [configuredField.name]: configuredField.default_value,
+        },
+      };
+    });
+
+    it('converts Dates to string', () => {
+      let input = dialogData.data.values;
+      let output = dialogData.outputConversion(input);
+
+      expect(input === output).toBe(false); // shallow copy
+      expect(typeof input.date_1).toEqual('object'); // Date
+      expect(typeof output.date_1).toEqual('string');
+      expect(output.date_1).toMatch(/^\d+-\d+-\d+$/); // YYYY-MM-DD
+    });
+
+    it('preserves local timezone', () => {
+      let input = dialogData.data.values;
+      input.default_value = new Date('2019-10-15T01:23:45+05:00');
+
+      let output = dialogData.outputConversion(input);
+
+      expect(input.date_1.getUTCDate()).toEqual(14); // UTC is off by one
+      expect(output.date_1).toEqual('2019-10-15'); // not 2019-10-14
+    });
+  });
+
   it('should allow a select list to be sorted', () => {
     const testDropDown = {
       values: [
@@ -489,6 +528,7 @@ describe('DialogDataService test', () => {
     const expectedSortedResult = [[5, 'C'], [1, 'B'], [2, 'A']];
     expect(testSortedDescription).toEqual(expectedSortedResult);
   });
+
   it('should allow a numeric Description field to be sorted in a dropdown', () => {
     const testDropDownDescription = {
       values: [

@@ -82,6 +82,10 @@ export class DialogUserController extends DialogClass implements IDialogs {
       data: this.dialogValues
     };
     this.onUpdate({ data: outputData });
+    this.service.data = {
+      fields: this.dialogFields,
+      values: this.dialogValues,
+    };
   }
 
   public validateFields() {

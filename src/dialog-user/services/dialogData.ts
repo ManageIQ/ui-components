@@ -3,6 +3,7 @@ import * as angular from 'angular';
 import {__} from '../../common/translateFunction';
 
 export default class DialogDataService {
+  public data: any;
 
   /**
    * Sets up and configures properties for a dialog field

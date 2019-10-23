@@ -4,39 +4,6 @@
 @import 'dialog-editor-boxes';
 @import 'toolbar';
 
-
-/* Begin Patternfly Toolbar overrides */
-
-
-/* overrides _toolbar.scss to account for intermediate Angular markup and adjusted the margins to properly style wrapped form-groups */
-
-.miq-toolbar-actions {
-  margin-top: -10px;
-  .form-group:first-of-type {
-    padding-left: 0;
-  }
-  .form-group {
-    margin-top: 10px;
-    padding-left: 20px;
-    padding-right: 15px; /* adjusted to account for button margin */
-    white-space: nowrap;
-    .btn { /* margin for buttons (not part of Patternfly) */
-      margin-right: 5px;
-      i {
-        margin-right: 5px;
-      }
-    }
-  }
-}
-
-.miq-custom-html {
-  .form-group.text, .form-group.has-clear {
-    padding-right: 20px;
-  }
-}
-
-/* End Patternfly Toolbar overrides */
-
 /* Begin Patternfly Tab overrides used in the Dialog Editor */
 
 .dialog-editor-tab-list {

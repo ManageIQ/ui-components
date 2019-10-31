@@ -268,11 +268,11 @@ export default class DialogDataService {
         case 'DialogFieldDateControl':
           // server expects 2019-10-20, anything longer gets cut
           // converting first to prevent timezone conversions
-          out[name] = value && dateString(value);
+          out[name] = _.isDate(value) ? dateString(value) : null;
           break;
         case 'DialogFieldDateTimeControl':
           // explicit conversion to ISO datetime
-          out[name] = value && value.toISOString();
+          out[name] = _.isDate(value) ? value.toISOString() : null;
           break;
       };
     });

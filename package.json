@@ -32,7 +32,7 @@
     "@types/lodash": "^4.14.41",
     "@types/node": "0.0.0",
     "@types/rx": "^2.5.34",
-    "angular": "~1.5.9",
+    "angular": "~1.7.8",
     "angular-animate": "~1.5.9",
     "angular-bootstrap": "^0.12.2",
     "angular-gettext-cli": "^1.2.0",

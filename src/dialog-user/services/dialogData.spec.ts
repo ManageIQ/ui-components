@@ -1,5 +1,6 @@
 import DialogData from './dialogData';
 import * as angular from 'angular';
+
 const dialogField = {
   'href': 'http://localhost:3001/api/service_templates/10000000000015/service_dialogs/10000000007060',
   'id': 10000000007060,
@@ -465,41 +466,86 @@ describe('DialogDataService test', () => {
     });
   });
 
-  it('should allow a select list to be sorted', () => {
-    const testDropDown = {
-      values: [
-        [1, 'Test'],
-        [5, 'Test2'],
-        [2, 'Test5']
-      ],
-      options: { sort_by: 'value', sort_order: 'descending', data_type: 'integer' }
-    };
-    const testSorted = dialogData.updateFieldSortOrder(testDropDown);
-    const expectedResult = [[5, 'Test2'], [2, 'Test5'], [1, 'Test']];
-    expect(testSorted).toEqual(expectedResult);
-    const testDropDownDescription = {
-      values: [
-        [1, 'B'],
-        [5, 'C'],
-        [2, 'A']
-      ],
-      options: { sort_by: 'description', sort_order: 'descending' }
-    };
-    const testSortedDescription = dialogData.updateFieldSortOrder(testDropDownDescription);
-    const expectedSortedResult = [[5, 'C'], [1, 'B'], [2, 'A']];
-    expect(testSortedDescription).toEqual(expectedSortedResult);
+  describe('#outputConversion', () => {
+    beforeEach(() => {
+      const configuredField = dialogData.setupField({
+        name: 'date_1',
+        type: 'DialogFieldDateControl',
+        default_value: '2019-10-15',
+      });
+
+      dialogData.data = {
+        fields: {
+          [configuredField.name]: configuredField,
+        },
+        values: {
+          [configuredField.name]: configuredField.default_value,
+        },
+      };
+    });
+
+    it('converts Dates to string', () => {
+      let input = dialogData.data.values;
+      let output = dialogData.outputConversion(input);
+
+      expect(input === output).toBe(false); // shallow copy
+      expect(typeof input.date_1).toEqual('object'); // Date
+      expect(typeof output.date_1).toEqual('string');
+      expect(output.date_1).toMatch(/^\d+-\d+-\d+$/); // YYYY-MM-DD
+    });
+
+    // this test requires the "local timezone" to be UTC+1 or more
+    // timezone-mock is not compatible with current karma it seems:
+    // ERROR [karma]: { inspect: [Function: inspect] }
+    xit('preserves local timezone', () => {
+      let input = dialogData.data.values;
+      input.default_value = new Date('2019-10-15T00:11:22+01:00');
+
+      let output = dialogData.outputConversion(input);
+
+      expect(input.date_1.getUTCDate()).toEqual(14); // UTC is off by one
+      expect(output.date_1).toEqual('2019-10-15'); // not 2019-10-14
+    });
   });
-  it('should allow a numeric Description field to be sorted in a dropdown', () => {
-    const testDropDownDescription = {
-      values: [
-        ['zero', '1'],
-        ['five', '5'],
-        ['two', '2']
-      ],
-      options: { sort_by: 'description', sort_order: 'descending' }
-    };
-    const testSortedDescription = dialogData.updateFieldSortOrder(testDropDownDescription);
-    const expectedSortedResult = [['five', '5'], ['two', '2'], ['zero', '1']];
-    expect(testSortedDescription).toEqual(expectedSortedResult);
+
+  describe('#updateFieldSortOrder', () => {
+    it('should allow a select list to be sorted', () => {
+      const testDropDown = {
+        values: [
+          [1, 'Test'],
+          [5, 'Test2'],
+          [2, 'Test5']
+        ],
+        options: { sort_by: 'value', sort_order: 'descending', data_type: 'integer' }
+      };
+      const testSorted = dialogData.updateFieldSortOrder(testDropDown);
+      const expectedResult = [[5, 'Test2'], [2, 'Test5'], [1, 'Test']];
+      expect(testSorted).toEqual(expectedResult);
+      const testDropDownDescription = {
+        values: [
+          [1, 'B'],
+          [5, 'C'],
+          [2, 'A']
+        ],
+        options: { sort_by: 'description', sort_order: 'descending' }
+      };
+      const testSortedDescription = dialogData.updateFieldSortOrder(testDropDownDescription);
+      const expectedSortedResult = [[5, 'C'], [1, 'B'], [2, 'A']];
+      expect(testSortedDescription).toEqual(expectedSortedResult);
+    });
+
+    it('should allow a numeric Description field to be sorted in a dropdown', () => {
+      const testDropDownDescription = {
+        values: [
+          ['zero', '1'],
+          ['five', '5'],
+          ['two', '2']
+        ],
+        options: { sort_by: 'description', sort_order: 'descending' }
+      };
+      const testSortedDescription = dialogData.updateFieldSortOrder(testDropDownDescription);
+      const expectedSortedResult = [['five', '5'], ['two', '2'], ['zero', '1']];
+      expect(testSortedDescription).toEqual(expectedSortedResult);
+    });
   });
 });

@@ -27,10 +27,11 @@ export class DialogUserController extends DialogClass implements IDialogs {
    * @param {Object} DialogData factory.
    */
 
-  /*@ngInject*/
-  constructor(private DialogData: any,private $scope : ng.IScope) {
+  /* @ngInject */
+  constructor(private DialogData, private $q) {
     super();
   }
+
   /**
    * Runs when component is initialized
    * @memberof DialogUserController
@@ -82,6 +83,10 @@ export class DialogUserController extends DialogClass implements IDialogs {
       data: this.dialogValues
     };
     this.onUpdate({ data: outputData });
+    this.service.data = {
+      fields: this.dialogFields,
+      values: this.dialogValues,
+    };
   }
 
   public validateFields() {
@@ -184,13 +189,12 @@ export class DialogUserController extends DialogClass implements IDialogs {
       promiseList.push(this.refreshSingleField(field));
     });
 
-    Promise.all(promiseList).then((_data) => {
+    this.$q.all(promiseList).then((_data) => {
       this.refreshRequestCount -= promiseList.length;
       if (this.refreshRequestCount === 0) {
         this.areFieldsBeingRefreshed = false;
       }
       this.saveDialogData();
-      this.$scope.$apply();
     });
   }
 
@@ -224,7 +228,6 @@ export class DialogUserController extends DialogClass implements IDialogs {
     this.dialogFields[field].fieldBeingRefreshed = false;
 
     this.saveDialogData();
-    this.$scope.$apply();
 
     if (! _.isEmpty(this.fieldAssociations[field])) {
       this.updateTargetedFieldsFrom(field);

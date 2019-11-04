@@ -1,8 +1,10 @@
 import * as _ from 'lodash';
 import * as angular from 'angular';
 import {__} from '../../common/translateFunction';
+import {sprintf} from 'sprintf-js';
 
 export default class DialogDataService {
+  public data: any;
 
   /**
    * Sets up and configures properties for a dialog field
@@ -248,5 +250,36 @@ export default class DialogDataService {
     }
 
     return invalid;
+  }
+
+  // converts the internal representation into the representation parsed by the API
+  // currently, this means we convert Date instances to strings
+  public outputConversion(dialogData) {
+    const dateString = (date) => {
+      let y = date.getFullYear(),
+          m = date.getMonth() + 1,
+          d = date.getDate();
+      return sprintf('%04d-%02d-%02d', y, m, d);
+    };
+
+    let out = {...dialogData};
+
+    Object.values(this.data.fields || {}).forEach(({name, type}) => {
+      let value = out[name];
+
+      switch (type) {
+        case 'DialogFieldDateControl':
+          // server expects 2019-10-20, anything longer gets cut
+          // converting first to prevent timezone conversions
+          out[name] = _.isDate(value) ? dateString(value) : null;
+          break;
+        case 'DialogFieldDateTimeControl':
+          // explicit conversion to ISO datetime
+          out[name] = _.isDate(value) ? value.toISOString() : null;
+          break;
+      };
+    });
+
+    return out;
   }
 }

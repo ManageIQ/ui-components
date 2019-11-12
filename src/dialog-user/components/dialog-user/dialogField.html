@@ -87,24 +87,29 @@
     </div>
 
     <div class="col-sm-6" ng-switch-when="DialogFieldTagControl">
-      <select ng-if="vm.dialogField.options.force_single_value"
+      <select miq-select
+              ng-if="vm.dialogField.options.force_single_value"
               ng-model="vm.dialogField.default_value"
-              ng-disabled="vm.dialogField.read_only || vm.inputDisabled || vm.dialogField.disabled"
+              watch-model="vm.dialogField.values"
               ng-change="vm.changesHappened()"
+              ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
               class="form-control"
+              data-container="body"
+              id="{{ vm.dialogField.name }}"
               ng-options="fieldValue.id as fieldValue.description for fieldValue in vm.dialogField.values"
-              id="{{ vm.dialogField.name }}">
-      </select>
+      ></select>
 
-      <select ng-if="!vm.dialogField.options.force_single_value"
-              multiple
+      <select miq-select multiple
+              data-container="body"
+              ng-if="!vm.dialogField.options.force_single_value"
               ng-model="vm.dialogField.default_value"
-              ng-disabled="vm.dialogField.read_only || vm.inputDisabled || vm.dialogField.disabled"
+              watch-model="vm.dialogField.values"
               ng-change="vm.changesHappened()"
+              ng-disabled="vm.dialogField.read_only || vm.inputDisabled"
               class="form-control"
+              id="{{ vm.dialogField.name }}"
               ng-options="fieldValue.id as fieldValue.description for fieldValue in vm.dialogField.values"
-              id="{{ vm.dialogField.name }}">
-      </select>
+      ></select>
 
       <div ng-if="vm.validation.isValid === false">{{ vm.validation.message }}</div>
     </div>

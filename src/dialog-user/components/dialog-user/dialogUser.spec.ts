@@ -229,11 +229,13 @@ describe('Dialog test', () =>  {
     describe('when the dialog data field type is not a sorted item type', () => {
       const newDialogData = {
         data_type: 'new data_type',
+        default_value: 'new default_value',
         options: 'new options',
         read_only: 'new read_only',
         required: true,
+        validator_rule: 'new validator_rule',
+        validator_type: 'new validator_type',
         visible: false,
-        default_value: 'new default_value'
       };
 
       beforeEach(() => {
@@ -259,11 +261,13 @@ describe('Dialog test', () =>  {
 
       it('updates properties of the field', () => {
         expect(dialogCtrl.dialogFields['service_name'].data_type).toBe('new data_type');
+        expect(dialogCtrl.dialogFields['service_name'].default_value).toBe('new default_value');
         expect(dialogCtrl.dialogFields['service_name'].options).toBe('new options');
         expect(dialogCtrl.dialogFields['service_name'].read_only).toBe('new read_only');
         expect(dialogCtrl.dialogFields['service_name'].required).toBe(true);
+        expect(dialogCtrl.dialogFields['service_name'].validator_rule).toBe('new validator_rule');
+        expect(dialogCtrl.dialogFields['service_name'].validator_type).toBe('new validator_type');
         expect(dialogCtrl.dialogFields['service_name'].visible).toBe(false);
-        expect(dialogCtrl.dialogFields['service_name'].default_value).toBe('new default_value');
       });
     });
   });

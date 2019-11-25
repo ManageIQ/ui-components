@@ -292,16 +292,21 @@ class ModalController {
    * @function showModal
    */
   public showModal(options: any) {
-    options.controller = ['parent', function(parent) { this.parent = parent; }];
-    options.resolve = {
-      parent: () => this
-    };
-    options.controllerAs = 'modalCtrl';
-    options.template = ModalController.buildTemplate(options.component);
     this.modalTab = 'element_information';
     this.loadModalData(this.elementInfo);
-    this.uibModalInstance = this.$uibModal.open(options);
-    return this.uibModalInstance.result.catch(() => undefined);
+    this.uibModalInstance = this.$uibModal.open({
+      controller: ['parent', function(parent) {
+        this.parent = parent;
+      }],
+      controllerAs: 'modalCtrl',
+      resolve: {
+        parent: () => this,
+      },
+      size: options.size,
+      template: ModalController.buildTemplate(options.component),
+    });
+
+    return this.uibModalInstance.result.catch((e) => console.error('showModal', e));
   }
 
   /**

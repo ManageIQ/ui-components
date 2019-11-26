@@ -103,7 +103,10 @@ export default class DialogDataService {
       defaultValue = data.values[firstOption][fieldValue];
     }
 
-    if (data.default_value) {
+    // FIXME: don't convert twice, but now "0" -> 0 -> 1 happens otherwise for numeric dropdowns
+    let validZero = (data.default_value === 0) && data.data_type === 'integer';
+
+    if (data.default_value || validZero) {
       defaultValue = data.default_value;
     }
 

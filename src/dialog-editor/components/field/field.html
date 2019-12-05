@@ -1,36 +1,39 @@
 <div ng-switch on="vm.fieldData.type" class="form-group">
   <label class="control-label col-sm-2">{{ vm.fieldData.label }}</label>
-  <div class="col-sm-5">
 
-    <!-- text box -->
-    <input ng-switch-when="DialogFieldTextBox"
-           ng-model="vm.fieldData.default_value"
+  <!-- text box -->
+  <div class="col-sm-5" ng-switch-when="DialogFieldTextBox">
+    <input ng-model="vm.fieldData.default_value"
            class="form-control"
            type="{{ vm.fieldData.options.protected ? 'password' : 'text' }}"
-           placeholder="{{'Default value'|translate}}">
+           placeholder="{{'Default value'|translate}}" />
+  </div>
 
-    <!-- text area -->
-    <textarea ng-switch-when="DialogFieldTextAreaBox"
-              ng-model="vm.fieldData.default_value"
+  <!-- text area -->
+  <div class="col-sm-5" ng-switch-when="DialogFieldTextAreaBox">
+    <textarea ng-model="vm.fieldData.default_value"
               class="form-control"
               rows="4">
       {{ vm.fieldData.default_value }}
     </textarea>
+  </div>
 
-    <!-- check box -->
-    <input ng-switch-when="DialogFieldCheckBox"
-           ng-model="vm.fieldData.default_value"
+  <!-- check box -->
+  <div class="col-sm-5" ng-switch-when="DialogFieldCheckBox">
+    <input ng-model="vm.fieldData.default_value"
            ng-true-value="'t'"
-           type="checkbox">
+           type="checkbox" />
+  </div>
 
-    <!-- date control -->
-    <p class="input-group" ng-switch-when="DialogFieldDateControl">
+  <!-- date control -->
+  <div class="col-sm-5" ng-switch-when="DialogFieldDateControl">
+    <p class="input-group">
       <input uib-datepicker-popup="MM/dd/yyyy"
              type="text"
              class="form-control"
              ng-model="vm.fieldData.default_value"
              is-open="open"
-             close-text="{{'Close'|translate}}"/>
+             close-text="{{'Close'|translate}}" />
       <span class="input-group-btn">
         <button type="button"
                 class="btn btn-default"
@@ -39,8 +42,11 @@
         </button>
       </span>
     </p>
-    <!-- date time control -->
-    <div ng-switch-when="DialogFieldDateTimeControl">
+  </div>
+
+  <!-- date time control -->
+  <div class="col-sm-5" ng-switch-when="DialogFieldDateTimeControl">
+    <div>
       <div class="col-sm-6 dateTimePadding">
         <p class="input-group">
           <input uib-datepicker-popup="MM/dd/yyyy"
@@ -48,7 +54,7 @@
                  class="form-control"
                  ng-model="vm.fieldData.default_value"
                  is-open="open"
-                 close-text="{{'Close'|translate}}"/>
+                 close-text="{{'Close'|translate}}" />
           <span class="input-group-btn">
             <button type="button"
                     class="btn btn-default"
@@ -61,48 +67,49 @@
         <uib-timepicker ng-model="vm.fieldData.default_value"></uib-timepicker>
       </div>
     </div>
+  </div>
 
-    <!-- drop down list -->
-    <div ng-switch-when="DialogFieldDropDownList">
-      <div ng-if="!vm.fieldData.options.force_multi_value">
-        <select class="form-control" miq-select
-                ng-model="vm.fieldData.default_value">
-          <option value="" translate>None</option>
-          <option ng-repeat="value in vm.fieldData.values" value="{{value[0]}}">{{value[1]}}</option>
-        </select>
-      </div>
-      <div ng-if="vm.fieldData.options.force_multi_value">
-        <select class="form-control" multiple miq-select
-                ng-init="vm.convertValuesToArray()"
-                ng-model="vm.fieldData.default_value">
-          <option ng-repeat="value in vm.fieldData.values" value="{{value[0]}}">{{value[1]}}</option>
-        </select>
-      </div>
+  <!-- drop down list -->
+  <div class="col-sm-5" ng-switch-when="DialogFieldDropDownList">
+    <div ng-if="!vm.fieldData.options.force_multi_value">
+      <select class="form-control" miq-select
+              ng-model="vm.fieldData.default_value">
+        <option value="" translate>None</option>
+        <option ng-repeat="value in vm.fieldData.values" value="{{value[0]}}">{{value[1]}}</option>
+      </select>
     </div>
+    <div ng-if="vm.fieldData.options.force_multi_value">
+      <select class="form-control" multiple miq-select
+              ng-init="vm.convertValuesToArray()"
+              ng-model="vm.fieldData.default_value">
+        <option ng-repeat="value in vm.fieldData.values" value="{{value[0]}}">{{value[1]}}</option>
+      </select>
+    </div>
+  </div>
 
-    <!-- radio button -->
-    <span ng-switch-when="DialogFieldRadioButton">
-      <label ng-repeat="option in vm.fieldData.values"
-             class="radio-inline">
-        <input type="radio"
-               name="{{vm.fieldData.name}}"
-               ng-model="vm.fieldData.default_value"
-               ng-value="option[0]">
-        {{ option[1] }}
-      </label>
-    </span>
+  <!-- radio button -->
+  <div class="col-sm-5" ng-switch-when="DialogFieldRadioButton">
+    <label ng-repeat="option in vm.fieldData.values"
+           class="radio-inline">
+      <input type="radio"
+             name="{{vm.fieldData.name}}"
+             ng-model="vm.fieldData.default_value"
+             ng-value="option[0]" />
+      {{ option[1] }}
+    </label>
+  </div>
 
-    <!-- tag control -->
-    <select ng-switch-when="DialogFieldTagControl"
-            miq-select
+  <!-- tag control -->
+  <div class="col-sm-5" ng-switch-when="DialogFieldTagControl">
+    <select miq-select
             class="form-control">
       <option ng-repeat="option in vm.fieldData.values"
               value="{{ option[0] }}">
         {{ option[1] }}
       </option>
     </select>
-
   </div>
+
   <div class="col-sm-5 editor-field-actions">
     <button type="button" class="close hide"
             ng-click="vm.removeField(

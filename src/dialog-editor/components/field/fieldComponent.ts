@@ -44,6 +44,10 @@ class FieldController {
    * @function convertValuesToArray
    */
   public convertValuesToArray() {
+    if (! this.fieldData.default_value || ! _.isString(this.fieldData.default_value)) {
+      return;
+    }
+
     this.fieldData.default_value = angular.fromJson(this.fieldData.default_value);
   }
 

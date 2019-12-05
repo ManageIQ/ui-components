@@ -101,13 +101,20 @@
 
   <!-- tag control -->
   <div class="col-sm-5" ng-switch-when="DialogFieldTagControl">
-    <select miq-select
-            class="form-control">
-      <option ng-repeat="option in vm.fieldData.values"
-              value="{{ option[0] }}">
-        {{ option[1] }}
-      </option>
-    </select>
+    <div ng-if="!vm.fieldData.options.force_multi_value">
+      <select class="form-control" miq-select
+              ng-model="vm.fieldData.default_value">
+        <option value="" translate>None</option>
+        <option ng-repeat="value in vm.fieldData.values" value="{{value[0]}}">{{value[1]}}</option>
+      </select>
+    </div>
+    <div ng-if="vm.fieldData.options.force_multi_value">
+      <select class="form-control" multiple miq-select
+              ng-init="vm.convertValuesToArray()"
+              ng-model="vm.fieldData.default_value">
+        <option ng-repeat="value in vm.fieldData.values" value="{{value[0]}}">{{value[1]}}</option>
+      </select>
+    </div>
   </div>
 
   <div class="col-sm-5 editor-field-actions">

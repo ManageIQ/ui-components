@@ -28,14 +28,42 @@ class ModalFieldController {
     };
   }
 
-  public $onChanges(changesObj) {
-    if (changesObj.modalData && changesObj.modalData.default_value === []) {
+  public resetDefaultValue() {
+    // TODO replace with shared impl
+
+    if ('force_multi_value' in this.modalData.options && this.modalData.options.force_multi_value) {
+      this.modalData.default_value = [];
+    } else if ('force_single_value' in this.modalData.options && ! this.modalData.options.force_single_value) {
+      this.modalData.default_value = [];
+    } else if (this.modalData.data_type === 'integer') {
+      this.modalData.default_value = 0;
+    } else {
       this.modalData.default_value = '';
     }
+
+    console.log('resetDefaultValue', this.modalData.default_value);
   }
 
+  // reset default_value on data_type change and single/multi change
+  public $onInit() {
+    const watch = (path, fn) => {
+      this.$scope.$watch(path, (current, old) => {
+        if (current !== old) {
+          return fn();
+        }
+      });
+    };
+
+    watch('vm.modalData.options.force_multi_value', () => this.resetDefaultValue());
+    watch('vm.modalData.options.force_single_value', () => this.resetDefaultValue());
+    watch('vm.modalData.data_type', () => this.resetDefaultValue());
+    // vm.modalData.values - handled by entriesChange
+  }
+
+  // reset default_value on entries list change
   public entriesChange() {
     setTimeout(() => this.$element.find('select').selectpicker('refresh'));
+    this.resetDefaultValue();
   }
 }
 

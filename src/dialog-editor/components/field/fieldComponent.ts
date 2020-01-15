@@ -39,15 +39,6 @@ class FieldController {
   }
 
   /**
-   * Convert default value for multiple select fields to an array
-   * @memberof FieldController
-   * @function convertValuesToArray
-   */
-  public convertValuesToArray() {
-    this.fieldData.default_value = angular.fromJson(this.fieldData.default_value);
-  }
-
-  /**
    * Find fields at tabId and boxId.
    * @memberof FieldController
    * @function getFields

@@ -28,19 +28,34 @@ class ModalFieldController {
     };
   }
 
-  public resetDefaultValue() {
-    // TODO replace with shared impl
+  public emptyDefaultValue(field) {
+    // FIXME replace with DialogData shared impl?
+    const byDataType = field.data_type === 'integer' ? 0 : '';
 
-    if ('force_multi_value' in this.modalData.options && this.modalData.options.force_multi_value) {
-      this.modalData.default_value = [];
-    } else if ('force_single_value' in this.modalData.options && ! this.modalData.options.force_single_value) {
-      this.modalData.default_value = [];
-    } else if (this.modalData.data_type === 'integer') {
-      this.modalData.default_value = 0;
-    } else {
-      this.modalData.default_value = '';
+    switch (field.type) {
+      case 'DialogFieldTagControl':
+        return field.options.force_single_value ? byDataType : [];
+      case 'DialogFieldDropDownList':
+        return field.options.force_multi_value ? [] : byDataType;
+      default:
+        return byDataType;
     }
+  }
 
+  public convertDefaultValue(field) {
+    switch (field.type) {
+      case 'DialogFieldTagControl':
+        return field.options.force_single_value ? byDataType : [];
+      case 'DialogFieldDropDownList':
+        return field.options.force_multi_value ? [] : byDataType;
+      default:
+        return byDataType;
+    }
+  }
+
+  public resetDefaultValue() {
+    // TODO first use the real value if possible
+    this.modalData.default_value = this.emptyDefaultValue(this.modalData);
     console.log('resetDefaultValue', this.modalData.default_value);
   }
 

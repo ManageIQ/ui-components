@@ -11,7 +11,6 @@ module.exports = {
     common: '/common',
     dialogEditor: '/dialog-editor',
     gtl: '/gtl',
-    siteSwitcher: '/site-switcher',
     fonticonPicker: '/fonticon-picker',
     dialogs: '/dialog-user',
     quadicon: '/quadicon',

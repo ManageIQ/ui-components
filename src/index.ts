@@ -7,7 +7,6 @@ module miqStaticAssets {
     'miqStaticAssets.dialogEditor',
     'miqStaticAssets.dialogUser',
     'miqStaticAssets.gtl',
-    'miqStaticAssets.siteSwitcher',
     'miqStaticAssets.fonticonPicker',
     'miqStaticAssets.quadicon',
     'miqStaticAssets.treeView',

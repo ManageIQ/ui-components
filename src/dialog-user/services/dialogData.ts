@@ -119,7 +119,11 @@ export default class DialogDataService {
     }
 
     if (data.type === 'DialogFieldTagControl') {
-      defaultValue = 0;
+      if (data.options.force_single_value) {
+        defaultValue = '';
+      } else {
+        defaultValue = [];
+      }
     }
 
     return defaultValue;

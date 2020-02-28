@@ -1,6 +1,7 @@
 import services from './services';
 import filters from './filters';
 import components from './components';
+import toolbarMenu from './toolbar-menu';
 import * as angular from 'angular';
 
 module gtl {
@@ -8,4 +9,5 @@ module gtl {
   services(app);
   filters(app);
   components(app);
+  toolbarMenu(app);
 }

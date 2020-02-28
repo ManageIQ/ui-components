@@ -167,7 +167,6 @@ describe('DataTable test', () =>  {
     let scope, compile, compiledElement;
     beforeEach(() => {
       angular.mock.module('miqStaticAssets.common');
-      angular.mock.module('miqStaticAssets.toolbar');
       angular.mock.module('miqStaticAssets.gtl');
       angular.mock.inject(($rootScope, $compile: ng.ICompileService) => {
         scope = $rootScope.$new();

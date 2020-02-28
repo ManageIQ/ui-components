@@ -1,23 +1,10 @@
-import {IToolbarItem} from '../../interfaces/toolbar';
-/**
- * Asf
- *
- * @interface
- */
-export interface IToolbarListBindings {
-  toolbarList: any;
-  dropdownClass: any[];
-  onItemClick: (args: {item: any}) => void;
-}
-
 /**
  * @memberof miqStaticAssets
  * @ngdoc controller
  * @name ToolbarListController
- * @implements {IToolbarListBindings}
  */
-export class ToolbarListController implements IToolbarListBindings {
-  public toolbarList: IToolbarItem;
+export class ToolbarListController {
+  public toolbarList: any;
   public isEmpty: boolean = false;
   public dropdownClass: any[];
 
@@ -50,14 +37,14 @@ export class ToolbarListController implements IToolbarListBindings {
   private isToolbarEmpty(): boolean {
     return this.toolbarList &&
       this.toolbarList.items &&
-      this.toolbarList.items.some((item: IToolbarItem) => !item.hidden);
+      this.toolbarList.items.some((item: any) => !item.hidden);
   }
 
   private isToolbarEnabled(): boolean {
     return this.toolbarList &&
       this.toolbarList.enabled &&
       this.toolbarList.items &&
-      this.toolbarList.items.some((item: IToolbarItem) => item.enabled);
+      this.toolbarList.items.some((item: any) => item.enabled);
   }
 
   private toolbarTitle(): string {
@@ -66,10 +53,10 @@ export class ToolbarListController implements IToolbarListBindings {
     // If the toolbar item has child elements and all of them are disabled
     if (this.toolbarList &&
         this.toolbarList.items &&
-        this.toolbarList.items.every((item: IToolbarItem) => !item.enabled)) {
+        this.toolbarList.items.every((item: any) => !item.enabled)) {
       // Collect the titles (reasons why they are disabled) of all the disabled children
-      let items = this.toolbarList.items.filter((item : IToolbarItem) => item.title !== undefined);
-      squashedTitle.push(...items.map((item: IToolbarItem) => `⚬ ${item.text} - ${item.title}`));
+      let items = this.toolbarList.items.filter((item : any) => item.title !== undefined);
+      squashedTitle.push(...items.map((item: any) => `⚬ ${item.text} - ${item.title}`));
     }
 
     return squashedTitle.join('\n');
@@ -88,8 +75,7 @@ export class ToolbarListController implements IToolbarListBindings {
  *    {@link miqStaticAssets.ToolbarListController#onItemClick} which arguments are
  *    needed.
  * @attr {Array} toolbarItems
- *    List of all items which are used in toolbar. Since we use typescript this attribute has specific type of:
- *    `Array<Array<IToolbarItem>>` See {@link IToolbarItem} for entities of toolbarItems.
+ *    List of all items which are used in toolbar
  * @example
  * <miq-toolbar-list toolbar-list="ctrl.toolbarItems"
  *                   on-item-click="ctrl.onClick(item)">

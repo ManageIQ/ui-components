@@ -7,7 +7,6 @@ module.exports = {
   stylesheetFolder: 'css',
   appName: 'ui-components',
   modules: {
-    toolbar: '/toolbar',
     common: '/common',
     dialogEditor: '/dialog-editor',
     gtl: '/gtl',

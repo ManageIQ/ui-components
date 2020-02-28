@@ -16,7 +16,7 @@ describe('ToolbarButton test', () =>  {
     const toolbarListData = require('./toolbarList.sample.json');
 
     beforeEach(() => {
-      angular.mock.module('miqStaticAssets.toolbar');
+      angular.mock.module('miqStaticAssets.gtl');
       angular.mock.inject(($rootScope, $compile: ng.ICompileService) => {
         scope = $rootScope.$new();
         compile = $compile;

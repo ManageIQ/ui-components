@@ -27,7 +27,7 @@ describe('Action click test', () =>  {
   describe('markup', () => {
     let scope, compile, compiledElement;
     beforeEach(() => {
-      angular.mock.module('miqStaticAssets.toolbar');
+      angular.mock.module('miqStaticAssets.gtl');
       angular.mock.inject(($rootScope, $compile: ng.ICompileService) => {
         scope = $rootScope.$new();
         compile = $compile;

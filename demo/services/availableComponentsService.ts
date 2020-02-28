@@ -42,7 +42,6 @@ export default class AvailableComponentsService {
 
   public initComponents() {
     this.availableComponents = [
-      new AvailableGroup('toolbar-menu', 'Toolbar Menu Components', '/toolbar-menu', []),
       new AvailableGroup('tile-menu', 'Tile Components', '/tile-view', []),
       new AvailableGroup('data-table', 'Data table Components', '/data-table', []),
       new AvailableGroup('fonticon-picker', 'Fonticon Picker Components', '/fonticon-picker', []),

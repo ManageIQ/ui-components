@@ -167,7 +167,6 @@ describe('tile component test', () =>  {
     beforeEach(() => {
       angular.mock.module('miqStaticAssets');
       angular.mock.module('miqStaticAssets.common');
-      angular.mock.module('miqStaticAssets.toolbar');
       angular.mock.inject(($rootScope, $compile: ng.ICompileService) => {
         scope = $rootScope.$new();
         compile = $compile;

@@ -10,7 +10,6 @@ module.exports = {
     common: '/common',
     dialogEditor: '/dialog-editor',
     gtl: '/gtl',
-    fonticonPicker: '/fonticon-picker',
     dialogs: '/dialog-user',
     quadicon: '/quadicon',
     treeView: '/tree-view',

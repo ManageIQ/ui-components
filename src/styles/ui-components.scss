@@ -50,39 +50,6 @@ table.miq-table-with-footer {
 
 /* End Patternfly Table View overrides */
 
-/* begin fonticon picker styling */
-
-miq-fonticon-picker {
-  button.picked {
-    width: 3em;
-    text-align: center;
-  }
-}
-
-.fonticon-modal {
-  .modal-content {
-    .tab-content {
-      height: calc(100vh - 260px);
-      overflow-y: auto !important;
-      overflow-x: hidden;
-
-      div.fonticon {
-        font-size: 24px;
-        text-align: center;
-
-        span.active {
-          i {
-            padding: 3px 5px 3px 5px;
-            background-color: #0088ce;
-            color: #fff;
-          }
-        }
-      }
-    }
-  }
-}
-
-/* end fonticon picker styling */
 
 /* begin dialog control styling */
 .miq-dialog {

@@ -4,11 +4,11 @@ module miqStaticAssets {
   angular.module('miqStaticAssets', [
     'miqStaticAssets.common',
     'miqStaticAssets.dialogUser',
-    'miqStaticAssets.gtl',
     'miqStaticAssets.fonticonPicker',
+    'miqStaticAssets.gtl',
+    'miqStaticAssets.miqSelect',
     'miqStaticAssets.quadicon',
-    'miqStaticAssets.treeView',
     'miqStaticAssets.treeSelector',
-    'miqStaticAssets.miqSelect'
+    'miqStaticAssets.treeView',
   ]);
 }

@@ -42,17 +42,6 @@ class ModalFieldController {
     }
   }
 
-  public convertDefaultValue(field) {
-    switch (field.type) {
-      case 'DialogFieldTagControl':
-        return field.options.force_single_value ? byDataType : [];
-      case 'DialogFieldDropDownList':
-        return field.options.force_multi_value ? [] : byDataType;
-      default:
-        return byDataType;
-    }
-  }
-
   public resetDefaultValue() {
     // TODO first use the real value if possible
     this.modalData.default_value = this.emptyDefaultValue(this.modalData);

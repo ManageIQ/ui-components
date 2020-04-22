@@ -28,14 +28,45 @@ class ModalFieldController {
     };
   }
 
-  public $onChanges(changesObj) {
-    if (changesObj.modalData && changesObj.modalData.default_value === []) {
-      this.modalData.default_value = '';
+  public emptyDefaultValue(field) {
+    // FIXME replace with DialogData shared impl?
+    const byDataType = field.data_type === 'integer' ? 0 : '';
+
+    switch (field.type) {
+      case 'DialogFieldTagControl':
+        return field.options.force_single_value ? byDataType : [];
+      case 'DialogFieldDropDownList':
+        return field.options.force_multi_value ? [] : byDataType;
+      default:
+        return byDataType;
     }
   }
 
+  public resetDefaultValue() {
+    // TODO first use the real value if possible
+    this.modalData.default_value = this.emptyDefaultValue(this.modalData);
+  }
+
+  // reset default_value on data_type change and single/multi change
+  public $onInit() {
+    const watch = (path, fn) => {
+      this.$scope.$watch(path, (current, old) => {
+        if (current !== old) {
+          return fn();
+        }
+      });
+    };
+
+    watch('vm.modalData.options.force_multi_value', () => this.resetDefaultValue());
+    watch('vm.modalData.options.force_single_value', () => this.resetDefaultValue());
+    watch('vm.modalData.data_type', () => this.resetDefaultValue());
+    // vm.modalData.values - handled by entriesChange
+  }
+
+  // reset default_value on entries list change
   public entriesChange() {
     setTimeout(() => this.$element.find('select').selectpicker('refresh'));
+    this.resetDefaultValue();
   }
 }
 

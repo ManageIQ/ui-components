@@ -45,7 +45,6 @@ class ModalFieldController {
   public resetDefaultValue() {
     // TODO first use the real value if possible
     this.modalData.default_value = this.emptyDefaultValue(this.modalData);
-    console.log('resetDefaultValue', this.modalData.default_value);
   }
 
   // reset default_value on data_type change and single/multi change

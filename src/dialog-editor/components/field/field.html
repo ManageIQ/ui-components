@@ -73,7 +73,6 @@
       </div>
       <div ng-if="vm.fieldData.options.force_multi_value">
         <select class="form-control" multiple miq-select
-                ng-init="vm.convertValuesToArray()"
                 ng-model="vm.fieldData.default_value">
           <option ng-repeat="value in vm.fieldData.values" value="{{value[0]}}">{{value[1]}}</option>
         </select>

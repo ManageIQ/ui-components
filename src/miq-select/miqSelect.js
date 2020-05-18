@@ -20,7 +20,9 @@ var miqSelect = function () {
         element.selectpicker('destroy');
       };
 
-      element.selectpicker(scope.selectPickerOptions);
+      element.selectpicker(scope.selectPickerOptions || {
+        liveSearchFocus: false,
+      });
 
       ngModel.$render = function () {
         $render.apply(this, arguments);

@@ -293,6 +293,7 @@ export default class DialogUser {
     dialog: '<',
     refreshField: '&',
     onUpdate: '&',
-    inputDisabled: '=?'
+    inputDisabled: '=?',
+    reconfigureMode: '<'
   };
 }

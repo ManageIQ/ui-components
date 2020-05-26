@@ -13,6 +13,7 @@ export class DialogFieldController {
   public singleRefresh: any;
   public options: any;
   public inputDisabled: boolean;
+  public reconfigureMode: boolean;
 
   public service: any;
   public dialogField: any;
@@ -49,6 +50,9 @@ export class DialogFieldController {
   public setup() {
     this.clonedDialogField = _.cloneDeep(this.field);
     this.dialogField = this.service.setupField(this.field);
+    if (this.reconfigureMode && !this.dialogField.reconfigurable) {
+      this.dialogField.disabled = true;
+    }
 
     if ((this.dialogField.type === 'DialogFieldDateTimeControl') ||
         (this.dialogField.type === 'DialogFieldDateControl')) {
@@ -146,6 +150,7 @@ export default class DialogField {
     onUpdate: '&',
     singleRefresh: '&',
     options: '=?',
-    inputDisabled: '=?'
+    inputDisabled: '=?',
+    reconfigureMode: '<'
   };
 }

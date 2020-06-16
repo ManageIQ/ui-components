@@ -214,14 +214,21 @@ export default class DialogDataService {
 
     // Run check if someone has specified a regex.  Make sure if its required it is not blank
     if (field.validator_rule && field.validator_type === 'regex' && validation.isValid === true) {
+      // ensure optional fields don't check the regex when blank
       if (angular.isDefined(value) && !_.isEmpty(value)) {
-        // This use case ensures that an optional field doesnt check a regex if field is blank
-        const regexPattern = field.validator_rule.replace(/\\A/i, '^').replace(/\\Z/i,'$');
-        const regex = new RegExp(regexPattern);
-        const regexValidates = regex.test(value);
+        const regexPattern = field.validator_rule.replace(/\\A/, '^').replace(/\\Z/, '$');
+        try {
+          const regex = new RegExp(regexPattern);
+          const regexValidates = regex.test(value);
 
-        if (! regexValidates) {
-          fail(__('Entered text should match the format:') + ' ' + regexPattern);
+          if (! regexValidates) {
+            fail(__('Entered text should match the format:') + ' ' + regexPattern);
+          }
+        } catch (error) {
+          // firefox throws a SyntaxError with message "invalid regex group" for unsupported negative lookbehind; log for backtrace and devel popup
+          console.error(error);
+
+          fail(sprintf(__('Validation expression (%s) is not supported in this version of your browser: %s'), regexPattern, error.message));
         }
       }
     }

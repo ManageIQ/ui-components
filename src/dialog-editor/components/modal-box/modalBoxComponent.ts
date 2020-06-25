@@ -1,4 +1,4 @@
-import { AbstractModal } from '../abstractModal';
+import { AbstractModal, ModalController } from '../abstractModal';
 
 /**
  * @memberof miqStaticAssets
@@ -12,4 +12,14 @@ import { AbstractModal } from '../abstractModal';
  */
 export default class ModalBoxTemplate extends AbstractModal {
   public template = require('./box.html');
+  public controller = ModalBoxController;
+}
+
+class ModalBoxController extends ModalController {
+  public modalData: any;
+  public validation: any;
+
+  public modalBoxIsValid() {
+    return this.validation.validateGroup(this.modalData, true);
+  }
 }

@@ -32,7 +32,8 @@
   <button type="button"
           class="btn btn-primary"
           ng-click="vm.closeModal(true)"
-          ng-disabled="vm.modalUnchanged()" translate>Save
+          ng-disabled="vm.modalUnchanged() || !vm.modalBoxIsValid()"
+          ng-attr-title="{{vm.modalBoxIsValid() ? '' : vm.validation.invalid.message}}" translate>Save
   </button>
 </div>
 

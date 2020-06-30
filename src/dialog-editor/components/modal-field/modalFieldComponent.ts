@@ -18,6 +18,7 @@ export default class ModalField extends AbstractModal {
 class ModalFieldController extends ModalController {
   public treeOptions: any;
   public modalData: any;
+  public validation: any;
 
   public $onInit() {
     this.treeOptions = {
@@ -69,5 +70,9 @@ class ModalFieldController extends ModalController {
     };
 
     this.treeOptions.show = false;
+  }
+
+  public modalFieldIsValid() {
+    return this.validation.validateField(this.modalData);
   }
 }

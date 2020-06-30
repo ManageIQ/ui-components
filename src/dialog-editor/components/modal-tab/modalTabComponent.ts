@@ -1,4 +1,4 @@
-import { AbstractModal } from '../abstractModal';
+import { AbstractModal, ModalController } from '../abstractModal';
 
 /**
  * @memberof miqStaticAssets
@@ -12,4 +12,14 @@ import { AbstractModal } from '../abstractModal';
  */
 export default class ModalTabTemplate extends AbstractModal {
   public template = require('./tab.html');
+  public controller = ModalTabController;
+}
+
+class ModalTabController extends ModalController {
+  public modalData: any;
+  public validation: any;
+
+  public modalTabIsValid() {
+    return this.validation.validateTab(this.modalData, true);
+  }
 }

@@ -145,10 +145,9 @@ class ModalController {
       box: this.DialogEditor.getDialogTabs()[
         this.DialogEditor.activeTab].dialog_groups[
           this.elementInfo.boxId],
-      field: this.DialogEditor.getDialogTabs()[
+      field: _.get(this.DialogEditor.getDialogTabs()[
         this.DialogEditor.activeTab].dialog_groups[
-          this.elementInfo.boxId].dialog_fields[
-            this.elementInfo.fieldId]
+          this.elementInfo.boxId], 'dialog_fields[' + this.elementInfo.fieldId + ']')
     };
     return this.elementInfo.type in elements &&
       _.isMatch(elements[this.elementInfo.type], this.modalData);
@@ -292,7 +291,10 @@ class ModalController {
    * @function showModal
    */
   public showModal(options: any) {
-    options.controller = ['parent', function(parent) { this.parent = parent; }];
+    options.controller = ['parent', 'DialogValidation', function(parent, DialogValidation) {
+      this.parent = parent;
+      this.validation = DialogValidation;
+    }];
     options.resolve = {
       parent: () => this
     };
@@ -328,6 +330,8 @@ class ModalController {
       tree-options="modalCtrl.parent.treeOptions"
       update-dialog-field-responders="modalCtrl.parent.updateDialogFieldResponders"
       setup-category-options="modalCtrl.parent.setupCategoryOptions"
+      modal-unchanged="modalCtrl.parent.modalUnchanged"
+      validation="modalCtrl.validation"
       ></${component}>`;
   }
 }

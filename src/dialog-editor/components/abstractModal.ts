@@ -35,5 +35,7 @@ export class AbstractModal {
     saveModal: '<',
     uibModalInstance: '<',
     treeOptions: '<',
+    modalUnchanged: '<',
+    validation: '<',
   };
 }

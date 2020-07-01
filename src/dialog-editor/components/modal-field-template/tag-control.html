@@ -22,11 +22,11 @@
              switch-off-text="{{'No'|translate}}">
     </div>
     <div pf-form-group pf-label="{{'Category'|translate}}">
-      <select class="form-control" miq-select ng-attr-title="{{'Nothing Selected'|translate}}"
+      <select class="form-control" miq-select
               ng-change="vm.setupCategoryOptions()"
-              ng-model="vm.modalData.options.category_id"
-              ng-options="category.id.toString() as category.description for category in vm.categories.resources">
+              ng-model="vm.modalData.options.category_id">
         <option selected="selected" value="" translate>None</option>
+        <option ng-repeat="category in vm.categories.resources" value="{{category.id.toString()}}">{{category.description}}</option>
       </select>
     </div>
     <div ng-if="!vm.modalData.options.category_single_value"

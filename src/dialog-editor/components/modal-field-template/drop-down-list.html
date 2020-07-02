@@ -23,7 +23,7 @@
     </div>
     <div pf-form-group pf-label="{{'Default value'|translate}}"
          ng-if="!vm.modalData.options.force_multi_value">
-      <select class="form-control" miq-select ng-attr-title="{{'Nothing Selected'|translate}}"
+      <select class="form-control" miq-select
               ng-model="vm.modalData.default_value">
         <option value="" translate>None</option>
         <option ng-repeat="value in vm.modalData.values" value="{{value[0]}}">{{value[1]}}</option>

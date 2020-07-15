@@ -9,11 +9,12 @@ import * as angular from 'angular';
  */
 class FieldController {
   public service: any;
+  public sortedField: any;
   public fieldData: any;
   public boxPosition: any;
 
   /*@ngInject*/
-  constructor(private DialogEditor: any) {
+  constructor(private DialogEditor: any, private DialogData: any) {
   }
 
   /**
@@ -23,6 +24,18 @@ class FieldController {
    */
   public $onInit() {
     this.service = this.DialogEditor;
+    this.sortedField = this.DialogData.setupSortableValues(this.fieldData);
+  }
+
+  /**
+   * Update sortedField
+   * @memberof FieldController
+   * @function $onChanges
+   */
+  public $onChanges(changesObj: any) {
+    if (changesObj.fieldData) {
+      this.sortedField = this.DialogData.setupSortableValues(this.fieldData);
+    }
   }
 
   /**

@@ -65,23 +65,26 @@
     <!-- drop down list -->
     <div ng-switch-when="DialogFieldDropDownList">
       <div ng-if="!vm.fieldData.options.force_multi_value">
-        <select class="form-control" miq-select
+        <select class="form-control"
+                miq-select
+                ng-options="item[0] as item[1] for item in vm.sortedField"
                 ng-model="vm.fieldData.default_value">
           <option value="" translate>None</option>
-          <option ng-repeat="value in vm.fieldData.values" value="{{value[0]}}">{{value[1]}}</option>
         </select>
       </div>
       <div ng-if="vm.fieldData.options.force_multi_value">
-        <select class="form-control" multiple miq-select
+        <select class="form-control"
+                multiple
+                miq-select
+                ng-options="item[0] as item[1] for item in vm.sortedField"
                 ng-model="vm.fieldData.default_value">
-          <option ng-repeat="value in vm.fieldData.values" value="{{value[0]}}">{{value[1]}}</option>
         </select>
       </div>
     </div>
 
     <!-- radio button -->
     <span ng-switch-when="DialogFieldRadioButton">
-      <label ng-repeat="option in vm.fieldData.values"
+      <label ng-repeat="option in vm.sortedField"
              class="radio-inline">
         <input type="radio"
                name="{{vm.fieldData.name}}"

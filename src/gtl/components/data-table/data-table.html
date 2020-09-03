@@ -14,10 +14,8 @@
          ng-if="tableCtrl.rows && tableCtrl.rows.length !== 0">
     <thead>
     <tr>
-      <th class="narrow">
-
-      </th>
-      <th ng-if="$index !== 0"
+      <th ng-if="tableCtrl.countCheckboxes() > 0" class="narrow"></th>
+      <th ng-if="($index !== 0 && tableCtrl.countCheckboxes() > 0) || tableCtrl.countCheckboxes() <= 0"
           ng-repeat="column in tableCtrl.columns track by $index"
           ng-click="tableCtrl.onSortClick($index, !!tableCtrl.settings.sortBy && !tableCtrl.settings.sortBy.isAscending)"
           ng-class="tableCtrl.getColumnClass(column)">

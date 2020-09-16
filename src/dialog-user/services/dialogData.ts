@@ -117,7 +117,7 @@ export default class DialogDataService {
           // single-select - convert value to the chosen default_type, API always returns string
           defaultValue = this.convertDropdownValue(data.default_value, data.data_type);
         }
-      } else if (!data.default_value) {
+      } else if (data.default_value === null || data.default_value === '') {
         defaultValue = null;
       }
     }

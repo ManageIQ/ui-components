@@ -9,10 +9,8 @@ module.exports = {
   modules: {
     common: '/common',
     dialogEditor: '/dialog-editor',
-    gtl: '/gtl',
     fonticonPicker: '/fonticon-picker',
     dialogs: '/dialog-user',
-    quadicon: '/quadicon',
     treeView: '/tree-view',
     treeSelector: '/tree-selector',
     miqSelect: '/miq-select',

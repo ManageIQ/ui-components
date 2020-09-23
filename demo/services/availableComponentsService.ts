@@ -42,12 +42,9 @@ export default class AvailableComponentsService {
 
   public initComponents() {
     this.availableComponents = [
-      new AvailableGroup('tile-menu', 'Tile Components', '/tile-view', []),
-      new AvailableGroup('data-table', 'Data table Components', '/data-table', []),
       new AvailableGroup('fonticon-picker', 'Fonticon Picker Components', '/fonticon-picker', []),
       new AvailableGroup('dialog', 'Dialog Components', '/dialog', []),
-      new AvailableGroup('tree-view', 'Tree Components', '/tree', []),
-      new AvailableGroup('quadicon', 'Quadicon Components', '/quadicon', [])
+      new AvailableGroup('tree-view', 'Tree Components', '/tree', [])
     ];
   }
 }

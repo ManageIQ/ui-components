@@ -12,7 +12,7 @@
 
   .static-field-list {
     list-style: none;
-    width: 107px;
+    width: 115px;
     overflow-y: auto;
     margin-bottom: 0px;
     padding-left: 0;
@@ -23,7 +23,7 @@
     border-bottom: 1px solid $color-gray-1;
     border-radius: 1px;
     cursor: pointer;
-    height: 70px;
+    min-height: 70px;
     width: 100%;
     position: relative;
     text-align: center;

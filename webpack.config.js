@@ -30,7 +30,6 @@ module.exports = (env) => {
   const plugins = [
     new CopyWebpackPlugin([
       {from: __dirname + '/demo/data', to: 'data'},
-      {from: __dirname + '/demo/assets', to: 'assets'},
     ]),
     new HtmlWebpackPlugin({
       title: 'ManageIQ Common Components',

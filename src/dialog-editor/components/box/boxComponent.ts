@@ -1,6 +1,5 @@
 import * as ng from 'angular';
 import * as _ from 'lodash';
-import {__} from '../../../common/translateFunction';
 
 /**
  * Controller for the Dialog Editor box component

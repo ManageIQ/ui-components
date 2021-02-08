@@ -1,6 +1,5 @@
 import * as _ from 'lodash';
 import * as angular from 'angular';
-import {__} from '../../common/translateFunction';
 import {sprintf} from 'sprintf-js';
 
 export default class DialogDataService {

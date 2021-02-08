@@ -1,4 +1,3 @@
-import {__} from '../../common/translateFunction';
 import {sprintf} from 'sprintf-js';
 import * as _ from 'lodash';
 

@@ -36,10 +36,7 @@ describe('DialogDataService test', () => {
 
   beforeEach(() => {
     angular.mock.module('miqStaticAssets.dialogUser');
-    angular.mock.module('miqStaticAssets.common');
-    angular.mock.inject(($http, MiQEndpointsService, $rootScope, $httpBackend) => {
-      dialogData = new DialogData();
-    });
+    dialogData = new DialogData();
   });
 
   it('should create service', () => {

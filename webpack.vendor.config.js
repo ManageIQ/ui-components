@@ -5,7 +5,7 @@ module.exports = {
   entry: {
     vendor: [
       './src/vendor.ts',
-      './src/styles/vendor.scss',
+      './src/vendor.scss',
     ],
   },
   plugins: [

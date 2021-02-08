@@ -13,9 +13,9 @@ module.exports = (env) => {
 
   const appEntry = {
     'ui-components': [
-      './src/styles/ui-components.scss',
       './src/index.ts',
       './src/dialog-user/index.ts',
+      './src/dialog-user/style.scss',
       './src/miq-select/index.ts',
       './src/tree-selector/index.ts',
       './src/tree-view/index.ts',

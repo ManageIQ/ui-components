@@ -1,111 +1,82 @@
 # Angular UI Components for ManageIQ
 
-[![score](https://www.bithound.io/github/ManageIQ/ui-components/badges/score.svg)](https://www.bithound.io/github/ManageIQ/ui-components)
-[![dependencies](https://www.bithound.io/github/ManageIQ/ui-components/badges/dependencies.svg)](https://www.bithound.io/github/ManageIQ/ui-components/master/dependencies/npm)
-[![bitHound Dev Dependencies](https://www.bithound.io/github/ManageIQ/ui-components/badges/devDependencies.svg)](https://www.bithound.io/github/ManageIQ/ui-components/master/dependencies/npm)
-[![Known Vulnerabilities](https://snyk.io/test/github/mtho11/ui-components/badge.svg)](https://snyk.io/test/github/mtho11/ui-components)
-[![Build Status](https://travis-ci.org/ManageIQ/ui-components.svg?branch=master)](https://travis-ci.org/ManageIQ/ui-components)
+[![Build Status](https://travis-ci.com/ManageIQ/ui-components.svg?branch=master)](https://travis-ci.com/ManageIQ/ui-components)
 [![Coverage Status](https://coveralls.io/repos/github/ManageIQ/ui-components/badge.svg)](https://coveralls.io/github/ManageIQ/ui-components)
 
-[![Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ManageIQ/manageiq/ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ManageIQ/manageiq/ui)
+
 
 ## Purpose
 
-The purpose of this repository is to provide reusable components for the [ManageIQ](http:github.com/manageiq/manageiq)
-project. These are not general purpose components, but specific to ManageIQ, however, reusable across all of
-ManageIQ (providers). The intention is to provide components that are reusable in various ways. Many of these components
-are 'Smart Components' that know how to communicate to backend endpoints(data-driven by provider) and retrieve relevant data for
-the component's configuration.
+NOTE: The ManageIQ UI is moving off Angular.js to React, as such, the role of this repository has shifted.
+Components specific to just ui-classic have been moved to manageiq-ui-classic [ManageIQ/manageiq-ui-classic#6716](https://github.com/ManageIQ/manageiq-ui-classic/issues/6716)
+What remains are components shared by manageiq-ui-classic and ui-service and release branches that can be used to release fixes for previous releases.
 
-As we achieve greater reuse, the idea is to move more and more components to this repository. Creating a repository for
-*smart* reusable components (specific to a domain) across providers.
 
-## Architectural Goals
+## Shared components:
 
-* Separate git repository from ManageIQ
-* Components communicate via REST with ManageIQ API
-* Maintain routing inside ManageIQ (routes.rb)
+* `dialog-user` - dialog runner; used by ui-classic and ui-service
+* `miq-select` - fork of `pf-select`, wraps `bootstrap-select` jQuery plugin for angular; used by ui-classic, ui-service and dialog-user
+* `miq-tree-selector` - selecting a method from an automate tree; used by ui-classic automate modal and dialog-user
+* `miq-tree-view` - a tree component; used by ui-classic explorer trees and miq-tree-selector
 
-## Technologies
 
-* Angular 1.5+ (soon to be Angular 2.x)
+## Technologies used
+
+* Angular 1.5+
 * Typescript
 * Webpack
 * Yarn
+
 
 ## Architecture
 
 ![ManageIQ UI Components Architecture](MiQ-UI-Architecture.jpg)
 
-## Angular 1.5 Components
-
-We are recommending [Angular 1.5 Components](https://docs.angularjs.org/guide/component) instead of Angular Directives
-for better compatibility and easier upgrade to Angular 2.0.
-
-For a great overview of using Angular 1.5.x Components please see: [NG-Conf 2016: Components, Components, Components!...and Angular 1.5 - Pete Bacon Darwin](https://www.youtube.com/watch?list=PLOETEcp3DkCq788xapkP_OU-78jhTf68j&v=AMwjDibFxno&ab_channel=ng-conf)
-
 
 ## Development Environment
 
-You need to have installed [Node.js >= 6  and npm >= 3](https://docs.npmjs.com/getting-started/installing-node) on your system.
-It is recommended to use a node version manager such as [n](https://www.npmjs.com/package/n). If you have node installed then it is
-just `yarn global add n` and then `n lts` to use the latest LTS version of node (see the docs for switching versions).
+You need [Node.js](https://docs.npmjs.com/getting-started/installing-node) and [Yarn](https://classic.yarnpkg.com/en/docs/install/).
 
-Install these node packages globally in the system
-```
-npm install -g yarn
-yarn global add webpack wiredep-cli typescript typescript-formatter
-```
-
-After [yarn](http://yarn.io) is installed, it is pretty much a replacement for npm, with faster, more dependable  builds
-but still utilizing the npm packages.
-
-See comparison: [npm vs. yarn commands](https://yarnpkg.com/en/docs/migrating-from-npm)
-
-Install local node dependencies
+Install local node dependencies, build them and the components.
 ```
 yarn
-```
-
-Create library dependencies (run this every time you make any changes to `vendor.ts`) - no need to worry about any TS
-errors. Also, if you are pushing some changes please run this command so you will push minifed version of JS and CSS.
-```
 yarn run build
 ```
 
 To run:
 ```
-yarn start
+yarn run build-dev
+yarn run start
 ```
 
 To run tests:
 ```
-yarn
 yarn run build-dev
 yarn run test
 ```
 
-Before submitting code, run the following command to format the code according to the tslint rules:
+To extract i18n strings for translation:
+
 ```
-tsmft -r
+yarn run gettext:extract
 ```
 
-This formats the code according to the tslint rules.
 
 #### Documentation
 
-If you want to see documentation for each component, controller, filter, etc. run
-```
-yarn run-script build-docs
-```
-This will generate docs from JS docs and after running `yarn start` this documentation will be available on `localhost:4000/docs`
+If you want to release ui-components, see [these](https://github.com/ManageIQ/ui-components/wiki) [two](https://github.com/ManageIQ/ui-components/wiki/Releasing-a-new-version) wiki articles.
 
-If you want to release ui-components look at documentation in Wiki of this repository.
+There's also a `demo/` folder with runnable demos of each component.
+
 
 #### ManageIQ version mapping
 
-1.4 - master/K-release
-1.3 - jansa
-1.2 - ivanchuk  
-1.1 - hammer  
-1.0 - gaprindashvili
+|npm version|ManageIQ release|
+|-|-|
+|1.5|master/lasker|
+|1.4|kasparov
+|1.3|jansa|
+|1.2|ivanchuk|
+|1.1|hammer|
+|1.0|gaprindashvili|

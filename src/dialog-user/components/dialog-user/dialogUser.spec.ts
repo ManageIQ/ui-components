@@ -1,3 +1,5 @@
+import { pick } from 'lodash';
+
 describe('Dialog test', () =>  {
   let bindings;
   const dialogFile = require('../../../../demo/data/dialog-data.json');
@@ -102,7 +104,7 @@ describe('Dialog test', () =>  {
     });
 
     it('makes the callback to refreshField', (done) => {
-      let expectedField =  _.pick(dialogCtrl.dialogFields['service_name'], [
+      let expectedField =  pick(dialogCtrl.dialogFields['service_name'], [
         'created_at',
         'href',
         'name',

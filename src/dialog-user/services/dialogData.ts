@@ -1,6 +1,7 @@
 import * as _ from 'lodash';
 import * as angular from 'angular';
 import {sprintf} from 'sprintf-js';
+const __ = (s) => window['__'] ? window['__'](s) : s;
 
 export default class DialogDataService {
   public data: any;

@@ -1,12 +1,11 @@
-
 const webpackConfig = require('./webpack.config');
 const fileGlob = 'src/**/*.spec.[jt]s';
 const vendor = 'dist/js/vendor.js';
 const applicationFile = 'dist/js/ui-components.js';
 const jsonGlob = {pattern: 'src/**/*.json', watched: true, served: true, included: false};
+
 module.exports = function(config) {
   config.set({
-
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
@@ -15,13 +14,19 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
 
     // list of files / patterns to load in the browser
-    files: [vendor, 'node_modules/angular-mocks/angular-mocks.js', applicationFile, fileGlob, jsonGlob],
+    files: [
+      vendor,
+      'node_modules/angular-mocks/angular-mocks.js',
+      applicationFile,
+      fileGlob,
+      jsonGlob,
+    ],
 
     // list of files to exclude
     exclude: [
     ],
     client: {
-      captureConsole: true
+      captureConsole: true,
     },
 
     // test results reporter to use
@@ -34,8 +39,8 @@ module.exports = function(config) {
 
     preprocessors: {
       [fileGlob]: ['webpack'],
-      [jsonGlob]: ['webpack'],
-      [applicationFile]: ['webpack', 'coverage']
+      [jsonGlob.pattern]: ['webpack'],
+      [applicationFile]: ['webpack', 'coverage'],
     },
     webpack: webpackConfig({test: true}),
     webpackMiddleware: {noInfo: true},
@@ -60,14 +65,14 @@ module.exports = function(config) {
     coverageReporter : {
       type : 'lcov',
       dir : 'coverage/',
-      subdir: '.'
+      subdir: '.',
     },
 
     mime: {
-      'text/x-typescript': ['ts','tsx']
+      'text/x-typescript': ['ts'],
     },
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
   })
 };

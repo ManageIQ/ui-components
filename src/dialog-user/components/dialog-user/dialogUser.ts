@@ -1,6 +1,7 @@
 import * as _ from 'lodash';
 import { IDialogs } from '../../interfaces/dialog';
 import { DialogClass } from '../../interfaces/abstractDialogClass';
+const __ = (s) => window['__'] ? window['__'](s) : s;
 
 /**
  * @extends miqStaticAssets.dialog.DialogClass

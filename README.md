@@ -44,7 +44,7 @@ yarn
 yarn run build
 ```
 
-To run:
+To run demo:
 ```
 yarn run build-dev
 yarn run start
@@ -72,7 +72,7 @@ There's also a `demo/` folder with runnable demos of each component.
 
 #### ManageIQ version mapping
 
-|npm version|ManageIQ release|
+|@manageiq/ui-components version|ManageIQ release|
 |-|-|
 |1.5|master/lasker|
 |1.4|kasparov

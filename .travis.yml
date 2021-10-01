@@ -1,24 +1,19 @@
+---
 sudo: required
-dist: trusty
+dist: bionic
 language: node_js
 node_js:
-  - '10'
-
+- '10'
 npm:
-  - '3'
-
+- '3'
 cache:
   yarn: true
   directories:
-    - node_modules
-
+  - node_modules
 before_install:
-  - 'yarn global add typings webpack karma typescript'
-
-script: ./scripts/travis.sh
-
-after_success: ./scripts/.coverage.sh
-
+- yarn global add typings webpack karma typescript
+script: "./scripts/travis.sh"
+after_success: "./scripts/.coverage.sh"
 notifications:
   webhooks:
     urls:

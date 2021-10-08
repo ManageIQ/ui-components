@@ -44,7 +44,6 @@ coverage
 package-lock.json
 
 /node_modules/
-/yarn.lock
 /.pnp.*
 /.yarn/*
 !/.yarn/patches

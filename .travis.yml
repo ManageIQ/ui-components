@@ -3,9 +3,7 @@ sudo: required
 dist: bionic
 language: node_js
 node_js:
-- '10'
-npm:
-- '3'
+- '12'
 cache:
   yarn: true
   directories:

@@ -47,7 +47,7 @@ For a great overview of using Angular 1.5.x Components please see: [NG-Conf 2016
 
 ## Development Environment
 
-You need to have installed [Node.js >= 6  and npm >= 3](https://docs.npmjs.com/getting-started/installing-node) on your system.
+You need to have installed [Node.js >= 14  and npm >= 6](https://docs.npmjs.com/getting-started/installing-node) on your system.
 It is recommended to use a node version manager such as [n](https://www.npmjs.com/package/n). If you have node installed then it is
 just `yarn global add n` and then `n lts` to use the latest LTS version of node (see the docs for switching versions).
 

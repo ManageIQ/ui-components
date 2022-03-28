@@ -219,7 +219,7 @@ export default class DialogDataService {
           const regexValidates = regex.test(value);
 
           if (! regexValidates) {
-            fail(__('Entered text should match the format:') + ' ' + regexPattern);
+            fail(field.validator_message);
           }
         } catch (error) {
           // firefox throws a SyntaxError with message "invalid regex group" for unsupported negative lookbehind; log for backtrace and devel popup

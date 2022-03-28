@@ -17,3 +17,8 @@
   <input id="validator_rule" name="validator_rule"
          ng-model="$ctrl.modalData.validator_rule" />
 </div>
+<div ng-if="$ctrl.modalData.validator_type === 'regex'"
+     pf-form-group pf-label="{{'Validation Message'|translate}}">
+  <input id="validator_message" name="validator_message"
+         ng-model="$ctrl.modalData.validator_message" />
+</div>

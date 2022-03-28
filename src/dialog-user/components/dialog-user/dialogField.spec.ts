@@ -56,13 +56,14 @@ describe('Dialog field test', () => {
 
     it('should allow a field to be validated', () => {
       dialogCtrl.dialogField.default_value = 'Test';
+      dialogCtrl.dialogField.validator_message = 'Numbers only';
       dialogCtrl.validateField();
 
       const fieldValid = dialogCtrl.validation;
       const expectedValue = {
         isValid: false,
         label: 'Service Name',
-        message: 'Entered text should match the format: [0-9]'
+        message: 'Numbers only'
       };
 
       expect(fieldValid).toEqual(jasmine.objectContaining(expectedValue));

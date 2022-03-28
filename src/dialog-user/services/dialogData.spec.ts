@@ -306,13 +306,14 @@ describe('DialogDataService test', () => {
               'required': true,
               'validator_type': 'regex',
               'validator_rule': '^1234',
+              'validator_message': 'Hulk- The Strongest Avenger'
             };
           });
 
           it('fails validation', () => {
             let validation = dialogData.validateField(testField, testField.default_value);
             expect(validation.isValid).toEqual(false);
-            expect(validation.message).toEqual('Entered text should match the format: ^1234');
+            expect(validation.message).toEqual('Hulk- The Strongest Avenger');
           });
         });
 

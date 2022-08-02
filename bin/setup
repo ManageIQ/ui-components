@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+
+if [ -n "$CI" ]; then
+	yarn global add typings webpack karma typescript
+fi
+
+yarn install

@@ -47,20 +47,23 @@ For a great overview of using Angular 1.5.x Components please see: [NG-Conf 2016
 
 ## Development Environment
 
-You need to have installed [Node.js >= 14  and npm >= 6](https://docs.npmjs.com/getting-started/installing-node) on your system.
-It is recommended to use a node version manager such as [n](https://www.npmjs.com/package/n). If you have node installed then it is
-just `yarn global add n` and then `n lts` to use the latest LTS version of node (see the docs for switching versions).
+[nvm](https://github.com/nvm-sh/nvm) is *strongly* recommended for NodeJS version management.
 
-Install these node packages globally in the system
+```bash
+nvm install 12
+nvm use 12
+
+# Set version 12 as the default for all scripts
+nvm alias default 12
 ```
-npm install -g yarn
-yarn global add webpack wiredep-cli typescript typescript-formatter
+
+You may need to restart your shell in order to source the nvm initialization environment.
+
+Then install `yarn` - you can find the recommended way for your platform at https://classic.yarnpkg.com/en/docs/install, or, if that fails, via npm.
+
+```bash
+npm install --global yarn
 ```
-
-After [yarn](http://yarn.io) is installed, it is pretty much a replacement for npm, with faster, more dependable  builds
-but still utilizing the npm packages.
-
-See comparison: [npm vs. yarn commands](https://yarnpkg.com/en/docs/migrating-from-npm)
 
 Install local node dependencies
 ```

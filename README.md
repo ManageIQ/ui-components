@@ -1,6 +1,6 @@
 # Angular UI Components for ManageIQ
 
-[![CI](https://github.com/ManageIQ/ui-components/actions/workflows/ci.yaml/badge.svg)](https://github.com/ManageIQ/ui-components/actions/workflows/ci.yaml)
+[![CI](https://github.com/ManageIQ/ui-components/actions/workflows/ci.yaml/badge.svg?branch=petrosian)](https://github.com/ManageIQ/ui-components/actions/workflows/ci.yaml)
 [![Coverage Status](https://coveralls.io/repos/github/ManageIQ/ui-components/badge.svg)](https://coveralls.io/github/ManageIQ/ui-components)
 [![Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ManageIQ/manageiq/ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 

@@ -19,7 +19,8 @@ class ModalFieldController extends ModalController {
   public treeOptions: any;
   public modalData: any;
   public validation: any;
-  embedded_type: any;
+ public embedded_type: any;
+  $scope: any;
 
   public $onInit() {
     this.treeOptions = {
@@ -48,29 +49,31 @@ class ModalFieldController extends ModalController {
     };
   }
 
-  // public showFullyQualifiedName(resourceAction) {
-  //   console.log("dropdown clicked");
-  //   if (resourceAction.ae_namespace && resourceAction.ae_class && resourceAction.ae_instance) {
-  //     return `${resourceAction.ae_namespace}/${resourceAction.ae_class}/${resourceAction.ae_instance}`;
-  //   } else {
-  //     return '';
-  //   }
-  // }
   public showFullyQualifiedName(resourceAction) {
-    console.log("dropdown clicked", this.embedded_type);
-    //console.log("type is ", type);
-    if(this.embedded_type && this.embedded_type=='automate')
-      this.treeOptions.toggle();
-    else if(this.embedded_type=='workflows')
-      console.log("write method to get the workflows");
-    else 
-      console.log("as usual");  
+    //console.log("dropdown", this.$scope.vm);
     if (resourceAction.ae_namespace && resourceAction.ae_class && resourceAction.ae_instance) {
       return `${resourceAction.ae_namespace}/${resourceAction.ae_class}/${resourceAction.ae_instance}`;
     } else {
       return '';
     }
   }
+
+  // public showFullyQualifiedName(resourceAction) {
+  //   console.log("dropdown clicked", this.embedded_type, this.$scope);
+  //   //console.log("type is ", type);
+  //   if(this.embedded_type && this.embedded_type=='automate')
+  //     console.log("error");
+  //   else if(this.embedded_type=='workflows')
+  //     console.log("write method to get the workflows");
+  //   else 
+  //     console.log("as usual");  
+  //   if (resourceAction.ae_namespace && resourceAction.ae_class && resourceAction.ae_instance) {
+  //     return `${resourceAction.ae_namespace}/${resourceAction.ae_class}/${resourceAction.ae_instance}`;
+  //   } else {
+  //     return '';
+  //   }
+  // }
+  
   public getTreeStructure(type, resourceAction){
     console.log("type is ", type);
 

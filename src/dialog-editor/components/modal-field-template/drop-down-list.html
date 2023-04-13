@@ -125,6 +125,12 @@
             <button class="btn btn-default" ng-click="vm.treeOptions.toggle();"><i class="ff ff-load-balancer"></i></button>
           </span>
         </div>
+        <div class="input-group" ng-if="vm.embedded_type=='workflows'">
+          <input type="text" class="form-control" disabled>
+          <span class="input-group-btn">
+            <button class="btn btn-default" ng-click="vm.treeOptions.toggle();"><i class="ff ff-load-balancer"></i></button>
+          </span>
+        </div>
         </div>
       <dialog-editor-modal-field-template template="dynamic-values.html"
                                           modal-data="vm.modalData">

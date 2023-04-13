@@ -74,11 +74,7 @@ class ModalFieldController extends ModalController {
   //   }
   // }
   
-  public getTreeStructure(type, resourceAction){
-    console.log("type is ", type);
-
-
-  }
+  
   public treeSelectorSelect(node, elementData) {
     const fqname = node.fqname.split('/');
 

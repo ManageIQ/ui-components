@@ -19,8 +19,8 @@ class ModalFieldController extends ModalController {
   public treeOptions: any;
   public modalData: any;
   public validation: any;
- public embedded_type: any;
-  $scope: any;
+  public embedded_type: any;
+  public $scope: any;
 
   public $onInit() {
     this.treeOptions = {
@@ -29,15 +29,29 @@ class ModalFieldController extends ModalController {
       show: false,
       includeDomain: false,
       data: null,
+      automationType: null,
 
       toggle: () => {
         this.treeOptions.show = ! this.treeOptions.show;
+        this.treeOptions.automationType = 'automate';
 
         if (this.treeOptions.show) {
           const fqname = this.showFullyQualifiedName(this.modalData.resource_action) || null;
-
           this.treeOptions.load(fqname).then((data) => {
             this.treeOptions.data = data;
+            this.treeOptions.selected = {fqname: '/' + fqname};
+          });
+        }
+      },
+
+      toggleWorkflows: () => {
+        this.treeOptions.show = ! this.treeOptions.show;
+        this.treeOptions.automationType = 'workflows';
+
+        if (this.treeOptions.show) {
+          const fqname = this.showFullyQualifiedName(this.modalData.resource_action) || null;
+          this.treeOptions.loadWorkflows().then((data) => {
+            this.treeOptions.data = data.resources;
             this.treeOptions.selected = {fqname: '/' + fqname};
           });
         }
@@ -73,8 +87,7 @@ class ModalFieldController extends ModalController {
   //     return '';
   //   }
   // }
-  
-  
+
   public treeSelectorSelect(node, elementData) {
     const fqname = node.fqname.split('/');
 

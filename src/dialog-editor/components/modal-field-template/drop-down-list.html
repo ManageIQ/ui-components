@@ -14,7 +14,7 @@
              switch-on-text="{{'Yes'|translate}}"
              switch-off-text="{{'No'|translate}}">
     </div>
-    <div pf-form-group pf-label="{{'Required'|translate}}">
+    <div pf-form-group pf-label="{{'Required123'|translate}}">
       <input bs-switch
              ng-model="vm.modalData.required"
              type="checkbox"
@@ -128,7 +128,7 @@
         <div class="input-group" ng-if="vm.embedded_type=='workflows'">
           <input type="text" class="form-control" disabled>
           <span class="input-group-btn">
-            <button class="btn btn-default" ng-click="vm.treeOptions.toggle();"><i class="ff ff-load-balancer"></i></button>
+            <button class="btn btn-default" ng-click="vm.treeOptions.toggleWorkflows();"><i class="ff ff-load-balancer"></i></button>
           </span>
         </div>
         </div>

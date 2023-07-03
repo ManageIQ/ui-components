@@ -20,7 +20,7 @@ class ModalFieldController extends ModalController {
   public modalData: any;
   public validation: any;
  public embedded_type: any;
-  $scope: any;
+ public $scope: any;
 
   public $onInit() {
     this.treeOptions = {
@@ -73,8 +73,6 @@ class ModalFieldController extends ModalController {
   //     return '';
   //   }
   // }
-  
-  
   public treeSelectorSelect(node, elementData) {
     const fqname = node.fqname.split('/');
 

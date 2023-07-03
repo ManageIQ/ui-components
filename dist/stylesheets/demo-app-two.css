@@ -1,0 +1,110 @@
+ul.nav.nav-list.well {
+  padding: 0; }
+  ul.nav.nav-list.well li.nav-header {
+    background: #d3d3d3; }
+    ul.nav.nav-list.well li.nav-header a {
+      color: black;
+      font-size: larger;
+      margin: 0; }
+
+table.table tbody td img {
+  height: 20px;
+  width: 20px; }
+
+table .narrow {
+  width: 1%;
+  white-space: nowrap; }
+
+.clear-navbar {
+  margin-top: 60px; }
+
+.dl-horizontal.tile dt {
+  float: left;
+  width: 100px;
+  clear: left;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; }
+
+.demo-dialog-container {
+  height: 550px; }
+
+.demo-dialog {
+  display: block;
+  width: 80%;
+  padding-bottom: 90px; }
+
+.demo-dialog-results {
+  padding-top: 10px; }
+
+.demo-dialog-submit-button {
+  margin-left: 147px;
+  margin-top: 25px; }
+
+.piechart {
+  border-radius: 50%;
+  background: yellowgreen;
+  background-image: linear-gradient(to right, transparent 50%, blue 0); }
+  .piechart::before {
+    content: '';
+    display: block;
+    margin-left: 50%;
+    height: 100%;
+    border-radius: 0 100% 100% 0 / 50%;
+    background-color: inherit;
+    transform-origin: left; }
+  .piechart.fill-0::before {
+    transform: rotate(0turn); }
+  .piechart.fill-1::before {
+    transform: rotate(0.05turn); }
+  .piechart.fill-2::before {
+    transform: rotate(0.1turn); }
+  .piechart.fill-3::before {
+    transform: rotate(0.15turn); }
+  .piechart.fill-4::before {
+    transform: rotate(0.2turn); }
+  .piechart.fill-5::before {
+    transform: rotate(0.25turn); }
+  .piechart.fill-6::before {
+    transform: rotate(0.3turn); }
+  .piechart.fill-7::before {
+    transform: rotate(0.35turn); }
+  .piechart.fill-8::before {
+    transform: rotate(0.4turn); }
+  .piechart.fill-9::before {
+    transform: rotate(0.45turn); }
+  .piechart.fill-10::before {
+    transform: rotate(0.5turn); }
+  .piechart.fill-11::before {
+    background: blue;
+    transform: rotate(0.05turn); }
+  .piechart.fill-12::before {
+    background: blue;
+    transform: rotate(0.1turn); }
+  .piechart.fill-13::before {
+    background: blue;
+    transform: rotate(0.15turn); }
+  .piechart.fill-14::before {
+    background: blue;
+    transform: rotate(0.2turn); }
+  .piechart.fill-15::before {
+    background: blue;
+    transform: rotate(0.25turn); }
+  .piechart.fill-16::before {
+    background: blue;
+    transform: rotate(0.3turn); }
+  .piechart.fill-17::before {
+    background: blue;
+    transform: rotate(0.35turn); }
+  .piechart.fill-18::before {
+    background: blue;
+    transform: rotate(0.4turn); }
+  .piechart.fill-19::before {
+    background: blue;
+    transform: rotate(0.45turn); }
+  .piechart.fill-20::before {
+    background: blue;
+    transform: rotate(0.5turn); }
+
+/*# sourceMappingURL=demo-app-two.css.map*/

@@ -29,7 +29,7 @@
     "@types/angular-mocks": "^1.5.7",
     "@types/angular-ui-router": "^1.1.35",
     "@types/jasmine": "^2.5.38",
-    "@types/node": "0.0.0",
+    "@types/node": "13.13.4",
     "@types/rx": "^2.5.34",
     "angular": "~1.5.9",
     "angular-animate": "~1.5.9",
@@ -86,7 +86,7 @@
     "typescript": "~2.8.3",
     "ui-router": "^1.0.0-alpha0",
     "url-loader": "^0.5.7",
-    "webpack": "2.2.0"
+    "webpack": "3.11.0"
   },
   "dependencies": {
     "angular-bootstrap-switch": "^0.5.1",

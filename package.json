@@ -1,6 +1,6 @@
 {
   "name": "@manageiq/ui-components",
-  "version": "1.4.4",
+  "version": "10.0.1",
   "description": "UI components for ManageIQ project",
   "main": "dist/js/ui-components.js",
   "scripts": {
@@ -29,7 +29,7 @@
     "@types/angular-mocks": "^1.5.7",
     "@types/angular-ui-router": "^1.1.35",
     "@types/jasmine": "^2.5.38",
-    "@types/node": "0.0.0",
+    "@types/node": "13.13.4",
     "@types/rx": "^2.5.34",
     "angular": "~1.5.9",
     "angular-animate": "~1.5.9",
@@ -39,7 +39,7 @@
     "angular-mocks": "~1.5.9",
     "angular-patternfly": "^3.15.0",
     "angular-sanitize": "~1.5.9",
-    "awesome-typescript-loader": "~4.0.1",
+    "awesome-typescript-loader": "~4.0.0",
     "babel-eslint": "^7.2.3",
     "bootstrap-combobox": "^1.0.2",
     "bootstrap-datepicker": "^1.6.4",
@@ -86,9 +86,10 @@
     "typescript": "~2.8.3",
     "ui-router": "^1.0.0-alpha0",
     "url-loader": "^0.5.7",
-    "webpack": "2.2.0"
+    "webpack": "3.11.0"
   },
   "dependencies": {
+    "@types/cors": "2.8.12",
     "angular-bootstrap-switch": "^0.5.1",
     "angular-dragdrop": "^1.0.13",
     "angular-ui-sortable": "^0.16.1",
@@ -97,6 +98,10 @@
     "sprintf-js": "^1.1.1"
   },
   "resolutions": {
-    "@types/geojson": "7946.0.8"
+    "@types/geojson": "7946.0.8",
+    "@storybook/react": "4.0.0-alpha.3"
+  },
+  "publishConfig": {
+    "registry": "https://na.artifactory.swg-devops.com/artifactory/api/npm/orpheus-npm-local/"
   }
 }

@@ -49,7 +49,7 @@ export default class DialogValidationService {
         field => ({ status: (field.type !== 'DialogFieldTagControl') || tagHasCategory(field),
                     errorMessage: __('Category needs to be set for TagControl field'),
                     local: true }),
-        field => ({ status: ! (field.dynamic && _.isEmpty(field.resource_action.ae_class)),
+        field => ({ status: ! (field.dynamic && !field.resource_action.configuration_script_id && _.isEmpty(field.resource_action.ae_class)),
                     errorMessage: __('Entry Point needs to be set for Dynamic elements'),
                     local: true }),
         field => ({ status: ! ((field.type === 'DialogFieldDropDownList' ||

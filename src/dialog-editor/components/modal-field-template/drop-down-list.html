@@ -114,14 +114,25 @@
 <div ng-if="vm.modalTabIsSet('options') && vm.modalData.dynamic">
   <form class="form-horizontal">
     <div ng-show="!vm.treeOptions.show">
-      <div pf-form-group pf-label="{{'Entry Point'|translate}}">
-        <div class="input-group">
-          <input type="text" class="form-control" ng-value="vm.showFullyQualifiedName(vm.modalData.resource_action)" disabled>
+      <div pf-form-group pf-label="Automation Type" class="entry_point_selector_types">
+        <select ng-show="vm.treeOptions.emsWorkflowsEnabled" class="form-control automation_type_selector" miq-select ng-model="vm.modalData.automation_type" ng-change="vm.treeOptions.onAutomationTypeChange()">
+          <option value="{{vm.treeOptions.automationTypes.automate}}" translate>Embedded Automate</option>
+          <option value="{{vm.treeOptions.automationTypes.workflow}}" translate>Embedded Workflows</option>  
+        </select>
+        <div class="input-group entry_point" style="margin-top:0;" ng-if="vm.treeOptions.displayAutomationType().automate">
+          <input type="text" placeholder="Embedded Automate" class="form-control" ng-value="vm.showFullyQualifiedName(vm.modalData.resource_action)" disabled>
           <span class="input-group-btn">
             <button class="btn btn-default" ng-click="vm.treeOptions.toggle();"><i class="ff ff-load-balancer"></i></button>
           </span>
         </div>
-      </div>
+        <div ng-show="vm.treeOptions.emsWorkflowsEnabled" class="input-group" ng-if="vm.treeOptions.displayAutomationType().workflow">
+          <input type="text" placeholder="Embedded Workflow" class="form-control" ng-value="vm.modalData.resource_action.workflow_name" disabled>
+          <span class="input-group-btn">
+            <button class="btn btn-default" ng-click="vm.treeOptions.toggleWorkflows();"><i class="ff ff-load-balancer"></i></button>
+          </span>
+          <input type="hidden" class="form-control" ng-value="vm.modalData.resource_action.configuration_script_id" disabled>
+        </div>
+        </div>
       <dialog-editor-modal-field-template template="dynamic-values.html"
                                           modal-data="vm.modalData">
       </dialog-editor-modal-field-template>

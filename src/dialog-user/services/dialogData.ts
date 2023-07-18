@@ -33,14 +33,14 @@ export default class DialogDataService {
     options,
     values,
   }) {
-    let dropDownValues = values.map((option) => {
+    let dropDownValues = values && values.map((option) => {
       const value = this.convertDropdownValue(option[0], data_type);
       const description = (!Number.isInteger(option[1]) ? option[1] : parseInt(option[1], 10));
 
       return [value, description];
     });
 
-    if (options.sort_by !== 'none') {
+    if (values && options.sort_by !== 'none') {
       return this.updateFieldSortOrder({
         options,
         values: dropDownValues,

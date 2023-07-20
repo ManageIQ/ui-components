@@ -81,6 +81,13 @@ class ModalController {
     }
   }
 
+  /** Function to set automationType in modalFieldData. */
+  private setAutomationType(modalFieldData: any) {
+    const automationType = modalFieldData.resource_action && modalFieldData.resource_action.configuration_script_id ? 'embedded_workflow' : 'embedded_automate';
+    modalFieldData.automation_type = automationType;
+    return modalFieldData;
+  }
+
   public loadModalFieldData(tab: number, box: number, field: number) {
     if (typeof tab !== 'undefined' &&
         typeof box !== 'undefined' &&
@@ -88,7 +95,7 @@ class ModalController {
       let tabList = this.DialogEditor.getDialogTabs();
       let boxList = tabList[tab];
       let fieldList = boxList.dialog_groups[box];
-      return fieldList.dialog_fields[field];
+      return this.setAutomationType(fieldList.dialog_fields[field]);
     }
   }
 

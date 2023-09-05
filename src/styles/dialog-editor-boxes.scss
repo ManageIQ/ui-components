@@ -192,11 +192,30 @@ l.nav.nav-list.workflows {
 
     ul.workflows_list_wrapper {
       display: flex;
+      flex-direction: column;
+      border: 1px solid lightgray;
+
+      li.workflows_list_header {
+        background: lightgray;
+        padding: 10px 0;
+        font-weight: bold;
+      }
 
       li.workflow_item {
         display: flex;
         flex-grow: 1;
         padding: 5px;
+        border-bottom: 1px solid lightgray;
+
+        &:last-child {
+          border-bottom: 0 !important;
+        }
+
+        .workflow_item_row {
+          display: flex;
+          flex-grow: 1;
+          margin-left: -5px;
+        }
 
         &:hover {
           background: #e4e5e6;

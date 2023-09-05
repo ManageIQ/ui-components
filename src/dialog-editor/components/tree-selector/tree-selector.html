@@ -42,9 +42,16 @@
     </div>
     <div ng-if="$ctrl.treeOptions.automationType==$ctrl.treeOptions.automationTypes.workflow">
       <div ng-if="$ctrl.treeOptions.data">
-        <ul class="nav nav-list workflows_list_wrapper" ng-repeat="workflow in $ctrl.treeOptions.data">
-          <li class="workflow_item" ng-click="$ctrl.treeOptions.onSelect(workflow)">
-              {{workflow.name}}
+        <ul class="nav nav-list workflows_list_wrapper">
+          <li class="workflows_list_header">
+            <div class="col-md-6">Repository</div>
+            <div class="col-md-6">Workflow Name</div>
+          </li>
+          <li class="workflow_item" ng-repeat="workflow in $ctrl.treeOptions.data">
+            <div class="workflow_item_row" ng-click="$ctrl.treeOptions.onSelect(workflow)">
+              <div class="col-md-6">{{workflow.configuration_script_source.name}}</div>
+              <div class="col-md-6">{{workflow.name}}</div>
+            </div>
           </li>
         </ul>
       </div>

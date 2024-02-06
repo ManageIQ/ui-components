@@ -141,23 +141,45 @@ class ModalController {
   }
 
   /**
+   * Check for duplicate field names.
+   * @memberof ModalController
+   * @function modalUnchanged
+   */
+  public fieldDuplicates() {
+    const fields: string[] = [];
+    const {tabId, boxId, fieldId} = this.elementInfo;
+    const dialogTabs = this.DialogEditor.getDialogTabs();
+    this.DialogEditor.getDialogTabs().forEach((tabs, tabIndex) => (
+      tabs.dialog_groups.forEach((group, groupIndex) => (
+        group.dialog_fields.forEach((field, fieldIndex) => {
+          const name =  (tabId === tabIndex && boxId === groupIndex && fieldId === fieldIndex)
+            ? this.modalData.name
+            : field.name;
+          fields.push(name);
+        })
+      ))
+    ));
+    const isDuplicate = fields.filter((item) => item === this.modalData.name).length > 1 ? true : false;
+    this.modalData.validationMessage = isDuplicate ? sprintf(__('%s is used by another field'), this.modalData.name) : undefined;
+    return isDuplicate;
+  }
+
+  /**
    * Check for changes in the modal.
    * @memberof ModalController
    * @function modalUnchanged
    */
   public modalUnchanged() {
+    const {boxId, fieldId, type} = this.elementInfo;
+    const dialogTabs = this.DialogEditor.getDialogTabs();
+    const activeTab = dialogTabs[this.DialogEditor.activeTab];
+    const activeBox = activeTab.dialog_groups[boxId];
     let elements = {
-      tab: this.DialogEditor.getDialogTabs()[
-        this.DialogEditor.activeTab],
-      box: this.DialogEditor.getDialogTabs()[
-        this.DialogEditor.activeTab].dialog_groups[
-          this.elementInfo.boxId],
-      field: _.get(this.DialogEditor.getDialogTabs()[
-        this.DialogEditor.activeTab].dialog_groups[
-          this.elementInfo.boxId], 'dialog_fields[' + this.elementInfo.fieldId + ']')
+      tab: activeTab,
+      box: activeBox,
+      field: _.get(activeBox, 'dialog_fields[' + fieldId + ']')
     };
-    return this.elementInfo.type in elements &&
-      _.isMatch(elements[this.elementInfo.type], this.modalData);
+    return type in elements && _.isMatch(elements[type], this.modalData);
   }
 
   /**
@@ -338,6 +360,7 @@ class ModalController {
       update-dialog-field-responders="modalCtrl.parent.updateDialogFieldResponders"
       setup-category-options="modalCtrl.parent.setupCategoryOptions"
       modal-unchanged="modalCtrl.parent.modalUnchanged"
+      field-duplicates="modalCtrl.parent.fieldDuplicates"
       validation="modalCtrl.validation"
       ></${component}>`;
   }

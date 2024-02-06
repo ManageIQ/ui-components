@@ -149,6 +149,21 @@ class ModalFieldController extends ModalController {
     this.treeOptions.show = false;
   }
 
+  /** Function to get notification messages for options modal box if any. */
+  public modalNotification() {
+    const notice = { error: false, message: undefined };
+
+    if (!this.modalFieldIsValid() && this.validation.invalid && this.validation.invalid.message) {
+      notice.message = this.validation.invalid.message;
+      notice.error = true;
+    } else if (this.modalData.validationMessage) {
+      notice.message = this.modalData.validationMessage;
+      notice.error = true;
+    }
+
+    return notice;
+  }
+
   public modalFieldIsValid() {
     return this.validation.validateField(this.modalData);
   }

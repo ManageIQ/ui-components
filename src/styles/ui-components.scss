@@ -5,6 +5,22 @@
 
 /* Begin Patternfly Tab overrides used in the Dialog Editor */
 
+.dialog-editor-tab-notification {
+  color: #363636;
+  font-weight: bold;
+  background: #ffe6e7;
+  border: 1px solid #cd0000;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  i {
+    font-size: 16px;
+  }
+}
+
 .dialog-editor-tab-list {
   margin-bottom: 20px !important;
 }

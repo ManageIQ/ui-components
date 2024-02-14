@@ -6,6 +6,7 @@ const tagHasCategory = (field) => field.options && field.options.category_id;
 
 export default class DialogValidationService {
   public invalid: any = {};
+  public dialogFields: any = [];
   private validators: any = {};
 
   constructor() {
@@ -100,11 +101,30 @@ export default class DialogValidationService {
   }
 
   /**
+   * Run validations across each dialog field elements and check for duplicate field names.
+   * @memberof DialogValidationService
+   * @function validateDialogFields
+   */
+  public validateDialogFields(field: any) {
+    if (!this.validateField(field)) {
+      return false;
+    }
+    const isDuplicate = this.dialogFields.includes(field.name);
+    if (isDuplicate) {
+      this.invalid.message = sprintf(__('Duplicate field name found: %s'), field.name);
+      return false;
+    }
+    this.dialogFields.push(field.name);
+    return true;
+  }
+
+  /**
    * Run validations across each dialog elements.
    * @memberof DialogValidationService
    * @function dialogIsValid
    */
   public dialogIsValid(dialogData: any) {
+    this.dialogFields = [];
     this.invalid.message = null;
 
     return _.every(dialogData, dialog =>
@@ -113,9 +133,7 @@ export default class DialogValidationService {
         this.validateTab(tab) &&
         _.every((<any>tab).dialog_groups, group =>
           this.validateGroup(group) &&
-          _.every((<any>group).dialog_fields, field =>
-            this.validateField(field)
-          )
+          group.dialog_fields.every((field) => this.validateDialogFields(field))
         )
       )
     );

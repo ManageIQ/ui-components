@@ -36,6 +36,7 @@ export class AbstractModal {
     uibModalInstance: '<',
     treeOptions: '<',
     modalUnchanged: '<',
+    fieldDuplicates: '<',
     validation: '<',
   };
 }

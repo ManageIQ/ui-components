@@ -294,6 +294,7 @@ export default class DialogUser {
     refreshField: '&',
     onUpdate: '&',
     inputDisabled: '=?',
-    reconfigureMode: '<'
+    reconfigureMode: '<',
+    areFieldsBeingRefreshed: '<',
   };
 }

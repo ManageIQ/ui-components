@@ -1,0 +1,34 @@
+#!/bin/bash
+
+set -e
+
+image="docker.io/manageiq/ui-components:latest"
+
+# Build the image, which will build the package
+docker build . -t $image --no-cache
+
+# Extract the package from the image
+container_id=$(docker create $image)
+package=$(docker run --rm -it --entrypoint /bin/bash $image -c "ls -1 manageiq-ui-components-*.tgz" | tr -d '\r')
+docker cp "$container_id:/ui-components/$package" pkg
+docker rm "$container_id"
+
+echo
+echo "Package 'pkg/$package' has been built."
+echo
+
+# Optionally publish the image
+read -r -p "Publish the package now? (y/N) " -n 1
+echo
+echo
+if [[ "$REPLY" =~ ^[Yy]$ ]]; then
+    pushd pkg >/dev/null
+    npm login
+    npm publish --access public $package
+    popd >/dev/null
+else
+    echo "You can manually publish the package with:"
+    echo "    cd pkg"
+    echo "    npm login"
+    echo "    npm publish --access public $package"
+fi

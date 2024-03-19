@@ -20,6 +20,7 @@ export class DialogFieldController {
   public validation: any;
   public minDate: any;
   public clonedDialogField: any;
+  public areFieldsBeingRefreshed: boolean;
 
   /* @ngInject */
   constructor(DialogData: any) {
@@ -87,13 +88,15 @@ export class DialogFieldController {
    * @function changesHappened
    */
   public changesHappened() {
-    this.validateField();
+    if (!this.areFieldsBeingRefreshed) {
+      this.validateField();
 
-    const field = this.dialogField;
-    this.onUpdate({
-      dialogFieldName: field.name,
-      value: field.default_value,
-    });
+      const field = this.dialogField;
+      this.onUpdate({
+        dialogFieldName: field.name,
+        value: field.default_value,
+      });
+    }
   }
 
   /**
@@ -138,6 +141,10 @@ export class DialogFieldController {
   public refreshSingleField() {
     this.singleRefresh({ field: this.field.name });
   }
+
+  public isFieldDisabled() {
+    return this.areFieldsBeingRefreshed || this.dialogField.read_only || this.inputDisabled || this.dialogField.disabled;
+  }
 }
 
 export default class DialogField {
@@ -151,6 +158,7 @@ export default class DialogField {
     singleRefresh: '&',
     options: '=?',
     inputDisabled: '=?',
-    reconfigureMode: '<'
+    reconfigureMode: '<',
+    areFieldsBeingRefreshed: '<',
   };
 }

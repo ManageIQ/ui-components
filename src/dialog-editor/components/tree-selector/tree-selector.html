@@ -42,18 +42,37 @@
     </div>
     <div ng-if="$ctrl.treeOptions.automationType==$ctrl.treeOptions.automationTypes.workflow">
       <div ng-if="$ctrl.treeOptions.data">
-        <ul class="nav nav-list workflows_list_wrapper">
-          <li class="workflows_list_header">
+        <div class="nav nav-list workflows_list_wrapper">
+          <div class="list_search_wrapper">
+            <span class="pficon pficon-search"></span>
+            <input type="text" class="form-control"
+                   ng-model="$ctrl.treeOptions.searchQuery"
+                   placeholder="Search by Repository or Workflow Name"
+                   ng-change="$ctrl.treeOptions.filterResults()"/>
+            <span class="pficon pficon-close"
+                  ng-if="$ctrl.treeOptions.searchQuery"
+                  title="Clear"
+                  ng-click="$ctrl.treeOptions.clearSearchQuery()"></span>
+          </div>
+          <div class="workflows_list_header">
             <div class="col-md-6">Repository</div>
             <div class="col-md-6">Workflow Name</div>
-          </li>
-          <li class="workflow_item" ng-repeat="workflow in $ctrl.treeOptions.data">
-            <div class="workflow_item_row" ng-click="$ctrl.treeOptions.onSelect(workflow)">
-              <div class="col-md-6">{{workflow.configuration_script_source.name}}</div>
-              <div class="col-md-6">{{workflow.name}}</div>
+          </div>
+          <div class="workflow_list_content">
+            <div class="workflow_list_content_notification" ng-if="$ctrl.treeOptions.filteredWorkflows.length === 0">
+              <div class="dialog-editor-tab-notification info">
+                <i class="pficon pficon-info"></i>
+                No records found
+              </div>
             </div>
-          </li>
-        </ul>
+            <div class="workflow_item" ng-repeat="workflow in $ctrl.treeOptions.filteredWorkflows">
+              <div class="workflow_item_row" ng-click="$ctrl.treeOptions.onSelect(workflow)">
+                <div class="col-md-6">{{workflow.configuration_script_source.name}}</div>
+                <div class="col-md-6">{{workflow.name}}</div>
+              </div>
+            </div>
+            
+        </div>
       </div>
     </div>
   </div>

@@ -44,3 +44,4 @@ vendor.css
 coverage
 yarn.lock
 package-lock.json
+pkg/

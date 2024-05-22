@@ -104,7 +104,8 @@ If you want to release ui-components look at documentation in Wiki of this repos
 
 #### ManageIQ version mapping
 
-1.5 - master, petrosian
+1.6 - master, radjabov
+1.5 - petrosian, quinteros
 1.4 - kasparov, lasker, morphy, najdorf, oparin
 1.3 - jansa
 1.2 - ivanchuk

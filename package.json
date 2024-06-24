@@ -31,7 +31,7 @@
     "@types/jasmine": "^2.5.38",
     "@types/node": "13.13.4",
     "@types/rx": "^2.5.34",
-    "angular": "~1.5.9",
+    "angular": "~1.8.3",
     "angular-animate": "~1.5.9",
     "angular-bootstrap": "^0.12.2",
     "angular-gettext-cli": "^1.2.0",

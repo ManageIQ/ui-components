@@ -19,6 +19,7 @@ class ModalFieldController extends ModalController {
   public treeOptions: any;
   public modalData: any;
   public validation: any;
+  public searchQuery: string = '';
 
   public $onInit() {
 
@@ -41,6 +42,8 @@ class ModalFieldController extends ModalController {
         workflow: 'embedded_workflow',
       },
       emsWorkflowsEnabled: emsWorkflowsEnabled,
+      searchQuery: '',
+      filteredWorkflows: [],
 
       /** Function to reset the modalData while changin the Automation Type. */
       onAutomationTypeChange: () => {
@@ -86,6 +89,7 @@ class ModalFieldController extends ModalController {
             this.treeOptions.data = data.resources.filter((item: any) => item.payload);
             const workflow = this.treeOptions.data.find((item) => item.id === this.modalData.resource_action.configuration_script_id);
             this.treeOptions.selected = workflow ? workflow.name : null;
+            this.treeOptions.filteredWorkflows = this.treeOptions.data;
           });
         }
       },
@@ -93,6 +97,29 @@ class ModalFieldController extends ModalController {
       /** Function to handle the onclick event of an item in tree. */
       onSelect: (node) => {
         this.treeSelectorSelect(node, this.modalData);
+      },
+
+      /** Function to filter the API results with Repository or Workflow Name. */
+      filterResults: () => {
+        if ( this.treeOptions.searchQuery.length === 0) {
+          this.treeOptions.filteredWorkflows = this.treeOptions.data;
+        } else {
+          const query = this.treeOptions.searchQuery.toLowerCase().trim();
+          this.treeOptions.filteredWorkflows = this.treeOptions.data.filter((workflow) =>
+              (workflow.configuration_script_source && workflow.configuration_script_source.name
+                  ? workflow.configuration_script_source.name.toLowerCase().includes(query)
+                  : false) ||
+              (workflow.name
+                  ? workflow.name.toLowerCase().includes(query)
+                  : false)
+          );
+        }
+      },
+
+      /** Function to clear the search text and reset the list. */
+      clearSearchQuery: () => {
+        this.treeOptions.searchQuery = '';
+        this.treeOptions.filteredWorkflows = this.treeOptions.data;
       }
     };
   }

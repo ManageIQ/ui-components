@@ -190,38 +190,80 @@ l.nav.nav-list.workflows {
     flex-direction: column;
     padding: 10px;
 
-    ul.workflows_list_wrapper {
+    .workflows_list_wrapper {
       display: flex;
       flex-direction: column;
       border: 1px solid lightgray;
 
-      li.workflows_list_header {
+      .list_search_wrapper {
+        display: flex;
+        flex-direction: row;
+
+        span {
+          border: 0;
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &.pficon-search {
+            color: gray;
+          }
+          &.pficon-close {
+            color: #000;
+            cursor: pointer;
+          }
+        }
+
+        input {
+          border: 0;
+          flex-grow: 1;
+          box-shadow: none;
+          height: 30px;
+        }
+      }
+
+      .workflows_list_header {
         background: lightgray;
         padding: 10px 0;
         font-weight: bold;
       }
 
-      li.workflow_item {
+      .workflow_list_content {
         display: flex;
         flex-grow: 1;
-        padding: 5px;
-        border-bottom: 1px solid lightgray;
+        overflow-y: auto;
+        max-height: 400px;
+        flex-direction: column;
 
-        &:last-child {
-          border-bottom: 0 !important;
+        .workflow_list_content_notification {
+          padding: 20px;
+          display: flex;
+          justify-content: center;
         }
 
-        .workflow_item_row {
+        .workflow_item {
           display: flex;
           flex-grow: 1;
-          margin-left: -5px;
+          padding: 5px;
+          border-bottom: 1px solid lightgray;
+  
+          &:last-child {
+            border-bottom: 0 !important;
+          }
+  
+          .workflow_item_row {
+            display: flex;
+            flex-grow: 1;
+            margin-left: -5px;
+          }
+  
+          &:hover {
+            background: #e4e5e6;
+            cursor: pointer;
+          }
         }
-
-        &:hover {
-          background: #e4e5e6;
-          cursor: pointer;
-        }
-
       }
     }
   }

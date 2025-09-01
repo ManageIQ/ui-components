@@ -5642,10 +5642,10 @@ karma-jsdom-launcher@~7.0.0:
   resolved "https://registry.yarnpkg.com/karma-jsdom-launcher/-/karma-jsdom-launcher-7.0.0.tgz#e9b42f181212806ff18aabdc3dd1d50c78c87c51"
   integrity sha512-31vJZv6MAGgcJD5Shu9T8uTCx1M9E4MFIpHmuQOsso50ECs6gi1liMZP6GeSuYe410mtGZfD9zq1sbrUyplQRg==
 
-karma-webpack@1.8.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/karma-webpack/-/karma-webpack-1.8.0.tgz#340c7999eb3745b47becab47d0d304dac2c55257"
-  integrity sha512-RxBTP7V0mbCATcCNiEyYQuhmWT68raKsaO71zHwhq7h/+qqkG3tSRhrXQ/vMBRQx9c1K21V8WgVtlf+12Fq4hQ==
+karma-webpack@1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/karma-webpack/-/karma-webpack-1.8.1.tgz#39d5fd2edeea3cc3ef5b405989b37d5b0e6a3b4e"
+  integrity sha512-9JYgrDvKQ027HiSbM7jpgI3XszQRg3J/tig6w93LEbPGTnfQQWK0Wa6wfPsATU/r0O9Ytt2CHoJQGamgoMD8cQ==
   dependencies:
     async "~0.9.0"
     loader-utils "^0.2.5"

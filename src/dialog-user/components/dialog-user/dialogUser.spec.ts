@@ -20,8 +20,9 @@ describe('Dialog test', () =>  {
       });
     });
     it('should have some values set', () => {
-        const expectedDialogs = ['option_1_cores_per_socket', 'option_1_vm_memory',
-                                 'option_1_vm_name', 'service_name', 'tag_0_environment', 'tag_1_function', '1', '2', '3', '4'];
+        const expectedDialogs = ['option_1_cores_per_socket', 'option_1_vm_memory', 'option_1_vm_name', 'service_name',
+                                 'tag_0_environment', 'tag_1_function', 'string_dropdown_1', 'string_dropdown_2', 
+                                 'integer_dropdown_1', 'integer_dropdown_2', 'tag_control_1', 'tag_control_2','tag_control_3', 'tag_control_4'].sort();
         const actualDialogs = Object.keys(dialogCtrl.dialogFields).sort();
         expect(expectedDialogs).toEqual(actualDialogs);
     });

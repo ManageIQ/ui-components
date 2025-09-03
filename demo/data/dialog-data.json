@@ -413,7 +413,7 @@
                     {
                       "href": "http://localhost:3001/api/service_templates/10000000000015/service_dialogs/10000000007063",
                       "id": 3,
-                      "name": "integer_dropdown_3",
+                      "name": "integer_dropdown_1",
                       "data_type": "integer",
                       "display": "edit",
                       "display_method_options": {},
@@ -461,7 +461,7 @@
                     {
                       "href": "http://localhost:3001/api/service_templates/10000000000015/service_dialogs/10000000007063",
                       "id": 4,
-                      "name": "integer_dropdown_4",
+                      "name": "integer_dropdown_2",
                       "data_type": "integer",
                       "display": "edit",
                       "display_method_options": {},

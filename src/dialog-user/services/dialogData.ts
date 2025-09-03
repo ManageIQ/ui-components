@@ -131,10 +131,12 @@ export default class DialogDataService {
     if (data.type === 'DialogFieldTagControl') {
       if (data.default_value === null || data.default_value === '') {
         defaultValue = null;
-      } else if (data.options.force_single_value) {
-        defaultValue = this.convertDropdownValue(data.default_value, data.data_type);
-      } else {
-        defaultValue = JSON.parse(data.default_value).map((value) => this.convertDropdownValue(value, data.data_type));
+      } else if (data.options.force_single_value) { // string/integer default value
+        // For tag control, always convert to string
+        defaultValue = this.convertDropdownValue(data.default_value, 'string');
+      } else { // array default value
+        // For tag control, always convert to string
+        defaultValue = data.default_value.map((value) => value.toString());
       }
     }
 

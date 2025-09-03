@@ -302,6 +302,423 @@
                       }
                     }
                   ]
+                },
+                {
+                  "href": "http://localhost:3001/api/service_templates/10000000000015/service_dialogs/10000000002379",
+                  "id": 10000000002379,
+                  "description": "Test Drop downs",
+                  "display": "edit",
+                  "created_at": "2017-06-16T19:29:28Z",
+                  "updated_at": "2017-06-16T19:29:28Z",
+                  "label": "Test drop downs",
+                  "dialog_tab_id": 10000000000987,
+                  "position": 1,
+                  "dialog_fields": [
+                    {
+                      "href": "http://localhost:3001/api/service_templates/10000000000015/service_dialogs/10000000007063",
+                      "id": 1,
+                      "name": "string_dropdown_1",
+                      "data_type": "string",
+                      "display": "edit",
+                      "display_method_options": {},
+                      "required": true,
+                      "required_method_options": {},
+                      "default_value": "two",
+                      "values": [
+                        [
+                          "one",
+                          "First"
+                        ],
+                        [
+                          "two",
+                          "Second"
+                        ],
+                        [
+                          "three",
+                          "Third"
+                        ],
+                        [
+                          null,
+                          "<Choose>"
+                        ]
+                      ],
+                      "values_method_options": {},
+                      "options": {
+                        "sort_by": "description",
+                        "sort_order": "ascending",
+                        "force_multi_value": false
+                      },
+                      "created_at": "2017-06-16T19:29:28Z",
+                      "updated_at": "2017-06-16T19:29:28Z",
+                      "label": "String Single Select",
+                      "dialog_group_id": 10000000002379,
+                      "position": 1,
+                      "dynamic": false,
+                      "read_only": false,
+                      "visible": true,
+                      "type": "DialogFieldDropDownList",
+                      "resource_action": {
+                        "resource_type": "DialogField",
+                        "ae_attributes": {}
+                      }
+                    },
+                    {
+                      "href": "http://localhost:3001/api/service_templates/10000000000015/service_dialogs/10000000007063",
+                      "id": 2,
+                      "name": "string_dropdown_2",
+                      "data_type": "string",
+                      "display": "edit",
+                      "display_method_options": {},
+                      "required": true,
+                      "required_method_options": {},
+                      "default_value": ["first", "2"],
+                      "values": [
+                        [
+                          "first",
+                          "First"
+                        ],
+                        [
+                          "2",
+                          "Second"
+                        ],
+                        [
+                          "3",
+                          "Third"
+                        ],
+                        [
+                          null,
+                          "<Choose>"
+                        ]
+                      ],
+                      "values_method_options": {},
+                      "options": {
+                        "sort_by": "description",
+                        "sort_order": "ascending",
+                        "force_multi_value": true
+                      },
+                      "created_at": "2017-06-16T19:29:28Z",
+                      "updated_at": "2017-06-16T19:29:28Z",
+                      "label": "String Multi Select",
+                      "dialog_group_id": 10000000002379,
+                      "position": 1,
+                      "dynamic": false,
+                      "read_only": false,
+                      "visible": true,
+                      "type": "DialogFieldDropDownList",
+                      "resource_action": {
+                        "resource_type": "DialogField",
+                        "ae_attributes": {}
+                      }
+                    },
+                    {
+                      "href": "http://localhost:3001/api/service_templates/10000000000015/service_dialogs/10000000007063",
+                      "id": 3,
+                      "name": "integer_dropdown_1",
+                      "data_type": "integer",
+                      "display": "edit",
+                      "display_method_options": {},
+                      "required": true,
+                      "required_method_options": {},
+                      "default_value": 2,
+                      "values": [
+                        [
+                          "1",
+                          "First"
+                        ],
+                        [
+                          "2",
+                          "Second"
+                        ],
+                        [
+                          "3",
+                          "Third"
+                        ],
+                        [
+                          null,
+                          "<Choose>"
+                        ]
+                      ],
+                      "values_method_options": {},
+                      "options": {
+                        "sort_by": "description",
+                        "sort_order": "ascending",
+                        "force_multi_value": false
+                      },
+                      "created_at": "2017-06-16T19:29:28Z",
+                      "updated_at": "2017-06-16T19:29:28Z",
+                      "label": "Integer Single Select",
+                      "dialog_group_id": 10000000002379,
+                      "position": 1,
+                      "dynamic": false,
+                      "read_only": false,
+                      "visible": true,
+                      "type": "DialogFieldDropDownList",
+                      "resource_action": {
+                        "resource_type": "DialogField",
+                        "ae_attributes": {}
+                      }
+                    },
+                    {
+                      "href": "http://localhost:3001/api/service_templates/10000000000015/service_dialogs/10000000007063",
+                      "id": 4,
+                      "name": "integer_dropdown_2",
+                      "data_type": "integer",
+                      "display": "edit",
+                      "display_method_options": {},
+                      "required": true,
+                      "required_method_options": {},
+                      "default_value": [1, 2],
+                      "values": [
+                        [
+                          "1",
+                          "New York"
+                        ],
+                        [
+                          "2",
+                          "Chicago"
+                        ],
+                        [
+                          "3",
+                          "Seattle"
+                        ],
+                        [
+                          null,
+                          "<Choose>"
+                        ]
+                      ],
+                      "values_method_options": {},
+                      "options": {
+                        "sort_by": "description",
+                        "sort_order": "ascending",
+                        "force_multi_value": true
+                      },
+                      "created_at": "2017-06-16T19:29:28Z",
+                      "updated_at": "2017-06-16T19:29:28Z",
+                      "label": "Integer Multi Select",
+                      "dialog_group_id": 10000000002379,
+                      "position": 1,
+                      "dynamic": false,
+                      "read_only": false,
+                      "visible": true,
+                      "type": "DialogFieldDropDownList",
+                      "resource_action": {
+                        "resource_type": "DialogField",
+                        "ae_attributes": {}
+                      }
+                    },
+                    {
+                      "name": "tag_control_1",
+                      "description": "",
+                      "type": "DialogFieldTagControl",
+                      "display": "edit",
+                      "display_method_options": {},
+                      "read_only": false,
+                      "required": false,
+                      "required_method_options": {},
+                      "default_value": "2",
+                      "values_method_options": {},
+                      "label": "Tag String Single Select",
+                      "position": 0,
+                      "dynamic": false,
+                      "show_refresh_button": false,
+                      "load_values_on_init": true,
+                      "auto_refresh": false,
+                      "trigger_auto_refresh": false,
+                      "reconfigurable": false,
+                      "visible": true,
+                      "options": {
+                        "category_id": "",
+                        "force_single_value": true,
+                        "sort_by": "description",
+                        "sort_order": "ascending"
+                      },
+                      "resource_action": {
+                        "resource_type": "DialogField",
+                        "ae_attributes": {}
+                      },
+                      "data_type": "string",
+                      "values": [
+                        {
+                          "description": "Automotive",
+                          "href": "http://localhost:3000/api/service_dialogs/1",
+                          "id": "1",
+                          "name": "automotive"
+                        },
+                        {
+                          "description": "Engineering",
+                          "href": "http://localhost:3000/api/service_dialogs/2",
+                          "id": "2",
+                          "name": "engineering"
+                        },
+                        {
+                          "description": "Test",
+                          "href": "http://localhost:3000/api/service_dialogs/3",
+                          "id": "3",
+                          "name": "test"
+                        }
+                      ],
+                      "automation_type": "embedded_automate"
+                    },
+                    {
+                      "name": "tag_control_2",
+                      "description": "",
+                      "type": "DialogFieldTagControl",
+                      "display": "edit",
+                      "display_method_options": {},
+                      "read_only": false,
+                      "required": false,
+                      "required_method_options": {},
+                      "default_value": ["1", "2"],
+                      "values_method_options": {},
+                      "label": "Tag String Multi Select",
+                      "position": 0,
+                      "dynamic": false,
+                      "show_refresh_button": false,
+                      "load_values_on_init": true,
+                      "auto_refresh": false,
+                      "trigger_auto_refresh": false,
+                      "reconfigurable": false,
+                      "visible": true,
+                      "options": {
+                        "category_id": "",
+                        "force_single_value": false,
+                        "sort_by": "description",
+                        "sort_order": "ascending"
+                      },
+                      "resource_action": {
+                        "resource_type": "DialogField",
+                        "ae_attributes": {}
+                      },
+                      "data_type": "string",
+                      "values": [
+                        {
+                          "description": "Automotive",
+                          "href": "http://localhost:3000/api/service_dialogs/1",
+                          "id": "1",
+                          "name": "automotive"
+                        },
+                        {
+                          "description": "Engineering",
+                          "href": "http://localhost:3000/api/service_dialogs/2",
+                          "id": "2",
+                          "name": "engineering"
+                        },
+                        {
+                          "description": "Test",
+                          "href": "http://localhost:3000/api/service_dialogs/3",
+                          "id": "3",
+                          "name": "test"
+                        }
+                      ],
+                      "automation_type": "embedded_automate"
+                    },
+                    {
+                      "name": "tag_control_3",
+                      "description": "",
+                      "type": "DialogFieldTagControl",
+                      "display": "edit",
+                      "display_method_options": {},
+                      "read_only": false,
+                      "required": false,
+                      "required_method_options": {},
+                      "default_value": 2,
+                      "values_method_options": {},
+                      "label": "Tag Integer Single Select",
+                      "position": 0,
+                      "dynamic": false,
+                      "show_refresh_button": false,
+                      "load_values_on_init": true,
+                      "auto_refresh": false,
+                      "trigger_auto_refresh": false,
+                      "reconfigurable": false,
+                      "visible": true,
+                      "options": {
+                        "category_id": "",
+                        "force_single_value": true,
+                        "sort_by": "description",
+                        "sort_order": "ascending"
+                      },
+                      "resource_action": {
+                        "resource_type": "DialogField",
+                        "ae_attributes": {}
+                      },
+                      "data_type": "integer",
+                      "values": [
+                        {
+                          "description": "Automotive",
+                          "href": "http://localhost:3000/api/service_dialogs/1",
+                          "id": "1",
+                          "name": "automotive"
+                        },
+                        {
+                          "description": "Engineering",
+                          "href": "http://localhost:3000/api/service_dialogs/2",
+                          "id": "2",
+                          "name": "engineering"
+                        },
+                        {
+                          "description": "Test",
+                          "href": "http://localhost:3000/api/service_dialogs/3",
+                          "id": "3",
+                          "name": "test"
+                        }
+                      ],
+                      "automation_type": "embedded_automate"
+                    },
+                    {
+                      "name": "tag_control_4",
+                      "description": "",
+                      "type": "DialogFieldTagControl",
+                      "display": "edit",
+                      "display_method_options": {},
+                      "read_only": false,
+                      "required": false,
+                      "required_method_options": {},
+                      "default_value": [1, 2],
+                      "values_method_options": {},
+                      "label": "Tag Integer Multi Select",
+                      "position": 0,
+                      "dynamic": false,
+                      "show_refresh_button": false,
+                      "load_values_on_init": true,
+                      "auto_refresh": false,
+                      "trigger_auto_refresh": false,
+                      "reconfigurable": false,
+                      "visible": true,
+                      "options": {
+                        "category_id": "",
+                        "force_single_value": false,
+                        "sort_by": "description",
+                        "sort_order": "ascending"
+                      },
+                      "resource_action": {
+                        "resource_type": "DialogField",
+                        "ae_attributes": {}
+                      },
+                      "data_type": "integer",
+                      "values": [
+                        {
+                          "description": "Automotive",
+                          "href": "http://localhost:3000/api/service_dialogs/1",
+                          "id": "1",
+                          "name": "automotive"
+                        },
+                        {
+                          "description": "Engineering",
+                          "href": "http://localhost:3000/api/service_dialogs/2",
+                          "id": "2",
+                          "name": "engineering"
+                        },
+                        {
+                          "description": "Test",
+                          "href": "http://localhost:3000/api/service_dialogs/3",
+                          "id": "3",
+                          "name": "test"
+                        }
+                      ],
+                      "automation_type": "embedded_automate"
+                    }
+                  ]
                 }
               ]
             }

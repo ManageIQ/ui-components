@@ -21,7 +21,7 @@ describe('Dialog test', () =>  {
     });
     it('should have some values set', () => {
         const expectedDialogs = ['option_1_cores_per_socket', 'option_1_vm_memory',
-                                 'option_1_vm_name', 'service_name', 'tag_0_environment', 'tag_1_function'];
+                                 'option_1_vm_name', 'service_name', 'tag_0_environment', 'tag_1_function', '1', '2', '3', '4'];
         const actualDialogs = Object.keys(dialogCtrl.dialogFields).sort();
         expect(expectedDialogs).toEqual(actualDialogs);
     });

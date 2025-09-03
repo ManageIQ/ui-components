@@ -302,6 +302,211 @@
                       }
                     }
                   ]
+                },
+                {
+                  "href": "http://localhost:3001/api/service_templates/10000000000015/service_dialogs/10000000002379",
+                  "id": 10000000002379,
+                  "description": "Test Drop downs",
+                  "display": "edit",
+                  "created_at": "2017-06-16T19:29:28Z",
+                  "updated_at": "2017-06-16T19:29:28Z",
+                  "label": "Test drop downs",
+                  "dialog_tab_id": 10000000000987,
+                  "position": 1,
+                  "dialog_fields": [
+                    {
+                      "href": "http://localhost:3001/api/service_templates/10000000000015/service_dialogs/10000000007063",
+                      "id": 1,
+                      "name": "1",
+                      "data_type": "string",
+                      "display": "edit",
+                      "display_method_options": {},
+                      "required": true,
+                      "required_method_options": {},
+                      "default_value": "2",
+                      "values": [
+                        [
+                          "1",
+                          "1"
+                        ],
+                        [
+                          "2",
+                          "2"
+                        ],
+                        [
+                          "4",
+                          "4"
+                        ],
+                        [
+                          null,
+                          "<Choose>"
+                        ]
+                      ],
+                      "values_method_options": {},
+                      "options": {
+                        "sort_by": "description",
+                        "sort_order": "ascending",
+                        "force_multi_value": false
+                      },
+                      "created_at": "2017-06-16T19:29:28Z",
+                      "updated_at": "2017-06-16T19:29:28Z",
+                      "label": "String Single Select",
+                      "dialog_group_id": 10000000002379,
+                      "position": 1,
+                      "dynamic": false,
+                      "read_only": false,
+                      "visible": true,
+                      "type": "DialogFieldDropDownList",
+                      "resource_action": {
+                        "resource_type": "DialogField",
+                        "ae_attributes": {}
+                      }
+                    },
+                    {
+                      "href": "http://localhost:3001/api/service_templates/10000000000015/service_dialogs/10000000007063",
+                      "id": 2,
+                      "name": "2",
+                      "data_type": "string",
+                      "display": "edit",
+                      "display_method_options": {},
+                      "required": true,
+                      "required_method_options": {},
+                      "default_value": ["1", "2"],
+                      "values": [
+                        [
+                          "1",
+                          "1"
+                        ],
+                        [
+                          "2",
+                          "2"
+                        ],
+                        [
+                          "4",
+                          "4"
+                        ],
+                        [
+                          null,
+                          "<Choose>"
+                        ]
+                      ],
+                      "values_method_options": {},
+                      "options": {
+                        "sort_by": "description",
+                        "sort_order": "ascending",
+                        "force_multi_value": true
+                      },
+                      "created_at": "2017-06-16T19:29:28Z",
+                      "updated_at": "2017-06-16T19:29:28Z",
+                      "label": "String Multi Select",
+                      "dialog_group_id": 10000000002379,
+                      "position": 1,
+                      "dynamic": false,
+                      "read_only": false,
+                      "visible": true,
+                      "type": "DialogFieldDropDownList",
+                      "resource_action": {
+                        "resource_type": "DialogField",
+                        "ae_attributes": {}
+                      }
+                    },
+                    {
+                      "href": "http://localhost:3001/api/service_templates/10000000000015/service_dialogs/10000000007063",
+                      "id": 3,
+                      "name": "3",
+                      "data_type": "integer",
+                      "display": "edit",
+                      "display_method_options": {},
+                      "required": true,
+                      "required_method_options": {},
+                      "default_value": 2,
+                      "values": [
+                        [
+                          "1",
+                          1
+                        ],
+                        [
+                          "2",
+                          2
+                        ],
+                        [
+                          "4",
+                          4
+                        ],
+                        [
+                          null,
+                          "<Choose>"
+                        ]
+                      ],
+                      "values_method_options": {},
+                      "options": {
+                        "sort_by": "description",
+                        "sort_order": "ascending",
+                        "force_multi_value": false
+                      },
+                      "created_at": "2017-06-16T19:29:28Z",
+                      "updated_at": "2017-06-16T19:29:28Z",
+                      "label": "Integer Single Select",
+                      "dialog_group_id": 10000000002379,
+                      "position": 1,
+                      "dynamic": false,
+                      "read_only": false,
+                      "visible": true,
+                      "type": "DialogFieldDropDownList",
+                      "resource_action": {
+                        "resource_type": "DialogField",
+                        "ae_attributes": {}
+                      }
+                    },
+                    {
+                      "href": "http://localhost:3001/api/service_templates/10000000000015/service_dialogs/10000000007063",
+                      "id": 4,
+                      "name": "4",
+                      "data_type": "integer",
+                      "display": "edit",
+                      "display_method_options": {},
+                      "required": true,
+                      "required_method_options": {},
+                      "default_value": ["1", "2"],
+                      "values": [
+                        [
+                          "1",
+                          1
+                        ],
+                        [
+                          "2",
+                          2
+                        ],
+                        [
+                          "4",
+                          4
+                        ],
+                        [
+                          null,
+                          "<Choose>"
+                        ]
+                      ],
+                      "values_method_options": {},
+                      "options": {
+                        "sort_by": "description",
+                        "sort_order": "ascending",
+                        "force_multi_value": true
+                      },
+                      "created_at": "2017-06-16T19:29:28Z",
+                      "updated_at": "2017-06-16T19:29:28Z",
+                      "label": "Integer Multi Select",
+                      "dialog_group_id": 10000000002379,
+                      "position": 1,
+                      "dynamic": false,
+                      "read_only": false,
+                      "visible": true,
+                      "type": "DialogFieldDropDownList",
+                      "resource_action": {
+                        "resource_type": "DialogField",
+                        "ae_attributes": {}
+                      }
+                    }
+                  ]
                 }
               ]
             }

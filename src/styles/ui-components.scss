@@ -8,16 +8,25 @@
 .dialog-editor-tab-notification {
   color: #363636;
   font-weight: bold;
-  background: #ffe6e7;
-  border: 1px solid #cd0000;
   padding: 10px;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-grow: 1;
 
   i {
     font-size: 16px;
+  }
+
+  &.error {
+    background: #ffe6e7;
+    border: 1px solid #cd0000;
+  }
+
+  &.info {
+    background: lightgray;
+    border: 1px solid gray;
   }
 }
 

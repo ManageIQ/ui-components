@@ -83,7 +83,11 @@ class ModalFieldController extends ModalController {
 
         if (this.treeOptions.show) {
           this.treeOptions.loadAvailableWorkflows().then((data) => {
-            this.treeOptions.data = data.resources.filter((item: any) => item.payload);
+            // Keep all workflows and mark invalid ones as disabled
+            this.treeOptions.data = data.resources.map((item: any) => ({
+              ...item,
+              disabled: item.payload_valid === false
+            }));
             const workflow = this.treeOptions.data.find((item) => item.id === this.modalData.resource_action.configuration_script_id);
             this.treeOptions.selected = workflow ? workflow.name : null;
           });

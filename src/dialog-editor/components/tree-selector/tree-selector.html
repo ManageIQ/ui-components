@@ -47,8 +47,8 @@
             <div class="col-md-6">Repository</div>
             <div class="col-md-6">Workflow Name</div>
           </li>
-          <li class="workflow_item" ng-repeat="workflow in $ctrl.treeOptions.data">
-            <div class="workflow_item_row" ng-click="$ctrl.treeOptions.onSelect(workflow)">
+          <li class="workflow_item" ng-repeat="workflow in $ctrl.treeOptions.data" ng-class="{'workflow_item_disabled': workflow.disabled}">
+            <div class="workflow_item_row" ng-click="!workflow.disabled && $ctrl.treeOptions.onSelect(workflow)">
               <div class="col-md-6">{{workflow.configuration_script_source.name}}</div>
               <div class="col-md-6">{{workflow.name}}</div>
             </div>

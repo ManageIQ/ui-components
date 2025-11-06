@@ -222,6 +222,21 @@ l.nav.nav-list.workflows {
           cursor: pointer;
         }
 
+        &.workflow_item_disabled {
+          opacity: 0.5;
+          color: #999;
+          background-color: #f5f5f5;
+
+          .workflow_item_row {
+            cursor: not-allowed;
+          }
+
+          &:hover {
+            background: #f5f5f5;
+            cursor: not-allowed;
+          }
+        }
+
       }
     }
   }

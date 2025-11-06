@@ -50,7 +50,10 @@
           <li class="workflow_item" ng-repeat="workflow in $ctrl.treeOptions.data" ng-class="{'workflow_item_disabled': workflow.disabled}">
             <div class="workflow_item_row" ng-click="!workflow.disabled && $ctrl.treeOptions.onSelect(workflow)">
               <div class="col-md-6">{{workflow.configuration_script_source.name}}</div>
-              <div class="col-md-6">{{workflow.name}}</div>
+              <div class="col-md-6"
+                   title="{{ workflow.disabled ? workflow.name + ' (Invalid Workflow)' : workflow.name }}">
+                {{workflow.name}}
+              </div>
             </div>
           </li>
         </ul>

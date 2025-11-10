@@ -1,4 +1,4 @@
-FROM docker.io/node:14-bullseye
+FROM docker.io/node:16-bullseye
 
 RUN apt-get update && \
     apt-get install -y python2

@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         node-version:
-        - '14'
+        - '16'
     steps:
     - uses: actions/checkout@v4
     - name: Set up system
@@ -26,6 +26,6 @@ jobs:
     - name: Run tests
       run: bin/ci
     - name: Report code coverage
-      if: "${{ github.ref == 'refs/heads/master' && matrix.node-version == '14' }}"
+      if: "${{ github.ref == 'refs/heads/master' && matrix.node-version == '16' }}"
       continue-on-error: true
       run: scripts/.coverage.sh

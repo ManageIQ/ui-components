@@ -1,7 +1,4 @@
-FROM docker.io/node:20-bullseye
-
-RUN apt-get update && \
-    apt-get install -y python2
+FROM docker.io/node:20-trixie
 
 WORKDIR /ui-components
 COPY . /ui-components

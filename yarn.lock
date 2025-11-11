@@ -25,16 +25,16 @@
     "@types/angular" "*"
 
 "@types/angular-ui-router@^1.1.35":
-  version "1.1.41"
-  resolved "https://registry.yarnpkg.com/@types/angular-ui-router/-/angular-ui-router-1.1.41.tgz#3e39ebc960551f5e5e64df7f9cb28aac1bcc058d"
-  integrity sha512-fVDy2lE/AWDmVgD26mmB86MeFq8tFYodrLpf5c4VFsKTkTtUteTTsjdLQsQpFHBhY5v9JbIdvLaueYiXX6MkAQ==
+  version "1.1.44"
+  resolved "https://registry.yarnpkg.com/@types/angular-ui-router/-/angular-ui-router-1.1.44.tgz#86697c78668bdb6708c595a89bc55254fc5c545f"
+  integrity sha512-mUAyKcaj4cTELw5ohSI0hs3hu+yVLDoPPkPZL48xflCVfTK/ch7gczA6gCoa6M50GOflAb/mN0/Sjaq+uoSS2g==
   dependencies:
     "@types/angular" "*"
 
 "@types/angular@*":
-  version "1.8.5"
-  resolved "https://registry.yarnpkg.com/@types/angular/-/angular-1.8.5.tgz#71c7d3581898f1863100eeed9d25bb737a8e1062"
-  integrity sha512-tifGGLxuKOEl7Z1BoAkZKpu+eEyfZ/0Ugm5imM+D1Vj+QzuhPQS0icI34laN3CLbksyfZQPGTQa0i+jjZdpiLw==
+  version "1.8.9"
+  resolved "https://registry.yarnpkg.com/@types/angular/-/angular-1.8.9.tgz#d1ae3e87a67f72342d55ff26e611df83df0fb176"
+  integrity sha512-Z0HukqZkx0fotsV3QO00yqU9NzcQI+tMcrum+8MvfB4ePqCawZctF/gz6QiuII+T1ax+LitNoPx/eICTgnF4sg==
 
 "@types/c3@^0.6.0":
   version "0.6.4"

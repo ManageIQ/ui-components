@@ -25,7 +25,7 @@ module.exports = {
     rules: [
       {enforce: 'pre', test: /\.ts?$/, loader: 'tslint-loader', exclude: /(node_modules|libs)/},
       { test: require.resolve('jquery'), loader: 'expose-loader?jQuery!expose-loader?$' },
-      {test: /\.ts$/, loaders: ['awesome-typescript-loader'], exclude: /(node_modules|libs)/},
+      {test: /\.ts$/, loaders: ['ts-loader'], exclude: /(node_modules|libs)/},
       {test: /\.html$/, loader: 'raw-loader', exclude: /(node_modules|libs|dist|tsd)/},
       {test: /\.(png|jpg|gif|svg|woff|ttf|eot)/, loader:  'url-loader?limit=20480'},
       // stylesheets

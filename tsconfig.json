@@ -8,10 +8,11 @@
     "sourceMap": true,
     "typeRoots" : ["./node_modules/@types"],
     "lib": ["es2017", "DOM", "ScriptHost"],
-    "allowJs": true
+    "allowJs": false
   },
-  "files": [
-    "src/index.ts"
+  "include": [
+    "src/**/*.ts",
+    "demo/**/*.ts"
   ],
   "exclude": [
     "node_modules",

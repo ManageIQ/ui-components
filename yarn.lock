@@ -268,14 +268,14 @@
   integrity sha512-1rkryxURpr6aWP7R786/UQOkJ3PcpQiWkAXBmdWc7ryFWqN6a4xfK7BtjXvFBKO9LjQ+MWQSWxYeZX1OApnArA==
 
 "@types/jasmine@^2.5.38":
-  version "2.8.19"
-  resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.8.19.tgz#88318fcc0f68d543214bf95325a443221f27bd8b"
-  integrity sha512-LD9nOC/+6AHfEFKpOW3Nu7wmXHEs41BWOr9uyaXYHx/iiLPAEfBZ2AlIH3yk+xyLWi5I83fLltMiDCrrHvU3Wg==
+  version "2.8.23"
+  resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.8.23.tgz#fdd8b684ab2e31c5a01e1c763ea4c443afe23df9"
+  integrity sha512-x2taYv8LtplAGTEPxEnc1nWh3dqV4VhgAzXLXQkRolB/+cAOfCAqXt+8cKjX/a8v1JmNXQ9yGCJT8+8pEuU1Mg==
 
 "@types/linkify-it@*":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@types/linkify-it/-/linkify-it-3.0.2.tgz#fd2cd2edbaa7eaac7e7f3c1748b52a19143846c9"
-  integrity sha512-HZQYqbiFVWufzCwexrvh694SOim8z2d+xJl5UNamcvQFejLY/2YUtzXHYi3cHdI7PMlS8ejH2slRAOJQ32aNbA==
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@types/linkify-it/-/linkify-it-5.0.0.tgz#21413001973106cda1c3a9b91eedd4ccd5469d76"
+  integrity sha512-sVDA58zAw4eWAffKOaQH5/5j3XeayukzDk+ewSsnv3p4yJEZHCCzMDiZM8e0OUrRvmpGZ85jf4yDHkHsgBNr9Q==
 
 "@types/markdown-it@^12.2.3":
   version "12.2.3"

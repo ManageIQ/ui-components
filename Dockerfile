@@ -1,13 +1,11 @@
-FROM python:2.7-buster
+FROM docker.io/node:14-bullseye
 
-SHELL ["/bin/bash", "--login", "-c"]
-
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
-RUN nvm install 14
-RUN npm install --global yarn
+RUN apt-get update && \
+    apt-get install -y python2
 
 WORKDIR /ui-components
 COPY . /ui-components
+
 RUN git clean -fdx
 RUN yarn install
 RUN yarn pack

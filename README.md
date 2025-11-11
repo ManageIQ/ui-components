@@ -1,6 +1,6 @@
 # Angular UI Components for ManageIQ
 
-[![CI](https://github.com/ManageIQ/ui-components/actions/workflows/ci.yaml/badge.svg?branch=spassky)](https://github.com/ManageIQ/ui-components/actions/workflows/ci.yaml)
+[![CI](https://github.com/ManageIQ/ui-components/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/ManageIQ/ui-components/actions/workflows/ci.yaml)
 [![Coverage Status](https://coveralls.io/repos/github/ManageIQ/ui-components/badge.svg)](https://coveralls.io/github/ManageIQ/ui-components)
 [![Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ManageIQ/manageiq/ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -100,11 +100,33 @@ yarn run-script build-docs
 ```
 This will generate docs from JS docs and after running `yarn start` this documentation will be available on `localhost:4000/docs`
 
-If you want to release ui-components look at documentation in Wiki of this repository.
+#### Building a release
+
+In order to build a release you must first update the version number in the `package.json`.
+Once you have done that you can run `bin/build` which will run a docker container to execute the build, copy the .tgz file, and optionally publish to npm.
+
+```
+$ bin/build
+STEP 1/8: FROM python:2.7-buster
+STEP 2/8: ENV NVM_DIR /usr/local/nvm
+--> e0e3eb98af68
+STEP 3/8: RUN mkdir -p $NVM_DIR
+--> 6980bbe41ba8
+...
+yarn pack v1.22.22
+success Wrote tarball to "/ui-components/manageiq-ui-components-v1.6.1.tgz".
+Done in 0.20s.
+COMMIT docker.io/manageiq/ui-components:latest
+Successfully tagged docker.io/manageiq/ui-components:latest
+
+Package 'pkg/manageiq-ui-components-v1.6.1.tgz' has been built.
+
+Publish the package now? (y/N)
+```
 
 #### ManageIQ version mapping
 
-1.6 - master, radjabov
+1.6 - master, radjabov, spassky
 1.5 - petrosian, quinteros
 1.4 - kasparov, lasker, morphy, najdorf, oparin
 1.3 - jansa

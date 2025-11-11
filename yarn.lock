@@ -18,9 +18,9 @@
   integrity sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==
 
 "@types/angular-mocks@^1.5.7":
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/@types/angular-mocks/-/angular-mocks-1.7.1.tgz#0f18066f8e6f327493aad0c280a43801ffa09464"
-  integrity sha512-44kaQL8sMGUIDV76zbJ3MX6aqPng7Wmfz91uds+WcNQFHTdSu6KDZNIypIZVAdrWnJfqrfL5VysaCejTW3JVIw==
+  version "1.7.4"
+  resolved "https://registry.yarnpkg.com/@types/angular-mocks/-/angular-mocks-1.7.4.tgz#1bf16dd2f341c0bb9b82a9edcb01f5e0cb117c37"
+  integrity sha512-rZJ8PCzbTU6RM0jw8ioA/g6LVN4t3vswdimTFnL4T5c7OfmUkcisTeTJGEObeZbaYAc4frBJEBDIvA04QhVIYw==
   dependencies:
     "@types/angular" "*"
 
@@ -32,9 +32,9 @@
     "@types/angular" "*"
 
 "@types/angular@*":
-  version "1.8.5"
-  resolved "https://registry.yarnpkg.com/@types/angular/-/angular-1.8.5.tgz#71c7d3581898f1863100eeed9d25bb737a8e1062"
-  integrity sha512-tifGGLxuKOEl7Z1BoAkZKpu+eEyfZ/0Ugm5imM+D1Vj+QzuhPQS0icI34laN3CLbksyfZQPGTQa0i+jjZdpiLw==
+  version "1.8.9"
+  resolved "https://registry.yarnpkg.com/@types/angular/-/angular-1.8.9.tgz#d1ae3e87a67f72342d55ff26e611df83df0fb176"
+  integrity sha512-Z0HukqZkx0fotsV3QO00yqU9NzcQI+tMcrum+8MvfB4ePqCawZctF/gz6QiuII+T1ax+LitNoPx/eICTgnF4sg==
 
 "@types/c3@^0.6.0":
   version "0.6.4"

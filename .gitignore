@@ -10,21 +10,10 @@ pids
 # Users Environment Variables
 .lock-wscript
 
-dist/assets/
-dist/css
-dist/data/
-dist/docs/
-dist/js
-dist/**/demo-app.*
-dist/*.ttf
-dist/*.eot
-dist/*.svg
-dist/*.woff
-dist/*.woff2
+/dist/
 .tmp/
 libs/
 node_modules/
-dist/index.html
 tsd/
 typings/
 vendor.js

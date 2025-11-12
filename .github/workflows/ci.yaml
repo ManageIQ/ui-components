@@ -9,18 +9,16 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version:
-        - '20'
     steps:
     - uses: actions/checkout@v4
     - name: Set up system
       run: bin/before_install
     - name: Set up Node
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v5
       with:
-        node-version: "${{ matrix.node-version }}"
+        node-version-file: package.json
+        cache: yarn
+        registry-url: https://npm.manageiq.org/
     - name: Prepare tests
       run: bin/setup
     - name: Run tests

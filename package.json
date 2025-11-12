@@ -21,8 +21,8 @@
   "authors": [],
   "license": "Apache-2.0",
   "engines": {
-    "node": ">= 20.0.0",
-    "npm": ">= 9.0.0"
+    "node": "^20.19.5",
+    "npm": "^10.8.2"
   },
   "devDependencies": {
     "@manageiq/font-fabulous": "^1.0.0",

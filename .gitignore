@@ -31,6 +31,5 @@ vendor.css
 *.iml
 
 coverage
-yarn.lock
 package-lock.json
 pkg/

@@ -3,14 +3,12 @@
     "include" : ["dist/js/ui-components.js"]
   },
   "opts": {
-    "template": "node_modules/angular-jsdoc/angular-template",
     "destination": "dist/docs",
     "readme": "README.md",
-    "recourse": true
+    "recurse": true
   },
   "plugins": [
-    "node_modules/jsdoc/plugins/markdown",
-    "node_modules/angular-jsdoc/common/plugins/ngdoc"
+    "node_modules/jsdoc/plugins/markdown"
   ],
   "templates": {
     "cleverLinks": true,

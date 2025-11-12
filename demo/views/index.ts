@@ -4,7 +4,11 @@ import * as angular from 'angular';
 export default (module: angular.IModule) => {
   /* @ngInject */
   module.config(($stateProvider: any,
-                 $urlRouterProvider: any) => {
+                 $urlRouterProvider: any,
+                 $locationProvider: any) => {
+    // Configure location provider for hash-based routing
+    $locationProvider.hashPrefix('');
+
     const allComponents = new AvailableComponentsService();
     angular.forEach(allComponents.availableComponents, (oneGroup) => {
       angular.forEach(oneGroup.components, (oneComp) => {

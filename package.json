@@ -26,20 +26,19 @@
   },
   "devDependencies": {
     "@manageiq/font-fabulous": "^1.0.0",
-    "@types/angular-mocks": "^1.5.7",
+    "@types/angular-mocks": "^1.7.0",
     "@types/angular-ui-router": "^1.1.35",
     "@types/jasmine": "^2.5.38",
-    "@types/node": "13.13.4",
+    "@types/lodash": "4.14.168",
+    "@types/node": "16.18.0",
     "@types/rx": "^2.5.34",
-    "angular": "~1.5.9",
-    "angular-animate": "~1.5.9",
+    "angular": "^1.8.3",
+    "angular-animate": "^1.8.3",
     "angular-bootstrap": "^0.12.2",
     "angular-gettext-cli": "^1.2.0",
-    "angular-jsdoc": "~1.5.0",
-    "angular-mocks": "~1.5.9",
+    "angular-mocks": "^1.8.3",
     "angular-patternfly": "^3.15.0",
-    "angular-sanitize": "~1.5.9",
-    "awesome-typescript-loader": "~4.0.1",
+    "angular-sanitize": "^1.8.3",
     "babel-eslint": "^7.2.3",
     "bootstrap-combobox": "^1.0.2",
     "bootstrap-datepicker": "^1.6.4",
@@ -80,9 +79,10 @@
     "sass": "^1.69.0",
     "sass-loader": "^7.3.1",
     "style-loader": "^0.13.1",
+    "ts-loader": "^3.5.0",
     "tslint": "4.0.2",
     "tslint-loader": "3.2.0",
-    "typescript": "~2.8.3",
+    "typescript": "~3.9.10",
     "ui-router": "^1.0.0-alpha0",
     "url-loader": "^0.5.7",
     "webpack": "3.11.0"
@@ -94,5 +94,11 @@
     "es6-shim": "^0.35.3",
     "es7-shim": "^6.0.0",
     "sprintf-js": "^1.1.1"
+  },
+  "resolutions": {
+    "@types/jasmine": "3.10.0",
+    "angular": "1.8.3",
+    "angular-animate": "1.8.3",
+    "angular-sanitize": "1.8.3"
   }
 }

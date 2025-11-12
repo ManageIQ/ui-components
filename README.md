@@ -28,7 +28,7 @@ As we achieve greater reuse, the idea is to move more and more components to thi
 
 ## Technologies
 
-* Angular 1.5+ (soon to be Angular 2.x)
+* Angular 1.8.3
 * Typescript
 * Webpack
 * Yarn
@@ -47,7 +47,7 @@ For a great overview of using Angular 1.5.x Components please see: [NG-Conf 2016
 
 ## Development Environment
 
-You need to have installed [Node.js >= 14  and npm >= 6](https://docs.npmjs.com/getting-started/installing-node) on your system.
+You need to have installed [Node.js >= 20 and npm >= 9](https://docs.npmjs.com/getting-started/installing-node) on your system.
 It is recommended to use a node version manager such as [n](https://www.npmjs.com/package/n). If you have node installed then it is
 just `yarn global add n` and then `n lts` to use the latest LTS version of node (see the docs for switching versions).
 
@@ -68,7 +68,7 @@ yarn
 ```
 
 Create library dependencies (run this every time you make any changes to `vendor.ts`) - no need to worry about any TS
-errors. Also, if you are pushing some changes please run this command so you will push minifed version of JS and CSS.
+errors. Also, if you are pushing some changes please run this command so you will push minified version of JS and CSS.
 ```
 yarn run build
 ```
@@ -96,7 +96,7 @@ This formats the code according to the tslint rules.
 
 If you want to see documentation for each component, controller, filter, etc. run
 ```
-yarn run-script build-docs
+yarn build-docs
 ```
 This will generate docs from JS docs and after running `yarn start` this documentation will be available on `localhost:4000/docs`
 

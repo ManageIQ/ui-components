@@ -76,7 +76,7 @@ module.exports = (env) => {
         {
           test: /\.ts$/,
           exclude: /(node_modules|libs)/,
-          loader: 'awesome-typescript-loader',
+          loader: 'ts-loader',
         },
         {
           test: /\.html$/,

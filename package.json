@@ -91,7 +91,7 @@
   "dependencies": {
     "angular-bootstrap-switch": "^0.5.1",
     "angular-dragdrop": "^1.0.13",
-    "angular-ui-sortable": "^0.16.1",
+    "angular-ui-sortable": "^0.19.0",
     "es6-shim": "^0.35.3",
     "es7-shim": "^6.0.0",
     "sprintf-js": "^1.1.1"

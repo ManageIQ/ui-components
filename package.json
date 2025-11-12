@@ -49,7 +49,7 @@
     "browser-sync-spa": "^1.0.3",
     "browser-sync-webpack-plugin": "^1.1.3",
     "c3": "^0.4.11",
-    "copy-webpack-plugin": "4.0.1",
+    "copy-webpack-plugin": "^4.6.0",
     "coveralls": "^2.11.15",
     "css-loader": "^0.26.0",
     "d3": "^4.4.1",

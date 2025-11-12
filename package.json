@@ -29,7 +29,7 @@
     "@manageiq/font-fabulous": "^1.0.0",
     "@types/angular-mocks": "^1.7.0",
     "@types/angular-ui-router": "^1.1.35",
-    "@types/jasmine": "^2.5.38",
+    "@types/jasmine": "^3.10.18",
     "@types/lodash": "4.14.168",
     "@types/node": "16.18.0",
     "@types/rx": "^2.5.34",
@@ -97,7 +97,6 @@
     "sprintf-js": "^1.1.1"
   },
   "resolutions": {
-    "@types/jasmine": "3.10.0",
     "angular": "1.8.3",
     "angular-animate": "1.8.3",
     "angular-sanitize": "1.8.3",

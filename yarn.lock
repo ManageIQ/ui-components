@@ -93,7 +93,7 @@ __metadata:
     "@manageiq/font-fabulous": "npm:^1.0.0"
     "@types/angular-mocks": "npm:^1.7.0"
     "@types/angular-ui-router": "npm:^1.1.35"
-    "@types/jasmine": "npm:^2.5.38"
+    "@types/jasmine": "npm:^3.10.18"
     "@types/lodash": "npm:4.14.168"
     "@types/node": "npm:16.18.0"
     "@types/rx": "npm:^2.5.34"
@@ -652,10 +652,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jasmine@npm:3.10.0":
-  version: 3.10.0
-  resolution: "@types/jasmine@npm:3.10.0"
-  checksum: 10/100fd08cce7500cb1d89f0fbc8607ab5564a375d2c0f3ddcf6990b84ce90defe5b05ec1a6383ab2972ea8a2486c2f6d98b8186e2afc0e6c6ed1953158d76e363
+"@types/jasmine@npm:^3.10.18":
+  version: 3.10.18
+  resolution: "@types/jasmine@npm:3.10.18"
+  checksum: 10/25ae5b329ccf9e99af24164bdbfb461989047a3ab74dbb25ba5f2c27e1985e59106c6a58da18494dd34357bed37a11093b4b83baca3bf46c81fb15a2af55a6f5
   languageName: node
   linkType: hard
 

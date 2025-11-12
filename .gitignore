@@ -7,13 +7,26 @@ pids
 *.pid
 *.seed
 
+# yarn/npm
+npm-debug.log
+package-lock.json
+yarn-error.log
+
+/node_modules/
+/.pnp.*
+/.yarn/*
+!/.yarn/patches
+!/.yarn/plugins
+!/.yarn/releases
+!/.yarn/sdks
+!/.yarn/versions
+
 # Users Environment Variables
 .lock-wscript
 
 /dist/
 .tmp/
 libs/
-node_modules/
 tsd/
 typings/
 vendor.js

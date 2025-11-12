@@ -97,7 +97,7 @@
     "sprintf-js": "^1.1.1"
   },
   "resolutions": {
-    "@types/jasmine": "3.10.0",
+    "@types/jasmine": "3.10.18",
     "angular": "1.8.3",
     "angular-animate": "1.8.3",
     "angular-sanitize": "1.8.3",

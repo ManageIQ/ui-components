@@ -51,7 +51,7 @@
     "c3": "^0.4.11",
     "copy-webpack-plugin": "4.0.1",
     "coveralls": "^2.11.15",
-    "css-loader": "^0.26.0",
+    "css-loader": "^0.28.0",
     "d3": "^4.4.1",
     "eonasdan-bootstrap-datetimepicker": "^4.17.43",
     "eslint": "~3.9.1",

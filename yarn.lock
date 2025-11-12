@@ -118,7 +118,7 @@ __metadata:
     c3: "npm:^0.4.11"
     copy-webpack-plugin: "npm:4.0.1"
     coveralls: "npm:^2.11.15"
-    css-loader: "npm:^0.26.0"
+    css-loader: "npm:^0.28.0"
     d3: "npm:^4.4.1"
     eonasdan-bootstrap-datetimepicker: "npm:^4.17.43"
     es6-shim: "npm:^0.35.3"
@@ -1488,7 +1488,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-code-frame@npm:^6.11.0, babel-code-frame@npm:^6.16.0, babel-code-frame@npm:^6.22.0, babel-code-frame@npm:^6.26.0":
+"babel-code-frame@npm:^6.16.0, babel-code-frame@npm:^6.22.0, babel-code-frame@npm:^6.26.0":
   version: 6.26.0
   resolution: "babel-code-frame@npm:6.26.0"
   dependencies:
@@ -3184,23 +3184,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"css-loader@npm:^0.26.0":
-  version: 0.26.4
-  resolution: "css-loader@npm:0.26.4"
+"css-loader@npm:^0.28.0":
+  version: 0.28.11
+  resolution: "css-loader@npm:0.28.11"
   dependencies:
-    babel-code-frame: "npm:^6.11.0"
+    babel-code-frame: "npm:^6.26.0"
     css-selector-tokenizer: "npm:^0.7.0"
-    cssnano: "npm:>=2.6.1 <4"
+    cssnano: "npm:^3.10.0"
+    icss-utils: "npm:^2.1.0"
     loader-utils: "npm:^1.0.2"
     lodash.camelcase: "npm:^4.3.0"
-    object-assign: "npm:^4.0.1"
+    object-assign: "npm:^4.1.1"
     postcss: "npm:^5.0.6"
-    postcss-modules-extract-imports: "npm:^1.0.0"
-    postcss-modules-local-by-default: "npm:^1.0.1"
-    postcss-modules-scope: "npm:^1.0.0"
-    postcss-modules-values: "npm:^1.1.0"
-    source-list-map: "npm:^0.1.7"
-  checksum: 10/42c25927c84694634e51c0ab831306115a98c27b34a3993c98c69f44d89d03f292d9c22e7082002869e585d43d724c559ddd5ed17bfb29a5be8c1a95e6a1aad4
+    postcss-modules-extract-imports: "npm:^1.2.0"
+    postcss-modules-local-by-default: "npm:^1.2.0"
+    postcss-modules-scope: "npm:^1.1.0"
+    postcss-modules-values: "npm:^1.3.0"
+    postcss-value-parser: "npm:^3.3.0"
+    source-list-map: "npm:^2.0.0"
+  checksum: 10/3c59678db1d584b5a8c66fdaa5ddbe58162497db7f7995c1a45b3098bfa207a1c86b4a1938b811ebecaa0958083d51f3f023616be6a655c87ff8ff347f2c195c
   languageName: node
   linkType: hard
 
@@ -3262,7 +3264,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cssnano@npm:>=2.6.1 <4":
+"cssnano@npm:^3.10.0":
   version: 3.10.0
   resolution: "cssnano@npm:3.10.0"
   dependencies:
@@ -6456,6 +6458,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"icss-utils@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "icss-utils@npm:2.1.0"
+  dependencies:
+    postcss: "npm:^6.0.1"
+  checksum: 10/34e13db1c6f858f7e76f6f8ed2310e6b73df4329866f19126cb32224c5df514933dc1388a6750bcc9ad3fb0552c80fa5a3444c53130ea0ad5fb12efa89ca703c
+  languageName: node
+  linkType: hard
+
 "ieee754@npm:^1.1.4":
   version: 1.2.1
   resolution: "ieee754@npm:1.2.1"
@@ -8921,7 +8932,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"object-assign@npm:^4, object-assign@npm:^4.0.1, object-assign@npm:^4.1.0":
+"object-assign@npm:^4, object-assign@npm:^4.0.1, object-assign@npm:^4.1.0, object-assign@npm:^4.1.1":
   version: 4.1.1
   resolution: "object-assign@npm:4.1.1"
   checksum: 10/fcc6e4ea8c7fe48abfbb552578b1c53e0d194086e2e6bbbf59e0a536381a292f39943c6e9628af05b5528aa5e3318bb30d6b2e53cadaf5b8fe9e12c4b69af23f
@@ -9904,7 +9915,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-modules-extract-imports@npm:^1.0.0":
+"postcss-modules-extract-imports@npm:^1.2.0":
   version: 1.2.1
   resolution: "postcss-modules-extract-imports@npm:1.2.1"
   dependencies:
@@ -9913,7 +9924,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-modules-local-by-default@npm:^1.0.1":
+"postcss-modules-local-by-default@npm:^1.2.0":
   version: 1.2.0
   resolution: "postcss-modules-local-by-default@npm:1.2.0"
   dependencies:
@@ -9923,7 +9934,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-modules-scope@npm:^1.0.0":
+"postcss-modules-scope@npm:^1.1.0":
   version: 1.1.0
   resolution: "postcss-modules-scope@npm:1.1.0"
   dependencies:
@@ -9933,7 +9944,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-modules-values@npm:^1.1.0":
+"postcss-modules-values@npm:^1.3.0":
   version: 1.3.0
   resolution: "postcss-modules-values@npm:1.3.0"
   dependencies:
@@ -11570,17 +11581,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-list-map@npm:^0.1.7, source-list-map@npm:~0.1.7":
-  version: 0.1.8
-  resolution: "source-list-map@npm:0.1.8"
-  checksum: 10/8bb7dd299f28d46c311f3d7b468d5042e567b8a8608b5a07e01e1401414e2396e0476a586146a5f87e100ab261cf32111269ccd9c6f22089da5823eb4089d60c
-  languageName: node
-  linkType: hard
-
 "source-list-map@npm:^2.0.0":
   version: 2.0.1
   resolution: "source-list-map@npm:2.0.1"
   checksum: 10/3918ffba5fe8447bc816800026fe707aab233d9d05a3487225d880e23b7e37ed455b4e1b844e05644f6ecc7c9b837c0cc32da54dd37f77c993370ebcdb049246
+  languageName: node
+  linkType: hard
+
+"source-list-map@npm:~0.1.7":
+  version: 0.1.8
+  resolution: "source-list-map@npm:0.1.8"
+  checksum: 10/8bb7dd299f28d46c311f3d7b468d5042e567b8a8608b5a07e01e1401414e2396e0476a586146a5f87e100ab261cf32111269ccd9c6f22089da5823eb4089d60c
   languageName: node
   linkType: hard
 

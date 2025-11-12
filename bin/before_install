@@ -2,6 +2,9 @@
 
 set -e
 
-if [ -n "$CI" ]; then
-	npm install --global yarn
+if [ -n "$ACT" ]; then
+  # Install yarn
+  curl -o- -L https://yarnpkg.com/install.sh | bash
+  echo "$HOME/.yarn/bin" >> $GITHUB_PATH
+  echo "$HOME/.config/yarn/global/node_modules/.bin" >> $GITHUB_PATH
 fi

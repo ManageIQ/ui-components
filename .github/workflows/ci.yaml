@@ -1,4 +1,3 @@
----
 name: CI
 on:
   push:
@@ -24,6 +23,6 @@ jobs:
     - name: Run tests
       run: bin/ci
     - name: Report code coverage
-      if: "${{ github.ref == 'refs/heads/master' && matrix.node-version == '20' }}"
+      if: "${{ github.ref == 'refs/heads/master' }}"
       continue-on-error: true
       run: scripts/.coverage.sh

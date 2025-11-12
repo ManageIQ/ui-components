@@ -115,11 +115,9 @@ __metadata:
     browser-sync: "npm:^2.18.2"
     browser-sync-spa: "npm:^1.0.3"
     browser-sync-webpack-plugin: "npm:^1.1.3"
-    c3: "npm:^0.4.11"
     copy-webpack-plugin: "npm:^4.6.0"
     coveralls: "npm:^2.11.15"
     css-loader: "npm:^0.28.11"
-    d3: "npm:^4.4.1"
     eonasdan-bootstrap-datetimepicker: "npm:^4.17.43"
     es6-shim: "npm:^0.35.3"
     es7-shim: "npm:^6.0.0"
@@ -2269,7 +2267,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"c3@npm:^0.4.11, c3@npm:~0.4.11":
+"c3@npm:~0.4.11":
   version: 0.4.24
   resolution: "c3@npm:0.4.24"
   dependencies:
@@ -2894,17 +2892,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:2, commander@npm:^2.2.0, commander@npm:^2.9.0":
-  version: 2.20.3
-  resolution: "commander@npm:2.20.3"
-  checksum: 10/90c5b6898610cd075984c58c4f88418a4fb44af08c1b1415e9854c03171bec31b336b7f3e4cefe33de994b3f12b03c5e2d638da4316df83593b9e82554e7e95b
-  languageName: node
-  linkType: hard
-
 "commander@npm:2.17.x":
   version: 2.17.1
   resolution: "commander@npm:2.17.1"
   checksum: 10/8f1eb3398ab0e10ca4983c196fd3754eeedec75afb8466d9c4e85e225ce10dc9005f0828af924dd3f5127fd1047c6ea55d84a1e5e18bded2c0aae04fda0a52a0
+  languageName: node
+  linkType: hard
+
+"commander@npm:^2.2.0, commander@npm:^2.9.0":
+  version: 2.20.3
+  resolution: "commander@npm:2.20.3"
+  checksum: 10/90c5b6898610cd075984c58c4f88418a4fb44af08c1b1415e9854c03171bec31b336b7f3e4cefe33de994b3f12b03c5e2d638da4316df83593b9e82554e7e95b
   languageName: node
   linkType: hard
 
@@ -3421,459 +3419,6 @@ __metadata:
   version: 1.0.2
   resolution: "cyclist@npm:1.0.2"
   checksum: 10/404cfe8f22b411cd1d38c0573e43d70ade67c0b66c9f4ae21957968ad6fce462563ecb5e0bb59dff80941b50400ae1d0f1989f4dbf6997035495110934368fd2
-  languageName: node
-  linkType: hard
-
-"d3-array@npm:1, d3-array@npm:^1.2.0":
-  version: 1.2.4
-  resolution: "d3-array@npm:1.2.4"
-  checksum: 10/0071ad73c23d9acba38997d6d3c402d9c1478514c401bd106ed6e049f3800044897f7b450c942dcca9b831e7d6637449bc22c53eeffe054b463c98739d7bf9bf
-  languageName: node
-  linkType: hard
-
-"d3-array@npm:1.2.1":
-  version: 1.2.1
-  resolution: "d3-array@npm:1.2.1"
-  checksum: 10/6e58e5cda8e8097673157f544c8f349dd61694b80c76b5ced29d8c2c98e957082438900cdb39e4bb6474db108151d474ebbe79221839624a3b6aadcc1aa6a238
-  languageName: node
-  linkType: hard
-
-"d3-axis@npm:1.0.8":
-  version: 1.0.8
-  resolution: "d3-axis@npm:1.0.8"
-  checksum: 10/009f489b58e024a76a58a62fcc256e7bf6eedd9aaf8a6316174ee484e06e8a7fbab2d3d779a4f1b9c2cfafd8871a3b4edd028c700a5e37759bb9336beeeb4fb9
-  languageName: node
-  linkType: hard
-
-"d3-brush@npm:1.0.4":
-  version: 1.0.4
-  resolution: "d3-brush@npm:1.0.4"
-  dependencies:
-    d3-dispatch: "npm:1"
-    d3-drag: "npm:1"
-    d3-interpolate: "npm:1"
-    d3-selection: "npm:1"
-    d3-transition: "npm:1"
-  checksum: 10/c45ca0ad6ce72f842d833f7cb340dc304e9be6552aaf0af54878f721acda3d07abfbe9f84445fbeb2e864298646420b50c1262d1781b14a3a0e0d105b0d2161e
-  languageName: node
-  linkType: hard
-
-"d3-chord@npm:1.0.4":
-  version: 1.0.4
-  resolution: "d3-chord@npm:1.0.4"
-  dependencies:
-    d3-array: "npm:1"
-    d3-path: "npm:1"
-  checksum: 10/b955285185a13057fece3bf7bb2751f38088e0b504eb8622942ce80b791c1c124c54fb55c305867deea2d4c801c7ddcec571ada4aea825dbb08381d3bdcd8162
-  languageName: node
-  linkType: hard
-
-"d3-collection@npm:1":
-  version: 1.0.7
-  resolution: "d3-collection@npm:1.0.7"
-  checksum: 10/73eb77acaa7506ca4d542a8eeca62118738945f54ad3ce5f581bdd610ab156de4b8dfb24b074e8934a474a038e3e4f6751255a60224dd7cce17e9066e83aa97a
-  languageName: node
-  linkType: hard
-
-"d3-collection@npm:1.0.4":
-  version: 1.0.4
-  resolution: "d3-collection@npm:1.0.4"
-  checksum: 10/f29424da822506a4f578d3bc9aaef86d48230e37631a2a17967106f37578e2bfdea49e241cd5628fe0fda6f47bfd1c2ff85405c9f079a74c7e89a173d6baac74
-  languageName: node
-  linkType: hard
-
-"d3-color@npm:1":
-  version: 1.4.1
-  resolution: "d3-color@npm:1.4.1"
-  checksum: 10/f264a0ed65cfd8acdee7baeb32c71ed6a6f31d0730b320dc451050982d88ed606d4ce5aaab05a12a0afb0873209f622bed93d4d79b4095e2b063db40aceaf310
-  languageName: node
-  linkType: hard
-
-"d3-color@npm:1.0.3":
-  version: 1.0.3
-  resolution: "d3-color@npm:1.0.3"
-  checksum: 10/5e72b516d2769a737f7fc39c5f20ebd8199c3d298709b5a17edd4ed10160ec23be781bbf860828c5efcd47efdd9cfdd723077747242c75d00c4c693a3ecfa62c
-  languageName: node
-  linkType: hard
-
-"d3-dispatch@npm:1":
-  version: 1.0.6
-  resolution: "d3-dispatch@npm:1.0.6"
-  checksum: 10/c04770f3055cf3841b4640fcf41ed75f31c599b0e32a9fa8d51939a780c8bff9e849f2335960ce3f5b9b9294d26fd11b7ee4040d1668f7a7a1140925fddb3f60
-  languageName: node
-  linkType: hard
-
-"d3-dispatch@npm:1.0.3":
-  version: 1.0.3
-  resolution: "d3-dispatch@npm:1.0.3"
-  checksum: 10/11df9d64660023714e1ba8e1cc2f6eedc963887fcab21d528510cf6c9cce29337b85c7000f20cb04118286cce1b7a1f3c927b42bdee3a5f47bbea2afb2b303b2
-  languageName: node
-  linkType: hard
-
-"d3-drag@npm:1":
-  version: 1.2.5
-  resolution: "d3-drag@npm:1.2.5"
-  dependencies:
-    d3-dispatch: "npm:1"
-    d3-selection: "npm:1"
-  checksum: 10/e1fdc87b4e2ccb74ea18d82e423515b5781758fc773d25979efb7eba179d1912ada8348e856b2d95674936f7fa1e30a02ce8bb52fb855196adbd24fb293290e0
-  languageName: node
-  linkType: hard
-
-"d3-drag@npm:1.2.1":
-  version: 1.2.1
-  resolution: "d3-drag@npm:1.2.1"
-  dependencies:
-    d3-dispatch: "npm:1"
-    d3-selection: "npm:1"
-  checksum: 10/48480b4594707292b18a52f50ca461164b1ccff3bb93f46f12dabce577e0180ad68fb1228c21f4c44fd57cef26c75011ec4a2a060ada443826b157a4111b611b
-  languageName: node
-  linkType: hard
-
-"d3-dsv@npm:1":
-  version: 1.2.0
-  resolution: "d3-dsv@npm:1.2.0"
-  dependencies:
-    commander: "npm:2"
-    iconv-lite: "npm:0.4"
-    rw: "npm:1"
-  bin:
-    csv2json: bin/dsv2json
-    csv2tsv: bin/dsv2dsv
-    dsv2dsv: bin/dsv2dsv
-    dsv2json: bin/dsv2json
-    json2csv: bin/json2dsv
-    json2dsv: bin/json2dsv
-    json2tsv: bin/json2dsv
-    tsv2csv: bin/dsv2dsv
-    tsv2json: bin/dsv2json
-  checksum: 10/ce9f8a90226712f42bedf0b8a8f6bb8960aefdbde417e4692d8af4f24fb31508954132922854ee201d02ce64f8dc9a33331d82b4d04df9374170cfd536deb21d
-  languageName: node
-  linkType: hard
-
-"d3-dsv@npm:1.0.8":
-  version: 1.0.8
-  resolution: "d3-dsv@npm:1.0.8"
-  dependencies:
-    commander: "npm:2"
-    iconv-lite: "npm:0.4"
-    rw: "npm:1"
-  bin:
-    csv2json: bin/dsv2json
-    csv2tsv: bin/dsv2dsv
-    dsv2dsv: bin/dsv2dsv
-    dsv2json: bin/dsv2json
-    json2csv: bin/json2dsv
-    json2dsv: bin/json2dsv
-    json2tsv: bin/json2dsv
-    tsv2csv: bin/dsv2dsv
-    tsv2json: bin/dsv2json
-  checksum: 10/7423a7792e23ffd2c2a33e12d90252f27a02c32f45db0967dca0d63f62ae48c28b2752911eba77a374b5e95c7d023acf3fc189371f530f2d430f1d75c4396bfa
-  languageName: node
-  linkType: hard
-
-"d3-ease@npm:1":
-  version: 1.0.7
-  resolution: "d3-ease@npm:1.0.7"
-  checksum: 10/7bddd332094e4d02964f414e4b70d02db5efb920065c0a3dd850c1b16b2bd8e930d1a37d2b2f0e8322ce943710e0f395f06870a8ad0ba2d33a5835ec9356bbaa
-  languageName: node
-  linkType: hard
-
-"d3-ease@npm:1.0.3":
-  version: 1.0.3
-  resolution: "d3-ease@npm:1.0.3"
-  checksum: 10/835fb33473fff9864757aab46401d299f5cab3f5c1339c97b7de635e7db5b2bff61dca9a9725883c2357502bd8c584e77428883fa6b537c079bd3e43fb0ba4c0
-  languageName: node
-  linkType: hard
-
-"d3-force@npm:1.1.0":
-  version: 1.1.0
-  resolution: "d3-force@npm:1.1.0"
-  dependencies:
-    d3-collection: "npm:1"
-    d3-dispatch: "npm:1"
-    d3-quadtree: "npm:1"
-    d3-timer: "npm:1"
-  checksum: 10/74f6f101abb93824d49381cbeb1742623b64387397878c346e731794e4eb374eb652635f1c401c692c9af50f54b3198e8ca75a9b34a2e737a050206180280636
-  languageName: node
-  linkType: hard
-
-"d3-format@npm:1":
-  version: 1.4.5
-  resolution: "d3-format@npm:1.4.5"
-  checksum: 10/c1b7d8de6f748875d13879e3c97d3568572fc7e011d41799b20a665737abcbc14ea7cef14b9efccffd91ea41c4c2d26f84b6e1ed8505e24608f8150b4259b4f3
-  languageName: node
-  linkType: hard
-
-"d3-format@npm:1.2.2":
-  version: 1.2.2
-  resolution: "d3-format@npm:1.2.2"
-  checksum: 10/206c6441faeafb064e66763c962b955eae5412d5dad7ea0068c4ae212b37a8d51dd9003a9583dc89955a2608153f9bd429ba2281ed9f2485a9099cf6dbcb687a
-  languageName: node
-  linkType: hard
-
-"d3-geo@npm:1.9.1":
-  version: 1.9.1
-  resolution: "d3-geo@npm:1.9.1"
-  dependencies:
-    d3-array: "npm:1"
-  checksum: 10/05d08cea4c94f1a656f32a019659415325d1920cf53a5c496e04d6bd5c3d305357be617fd9f4ee05907ba5c8d3d98391f2b901bb0cae48abac5244ee08381362
-  languageName: node
-  linkType: hard
-
-"d3-hierarchy@npm:1.1.5":
-  version: 1.1.5
-  resolution: "d3-hierarchy@npm:1.1.5"
-  checksum: 10/53694a2e456dfdbcbab6f346705b46900c1118a321980c450e965213aab50b85e3a6decedfe9cc2369c1dd6a2d5639b4eb1c97065510c080c1ecd0df1f8c1638
-  languageName: node
-  linkType: hard
-
-"d3-interpolate@npm:1":
-  version: 1.4.0
-  resolution: "d3-interpolate@npm:1.4.0"
-  dependencies:
-    d3-color: "npm:1"
-  checksum: 10/e2978b047ea934aa46963091cd0ca03cf3c17756fe12d81bce0b2f6b50b6f5084dc54a2395acd26d8f797b8c25022cb7e16eb8e1b49a6ec0eda8f45f28f8cc4b
-  languageName: node
-  linkType: hard
-
-"d3-interpolate@npm:1.1.6":
-  version: 1.1.6
-  resolution: "d3-interpolate@npm:1.1.6"
-  dependencies:
-    d3-color: "npm:1"
-  checksum: 10/bfe9cab0db9f1c60bc188b16d5e4ba231161139664b368de88b7d30a61bd68a4f1f9cccb16c8b3ecf69a1fc8552bdfb03dfd8f43a1a066476688de789257f0bd
-  languageName: node
-  linkType: hard
-
-"d3-path@npm:1":
-  version: 1.0.9
-  resolution: "d3-path@npm:1.0.9"
-  checksum: 10/6ce1747837ea2a449d9ea32e169a382978ab09a4805eb408feb6bbc12cb5f5f6ce29aefc252dd9a815d420f4813d672f75578b78b3bbaf7811f54d8c7f93fd11
-  languageName: node
-  linkType: hard
-
-"d3-path@npm:1.0.5":
-  version: 1.0.5
-  resolution: "d3-path@npm:1.0.5"
-  checksum: 10/b81544a6a7e5e1445fe1ff958829595824d65349178d652eeeaf118af3c49f1c6379c3086c3e3fd0bd8832ab82191c0f378d765597b61d0fb69350ffed6d7352
-  languageName: node
-  linkType: hard
-
-"d3-polygon@npm:1.0.3":
-  version: 1.0.3
-  resolution: "d3-polygon@npm:1.0.3"
-  checksum: 10/ff9c661355fb9c9bba552ddccdb813df12008493364e3bb13cd85b5efb7ffe013f904867c004ac1602ae4aa112db5dcf3231c56c7d454333a56fc440e9d3699f
-  languageName: node
-  linkType: hard
-
-"d3-quadtree@npm:1":
-  version: 1.0.7
-  resolution: "d3-quadtree@npm:1.0.7"
-  checksum: 10/73d6c72ea4c41a3c287a8d55a897ef58b61681734d59c55b46c8bbff1ce31531f5615d4b8cd0156dcf43529466e9548c56c034bcda68807bc31af182d1179d5e
-  languageName: node
-  linkType: hard
-
-"d3-quadtree@npm:1.0.3":
-  version: 1.0.3
-  resolution: "d3-quadtree@npm:1.0.3"
-  checksum: 10/c51bae8f63e7adb518ed023e29fa4dbdd3c10fe6b63febbbc304a1d0eab2638005d9bba124cbe7f2a7967ee997aa463d7c13588cb0fddabc0117dd09a84cc613
-  languageName: node
-  linkType: hard
-
-"d3-queue@npm:3.0.7":
-  version: 3.0.7
-  resolution: "d3-queue@npm:3.0.7"
-  checksum: 10/5b650cf85c9fae739c06e58c00db2ab44ca9c6f377fe3c43a704eb08ee154d9332be540a5eb68c2c204cfd448d5081d96d06cae9a9155c5a5e6354984f26eaef
-  languageName: node
-  linkType: hard
-
-"d3-random@npm:1.1.0":
-  version: 1.1.0
-  resolution: "d3-random@npm:1.1.0"
-  checksum: 10/f2546373a019f85d3e2cd5ba3fd6a915290b4f6647b646a42c11f02b10e271c517d5e978d91bbd58c8254ac3d3fea2afe14892198ad9f1a0b5583bbc45737ac1
-  languageName: node
-  linkType: hard
-
-"d3-request@npm:1.0.6":
-  version: 1.0.6
-  resolution: "d3-request@npm:1.0.6"
-  dependencies:
-    d3-collection: "npm:1"
-    d3-dispatch: "npm:1"
-    d3-dsv: "npm:1"
-    xmlhttprequest: "npm:1"
-  checksum: 10/62a0bcbd3f42b70ac8eaa055eedfd115f94d9eb2399c98e110cf6d39b64c800aed53fc00af5306ee5e36ae094b3af05a6bd6d2945388ae9793adc8be61dacb7e
-  languageName: node
-  linkType: hard
-
-"d3-scale@npm:1.0.7":
-  version: 1.0.7
-  resolution: "d3-scale@npm:1.0.7"
-  dependencies:
-    d3-array: "npm:^1.2.0"
-    d3-collection: "npm:1"
-    d3-color: "npm:1"
-    d3-format: "npm:1"
-    d3-interpolate: "npm:1"
-    d3-time: "npm:1"
-    d3-time-format: "npm:2"
-  checksum: 10/42faa5b80a6f3168d693d0b88e63c1411ed249933ac26b6bec8af1cbab2151ab667e1e898edb3069ab16253b70b6ac8c27cf6682e7374d680b7981ec6137e458
-  languageName: node
-  linkType: hard
-
-"d3-selection@npm:1, d3-selection@npm:^1.1.0":
-  version: 1.4.2
-  resolution: "d3-selection@npm:1.4.2"
-  checksum: 10/fdbfffb735f76132762399e3c4297e7e21e983c984524373b2d36f06eef185424e578794a0ae17c3565be136ef1e639848c6ae378f99a91b5ac3b5a649e4c4db
-  languageName: node
-  linkType: hard
-
-"d3-selection@npm:1.3.0":
-  version: 1.3.0
-  resolution: "d3-selection@npm:1.3.0"
-  checksum: 10/aaac78632b781f8aecd487112a4eefef527e6ce160b10a782fb08301b299eb34aa49d8d7c7a5d7e29282eddb9c6314b18fcd95c5634a242caf865c06e55b1783
-  languageName: node
-  linkType: hard
-
-"d3-shape@npm:1.2.0":
-  version: 1.2.0
-  resolution: "d3-shape@npm:1.2.0"
-  dependencies:
-    d3-path: "npm:1"
-  checksum: 10/d0a01c8700536944b15d9df04852ca38bd9dd5810bc793f9fe1ed82d97b1f393bf7f4f40fa48ffcb1bd6dd06011548f84cca77420b4bd2604ece8d0b026327c9
-  languageName: node
-  linkType: hard
-
-"d3-time-format@npm:2":
-  version: 2.3.0
-  resolution: "d3-time-format@npm:2.3.0"
-  dependencies:
-    d3-time: "npm:1"
-  checksum: 10/c217d06034d52f6b2bec3fa2134ab7be823a3a94a963b2580dd2a0e7831f412336ed87e84c3b0c2d02eb855912996e3edee25546e6c1c2246b36feb58fd0bc87
-  languageName: node
-  linkType: hard
-
-"d3-time-format@npm:2.1.1":
-  version: 2.1.1
-  resolution: "d3-time-format@npm:2.1.1"
-  dependencies:
-    d3-time: "npm:1"
-  checksum: 10/3818393c6dfbfd099a6b73676558ef52cadd82ca564ebcfadc80a83b0ab3c25571abe45f2f9d614840aac250becc308ec12cb76e5e90687be162c4b1a657fcff
-  languageName: node
-  linkType: hard
-
-"d3-time@npm:1":
-  version: 1.1.0
-  resolution: "d3-time@npm:1.1.0"
-  checksum: 10/24d450997424fe0d53c3bdf9a637a5bdf634236076d6ab761b1966f8cca3b4057fedfc22a520d695d505ff65ddf44e0780065fa3094f66e8df44cdba84af78c8
-  languageName: node
-  linkType: hard
-
-"d3-time@npm:1.0.8":
-  version: 1.0.8
-  resolution: "d3-time@npm:1.0.8"
-  checksum: 10/34919472f273825a28691e537f652b60b9deb149f658e534e44ff88425795b8d14ec2f08f0b09f1dd3cf75a9b12c2c02ea8a4a8827c52e27c913b14f8194c119
-  languageName: node
-  linkType: hard
-
-"d3-timer@npm:1":
-  version: 1.0.10
-  resolution: "d3-timer@npm:1.0.10"
-  checksum: 10/aeaf0f849f1ed316ab4467b822333b22851f174faa6c7dd24735b86bf5f3dc75bb3c3ae02b99ba1f16260a7570ac59563728577ecb6083e47edbaff2ca5c9237
-  languageName: node
-  linkType: hard
-
-"d3-timer@npm:1.0.7":
-  version: 1.0.7
-  resolution: "d3-timer@npm:1.0.7"
-  checksum: 10/daf0bf9735184cf33506a30e8a5f43d98b9f41111fa92dcc2e7c750a9cb823cf929f441dd0d967a3a7dec89568c6a485cd89792f25779ba17587f9eb6c962a22
-  languageName: node
-  linkType: hard
-
-"d3-transition@npm:1":
-  version: 1.3.2
-  resolution: "d3-transition@npm:1.3.2"
-  dependencies:
-    d3-color: "npm:1"
-    d3-dispatch: "npm:1"
-    d3-ease: "npm:1"
-    d3-interpolate: "npm:1"
-    d3-selection: "npm:^1.1.0"
-    d3-timer: "npm:1"
-  checksum: 10/c11924ef60d134915ac691f25f5ec1cadb090a7ec02fd45748bad86dc6d20e0eaed5ec504cf2c23917163e823017c34497e5bc6062b623770d9763441d301c73
-  languageName: node
-  linkType: hard
-
-"d3-transition@npm:1.1.1":
-  version: 1.1.1
-  resolution: "d3-transition@npm:1.1.1"
-  dependencies:
-    d3-color: "npm:1"
-    d3-dispatch: "npm:1"
-    d3-ease: "npm:1"
-    d3-interpolate: "npm:1"
-    d3-selection: "npm:^1.1.0"
-    d3-timer: "npm:1"
-  checksum: 10/64ffc7a10e37513d7ba215fadc1cb8e2fc25d3b519557f9ed43246cbab7f404e8606b32fd6dcdbcf3f35fbe0c54f2148ee51a6a6750a02e09b6e85eddd2a4481
-  languageName: node
-  linkType: hard
-
-"d3-voronoi@npm:1.1.2":
-  version: 1.1.2
-  resolution: "d3-voronoi@npm:1.1.2"
-  checksum: 10/649eb6a9896b15db763d485026af452dd467ae946a2a92cd25e790b2f6a56df0d51bc29f1789b0c867c66470081944fad3cb0dafd8660542af2e080fdbe569ca
-  languageName: node
-  linkType: hard
-
-"d3-zoom@npm:1.7.1":
-  version: 1.7.1
-  resolution: "d3-zoom@npm:1.7.1"
-  dependencies:
-    d3-dispatch: "npm:1"
-    d3-drag: "npm:1"
-    d3-interpolate: "npm:1"
-    d3-selection: "npm:1"
-    d3-transition: "npm:1"
-  checksum: 10/e3a0f3a3d826b1cd2a2e1b109f61d95b61a3c676ad9ba4e18db74e01392458fa70f2a0be484de45681ddf0e162f6e87f70d696e78f73a722ec0ec8075e0f389b
-  languageName: node
-  linkType: hard
-
-"d3@npm:^4.4.1":
-  version: 4.13.0
-  resolution: "d3@npm:4.13.0"
-  dependencies:
-    d3-array: "npm:1.2.1"
-    d3-axis: "npm:1.0.8"
-    d3-brush: "npm:1.0.4"
-    d3-chord: "npm:1.0.4"
-    d3-collection: "npm:1.0.4"
-    d3-color: "npm:1.0.3"
-    d3-dispatch: "npm:1.0.3"
-    d3-drag: "npm:1.2.1"
-    d3-dsv: "npm:1.0.8"
-    d3-ease: "npm:1.0.3"
-    d3-force: "npm:1.1.0"
-    d3-format: "npm:1.2.2"
-    d3-geo: "npm:1.9.1"
-    d3-hierarchy: "npm:1.1.5"
-    d3-interpolate: "npm:1.1.6"
-    d3-path: "npm:1.0.5"
-    d3-polygon: "npm:1.0.3"
-    d3-quadtree: "npm:1.0.3"
-    d3-queue: "npm:3.0.7"
-    d3-random: "npm:1.1.0"
-    d3-request: "npm:1.0.6"
-    d3-scale: "npm:1.0.7"
-    d3-selection: "npm:1.3.0"
-    d3-shape: "npm:1.2.0"
-    d3-time: "npm:1.0.8"
-    d3-time-format: "npm:2.1.1"
-    d3-timer: "npm:1.0.7"
-    d3-transition: "npm:1.1.1"
-    d3-voronoi: "npm:1.1.2"
-    d3-zoom: "npm:1.7.1"
-  checksum: 10/c90e5356ec2baa65b2d289a938d67043d85258a9826b07400b0997b28dc71c06bc9f7490e1243bcbe575721cfd21bd95e1b859abe542b5d8ab922e292640ff86
   languageName: node
   linkType: hard
 
@@ -6570,7 +6115,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"iconv-lite@npm:0.4, iconv-lite@npm:0.4.24":
+"iconv-lite@npm:0.4.24":
   version: 0.4.24
   resolution: "iconv-lite@npm:0.4.24"
   dependencies:
@@ -11141,13 +10686,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rw@npm:1":
-  version: 1.3.3
-  resolution: "rw@npm:1.3.3"
-  checksum: 10/e90985d64777a00f4ab5f8c0bfea2fb5645c6bda5238840afa339c8a4f86f776e8ce83731155643a7425a0b27ce89077dab27b2f57519996ba4d2fe54cac1941
-  languageName: node
-  linkType: hard
-
 "rx-lite@npm:^3.1.2":
   version: 3.1.2
   resolution: "rx-lite@npm:3.1.2"
@@ -13790,13 +13328,6 @@ __metadata:
   version: 2.1.2
   resolution: "xmlhttprequest-ssl@npm:2.1.2"
   checksum: 10/708a177fe41c6c8cd4ec7c04d965b4c01801d87f44383ec639be58bdc14418142969841659e0850db44feee8bec0a3d3e7d33fed22519415f3d0daab04d3f160
-  languageName: node
-  linkType: hard
-
-"xmlhttprequest@npm:1":
-  version: 1.8.0
-  resolution: "xmlhttprequest@npm:1.8.0"
-  checksum: 10/4f2cc2029f863d425ba8d6ef717de7ee44cd44ceae97df45c122343ecbcd4418559fbb8bdc3fa3678ea8cb24fb31a143ed0e8f7bb302c13185bc4486d81d8399
   languageName: node
   linkType: hard
 

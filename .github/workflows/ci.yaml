@@ -22,6 +22,8 @@ jobs:
       run: bin/setup
     - name: Run tests
       run: bin/ci
+    - name: Run security tests
+      run: yarn test:security
     - name: Report code coverage
       if: "${{ github.ref == 'refs/heads/master' }}"
       continue-on-error: true

@@ -12,7 +12,8 @@
     "gettext:extract": "yarn run build && angular-gettext-cli --files './+(src|dist)/**/+(*.html|ui-components.js)' --dest './locale/ui-components.pot' --marker-names '__,N_' && yarn run gettext:validate",
     "gettext:validate": "node scripts/validate-gettext-catalog.js",
     "install-vendor": "webpack --config webpack.vendor.config.js",
-    "build-docs": "jsdoc -c jsdoc-conf.json"
+    "build-docs": "jsdoc -c jsdoc-conf.json",
+    "test:security": "yarn npm audit --recursive --no-deprecations --environment production"
   },
   "repository": {
     "type": "git",

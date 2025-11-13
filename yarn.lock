@@ -136,7 +136,7 @@ __metadata:
     karma: "npm:1.3.0"
     karma-coverage: "npm:^1.1.1"
     karma-jasmine: "npm:1.0.2"
-    karma-jsdom-launcher: "npm:~7.0.0"
+    karma-jsdom-launcher: "npm:~7.1.0"
     karma-webpack: "npm:~1.8.1"
     lodash: "npm:~4.17.20"
     ng-annotate-webpack-plugin: "npm:0.1.3"
@@ -7320,13 +7320,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"karma-jsdom-launcher@npm:~7.0.0":
-  version: 7.0.0
-  resolution: "karma-jsdom-launcher@npm:7.0.0"
+"karma-jsdom-launcher@npm:~7.1.0":
+  version: 7.1.1
+  resolution: "karma-jsdom-launcher@npm:7.1.1"
   peerDependencies:
-    jsdom: ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0
-    karma: ^1.4.0 || ^2.0.0 || ^3.0.0
-  checksum: 10/216f0f58572bc61dea9f447b2d1c1f316e7db84db46d26d55c525d83f5f0767404310c66de05f61ff96a744152d135d5a8e018f2b140e62437d9919048816c78
+    jsdom: ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
+    karma: ^1.4.0 || ^2.0.0 || ^3.0.0 || ^4.0.0
+  checksum: 10/1372709649ddbf155007b0863de4034ddc41de41a8c5e33277665d8e11092d9f4593baa112f52d66ff77e91b08e15c0903b5ee6585a527469cdda33fb653a236
   languageName: node
   linkType: hard
 

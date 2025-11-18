@@ -85,7 +85,7 @@
     "typescript": "~3.9.10",
     "ui-router": "^1.0.0-alpha0",
     "url-loader": "^0.5.7",
-    "webpack": "3.11.0"
+    "webpack": "3.12.0"
   },
   "dependencies": {
     "angular-bootstrap-switch": "^0.5.1",

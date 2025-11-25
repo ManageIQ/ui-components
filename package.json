@@ -53,7 +53,7 @@
     "coveralls": "^2.11.15",
     "css-loader": "^0.28.11",
     "eonasdan-bootstrap-datetimepicker": "^4.17.43",
-    "eslint": "~3.9.1",
+    "eslint": "~3.19.0",
     "expose-loader": "^0.7.1",
     "extract-text-webpack-plugin": "^2.0.0-beta.5",
     "file-loader": "^0.9.0",

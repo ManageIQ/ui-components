@@ -8,6 +8,11 @@ on:
   schedule:
   - cron: 0 0 * * *
   workflow_dispatch:
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+permissions:
+  contents: read
 jobs:
   ci:
     runs-on: ubuntu-latest

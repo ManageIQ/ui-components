@@ -140,7 +140,7 @@ __metadata:
     typescript: "npm:~3.9.10"
     ui-router: "npm:^1.0.0-alpha0"
     url-loader: "npm:^0.5.7"
-    webpack: "npm:3.11.0"
+    webpack: "npm:3.12.0"
   languageName: unknown
   linkType: soft
 
@@ -12833,9 +12833,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack@npm:3.11.0":
-  version: 3.11.0
-  resolution: "webpack@npm:3.11.0"
+"webpack@npm:3.12.0":
+  version: 3.12.0
+  resolution: "webpack@npm:3.12.0"
   dependencies:
     acorn: "npm:^5.0.0"
     acorn-dynamic-import: "npm:^2.0.0"
@@ -12861,7 +12861,7 @@ __metadata:
     yargs: "npm:^8.0.2"
   bin:
     webpack: ./bin/webpack.js
-  checksum: 10/0527cc4da58f722992b03929455e0dafe73cd73ba537825b1700a2030c92daf839f22bef6c17653246bd38b1e06b4500eba763b17853409dcfa0452dd5f4353b
+  checksum: 10/a775193066a637f6056ed923d97869b67001bf78da798e84873bce75ca1e60b6d084a001a7471c21c5dcaf3dbfcfed995144b57c187060f2902d1cfedc7f2a1c
   languageName: node
   linkType: hard
 

@@ -113,7 +113,7 @@ __metadata:
     file-loader: "npm:^0.9.0"
     google-code-prettify: "npm:^1.0.5"
     html-webpack-plugin: "npm:^2.24.1"
-    jasmine: "npm:2.5.2"
+    jasmine: "npm:2.99.0"
     jquery-match-height: "npm:^0.7.0"
     jquery-ui-bundle: "npm:^1.12.1"
     jsdoc: "npm:^3.4.3"
@@ -6904,23 +6904,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jasmine-core@npm:~2.5.2":
-  version: 2.5.2
-  resolution: "jasmine-core@npm:2.5.2"
-  checksum: 10/5ffc11866610336b2ce97b9ca1ea0b797c7d1fa0e69592b1fae269b6fbf7ad7ce6449f5df58eab820b8d605b80c2d0938e63e017c11be3f61280d73a063ed86b
+"jasmine-core@npm:~2.99.0":
+  version: 2.99.1
+  resolution: "jasmine-core@npm:2.99.1"
+  checksum: 10/35a22cd7479e36f96b5e58b9ea87af306e01e4b3bc8ca82e06fb6ceeaf9c0e9e526559f6bcd995e13570a598f7cf9a57756501a9333531de2704177855eba07d
   languageName: node
   linkType: hard
 
-"jasmine@npm:2.5.2":
-  version: 2.5.2
-  resolution: "jasmine@npm:2.5.2"
+"jasmine@npm:2.99.0":
+  version: 2.99.0
+  resolution: "jasmine@npm:2.99.0"
   dependencies:
     exit: "npm:^0.1.2"
     glob: "npm:^7.0.6"
-    jasmine-core: "npm:~2.5.2"
+    jasmine-core: "npm:~2.99.0"
   bin:
     jasmine: ./bin/jasmine.js
-  checksum: 10/bfda199f7694dbc7abaca52a3831a5eff51f9c4c44f9e0d32d1a0a36026025770281ee774b3ba163172007653160e7d4c573feea86055cd7303296a64160d9e4
+  checksum: 10/1541919fd47134dc3c1298181fac8962abd705e110be887969578f88a3c1f14170889af8cd21f0e0803f8f44ed68a7aaeb97204eaacae4bde60e7e1fb562e7dd
   languageName: node
   linkType: hard
 

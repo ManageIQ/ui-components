@@ -133,7 +133,7 @@ __metadata:
     sass: "npm:^1.69.0"
     sass-loader: "npm:^7.3.1"
     sprintf-js: "npm:^1.1.1"
-    style-loader: "npm:^0.13.1"
+    style-loader: "npm:^0.23.0"
     ts-loader: "npm:^3.5.0"
     tslint: "npm:4.0.2"
     tslint-loader: "npm:3.2.0"
@@ -854,6 +854,15 @@ __metadata:
   version: 7.1.4
   resolution: "agent-base@npm:7.1.4"
   checksum: 10/79bef167247789f955aaba113bae74bf64aa1e1acca4b1d6bb444bdf91d82c3e07e9451ef6a6e2e35e8f71a6f97ce33e3d855a5328eb9fad1bc3cc4cfd031ed8
+  languageName: node
+  linkType: hard
+
+"ajv-errors@npm:^1.0.0":
+  version: 1.0.1
+  resolution: "ajv-errors@npm:1.0.1"
+  peerDependencies:
+    ajv: ">=5.0.0"
+  checksum: 10/7d8907f7ff3df7cb5b224ddd95c43ebd3d8bac3fd74fe942d644adc68ed3f67d5bb971b897ab8d21607a1ecf6071a987024b96439e040c9fd45625a9b87da1bb
   languageName: node
   linkType: hard
 
@@ -10705,6 +10714,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"schema-utils@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "schema-utils@npm:1.0.0"
+  dependencies:
+    ajv: "npm:^6.1.0"
+    ajv-errors: "npm:^1.0.0"
+    ajv-keywords: "npm:^3.1.0"
+  checksum: 10/e8273b4f6eff9ddf4a4f4c11daf7b96b900237bf8859c86fa1e9b4fab416b72d7ea92468f8db89c18a3499a1070206e1c8a750c83b42d5325fc659cbb55eee88
+  languageName: node
+  linkType: hard
+
 "semver-diff@npm:^2.0.0":
   version: 2.1.0
   resolution: "semver-diff@npm:2.1.0"
@@ -11793,12 +11813,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"style-loader@npm:^0.13.1":
-  version: 0.13.2
-  resolution: "style-loader@npm:0.13.2"
+"style-loader@npm:^0.23.0":
+  version: 0.23.1
+  resolution: "style-loader@npm:0.23.1"
   dependencies:
-    loader-utils: "npm:^1.0.2"
-  checksum: 10/2d2243a1baecc27729f783a23146c31860e26ea4c419fcb72b82ec560861f311c201064f77001eff4ff22d5d16fc0bd61f42f975e3afc32e00e011afd06a4567
+    loader-utils: "npm:^1.1.0"
+    schema-utils: "npm:^1.0.0"
+  checksum: 10/189717817b65691c6319229fd05b84f335bb8a10fc9ffa7c336b4efeab9b0295b365141663b51f95e933873ef1d4d6a501f5ac97062efe0b024388b69cba3a63
   languageName: node
   linkType: hard
 

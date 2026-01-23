@@ -121,7 +121,7 @@ __metadata:
     json-loader: "npm:^0.5.4"
     karma: "npm:1.3.0"
     karma-coverage: "npm:^1.1.1"
-    karma-jasmine: "npm:1.0.2"
+    karma-jasmine: "npm:1.1.2"
     karma-jsdom-launcher: "npm:~7.1.0"
     karma-webpack: "npm:~1.8.1"
     lodash: "npm:~4.17.20"
@@ -7233,13 +7233,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"karma-jasmine@npm:1.0.2":
-  version: 1.0.2
-  resolution: "karma-jasmine@npm:1.0.2"
+"karma-jasmine@npm:1.1.2":
+  version: 1.1.2
+  resolution: "karma-jasmine@npm:1.1.2"
   peerDependencies:
     jasmine-core: "*"
     karma: "*"
-  checksum: 10/789ccadcf1525e73ad2f0c6548872f729f976476b77efca02853af9ce06be136bc5b9a4552a8f281ac4a4f98f6ab9bded8957afacee76e02dd27d3c2f66a63b1
+  checksum: 10/c07a3d533a1a18a92613b3a73ecca6927640277e3bd851ea38e802b5e7fb5650ad49d276468bb5617bdb7e5599f67f28b26b266bc8d3f3cd0e92e92c924b8dbe
   languageName: node
   linkType: hard
 

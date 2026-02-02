@@ -81,7 +81,7 @@ __metadata:
     "@types/angular-ui-router": "npm:^1.1.35"
     "@types/jasmine": "npm:^3.10.18"
     "@types/lodash": "npm:4.14.168"
-    "@types/node": "npm:16.18.0"
+    "@types/node": "npm:16.18.126"
     "@types/rx": "npm:^2.5.34"
     angular: "npm:^1.8.3"
     angular-animate: "npm:^1.8.3"
@@ -692,10 +692,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:16.18.0":
-  version: 16.18.0
-  resolution: "@types/node@npm:16.18.0"
-  checksum: 10/e7f0f3fad8cc5e2125f8515a51189c1984fd1c1840ce31e297dab7ab101217b4575ae3827a41f8ba7263a701adf0e278df0279279b2ed5d6d87537cdfc143270
+"@types/node@npm:16.18.126":
+  version: 16.18.126
+  resolution: "@types/node@npm:16.18.126"
+  checksum: 10/33e0fa9209a4a96459a8fdf6b078ca9590eb67a8d51899180cfac8afecb9aa133c755d1c38a8b947b9f384f2faa184cabf4e567f5f6dded285be1b31588ec199
   languageName: node
   linkType: hard
 

@@ -110,7 +110,7 @@ __metadata:
     eslint: "npm:~3.9.1"
     expose-loader: "npm:^0.7.1"
     extract-text-webpack-plugin: "npm:^2.0.0-beta.5"
-    file-loader: "npm:^0.9.0"
+    file-loader: "npm:^0.11.0"
     google-code-prettify: "npm:^1.0.5"
     html-webpack-plugin: "npm:^2.24.1"
     jasmine: "npm:2.5.2"
@@ -4963,12 +4963,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"file-loader@npm:^0.9.0":
-  version: 0.9.0
-  resolution: "file-loader@npm:0.9.0"
+"file-loader@npm:^0.11.0":
+  version: 0.11.2
+  resolution: "file-loader@npm:0.11.2"
   dependencies:
-    loader-utils: "npm:~0.2.5"
-  checksum: 10/9ffc87bf12e5b4540f794f6fa28e3c38b81bb55df289824ded74cf006f14e2b0980b895cd4de1e18742b9c90ea03161e904c1008375221eba7bf6b84a14172ba
+    loader-utils: "npm:^1.0.2"
+  checksum: 10/29eb9f7365d8534dd4fa493e9ff7d174be5a2ba94a746e59ad8c9aa2e655edcc7cd6ac062f8ceb709be7371222641da620348f62ca2816678c8408f4999c4cf4
   languageName: node
   linkType: hard
 
@@ -7435,7 +7435,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loader-utils@npm:^0.2.16, loader-utils@npm:^0.2.5, loader-utils@npm:^0.2.7, loader-utils@npm:~0.2.5":
+"loader-utils@npm:^0.2.16, loader-utils@npm:^0.2.5, loader-utils@npm:^0.2.7":
   version: 0.2.17
   resolution: "loader-utils@npm:0.2.17"
   dependencies:

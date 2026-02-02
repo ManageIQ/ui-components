@@ -107,7 +107,7 @@ __metadata:
     eonasdan-bootstrap-datetimepicker: "npm:^4.17.43"
     es6-shim: "npm:^0.35.3"
     es7-shim: "npm:^6.0.0"
-    eslint: "npm:~3.9.1"
+    eslint: "npm:~3.19.0"
     expose-loader: "npm:^0.7.1"
     extract-text-webpack-plugin: "npm:^2.0.0-beta.5"
     file-loader: "npm:^0.9.0"
@@ -2934,7 +2934,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"concat-stream@npm:^1.4.6, concat-stream@npm:^1.5.0":
+"concat-stream@npm:^1.5.0, concat-stream@npm:^1.5.2":
   version: 1.6.2
   resolution: "concat-stream@npm:1.6.2"
   dependencies:
@@ -3787,13 +3787,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"doctrine@npm:^1.2.2":
-  version: 1.5.0
-  resolution: "doctrine@npm:1.5.0"
+"doctrine@npm:^2.0.0":
+  version: 2.1.0
+  resolution: "doctrine@npm:2.1.0"
   dependencies:
     esutils: "npm:^2.0.2"
-    isarray: "npm:^1.0.0"
-  checksum: 10/3ac7d891225f95292f9b9cfc1fe24e75e05ea53b08706298bbf4bf2451f8e1b9de25b1017f5dac23a8deeb8f3ba15fe2c1b454e78d1e97a0921af30aa6d5e753
+  checksum: 10/555684f77e791b17173ea86e2eea45ef26c22219cb64670669c4f4bebd26dbc95cd90ec1f4159e9349a6bb9eb892ce4dde8cd0139e77bedd8bf4518238618474
   languageName: node
   linkType: hard
 
@@ -4551,23 +4550,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:~3.9.1":
-  version: 3.9.1
-  resolution: "eslint@npm:3.9.1"
+"eslint@npm:~3.19.0":
+  version: 3.19.0
+  resolution: "eslint@npm:3.19.0"
   dependencies:
     babel-code-frame: "npm:^6.16.0"
     chalk: "npm:^1.1.3"
-    concat-stream: "npm:^1.4.6"
+    concat-stream: "npm:^1.5.2"
     debug: "npm:^2.1.1"
-    doctrine: "npm:^1.2.2"
+    doctrine: "npm:^2.0.0"
     escope: "npm:^3.6.0"
-    espree: "npm:^3.3.1"
+    espree: "npm:^3.4.0"
+    esquery: "npm:^1.0.0"
     estraverse: "npm:^4.2.0"
     esutils: "npm:^2.0.2"
     file-entry-cache: "npm:^2.0.0"
     glob: "npm:^7.0.3"
-    globals: "npm:^9.2.0"
-    ignore: "npm:^3.1.5"
+    globals: "npm:^9.14.0"
+    ignore: "npm:^3.2.0"
     imurmurhash: "npm:^0.1.4"
     inquirer: "npm:^0.12.0"
     is-my-json-valid: "npm:^2.10.0"
@@ -4585,13 +4585,13 @@ __metadata:
     require-uncached: "npm:^1.0.2"
     shelljs: "npm:^0.7.5"
     strip-bom: "npm:^3.0.0"
-    strip-json-comments: "npm:~1.0.1"
+    strip-json-comments: "npm:~2.0.1"
     table: "npm:^3.7.8"
     text-table: "npm:~0.2.0"
     user-home: "npm:^2.0.0"
   bin:
     eslint: ./bin/eslint.js
-  checksum: 10/2dc8a59f1a67a374bbe8f4d5f03d33fc7962fd8a20bae0bfc81325820434c490b7749e84e85dc48e9c95a01e3db8e105967f29020db20da5a586d186ab88ffd6
+  checksum: 10/38bbd71dd73a516c760feb4d7457cb192a288fed9facbe71c46d3088e69de37884503fb9b97a09b27c6ef4ade1c6072bd072dec08a00374069896ed9a0a82bad
   languageName: node
   linkType: hard
 
@@ -4607,7 +4607,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"espree@npm:^3.3.1":
+"espree@npm:^3.4.0":
   version: 3.5.4
   resolution: "espree@npm:3.5.4"
   dependencies:
@@ -4637,6 +4637,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"esquery@npm:^1.0.0":
+  version: 1.7.0
+  resolution: "esquery@npm:1.7.0"
+  dependencies:
+    estraverse: "npm:^5.1.0"
+  checksum: 10/4afaf3089367e1f5885caa116ef386dffd8bfd64da21fd3d0e56e938d2667cfb2e5400ab4a825aa70e799bb3741e5b5d63c0b94d86e2d4cf3095c9e64b2f5a15
+  languageName: node
+  linkType: hard
+
 "esrecurse@npm:^4.1.0":
   version: 4.3.0
   resolution: "esrecurse@npm:4.3.0"
@@ -4660,7 +4669,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"estraverse@npm:^5.2.0":
+"estraverse@npm:^5.1.0, estraverse@npm:^5.2.0":
   version: 5.3.0
   resolution: "estraverse@npm:5.3.0"
   checksum: 10/37cbe6e9a68014d34dbdc039f90d0baf72436809d02edffcc06ba3c2a12eb298048f877511353b130153e532aac8d68ba78430c0dd2f44806ebc7c014b01585e
@@ -5520,7 +5529,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:^9.18.0, globals@npm:^9.2.0":
+"globals@npm:^9.14.0, globals@npm:^9.18.0":
   version: 9.18.0
   resolution: "globals@npm:9.18.0"
   checksum: 10/492600be44eb7ae107d37fa8536fb98f36a6f051c1420cd912a6de307758d502b9930a8f7beda0e74a98a5613aae464c828bb81418fc335c9ff4707ba9fd9070
@@ -6095,7 +6104,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ignore@npm:^3.1.5, ignore@npm:^3.3.5":
+"ignore@npm:^3.2.0, ignore@npm:^3.3.5":
   version: 3.3.10
   resolution: "ignore@npm:3.3.10"
   checksum: 10/7cbe87d9ed0e6b710ed76f040733f4d1dbed7aa573b579949d6cc25572a72c69d546acda11c2d4bf202691ddda5db8078d32a50a6623eade424d81e6f1d32133
@@ -11774,15 +11783,6 @@ __metadata:
   version: 3.1.1
   resolution: "strip-json-comments@npm:3.1.1"
   checksum: 10/492f73e27268f9b1c122733f28ecb0e7e8d8a531a6662efbd08e22cccb3f9475e90a1b82cab06a392f6afae6d2de636f977e231296400d0ec5304ba70f166443
-  languageName: node
-  linkType: hard
-
-"strip-json-comments@npm:~1.0.1":
-  version: 1.0.4
-  resolution: "strip-json-comments@npm:1.0.4"
-  bin:
-    strip-json-comments: cli.js
-  checksum: 10/44152ba179c0d269885606061727893b419c2a7d598eeb3eadefcdf7e39a7930bf27ec125c0044b2d5d90f630f30d9984da8506dc1fdd1b6bc6b448a477d7bee
   languageName: node
   linkType: hard
 

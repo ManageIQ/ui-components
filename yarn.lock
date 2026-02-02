@@ -96,7 +96,7 @@ __metadata:
     babel-eslint: "npm:^7.2.3"
     bootstrap-combobox: "npm:^1.0.2"
     bootstrap-datepicker: "npm:^1.6.4"
-    bootstrap-select: "npm:~1.12.1"
+    bootstrap-select: "npm:~1.13.0"
     bootstrap-switch: "npm:^3.3.4"
     browser-sync: "npm:^2.18.2"
     browser-sync-spa: "npm:^1.0.3"
@@ -1813,22 +1813,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bootstrap-select@npm:^1.12.2":
+"bootstrap-select@npm:^1.12.2, bootstrap-select@npm:~1.13.0":
   version: 1.13.18
   resolution: "bootstrap-select@npm:1.13.18"
   peerDependencies:
     bootstrap: ">=3.0.0"
     jquery: 1.9.1 - 3
   checksum: 10/660f1fdf826ccd2093ba4597406a664808e95fe34efb0a22ca85171ab6b902d7637fc649577d131c192a9c4dddb480ab1ba2132f8d0941f0d74760391909ec9a
-  languageName: node
-  linkType: hard
-
-"bootstrap-select@npm:~1.12.1":
-  version: 1.12.4
-  resolution: "bootstrap-select@npm:1.12.4"
-  dependencies:
-    jquery: "npm:>=1.8"
-  checksum: 10/e15afcd606f8cc537b87bcd1cb816b825b7e9dea1e37f2e5083fa529a66fd2aeefe1cfd681a53a45a4beeaa9df32e7d4c85bbabae0425d007f56e119b6b4982d
   languageName: node
   linkType: hard
 

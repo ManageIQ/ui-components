@@ -34,7 +34,3 @@ jobs:
       run: yarn test:security
     - name: Run build
       run: bin/build
-    - name: Report code coverage
-      if: "${{ github.ref == 'refs/heads/master' }}"
-      continue-on-error: true
-      run: scripts/.coverage.sh

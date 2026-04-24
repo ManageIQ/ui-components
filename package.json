@@ -5,7 +5,7 @@
   "main": "dist/js/ui-components.js",
   "scripts": {
     "start": "yarn run install-vendor && webpack --watch",
-    "test": "yarn run install-vendor && karma start",
+    "test": "yarn run install-vendor && node scripts/run-karma.js",
     "prepublish": "webpack || true",
     "build": "yarn run install-vendor && webpack -p",
     "build-dev": "yarn run install-vendor && webpack",

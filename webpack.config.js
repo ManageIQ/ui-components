@@ -46,6 +46,25 @@ module.exports = (env) => {
       minimize: true,
       drop_console: true,
     }) : undefined,
+    !production && !test ? new BrowserSyncPlugin({
+      host: 'localhost',
+      port: 4000,
+      server: {baseDir: [__dirname + settings.distFolder]},
+      open: true,
+      middleware: [
+        {
+          route: "/data",
+          handle: function (req, res, next) {
+            req.method = 'GET';
+            return next();
+          },
+        },
+      ],
+    }, {
+      use: spa({
+        selector: '[ng-app]',
+      }),
+    }) : undefined,
   ].filter(p => !!p);
 
   return {
@@ -108,28 +127,7 @@ module.exports = (env) => {
         },
       ],
     },
-    plugins: [
-      ...plugins,
-      new BrowserSyncPlugin({
-        host: 'localhost',
-        port: 4000,
-        server: {baseDir: [__dirname + settings.distFolder]},
-        open: !test,
-        middleware: [
-          {
-            route: "/data",
-            handle: function (req, res, next) {
-              req.method = 'GET';
-              return next();
-            },
-          },
-        ],
-      }, {
-        use: spa({
-          selector: '[ng-app]',
-        }),
-      }),
-    ],
+    plugins: plugins,
     externals: {
       'angular': 'angular',
       'lodash': '_',

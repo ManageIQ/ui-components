@@ -2,95 +2,85 @@
 
 // Wrapper script to run Karma with better error handling for AggregateError
 
-// Store the last error object we see
-let lastErrorObject = null;
+// Patch browser-sync's defaultCallback before it's used
+const Module = require('module');
+const originalRequire = Module.prototype.require;
 
-// Patch console.error to capture error objects BEFORE they're logged
-const originalConsoleError = console.error;
-console.error = function(...args) {
-  const firstArg = args[0];
+Module.prototype.require = function(id) {
+  const module = originalRequire.apply(this, arguments);
 
-  // Store any error objects we see
-  if (firstArg instanceof Error) {
-    lastErrorObject = firstArg;
-  }
+  // Patch browser-sync utils
+  if (id.includes('browser-sync') && id.includes('utils')) {
+    const originalDefaultCallback = module.defaultCallback;
 
-  // Check for AggregateError string (which is err.message from browser-sync)
-  if (firstArg === 'AggregateError' || (typeof firstArg === 'string' && firstArg.includes('AggregateError'))) {
-    originalConsoleError('\n========================================');
-    originalConsoleError('=== AggregateError Detected ===');
-    originalConsoleError('========================================');
+    module.defaultCallback = function(err) {
+      if (err) {
+        console.error('\n========================================');
+        console.error('=== Error in browser-sync ===');
+        console.error('========================================');
+        console.error('Error type:', err.constructor ? err.constructor.name : typeof err);
+        console.error('Error message:', err.message);
 
-    // Check if we have the actual error object
-    if (lastErrorObject) {
-      originalConsoleError('Captured error object:');
-      originalConsoleError('- Type:', lastErrorObject.constructor.name);
-      originalConsoleError('- Message:', lastErrorObject.message);
+        if (err.stack) {
+          console.error('\nStack trace:');
+          console.error(err.stack);
+        }
 
-      if (lastErrorObject.stack) {
-        originalConsoleError('\nStack trace:');
-        originalConsoleError(lastErrorObject.stack);
-      }
+        // Check for AggregateError
+        if (err.errors && Array.isArray(err.errors)) {
+          console.error('\n========================================');
+          console.error('=== Aggregated Errors (' + err.errors.length + ' total) ===');
+          console.error('========================================');
+          err.errors.forEach((e, i) => {
+            console.error(`\n--- Error ${i + 1} of ${err.errors.length} ---`);
+            console.error('Type:', e.constructor ? e.constructor.name : typeof e);
+            console.error('Message:', e.message || e.toString());
+            if (e.code) {
+              console.error('Code:', e.code);
+            }
+            if (e.syscall) {
+              console.error('Syscall:', e.syscall);
+            }
+            if (e.errno) {
+              console.error('Errno:', e.errno);
+            }
+            if (e.path) {
+              console.error('Path:', e.path);
+            }
+            if (e.address) {
+              console.error('Address:', e.address);
+            }
+            if (e.port) {
+              console.error('Port:', e.port);
+            }
+            if (e.stack) {
+              console.error('\nStack trace:');
+              console.error(e.stack);
+            }
+          });
+          console.error('\n========================================');
+        }
 
-      // Check for aggregated errors
-      if (lastErrorObject.errors && Array.isArray(lastErrorObject.errors)) {
-        originalConsoleError('\n========================================');
-        originalConsoleError('=== Aggregated Errors (' + lastErrorObject.errors.length + ' total) ===');
-        originalConsoleError('========================================');
-        lastErrorObject.errors.forEach((e, i) => {
-          originalConsoleError(`\n--- Error ${i + 1} of ${lastErrorObject.errors.length} ---`);
-          originalConsoleError('Type:', e.constructor ? e.constructor.name : typeof e);
-          originalConsoleError('Message:', e.message || e.toString());
-          if (e.code) {
-            originalConsoleError('Code:', e.code);
-          }
-          if (e.syscall) {
-            originalConsoleError('Syscall:', e.syscall);
-          }
-          if (e.errno) {
-            originalConsoleError('Errno:', e.errno);
-          }
-          if (e.path) {
-            originalConsoleError('Path:', e.path);
-          }
-          if (e.address) {
-            originalConsoleError('Address:', e.address);
-          }
-          if (e.port) {
-            originalConsoleError('Port:', e.port);
-          }
-          if (e.stack) {
-            originalConsoleError('\nStack trace:');
-            originalConsoleError(e.stack);
+        // Show all error properties
+        console.error('\nAll error properties:');
+        Object.keys(err).forEach(key => {
+          if (key !== 'stack' && key !== 'errors' && key !== 'message') {
+            console.error(`- ${key}:`, err[key]);
           }
         });
-        originalConsoleError('\n========================================');
+        console.error('========================================\n');
       }
 
-      // Show all properties of the error
-      originalConsoleError('\nAll error properties:');
-      Object.keys(lastErrorObject).forEach(key => {
-        if (key !== 'stack' && key !== 'errors') {
-          originalConsoleError(`- ${key}:`, lastErrorObject[key]);
-        }
-      });
-    } else {
-      originalConsoleError('No error object was captured before this message.');
-      originalConsoleError('The error was logged as a string only.');
-    }
-
-    originalConsoleError('\nCall stack where console.error was invoked:');
-    const stack = new Error().stack;
-    originalConsoleError(stack);
-    originalConsoleError('========================================\n');
+      // Call original
+      return originalDefaultCallback.call(this, err);
+    };
   }
 
-  return originalConsoleError.apply(console, args);
+  return module;
 };
 
 // Set up global error handlers
 process.on('unhandledRejection', (error, promise) => {
-  lastErrorObject = error;
   console.error('\n========================================');
   console.error('=== Unhandled Promise Rejection ===');
   console.error('========================================');
@@ -127,7 +117,6 @@ process.on('unhandledRejection', (error, promise) => {
 });
 
 process.on('uncaughtException', (error, origin) => {
-  lastErrorObject = error;
   console.error('\n========================================');
   console.error('=== Uncaught Exception ===');
   console.error('========================================');
@@ -176,13 +165,7 @@ const server = new Server({
   singleRun: true
 }, (exitCode) => {
   if (exitCode !== 0) {
-    console.log('\n========================================');
-    console.log('Karma exited with code:', exitCode);
-    if (lastErrorObject) {
-      console.log('\nLast error object captured:');
-      console.log(lastErrorObject);
-    }
-    console.log('========================================\n');
+    console.log('\nKarma exited with code:', exitCode);
   }
   process.exit(exitCode);
 });

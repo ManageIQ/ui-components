@@ -80,23 +80,13 @@ console.error = function(...args) {
     }
 
     originalConsoleError('\nCall stack where console.error was invoked:');
-    originalConsoleError(new Error().stack);
+    const stack = new Error().stack;
+    originalConsoleError(stack);
     originalConsoleError('========================================\n');
   }
 
   return originalConsoleError.apply(console, args);
 };
-
-// Patch Error constructor to capture all errors as they're created
-const OriginalError = global.Error;
-global.Error = function(...args) {
-  const err = new OriginalError(...args);
-  if (err.message && err.message.includes('AggregateError')) {
-    lastErrorObject = err;
-  }
-  return err;
-};
-global.Error.prototype = OriginalError.prototype;
 
 // Set up global error handlers
 process.on('unhandledRejection', (error, promise) => {

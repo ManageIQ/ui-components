@@ -108,13 +108,15 @@ module.exports = (env) => {
         },
       ],
     },
-    plugins: [
+    plugins: test ? [
+      ...plugins,
+    ] : [
       ...plugins,
       new BrowserSyncPlugin({
         host: 'localhost',
         port: 4000,
         server: {baseDir: [__dirname + settings.distFolder]},
-        open: !test,
+        open: false,
         middleware: [
           {
             route: "/data",

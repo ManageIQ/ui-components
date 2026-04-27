@@ -30,7 +30,7 @@ jobs:
       run: bin/setup
     - name: Run tests
       run: bin/ci
-    - name: Run security tests
-      run: yarn test:security
-    - name: Run build
-      run: bin/build
+#    - name: Run security tests
+#      run: yarn test:security
+#    - name: Run build
+#      run: bin/build

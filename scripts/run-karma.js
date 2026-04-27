@@ -4,17 +4,51 @@
 
 // First, require browser-sync to ensure it's loaded
 try {
-  const browserSync = require('browser-sync');
-  // Try to access the utils module through browser-sync's internals
   const utilsPath = require.resolve('browser-sync/dist/utils');
   const utils = require(utilsPath);
 
-  // Patch defaultCallback
+  // Patch the fail function to see what's being passed
+  const originalFail = utils.fail;
+  utils.fail = function(kill, errMessage, cb) {
+    console.error('\n========================================');
+    console.error('=== browser-sync fail() called ===');
+    console.error('========================================');
+    console.error('kill:', kill);
+    console.error('errMessage type:', typeof errMessage);
+    console.error('errMessage constructor:', errMessage ? errMessage.constructor.name : 'null');
+    console.error('errMessage:', errMessage);
+    console.error('errMessage.message:', errMessage ? errMessage.message : 'N/A');
+    console.error('errMessage.errors:', errMessage ? errMessage.errors : 'N/A');
+
+    if (errMessage && errMessage.errors && Array.isArray(errMessage.errors)) {
+      console.error('\n=== THIS IS AN AGGREGATEERROR ===');
+      console.error('Number of errors:', errMessage.errors.length);
+      errMessage.errors.forEach((e, i) => {
+        console.error(`\n--- Error ${i + 1} ---`);
+        console.error('Type:', e.constructor ? e.constructor.name : typeof e);
+        console.error('Message:', e.message || e.toString());
+        console.error('Code:', e.code);
+        console.error('Syscall:', e.syscall);
+        console.error('Errno:', e.errno);
+        console.error('Path:', e.path);
+        console.error('Address:', e.address);
+        console.error('Port:', e.port);
+        if (e.stack) {
+          console.error('Stack:', e.stack);
+        }
+      });
+    }
+    console.error('========================================\n');
+
+    return originalFail.call(this, kill, errMessage, cb);
+  };
+
+  // Also patch defaultCallback
   const originalDefaultCallback = utils.defaultCallback;
   utils.defaultCallback = function(err) {
     if (err) {
       console.error('\n========================================');
-      console.error('=== Error in browser-sync (PATCHED) ===');
+      console.error('=== defaultCallback called ===');
       console.error('========================================');
       console.error('Error type:', err.constructor ? err.constructor.name : typeof err);
       console.error('Error message:', err.message);
@@ -24,56 +58,30 @@ try {
         console.error(err.stack);
       }
 
-      // Check for AggregateError
       if (err.errors && Array.isArray(err.errors)) {
-        console.error('\n========================================');
-        console.error('=== Aggregated Errors (' + err.errors.length + ' total) ===');
-        console.error('========================================');
+        console.error('\n=== Aggregated Errors (' + err.errors.length + ' total) ===');
         err.errors.forEach((e, i) => {
-          console.error(`\n--- Error ${i + 1} of ${err.errors.length} ---`);
+          console.error(`\n--- Error ${i + 1} ---`);
           console.error('Type:', e.constructor ? e.constructor.name : typeof e);
           console.error('Message:', e.message || e.toString());
-          if (e.code) {
-            console.error('Code:', e.code);
-          }
-          if (e.syscall) {
-            console.error('Syscall:', e.syscall);
-          }
-          if (e.errno) {
-            console.error('Errno:', e.errno);
-          }
-          if (e.path) {
-            console.error('Path:', e.path);
-          }
-          if (e.address) {
-            console.error('Address:', e.address);
-          }
-          if (e.port) {
-            console.error('Port:', e.port);
-          }
+          console.error('Code:', e.code);
+          console.error('Syscall:', e.syscall);
+          console.error('Errno:', e.errno);
+          console.error('Path:', e.path);
+          console.error('Address:', e.address);
+          console.error('Port:', e.port);
           if (e.stack) {
-            console.error('\nStack trace:');
-            console.error(e.stack);
+            console.error('Stack:', e.stack);
           }
         });
-        console.error('\n========================================');
       }
-
-      // Show all error properties
-      console.error('\nAll error properties:');
-      Object.keys(err).forEach(key => {
-        if (key !== 'stack' && key !== 'errors' && key !== 'message') {
-          console.error(`- ${key}:`, err[key]);
-        }
-      });
       console.error('========================================\n');
     }
 
-    // Call original
     return originalDefaultCallback.call(this, err);
   };
 
-  console.log('Successfully patched browser-sync defaultCallback');
+  console.log('Successfully patched browser-sync fail() and defaultCallback()');
 } catch (e) {
   console.log('Could not patch browser-sync:', e.message);
 }
@@ -86,30 +94,14 @@ process.on('unhandledRejection', (error, promise) => {
   console.error('Error type:', error ? error.constructor.name : typeof error);
   console.error('Error:', error);
 
-  if (error) {
-    console.error('\nError properties:');
-    console.error('- message:', error.message);
-    console.error('- name:', error.name);
-
-    if (error.stack) {
-      console.error('\nStack trace:');
-      console.error(error.stack);
-    }
-
-    if (error.errors && Array.isArray(error.errors)) {
-      console.error('\n=== Aggregated Errors (' + error.errors.length + ' total) ===');
-      error.errors.forEach((e, i) => {
-        console.error(`\n--- Error ${i + 1} ---`);
-        console.error('Type:', e.constructor ? e.constructor.name : typeof e);
-        console.error('Message:', e.message || e.toString());
-        console.error('Code:', e.code);
-        console.error('Syscall:', e.syscall);
-        console.error('Errno:', e.errno);
-        if (e.stack) {
-          console.error('Stack:', e.stack);
-        }
-      });
-    }
+  if (error && error.errors && Array.isArray(error.errors)) {
+    console.error('\n=== Aggregated Errors (' + error.errors.length + ' total) ===');
+    error.errors.forEach((e, i) => {
+      console.error(`\n--- Error ${i + 1} ---`);
+      console.error('Message:', e.message || e.toString());
+      console.error('Code:', e.code);
+      console.error('Stack:', e.stack);
+    });
   }
 
   console.error('========================================\n');
@@ -121,32 +113,15 @@ process.on('uncaughtException', (error, origin) => {
   console.error('========================================');
   console.error('Origin:', origin);
   console.error('Error type:', error ? error.constructor.name : typeof error);
-  console.error('Error:', error);
 
-  if (error) {
-    console.error('\nError properties:');
-    console.error('- message:', error.message);
-    console.error('- name:', error.name);
-
-    if (error.stack) {
-      console.error('\nStack trace:');
-      console.error(error.stack);
-    }
-
-    if (error.errors && Array.isArray(error.errors)) {
-      console.error('\n=== Aggregated Errors (' + error.errors.length + ' total) ===');
-      error.errors.forEach((e, i) => {
-        console.error(`\n--- Error ${i + 1} ---`);
-        console.error('Type:', e.constructor ? e.constructor.name : typeof e);
-        console.error('Message:', e.message || e.toString());
-        console.error('Code:', e.code);
-        console.error('Syscall:', e.syscall);
-        console.error('Errno:', e.errno);
-        if (e.stack) {
-          console.error('Stack:', e.stack);
-        }
-      });
-    }
+  if (error && error.errors && Array.isArray(error.errors)) {
+    console.error('\n=== Aggregated Errors (' + error.errors.length + ' total) ===');
+    error.errors.forEach((e, i) => {
+      console.error(`\n--- Error ${i + 1} ---`);
+      console.error('Message:', e.message || e.toString());
+      console.error('Code:', e.code);
+      console.error('Stack:', e.stack);
+    });
   }
 
   console.error('========================================\n');

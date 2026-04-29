@@ -80,8 +80,8 @@ __metadata:
     "@types/angular-mocks": "npm:^1.7.0"
     "@types/angular-ui-router": "npm:^1.1.35"
     "@types/jasmine": "npm:^3.10.18"
-    "@types/lodash": "npm:4.14.168"
-    "@types/node": "npm:16.18.78"
+    "@types/lodash": "npm:4.17.24"
+    "@types/node": "npm:16.18.0"
     "@types/rx": "npm:^2.5.34"
     angular: "npm:^1.8.3"
     angular-animate: "npm:^1.8.3"
@@ -658,10 +658,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:4.14.168":
-  version: 4.14.168
-  resolution: "@types/lodash@npm:4.14.168"
-  checksum: 10/e0723d51e8057a69c8ea4e0a3c7b4d7e10183d2a1e17bc9e43b4f7ce6f140dad7a02fd6d0e486cf661be1fa39f0124f954f892ed00fed63c1d1edc1d9008490b
+"@types/lodash@npm:4.17.24":
+  version: 4.17.24
+  resolution: "@types/lodash@npm:4.17.24"
+  checksum: 10/0f2082565f60f9787eefc046edc38458054512be5a8b3584ef0bad5fd9e85d0ab55ec5a1fbfae1ed6ba015cf1f9e837d5fb4da1f99fc60b8f74b2a46146fb00f
   languageName: node
   linkType: hard
 
@@ -691,10 +691,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:16.18.78":
-  version: 16.18.78
-  resolution: "@types/node@npm:16.18.78"
-  checksum: 10/96f16aa9b01eb8a7212c56b5a6e4941f5c0788c276dda489ed49d0f62153dd284a982aebeb68b6984e15c77edd24cf57010fecb57fe9eb952fabc006ccc3a0d7
+"@types/node@npm:16.18.0":
+  version: 16.18.0
+  resolution: "@types/node@npm:16.18.0"
+  checksum: 10/e7f0f3fad8cc5e2125f8515a51189c1984fd1c1840ce31e297dab7ab101217b4575ae3827a41f8ba7263a701adf0e278df0279279b2ed5d6d87537cdfc143270
   languageName: node
   linkType: hard
 

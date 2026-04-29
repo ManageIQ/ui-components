@@ -32,7 +32,7 @@
     "@types/angular-ui-router": "^1.1.35",
     "@types/jasmine": "^3.10.18",
     "@types/lodash": "4.14.168",
-    "@types/node": "16.18.0",
+    "@types/node": "16.18.126",
     "@types/rx": "^2.5.34",
     "angular": "^1.8.3",
     "angular-animate": "^1.8.3",

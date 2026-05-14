@@ -9,26 +9,12 @@ docker build . -t $image --no-cache
 
 # Extract the package from the image
 container_id=$(docker create $image)
-package=$(docker run --rm -it --entrypoint /bin/bash $image -c "ls -1 manageiq-ui-components-*.tgz" | tr -d '\r')
-docker cp "$container_id:/ui-components/$package" pkg
+package=$(docker run --rm --entrypoint /bin/bash $image -c "cd pkg && ls -1 *.tgz" | tr -d '\r')
+docker cp "$container_id:/ui-components/pkg/$package" pkg
 docker rm "$container_id"
 
 echo
-echo "Package 'pkg/$package' has been built."
+echo "Package '$package' has been built."
 echo
-
-# Optionally publish the image
-read -r -p "Publish the package now? (y/N) " -n 1
+echo "You can publish the package with bin/publish"
 echo
-echo
-if [[ "$REPLY" =~ ^[Yy]$ ]]; then
-    pushd pkg >/dev/null
-    npm login
-    npm publish --access public $package
-    popd >/dev/null
-else
-    echo "You can manually publish the package with:"
-    echo "    cd pkg"
-    echo "    npm login"
-    echo "    npm publish --access public $package"
-fi

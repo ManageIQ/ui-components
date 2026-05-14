@@ -1,13 +1,7 @@
 # Angular UI Components for ManageIQ
 
-[![CI](https://github.com/ManageIQ/ui-components/actions/workflows/ci.yaml/badge.svg?branch=tal)](https://github.com/ManageIQ/ui-components/actions/workflows/ci.yaml)
-[![Coverage Status](https://coveralls.io/repos/github/ManageIQ/ui-components/badge.svg)](https://coveralls.io/github/ManageIQ/ui-components)
+[![CI](https://github.com/ManageIQ/ui-components/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/ManageIQ/ui-components/actions/workflows/ci.yaml)
 [![Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ManageIQ/manageiq/ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-[![score](https://www.bithound.io/github/ManageIQ/ui-components/badges/score.svg)](https://www.bithound.io/github/ManageIQ/ui-components)
-[![dependencies](https://www.bithound.io/github/ManageIQ/ui-components/badges/dependencies.svg)](https://www.bithound.io/github/ManageIQ/ui-components/master/dependencies/npm)
-[![bitHound Dev Dependencies](https://www.bithound.io/github/ManageIQ/ui-components/badges/devDependencies.svg)](https://www.bithound.io/github/ManageIQ/ui-components/master/dependencies/npm)
-[![Known Vulnerabilities](https://snyk.io/test/github/mtho11/ui-components/badge.svg)](https://snyk.io/test/github/mtho11/ui-components)
 
 ## Purpose
 
@@ -47,7 +41,7 @@ For a great overview of using Angular 1.5.x Components please see: [NG-Conf 2016
 
 ## Development Environment
 
-You need to have installed [Node.js >= 20 and npm >= 9](https://docs.npmjs.com/getting-started/installing-node) on your system.
+You need to have installed [Node.js >= 22 and npm >= 9](https://docs.npmjs.com/getting-started/installing-node) on your system.
 It is recommended to use a node version manager such as [n](https://www.npmjs.com/package/n). If you have node installed then it is
 just `yarn global add n` and then `n lts` to use the latest LTS version of node (see the docs for switching versions).
 

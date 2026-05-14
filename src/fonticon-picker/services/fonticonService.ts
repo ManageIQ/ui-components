@@ -24,7 +24,7 @@ export default class FonticonService {
   }
 
   private static clearRule(rule: string, family: string): string {
-    let re = new RegExp(`.*(${family}\-[a-z0-9\-\_]+).*`);
+    let re = new RegExp(`.*(${family}-[a-z0-9_-]+).*`);
     return rule.replace(re, '$1');
   }
 

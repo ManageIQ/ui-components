@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 ul.nav.nav-list.well {
   padding: 0;
 
@@ -72,14 +74,14 @@ table .narrow {
 
   @for $i from 0 through 10 {
     &.fill-#{$i}::before {
-      transform: rotate(#{$i / 20}turn);
+      transform: rotate(#{math.div($i, 20)}turn);
     }
   }
 
   @for $i from 11 through 20 {
     &.fill-#{$i}::before {
       background: $chart-fill;
-      transform: rotate(#{($i - 10) / 20}turn);
+      transform: rotate(#{math.div($i - 10, 20)}turn);
     }
   }
 }

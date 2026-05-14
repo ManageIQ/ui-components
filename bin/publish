@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -e
+
+if [ -z "$1" ]; then
+    echo "ERROR: Must specify a package to publish"
+    exit 1
+fi
+package=$1
+
+pushd pkg >/dev/null
+npm login
+npm publish --access public $package
+popd >/dev/null
+
+echo
+echo "Package '$package' has been published."
+echo

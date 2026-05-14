@@ -89,7 +89,7 @@ __metadata:
     "@types/jasmine": "npm:^3.10.18"
     "@types/lodash": "npm:4.14.182"
     "@types/node": "npm:16.18.78"
-    "@types/rx": "npm:^2.5.34"
+    "@types/rx": "npm:^4.0.0"
     angular: "npm:^1.8.3"
     angular-animate: "npm:^1.8.3"
     angular-bootstrap: "npm:^0.12.2"
@@ -715,10 +715,130 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/rx@npm:^2.5.34":
-  version: 2.5.34
-  resolution: "@types/rx@npm:2.5.34"
-  checksum: 10/0b5ff942d881b03ca68caa7033e8c716df9f78fd4bcbfac4e7a851d92163809eb12d0938a907d92e96f380961a0b51be1a51dfd1721b171aa1170708f9505b6a
+"@types/rx-core-binding@npm:*":
+  version: 4.0.7
+  resolution: "@types/rx-core-binding@npm:4.0.7"
+  dependencies:
+    "@types/rx-core": "npm:*"
+  checksum: 10/06b7842fb36ada23020305166e8dee8fa27af7b5d2c59579847df1dde6aa114c2fb252ba884f80fd4d4a27b2a72a4cd5e5bbe233f0d8d1288037b5b718dd44c4
+  languageName: node
+  linkType: hard
+
+"@types/rx-core@npm:*":
+  version: 4.0.6
+  resolution: "@types/rx-core@npm:4.0.6"
+  checksum: 10/d28a3aae81f027823c2bf1ed6f0ac213a1d0b0ea2be14c278eaf226da801e8b120301a0d04431beda7029bff6dda80581fde2a764080a610868b9be9ef53f8d3
+  languageName: node
+  linkType: hard
+
+"@types/rx-lite-aggregates@npm:*":
+  version: 4.0.6
+  resolution: "@types/rx-lite-aggregates@npm:4.0.6"
+  dependencies:
+    "@types/rx-lite": "npm:*"
+  checksum: 10/af46698d25f8a622a164a7958d1bcfd50df58452aa6640598020368773244700925a59b113781cb3803dd83152debe978338f38af2dd38a285392e28a481865d
+  languageName: node
+  linkType: hard
+
+"@types/rx-lite-async@npm:*":
+  version: 4.0.5
+  resolution: "@types/rx-lite-async@npm:4.0.5"
+  dependencies:
+    "@types/rx-lite": "npm:*"
+  checksum: 10/fb932c8426a644a77f6266cfe7649194a9e01bacc4294167bfcf06c45c7a6da33de14febaa09d129b87b19c940818739a1333a49c7e023c36e2e45b6fb561672
+  languageName: node
+  linkType: hard
+
+"@types/rx-lite-backpressure@npm:*":
+  version: 4.0.5
+  resolution: "@types/rx-lite-backpressure@npm:4.0.5"
+  dependencies:
+    "@types/rx-lite": "npm:*"
+  checksum: 10/899cc1f66e3d7792dd1472173d2d942cc16c77bb5eea7b9a878f83f3cf41cada6cac9ec0152bafb008f48990b945c82f7eb4d79251806f4d15ebbcf3b464aefa
+  languageName: node
+  linkType: hard
+
+"@types/rx-lite-coincidence@npm:*":
+  version: 4.0.6
+  resolution: "@types/rx-lite-coincidence@npm:4.0.6"
+  dependencies:
+    "@types/rx-lite": "npm:*"
+  checksum: 10/eaa6a46d14635a9c67da8c3ee3f265ac80d1b43890429929bf9514c2e26189203e395e9556a95b1ed421bb4afa460ee7d029b88452654eb8bb515223ec7df787
+  languageName: node
+  linkType: hard
+
+"@types/rx-lite-experimental@npm:*":
+  version: 4.0.4
+  resolution: "@types/rx-lite-experimental@npm:4.0.4"
+  dependencies:
+    "@types/rx-lite": "npm:*"
+  checksum: 10/72ca4bb726a8b718cbac6c9233f5cfeece8fedfb4de099e69b8b6606dfb190a31a4fa100d950fc4b4205556303e6b19ef7f7a93eef34ad82718d77c13c904186
+  languageName: node
+  linkType: hard
+
+"@types/rx-lite-joinpatterns@npm:*":
+  version: 4.0.4
+  resolution: "@types/rx-lite-joinpatterns@npm:4.0.4"
+  dependencies:
+    "@types/rx-lite": "npm:*"
+  checksum: 10/c9419c6a6639073448fdfc82d93c9cd4c0779f04747be91a0e702ad3dd28761bdadb02439f044a60f564c6c680eb5df9cc2315a83c3b79b2f2615e2099da6280
+  languageName: node
+  linkType: hard
+
+"@types/rx-lite-testing@npm:*":
+  version: 4.0.4
+  resolution: "@types/rx-lite-testing@npm:4.0.4"
+  dependencies:
+    "@types/rx-lite-virtualtime": "npm:*"
+  checksum: 10/b7f1f4702e3b45fa095a0ead1caf472e8c266a08abb1d05ac5d2ccd756d95720c0a23ace8e7cb2eaf7eed2952a7f7c460c23c29544a49878304dbd733e300168
+  languageName: node
+  linkType: hard
+
+"@types/rx-lite-time@npm:*":
+  version: 4.0.6
+  resolution: "@types/rx-lite-time@npm:4.0.6"
+  dependencies:
+    "@types/rx-lite": "npm:*"
+  checksum: 10/3308a84318f5ee03d7f35c1ec6765ecaa6ce9000653b895f6ad9761219b0e9bd2b4bc7a815bf381339935e9d7de3d3a48b1d52e25d553bdb38ba53c02a11b5ea
+  languageName: node
+  linkType: hard
+
+"@types/rx-lite-virtualtime@npm:*":
+  version: 4.0.6
+  resolution: "@types/rx-lite-virtualtime@npm:4.0.6"
+  dependencies:
+    "@types/rx-lite": "npm:*"
+  checksum: 10/c097656763e6aea356c32864804251b7fe154c1b8ba034246b40b59cd73527357c026545116cfab86bb0763a311e56b4a03380776e5d22fc58b24500a9e75e32
+  languageName: node
+  linkType: hard
+
+"@types/rx-lite@npm:*":
+  version: 4.0.10
+  resolution: "@types/rx-lite@npm:4.0.10"
+  dependencies:
+    "@types/rx-core": "npm:*"
+    "@types/rx-core-binding": "npm:*"
+  checksum: 10/c85f692cf0d8def72c1eb9aaf5ae12a2eaf741f0aca32fab9ba388f45074d6cb00350510b034f8e92bacfbb6655ace00492b5a94e7ce93ee2b979d09392cbb6f
+  languageName: node
+  linkType: hard
+
+"@types/rx@npm:^4.0.0":
+  version: 4.1.4
+  resolution: "@types/rx@npm:4.1.4"
+  dependencies:
+    "@types/rx-core": "npm:*"
+    "@types/rx-core-binding": "npm:*"
+    "@types/rx-lite": "npm:*"
+    "@types/rx-lite-aggregates": "npm:*"
+    "@types/rx-lite-async": "npm:*"
+    "@types/rx-lite-backpressure": "npm:*"
+    "@types/rx-lite-coincidence": "npm:*"
+    "@types/rx-lite-experimental": "npm:*"
+    "@types/rx-lite-joinpatterns": "npm:*"
+    "@types/rx-lite-testing": "npm:*"
+    "@types/rx-lite-time": "npm:*"
+    "@types/rx-lite-virtualtime": "npm:*"
+  checksum: 10/57372683294b5fc5aeafd243da18457cacf1f6b73e08d850798d4d03495691dbbfa7908dade4bca0834762ea9431432f99f03d21e049a11b194c95775d210f7a
   languageName: node
   linkType: hard
 

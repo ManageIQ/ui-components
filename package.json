@@ -33,7 +33,7 @@
     "@types/jasmine": "^3.10.18",
     "@types/lodash": "4.14.182",
     "@types/node": "16.18.78",
-    "@types/rx": "^2.5.34",
+    "@types/rx": "^4.0.0",
     "angular": "^1.8.3",
     "angular-animate": "^1.8.3",
     "angular-bootstrap": "^0.12.2",

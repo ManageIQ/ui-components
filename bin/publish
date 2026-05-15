@@ -8,10 +8,8 @@ if [ -z "$1" ]; then
 fi
 package=$1
 
-pushd pkg >/dev/null
 npm login
 npm publish --access public $package
-popd >/dev/null
 
 echo
 echo "Package '$package' has been published."

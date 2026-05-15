@@ -6,7 +6,7 @@
   "scripts": {
     "start": "yarn run install-vendor && webpack --watch",
     "test": "yarn run install-vendor && karma start",
-    "prepublish": "webpack || true",
+    "prepack": "yarn run build",
     "build": "yarn run install-vendor && webpack -p",
     "build-dev": "yarn run install-vendor && webpack",
     "gettext:extract": "yarn run build && angular-gettext-cli --files './+(src|dist)/**/+(*.html|ui-components.js)' --dest './locale/ui-components.pot' --marker-names '__,N_' --no-line-numbers && yarn run gettext:validate",

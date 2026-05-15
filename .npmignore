@@ -10,26 +10,64 @@ pids
 # Users Environment Variables
 .lock-wscript
 
+# Demo files - not needed in package
+demo/
+
+# Build artifacts not needed in package
 dist/assets/
 dist/data/
 dist/docs/
 dist/**/demo-app.*
+dist/index.html
 .tmp/
 libs/
-node_modules/
-dist/index.html
 tsd/
 typings/
 vendor.js
 vendor.css
 
+# Dependencies
+node_modules/
+
+# OS files
 ._*
 .DS_Store
 
-# idea files
+# IDE files
 .idea/
 *.ipr
 *.iws
 *.iml
 
+# Testing
 coverage
+
+# Development/CI files
+.dockerignore
+.editorconfig
+.eslintrc.json
+.gitattributes
+.gitignore
+.whitesource
+.yarnrc.yml
+.github/
+.yarn/
+Dockerfile
+karma.conf.js
+Rakefile
+renovate.json
+tsconfig.json
+tslint.json
+jsdoc-conf.json
+
+# Build scripts
+bin/
+
+# Source files (only ship dist/)
+src/
+
+# Locale source files (only ship compiled if needed)
+locale/
+
+# Scripts
+scripts/

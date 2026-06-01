@@ -8,7 +8,6 @@ msgstr ""
 msgid "%s is used by another field"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/box/box.html
 msgid "Add Section"
 msgstr ""
@@ -33,7 +32,6 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html
 msgid "Category"
 msgstr ""
@@ -46,7 +44,6 @@ msgstr ""
 msgid "Check Box"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/field/field.html
 #: ./src/dialog-editor/components/modal-field-template/date-control.html
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html
@@ -55,7 +52,6 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/tab-list/tab-list.html
 msgid "Create Tab"
 msgstr ""
@@ -64,7 +60,6 @@ msgstr ""
 msgid "Datepicker"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/field/field.html
 #: ./src/dialog-editor/components/modal-field-template/check-box.html
 #: ./src/dialog-editor/components/modal-field-template/date-control.html
@@ -82,7 +77,6 @@ msgstr ""
 msgid "Descending"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./dist/js/ui-components.js
 #: ./src/dialog-editor/components/modal-box/box.html
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html
@@ -128,7 +122,6 @@ msgstr ""
 msgid "Dialog tab needs to have at least one section"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/box/box.html
 msgid "Drag items here to add to the dialog. At least one item is required before saving"
 msgstr ""
@@ -145,7 +138,6 @@ msgstr ""
 msgid "Duplicate field name found: %s"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field/field.html
 msgid "Dynamic"
 msgstr ""
@@ -174,14 +166,12 @@ msgstr ""
 msgid "Embedded Workflows"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html
 msgid "Entries"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/check-box.html
 #: ./src/dialog-editor/components/modal-field-template/date-control.html
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html
@@ -207,12 +197,10 @@ msgstr ""
 msgid "Fields are being refreshed"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/fields-to-refresh.html
 msgid "Fields to refresh"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field/field.html
 msgid "Help"
 msgstr ""
@@ -228,30 +216,25 @@ msgstr ""
 msgid "Integer"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html
 msgid "Key"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-box/box.html
 #: ./src/dialog-editor/components/modal-field/field.html
 #: ./src/dialog-editor/components/modal-tab/tab.html
 msgid "Label"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/dynamic-values.html
 msgid "Load values on init"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html
 msgid "Multiselect"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field/field.html
 msgid "Name"
 msgstr ""
@@ -268,7 +251,6 @@ msgstr ""
 msgid "New tab"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/check-box.html
 #: ./src/dialog-editor/components/modal-field-template/date-control.html
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html
@@ -295,7 +277,6 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/fields-to-refresh.html
 msgid "Nothing Selected"
 msgstr ""
@@ -312,7 +293,6 @@ msgstr ""
 msgid "Overridable Options"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/text-box.html
 msgid "Protected"
 msgstr ""
@@ -321,7 +301,6 @@ msgstr ""
 msgid "Radio Button"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/check-box.html
 #: ./src/dialog-editor/components/modal-field-template/date-control.html
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html
@@ -333,21 +312,14 @@ msgstr ""
 msgid "Read only"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field/field.html
 msgid "Reconfigurable"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-user/components/dialog-user/dialogField.html
 msgid "Refresh field"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
-msgid "Regular Expression' }}\\\"\\n     tooltip-placement=\\\"auto\\\">\\n  &lt;/i>\\n  &lt;input id=\\\"validator_rule\\\" name=\\\"validator_rule\\\"\\n         ng-model=\\\"$ctrl.modalData.validator_rule\\\" />\\n&lt;/div>\\n&lt;div ng-if=\\\"$ctrl.modalData.validator_type === 'regex'\\\"\\n     pf-form-group pf-label=\\\"{{'Validation Message"
-msgstr ""
-
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/check-box.html
 #: ./src/dialog-editor/components/modal-field-template/date-control.html
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html
@@ -381,32 +353,27 @@ msgstr ""
 msgid "Select an icon"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/date-control.html
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html
 msgid "Show Past Dates"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/date-control.html
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html
 #: ./src/dialog-editor/components/modal-field-template/dynamic-values.html
 msgid "Show Refresh Button"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html
 msgid "Single value"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html
 msgid "Sort by"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html
@@ -476,7 +443,6 @@ msgstr ""
 msgid "Unnamed Tab"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/validation/validation.html
 msgid "Validation"
 msgstr ""
@@ -489,19 +455,16 @@ msgstr ""
 msgid "Validation expression (%s) is not supported in this version of your browser: %s"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/validation/validation.html
 msgid "Validator"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html
 msgid "Value"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html
@@ -513,7 +476,6 @@ msgstr ""
 msgid "Value type is set as Integer, but the value entered is not a number"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/check-box.html
 #: ./src/dialog-editor/components/modal-field-template/date-control.html
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html
@@ -525,7 +487,6 @@ msgstr ""
 msgid "Visible"
 msgstr ""
 
-#: ./dist/docs/ui-components.js.html
 #: ./src/dialog-editor/components/modal-field-template/check-box.html
 #: ./src/dialog-editor/components/modal-field-template/date-control.html
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html

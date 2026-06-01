@@ -1,0 +1,55 @@
+name: Locale Update
+on:
+  schedule:
+  - cron: '0 0 8,22 * *'
+  workflow_dispatch:
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  locale_update:
+    if: github.repository_owner == 'ManageIQ'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+    - name: Set up system
+      run: bin/before_install
+    - name: Set up Node
+      uses: actions/setup-node@v6
+      with:
+        node-version-file: package.json
+        cache: yarn
+        registry-url: https://npm.manageiq.org/
+    - name: Install dependencies
+      run: yarn install
+    - name: Extract translations
+      run: yarn gettext:extract
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v8
+      with:
+        add-paths: |
+          locale/ui-components.pot
+        commit-message: Update English Translations
+        branch: update_english_translations
+        author: ManageIQ Bot <bot@manageiq.org>
+        committer: ManageIQ Bot <bot@manageiq.org>
+        delete-branch: true
+        assignees: jrafanie
+        labels: internationalization
+        push-to-fork: miq-bot/ui-components
+        title: Update English Translations
+        body: Update the English Translations in the ui-components.pot file.
+        token: "${{ secrets.PR_TOKEN }}"
+  on_failure:
+    needs: locale_update
+    if: always() && github.repository_owner == 'ManageIQ' && needs.locale_update.result != 'success'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Notify on failure
+      uses: slackapi/slack-github-action@v3
+      with:
+        webhook: "${{ secrets.GHA_STATUS_SLACK_WEBHOOK_URL }}"
+        webhook-type: incoming-webhook
+        payload: 'text: ":red_circle: *GitHub Actions workflow ${{ needs.locale_update.result }}*\n${{ github.workflow_ref }}\n${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"'

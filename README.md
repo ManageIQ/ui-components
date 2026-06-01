@@ -94,6 +94,20 @@ yarn build-docs
 ```
 This will generate docs from JS docs and after running `yarn start` this documentation will be available on `localhost:4000/docs`
 
+#### Translations
+
+Translation strings are automatically extracted from the codebase and stored in `locale/ui-components.pot`. This process is automated via GitHub Actions:
+
+- **Automated Updates**: The [Locale Update workflow](.github/workflows/locale_update.yaml) runs twice per month (see cron schedule in workflow file)
+- **Manual Trigger**: Can be triggered manually via GitHub Actions UI
+- **Process**: Runs `yarn gettext:extract` and creates a PR with any changes to `locale/ui-components.pot`
+- **Integration**: ManageIQ's locale workflow pulls this pot file and merges it into the main `manageiq.pot`
+
+To manually extract translations locally:
+```
+yarn gettext:extract
+```
+
 #### Building a release
 
 In order to build a release you must first update the version number in the `package.json`.

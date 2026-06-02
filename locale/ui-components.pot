@@ -244,11 +244,7 @@ msgid "New Section"
 msgstr ""
 
 #: ./dist/js/ui-components.js
-msgid "New section"
-msgstr ""
-
-#: ./dist/js/ui-components.js
-msgid "New tab"
+msgid "New Tab"
 msgstr ""
 
 #: ./src/dialog-editor/components/modal-field-template/check-box.html

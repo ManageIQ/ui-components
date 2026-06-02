@@ -60,13 +60,13 @@ class TabListController {
     let nextIndex = this.tabList.length;
     this.tabList.push(
       {
-        description: __('New tab ') + nextIndex,
+        description: __('New Tab ') + nextIndex,
         display: 'edit',
-        label: __('New tab ') + nextIndex,
+        label: __('New Tab ') + nextIndex,
         position: nextIndex,
         active: true,
         dialog_groups: [{
-          'label': __('New section'),
+          'label': __('New Section'),
           'position': 0,
           'dialog_fields': [],
         }],

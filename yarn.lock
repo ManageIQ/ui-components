@@ -182,7 +182,7 @@ __metadata:
     bootstrap-switch: "npm:^3.3.4"
     browser-sync: "npm:^3.0.0"
     browser-sync-spa: "npm:^1.0.3"
-    browser-sync-webpack-plugin: "npm:^1.1.3"
+    browser-sync-webpack-plugin: "npm:^2.0.0"
     copy-webpack-plugin: "npm:^4.6.0"
     css-loader: "npm:^0.28.11"
     eonasdan-bootstrap-datetimepicker: "npm:^4.17.43"
@@ -2027,15 +2027,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browser-sync-webpack-plugin@npm:^1.1.3":
-  version: 1.2.0
-  resolution: "browser-sync-webpack-plugin@npm:1.2.0"
+"browser-sync-webpack-plugin@npm:^2.0.0":
+  version: 2.4.0
+  resolution: "browser-sync-webpack-plugin@npm:2.4.0"
   dependencies:
     lodash: "npm:^4"
   peerDependencies:
-    browser-sync: ^2
-    webpack: ^1 || ^2 || ^3
-  checksum: 10/cba0b9aa0f2f57a28b6585ebcf495a93eae3343b308c9950369ea702bc7d8f03f67babfb90cb184ac194414140ee5159b42473d0138e84516ad7db268038bc25
+    browser-sync: ^2 || ^3
+    webpack: ^1 || ^2 || ^3 || ^4 || ^5
+  checksum: 10/565c5e25654c03d7243e9e7aba877dcc4e86d3b7e6edeac119337cd068e77b7886a549ba46f6ab4aae9b27ac2ba7211c8232513d363d131a95d366b6dda4a297
   languageName: node
   linkType: hard
 

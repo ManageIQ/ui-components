@@ -52,7 +52,7 @@
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^0.28.11",
     "eonasdan-bootstrap-datetimepicker": "^4.17.43",
-    "eslint": "~3.19.0",
+    "eslint": "~10.6.0",
     "expose-loader": "^0.7.1",
     "extract-text-webpack-plugin": "^2.0.0-beta.5",
     "file-loader": "^0.11.0",

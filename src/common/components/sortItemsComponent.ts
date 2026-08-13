@@ -13,7 +13,7 @@ export class SortItemsController {
   public dropdownClass: any[];
   public onSort: (args: {sortObject: any, isAscending: boolean}) => void;
 
-  /* @ngInject */
+  public static $inject = ['$element', '$timeout'];
   constructor(private $element: any, private $timeout: any) {
     this.initOptions();
   }

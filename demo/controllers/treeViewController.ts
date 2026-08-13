@@ -12,7 +12,7 @@ export default class TreeViewController {
   public data = require('../data/tree.json');
   public selectNode;
 
-  /*@ngInject*/
+  public static $inject = ['$scope', '$timeout', '$window'];
   constructor(private $scope : ng.IScope, private $timeout : ng.ITimeoutService, private $window : ng.IWindowService) {
   };
 

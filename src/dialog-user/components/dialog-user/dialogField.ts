@@ -22,7 +22,7 @@ export class DialogFieldController {
   public clonedDialogField: any;
   public areFieldsBeingRefreshed: boolean;
 
-  /* @ngInject */
+  public static $inject = ['DialogData'];
   constructor(DialogData: any) {
     this.service = DialogData;
   }

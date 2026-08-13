@@ -16,7 +16,7 @@ export class TreeViewController {
   public lazyLoad: (args: {node: any}) => Promise<any>;
   public errorHandlers: any;
 
-  /*@ngInject*/
+  public static $inject = ['$element', '$timeout'];
   constructor(private $element : ng.IRootElementService, private $timeout : ng.ITimeoutService) {
     this.errorHandlers = this.errorHandlers || {};
   }

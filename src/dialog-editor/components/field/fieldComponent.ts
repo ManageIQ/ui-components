@@ -13,7 +13,7 @@ class FieldController {
   public fieldData: any;
   public boxPosition: any;
 
-  /*@ngInject*/
+  public static $inject = ['DialogEditor', 'DialogData'];
   constructor(private DialogEditor: any, private DialogData: any) {
   }
 

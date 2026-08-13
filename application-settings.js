@@ -1,4 +1,7 @@
-"use strict";
+'use strict';
+/* eslint-env node */
+const path = require('path');
+
 module.exports = {
   stylesFolder: '/styles',
   sourceFolder: '/src',
@@ -20,28 +23,28 @@ module.exports = {
     return this.stylesheetFolder + '/[name]' + '.css';
   },
   get indexLocation() {
-    return __dirname + '/demo/index.html';
+    return path.join(__dirname, '/demo/index.html');
   },
-  isMinified: function (production) {
-    return (!production ? '.js' : '.min.js');
+  isMinified: function(production) {
+    return (! production ? '.js' : '.min.js');
   },
   get sassRootFolder() {
     return '.' + this.sourceFolder + this.stylesFolder;
   },
   get sassEntryPoint() {
-    return this.sassRootFolder + '/' + this.appName + '.scss'
+    return this.sassRootFolder + '/' + this.appName + '.scss';
   },
   get tsEntryPoint() {
-    return '.' + this.sourceFolder + '/index.ts'
+    return '.' + this.sourceFolder + '/index.ts';
   },
   get tsModules() {
-    let availableObjects = [];
+    const availableObjects = [];
     Object.keys(this.modules).forEach(key => {
       availableObjects.push('.' + this.sourceFolder + this.modules[key]);
     });
     return availableObjects;
   },
   get outputFolder() {
-    return __dirname + this.distFolder
-  }
+    return path.join(__dirname, this.distFolder);
+  },
 };

@@ -2,10 +2,10 @@ import AvailableComponentsService from './../services/availableComponentsService
 import * as angular from 'angular';
 
 export default (module: angular.IModule) => {
-  /* @ngInject */
-  module.config(($stateProvider: any,
-                 $urlRouterProvider: any,
-                 $locationProvider: any) => {
+  module.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
+    function($stateProvider: any,
+             $urlRouterProvider: any,
+             $locationProvider: any) {
     // Configure location provider for hash-based routing
     $locationProvider.hashPrefix('');
 
@@ -25,5 +25,5 @@ export default (module: angular.IModule) => {
       url: '/',
       template: require('./main.html')
     });
-  });
+  }]);
 };

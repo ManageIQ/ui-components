@@ -13,7 +13,7 @@ export default class TreeSelectorController {
   public node;
   public data = require('../data/tree.json');
 
-  /*@ngInject*/
+  public static $inject = ['$timeout'];
   constructor(private $timeout : ng.ITimeoutService) {}
 
   public toggleTree() {

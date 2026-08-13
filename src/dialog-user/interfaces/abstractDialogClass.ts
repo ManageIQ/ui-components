@@ -11,7 +11,6 @@ export abstract class DialogClass implements IDialogs {
   public onUpdate: any;
   public inputDisabled: boolean;
 
-    /*@ngInject*/
   constructor() {
     return;
   }

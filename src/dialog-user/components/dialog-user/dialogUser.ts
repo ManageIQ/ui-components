@@ -27,7 +27,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
    * @param {Object} DialogData factory.
    */
 
-  /* @ngInject */
+  public static $inject = ['DialogData', '$q'];
   constructor(private DialogData, private $q) {
     super();
   }

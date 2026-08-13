@@ -13,7 +13,7 @@ class TabListController {
   public sortableOptions: any;
   public setupModalOptions: any;
 
-  /*@ngInject*/
+  public static $inject = ['DialogEditor'];
   constructor(private DialogEditor: any) {
   }
 

@@ -4,7 +4,7 @@ export class ModalController {
   private uibModalInstance: any;
   private saveModal: any;
 
-  /*@ngInject*/
+  public static $inject = ['DialogEditor'];
   constructor(private DialogEditor: any) {
   }
 

@@ -12,7 +12,7 @@ export default class DialogEditorController {
   public modalOptions: any;
   public elementInfo: any;
 
-  /* @ngInject */
+  public static $inject = ['DialogEditor'];
   constructor(private DialogEditor: DialogEditorService) {
     this.init({
       'content': [{

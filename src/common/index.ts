@@ -5,13 +5,12 @@ import * as angular from 'angular';
 
 module common {
   export const app: ng.IModule = angular.module('miqStaticAssets.common', []);
-  /*@ngInject*/
-  app.config(($windowProvider: any) => {
+  app.config(['$windowProvider', function($windowProvider: any) {
     let windowService = $windowProvider.$get();
     if (!windowService.hasOwnProperty('__')) {
-      windowService.__ = translateString => translateString;
+      windowService.__ = (translateString: any) => translateString;
     }
-  });
+  }]);
   services(app);
   filters(app);
   components(app);

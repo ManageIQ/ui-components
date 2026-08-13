@@ -1,5 +1,5 @@
 export default class TranslateService {
-  /*@ngInject*/
+  public static $inject = ['$window'];
   constructor(private $window: any) {}
 
   public translateString(stringToTranslate) {

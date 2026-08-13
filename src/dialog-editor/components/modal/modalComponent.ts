@@ -19,7 +19,7 @@ class ModalController {
   public elementInfo: any;
   private uibModalInstance;
 
-  /*@ngInject*/
+  public static $inject = ['$uibModal', 'DialogEditorHttp', 'DialogEditor'];
   constructor(private $uibModal: any,
               private DialogEditorHttp: any,
               private DialogEditor: any) {

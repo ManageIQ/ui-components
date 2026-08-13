@@ -10,7 +10,7 @@ export class FonticonPickerController {
   public iconChanged: (args: {selected: any}) => void; // TODO: this can be deleted after the form is angularized
   private modal;
 
-  /*@ngInject*/
+  public static $inject = ['MiQFonticonService', '$uibModal'];
   constructor(private MiQFonticonService: FonticonService, private $uibModal) {}
 
   public addFamily(font) {

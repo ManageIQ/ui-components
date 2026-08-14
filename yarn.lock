@@ -7070,14 +7070,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:3.x, lodash@npm:^3.10.1, lodash@npm:^3.8.0":
-  version: 3.10.1
-  resolution: "lodash@npm:3.10.1"
-  checksum: 10/3fa24526ced39885889d5609239d14c4145b3736f103fcdde247524203bfeb38e641653df7bdcc172b316a9775ca32787dda09430872ce906f017a699c92fad8
-  languageName: node
-  linkType: hard
-
-"lodash@npm:^4, lodash@npm:^4.0.0, lodash@npm:^4.17.0, lodash@npm:^4.17.10, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.19, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.17.3, lodash@npm:^4.17.5, lodash@npm:^4.3.0, lodash@npm:~4.18.0":
+"lodash@npm:~4.18.0":
   version: 4.18.1
   resolution: "lodash@npm:4.18.1"
   checksum: 10/306fea53dfd39dad1f03d45ba654a2405aebd35797b673077f401edb7df2543623dc44b9effbb98f69b32152295fff725a4cec99c684098947430600c6af0c3f

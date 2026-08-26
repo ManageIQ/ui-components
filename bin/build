@@ -16,5 +16,6 @@ docker rm "$container_id"
 echo
 echo "Package '$package' has been built."
 echo
-echo "You can publish the package with bin/publish"
+echo "You can publish the package with"
+echo "  bin/publish pkg/$package"
 echo

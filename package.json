@@ -44,7 +44,7 @@
     "babel-eslint": "^10.0.0",
     "bootstrap-combobox": "^1.0.2",
     "bootstrap-datepicker": "^1.6.4",
-    "bootstrap-select": "~1.12.1",
+    "bootstrap-select": "~1.13.6",
     "bootstrap-switch": "^3.3.4",
     "browser-sync": "^3.0.0",
     "browser-sync-spa": "^1.0.3",

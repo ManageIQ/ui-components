@@ -162,7 +162,7 @@ __metadata:
     "@types/angular-mocks": "npm:^1.7.0"
     "@types/angular-ui-router": "npm:^1.1.35"
     "@types/jasmine": "npm:^3.10.18"
-    "@types/lodash": "npm:4.14.182"
+    "@types/lodash": "npm:4.17.25"
     "@types/node": "npm:16.18.78"
     "@types/rx": "npm:^4.0.0"
     angular: "npm:^1.8.3"
@@ -709,10 +709,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:4.14.182":
-  version: 4.14.182
-  resolution: "@types/lodash@npm:4.14.182"
-  checksum: 10/6c0d3fa682331d7631676817acf4b8b74842a9df0fb63dacbbc6a31b94e266edca550ac096cec8ce95df4fc72cf550a6321322e27872d4dfa15c1003197f6c85
+"@types/lodash@npm:4.17.25":
+  version: 4.17.25
+  resolution: "@types/lodash@npm:4.17.25"
+  checksum: 10/f786e05664439cc8d327fd97c62c060d81b3c4ed52127d01fbc926139e1a669c1554bf3cd0dbb43f8fcc7d9b5c6c23c543cc36de8dc815c9f289ea852b26ebd6
   languageName: node
   linkType: hard
 

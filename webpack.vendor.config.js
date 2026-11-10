@@ -21,6 +21,13 @@ module.exports = {
     vendor: ['./src/vendor.ts', settings.sassRootFolder + '/vendor.scss']
   },
   plugins: plugins,
+  resolve: {
+    alias: {
+      // @brickhouse-tech/angular-lts (aliased as "angular") bundles these AngularJS modules
+      'angular-animate$': path.resolve(__dirname, 'node_modules/angular/angular-animate.js'),
+      'angular-sanitize$': path.resolve(__dirname, 'node_modules/angular/angular-sanitize.js')
+    }
+  },
   module: {
     rules: [
       {enforce: 'pre', test: /\.ts?$/, loader: 'tslint-loader', exclude: /(node_modules|libs)/},

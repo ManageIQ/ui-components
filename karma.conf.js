@@ -15,7 +15,7 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
 
     // list of files / patterns to load in the browser
-    files: [vendor, 'node_modules/angular-mocks/angular-mocks.js', applicationFile, fileGlob, jsonGlob],
+    files: [vendor, 'node_modules/angular/angular-mocks.js', applicationFile, fileGlob, jsonGlob],
 
     // list of files to exclude
     exclude: [

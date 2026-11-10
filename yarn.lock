@@ -160,7 +160,6 @@ __metadata:
   dependencies:
     "@manageiq/font-fabulous": "npm:^1.0.0"
     "@types/angular-mocks": "npm:^1.7.0"
-    "@types/angular-ui-router": "npm:^1.1.35"
     "@types/jasmine": "npm:^3.10.18"
     "@types/lodash": "npm:4.14.182"
     "@types/node": "npm:16.18.78"
@@ -372,15 +371,6 @@ __metadata:
   dependencies:
     "@types/angular": "npm:*"
   checksum: 10/a2ed5e517348bccc546df860f1bba456883868ca58cbff4a114a46ade405865c43d80c005653756866b372ed18ab96ea3cf81814f70098d564b7399930fd9fdc
-  languageName: node
-  linkType: hard
-
-"@types/angular-ui-router@npm:^1.1.35":
-  version: 1.1.44
-  resolution: "@types/angular-ui-router@npm:1.1.44"
-  dependencies:
-    "@types/angular": "npm:*"
-  checksum: 10/09f533163402b17cabfbafa7985008acc6d495328463f7f71d5216d317f720b987ec66464ba78d8e57bc6c1b032bcffcc9c702e9b5e383d5944d96483154bfd3
   languageName: node
   linkType: hard
 

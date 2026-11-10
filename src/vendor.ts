@@ -7,7 +7,7 @@ import 'bootstrap-switch';
 import 'angular';
 import 'angular-animate';
 import 'angular-sanitize';
-import 'ui-router';
+import '@uirouter/angularjs';
 import 'angular-patternfly';
 import 'angular-ui-sortable';
 import 'angular-dragdrop';

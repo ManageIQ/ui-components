@@ -165,6 +165,7 @@ __metadata:
     "@types/lodash": "npm:4.14.182"
     "@types/node": "npm:16.18.78"
     "@types/rx": "npm:^4.0.0"
+    "@uirouter/angularjs": "npm:~1.0.30"
     angular: "npm:@brickhouse-tech/angular-lts@^1.10.4"
     angular-animate: "npm:@brickhouse-tech/angular-lts@^1.10.4"
     angular-bootstrap: "npm:^0.12.2"
@@ -219,7 +220,6 @@ __metadata:
     tslint: "npm:4.5.1"
     tslint-loader: "npm:3.5.4"
     typescript: "npm:~3.9.10"
-    ui-router: "npm:^1.0.0-alpha0"
     url-loader: "npm:^0.6.0"
     webpack: "npm:3.12.0"
   languageName: unknown
@@ -890,6 +890,24 @@ __metadata:
   dependencies:
     "@types/node": "npm:*"
   checksum: 10/1ce05e3174dcacf28dae0e9b854ef1c9a12da44c7ed73617ab6897c5cbe4fccbb155a20be5508ae9a7dde2f83bd80f5cf3baa386b934fc4b40889ec963e94f3a
+  languageName: node
+  linkType: hard
+
+"@uirouter/angularjs@npm:~1.0.30":
+  version: 1.0.30
+  resolution: "@uirouter/angularjs@npm:1.0.30"
+  dependencies:
+    "@uirouter/core": "npm:6.0.8"
+  peerDependencies:
+    angular: ">=1.2.0"
+  checksum: 10/5b4cc1b84aa42b3aca18562a9d565dc19bf11fab948bd561e05df211bcb6b7d2ad8e51c372a8d0c4be6100b6899a9575ae14a8a01517798dce71f05501300803
+  languageName: node
+  linkType: hard
+
+"@uirouter/core@npm:6.0.8":
+  version: 6.0.8
+  resolution: "@uirouter/core@npm:6.0.8"
+  checksum: 10/ebcb1d9ae7127c63e151b82b1318f2e69fb5af5285acc7b66ffe6aaed0798ef4f1d1800eee0aa5012cee309b2c77d921f9120119a9d03cffa3460b723686694e
   languageName: node
   linkType: hard
 
@@ -11262,15 +11280,6 @@ __metadata:
   peerDependencies:
     webpack: ^1.9 || ^2 || ^2.1.0-beta || ^2.2.0-rc || ^3.0.0
   checksum: 10/e13492a8dc005b02f9e26a17d427f046fe284982e9ebe83b40ae7b51ac0ebe925c63bb6ed13cec3979ee3d7c924d1ba69661ecf46a61d41061674e502ffdd6d8
-  languageName: node
-  linkType: hard
-
-"ui-router@npm:^1.0.0-alpha0":
-  version: 1.0.0-alpha0
-  resolution: "ui-router@npm:1.0.0-alpha0"
-  dependencies:
-    angular: "npm:^1.2"
-  checksum: 10/769b571f2334d8b4dd74e4029c54483cdeb2c96461dcf40d49e591e07813fcd9f1a2100e116794a7c8738f2c6e6f6625c532d82f16b51b5369033230ebd078db
   languageName: node
   linkType: hard
 

@@ -34,6 +34,7 @@
     "@types/lodash": "4.14.182",
     "@types/node": "16.18.78",
     "@types/rx": "^4.0.0",
+    "@uirouter/angularjs": "~1.0.30",
     "angular": "npm:@brickhouse-tech/angular-lts@^1.10.4",
     "angular-animate": "npm:@brickhouse-tech/angular-lts@^1.10.4",
     "angular-bootstrap": "^0.12.2",
@@ -82,7 +83,6 @@
     "tslint": "4.5.1",
     "tslint-loader": "3.5.4",
     "typescript": "~3.9.10",
-    "ui-router": "^1.0.0-alpha0",
     "url-loader": "^0.6.0",
     "webpack": "3.12.0"
   },

@@ -107,7 +107,7 @@ module.exports = (env) => {
           test: /\.ts$/,
           exclude: /(node_modules|libs)/,
           loader: 'ts-loader',
-          options: {transpileOnly: true, compilerOptions: {removeComments: false}},
+          options: {transpileOnly: true},
         },
         {
           test: /\.html$/,

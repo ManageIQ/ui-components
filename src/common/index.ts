@@ -8,7 +8,7 @@ module common {
   app.config(['$windowProvider', function($windowProvider: any) {
     let windowService = $windowProvider.$get();
     if (!windowService.hasOwnProperty('__')) {
-      windowService.__ = (translateString: any) => translateString;
+      windowService.__ = translateString => translateString;
     }
   }]);
   services(app);

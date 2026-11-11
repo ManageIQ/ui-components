@@ -5,7 +5,6 @@ const fileGlob = 'src/**/*.spec.[jt]s';
 const vendor = 'dist/js/vendor.js';
 const applicationFile = 'dist/js/ui-components.js';
 const jsonGlob = {pattern: 'src/**/*.json', watched: true, served: true, included: false};
-
 module.exports = function(config) {
   config.set({
 
@@ -23,10 +22,12 @@ module.exports = function(config) {
     exclude: [
     ],
     client: {
-      captureConsole: true,
+      captureConsole: true
     },
 
     // test results reporter to use
+    // possible values: 'dots', 'progress'
+    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['progress', 'coverage'],
 
     // web server port
@@ -38,31 +39,34 @@ module.exports = function(config) {
     },
     webpack: webpackConfig({test: true}),
 
-    // enable / disable colors in the output (reporters and logs)
+    // enable / disable colors in the output (reporters addnd logs)
     colors: true,
 
     // level of logging
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_WARN,
 
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: false,
 
     // start these browsers
+    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['jsdom'],
 
     // Continuous Integration mode
+    // if true, Karma captures browsers, runs the tests and exits
     singleRun: true,
-    coverageReporter: {
-      type: 'lcov',
-      dir: 'coverage/',
-      subdir: '.',
+    coverageReporter : {
+      type : 'lcov',
+      dir : 'coverage/',
+      subdir: '.'
     },
 
     mime: {
-      'text/x-typescript': ['ts', 'tsx'],
+      'text/x-typescript': ['ts','tsx']
     },
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity,
-  });
+    concurrency: Infinity
+  })
 };

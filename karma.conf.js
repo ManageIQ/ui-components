@@ -6,10 +6,6 @@ const vendor = 'dist/js/vendor.js';
 const applicationFile = 'dist/js/ui-components.js';
 const jsonGlob = {pattern: 'src/**/*.json', watched: true, served: true, included: false};
 
-const testWebpackConfig = webpackConfig({test: true});
-// Remove devServer from the test webpack config — not needed for karma
-delete testWebpackConfig.devServer;
-
 module.exports = function(config) {
   config.set({
 
@@ -40,7 +36,7 @@ module.exports = function(config) {
       [fileGlob]: ['webpack'],
       [applicationFile]: ['coverage'],
     },
-    webpack: testWebpackConfig,
+    webpack: webpackConfig({test: true}),
 
     // enable / disable colors in the output (reporters and logs)
     colors: true,

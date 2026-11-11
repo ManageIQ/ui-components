@@ -363,7 +363,7 @@ __metadata:
     es6-shim: "npm:^0.35.3"
     es7-shim: "npm:^6.0.0"
     eslint: "npm:^8.0.0"
-    expose-loader: "npm:^0.7.1"
+    expose-loader: "npm:^5.0.0"
     extract-text-webpack-plugin: "npm:^2.0.0-beta.5"
     file-loader: "npm:^0.11.0"
     google-code-prettify: "npm:^1.0.5"
@@ -4765,12 +4765,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expose-loader@npm:^0.7.1":
-  version: 0.7.5
-  resolution: "expose-loader@npm:0.7.5"
+"expose-loader@npm:^5.0.0":
+  version: 5.0.1
+  resolution: "expose-loader@npm:5.0.1"
   peerDependencies:
-    webpack: ^2.0.0 || ^3.0.0 || ^4.0.0
-  checksum: 10/99bedf3fb73712adffc7eed938e1ca05290c884d99d7451da42ee0e54a51df471903da92c9e191975c554216f36aa25a84b3167edb7551bf3edfdbe827cd692d
+    webpack: ^5.0.0
+  checksum: 10/8e7c5eab2ed78f182845425e99b1ab270d71b9dfbf23b032839757d7aa2e8d8ddfd8aaeda996d26f4f6374c34e3293914db1d4b396f53be95241b85226cd40ff
   languageName: node
   linkType: hard
 

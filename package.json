@@ -53,7 +53,7 @@
     "css-loader": "^0.28.11",
     "eonasdan-bootstrap-datetimepicker": "^4.17.43",
     "eslint": "^8.0.0",
-    "expose-loader": "^0.7.1",
+    "expose-loader": "^5.0.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.5",
     "file-loader": "^0.11.0",
     "google-code-prettify": "^1.0.5",

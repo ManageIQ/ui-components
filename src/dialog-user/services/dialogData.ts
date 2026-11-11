@@ -295,7 +295,7 @@ export default class DialogDataService {
           // explicit conversion to ISO datetime
           out[name] = _.isDate(value) ? value.toISOString() : null;
           break;
-      };
+      }
     });
 
     return out;

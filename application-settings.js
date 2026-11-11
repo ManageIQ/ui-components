@@ -9,7 +9,6 @@ module.exports = {
   modules: {
     common: '/common',
     dialogEditor: '/dialog-editor',
-    fonticonPicker: '/fonticon-picker',
     dialogs: '/dialog-user',
     treeView: '/tree-view',
     treeSelector: '/tree-selector',

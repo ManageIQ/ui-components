@@ -3,7 +3,6 @@
 // expression gets evaluated in each option's scope separately,
 // function gets run with (scope, element)
 
-/* @ngInject */
 var miqOptions = function ($parse) {
   'use strict';
 
@@ -75,5 +74,7 @@ var miqOptions = function ($parse) {
     },
   };
 };
+
+miqOptions.$inject = ['$parse'];
 
 export default miqOptions;

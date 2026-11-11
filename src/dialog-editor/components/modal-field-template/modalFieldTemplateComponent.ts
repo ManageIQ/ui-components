@@ -83,7 +83,7 @@ class ModalFieldController {
  * </dialog-editor-modal-field-template>
  */
 export default class ModalFieldTemplate {
-  public template = ($element: any, $attrs: any) => require(`./${$attrs.template}`);
+  public template: any = ['$element', '$attrs', ($element: any, $attrs: any) => require(`./${$attrs.template}`)];
   public scope: boolean = true;
   public controller = ModalFieldController;
   public controllerAs: string = 'vm';

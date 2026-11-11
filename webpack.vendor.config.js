@@ -3,7 +3,6 @@ const production = process.argv.indexOf('--production') !== -1;
 
 var webpack = require('webpack'),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
-  path = require('path'),
   plugins = [
       !production ? undefined : new webpack.ProvidePlugin({
         $: "jquery",
@@ -21,6 +20,13 @@ module.exports = {
     vendor: ['./src/vendor.ts', settings.sassRootFolder + '/vendor.scss']
   },
   plugins: plugins,
+  resolve: {
+    alias: {
+      // @brickhouse-tech/angular-lts (aliased as "angular") bundles these AngularJS modules
+      'angular-animate$': require.resolve('angular/angular-animate.js'),
+      'angular-sanitize$': require.resolve('angular/angular-sanitize.js')
+    }
+  },
   module: {
     rules: [
       {enforce: 'pre', test: /\.ts?$/, loader: 'tslint-loader', exclude: /(node_modules|libs)/},

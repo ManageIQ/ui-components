@@ -160,20 +160,19 @@ __metadata:
   dependencies:
     "@manageiq/font-fabulous": "npm:^1.0.0"
     "@types/angular-mocks": "npm:^1.7.0"
-    "@types/angular-ui-router": "npm:^1.1.35"
     "@types/jasmine": "npm:^3.10.18"
     "@types/lodash": "npm:4.14.182"
     "@types/node": "npm:16.18.78"
     "@types/rx": "npm:^4.0.0"
-    angular: "npm:^1.8.3"
-    angular-animate: "npm:^1.8.3"
+    "@uirouter/angularjs": "npm:~1.0.30"
+    angular: "npm:@brickhouse-tech/angular-lts@^1.10.4"
+    angular-animate: "npm:@brickhouse-tech/angular-lts@^1.10.4"
     angular-bootstrap: "npm:^0.12.2"
     angular-bootstrap-switch: "npm:^0.5.1"
     angular-dragdrop: "npm:^1.0.13"
     angular-gettext-cli: "npm:^1.2.0"
-    angular-mocks: "npm:^1.8.3"
     angular-patternfly: "npm:^3.15.0"
-    angular-sanitize: "npm:^1.8.3"
+    angular-sanitize: "npm:@brickhouse-tech/angular-lts@^1.10.4"
     angular-ui-sortable: "npm:^0.19.0"
     babel-eslint: "npm:^10.0.0"
     bootstrap-combobox: "npm:^1.0.2"
@@ -220,7 +219,6 @@ __metadata:
     tslint: "npm:4.5.1"
     tslint-loader: "npm:3.5.4"
     typescript: "npm:~3.9.10"
-    ui-router: "npm:^1.0.0-alpha0"
     url-loader: "npm:^0.6.0"
     webpack: "npm:3.12.0"
   languageName: unknown
@@ -373,15 +371,6 @@ __metadata:
   dependencies:
     "@types/angular": "npm:*"
   checksum: 10/a2ed5e517348bccc546df860f1bba456883868ca58cbff4a114a46ade405865c43d80c005653756866b372ed18ab96ea3cf81814f70098d564b7399930fd9fdc
-  languageName: node
-  linkType: hard
-
-"@types/angular-ui-router@npm:^1.1.35":
-  version: 1.1.44
-  resolution: "@types/angular-ui-router@npm:1.1.44"
-  dependencies:
-    "@types/angular": "npm:*"
-  checksum: 10/09f533163402b17cabfbafa7985008acc6d495328463f7f71d5216d317f720b987ec66464ba78d8e57bc6c1b032bcffcc9c702e9b5e383d5944d96483154bfd3
   languageName: node
   linkType: hard
 
@@ -894,6 +883,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@uirouter/angularjs@npm:~1.0.30":
+  version: 1.0.30
+  resolution: "@uirouter/angularjs@npm:1.0.30"
+  dependencies:
+    "@uirouter/core": "npm:6.0.8"
+  peerDependencies:
+    angular: ">=1.2.0"
+  checksum: 10/5b4cc1b84aa42b3aca18562a9d565dc19bf11fab948bd561e05df211bcb6b7d2ad8e51c372a8d0c4be6100b6899a9575ae14a8a01517798dce71f05501300803
+  languageName: node
+  linkType: hard
+
+"@uirouter/core@npm:6.0.8":
+  version: 6.0.8
+  resolution: "@uirouter/core@npm:6.0.8"
+  checksum: 10/ebcb1d9ae7127c63e151b82b1318f2e69fb5af5285acc7b66ffe6aaed0798ef4f1d1800eee0aa5012cee309b2c77d921f9120119a9d03cffa3460b723686694e
+  languageName: node
+  linkType: hard
+
 "abab@npm:^2.0.0":
   version: 2.0.6
   resolution: "abab@npm:2.0.6"
@@ -1107,10 +1114,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"angular-animate@npm:1.8.3":
-  version: 1.8.3
-  resolution: "angular-animate@npm:1.8.3"
-  checksum: 10/2c307aa6a69492a23cec5b50d0f2dda6f5f058fdf32fea2019ff6f82eb33c4d79ca15ce9806a984f26e6f17b4251f34834d36dbbf6ef49d7b1db4039535309b0
+"angular-animate@npm:@brickhouse-tech/angular-lts@^1.10.4, angular-sanitize@npm:@brickhouse-tech/angular-lts@^1.10.4, angular@npm:@brickhouse-tech/angular-lts@^1.10.4":
+  version: 1.10.4
+  resolution: "@brickhouse-tech/angular-lts@npm:1.10.4"
+  checksum: 10/0f4501fda2d0b169c5f1075d91b633327c4276d77c77d9c411e419c735d6625ac09f520aa02950e05c2184f34f8950292a220ad6c6bff6fca7e2cf798b4f8341
   languageName: node
   linkType: hard
 
@@ -1173,13 +1180,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"angular-mocks@npm:^1.8.3":
-  version: 1.8.3
-  resolution: "angular-mocks@npm:1.8.3"
-  checksum: 10/eab00bccdb709c804c9e901f9c19e0e6570349e6db6b1c6a932106c02e3669a801b324346d6895460df086ade2b2ee6c381b11ef3aae313d3040b5dafe945759
-  languageName: node
-  linkType: hard
-
 "angular-patternfly@npm:^3.15.0":
   version: 3.26.0
   resolution: "angular-patternfly@npm:3.26.0"
@@ -1193,13 +1193,6 @@ __metadata:
     lodash: "npm:3.x"
     patternfly: "npm:~3.31.1"
   checksum: 10/3917bbfb7b57fd8aff43c118801cd6abf1daee5c9d8e363c775f5b9866a10a9a5a10f71fbf0932660135c6c83d448ee7dae43aab4a2b117b16417117fe2ae34f
-  languageName: node
-  linkType: hard
-
-"angular-sanitize@npm:1.8.3":
-  version: 1.8.3
-  resolution: "angular-sanitize@npm:1.8.3"
-  checksum: 10/50227cd12259bc12b91d53f23bab9a026831d56f0b4cb74ddb3571c6da602720041e9238857837d014ef2beccf4a9565a19aa01cb2ec8ba2d3111b6c05af93e8
   languageName: node
   linkType: hard
 
@@ -1220,13 +1213,6 @@ __metadata:
     jquery: "npm:>=3.1.x"
     jquery-ui-dist: "npm:>=1.12.x"
   checksum: 10/da78c7200074b1e3789a499f7db8c53bc88fca4f60569cf9aa8e2d9f67900f0edadc57899313d55c41a890e2eebd56f2a50a641ccc9358432b6ded419ebca0af
-  languageName: node
-  linkType: hard
-
-"angular@npm:1.8.3":
-  version: 1.8.3
-  resolution: "angular@npm:1.8.3"
-  checksum: 10/4a21f1f74790dc2cdceb582386abdc7b55a0463f86aaa59573c940295cb51ed61b8fa610011134280ae0da7f97fbbc660f3a4e4491b24c92b2c32a547073a1c2
   languageName: node
   linkType: hard
 
@@ -11294,15 +11280,6 @@ __metadata:
   peerDependencies:
     webpack: ^1.9 || ^2 || ^2.1.0-beta || ^2.2.0-rc || ^3.0.0
   checksum: 10/e13492a8dc005b02f9e26a17d427f046fe284982e9ebe83b40ae7b51ac0ebe925c63bb6ed13cec3979ee3d7c924d1ba69661ecf46a61d41061674e502ffdd6d8
-  languageName: node
-  linkType: hard
-
-"ui-router@npm:^1.0.0-alpha0":
-  version: 1.0.0-alpha0
-  resolution: "ui-router@npm:1.0.0-alpha0"
-  dependencies:
-    angular: "npm:^1.2"
-  checksum: 10/769b571f2334d8b4dd74e4029c54483cdeb2c96461dcf40d49e591e07813fcd9f1a2100e116794a7c8738f2c6e6f6625c532d82f16b51b5369033230ebd078db
   languageName: node
   linkType: hard
 

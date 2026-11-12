@@ -16,6 +16,10 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
+#: ./src/fonticon-picker/components/fonticon-picker/fonticon-modal.html
+msgid "Apply"
+msgstr ""
+
 #: ./src/dialog-editor/components/modal-field-template/drop-down-list.html
 #: ./src/dialog-editor/components/modal-field-template/radio-button.html
 #: ./src/dialog-editor/components/modal-field-template/tag-control.html
@@ -44,6 +48,7 @@ msgstr ""
 #: ./src/dialog-editor/components/modal-field-template/date-control.html
 #: ./src/dialog-editor/components/modal-field-template/date-time-control.html
 #: ./src/dialog-user/components/dialog-user/dialogField.html
+#: ./src/fonticon-picker/components/fonticon-picker/fonticon-modal.html
 msgid "Close"
 msgstr ""
 
@@ -338,6 +343,10 @@ msgstr ""
 
 #: ./dist/js/ui-components.js
 msgid "Select a valid date"
+msgstr ""
+
+#: ./src/fonticon-picker/components/fonticon-picker/fonticon-modal.html
+msgid "Select an icon"
 msgstr ""
 
 #: ./src/dialog-editor/components/modal-field-template/date-control.html

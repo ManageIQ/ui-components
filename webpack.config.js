@@ -85,7 +85,6 @@ module.exports = () => {
           test: /\.ts$/,
           exclude: /(node_modules|libs)/,
           loader: 'ts-loader',
-          options: {transpileOnly: true},
         },
         {
           test: /\.html$/,

@@ -31,7 +31,7 @@ module.exports = () => {
           loader: 'expose-loader',
           options: {exposes: ['$', 'jQuery']},
         },
-        {test: /\.ts$/, use: [{loader: 'ts-loader', options: {transpileOnly: true}}], exclude: /(node_modules|libs)/},
+        {test: /\.ts$/, loader: 'ts-loader', exclude: /(node_modules|libs)/},
         {test: /\.html$/, loader: 'raw-loader', exclude: /(node_modules|libs|dist|tsd)/},
         {
           test: /\.(png|jpg|gif|svg|woff|ttf|eot)/,

@@ -51,7 +51,7 @@ module.exports = () => {
     },
     output: {
       path: settings.outputFolder,
-      publicPath: '.',
+      publicPath: '../',
       filename: 'js/[name].js',
     },
   };

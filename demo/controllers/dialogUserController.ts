@@ -11,7 +11,6 @@ export default class DialogUserController {
   public showDialogData: boolean;
   public dialogDataResults: any;
 
-  /* @ngInject */
   constructor() {
     const dialogFile = require('../data/dialog-data.json');
     this.dialog = dialogFile.resources[0].content[0];

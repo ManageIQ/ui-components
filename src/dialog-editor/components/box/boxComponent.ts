@@ -15,7 +15,7 @@ class BoxController {
   public dialogTabs: any;
   public setupModalOptions: any;
 
-  /*@ngInject*/
+  public static $inject = ['DialogEditor'];
   constructor(private DialogEditor: any) {
   }
 

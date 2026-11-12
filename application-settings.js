@@ -1,4 +1,7 @@
 "use strict";
+/* eslint-env node */
+const path = require('path');
+
 module.exports = {
   stylesFolder: '/styles',
   sourceFolder: '/src',
@@ -18,12 +21,6 @@ module.exports = {
   get stylesheetPath() {
     return this.stylesheetFolder + '/[name]' + '.css';
   },
-  get indexLocation() {
-    return __dirname + '/demo/index.html';
-  },
-  isMinified: function (production) {
-    return (!production ? '.js' : '.min.js');
-  },
   get sassRootFolder() {
     return '.' + this.sourceFolder + this.stylesFolder;
   },
@@ -41,6 +38,6 @@ module.exports = {
     return availableObjects;
   },
   get outputFolder() {
-    return __dirname + this.distFolder
+    return path.join(__dirname, this.distFolder);
   }
 };

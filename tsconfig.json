@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "skipLibCheck": true,
     "module": "commonjs",
     "experimentalDecorators": true,
     "removeComments": false,
     "noEmitOnError": true,
     "sourceMap": true,
     "typeRoots" : ["./node_modules/@types"],
+    "types": ["angular-mocks", "jasmine", "lodash", "node"],
     "lib": ["es2017", "DOM", "ScriptHost"],
     "allowJs": false
   },

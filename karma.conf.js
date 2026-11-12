@@ -1,4 +1,5 @@
 
+/* eslint-env node */
 const webpackConfig = require('./webpack.config');
 const fileGlob = 'src/**/*.spec.[jt]s';
 const vendor = 'dist/js/vendor.js';
@@ -12,7 +13,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'webpack'],
 
     // list of files / patterns to load in the browser
     files: [vendor, 'node_modules/angular/angular-mocks.js', applicationFile, fileGlob, jsonGlob],
@@ -34,11 +35,9 @@ module.exports = function(config) {
 
     preprocessors: {
       [fileGlob]: ['webpack'],
-      [jsonGlob]: ['webpack'],
-      [applicationFile]: ['webpack', 'coverage']
+      [applicationFile]: ['coverage'],
     },
     webpack: webpackConfig({test: true}),
-    webpackMiddleware: {noInfo: true},
 
     // enable / disable colors in the output (reporters addnd logs)
     colors: true,

@@ -1,18 +1,12 @@
-"use strict";
+'use strict';
+/* eslint-env node */
+const path = require('path');
 const settings = require('./application-settings.js');
-const webpack = require('webpack'),
-  path = require('path'),
-  NgAnnotatePlugin = require('ng-annotate-webpack-plugin'),
-  BrowserSyncPlugin = require('browser-sync-webpack-plugin'),
-  CopyWebpackPlugin = require('copy-webpack-plugin'),
-  ExtractTextPlugin = require('extract-text-webpack-plugin'),
-  HtmlWebpackPlugin = require('html-webpack-plugin'),
-  spa = require('browser-sync-spa');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = (env) => {
-  let production = env && env.NODE_ENV === 'production';
-  let test = env && env.test;
-
+module.exports = () => {
   const appEntry = {
     [settings.appName]: [
       settings.sassEntryPoint,
@@ -26,54 +20,34 @@ module.exports = (env) => {
   };
 
   const plugins = [
-    new CopyWebpackPlugin([
-      {from: __dirname + '/demo/data', to: 'data'},
-      {from: __dirname + '/demo/assets', to: 'assets'},
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        {from: path.join(__dirname, '/demo/data'), to: 'data'},
+        {from: path.join(__dirname, '/demo/assets'), to: 'assets'},
+      ],
+    }),
     new HtmlWebpackPlugin({
       title: 'ManageIQ Common Components',
-      template: 'demo/template-index.ejs', // Load a custom template
+      template: 'demo/template-index.ejs',
       inject: 'body',
     }),
-    production ? new webpack.optimize.CommonsChunkPlugin({
-      name: settings.appName,
-      filename: settings.javascriptFolder + '/' + settings.appName + settings.isMinified(production),
-    }) : undefined,
-    new ExtractTextPlugin(settings.stylesheetPath),
-    new NgAnnotatePlugin({add: true}),
-    production ? new webpack.optimize.UglifyJsPlugin({
-      warnings: false,
-      minimize: true,
-      drop_console: true,
-    }) : undefined,
-    !production && !test ? new BrowserSyncPlugin({
-      host: 'localhost',
-      port: 4000,
-      server: {baseDir: [__dirname + settings.distFolder]},
-      open: true,
-      middleware: [
-        {
-          route: "/data",
-          handle: function (req, res, next) {
-            req.method = 'GET';
-            return next();
-          },
-        },
-      ],
-    }, {
-      use: spa({
-        selector: '[ng-app]',
-      }),
-    }) : undefined,
-  ].filter(p => !!p);
+    new MiniCssExtractPlugin({
+      filename: settings.stylesheetPath,
+    }),
+  ];
 
   return {
+    mode: 'development',
     context: __dirname,
     entry: appEntry,
     output: {
       path: settings.outputFolder,
-      publicPath: '.',
-      filename: settings.javascriptFolder + "/[name]" + settings.isMinified(production),
+      publicPath: '/',
+      filename: settings.javascriptFolder + '/[name]' + '.js',
+      environment: {
+        arrowFunction: false,
+        const: false,
+      },
     },
     resolve: {
       extensions: ['.ts', '.js'],
@@ -82,7 +56,22 @@ module.exports = (env) => {
       colors: true,
       reasons: true,
     },
-    devtool: !production && 'source-map',
+    devtool: 'source-map',
+    devServer: {
+      static: {
+        directory: path.join(__dirname, settings.distFolder),
+      },
+      host: 'localhost',
+      port: 4000,
+      open: true,
+      setupMiddlewares: (middlewares, devServer) => {
+        devServer.app.get('/data/{*path}', (req, _res, next) => {
+          req.method = 'GET';
+          return next();
+        });
+        return middlewares;
+      },
+    },
     module: {
       rules: [
         {
@@ -105,25 +94,16 @@ module.exports = (env) => {
         {
           test: /\.scss/,
           exclude: /(node_modules|lib)/,
-          loader: ExtractTextPlugin.extract({
-            fallbackLoader: 'style-loader',
-            loader: 'css-loader!sass-loader',
-          }),
+          use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
         },
         {
           test: /\.css$/,
-          loader: ExtractTextPlugin.extract({
-            fallbackLoader: 'style-loader',
-            loader: 'css-loader!sass-loader',
-          }),
+          use: [MiniCssExtractPlugin.loader, 'css-loader'],
         },
         {
           test: /\.(png|jpg|gif|svg|woff|ttf|eot)/,
-          loader: 'url-loader?limit=20480',
-        },
-        {
-          test: /\.json$/,
-          loader: 'json-loader',
+          type: 'asset',
+          parser: {dataUrlCondition: {maxSize: 20480}},
         },
       ],
     },

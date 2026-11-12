@@ -18,7 +18,7 @@ export default class TreeSelectorController {
 
   public toggleTree() {
     this.display = !this.display;
-  };
+  }
 
   public nodeSelect(node) {
     this.node = node;

@@ -27,7 +27,7 @@ class ModalFieldController extends ModalController {
     /** Function to load the selected workflow if configuration_script_id is available. */
     if (emsWorkflowsEnabled && this.modalData.resource_action && this.modalData.resource_action.configuration_script_id) {
       this.loadWorkflow(this.modalData.resource_action.configuration_script_id);
-    };
+    }
 
     this.treeOptions = {
       ...this.treeOptions,

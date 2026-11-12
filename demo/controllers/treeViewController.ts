@@ -14,7 +14,7 @@ export default class TreeViewController {
 
   /*@ngInject*/
   constructor(private $scope : ng.IScope, private $timeout : ng.ITimeoutService, private $window : ng.IWindowService) {
-  };
+  }
 
   public resetState() {
     sessionStorage.clear();

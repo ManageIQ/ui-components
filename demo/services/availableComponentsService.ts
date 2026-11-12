@@ -42,6 +42,7 @@ export default class AvailableComponentsService {
 
   public initComponents() {
     this.availableComponents = [
+      new AvailableGroup('fonticon-picker', 'Fonticon Picker Components', '/fonticon-picker', []),
       new AvailableGroup('dialog', 'Dialog Components', '/dialog', []),
       new AvailableGroup('tree-view', 'Tree Components', '/tree', [])
     ];

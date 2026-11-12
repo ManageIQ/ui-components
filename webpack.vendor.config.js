@@ -1,26 +1,16 @@
 /* eslint-env node */
 const settings = require('./application-settings.js');
-const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = (env) => {
-  const production = env && env.NODE_ENV === 'production';
-
+module.exports = () => {
   const plugins = [
-    production ? new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
-      'angular': 'angular',
-      '_': 'lodash',
-    }) : null,
     new MiniCssExtractPlugin({
       filename: settings.stylesheetPath,
     }),
-  ].filter(Boolean);
+  ];
 
   return {
-    mode: production ? 'production' : 'development',
+    mode: 'development',
     context: __dirname,
     entry: {
       vendor: ['./src/vendor.ts', settings.sassRootFolder + '/vendor.scss'],
@@ -45,13 +35,8 @@ module.exports = (env) => {
         {test: /\.html$/, loader: 'raw-loader', exclude: /(node_modules|libs|dist|tsd)/},
         {
           test: /\.(png|jpg|gif|svg|woff|ttf|eot)/,
-          type: 'asset/inline',
+          type: 'asset',
           parser: {dataUrlCondition: {maxSize: 20480}},
-        },
-        {
-          test: /\.(woff|ttf|eot|svg)(\?v=[a-z0-9]\.[a-z0-9]\.[a-z0-9])?$/,
-          type: 'asset/inline',
-          parser: {dataUrlCondition: {maxSize: 100000}},
         },
         {
           test: /\.scss/,

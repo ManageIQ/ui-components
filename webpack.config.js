@@ -4,13 +4,9 @@ const path = require('path');
 const settings = require('./application-settings.js');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = (env) => {
-  const production = env && env.NODE_ENV === 'production';
-  const test = env && env.test;
-
+module.exports = () => {
   const appEntry = {
     [settings.appName]: [
       settings.sassEntryPoint,
@@ -41,13 +37,13 @@ module.exports = (env) => {
   ];
 
   return {
-    mode: production ? 'production' : 'development',
+    mode: 'development',
     context: __dirname,
     entry: appEntry,
     output: {
       path: settings.outputFolder,
       publicPath: '/',
-      filename: settings.javascriptFolder + '/[name]' + settings.isMinified(production),
+      filename: settings.javascriptFolder + '/[name]' + '.js',
       environment: {
         arrowFunction: false,
         const: false,
@@ -60,26 +56,8 @@ module.exports = (env) => {
       colors: true,
       reasons: true,
     },
-    devtool: ! production && 'source-map',
-    optimization: production ? {
-      minimize: true,
-      minimizer: [
-        new TerserPlugin({
-          terserOptions: {
-            compress: {drop_console: true},
-          },
-        }),
-      ],
-      splitChunks: {
-        cacheGroups: {
-          vendor: {
-            name: settings.appName,
-            chunks: 'all',
-          },
-        },
-      },
-    } : {},
-    devServer: ! test ? {
+    devtool: 'source-map',
+    devServer: {
       static: {
         directory: path.join(__dirname, settings.distFolder),
       },
@@ -93,7 +71,7 @@ module.exports = (env) => {
         });
         return middlewares;
       },
-    } : {},
+    },
     module: {
       rules: [
         {
@@ -125,7 +103,7 @@ module.exports = (env) => {
         },
         {
           test: /\.(png|jpg|gif|svg|woff|ttf|eot)/,
-          type: 'asset/inline',
+          type: 'asset',
           parser: {dataUrlCondition: {maxSize: 20480}},
         },
       ],

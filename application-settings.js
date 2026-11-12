@@ -21,9 +21,6 @@ module.exports = {
   get stylesheetPath() {
     return this.stylesheetFolder + '/[name]' + '.css';
   },
-  isMinified: function (production) {
-    return (!production ? '.js' : '.min.js');
-  },
   get sassRootFolder() {
     return '.' + this.sourceFolder + this.stylesFolder;
   },

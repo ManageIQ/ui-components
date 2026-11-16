@@ -1,7 +1,7 @@
 import AbbrNumber from './abbrNumberFilter';
 
 describe('Filter: abbrNumber', function() {
-  let filter = AbbrNumber.filter();
+  const filter = AbbrNumber.filter();
 
   it('abbreviates numbers', function() {
     expect(filter('4')).toBe('4');

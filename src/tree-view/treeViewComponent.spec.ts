@@ -1,4 +1,3 @@
-import TreeViewComponent from './treeViewComponent';
 import * as angular from 'angular';
 
 describe('TreeeView test', () => {
@@ -19,7 +18,7 @@ describe('TreeeView test', () => {
     });
 
     describe('findNode', () => {
-      let items = [{x: 3}, {y: 4}, {z: 5}];
+      const items = [{x: 3}, {y: 4}, {z: 5}];
 
       beforeEach(() => {
         treeViewCtrl.tree = {getNodes: () => items};

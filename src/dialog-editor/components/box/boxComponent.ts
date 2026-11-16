@@ -40,7 +40,7 @@ class BoxController {
       opacity: 0.5,
       revert: 50,
       stop: (e: any, ui: any) => {
-        let sortedBox = ui.item.scope().$parent.tab.dialog_groups;
+        const sortedBox = ui.item.scope().$parent.tab.dialog_groups;
         // update indexes of other boxes after changing their order
         this.DialogEditor.updatePositions(sortedBox);
       },
@@ -52,7 +52,7 @@ class BoxController {
       cursor: 'move',
       revert: 50,
       stop: (e: any, ui: any) => {
-        let sortedField = ui.item.scope().$parent.box.dialog_fields;
+        const sortedField = ui.item.scope().$parent.box.dialog_fields;
         // update indexes of other fields after changing their order
         this.DialogEditor.updatePositions(sortedField);
       },
@@ -104,12 +104,11 @@ class BoxController {
    * @memberof BoxController
    * @function droppableOptions
    * @param {number} event jQuery object
-   * @param {number} ui jQuery object
    */
-  public droppableOptions(e: any, ui: any) {
+  public droppableOptions(e: any) {
     const elementScope: any = ng.element(e.target).scope();
-    let droppedItem: any = elementScope.dndDragItem;
-    let droppedPlace: any = elementScope.box;
+    const droppedItem: any = elementScope.dndDragItem;
+    const droppedPlace: any = elementScope.box;
     // update name for the dropped field
     if (!_.isEmpty(droppedItem)) {
       this.updateFieldName(droppedItem);
@@ -121,7 +120,7 @@ class BoxController {
   }
 
   private updateFieldName(field) {
-    let nameWithIndex: string = this.DialogEditor.newFieldName(
+    const nameWithIndex: string = this.DialogEditor.newFieldName(
       field.name);
     field.name = nameWithIndex;
   }

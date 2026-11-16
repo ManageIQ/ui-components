@@ -1,4 +1,3 @@
-/* tslint:disable:max-line-length */
 import * as ng from 'angular';
 import * as _ from 'lodash';
 
@@ -139,7 +138,7 @@ export class TreeViewController {
    */
   private lazyExpandNode(obj) {
     return (resolve, reject) => {
-      let node = this.findNode(obj);
+      const node = this.findNode(obj);
 
       // Node not found
       if (!node) {
@@ -152,7 +151,7 @@ export class TreeViewController {
       }
 
       // The event handler needs to be named for its future deregister
-      let handler = (_event, exp) => {
+      const handler = (_event, exp) => {
         if (exp.nodeId === node.nodeId) {
           // Deregister itself after success
           this.element.unbind('nodeExpanded', handler);
@@ -166,20 +165,20 @@ export class TreeViewController {
   }
 
   private selectSingleNode(obj) {
-    let node = this.findNode(obj);
+    const node = this.findNode(obj);
     this.tree.revealNode(node, {silent: true});
     this.tree.selectNode(node, {silent: true});
     this.tree.expandNode(node);
   }
 
   private expandSingleNode(obj) {
-    let node = this.findNode(obj);
+    const node = this.findNode(obj);
     this.tree.revealNode(node, {silent: true});
     this.tree.expandNode(node);
   }
 
   private collapseSingleNode(obj) {
-    let node = this.findNode(obj);
+    const node = this.findNode(obj);
     if (node.state.expanded) { // somehow the tree.collapseNode is broken
       this.tree.toggleNodeExpanded(node, {silent: true, ignoreChildren: false});
     }
@@ -197,14 +196,14 @@ export class TreeViewController {
         state = [];
         let item = this.tree.getParents(node)[0];
         while (item) {
-          let obj = {};
+          const obj = {};
           obj[this.persist] = item[this.persist];
           state.unshift(obj);
           item = this.tree.getParents(item)[0];
         }
       }
 
-      let store = JSON.parse(sessionStorage.getItem(`treeView-${this.name}`)) || {};
+      const store = JSON.parse(sessionStorage.getItem(`treeView-${this.name}`)) || {};
       // Save the new node in the session storage
       store[node[this.persist]] = state;
       sessionStorage.setItem(`treeView-${this.name}`, JSON.stringify(store));
@@ -212,15 +211,15 @@ export class TreeViewController {
   }
 
   private loadTreeState() {
-    let store = JSON.parse(sessionStorage.getItem(`treeView-${this.name}`)) || {};
+    const store = JSON.parse(sessionStorage.getItem(`treeView-${this.name}`)) || {};
     // Create a list of store keys that should be ignored
-    let blacklist = _.flatten(Object.keys(store)
+    const blacklist = _.flatten(Object.keys(store)
                       .map(key => store[key]))
                       .map(obj => obj[this.persist]);
 
     Object.keys(store).forEach(key => {
       // Construct an object for finding a node in the tree
-      let obj = {};
+      const obj = {};
       obj[this.persist] = key;
 
       if (store[key] !== false) { // If the node is not set to collapsed
@@ -250,11 +249,11 @@ export class TreeViewController {
    * If anything goes wrong during the traversal the fallback function is called.
    */
   private static lazyTraverse(head : any,
-                              headF : Function,
+                              headF : (...args: any[]) => any,
                               tail : Array<any>,
-                              tailF : Function,
-                              fallback : Function = () => null) {
-    const emptyPromise = new Promise(nope => nope());
+                              tailF : (...args: any[]) => any,
+                              fallback : (...args: any[]) => any = () => null) {
+    const emptyPromise = new Promise<void>(nope => nope());
     tail.reduce((sum, value) => sum.then(() => new Promise(tailF(value))), emptyPromise)
       .then(() => headF(head)).catch(fallback);
   }

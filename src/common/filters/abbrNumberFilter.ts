@@ -1,9 +1,9 @@
-let numeral = require('numeral');
+const numeral = require('numeral');
 
 export default class AbbrNumber {
   public static filter() {
     return (value) => {
-      let num = numeral(value);
+      const num = numeral(value);
       // Return with the input if it is not a number
       if (!num.value() || num.value().toString() !== value.toString()) {
         return value;

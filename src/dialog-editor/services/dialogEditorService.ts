@@ -15,7 +15,7 @@ export default class DialogEditorService {
     this.undefinedAttrsToBoolean();
     // FIXME: Compensation of default values until it is been resolved in the API
     this.forEachDialogField((field: any) => {
-      if (field.hasOwnProperty('values') && _.isArray(field.values)) {
+      if (Object.prototype.hasOwnProperty.call(field, 'values') && _.isArray(field.values)) {
         field.values = field.values.filter(value => value[0] && value[1]);
       }
     });
@@ -58,7 +58,7 @@ export default class DialogEditorService {
   }
 
   public getDynamicFields(nameToExclude) {
-    let dynamicFields = [];
+    const dynamicFields = [];
     this.forEachDialogField((field) => {
       if (nameToExclude && (field.name === nameToExclude)) {
         return;
@@ -89,7 +89,7 @@ export default class DialogEditorService {
    * @function newFieldName
    */
   public newFieldName(fieldType: string) {
-    let dialogFieldNames = [];
+    const dialogFieldNames = [];
     let newOrdinalNumber = 1;
     this.forEachDialogField((field) => {
       dialogFieldNames.push(field.name);
@@ -158,11 +158,11 @@ export default class DialogEditorService {
       return;
     }
 
-    let attributes = [
+    const attributes = [
       'required', 'visible', 'read_only', 'show_refresh_button',
       'load_values_on_init', 'reconfigurable',
     ];
-    let optionalAttributes = [
+    const optionalAttributes = [
       'show_past_days', 'protected', 'force_multi_value'
     ];
     this.forEachDialogField((field) => {

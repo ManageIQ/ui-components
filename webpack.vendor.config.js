@@ -25,7 +25,6 @@ module.exports = () => {
     },
     module: {
       rules: [
-        {enforce: 'pre', test: /\.ts?$/, loader: 'tslint-loader', exclude: /(node_modules|libs)/},
         {
           test: require.resolve('jquery'),
           loader: 'expose-loader',

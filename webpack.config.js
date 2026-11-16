@@ -75,13 +75,6 @@ module.exports = () => {
     module: {
       rules: [
         {
-          test: /\.ts?$/,
-          exclude: /(node_modules|libs)/,
-          loader: 'tslint-loader',
-          enforce: 'pre',
-          options: {emitErrors: true},
-        },
-        {
           test: /\.ts$/,
           exclude: /(node_modules|libs)/,
           loader: 'ts-loader',

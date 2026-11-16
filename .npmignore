@@ -57,7 +57,6 @@ karma.conf.js
 Rakefile
 renovate.json
 tsconfig.json
-tslint.json
 jsdoc-conf.json
 
 # Build scripts

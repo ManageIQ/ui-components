@@ -1,16 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2017",
     "skipLibCheck": true,
     "module": "commonjs",
     "experimentalDecorators": true,
     "removeComments": false,
     "noEmitOnError": true,
     "sourceMap": true,
+    "strict": false,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "strictPropertyInitialization": false,
+    "noImplicitThis": false,
+    "allowJs": true,
+    "checkJs": false,
+    "outDir": "./dist",
     "typeRoots" : ["./node_modules/@types"],
     "types": ["angular-mocks", "jasmine", "lodash", "node"],
-    "lib": ["es2017", "DOM", "ScriptHost"],
-    "allowJs": false
+    "lib": ["es2017", "DOM", "ScriptHost"]
   },
   "include": [
     "src/**/*.ts",
@@ -18,6 +25,7 @@
   ],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "src/**/*.spec.ts"
   ]
 }

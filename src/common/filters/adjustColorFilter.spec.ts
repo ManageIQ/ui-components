@@ -1,7 +1,7 @@
 import AdjustColor from './adjustColorFilter';
 
 describe('Filter: adjustColor', function() {
-  let filter = AdjustColor.filter();
+  const filter = AdjustColor.filter();
 
   it('does not alter if enabled or undefined', function() {
     expect(filter(undefined, true)).toBe(undefined);

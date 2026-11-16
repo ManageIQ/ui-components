@@ -28,7 +28,7 @@ class ModalController {
   public loadModalData(elem: any) {
     if (elem !== undefined) {
       // clone data from service
-      let elements = {
+      const elements = {
         tab: this.loadModalTabData(elem.tabId),
         box: this.loadModalBoxData(elem.tabId, elem.boxId),
         field: this.loadModalFieldData(elem.tabId, elem.boxId, elem.fieldId)
@@ -67,7 +67,7 @@ class ModalController {
 
   public loadModalTabData(tab: number) {
     if (typeof tab !== 'undefined') {
-      let tabList = this.DialogEditor.getDialogTabs();
+      const tabList = this.DialogEditor.getDialogTabs();
       return tabList[tab];
     }
   }
@@ -75,8 +75,8 @@ class ModalController {
   public loadModalBoxData(tab: number, box: number) {
     if (typeof tab !== 'undefined' &&
         typeof box !== 'undefined') {
-      let tabList = this.DialogEditor.getDialogTabs();
-      let boxList = tabList[tab];
+      const tabList = this.DialogEditor.getDialogTabs();
+      const boxList = tabList[tab];
       return boxList.dialog_groups[box];
     }
   }
@@ -92,9 +92,9 @@ class ModalController {
     if (typeof tab !== 'undefined' &&
         typeof box !== 'undefined' &&
         typeof field !== 'undefined') {
-      let tabList = this.DialogEditor.getDialogTabs();
-      let boxList = tabList[tab];
-      let fieldList = boxList.dialog_groups[box];
+      const tabList = this.DialogEditor.getDialogTabs();
+      const boxList = tabList[tab];
+      const fieldList = boxList.dialog_groups[box];
       return this.setAutomationType(fieldList.dialog_fields[field]);
     }
   }
@@ -148,7 +148,6 @@ class ModalController {
   public fieldDuplicates() {
     const fields: string[] = [];
     const {tabId, boxId, fieldId} = this.elementInfo;
-    const dialogTabs = this.DialogEditor.getDialogTabs();
     this.DialogEditor.getDialogTabs().forEach((tabs, tabIndex) => (
       tabs.dialog_groups.forEach((group, groupIndex) => (
         group.dialog_fields.forEach((field, fieldIndex) => {
@@ -174,7 +173,7 @@ class ModalController {
     const dialogTabs = this.DialogEditor.getDialogTabs();
     const activeTab = dialogTabs[this.DialogEditor.activeTab];
     const activeBox = activeTab.dialog_groups[boxId];
-    let elements = {
+    const elements = {
       tab: activeTab,
       box: activeBox,
       field: _.get(activeBox, 'dialog_fields[' + fieldId + ']')
@@ -290,7 +289,7 @@ class ModalController {
         return;
       }
 
-      let index = field.dialog_field_responders.indexOf(changedFieldName);
+      const index = field.dialog_field_responders.indexOf(changedFieldName);
       field.dialog_field_responders.splice(index, 1);
     });
   }
@@ -301,13 +300,12 @@ class ModalController {
    * @function setupCategoryOptions
    */
   public setupCategoryOptions() {
-    let vm = this;
-    let item = this.modalData.options.category_id;
-    _.forEach(this.categories.resources, function (name) {
-      if(name['id'] === item) {
-        vm.modalData.options.category_description = name['description'];
-        vm.modalData.options.category_name = name['name'];
-        vm.modalData.options.category_single_value = name['single_value'];
+    const item = this.modalData.options.category_id;
+    _.forEach(this.categories.resources, (name) => {
+      if (name['id'] === item) {
+        this.modalData.options.category_description = name['description'];
+        this.modalData.options.category_name = name['name'];
+        this.modalData.options.category_single_value = name['single_value'];
       }
     });
   }

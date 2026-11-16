@@ -2,12 +2,12 @@ import EndpointsService from './endpointsService';
 
 describe('EndpointsService test', () =>  {
   it('should create service', () => {
-    let endpointsService = new EndpointsService;
+    const endpointsService = new EndpointsService;
     expect(endpointsService).toBeDefined();
   });
 
   it('should have default values', () => {
-    let endpointsService = new EndpointsService;
+    const endpointsService = new EndpointsService;
     expect(endpointsService.rootPoint).toBe('');
     expect(endpointsService.endpoints.listDataTable).toBe('/list');
     expect(endpointsService.endpoints.deleteItemDataTable).toBe('/delete');

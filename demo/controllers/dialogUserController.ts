@@ -16,9 +16,8 @@ export default class DialogUserController {
     this.dialog = dialogFile.resources[0].content[0];
     this.showDialogData = false;
   }
-  public refreshField(field) {
-    let Promise: any;
-    return new Promise((resolve, reject) => {
+  public refreshField() {
+    return new Promise((resolve) => {
       resolve({ 'status': 'success' });
     });
   }

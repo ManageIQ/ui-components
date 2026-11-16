@@ -22,7 +22,7 @@ class ModalFieldController {
       cursor: 'move',
       opacity: 0.5,
       revert: 50,
-      stop: (e: any, ui: any) => {
+      stop: () => {
         this.$element.find('select').selectpicker('refresh');
       },
     };

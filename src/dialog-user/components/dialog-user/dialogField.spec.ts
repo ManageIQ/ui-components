@@ -101,7 +101,7 @@ describe('Dialog field test', () => {
     it('should report back information when a field gets updated', () => {
       bindings = {
         field: dialogField,
-        onUpdate: jasmine.createSpy('onUpdate', (dialogFieldName: any, value: any) => true),
+        onUpdate: jasmine.createSpy('onUpdate', () => true),
         inputDisabled: false
       };
       angular.mock.module('miqStaticAssets.dialogUser');
@@ -117,7 +117,7 @@ describe('Dialog field test', () => {
   describe('#dateTimeFieldChanged', () => {
     let bindings;
     let dialogCtrl;
-    let testDate = new Date(2018, 6, 11, 7, 30);
+    const testDate = new Date(2018, 6, 11, 7, 30);
     const dateTimeDialogField = {
       'name': 'dateTest',
       'type': 'DialogFieldDateTimeControl',
@@ -128,7 +128,7 @@ describe('Dialog field test', () => {
     it('calls onUpdate with the correct full date', () => {
       bindings = {
         field: dateTimeDialogField,
-        onUpdate: jasmine.createSpy('onUpdate', (dialogFieldName: any, value: any) => true),
+        onUpdate: jasmine.createSpy('onUpdate', () => true),
         inputDisabled: false
       };
       angular.mock.module('miqStaticAssets.dialogUser');

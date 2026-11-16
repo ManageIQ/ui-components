@@ -37,7 +37,7 @@ describe('DialogDataService test', () => {
   beforeEach(() => {
     angular.mock.module('miqStaticAssets.dialogUser');
     angular.mock.module('miqStaticAssets.common');
-    angular.mock.inject(($http, MiQEndpointsService, $rootScope, $httpBackend) => {
+    angular.mock.inject(() => {
       dialogData = new DialogData();
     });
   });
@@ -56,14 +56,14 @@ describe('DialogDataService test', () => {
       describe('when the field is an integer type', () => {
         describe('when the field has no default value', () => {
           it('stores the values without forcing null into a NaN', () => {
-            let testField = {
+            const testField = {
               'data_type': 'integer',
               'default_value': null,
               'values': [[null, '<None>'], ['1', 'One'], ['2', 'Two']],
               'type': 'DialogFieldDropDownList',
               'options': {'sort_by': 'description', 'sort_order': 'ascending'}
             };
-            let newField = dialogData.setupField(testField);
+            const newField = dialogData.setupField(testField);
             expect(newField.values[0]).toEqual([null, '<None>']);
           });
         });
@@ -71,14 +71,14 @@ describe('DialogDataService test', () => {
 
       describe('when the field sort_by is none', () => {
         it('does not attempt to sort the values', () => {
-          let testField = {
+          const testField = {
             'data_type': 'string',
             'default_value': null,
             'values': [['2', 'Two'], ['1', 'One'], ['3', 'Three']],
             'type': 'DialogFieldDropDownList',
             'options': {'sort_by': 'none', 'sort_order': 'ascending'}
           };
-          let newField = dialogData.setupField(testField);
+          const newField = dialogData.setupField(testField);
           expect(newField.values).toEqual([['2', 'Two'], ['1', 'One'], ['3', 'Three']]);
         });
       });
@@ -86,12 +86,12 @@ describe('DialogDataService test', () => {
       describe('when the field is a date time control', () => {
         describe('when the field has values', () => {
           it('assigns the date and time fields to the given date', () => {
-            let testField = {
+            const testField = {
               'default_value': 'Wed Jul 11 2018 07:30:00',
               'type': 'DialogFieldDateTimeControl',
             };
 
-            let newField = dialogData.setupField(testField);
+            const newField = dialogData.setupField(testField);
             expect(newField.default_value.getFullYear()).toEqual(2018);
             expect(newField.default_value.getMonth()).toEqual(6);
             expect(newField.default_value.getDate()).toEqual(11);
@@ -102,13 +102,13 @@ describe('DialogDataService test', () => {
 
         describe('when the field does not have values', () => {
           it('assigns the date and time fields to a new date', () => {
-            let testField = {
+            const testField = {
               'values': null,
               'type': 'DialogFieldDateTimeControl',
             };
-            let comparisonDate = new Date();
+            const comparisonDate = new Date();
 
-            let newField = dialogData.setupField(testField);
+            const newField = dialogData.setupField(testField);
             expect(newField.default_value.getMonth()).toEqual(comparisonDate.getMonth());
             expect(newField.default_value.getDate()).toEqual(comparisonDate.getDate());
             expect(newField.default_value.getFullYear()).toEqual(comparisonDate.getFullYear());
@@ -139,7 +139,7 @@ describe('DialogDataService test', () => {
             });
 
             it('does not pass validation', () => {
-              let validation = dialogData.validateField(testField, testField.default_value);
+              const validation = dialogData.validateField(testField, testField.default_value);
               expect(validation.isValid).toEqual(false);
               expect(validation.message).toEqual('This field is required');
             });
@@ -158,7 +158,7 @@ describe('DialogDataService test', () => {
             });
 
             it('does not pass validation', () => {
-              let validation = dialogData.validateField(testField, testField.default_value);
+              const validation = dialogData.validateField(testField, testField.default_value);
               expect(validation.isValid).toEqual(false);
               expect(validation.message).toEqual('This field is required');
             });
@@ -177,7 +177,7 @@ describe('DialogDataService test', () => {
             });
 
             it('passes validation', () => {
-              let validation = dialogData.validateField(testField, testField.default_value);
+              const validation = dialogData.validateField(testField, testField.default_value);
               expect(validation.isValid).toEqual(true);
               expect(validation.message).toEqual('');
             });
@@ -198,7 +198,7 @@ describe('DialogDataService test', () => {
             });
 
             it('does not pass validation', () => {
-              let validation = dialogData.validateField(testField, testField.default_value);
+              const validation = dialogData.validateField(testField, testField.default_value);
               expect(validation.isValid).toEqual(false);
               expect(validation.message).toEqual('This field is required');
             });
@@ -217,7 +217,7 @@ describe('DialogDataService test', () => {
             });
 
             it('does not pass validation', () => {
-              let validation = dialogData.validateField(testField, testField.default_value);
+              const validation = dialogData.validateField(testField, testField.default_value);
               expect(validation.isValid).toEqual(false);
               expect(validation.message).toEqual('This field is required');
             });
@@ -236,7 +236,7 @@ describe('DialogDataService test', () => {
             });
 
             it('passes validation', () => {
-              let validation = dialogData.validateField(testField, testField.default_value);
+              const validation = dialogData.validateField(testField, testField.default_value);
               expect(validation.isValid).toEqual(true);
               expect(validation.message).toEqual('');
             });
@@ -257,7 +257,7 @@ describe('DialogDataService test', () => {
             });
 
             it('passes validation', () => {
-              let validation = dialogData.validateField(testField, testField.default_value);
+              const validation = dialogData.validateField(testField, testField.default_value);
               expect(validation.isValid).toEqual(true);
               expect(validation.message).toEqual('');
             });
@@ -274,7 +274,7 @@ describe('DialogDataService test', () => {
             });
 
             it('fails validation', () => {
-              let validation = dialogData.validateField(testField, testField.default_value);
+              const validation = dialogData.validateField(testField, testField.default_value);
               expect(validation.isValid).toEqual(false);
               expect(validation.message).toEqual('This field is required');
             });
@@ -291,7 +291,7 @@ describe('DialogDataService test', () => {
             });
 
             it('fails validation', () => {
-              let validation = dialogData.validateField(testField, testField.default_value);
+              const validation = dialogData.validateField(testField, testField.default_value);
               expect(validation.isValid).toEqual(false);
               expect(validation.message).toEqual('This field is required');
             });
@@ -311,7 +311,7 @@ describe('DialogDataService test', () => {
           });
 
           it('fails validation', () => {
-            let validation = dialogData.validateField(testField, testField.default_value);
+            const validation = dialogData.validateField(testField, testField.default_value);
             expect(validation.isValid).toEqual(false);
             expect(validation.message).toEqual('Hulk- The Strongest Avenger');
           });
@@ -329,7 +329,7 @@ describe('DialogDataService test', () => {
           });
 
           it('passes validation', () => {
-            let validation = dialogData.validateField(testField, testField.default_value);
+            const validation = dialogData.validateField(testField, testField.default_value);
             expect(validation.isValid).toEqual(true);
             expect(validation.message).toEqual('');
           });
@@ -346,7 +346,7 @@ describe('DialogDataService test', () => {
           });
 
           it('fails validation', () => {
-            let validation = dialogData.validateField(testField, testField.default_value);
+            const validation = dialogData.validateField(testField, testField.default_value);
             expect(validation.isValid).toEqual(false);
             expect(validation.message).toEqual('Select a valid date');
           });
@@ -366,7 +366,7 @@ describe('DialogDataService test', () => {
             });
 
             it('passes validation', () => {
-              let validation = dialogData.validateField(testField, testField.default_value);
+              const validation = dialogData.validateField(testField, testField.default_value);
               expect(validation.isValid).toEqual(true);
               expect(validation.message).toEqual('');
             });
@@ -378,9 +378,9 @@ describe('DialogDataService test', () => {
 
   describe('#setDefaultValue', () => {
     it('should allow a default value to be set', () => {
-      let testField = dialogField;
+      const testField = dialogField;
       testField.default_value = 'test';
-      let testDefault = dialogData.setDefaultValue(testField);
+      const testDefault = dialogData.setDefaultValue(testField);
       expect(testDefault).toBe('test');
     });
 
@@ -406,7 +406,7 @@ describe('DialogDataService test', () => {
     });
 
     describe('when the data type is a check box', () => {
-      let testField = {
+      const testField = {
         default_value: 'f',
         name: 'test',
         type: 'DialogFieldCheckBox'
@@ -418,7 +418,7 @@ describe('DialogDataService test', () => {
         });
 
         it('ensures the field\'s default value stays set', () => {
-          let testDefault = dialogData.setDefaultValue(testField);
+          const testDefault = dialogData.setDefaultValue(testField);
           expect(testDefault).toBe('f');
         });
       });
@@ -429,14 +429,14 @@ describe('DialogDataService test', () => {
         });
 
         it('ensures the checkbox uses the default value that is set', () => {
-          let testDefault = dialogData.setDefaultValue(testField);
+          const testDefault = dialogData.setDefaultValue(testField);
           expect(testDefault).toBe('f');
         });
       });
     });
 
     describe('when the data type is a date control', () => {
-      let dateField = {'type': 'DialogFieldDateControl',
+      const dateField = {'type': 'DialogFieldDateControl',
                        'default_value': ''};
 
       describe('when the values are undefined', () => {
@@ -445,8 +445,8 @@ describe('DialogDataService test', () => {
         });
 
         it('returns a new date', () => {
-          let todaysDate = new Date();
-          let expectedDate = dialogData.setDefaultValue(dateField);
+          const todaysDate = new Date();
+          const expectedDate = dialogData.setDefaultValue(dateField);
           expect(expectedDate.getFullYear()).toEqual(todaysDate.getFullYear());
           expect(expectedDate.getMonth()).toEqual(todaysDate.getMonth());
           expect(expectedDate.getDate()).toEqual(todaysDate.getDate());
@@ -486,8 +486,8 @@ describe('DialogDataService test', () => {
     });
 
     it('converts Dates to string', () => {
-      let input = dialogData.data.values;
-      let output = dialogData.outputConversion(input);
+      const input = dialogData.data.values;
+      const output = dialogData.outputConversion(input);
 
       expect(input === output).toBe(false); // shallow copy
       expect(typeof input.date_1).toEqual('object'); // Date
@@ -499,10 +499,10 @@ describe('DialogDataService test', () => {
     // timezone-mock is not compatible with current karma it seems:
     // ERROR [karma]: { inspect: [Function: inspect] }
     xit('preserves local timezone', () => {
-      let input = dialogData.data.values;
+      const input = dialogData.data.values;
       input.default_value = new Date('2019-10-15T00:11:22+01:00');
 
-      let output = dialogData.outputConversion(input);
+      const output = dialogData.outputConversion(input);
 
       expect(input.date_1.getUTCDate()).toEqual(14); // UTC is off by one
       expect(output.date_1).toEqual('2019-10-15'); // not 2019-10-14

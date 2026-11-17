@@ -13,7 +13,8 @@
     "gettext:validate": "node scripts/validate-gettext-catalog.js",
     "install-vendor": "webpack --config webpack.vendor.config.js --mode=development",
     "build-docs": "jsdoc -c jsdoc-conf.json",
-    "test:security": "yarn npm audit --recursive --no-deprecations --environment production"
+    "test:security": "yarn npm audit --recursive --no-deprecations --environment production",
+    "lint": "eslint \"{src,demo}/**/*.ts\" --max-warnings 0"
   },
   "repository": {
     "type": "git",

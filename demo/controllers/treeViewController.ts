@@ -22,12 +22,23 @@ export default class TreeViewController {
   }
 
   public selectRandom() {
-    const keys = JSON.stringify(this.data)
-      .match(/"key":"[^"]+"/g)
-      .map((item) => item.replace(/"key":"([^"]+)"/, '$1'));
-    const key = keys[Math.floor(Math.random() * keys.length)];
+    const collectKeys = (node: any): string[] => {
+      if (Array.isArray(node)) {
+        return node.flatMap(collectKeys);
+      }
+      if (node && typeof node === 'object') {
+        const own = typeof node.key === 'string' ? [node.key] : [];
+        const childKeys = Array.isArray(node.nodes) ? node.nodes.flatMap(collectKeys) : [];
+        return own.concat(childKeys);
+      }
+      return [];
+    };
 
-    this.selectNode = { key: key };
+    const keys = collectKeys(this.data);
+    if (keys.length > 0) {
+      const key = keys[Math.floor(Math.random() * keys.length)];
+      this.selectNode = { key: key };
+    }
   }
 
   public selectLazy() {

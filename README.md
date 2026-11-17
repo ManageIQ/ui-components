@@ -79,12 +79,10 @@ yarn run build-dev
 yarn run test
 ```
 
-Before submitting code, run the following command to format the code according to the tslint rules:
+Before submitting code, run the linter:
 ```
-tsmft -r
+yarn lint
 ```
-
-This formats the code according to the tslint rules.
 
 #### Documentation
 

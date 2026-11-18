@@ -5,9 +5,9 @@ export default class AdjustColor {
       if (enabled || !value) {
         return value;
       } else {
-        let r = parseInt(value.substring(1,3), 16);
-        let g = parseInt(value.substring(3,5), 16);
-        let b = parseInt(value.substring(5,7), 16);
+        const r = parseInt(value.substring(1,3), 16);
+        const g = parseInt(value.substring(3,5), 16);
+        const b = parseInt(value.substring(5,7), 16);
 
         return `rgba(${r}, ${g}, ${b}, 0.5)`;
       }

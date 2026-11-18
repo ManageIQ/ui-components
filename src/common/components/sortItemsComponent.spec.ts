@@ -2,15 +2,15 @@ import SortItems from './sortItemsComponent';
 import * as angular from 'angular';
 
 describe('Sort items test', () =>  {
-  let headers = [
+  const headers = [
     {is_narrow: true},
     {col_id: 2, text: 'something', header_text: 'something'},
     {col_id: 3, text: 'something2', header_text: 'something2'}
   ];
-  let sortObject = {sortObject: {col_id: 3, text: 'something2'}, isAscending: true};
+  const sortObject = {sortObject: {col_id: 3, text: 'something2'}, isAscending: true};
 
   it('should create component', () => {
-    let sortItems = new SortItems;
+    const sortItems = new SortItems;
     expect(sortItems).toBeDefined();
   });
 
@@ -19,7 +19,7 @@ describe('Sort items test', () =>  {
     const onSort = jasmine.createSpy('onSort');
 
     beforeEach(() => {
-      let bindings = {
+      const bindings = {
         onSort: onSort,
         headers: headers,
         sortObject: sortObject,
@@ -34,7 +34,7 @@ describe('Sort items test', () =>  {
     it('should init options', () => {
       expect(sortItemsCtrl.options.fields.length).toBe(0);
       expect(sortItemsCtrl.options.currentField).toBeDefined();
-      expect(sortItemsCtrl.options.hasOwnProperty('onSortChange')).toBeTruthy();
+      expect(Object.prototype.hasOwnProperty.call(sortItemsCtrl.options, 'onSortChange')).toBeTruthy();
     });
 
     it('should set sort item', () => {

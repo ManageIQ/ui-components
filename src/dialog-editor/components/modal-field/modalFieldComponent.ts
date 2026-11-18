@@ -106,7 +106,7 @@ class ModalFieldController extends ModalController {
       return '';
     }
     const actionKeys = ['ae_namespace', 'ae_class', 'ae_instance'];
-    const keysPresent = actionKeys.every((item) => resourceAction.hasOwnProperty(item));
+    const keysPresent = actionKeys.every((item) => Object.prototype.hasOwnProperty.call(resourceAction, item));
 
     if (keysPresent && resourceAction.ae_namespace && resourceAction.ae_class && resourceAction.ae_instance) {
       return `${resourceAction.ae_namespace}/${resourceAction.ae_class}/${resourceAction.ae_instance}`;

@@ -1,9 +1,9 @@
 import {AvailableComponent, default as AvailableComponentsService} from './availableComponentsService';
 
-function checkProperties(settings, fields, target?) {
-  for (let field of fields) {
-    if (!settings.hasOwnProperty(field)) {
-      let suffix = target ? `Called on class ${target['name']}.` : '';
+function checkProperties(settings: any, fields: string[], target?: any) {
+  for (const field of fields) {
+    if (!Object.prototype.hasOwnProperty.call(settings, field)) {
+      const suffix = target ? `Called on class ${target['name']}.` : '';
       throw new Error(`Available component has to have ${field} set up! ${suffix}`);
     }
   }
@@ -20,9 +20,9 @@ export function ComponentDemo(settings: any) {
     );
   }
 
-  return function(target: Function) {
+  return function(target: new (...args: any[]) => any) {
     checkProperties(settings, ['controller', 'name', 'template', 'group'], target);
-    let availCmps = new AvailableComponentsService();
+    const availCmps = new AvailableComponentsService();
     const currentGroup = availCmps.availableComponents.filter(group => group.name === settings.group);
     if (!currentGroup) {
       throw new Error(`Selected group '${settings.group}' does not exists!`);

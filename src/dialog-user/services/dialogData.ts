@@ -14,7 +14,7 @@ export default class DialogDataService {
    *
    **/
   public setupField(data: any) {
-    let field = _.cloneDeep(data);
+    const field = _.cloneDeep(data);
     field.fieldBeingRefreshed = field.fieldBeingRefreshed || false;
 
     const sortableFieldTypes = ['DialogFieldDropDownList', 'DialogFieldRadioButton'];
@@ -33,7 +33,7 @@ export default class DialogDataService {
     options,
     values,
   }) {
-    let dropDownValues = values && values.map((option) => {
+    const dropDownValues = values && values.map((option) => {
       const value = this.convertDropdownValue(option[0], data_type);
       const description = (!Number.isInteger(option[1]) ? option[1] : parseInt(option[1], 10));
 
@@ -62,7 +62,7 @@ export default class DialogDataService {
     options,
     values,
   }) {
-    let tempValues = [...values];
+    const tempValues = [...values];
 
     // The following deals with an empty default option if it exists
     const firstValue = values[0][0];
@@ -97,7 +97,7 @@ export default class DialogDataService {
     let defaultValue: any = '';
 
     // FIXME: don't convert twice, but now "0" -> 0 -> 1 happens otherwise for numeric dropdowns
-    let validZero = (data.default_value === 0) && data.data_type === 'integer';
+    const validZero = (data.default_value === 0) && data.data_type === 'integer';
 
     if (data.default_value || validZero) {
       defaultValue = data.default_value;
@@ -274,16 +274,16 @@ export default class DialogDataService {
   // currently, this means we convert Date instances to strings
   public outputConversion(dialogData) {
     const dateString = (date) => {
-      let y = date.getFullYear(),
+      const y = date.getFullYear(),
           m = date.getMonth() + 1,
           d = date.getDate();
       return sprintf('%04d-%02d-%02d', y, m, d);
     };
 
-    let out = {...dialogData};
+    const out = {...dialogData};
 
     Object.values(this.data.fields || {}).forEach(({name, type}) => {
-      let value = out[name];
+      const value = out[name];
 
       switch (type) {
         case 'DialogFieldDateControl':

@@ -1,5 +1,4 @@
 import * as _ from 'lodash';
-import * as angular from 'angular';
 
 /**
  * This component deals with an individual dialog field
@@ -106,8 +105,8 @@ export class DialogFieldController {
    * @function dateTimeFieldChanged
    */
   public dateTimeFieldChanged() {
-    let dateField = this.dialogField.dateField;
-    let timeField = this.dialogField.timeField;
+    const dateField = this.dialogField.dateField;
+    const timeField = this.dialogField.timeField;
 
     if (! dateField) {
       // cleared
@@ -117,12 +116,12 @@ export class DialogFieldController {
       return this.changesHappened();
     }
 
-    let fullYear = dateField.getFullYear();
-    let month = dateField.getMonth();
-    let date = dateField.getDate();
+    const fullYear = dateField.getFullYear();
+    const month = dateField.getMonth();
+    const date = dateField.getDate();
 
-    let hours = timeField.getHours();
-    let minutes = timeField.getMinutes();
+    const hours = timeField.getHours();
+    const minutes = timeField.getMinutes();
 
     this.dialogField.default_value = new Date(fullYear, month, date, hours, minutes);
     return this.changesHappened();

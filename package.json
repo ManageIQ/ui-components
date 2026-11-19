@@ -39,7 +39,7 @@
     "angular-animate": "npm:@brickhouse-tech/angular-lts@^1.10.4",
     "angular-bootstrap": "^0.12.2",
     "angular-gettext-cli": "^1.2.0",
-    "angular-patternfly": "^3.15.0",
+    "angular-patternfly": "^5.0.0",
     "angular-sanitize": "npm:@brickhouse-tech/angular-lts@^1.10.4",
     "bootstrap-select": "~1.13.18",
     "bootstrap-switch": "^3.3.4",

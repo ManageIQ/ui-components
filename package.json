@@ -32,7 +32,7 @@
     "@manageiq/font-fabulous": "^1.0.0",
     "@types/angular-mocks": "^1.7.0",
     "@types/jasmine": "^3.10.18",
-    "@types/lodash": "4.14.182",
+    "@types/lodash": "4.17.27",
     "@types/node": "16.18.78",
     "@uirouter/angularjs": "~1.0.30",
     "angular": "npm:@brickhouse-tech/angular-lts@^1.10.4",

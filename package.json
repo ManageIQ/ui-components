@@ -34,7 +34,7 @@
     "@types/jasmine": "^3.10.18",
     "@types/lodash": "4.14.182",
     "@types/node": "16.18.78",
-    "@uirouter/angularjs": "~1.0.30",
+    "@uirouter/angularjs": "~1.1.0",
     "angular": "npm:@brickhouse-tech/angular-lts@^1.10.4",
     "angular-animate": "npm:@brickhouse-tech/angular-lts@^1.10.4",
     "angular-bootstrap": "^0.12.2",

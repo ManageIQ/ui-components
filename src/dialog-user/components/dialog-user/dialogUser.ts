@@ -103,7 +103,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
     } else {
       _.forIn(this.dialogFields, (field, fieldName) => {
         const dialogValue = this.dialogValues[fieldName];
-        let validation = this.service.validateField(field, dialogValue);
+        const validation = this.service.validateField(field, dialogValue);
 
         if (! validation.isValid) {
           validations.isValid = false;
@@ -124,7 +124,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
    * @param value {any} This is the updated value based on the selection the user made on a particular dialog field
    */
   public updateDialogField(dialogFieldName, value) {
-    let hasFieldsToUpdate = this.fieldAssociations && this.fieldAssociations[dialogFieldName]
+    const hasFieldsToUpdate = this.fieldAssociations && this.fieldAssociations[dialogFieldName]
       && this.fieldAssociations[dialogFieldName].length;
 
     this.dialogValues[dialogFieldName] = value;
@@ -158,7 +158,6 @@ export class DialogUserController extends DialogClass implements IDialogs {
     const field = refreshableFields[0];
     this.areFieldsBeingRefreshed = true;
     this.dialogFields[field].fieldBeingRefreshed = true;
-    const fieldsLeftToRefresh = _.without(refreshableFields, field);
     this.refreshField({ field: this.dialogFields[field] }).then((data) => this.refreshFieldCallback(field, data));
   }
 
@@ -184,7 +183,7 @@ export class DialogUserController extends DialogClass implements IDialogs {
       this.determineRefreshRequestCount(dialogFieldName);
     }
 
-    let promiseList = [];
+    const promiseList = [];
     _.forEach(this.fieldAssociations[dialogFieldName], (field: any) => {
       promiseList.push(this.refreshSingleField(field));
     });

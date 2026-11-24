@@ -22,20 +22,31 @@ export default class TreeViewController {
   }
 
   public selectRandom() {
-    let keys = JSON.stringify(this.data)
-      .match(/\"key\":\"[^\"]+\"/g)
-      .map((item) => item.replace(/\"key\":\"([^\"]+)\"/, '$1'));
-    let key = keys[Math.floor(Math.random() * keys.length)];
+    const collectKeys = (node: any): string[] => {
+      if (Array.isArray(node)) {
+        return node.flatMap(collectKeys);
+      }
+      if (node && typeof node === 'object') {
+        const own = typeof node.key === 'string' ? [node.key] : [];
+        const childKeys = Array.isArray(node.nodes) ? node.nodes.flatMap(collectKeys) : [];
+        return own.concat(childKeys);
+      }
+      return [];
+    };
 
-    this.selectNode = { key: key };
+    const keys = collectKeys(this.data);
+    if (keys.length > 0) {
+      const key = keys[Math.floor(Math.random() * keys.length)];
+      this.selectNode = { key: key };
+    }
   }
 
   public selectLazy() {
     this.selectNode = [{key: 'lp-1'}, {key: 'lc-2'}, {key: 'lgc-1'}];
   }
 
-  public lazyLoad(node) {
-    let data = require('../data/lazyTree.json');
+  public lazyLoad() {
+    const data = require('../data/lazyTree.json');
     // Wait to simulate HTTP delay
     return new Promise(resolve => this.$timeout(() => resolve(data), 1500));
   }

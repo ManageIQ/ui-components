@@ -25,8 +25,8 @@ export default class TreeSelectorController {
     this.display = false;
   }
 
-  public lazyLoad(node) {
-    let data = require('../data/lazyTree.json');
+  public lazyLoad() {
+    const data = require('../data/lazyTree.json');
     // Wait to simulate HTTP delay
     return new Promise(resolve => this.$timeout(() => resolve(data), 1500));
   }

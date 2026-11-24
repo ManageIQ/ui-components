@@ -66,7 +66,7 @@ export default class DialogValidationService {
   }
 
   private validate = (item, description, local = false) => ((fn) => {
-    let validation = fn(item);
+    const validation = fn(item);
     if (local && !validation.local) {
       return true;
     }
@@ -78,7 +78,7 @@ export default class DialogValidationService {
       });
     }
     return validation.status;
-  })
+  });
 
   public validateDialog(dialog, local = false) {
     const label = dialog.label ? sprintf(__('Dialog %s'), dialog.label) : __('Unnamed Dialog');

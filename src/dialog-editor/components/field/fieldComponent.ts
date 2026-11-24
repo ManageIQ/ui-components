@@ -1,5 +1,4 @@
 import * as _ from 'lodash';
-import * as angular from 'angular';
 
 /**
  * Controller for the Dialog Editor field component

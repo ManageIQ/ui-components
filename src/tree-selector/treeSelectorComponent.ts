@@ -6,8 +6,8 @@ export class TreeSelectorController {
   public persist: string;
   public selected: any;
   public selectable: any;
-  public onSelect: Function;
-  public lazyLoad: Function;
+  public onSelect: (...args: any[]) => any;
+  public lazyLoad: (...args: any[]) => any;
 
   public parsedData: any;
   private rendered = false;

@@ -81,11 +81,11 @@ describe('Dialog test', () =>  {
 
     beforeEach(() => {
       refreshField = {
-        callback: (value) => Promise.resolve({}),
+        callback: () => Promise.resolve({}),
       };
       spyOn(refreshField, 'callback').and.callThrough();
 
-      let bindings = {
+      const bindings = {
         dialog: dialogData,
         refreshField: refreshField.callback,
         onUpdate: () => true,
@@ -103,7 +103,7 @@ describe('Dialog test', () =>  {
     });
 
     it('makes the callback to refreshField', (done) => {
-      let expectedField =  _.pick(dialogCtrl.dialogFields['service_name'], [
+      const expectedField =  _.pick(dialogCtrl.dialogFields['service_name'], [
         'created_at',
         'href',
         'name',

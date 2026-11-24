@@ -37,10 +37,10 @@ class TabListController {
       helper: 'clone',
       revert: 50,
       stop: (e: any, ui: any) => {
-        let sortedTab: any = ng.element(ui.item).scope().$parent;
-        let tabList = sortedTab.vm.tabList;
+        const sortedTab: any = ng.element(ui.item).scope().$parent;
+        const tabList = sortedTab.vm.tabList;
         this.DialogEditor.updatePositions(tabList);
-        let activeTab: any = _.find(tabList, {active: true});
+        const activeTab: any = _.find(tabList, {active: true});
         this.DialogEditor.activeTab = activeTab.position;
       },
     };
@@ -57,7 +57,7 @@ class TabListController {
     // deactivate currently active tab
     this.tabList.forEach((tab) =>  tab.active = false);
     // create a new tab
-    let nextIndex = this.tabList.length;
+    const nextIndex = this.tabList.length;
     this.tabList.push(
       {
         description: __('New Tab ') + nextIndex,
@@ -109,7 +109,7 @@ class TabListController {
       return;
     }
     // set activity in the service
-    let activeTabData: any = _.find(
+    const activeTabData: any = _.find(
       this.tabList,
       {active: true}
     );
@@ -126,13 +126,13 @@ class TabListController {
    */
   public selectTab(id: number) {
     // deactivate currently active
-    let deselectedTab = _.find(
+    const deselectedTab = _.find(
       this.tabList,
       {active: true}
     );
     deselectedTab.active = false;
     // activate selected
-    let selectedTab = this.tabList[id];
+    const selectedTab = this.tabList[id];
     selectedTab.active = true;
     this.DialogEditor.activeTab = id;
   }

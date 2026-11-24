@@ -13,7 +13,7 @@ describe('DialogEditor test', () => {
   });
 
   describe('#setData', () => {
-    let dialogData = {
+    const dialogData = {
       content: [{
         dialog_tabs: []
       }]
@@ -25,7 +25,7 @@ describe('DialogEditor test', () => {
     });
 
     describe('when the values on a field are a string', () => {
-      let dialogData = {
+      const dialogData = {
         content: [{
           dialog_tabs: [{
             dialog_groups: [{
@@ -39,13 +39,13 @@ describe('DialogEditor test', () => {
 
       it('sets all of the field values correctly', () => {
         dialogEditor.setData(dialogData);
-        let fieldValues = dialogEditor.data.content[0].dialog_tabs[0].dialog_groups[0].dialog_fields[0].values;
+        const fieldValues = dialogEditor.data.content[0].dialog_tabs[0].dialog_groups[0].dialog_fields[0].values;
         expect(fieldValues).toEqual('nofailure');
       });
     });
 
     describe('when the values on a field are null', () => {
-      let dialogData = {
+      const dialogData = {
         content: [{
           dialog_tabs: [{
             dialog_groups: [{
@@ -69,8 +69,8 @@ describe('DialogEditor test', () => {
 
       it('sets all fields with null value  to false', () => {
         dialogEditor.setData(dialogData);
-        let fieldValues = dialogEditor.data.content[0].dialog_tabs[0].dialog_groups[0].dialog_fields[0];
-        let falseValues = {
+        const fieldValues = dialogEditor.data.content[0].dialog_tabs[0].dialog_groups[0].dialog_fields[0];
+        const falseValues = {
           required: false,
           visible: false,
           read_only: false,
@@ -88,7 +88,7 @@ describe('DialogEditor test', () => {
     });
 
     describe('when the values on a field are an object', () => {
-      let dialogData = {
+      const dialogData = {
         content: [{
           dialog_tabs: [{
             dialog_groups: [{
@@ -102,14 +102,14 @@ describe('DialogEditor test', () => {
 
       it('sets all of the field values based on a filter', () => {
         dialogEditor.setData(dialogData);
-        let fieldValues = dialogEditor.data.content[0].dialog_tabs[0].dialog_groups[0].dialog_fields[0].values;
+        const fieldValues = dialogEditor.data.content[0].dialog_tabs[0].dialog_groups[0].dialog_fields[0].values;
         expect(fieldValues).toEqual(['zero']);
       });
     });
   });
 
   describe('#getDialogId', () => {
-    let dialogData = {content: [{id: 123}]};
+    const dialogData = {content: [{id: 123}]};
 
     beforeEach(() => {
       dialogEditor.setData(dialogData);
@@ -122,7 +122,7 @@ describe('DialogEditor test', () => {
   });
 
   describe('#getDialogId', () => {
-    let dialogData = {
+    const dialogData = {
       'content': [{
         'dialog_tabs': [{
           'label': 'New tab',
@@ -146,7 +146,7 @@ describe('DialogEditor test', () => {
   });
 
   describe('#getDialogLabel', () => {
-    let dialogData = {content: [{label: 'label'}]};
+    const dialogData = {content: [{label: 'label'}]};
 
     beforeEach(() => {
       dialogEditor.setData(dialogData);
@@ -158,7 +158,7 @@ describe('DialogEditor test', () => {
   });
 
   describe('#getDialogDescription', () => {
-    let dialogData = {content: [{description: 'description'}]};
+    const dialogData = {content: [{description: 'description'}]};
 
     beforeEach(() => {
       dialogEditor.setData(dialogData);
@@ -170,7 +170,7 @@ describe('DialogEditor test', () => {
   });
 
   describe('#getDialogTabs', () => {
-    let dialogData = {content: [{dialog_tabs: 'dialog_tabs'}]};
+    const dialogData = {content: [{dialog_tabs: 'dialog_tabs'}]};
 
     beforeEach(() => {
       dialogEditor.setData(dialogData);
@@ -182,25 +182,25 @@ describe('DialogEditor test', () => {
   });
 
   describe('#getDynamicFields', () => {
-    let field1 = {
+    const field1 = {
       id: 1,
       name: 'field_1',
       dynamic: true
     };
 
-    let field2 = {
+    const field2 = {
       id: 2,
       name: 'field_2',
       dynamic: true
     };
 
-    let field3 = {
+    const field3 = {
       id: 3,
       name: 'field_3',
       dynamic: false
     };
 
-    let data = {
+    const data = {
       content: [{
         dialog_tabs: [{
           dialog_groups: [{
@@ -228,19 +228,19 @@ describe('DialogEditor test', () => {
   });
 
   describe('#newFieldName', () => {
-    let field1 = {
+    const field1 = {
       name: 'textarea_box_1'
     };
 
-    let field2 = {
+    const field2 = {
       name: 'textarea_box_2'
     };
 
-    let field3 = {
+    const field3 = {
       name: 'radio_button_3'
     };
 
-    let data = {
+    const data = {
       content: [{
         dialog_tabs: [{
           dialog_groups: [{

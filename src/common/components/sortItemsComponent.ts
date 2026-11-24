@@ -82,7 +82,7 @@ export class SortItemsController {
    */
   private fillFields() {
     _.each(this.headers, (oneCol: any, key) => {
-      if (!oneCol.hasOwnProperty('is_narrow') && oneCol.hasOwnProperty('text')) {
+      if (!Object.prototype.hasOwnProperty.call(oneCol, 'is_narrow') && Object.prototype.hasOwnProperty.call(oneCol, 'text')) {
         this.options.fields.push({
           colId: key,
           id: oneCol.text.toLowerCase(),
@@ -98,9 +98,11 @@ export class SortItemsController {
    */
   private applyClass() {
     if (this.dropdownClass) {
-      Array.isArray(this.dropdownClass) ?
-        this.$element.find('.uib-dropdown').addClass(...this.dropdownClass) :
+      if (Array.isArray(this.dropdownClass)) {
+        this.$element.find('.uib-dropdown').addClass(...this.dropdownClass);
+      } else {
         this.$element.find('.uib-dropdown').addClass(this.dropdownClass);
+      }
     }
   }
 }
@@ -132,7 +134,7 @@ export class SortItemsController {
  */
 export default class SortItems implements ng.IComponentOptions {
   public replace: boolean = true;
-  public template = `<div miq-pf-sort config="vm.options"></div>`;
+  public template = '<div miq-pf-sort config="vm.options"></div>';
   public controller = SortItemsController;
   public controllerAs = 'vm';
   public bindings: any = {
